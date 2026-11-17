@@ -3,6 +3,7 @@ export interface RawQuestion {
   topic: string;
   q: string;
   format?: QuestionFormat;
+  learningStage?: LearningStage;
   context?: string;
   /** Plain T-SQL. It is syntax-highlighted automatically (SSMS colours). */
   code?: string;
@@ -31,12 +32,14 @@ export interface ScenarioBranch {
 }
 
 export type Difficulty = "easy" | "medium" | "hard";
+export type LearningStage = "memorize" | "understand" | "practice" | "reflect" | "transfer";
 
 export interface Question extends RawQuestion {
   /** Stable id: `${quizId}:${index}` */
   id: string;
   index: number;
   format: QuestionFormat;
+  learningStage: LearningStage;
   difficulty: Difficulty;
 }
 
@@ -51,11 +54,11 @@ export interface Quiz {
 }
 
 export type QuizMode = "practice" | "exam" | "weak";
-export type QuizPurpose = "diagnostic" | "formative" | "consolidation" | "summative";
+export type LegacyQuizPurpose = "diagnostic" | "formative" | "consolidation" | "summative";
 
 export interface QuizConfig {
   mode: QuizMode;
-  purpose: QuizPurpose;
+  stage: LearningStage;
   topics: string[];
   count: number; // 0 = all
   shuffleQuestions: boolean;
@@ -76,7 +79,8 @@ export interface Attempt {
   id: string;
   quizId: string;
   mode: QuizMode;
-  purpose?: QuizPurpose;
+  stage?: LearningStage;
+  purpose?: LegacyQuizPurpose;
   startedAt: number;
   finishedAt: number;
   score: number;

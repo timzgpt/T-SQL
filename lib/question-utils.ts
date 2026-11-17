@@ -1,4 +1,4 @@
-import type { Question } from "./types";
+import type { Attempt, Question } from "./types";
 
 export const FORMAT_LABELS = {
   "multiple-choice": "Multiple choice",
@@ -9,12 +9,36 @@ export const FORMAT_LABELS = {
   scenario: "Scenario",
 } as const;
 
-export const PURPOSE_LABELS = {
+export const LEARNING_STAGE_LABELS = {
+  memorize: "Memorize",
+  understand: "Understand",
+  practice: "Practice",
+  reflect: "Reflect",
+  transfer: "Transfer",
+} as const;
+
+export const LEARNING_STAGE_DESCRIPTIONS = {
+  memorize: "Recall SQL terms, syntax, and key facts.",
+  understand: "Explain what SQL components do and why they work.",
+  practice: "Apply concepts by reading and writing SQL.",
+  reflect: "Review your reasoning, errors, and what you learned.",
+  transfer: "Apply SQL knowledge to new and unfamiliar situations.",
+} as const;
+
+const LEGACY_PURPOSE_LABELS = {
   diagnostic: "Diagnostic",
   formative: "Formative · low stakes",
   consolidation: "Consolidation · review",
   summative: "Summative",
 } as const;
+
+export function attemptLearningLabel(attempt: Pick<Attempt, "stage" | "purpose" | "mode">): string {
+  const stage = attempt.stage ? LEARNING_STAGE_LABELS[attempt.stage] : undefined;
+  if (stage) return stage;
+  const legacyPurpose = attempt.purpose ? LEGACY_PURPOSE_LABELS[attempt.purpose] : undefined;
+  if (legacyPurpose) return `${legacyPurpose} · legacy`;
+  return attempt.mode === "weak" ? "Weak spots" : attempt.mode;
+}
 
 export function matchingValues(question: Question, response: string | null): string[] {
   if (!response) return [];

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Download, Flame, RotateCcw, Target, Trophy, Upload } from "lucide-react";
 import { QUIZZES, getQuiz } from "@/lib/quizzes";
 import { exportProgress, importProgress, questionMastery, quizMastery, resetProgress, studyStreak, useProgress } from "@/lib/progress";
-import { isQuestionAnswered, PURPOSE_LABELS } from "@/lib/question-utils";
+import { attemptLearningLabel, isQuestionAnswered } from "@/lib/question-utils";
 import type { Attempt } from "@/lib/types";
 import { cn, formatDuration } from "@/lib/utils";
 import { Badge, Button, ButtonLink, Card, Meter, Modal, SectionTitle } from "./ui";
@@ -167,7 +167,7 @@ export function ProgressView() {
                   <tr className="border-b border-slate-100 text-left text-xs uppercase tracking-wider text-slate-500 dark:border-white/5">
                     <th className="px-4 py-3 font-semibold">Date</th>
                     <th className="px-4 py-3 font-semibold">Quiz</th>
-                    <th className="px-4 py-3 font-semibold">Purpose / mode</th>
+                    <th className="px-4 py-3 font-semibold">Learning stage / mode</th>
                     <th className="px-4 py-3 text-right font-semibold">Score</th>
                     <th className="px-4 py-3 text-right font-semibold">Time</th>
                   </tr>
@@ -181,7 +181,7 @@ export function ProgressView() {
                           {new Date(a.finishedAt).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}
                         </td>
                         <td className="px-4 py-3 font-medium">{getQuiz(a.quizId)?.title}</td>
-                        <td className="px-4 py-3">{a.purpose ? PURPOSE_LABELS[a.purpose] : a.mode === "weak" ? "weak spots" : a.mode}</td>
+                        <td className="px-4 py-3">{attemptLearningLabel(a)}</td>
                         <td className="px-4 py-3 text-right tabular-nums">
                           <span className={cn("font-semibold", pct >= 80 ? "text-emerald-700 dark:text-emerald-400" : pct >= 50 ? "text-amber-700 dark:text-amber-400" : "text-red-700 dark:text-red-400")}>
                             {pct}%

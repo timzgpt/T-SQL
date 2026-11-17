@@ -17,7 +17,7 @@ npm run build      # static export → ./out (host on IIS, Nginx, GitHub Pages, 
 | Area | What you get |
 |---|---|
 | **Library dashboard** | Mastery ring per lesson, per-topic meters, best score, stats (mastered, average, streak, weak spots), recent activity, query anatomy + SSMS colour legend |
-| **Quiz setup** | Question formats: **multiple choice, true/false, short answer, matching, SQL coding, and scenario decisions**. Choose a pedagogical purpose: **diagnostic, formative, consolidation/review, or summative**. Modes: Practice (instant feedback + hints), Exam (feedback after submit), and Weak spots. Filter by topic and difficulty, shuffle, and set a time limit |
+| **Quiz setup** | Questions are organized by five learning stages: **Memorize, Understand, Practice, Reflect, Transfer**. Selecting a stage filters to questions authored for that learning goal. Formats include multiple choice, true/false, short answer, matching, SQL coding, and scenario decisions. Modes: Practice (instant feedback + hints), Exam (feedback after submit), and Weak spots |
 | **Quiz runner** | Format-aware answer inputs and scoring, scenario outcomes for each choice, segmented progress, question navigator with flags, countdown timer (auto-submit), bookmarks, per-question timing, full keyboard control |
 | **Results** | Score ring, delta vs previous attempt, time stats, performance by topic (weakest first), filterable review (all / missed / flagged), **retry missed only** |
 | **Study sheet** | Full-text search, topic filter, bookmarked-only, **self-test mode** (reveal one by one), print-friendly |
@@ -33,10 +33,12 @@ Progress is stored in `localStorage` (key `sqlquiz:progress:v2`) — no backend 
 
 ## Adding the next lesson
 
-1. Create `lib/quizzes/select.ts` exporting a `RawQuestion[]`. Questions default to multiple choice; set `format` to `true-false`, `short-answer`, `matching`, `coding`, or `scenario` for the other local formats. Typed questions can provide `acceptedAnswers`, matching questions use `matchPairs`, and scenario questions provide `context` plus a `scenarioBranches` outcome for every option. Put SQL code as plain T-SQL; highlighting is automatic. Optional `difficulty: "easy" | "medium" | "hard"`.
+1. Create `lib/quizzes/select.ts` exporting a `RawQuestion[]`. Every question needs a `learningStage`: `memorize`, `understand`, `practice`, `reflect`, or `transfer`. Questions default to multiple choice; set `format` to `true-false`, `short-answer`, `matching`, `coding`, or `scenario` for the other local formats. Typed questions can provide `acceptedAnswers`, matching questions use `matchPairs`, and scenario questions provide `context` plus a `scenarioBranches` outcome for every option. Put SQL code as plain T-SQL; highlighting is automatic. Optional `difficulty: "easy" | "medium" | "hard"`.
 2. Register it in `lib/quizzes/index.ts` (`DEFS` array).
 
 The build fails fast when answers, matching pairs, true/false options, or scenario outcomes are invalid. Video-timestamp quizzes and live competitions are not included; they need video assets or a real-time backend.
+
+For the full question-authoring workflow and the 100-questions-per-stage-per-VTT target, see [docs/QUESTION_AUTHORING.md](./docs/QUESTION_AUTHORING.md).
 
 ## Structure
 

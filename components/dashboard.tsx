@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Clock, Flame, Layers, Plus, Target, Trophy, Zap } from "lucide-react";
 import { QUIZZES, TOTAL_QUESTIONS, getQuiz } from "@/lib/quizzes";
 import { isWeak, questionMastery, quizMastery, studyStreak, useProgress } from "@/lib/progress";
-import { PURPOSE_LABELS } from "@/lib/question-utils";
+import { attemptLearningLabel } from "@/lib/question-utils";
 import { cn, timeAgo } from "@/lib/utils";
 import { Badge, ButtonLink, Card, Meter, Ring, SectionTitle } from "./ui";
 import { LEGEND, SqlCode } from "./sql-code";
@@ -207,7 +207,7 @@ export function Dashboard() {
                     <div className="min-w-0 flex-1">
                       <div className="truncate text-sm font-medium">{getQuiz(a.quizId)?.title ?? a.quizId}</div>
                       <div className="text-xs capitalize text-slate-500">
-                        {a.purpose ? PURPOSE_LABELS[a.purpose] : a.mode === "weak" ? "weak spots" : a.mode} · {a.score}/{a.total} · {timeAgo(a.finishedAt)}
+                        {attemptLearningLabel(a)} · {a.score}/{a.total} · {timeAgo(a.finishedAt)}
                       </div>
                     </div>
                   </div>

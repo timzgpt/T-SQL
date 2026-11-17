@@ -18,6 +18,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Statements",
     q: "Look at the code below. What do we call the WHOLE thing — all of this code together, from the first line to the last?",
+    learningStage: "memorize",
     code: FULL_CODE,
     options: ["A statement (also called a query)", "A clause", "A keyword", "A comment"],
     answer: "A statement (also called a query)",
@@ -29,6 +30,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Statements",
     q: "Why do we call this code a SELECT statement?",
+    learningStage: "understand",
     code: FULL_CODE,
     options: [
       "Because it starts with the SELECT keyword",
@@ -45,6 +47,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Statements",
     q: "What is the difference between a statement and a clause?",
+    learningStage: "understand",
     options: [
       "A statement is the whole code; a clause is one section inside it",
       "They are two names for exactly the same thing",
@@ -61,6 +64,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Statements",
     q: "In this lesson, what is the relationship between the words 'query' and 'statement'?",
+    learningStage: "memorize",
     options: [
       "Two names for the same thing — the whole SQL code",
       "A query is bigger than a statement",
@@ -76,6 +80,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Statements",
     q: "Which of these is a COMPLETE statement that SQL Server can run?",
+    learningStage: "practice",
     options: ["SELECT name FROM customers;", "FROM customers", "WHERE country = 'Italy'", "LOWER(country)"],
     answer: "SELECT name FROM customers;",
     hint: "A complete statement needs a command and its parts — not just one section or one tool.",
@@ -87,6 +92,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Statements",
     q: "Do these components (clauses, keywords, values…) appear ONLY in SELECT statements?",
+    learningStage: "transfer",
     options: [
       "No — they are the basic parts of ALL SQL code, like INSERT, CREATE and DELETE too",
       "Yes — only SELECT statements have them",
@@ -103,6 +109,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Comments",
     q: "Which part of this code is only a note for humans — the part that SQL will NOT run?",
+    learningStage: "memorize",
     code: COMMENT_CODE,
     options: ["The comment", "The clause", "The static value", "The function"],
     answer: "The comment",
@@ -114,6 +121,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Comments",
     q: "What happens when SQL Server runs a query that contains a comment?",
+    learningStage: "understand",
     options: [
       "It ignores the comment completely and runs the rest",
       "It stops and shows an error",
@@ -129,6 +137,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Comments",
     q: "What do the two dashes (--) do at the start of a line in SSMS?",
+    learningStage: "memorize",
     code: COMMENT_CODE,
     options: [
       "They start a comment — the rest of that line is ignored",
@@ -145,6 +154,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Comments",
     q: "SQL Server bonus: you want to write a comment that spans several lines. Which syntax works in SQL Server?",
+    learningStage: "transfer",
     options: ["/* comment */", "-- comment --", "// comment //", "# comment #"],
     answer: "/* comment */",
     hint: "One comment style uses two dashes for a single line. The other opens with a slash and a star, and closes with a star and a slash.",
@@ -156,6 +166,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Comments",
     q: "Why do developers write comments in their SQL code?",
+    learningStage: "reflect",
     options: [
       "To explain the code for humans reading it later",
       "To make the query run faster",
@@ -171,6 +182,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Comments",
     q: "In the default SSMS colors, what color is a comment?",
+    learningStage: "memorize",
     options: ["Green", "Blue", "Red", "Magenta (pink)"],
     answer: "Green",
     hint: "Think of the first line of the example query — the note that starts with --.",
@@ -182,6 +194,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "This query has three main sections: SELECT…, FROM… and WHERE…. What is each section called?",
+    learningStage: "memorize",
     code: FULL_CODE,
     options: ["A clause", "A comment", "An operator", "A function"],
     answer: "A clause",
@@ -193,6 +206,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "What is the job of the SELECT clause?",
+    learningStage: "memorize",
     options: [
       "To choose which columns to show",
       "To choose which table to read",
@@ -208,6 +222,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "Which clause filters the data — it decides which rows to keep?",
+    learningStage: "memorize",
     options: ["WHERE", "SELECT", "FROM", "LOWER"],
     answer: "WHERE",
     hint: "Filtering means keeping only the rows that match a condition — for example, only the customers from Italy.",
@@ -218,6 +233,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "What is the job of the FROM clause?",
+    learningStage: "memorize",
     options: [
       "To say which table the data comes from",
       "To choose which columns to show",
@@ -233,6 +249,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "In the example query, which part makes the result show ONLY Italian customers?",
+    learningStage: "practice",
     code: FULL_CODE,
     options: ["WHERE country = 'Italy'", "SELECT name", "FROM customers", "The green comment line"],
     answer: "WHERE country = 'Italy'",
@@ -244,6 +261,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "You want to read data from the customers table. Which piece of code do you need?",
+    learningStage: "practice",
     options: ["FROM customers", "SELECT customers", "WHERE customers", "LOWER(customers)"],
     answer: "FROM customers",
     hint: "One clause has exactly one job: naming the source table.",
@@ -255,6 +273,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "How many clauses does the example query have?",
+    learningStage: "memorize",
     code: FULL_CODE,
     options: [
       "Three — SELECT, FROM and WHERE",
@@ -272,6 +291,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "True or false: a clause is a complete instruction that can run on its own.",
+    learningStage: "understand",
     options: [
       "False — a clause is only one section of a statement",
       "True — each clause runs separately",
@@ -288,6 +308,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Clauses",
     q: "In what order do the three clauses appear in the lesson's query?",
+    learningStage: "memorize",
     code: FULL_CODE,
     options: ["SELECT → FROM → WHERE", "FROM → SELECT → WHERE", "WHERE → FROM → SELECT", "SELECT → WHERE → FROM"],
     answer: "SELECT → FROM → WHERE",
@@ -300,6 +321,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Keywords",
     q: "What do we call SQL's special reserved words like SELECT, FROM and WHERE — the blue words in SSMS?",
+    learningStage: "memorize",
     options: ["Keywords", "Identifiers", "Comments", "Static values"],
     answer: "Keywords",
     hint: "These words belong to the SQL language itself. You cannot use them as names for your own tables.",
@@ -310,6 +332,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Keywords",
     q: "What is the best practice when you write keywords?",
+    learningStage: "memorize",
     options: [
       "Write them in UPPERCASE, like SELECT",
       "Write them in lowercase, like select",
@@ -325,6 +348,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Keywords",
     q: "Which group contains ONLY keywords?",
+    learningStage: "understand",
     options: ["SELECT, FROM, WHERE, AS", "name, country, customers", "'Italy', 'Germany'", "LOWER(country), ="],
     answer: "SELECT, FROM, WHERE, AS",
     hint: "Keywords are the blue reserved words. Names are black, values are red.",
@@ -335,6 +359,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Keywords",
     q: "Why should you NOT name your own table 'SELECT'?",
+    learningStage: "reflect",
     options: [
       "SELECT is a reserved keyword — SQL Server needs it for commands",
       "Keywords are too short to be table names",
@@ -351,6 +376,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Keywords",
     q: "Does SQL Server still run your query if you write keywords in lowercase, like select?",
+    learningStage: "reflect",
     options: [
       "Yes — it runs, but UPPERCASE is the best practice for readability",
       "No — lowercase keywords cause an error",
@@ -366,6 +392,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Keywords",
     q: "In the code below, which words are keywords?",
+    learningStage: "practice",
     code: FULL_CODE,
     options: ["SELECT, AS, FROM, WHERE", "name, country, customers", "LOWER and 'Italy'", "The words in the comment"],
     answer: "SELECT, AS, FROM, WHERE",
@@ -378,6 +405,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Keywords",
     q: "What color does SSMS use for keywords?",
+    learningStage: "memorize",
     options: ["Blue", "Green", "Red", "Black"],
     answer: "Blue",
     hint: "SELECT, FROM, WHERE — what color are they in the example?",
@@ -389,6 +417,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Functions",
     q: "LOWER(country) takes the country values and turns them into lowercase letters. What kind of component is LOWER?",
+    learningStage: "memorize",
     code: "LOWER(country)",
     options: ["A function", "An identifier", "A clause", "A static value"],
     answer: "A function",
@@ -400,6 +429,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Functions",
     q: "What are the three steps of every function?",
+    learningStage: "understand",
     options: ["Input → process → output", "Select → from → where", "Open → save → close", "Comment → keyword → value"],
     answer: "Input → process → output",
     hint: "A function is like a small machine: something goes in, something happens, something comes out.",
@@ -410,6 +440,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Functions",
     q: "What is the output of this function call?",
+    learningStage: "practice",
     code: "LOWER('GERMANY')",
     options: ["'germany'", "'GERMANY'", "'Germany'", "An error"],
     answer: "'germany'",
@@ -421,6 +452,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Functions",
     q: "In LOWER(country), what is the INPUT of the function?",
+    learningStage: "understand",
     code: "LOWER(country)",
     options: ["The country column's values", "The word LOWER", "The customers table", "The value 'Italy'"],
     answer: "The country column's values",
@@ -433,6 +465,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Functions",
     q: "SQL Server bonus: which function would make the country values UPPERCASE?",
+    learningStage: "practice",
     options: ["UPPER(country)", "LOWER(country)", "BIG(country)", "CAPS(country)"],
     answer: "UPPER(country)",
     hint: "The opposite of LOWER has a very logical name.",
@@ -444,6 +477,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Functions",
     q: "Is LOWER a clause — or something else?",
+    learningStage: "understand",
     code: "LOWER(country)",
     options: [
       "Something else — it is a built-in function used INSIDE the SELECT clause",
@@ -462,6 +496,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Identifiers",
     q: "The black words name, country and customers are… what?",
+    learningStage: "memorize",
     code: "SELECT name, country FROM customers",
     options: [
       "Identifiers — names of columns and tables",
@@ -478,6 +513,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Identifiers",
     q: "In FROM customers, what is the word customers?",
+    learningStage: "memorize",
     options: ["A table name — an identifier", "A keyword", "A static value", "A function"],
     answer: "A table name — an identifier",
     hint: "FROM's job is to name the source table. So what must the word after FROM be?",
@@ -488,6 +524,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Identifiers",
     q: "In this line, what is country (the word WITHOUT quotes)?",
+    learningStage: "understand",
     code: WHERE_CODE,
     options: ["A column name — an identifier", "A static value", "A keyword", "An operator"],
     answer: "A column name — an identifier",
@@ -500,6 +537,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Identifiers",
     q: "Who chooses the identifiers (table and column names) in a database?",
+    learningStage: "memorize",
     options: [
       "The person who creates the tables and columns",
       "SQL Server invents them automatically",
@@ -515,6 +553,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Identifiers",
     q: "What color are identifiers like name and customers in the default SSMS colors?",
+    learningStage: "memorize",
     options: ["Black (normal text)", "Blue", "Green", "Red"],
     answer: "Black (normal text)",
     hint: "The lesson calls them 'those black words'. They are your database's own names.",
@@ -525,6 +564,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Identifiers",
     q: "SQL Server bonus: a column is called first name — with a space in the middle. How can you write it safely in a query?",
+    learningStage: "transfer",
     options: ["[first name] — square brackets", "'first name' — single quotes", "(first name) — parentheses", "-- first name"],
     answer: "[first name] — square brackets",
     hint: "SQL Server has a special wrapper for names that contain spaces or reserved words. It is not quotes — quotes make values.",
@@ -537,6 +577,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Operators",
     q: "Look at this line. What is the = sign doing here?",
+    learningStage: "understand",
     code: WHERE_CODE,
     options: [
       "It is an operator — it compares two values",
@@ -553,6 +594,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Operators",
     q: "Where do operators usually appear in the lesson's query?",
+    learningStage: "understand",
     options: ["Inside the WHERE clause", "Inside the comment", "Inside the FROM clause", "Before the SELECT keyword"],
     answer: "Inside the WHERE clause",
     hint: "Operators compare values to decide which rows to keep. Which clause has that job?",
@@ -563,6 +605,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Operators",
     q: "In this line, which TWO things does the = sign compare?",
+    learningStage: "understand",
     code: WHERE_CODE,
     options: [
       "The country column's value and the text 'Italy'",
@@ -580,6 +623,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Operators",
     q: "SQL Server bonus: which operator keeps rows where the value is NOT equal to something?",
+    learningStage: "transfer",
     options: ["<>", "><", "=>", "=="],
     answer: "<>",
     hint: "It looks like a less-than and a greater-than pushed together, pointing away from each other.",
@@ -591,6 +635,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Operators",
     q: "In this query, is the = sign CHANGING data or COMPARING data?",
+    learningStage: "reflect",
     code: WHERE_CODE,
     options: [
       "Comparing — it checks if country equals 'Italy'",
@@ -608,6 +653,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Static values",
     q: "What do we call 'Italy' — the fixed red text written inside the query?",
+    learningStage: "memorize",
     code: WHERE_CODE,
     options: ["A static value", "An identifier", "A keyword", "A comment"],
     answer: "A static value",
@@ -619,6 +665,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Static values",
     q: "Why is 'Italy' called a STATIC value?",
+    learningStage: "reflect",
     code: WHERE_CODE,
     options: [
       "Because it is fixed — you typed it, and it stays the same while the query runs",
@@ -636,6 +683,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Static values",
     q: "SQL Server bonus: which is the correct way to write the text value Italy inside a query?",
+    learningStage: "practice",
     code: WHERE_CODE,
     options: ["'Italy' — single quotes", '"Italy" — double quotes', "[Italy] — square brackets", "Italy — no quotes"],
     answer: "'Italy' — single quotes",
@@ -648,6 +696,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Static values",
     q: "What color does SSMS show for text values like 'Italy'?",
+    learningStage: "memorize",
     options: ["Red", "Blue", "Green", "Black"],
     answer: "Red",
     hint: "The lesson calls 'Italy' 'the red value'.",
@@ -658,6 +707,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
   {
     topic: "Static values",
     q: "Which of these is a static value?",
+    learningStage: "practice",
     options: [
       "'Germany' — text you typed in single quotes",
       "country — a column name",
@@ -674,6 +724,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
     topic: "Clauses",
     format: "true-false",
     q: "True or false: a WHERE clause filters which rows a query returns.",
+    learningStage: "memorize",
     options: ["True", "False"],
     answer: "True",
     hint: "Think about the Italy condition in the example query.",
@@ -684,6 +735,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
     topic: "Clauses",
     format: "short-answer",
     q: "Fill in the blank: which clause filters rows? ____ country = 'Italy';",
+    learningStage: "practice",
     options: [],
     answer: "WHERE",
     hint: "It is the clause that applies a condition to rows.",
@@ -694,6 +746,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
     topic: "Query structure",
     format: "matching",
     q: "Match each SQL clause to its job.",
+    learningStage: "understand",
     options: ["Filter rows", "Choose columns", "Choose the table"],
     matchPairs: [
       { left: "SELECT", right: "Choose columns" },
@@ -709,6 +762,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
     topic: "Coding",
     format: "coding",
     q: "Write a T-SQL query that returns customer names for customers in Italy.",
+    learningStage: "practice",
     options: [],
     answer: "SELECT name FROM customers WHERE country = 'Italy';",
     acceptedAnswers: ["SELECT name FROM customers WHERE country='Italy'"],
@@ -721,6 +775,7 @@ export const COMPONENTS_QUESTIONS: RawQuestion[] = [
     format: "scenario",
     context: "A report currently lists customers from every country. A manager only wants to see customers from Italy.",
     q: "Which clause should you add to filter the report to Italian customers?",
+    learningStage: "transfer",
     options: [
       "Add WHERE country = 'Italy'",
       "Replace SELECT with Italy",

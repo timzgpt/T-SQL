@@ -25,8 +25,8 @@ import {
 } from "lucide-react";
 import { getQuiz } from "@/lib/quizzes";
 import { isWeak, recordAttempt, toggleBookmark, useProgress } from "@/lib/progress";
-import { FORMAT_LABELS, PURPOSE_LABELS, formatCorrectAnswer, formatQuestionAnswer, isQuestionAnswered, isQuestionCorrect, matchingValues } from "@/lib/question-utils";
-import type { AnswerRecord, Attempt, Difficulty, Question, QuestionFormat, QuizConfig, QuizMode, QuizPurpose } from "@/lib/types";
+import { attemptLearningLabel, FORMAT_LABELS, LEARNING_STAGE_DESCRIPTIONS, LEARNING_STAGE_LABELS, formatCorrectAnswer, formatQuestionAnswer, isQuestionAnswered, isQuestionCorrect, matchingValues } from "@/lib/question-utils";
+import type { AnswerRecord, Attempt, Difficulty, LearningStage, Question, QuestionFormat, QuizConfig, QuizMode } from "@/lib/types";
 import { cn, formatDuration, grade, shuffle } from "@/lib/utils";
 import { Badge, Button, ButtonLink, Card, DIFF_TONE, Kbd, Meter, Modal, Ring, Segmented, SectionTitle, Switch } from "./ui";
 import { SqlCode } from "./sql-code";
@@ -36,12 +36,7 @@ type Ans = { chosen: string | null; usedHint: boolean; flagged: boolean; ms: num
 type RunState = { config: QuizConfig; items: Item[]; startedAt: number };
 
 const DIFFS: Difficulty[] = ["easy", "medium", "hard"];
-const PURPOSES: { id: QuizPurpose; desc: string }[] = [
-  { id: "diagnostic", desc: "Check what you already know before studying. No timer or instant feedback." },
-  { id: "formative", desc: "Practice with immediate feedback and hints while learning." },
-  { id: "consolidation", desc: "Review a lesson and reinforce recall before moving on." },
-  { id: "summative", desc: "Take a timed exam with feedback after submission." },
-];
+const LEARNING_STAGES: LearningStage[] = ["memorize", "understand", "practice", "reflect", "transfer"];
 
 export function QuizApp({ quizId }: { quizId: string }) {
   const quiz = getQuiz(quizId)!;
@@ -76,7 +71,7 @@ export function QuizApp({ quizId }: { quizId: string }) {
               ? shuffle(result.items.map((i) => i.q))
               : result.items.map((i) => i.q);
           start(
-            { ...result.config, mode: ids ? "practice" : result.config.mode, purpose: ids ? "consolidation" : result.config.purpose },
+            { ...result.config, mode: ids ? "practice" : result.config.mode, stage: result.config.stage },
             pool,
           );
         }}
@@ -115,9 +110,7 @@ function Setup({
   const quiz = getQuiz(quizId)!;
   const { qstats } = useProgress();
   const [mode, setMode] = useState<QuizMode>(initialMode);
-  const [purpose, setPurpose] = useState<QuizPurpose>(
-    initialMode === "exam" ? "summative" : initialMode === "weak" ? "consolidation" : "formative",
-  );
+  const [stage, setStage] = useState<LearningStage>("memorize");
   const [topics, setTopics] = useState<string[]>(quiz.topics);
   const [diffs, setDiffs] = useState<Difficulty[]>(DIFFS);
   const [formats, setFormats] = useState<QuestionFormat[]>(() => [...new Set(quiz.questions.map((q) => q.format))]);
@@ -127,13 +120,16 @@ function Setup({
 
   const weakCount = quiz.questions.filter((q) => isWeak(qstats[q.id])).length;
   const availableFormats = [...new Set(quiz.questions.map((q) => q.format))];
+  const availableStages = LEARNING_STAGES.filter((learningStage) => quiz.questions.some((q) => q.learningStage === learningStage));
 
   const pool = useMemo(() => {
-    let p = quiz.questions.filter((q) => topics.includes(q.topic) && diffs.includes(q.difficulty) && formats.includes(q.format));
+    let p = quiz.questions.filter(
+      (q) => q.learningStage === stage && topics.includes(q.topic) && diffs.includes(q.difficulty) && formats.includes(q.format),
+    );
     if (mode === "weak") p = p.filter((q) => isWeak(qstats[q.id]));
     if (shuffleQ || mode === "exam") p = shuffle(p);
     return count ? p.slice(0, count) : p;
-  }, [quiz, topics, diffs, formats, mode, qstats, shuffleQ, count]);
+  }, [quiz, stage, topics, diffs, formats, mode, qstats, shuffleQ, count]);
 
   const MODES: { id: QuizMode; icon: typeof GraduationCap; title: string; desc: string; disabled?: boolean }[] = [
     { id: "practice", icon: GraduationCap, title: "Practice", desc: "Instant feedback, hints and explanations after every answer." },
@@ -173,7 +169,6 @@ function Setup({
                 disabled={disabled}
                 onClick={() => {
                   setMode(id);
-                  setPurpose(id === "exam" ? "summative" : id === "weak" ? "consolidation" : "formative");
                   if (id === "exam") setTimed(true);
                 }}
                 aria-pressed={mode === id}
@@ -193,36 +188,29 @@ function Setup({
         </div>
 
         <div className="p-5">
-          <h2 className="mb-3 text-sm font-semibold">Pedagogical purpose</h2>
+          <h2 className="mb-3 text-sm font-semibold">Learning stage</h2>
           <div className="grid gap-3 sm:grid-cols-2">
-            {PURPOSES.map(({ id, desc }) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => {
-                  setPurpose(id);
-                  if (id === "diagnostic") {
-                    setMode("exam");
-                    setTimed(false);
-                  } else if (id === "summative") {
-                    setMode("exam");
-                    setTimed(true);
-                  } else {
-                    setMode("practice");
-                  }
-                }}
-                aria-pressed={purpose === id}
-                className={cn(
-                  "rounded-xl border p-4 text-left transition-colors duration-150",
-                  purpose === id
-                    ? "border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-500/10 dark:ring-brand-400"
-                    : "border-slate-200 hover:border-slate-300 dark:border-white/10 dark:hover:border-white/20",
-                )}
-              >
-                <span className="text-sm font-semibold">{PURPOSE_LABELS[id]}</span>
-                <span className="mt-1 block text-xs leading-relaxed text-slate-500">{desc}</span>
-              </button>
-            ))}
+            {availableStages.map((id) => {
+              const stageCount = quiz.questions.filter((q) => q.learningStage === id).length;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setStage(id)}
+                  aria-pressed={stage === id}
+                  className={cn(
+                    "rounded-xl border p-4 text-left transition-colors duration-150",
+                    stage === id
+                      ? "border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-500/10 dark:ring-brand-400"
+                      : "border-slate-200 hover:border-slate-300 dark:border-white/10 dark:hover:border-white/20",
+                  )}
+                >
+                  <span className="text-sm font-semibold">{LEARNING_STAGE_LABELS[id]}</span>
+                  <span className="mt-1 block text-xs leading-relaxed text-slate-500">{LEARNING_STAGE_DESCRIPTIONS[id]}</span>
+                  <span className="mt-2 block text-xs font-medium text-slate-400">{stageCount} questions</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -348,12 +336,12 @@ function Setup({
             disabled={pool.length === 0}
             onClick={() =>
               onStart(
-                { mode, purpose, topics, count, shuffleQuestions: shuffleQ || mode === "exam", timed, secondsPerQuestion: secs },
+                { mode, stage, topics, count, shuffleQuestions: shuffleQ || mode === "exam", timed, secondsPerQuestion: secs },
                 pool,
               )
             }
           >
-            Start {mode === "exam" ? (purpose === "diagnostic" ? "diagnostic" : "exam") : "quiz"} <ArrowRight className="size-4" />
+            Start {mode === "exam" ? "exam" : "quiz"} <ArrowRight className="size-4" />
           </Button>
         </div>
       </Card>
@@ -440,14 +428,14 @@ function Runner({
       id: `${startedAt}-${Math.random().toString(36).slice(2, 7)}`,
       quizId,
       mode: config.mode,
-      purpose: config.purpose,
+      stage: config.stage,
       startedAt,
       finishedAt: Date.now(),
       score: records.filter((r) => r.correct).length,
       total,
       answers: records,
     });
-  }, [answers, idx, items, onFinish, quizId, config.mode, config.purpose, startedAt, total]);
+  }, [answers, idx, items, onFinish, quizId, config.mode, config.stage, startedAt, total]);
 
   // Time limit reached → auto-submit
   useEffect(() => {
@@ -506,7 +494,7 @@ function Runner({
         <Badge tone={exam ? "amber" : config.mode === "weak" ? "red" : "brand"} className="capitalize">
           {config.mode === "weak" ? "Weak spots" : config.mode}
         </Badge>
-        <Badge tone="slate">{PURPOSE_LABELS[config.purpose]}</Badge>
+        <Badge tone="slate">{LEARNING_STAGE_LABELS[config.stage]}</Badge>
         <div className="ml-auto flex items-center gap-2 text-sm">
           <span
             className={cn(
@@ -929,7 +917,7 @@ function Results({
           </Ring>
           <div className="flex-1">
             <Badge tone="brand" className="capitalize">
-              {quiz.title} · {PURPOSE_LABELS[attempt.purpose ?? "formative"]}
+              {quiz.title} · {attemptLearningLabel(attempt)}
             </Badge>
             <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">{g.title}</h1>
             <p className="mt-1 text-slate-600 dark:text-slate-400">

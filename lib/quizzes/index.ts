@@ -31,6 +31,10 @@ function build(def: QuizDef): Quiz {
   const topics: string[] = [];
   const questions = def.questions.map((q, index) => {
     const format = q.format ?? "multiple-choice";
+    const learningStage = q.learningStage;
+    if (!learningStage) {
+      throw new Error(`[quiz ${def.id}] Q${index + 1}: every question needs a learning stage`);
+    }
     if (format === "matching") {
       if (!q.matchPairs?.length || !q.options.length) {
         throw new Error(`[quiz ${def.id}] Q${index + 1}: matching questions need pairs and answer options`);
@@ -56,7 +60,7 @@ function build(def: QuizDef): Quiz {
       throw new Error(`[quiz ${def.id}] Q${index + 1}: scenario questions need context and an outcome for each option`);
     }
     if (!topics.includes(q.topic)) topics.push(q.topic);
-    return { ...q, format, id: `${def.id}:${index}`, index, difficulty: q.difficulty ?? "easy" };
+    return { ...q, format, learningStage, id: `${def.id}:${index}`, index, difficulty: q.difficulty ?? "easy" };
   });
   return { ...def, topics, questions };
 }

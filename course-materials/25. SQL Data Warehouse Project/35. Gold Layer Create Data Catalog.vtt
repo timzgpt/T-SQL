@@ -1,0 +1,160 @@
+WEBVTT
+
+00:00.080 --> 00:00.440
+All right.
+
+00:00.480 --> 00:00.720
+Great.
+
+00:00.720 --> 00:02.400
+So with that we have a data model.
+
+00:02.400 --> 00:05.160
+And we can say we have something called a data products.
+
+00:05.160 --> 00:08.920
+And we will be sharing this data products with different types of users.
+
+00:08.920 --> 00:12.720
+And there is something that's every data products absolutely needs.
+
+00:12.760 --> 00:14.840
+And that is that data catalog.
+
+00:14.840 --> 00:20.640
+It is a document that can describe everything about your data model, the columns, the tables, maybe
+
+00:20.640 --> 00:22.640
+the relationship between the tables as well.
+
+00:22.680 --> 00:27.320
+And with that, you make your data products clear for everyone and it can be for them, way easier to
+
+00:27.360 --> 00:31.000
+derive more insights and reports from your data products.
+
+00:31.000 --> 00:32.680
+And what is the most important one?
+
+00:32.880 --> 00:36.280
+It is time saving because if you don't do that, what's going to happen?
+
+00:36.280 --> 00:41.880
+Each consumer, each user of your data products will keep asking you the same questions about what do
+
+00:41.880 --> 00:42.800
+you mean with this column?
+
+00:42.800 --> 00:43.760
+What is this table?
+
+00:43.800 --> 00:48.920
+How to connect the table A with the table B, and you will keep repeating yourself and explaining stuff.
+
+00:48.920 --> 00:54.320
+So instead of that you prepare a data catalog, a data model, and you deliver everything together to
+
+00:54.360 --> 00:55.000
+the users.
+
+00:55.000 --> 00:57.720
+And with that you are saving a lot of time and stress.
+
+00:57.760 --> 01:02.560
+I know it is annoying to create a data catalog, but it is investments and best practices.
+
+01:02.560 --> 01:04.120
+So now let's go and create one.
+
+01:04.160 --> 01:09.160
+Okay, so now in order to do that, I have created a new file called Data Catalog in the folder documents.
+
+01:09.160 --> 01:11.040
+And here what we're going to do is very straightforward.
+
+01:11.040 --> 01:14.160
+We're going to make a section for each table in the gold layer.
+
+01:14.160 --> 01:17.160
+So for example we have here the table dimension customers.
+
+01:17.160 --> 01:19.730
+What you have to do first is to describe this table.
+
+01:19.730 --> 01:24.890
+So we are saying it stores details about the customers with the demographics and geographics data.
+
+01:24.890 --> 01:27.330
+So you give a short description for the table.
+
+01:27.330 --> 01:31.570
+And then after that you're going to go and list all your columns inside this table and maybe as well
+
+01:31.570 --> 01:32.330
+the data type.
+
+01:32.330 --> 01:35.770
+But what is very important is the description for each column.
+
+01:35.770 --> 01:40.330
+So you give a very short description like for example here the gender of the customer.
+
+01:40.330 --> 01:45.530
+And now one of the best practices of describing a column is to give examples, because you can understand
+
+01:45.570 --> 01:48.770
+quickly the purpose of the columns by just seeing an example.
+
+01:48.810 --> 01:49.090
+Right.
+
+01:49.090 --> 01:53.250
+So here we are seeing we can find inside it a male female and not available.
+
+01:53.250 --> 01:56.250
+So with that the consumer of your table can immediately understand aha.
+
+01:56.290 --> 02:01.890
+It will not be an M or an F, it's going to be a full friendly value without having them to go and query
+
+02:01.890 --> 02:02.930
+the content of the table.
+
+02:02.930 --> 02:05.650
+They can understand quickly the purpose of that column.
+
+02:05.650 --> 02:10.210
+So with that, we have a full description for all the columns of our dimension, the same thing we're
+
+02:10.210 --> 02:11.930
+going to do for the products.
+
+02:11.930 --> 02:17.130
+So again a description for the table and as well a description for each column and the same thing for
+
+02:17.130 --> 02:17.890
+the facts.
+
+02:17.890 --> 02:18.650
+So that's it.
+
+02:18.650 --> 02:22.610
+With that you have like a data catalog for your data products at the code layer.
+
+02:22.610 --> 02:28.170
+And with that the business user or the data analyst have better and clear understanding of the content
+
+02:28.170 --> 02:29.130
+of your gold layer.
+
+02:29.170 --> 02:30.010
+All right, my friends.
+
+02:30.010 --> 02:31.730
+So that's all for the data catalog.
+
+02:31.770 --> 02:37.170
+In the next step we're going to go back to drool where we're going to finalize the data flow diagram.
+
+02:37.170 --> 02:37.970
+So let's go.

@@ -1,0 +1,352 @@
+WEBVTT
+
+00:00.080 --> 00:04.960
+Now, my friends, there is something that is really confuses a lot of developers or anyone that is
+
+00:04.960 --> 00:07.800
+working with data in databases and SQL.
+
+00:07.960 --> 00:13.760
+And that is the differences between nulls, empty string and blank spaces.
+
+00:13.760 --> 00:18.080
+So the nulls, as we learned, we are saying I don't know what the value is.
+
+00:18.080 --> 00:19.360
+It is unknown.
+
+00:19.360 --> 00:25.200
+But now in the other hand, the empty string you are saying I know the value, it is nothing.
+
+00:25.200 --> 00:30.240
+So the empty string is a string value which has zero characters.
+
+00:30.280 --> 00:32.360
+This is totally different than the nulls.
+
+00:32.360 --> 00:32.840
+The nulls?
+
+00:32.840 --> 00:34.760
+We don't know anything about it.
+
+00:34.760 --> 00:40.000
+So now sometimes maybe happens to you as you are filling a forum and you come to one field, you go
+
+00:40.000 --> 00:45.880
+and by mistake hit spacebar and with that you are entering a space into the field and you just jump
+
+00:45.880 --> 00:48.760
+to the next field without entering any other values.
+
+00:48.760 --> 00:52.440
+So we have now like a space character inside the field.
+
+00:52.440 --> 00:58.360
+This is really evil in databases because once the user enters a blank space, it's going to go and store
+
+00:58.360 --> 01:00.120
+it as a value inside the database.
+
+01:00.120 --> 01:01.500
+And it's going to take storage.
+
+01:01.500 --> 01:03.620
+So it could be one space or many spaces.
+
+01:03.620 --> 01:06.780
+Depends on how long you press the space bar.
+
+01:06.820 --> 01:12.180
+So the blank space is a string, but the size is not zero like the empty string.
+
+01:12.180 --> 01:15.660
+We're going to have a size of how many spaces you have entered.
+
+01:15.660 --> 01:17.220
+So here it's not like the null.
+
+01:17.260 --> 01:18.900
+We know the value, it is a string.
+
+01:18.900 --> 01:20.660
+And the character of that is going to be space.
+
+01:20.700 --> 01:20.940
+Okay.
+
+01:20.980 --> 01:23.300
+So let's see those three scenarios inside the SQL.
+
+01:23.340 --> 01:26.540
+Now I have like a dummy data using the CTE statements.
+
+01:26.580 --> 01:27.340
+Don't worry about it.
+
+01:27.340 --> 01:30.300
+I'm going to teach all those stuff in the next tutorials.
+
+01:30.300 --> 01:32.180
+So now we have here like four rows.
+
+01:32.220 --> 01:38.020
+The first one with a value a the next one with null, the third one with empty string.
+
+01:38.020 --> 01:40.900
+So as you can see, there is nothing between those two codes.
+
+01:40.940 --> 01:41.660
+And the last one.
+
+01:41.660 --> 01:44.700
+We have a space between those two chords.
+
+01:44.740 --> 01:47.300
+Now let's go and query this temporal table.
+
+01:47.300 --> 01:52.340
+So select star from orders and execute.
+
+01:52.340 --> 01:57.300
+So now by looking to the values of the categories you can find all the scenarios now.
+
+01:57.500 --> 02:02.760
+So now the first scenario is the easiest one where we have a normal value, we have here an A, but
+
+02:02.760 --> 02:05.600
+the other three rows, we don't have normal values.
+
+02:05.600 --> 02:07.160
+We have like empty stuff.
+
+02:07.160 --> 02:09.160
+So the first one is going to be the null.
+
+02:09.160 --> 02:10.960
+So we don't have a value.
+
+02:11.000 --> 02:12.920
+This is the special marker from SQL.
+
+02:12.960 --> 02:15.440
+It says null so there is no value.
+
+02:15.440 --> 02:17.480
+And the other two they are really confusing.
+
+02:17.480 --> 02:23.080
+As you can see it's really hard by just looking to the data or to the results, whether it is an empty
+
+02:23.120 --> 02:25.480
+string or a blank space.
+
+02:25.480 --> 02:28.240
+And this confuses a lot of developers or anyone working with data.
+
+02:28.280 --> 02:29.360
+Seeing those results.
+
+02:29.360 --> 02:34.320
+It's really hard to detect the data quality issues by just looking at the results.
+
+02:34.320 --> 02:40.480
+So now in these scenarios, what I do, I go and calculate the length of each value inside my column.
+
+02:40.480 --> 02:41.960
+So let's go and do that.
+
+02:42.000 --> 02:44.360
+Now we're going to go in the SQL server.
+
+02:44.360 --> 02:46.880
+We're going to go and use the function that a length.
+
+02:47.240 --> 02:50.120
+And our field is going to be the category.
+
+02:50.440 --> 02:53.600
+So let's call it category length.
+
+02:53.600 --> 02:55.200
+So let's go execute it.
+
+02:55.200 --> 02:56.520
+And now let's check the result.
+
+02:56.520 --> 02:57.080
+The first one.
+
+02:57.080 --> 03:01.310
+Since we have only one character, the length of that is going to be one B1, which is correct.
+
+03:01.350 --> 03:03.750
+And now to the next row we have the category null.
+
+03:03.910 --> 03:05.390
+We don't know the value.
+
+03:05.430 --> 03:07.830
+And as well we don't know the length of the value.
+
+03:07.870 --> 03:08.350
+Right.
+
+03:08.390 --> 03:09.910
+That's why we will get a null.
+
+03:09.950 --> 03:11.310
+So now by moving to the next one.
+
+03:11.310 --> 03:14.630
+As you can see those two looking really exactly the same.
+
+03:14.830 --> 03:21.510
+But now with the help of the length or the data length function, we can see that the third row or the
+
+03:21.510 --> 03:24.630
+third category value has the length of zero.
+
+03:24.670 --> 03:26.710
+That means it is an empty string.
+
+03:26.710 --> 03:29.870
+And we don't have any characters over here that is hidden.
+
+03:29.910 --> 03:32.350
+So with that, we are sure this is an empty string.
+
+03:32.350 --> 03:34.190
+But now let's move to the last one.
+
+03:34.230 --> 03:36.230
+Here it is very tricky and evil.
+
+03:36.470 --> 03:42.630
+We have a hidden space inside this value, and we can understand that by the length of this field.
+
+03:42.630 --> 03:44.470
+So as you can see, we have here a one.
+
+03:44.550 --> 03:50.950
+That means we have here one hidden space inside this value and it is not empty string.
+
+03:50.950 --> 03:53.590
+So that means I have here only one space.
+
+03:53.590 --> 03:57.230
+Let's go and give it another space and calculate the length.
+
+03:57.230 --> 03:58.790
+So as you can see we have two spaces.
+
+03:58.790 --> 04:04.890
+And that's why the length links is to, so don't count on your eyes in order to understand the spaces.
+
+04:04.930 --> 04:08.090
+Go and calculate the length in order to be very precise.
+
+04:08.170 --> 04:11.170
+So now let's go and compare the three scenarios side by side.
+
+04:11.250 --> 04:14.370
+So let's start with the first one about the representations in the table.
+
+04:14.690 --> 04:15.090
+The null.
+
+04:15.090 --> 04:17.530
+We're going to see it as a null inside the table.
+
+04:17.570 --> 04:21.650
+The empty string is going to be like two quotes and nothing between them.
+
+04:21.650 --> 04:26.890
+And the blank space is as well two quotes, and between them one or many spaces.
+
+04:26.930 --> 04:30.530
+And now if you are talking about the meaning, the null means unknown.
+
+04:30.530 --> 04:35.610
+We don't know the value, the empty string, it is known, but it is nothing.
+
+04:35.610 --> 04:37.090
+It is empty value.
+
+04:37.090 --> 04:38.570
+And the third one blank spaces.
+
+04:38.570 --> 04:41.890
+It is as well known and the spaces are the value.
+
+04:41.930 --> 04:46.450
+And now if you are talking about the data types, since the null is no value.
+
+04:46.450 --> 04:51.970
+So we don't have a data type for this, and it is like a special marker in the SQL.
+
+04:52.010 --> 04:54.010
+And now the empty string has a data type.
+
+04:54.010 --> 04:55.210
+It is string.
+
+04:55.410 --> 04:57.930
+And the size of this string is going to be zero.
+
+04:57.930 --> 05:00.830
+Since we have zero characters inside the empty string.
+
+05:00.870 --> 05:02.430
+Moving on to the blank spaces.
+
+05:02.430 --> 05:03.430
+It is a string.
+
+05:03.430 --> 05:07.710
+Since a space is a character and it's going to be the size of one or many.
+
+05:07.750 --> 05:11.110
+And now if you are talking about the storage, the null is the best.
+
+05:11.150 --> 05:16.910
+They don't consume or occupy a lot of storage, while the empty string and the blank spaces they occupy
+
+05:16.910 --> 05:20.230
+here, storage and memory and they waste space.
+
+05:20.230 --> 05:23.550
+So if you are worried about the storage, the best option here is null.
+
+05:23.590 --> 05:29.150
+Now talking about the performance, you will get the best performance if you are using nulls.
+
+05:29.190 --> 05:33.350
+Now the empty string is as well fast, but it is not that fast like the nulls.
+
+05:33.550 --> 05:36.030
+Now the worst option here is the blank spaces.
+
+05:36.030 --> 05:36.870
+It is slow.
+
+05:36.870 --> 05:41.630
+So again, if the speed is important for you, you have to have those scenarios as a null.
+
+05:41.670 --> 05:46.390
+So now if you are talking about the comparison and you are searching for those values, if you want
+
+05:46.390 --> 05:49.630
+to search for the null, you have to go and use is null.
+
+05:49.670 --> 05:53.910
+But in the other hand, if you want to search for the empty string and the blank spaces, you have to
+
+05:53.910 --> 05:56.430
+go and use the operator equal.
+
+05:56.470 --> 05:57.230
+So that's all.
+
+05:57.270 --> 06:01.070
+Those are the main differences between the null empty string and blank spaces.

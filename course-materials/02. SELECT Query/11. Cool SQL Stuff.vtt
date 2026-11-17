@@ -1,0 +1,274 @@
+WEBVTT
+
+00:03.920 --> 00:08.960
+So now, the first thing that we have learned that we can go and have like one query, write something
+
+00:08.960 --> 00:09.520
+like this.
+
+00:09.520 --> 00:11.360
+Select star from customers.
+
+00:11.400 --> 00:12.840
+Now this is one query.
+
+00:12.840 --> 00:14.920
+And in the output we have one results.
+
+00:14.920 --> 00:20.760
+But did you know that in SQL we can have like multiple queries and multiple results in one go.
+
+00:20.760 --> 00:22.280
+So we can do everything together.
+
+00:22.320 --> 00:26.600
+Like for example let's say I'm selecting as well the data from orders.
+
+00:27.200 --> 00:28.720
+So that means we have two queries.
+
+00:28.760 --> 00:33.800
+And now if you go and execute what can happens you will get two result grids.
+
+00:33.800 --> 00:39.280
+The first result grid is for the first query and the second one is for the second query.
+
+00:39.280 --> 00:42.800
+So with that you can do multiple queries in the same window.
+
+00:42.800 --> 00:47.400
+And with that the results can be split into multiple window depend how many queries you have.
+
+00:47.440 --> 00:53.360
+And usually in SQL you might find that by the end of each query there is a semicolon like this.
+
+00:53.360 --> 00:55.600
+So at the end of the first query I have semicolon.
+
+00:55.600 --> 00:59.280
+And for the second query we have as well at the end another semicolon.
+
+00:59.280 --> 01:04.840
+For the SQL server it is not a must, but for other databases, if you have multiple queries in one
+
+01:04.840 --> 01:07.880
+execution, you must separate them with a semicolon.
+
+01:07.880 --> 01:09.680
+And with that, the database can understands.
+
+01:09.720 --> 01:15.010
+Okay, this is the end of the first query and this is the end of the second query.
+
+01:15.010 --> 01:17.650
+So you have like separations between queries.
+
+01:21.490 --> 01:21.850
+Okay.
+
+01:21.850 --> 01:24.250
+Now moving on to another cool thing in SQL.
+
+01:24.290 --> 01:27.890
+Now what if we don't want to query the data inside our tables.
+
+01:27.890 --> 01:32.330
+We would like to show a static value from us from the one that is writing the query.
+
+01:32.330 --> 01:37.210
+And this is very practical if you are like practicing and you want to check something using a value
+
+01:37.210 --> 01:39.330
+from you, not from the tables.
+
+01:39.330 --> 01:40.610
+So how we can do that?
+
+01:40.610 --> 01:41.610
+It is very simple.
+
+01:41.610 --> 01:47.650
+We're going to write select and then now after that, instead of having a column name you can go and
+
+01:47.650 --> 01:49.610
+add any value like one two, three.
+
+01:49.610 --> 01:53.810
+So it is just a number and we do not specify after that any table.
+
+01:53.810 --> 01:54.970
+So we leave it like this.
+
+01:54.970 --> 01:58.130
+Select 123 and we don't need to use the from clause.
+
+01:58.130 --> 02:01.130
+So now if you go and execute it you will get 123.
+
+02:01.130 --> 02:02.690
+So this is a static value.
+
+02:02.690 --> 02:07.170
+And of course you can go and rename the column like static number.
+
+02:07.610 --> 02:08.890
+So execute it again.
+
+02:08.890 --> 02:10.610
+So with that we have a static value.
+
+02:10.610 --> 02:13.210
+And you can go and add anything like string as well.
+
+02:13.210 --> 02:16.970
+So let's say hello as static for example string.
+
+02:16.970 --> 02:18.450
+So let's go and execute.
+
+02:18.490 --> 02:19.690
+And we have two queries.
+
+02:19.690 --> 02:21.970
+The second one you can see our static value.
+
+02:22.010 --> 02:22.370
+Hello.
+
+02:22.370 --> 02:27.860
+So in queries we can add values from us not only selecting data from the queries, but of course you
+
+02:27.860 --> 02:33.340
+can go and mix stuff so we can have like in one query, data from the database and static data from
+
+02:33.380 --> 02:33.740
+us.
+
+02:33.740 --> 02:34.900
+So let me show you what I mean.
+
+02:34.900 --> 02:40.860
+Let's go over here and say select and let's go and get, for example, the ID the first name from the
+
+02:40.860 --> 02:41.420
+table.
+
+02:41.460 --> 02:43.100
+Customers like this.
+
+02:43.100 --> 02:46.300
+So with that we can see we are getting data from the database.
+
+02:46.300 --> 02:52.060
+But now I can go and add something from me new customer and we can call it customer type.
+
+02:52.660 --> 02:53.980
+So now what is going on here.
+
+02:53.980 --> 02:57.220
+Two columns from the database and one column from us.
+
+02:57.220 --> 02:58.380
+It is the static one.
+
+02:58.380 --> 03:01.700
+So if you go and execute it you can see for the ID and the first name.
+
+03:01.700 --> 03:03.420
+Those data comes from the database.
+
+03:03.460 --> 03:08.580
+But for each record we are always getting the same static value new customer, new customer and so on.
+
+03:08.580 --> 03:11.340
+So this piece of information comes from the query.
+
+03:11.380 --> 03:13.540
+It is not stored inside the database.
+
+03:13.540 --> 03:17.660
+And those two informations come from the stored data inside the database.
+
+03:17.660 --> 03:19.100
+So this is really cool thing.
+
+03:19.260 --> 03:23.700
+You can add few informations from you and you can get the data from the database.
+
+03:23.700 --> 03:25.340
+This is the static values.
+
+03:29.220 --> 03:33.420
+Okay one more cool thing that I want to show you is that if you have a query like this, you are selecting
+
+03:33.420 --> 03:35.140
+from table and filtering the data.
+
+03:35.140 --> 03:37.700
+And now you would like not to execute the whole thing.
+
+03:37.700 --> 03:40.260
+You would like to execute only a part of this query.
+
+03:40.260 --> 03:44.140
+So now sometimes as you are writing a query, you don't want to execute the whole thing.
+
+03:44.140 --> 03:46.420
+You want to execute only a part of the query.
+
+03:46.460 --> 03:50.820
+Like for example, I would like to see all the customers again in this query without this filter.
+
+03:50.820 --> 03:55.100
+So instead of removing it, I then query and then again adding it.
+
+03:55.100 --> 04:00.860
+What you can do, you can highlight what you want without now the filter and execute so that the database
+
+04:00.860 --> 04:02.900
+can execute exactly what you highlighted.
+
+04:02.900 --> 04:05.660
+And now as you can see, I'm getting all the customers without the filter.
+
+04:05.660 --> 04:11.020
+And if you don't highlight anything and execute, what can happen is SQL can execute the whole thing
+
+04:11.020 --> 04:12.020
+inside the editor.
+
+04:12.020 --> 04:16.340
+And this is really nice if you want to query another table quickly in the same editor, like we want
+
+04:16.340 --> 04:21.700
+to select everything from the orders just quickly, so you can highlight only this query and execute.
+
+04:21.700 --> 04:26.620
+And with that, SQL is ignoring everything else and only executing what I'm highlighting.
+
+04:26.620 --> 04:27.540
+And this is really nice.
+
+04:27.540 --> 04:29.460
+It gives us like speed and dynamic.
+
+04:29.460 --> 04:32.260
+And you can find me doing that a lot in the course.
+
+04:32.260 --> 04:34.020
+So this is really nice okay my friends.
+
+04:34.020 --> 04:39.700
+So with that we have learned the basics about SQL query, the basic components of the Select statements.
+
+04:39.700 --> 04:42.780
+And with that we can talk to our database in order to get data.
+
+04:42.820 --> 04:46.820
+Now in the next chapter we're going to learn how to define the structure of our database.
+
+04:46.820 --> 04:49.780
+So we're going to learn the data definition language DDL.
+
+04:49.820 --> 04:50.540
+So let's go.

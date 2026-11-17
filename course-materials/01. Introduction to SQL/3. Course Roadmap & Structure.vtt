@@ -1,0 +1,301 @@
+WEBVTT
+
+00:03.880 --> 00:04.200
+All right.
+
+00:04.240 --> 00:07.560
+Now I'm going to show you the roadmap in order to learn everything about SQL.
+
+00:07.600 --> 00:13.040
+Starting from very basics and then advanced step by step until we have very advanced topics.
+
+00:13.040 --> 00:19.160
+So now at the start we have to understand few stuff like what is SQL, why to learn it, what are databases
+
+00:19.160 --> 00:20.760
+and the types of databases.
+
+00:20.760 --> 00:24.600
+And after the theory we're going to prepare your PC with data and the softwares.
+
+00:24.640 --> 00:27.560
+Now once we have everything then we can go to the next chapter.
+
+00:27.560 --> 00:30.880
+This is the basics how to query data using SQL.
+
+00:30.920 --> 00:36.440
+And here we're going to cover the basic components in each SQL query like select from where.
+
+00:36.480 --> 00:37.360
+Those basics.
+
+00:37.360 --> 00:42.640
+Now once you understand how to query the data, how to get the data out of the database, the next step
+
+00:42.640 --> 00:46.680
+we're going to go and learn how to define the structure of the database.
+
+00:46.680 --> 00:52.200
+How to create a new table, add a new column, remove column and as well how to drop a table.
+
+00:52.200 --> 00:55.120
+So with that you are defining new stuff in the database.
+
+00:55.120 --> 00:58.760
+And then the next chapter you have to learn about the data manipulation.
+
+00:58.760 --> 01:03.130
+This time we're going to go inside the table and we're going to learn how to insert a new data, how
+
+01:03.130 --> 01:06.890
+to update the data, and as well delete few rows from our database.
+
+01:06.890 --> 01:11.810
+So with that you have the basics how to query data, how to define the structure of your tables and
+
+01:11.810 --> 01:13.210
+how to manipulate your data.
+
+01:13.210 --> 01:16.410
+And I can say with that you cover the basics about SQL.
+
+01:16.450 --> 01:21.090
+Now after that we start with the intermediate phase where we're going to deep dive into topics like
+
+01:21.090 --> 01:22.650
+how to filter your data.
+
+01:22.650 --> 01:28.130
+Here we're going to learn about the comparison operators logical operators between and like so all the
+
+01:28.170 --> 01:32.850
+operators that you can use in order to build a condition in order to filter your data.
+
+01:32.890 --> 01:35.610
+Then after that it's going to be very interesting topic.
+
+01:35.650 --> 01:37.290
+You have to learn how to combine them.
+
+01:37.290 --> 01:42.050
+And here we have two mechanisms, either using the join or using the set operators.
+
+01:42.050 --> 01:43.690
+And oh my god joining data.
+
+01:43.690 --> 01:45.570
+It's going to be very interesting topic here.
+
+01:45.570 --> 01:50.690
+We're going to cover like a lot of stuff like we can start with the basic joins and then we go to advanced.
+
+01:50.690 --> 01:53.570
+And then you have to learn how to choose the right join.
+
+01:53.570 --> 01:56.370
+And after that you have to learn about the set operators.
+
+01:56.370 --> 02:01.580
+And here you have like four methods Union, Union, all except intersects, so that you learn how to
+
+02:01.620 --> 02:06.540
+combine multiple tables by combining the columns or the rows of your tables.
+
+02:06.540 --> 02:08.340
+So this is very important.
+
+02:08.380 --> 02:14.300
+Now moving on in our course now using SQL you can do a lot of stuff cleaning up the data a lot of data
+
+02:14.300 --> 02:15.260
+preparations.
+
+02:15.260 --> 02:18.700
+And at the end you can do a lot of analytics and aggregations.
+
+02:18.700 --> 02:20.940
+So there are like two families of functions.
+
+02:20.940 --> 02:23.020
+The first one is the row level functions.
+
+02:23.020 --> 02:24.340
+And here we have a lot of stuff.
+
+02:24.380 --> 02:30.180
+You can transform your string values the numbers, date and time and how to handle the nulls in SQL.
+
+02:30.220 --> 02:32.900
+And at the end the amazing case statements.
+
+02:32.900 --> 02:36.220
+So all those stuffs are transformation for only one single value.
+
+02:36.260 --> 02:38.020
+We call it row level functions.
+
+02:38.020 --> 02:43.340
+And after you learn how to do data transformations, then you have to learn about how to do data analytics
+
+02:43.340 --> 02:45.660
+and aggregations using SQL functions.
+
+02:45.660 --> 02:49.020
+So we're going to start with very basics like the aggregate functions.
+
+02:49.020 --> 02:52.940
+And then we're going to deep dive into the window functions analytical functions.
+
+02:52.940 --> 02:56.510
+And here we have like aggregates ranking and value functions.
+
+02:56.510 --> 03:02.870
+Those are very important tool for any data analyst or data scientist doing analytics tasks in SQL.
+
+03:02.870 --> 03:08.670
+So I can say that row level functions is for data engineers and the analytical functions are for data
+
+03:08.670 --> 03:09.270
+analysts.
+
+03:09.270 --> 03:14.830
+So at the chapter eight we can say you have covered now the intermediate level and the last four chapters
+
+03:14.830 --> 03:17.190
+they will be the advanced stuff in SQL.
+
+03:17.190 --> 03:20.470
+So here there are a lot of techniques that you have to learn about SQL.
+
+03:20.470 --> 03:24.270
+So the first one is the subquery query inside another query.
+
+03:24.270 --> 03:27.310
+And the very famous CTE common table expression.
+
+03:27.350 --> 03:29.110
+A lot of developers like this one.
+
+03:29.110 --> 03:33.030
+And then you will learn about how to create views in the database.
+
+03:33.030 --> 03:36.230
+This technique, if you learn it you're going to be really professional in SQL.
+
+03:36.270 --> 03:40.150
+Then you're going to learn how to create tables using select the temporal tables.
+
+03:40.150 --> 03:44.430
+And then we're going to learn about the stored procedures how to write a program in SQL.
+
+03:44.470 --> 03:46.670
+And after that of course comes the triggers.
+
+03:46.670 --> 03:52.350
+So those are the advanced techniques that you have to learn in SQL in order to do advanced projects
+
+03:52.350 --> 03:53.270
+using SQL.
+
+03:53.270 --> 03:58.330
+So now once you learn all those concepts and you start writing a lot of SQL codes, you will notice
+
+03:58.330 --> 04:00.290
+that some queries are going to be really slow.
+
+04:00.290 --> 04:04.210
+And for that you have to learn how to optimize the performance of your queries.
+
+04:04.210 --> 04:05.890
+And here there are a lot of techniques.
+
+04:05.890 --> 04:11.570
+The most famous one is to create an index in the database or create a partition, and at the end I will
+
+04:11.570 --> 04:17.090
+be sharing with you the top ten best practices that I have learned in my projects on how to optimize
+
+04:17.090 --> 04:19.130
+the performance of your queries.
+
+04:19.130 --> 04:20.890
+So this is very important.
+
+04:20.890 --> 04:23.290
+And then we're going to move to a very interesting one.
+
+04:23.290 --> 04:30.130
+I will be sharing with you how I use AI like ChatGPT or Copilot as I'm using SQL in my projects.
+
+04:30.130 --> 04:35.970
+So here you have to learn how to write correct prompts to get assistance from AI as you are using SQL.
+
+04:36.010 --> 04:40.290
+And finally, and my favorite one, it will be about SQL projects.
+
+04:40.290 --> 04:46.170
+So my friends here you have to bring everything that you have learned about SQL in hand on projects.
+
+04:46.170 --> 04:52.140
+With real projects you will get challenges and struggle and here can happen the magic and the real learning.
+
+04:52.180 --> 04:54.140
+And here there are three types of projects.
+
+04:54.140 --> 04:55.980
+The first one is data warehousing project.
+
+04:55.980 --> 05:01.020
+This is very data engineering focused project where you're going to learn how to build a real data warehouse,
+
+05:01.020 --> 05:05.340
+where you're going to take the data from the raw formats and then process it in different layers.
+
+05:05.340 --> 05:07.860
+Once you build it, then you jump to another project.
+
+05:07.860 --> 05:13.220
+Here, you're going to start exploring the data and start getting the first insights about the business.
+
+05:13.220 --> 05:16.980
+And the last project that you can do is the advanced data analytics project.
+
+05:16.980 --> 05:20.700
+So this is very important section where you do SQL projects.
+
+05:20.700 --> 05:24.380
+So my friends this is the roadmap on how to learn SQL.
+
+05:24.420 --> 05:28.100
+So as you can see it takes you step by step from basics to intermediates.
+
+05:28.100 --> 05:30.260
+And you will end up having advanced topics.
+
+05:30.260 --> 05:32.940
+And with that I can tell you you will learn everything about SQL.
+
+05:32.980 --> 05:33.220
+Okay.
+
+05:33.260 --> 05:36.300
+So now let's start with the first chapter, the introduction to SQL.
+
+05:36.340 --> 05:38.140
+And here we're going to cover a few topics.
+
+05:38.140 --> 05:42.060
+So we have to understand first what is exactly SQL why we have to learn it.
+
+05:42.100 --> 05:46.180
+What are databases and the different SQL commands that we have in SQL.
+
+05:46.180 --> 05:49.100
+So it is the basics the theory about SQL.
+
+05:49.100 --> 05:50.620
+So what is exactly SQL?
+
+05:50.660 --> 05:51.180
+Let's go.

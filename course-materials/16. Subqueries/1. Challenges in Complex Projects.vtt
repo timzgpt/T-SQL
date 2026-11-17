@@ -1,0 +1,805 @@
+WEBVTT
+
+00:00.080 --> 00:05.120
+Normally in projects we have a database and we have a person that is responsible for the database,
+
+00:05.120 --> 00:09.200
+the database administrator that takes cares of the database structure.
+
+00:09.240 --> 00:14.640
+And now in very simple scenario, we're going to have a user that is writing queries in order to retrieve
+
+00:14.680 --> 00:15.960
+data from the database.
+
+00:15.960 --> 00:18.440
+So he or she can write an SQL query.
+
+00:18.440 --> 00:21.920
+And then this query is going to be sent to the database where it's going to execute it.
+
+00:21.920 --> 00:24.640
+And then the database can return the results.
+
+00:24.680 --> 00:29.240
+So at the end our user is going to see the result of the query that he wrote.
+
+00:29.240 --> 00:34.440
+So this is a very simplified scenario on how we use a database.
+
+00:34.440 --> 00:38.040
+But my friends in the real world things are totally different.
+
+00:38.080 --> 00:40.800
+Things in real projects get very complicated.
+
+00:40.800 --> 00:41.560
+Like this.
+
+00:41.560 --> 00:49.360
+So for example, you have a financial analyst that is writing a huge block of SQL query that is very
+
+00:49.360 --> 00:54.600
+complex, and there will be like another user that have different role like a risk manager.
+
+00:54.600 --> 01:01.330
+That is, as we're writing a very complex query and from different departments, from different projects,
+
+01:01.330 --> 01:02.410
+for different tasks.
+
+01:02.410 --> 01:07.730
+You will have a lot of analysts that are writing many complex queries.
+
+01:07.730 --> 01:13.770
+So all those analysts and managers have a direct access to your database, and they are executing a
+
+01:13.770 --> 01:18.130
+complex analytical queries in order to generate maybe a report or something.
+
+01:18.170 --> 01:24.130
+Now, not only those guys are doing analysis on your database, you will have as well our friend, the
+
+01:24.130 --> 01:29.090
+data engineer that is saying, you know what, I'm building a data warehouse and I would like to extract
+
+01:29.090 --> 01:35.090
+your data so that data engineering can go and write and extract query in order to extract the data from
+
+01:35.090 --> 01:35.970
+the database.
+
+01:35.970 --> 01:41.890
+And then he has a different script for the transformations in order to manipulate, filter, clean up
+
+01:41.930 --> 01:43.370
+aggregates your data.
+
+01:43.410 --> 01:50.170
+And then a third script in order to collect the result of the transformations and load it in another
+
+01:50.170 --> 01:52.290
+database called data warehouse.
+
+01:52.330 --> 01:57.780
+A data warehouse is like a special database that collect data from different sources and integrated
+
+01:57.780 --> 02:00.940
+in one place in order to do analytics and reporting.
+
+02:00.980 --> 02:06.780
+And now at the end of this chain, you will have a data analyst and she writes as well queries in order
+
+02:06.780 --> 02:08.940
+to analyze the data in the data warehouse.
+
+02:08.940 --> 02:14.500
+Or you might have a different query in order to prepare the data before inserting it to a tool like
+
+02:14.500 --> 02:18.620
+power BI in order to generate visualizations and reports.
+
+02:18.740 --> 02:24.300
+So we call this a data warehouse system, or a business intelligence system that extract an extra copy
+
+02:24.300 --> 02:28.380
+from your data and manipulate it and transform it for analysis.
+
+02:28.420 --> 02:33.700
+Now, not only we have a data engineer and data analyst accessing your database and doing queries.
+
+02:33.740 --> 02:36.300
+We have as well our friend, the data scientist.
+
+02:36.300 --> 02:40.660
+So now our data scientist as well has a direct access to your database.
+
+02:40.660 --> 02:45.460
+So he might write like different queries in order to extract the data and as well to manipulate the
+
+02:45.460 --> 02:51.020
+data that are needed in order to develop a model and doing machine learning and AI.
+
+02:51.140 --> 02:56.360
+And now one more scenario that I see in many projects where the result of the data, analyst can be
+
+02:56.360 --> 03:00.640
+used in another query in order to prepare the results for data visualizations.
+
+03:00.640 --> 03:04.280
+Power BI or in order to export like an Excel list.
+
+03:04.280 --> 03:09.880
+So as you can see, we have a lot of people with different roles that want to access your database and
+
+03:09.880 --> 03:15.440
+do analyses on top of it, and that's because everyone wants to answer questions based on the data.
+
+03:15.480 --> 03:21.120
+And now if I look to this, I still think this is a simplified version on how things works in the data
+
+03:21.120 --> 03:21.640
+projects.
+
+03:21.640 --> 03:25.720
+And I can tell you in real project things are way more complicated than this.
+
+03:25.760 --> 03:30.640
+So now if you sit back and look to this, we will find many challenges and problems.
+
+03:30.640 --> 03:35.960
+For example, all those people are not talking to each other and each one of them are creating like
+
+03:36.000 --> 03:37.040
+their own query.
+
+03:37.040 --> 03:42.040
+But if you go and take all those queries and compare them side by side, you will find in the scripts
+
+03:42.040 --> 03:43.720
+and queries logic.
+
+03:43.720 --> 03:49.520
+That is, keep repeating so the queries from the analyst or the data scientist and data engineers,
+
+03:49.520 --> 03:52.760
+they might contain a redundant logic.
+
+03:52.760 --> 03:58.010
+And of course the issue of this, we have the same effort repeating over and over.
+
+03:58.050 --> 04:03.570
+And maybe not everyone is getting the logic implemented correctly, because not all of them having the
+
+04:03.570 --> 04:04.930
+right skills in SQL.
+
+04:05.050 --> 04:07.290
+So this is a big issue in this setup.
+
+04:07.330 --> 04:10.490
+And now we have another challenge having this scenario.
+
+04:10.490 --> 04:14.410
+If you don't optimize it you will have a performance issue everywhere.
+
+04:14.490 --> 04:19.050
+So the data warehouse or the data engineer scripts might take like five hours.
+
+04:19.050 --> 04:22.250
+And the query from the analyst might take like 40 minutes.
+
+04:22.290 --> 04:27.890
+And before inserting the data to reports we might have 30 minutes and one hour there, 30 minutes there.
+
+04:27.890 --> 04:31.930
+And everyone else is as well suffering from bad performance on their queries.
+
+04:31.930 --> 04:34.490
+And the performance everywhere is really bad.
+
+04:34.530 --> 04:39.730
+So if everyone is writing big, complex queries, don't expect that they will have a good performance.
+
+04:39.770 --> 04:45.370
+Now to the third challenge that I observed in many projects, and that is the complexity now behind
+
+04:45.370 --> 04:51.540
+the original database, you might have a data model that is prepared and optimized only for one application.
+
+04:51.540 --> 04:55.980
+So you will have in the data model a lot of tables and all those tables have different relationship
+
+04:55.980 --> 04:56.580
+between them.
+
+04:56.580 --> 05:02.660
+And of course, only the developers and the experts of this database understand the physical data model
+
+05:02.700 --> 05:04.220
+behind this database.
+
+05:04.260 --> 05:09.660
+And now if you give access to all those analysts, they will have a lot of questions, because first
+
+05:09.700 --> 05:13.820
+they have to understand the data model before writing any query.
+
+05:13.820 --> 05:19.940
+So that means a lot of data workers are keep asking our experts from this database questions.
+
+05:19.940 --> 05:22.620
+So for example how to connect the table A with the table B.
+
+05:22.660 --> 05:24.620
+And where do I find my columns.
+
+05:24.620 --> 05:30.060
+What this table means I'm getting bad results in my query because your data is really corrupt.
+
+05:30.060 --> 05:35.340
+So the developers of the database will get a lot of questions from the analysts, and they have to explain
+
+05:35.340 --> 05:41.420
+over and over their data model so that the users are able to write those complex queries.
+
+05:41.420 --> 05:46.020
+So that means all those users are stressing the database team by many questions.
+
+05:46.020 --> 05:49.550
+And as well the users are writing very complex queries.
+
+05:49.550 --> 05:52.670
+So the complexity is a really big challenge now as well.
+
+05:52.710 --> 05:57.390
+By looking to this picture, you will find a lot of arrows from those queries to the database.
+
+05:57.590 --> 06:00.990
+And this might cause a lot of database stress.
+
+06:00.990 --> 06:02.990
+So keep executing repeatedly.
+
+06:03.350 --> 06:07.910
+A big complex queries can make really big stress for the database.
+
+06:07.910 --> 06:09.950
+And it's going to bring the database down.
+
+06:09.950 --> 06:13.510
+And the last challenge of this picture that the data security.
+
+06:13.510 --> 06:19.030
+So if you leave it like this, by giving the users a direct access to your database tables, you might
+
+06:19.030 --> 06:23.350
+have a problem because it might be okay for like some data engineers and so on.
+
+06:23.350 --> 06:28.510
+But you don't want to give for each data analyst a full access to the database tables.
+
+06:28.510 --> 06:32.590
+So you have to protect your tables, the columns, the rows, everything.
+
+06:32.590 --> 06:38.430
+So you cannot leave it like this where everyone having a direct access to the physical database tables.
+
+06:38.470 --> 06:41.190
+Now enough talking about challenges, problems and issues.
+
+06:41.230 --> 06:43.270
+Let's be solution oriented.
+
+06:43.270 --> 06:45.590
+So what are the solutions of those issues?
+
+06:45.630 --> 06:49.800
+Of course there are many solutions, but we're going to focus now on five techniques.
+
+06:49.800 --> 06:53.960
+We can go and use subqueries or ctes common table expressions.
+
+06:53.960 --> 07:00.080
+We can introduce views to our database or temporary tables, or we can go and use the technique of the
+
+07:00.080 --> 07:03.240
+CTAs create table as select.
+
+07:03.240 --> 07:08.760
+So this is exactly why we have to understand those five techniques in order to solve all those issues
+
+07:08.760 --> 07:11.360
+that we might face in our data projects.
+
+07:15.200 --> 07:15.960
+All right friends.
+
+07:15.960 --> 07:21.880
+So now after we understood the importance of those five techniques, let's take a quick and simplified
+
+07:21.880 --> 07:27.320
+look to the database architecture, because I want you to understand what happens behind the scenes
+
+07:27.320 --> 07:32.520
+and how the database executes the queries from these five techniques.
+
+07:32.520 --> 07:36.640
+So by understanding this architecture you will understand how things works.
+
+07:36.640 --> 07:39.720
+So let's go for each story there are two sides.
+
+07:39.720 --> 07:42.240
+We have the server side and the client side.
+
+07:42.240 --> 07:48.210
+In the client side it's like for example you you are writing an SQL query for a specific purpose.
+
+07:48.210 --> 07:50.490
+Now in the server side we have many things.
+
+07:50.490 --> 07:56.410
+So the server is where the database lives and it has many components like the database engine.
+
+07:56.410 --> 08:04.330
+The database engine is the brain of the database that handles different operations like storing, retrieving
+
+08:04.330 --> 08:06.490
+and managing data in the database.
+
+08:06.490 --> 08:10.610
+So each time you execute a query, the database engine can take care of it.
+
+08:10.650 --> 08:14.690
+And now in the database we have a very important component that is the storage.
+
+08:14.690 --> 08:20.130
+And the two main types of storage in a database are disk storage and cache.
+
+08:20.170 --> 08:25.450
+The disk storage is like a long term memory where the data is stored permanently.
+
+08:25.450 --> 08:27.250
+So it's like the disk at your PC.
+
+08:27.410 --> 08:31.530
+It stores the data permanently, even if you turn off the system.
+
+08:31.530 --> 08:35.690
+And one important feature of the disk is that it can store a lot of data.
+
+08:35.690 --> 08:41.730
+But the disadvantage of the disk storage is that it is slow, so it is slow to write and to read.
+
+08:41.770 --> 08:47.550
+Now in the other hand, we have the cash is a short term memory where the data is stored temporary.
+
+08:47.550 --> 08:49.150
+It's like the Rams at your PC.
+
+08:49.190 --> 08:55.350
+It holds the most frequently used data, so the database can access it quickly in order to retrieve
+
+08:55.390 --> 08:55.830
+data.
+
+08:55.830 --> 08:58.870
+And the big advantage of the cache is that it is fast.
+
+08:58.870 --> 09:03.550
+So it is very fast for the database to retrieve data from the cache compared to the disk.
+
+09:03.550 --> 09:08.270
+But the disadvantage of the cache, the data is stored there only for short periods.
+
+09:08.270 --> 09:12.950
+So it's like a trade off between the speed and how much data you can store and how long.
+
+09:12.950 --> 09:14.790
+Now let's talk about the disk storage.
+
+09:14.790 --> 09:16.550
+This is very important in databases.
+
+09:16.590 --> 09:19.790
+There are typically three types of storage areas.
+
+09:19.790 --> 09:20.230
+There.
+
+09:20.230 --> 09:24.750
+We have the user data the system catalog and the temporary data.
+
+09:24.750 --> 09:27.470
+And each storage type has a different purpose.
+
+09:27.470 --> 09:29.510
+So what is user data storage.
+
+09:29.510 --> 09:32.190
+It is the main content of the database.
+
+09:32.190 --> 09:34.510
+So it stores the actual data.
+
+09:34.550 --> 09:38.230
+All the informations that are relevant for the users.
+
+09:38.230 --> 09:42.160
+So it's stored there, all the important data that the users cares about.
+
+09:42.160 --> 09:45.480
+So this is the storage where the users are interacting all the time.
+
+09:45.480 --> 09:47.360
+So where do we find the user data?
+
+09:47.360 --> 09:52.720
+If you go to our database sales db and then you go to the tables, now we find all these tables that
+
+09:52.720 --> 09:56.400
+we are already used, the customers, employees, orders and so on.
+
+09:56.720 --> 09:59.160
+Those tables are the user data.
+
+09:59.160 --> 10:07.040
+So now if I go and say select from sales orders and all those informations that we are seeing now are
+
+10:07.560 --> 10:08.720
+the users data.
+
+10:08.720 --> 10:11.400
+So this is what we users actually care about.
+
+10:11.400 --> 10:13.840
+All other stuff that we see inside databases.
+
+10:13.840 --> 10:15.520
+As a user, we don't care about it.
+
+10:15.560 --> 10:17.560
+We care only about our data.
+
+10:17.560 --> 10:20.520
+But in the database we don't have only the user data.
+
+10:20.520 --> 10:22.480
+We have many other informations.
+
+10:22.480 --> 10:25.640
+So this is what we mean with the user data storage.
+
+10:29.600 --> 10:31.320
+Now what is system catalog.
+
+10:31.320 --> 10:36.000
+This is the internal storage for the database for its own information.
+
+10:36.000 --> 10:41.650
+So it's like a blueprint that keeps tracking Everything about the database itself.
+
+10:41.650 --> 10:48.530
+So that means the main purpose of the system catalog is that it holds the metadata information about
+
+10:48.530 --> 10:49.410
+the database.
+
+10:49.410 --> 10:50.770
+So what is a metadata?
+
+10:50.810 --> 10:53.970
+Metadata is data about data.
+
+10:54.010 --> 10:55.930
+Now let's understand what this means.
+
+10:55.930 --> 10:59.490
+What we have done so far is that we have created a table called customers.
+
+10:59.530 --> 11:04.370
+And we have defined inside it like multiple columns like the customer ID, first name, last name,
+
+11:04.370 --> 11:07.330
+and then we have inserted our data inside this table.
+
+11:07.330 --> 11:09.890
+So we have inserted five customers.
+
+11:09.890 --> 11:12.130
+So those are my data.
+
+11:12.130 --> 11:15.930
+I have created those informations and stored it inside the database.
+
+11:16.170 --> 11:18.530
+That's why we call it the user data.
+
+11:18.530 --> 11:20.130
+So nothing so far is new.
+
+11:20.130 --> 11:26.050
+So now what happens behind the scenes is that the database server will not only store the user data
+
+11:26.050 --> 11:31.850
+that you have provided, but also it's going to go and store a different type of data inside the database.
+
+11:31.850 --> 11:34.490
+And this data is the metadata.
+
+11:34.490 --> 11:40.900
+So the database server can store the Metadata of the customer's table and it can look like this.
+
+11:40.900 --> 11:42.300
+There is like a table name.
+
+11:42.300 --> 11:48.100
+There is a column names, and those are the column names that you have defined inside your database.
+
+11:48.100 --> 11:53.660
+And those are the column names that you have defined as you are creating the table customers.
+
+11:53.660 --> 11:59.580
+And it can store as well additional informations like which data type like the customer id is int and
+
+11:59.580 --> 12:05.660
+the last name is varchar, and many other informations like the length of the column and whether the
+
+12:05.660 --> 12:07.340
+column is nullable or not.
+
+12:07.340 --> 12:13.660
+So as you can see in the metadata, we are having a description, a data about the structure of the
+
+12:13.660 --> 12:14.460
+customers.
+
+12:14.460 --> 12:19.820
+And in the metadata we can find a lot of informations about not only the tables and columns, but as
+
+12:19.820 --> 12:22.140
+well about the schemas and the database.
+
+12:22.140 --> 12:26.500
+So you can find a full catalog about the structure of your database.
+
+12:26.540 --> 12:28.420
+Basic table, the customers table.
+
+12:28.540 --> 12:31.620
+It contains data about the actual data.
+
+12:31.620 --> 12:35.990
+So it stores data about the customers but the metadata of the of their customers.
+
+12:35.990 --> 12:39.110
+Table contains data about data.
+
+12:39.110 --> 12:45.230
+So in the databases, each table that you are using in order to store your data has a table twin that
+
+12:45.230 --> 12:48.070
+describes the structure of your data.
+
+12:48.070 --> 12:51.870
+So this is what we mean with a system catalog or a metadata.
+
+12:51.910 --> 12:57.310
+And now you might ask where I can find all those system catalog and metadata inside our client here.
+
+12:57.310 --> 13:02.590
+Well you cannot navigate through those informations in the Object Explorer like we used to do for the
+
+13:02.590 --> 13:03.310
+user data.
+
+13:03.310 --> 13:09.750
+But you can find those informations in a special hidden schema called the information schema.
+
+13:09.790 --> 13:17.870
+The information schema in SQL server is a system defined schema that contains a set of built in views
+
+13:17.870 --> 13:24.070
+that help us to find information about our database like tables, columns, and other objects.
+
+13:24.070 --> 13:25.590
+So let's go and explore it.
+
+13:25.630 --> 13:31.590
+We're going to go and say select star from Information Schema.
+
+13:31.590 --> 13:32.950
+And then let's have a dot.
+
+13:32.990 --> 13:39.320
+And now we get from SQL a list of all views that are available in order to browse the metadata of our
+
+13:39.320 --> 13:40.040
+database.
+
+13:40.120 --> 13:46.160
+So for example, you can see here tables, you can see informations about the views and as well about
+
+13:46.160 --> 13:46.960
+the columns.
+
+13:46.960 --> 13:50.720
+So let's go and select the columns and let's go and execute it.
+
+13:50.760 --> 13:56.920
+And now in the output we can find informations about the schema about the table names like for example
+
+13:56.920 --> 13:58.200
+here the customers.
+
+13:58.240 --> 14:00.840
+Let me just go and select this table.
+
+14:00.840 --> 14:05.560
+And then we find all the columns inside this table how they are sorted.
+
+14:05.560 --> 14:13.000
+So we have here the order of each column and as well the data type and the size of each column and many
+
+14:13.000 --> 14:13.720
+other stuff.
+
+14:13.720 --> 14:19.600
+So as you can see we got here all the informations, all the metadata of each table.
+
+14:19.600 --> 14:22.600
+And as well for each column inside the table.
+
+14:22.600 --> 14:25.800
+So with that you can check which tables does exist in your database.
+
+14:25.800 --> 14:28.200
+For example I find here like something called Test2.
+
+14:28.360 --> 14:30.840
+So maybe I was trying to test something.
+
+14:30.880 --> 14:32.740
+I can go now and clean up stuff.
+
+14:32.740 --> 14:33.100
+Right.
+
+14:33.100 --> 14:36.780
+And this is exactly why the database maintained such a catalog.
+
+14:36.820 --> 14:42.660
+It tells the database to quickly find the structure of each table and of each column, and it helps
+
+14:42.660 --> 14:45.940
+me, as well as a user, to browse the catalog of the database.
+
+14:45.940 --> 14:51.100
+So for example, I can go over here and say, okay, let's get a distinct table name.
+
+14:51.980 --> 14:56.540
+So with that, I will get a list of everything that I have inside the database.
+
+14:56.540 --> 15:00.060
+So we have the customers, employees and some tests that I have done.
+
+15:00.060 --> 15:01.700
+So metadata are awesome.
+
+15:05.660 --> 15:09.300
+Now we come to the third storage that temporary data storage.
+
+15:09.300 --> 15:15.900
+It is a temporary space used by the database for short term tasks like processing a query or sorting
+
+15:15.900 --> 15:16.340
+data.
+
+15:16.340 --> 15:19.220
+And once these tasks are done, what's going to happen?
+
+15:19.260 --> 15:21.460
+The database is going to go and clean up the storage.
+
+15:21.500 --> 15:24.820
+And now of course, the question is where we can find these temporary tables.
+
+15:24.820 --> 15:27.380
+That is using the temporary storage in the disk.
+
+15:27.540 --> 15:30.070
+Well actually if you go to the object Explorer.
+
+15:30.110 --> 15:36.630
+You will not find it inside our database sales DB, but you will find it inside the system databases.
+
+15:36.670 --> 15:42.030
+Now, since we are working locally, we have the full access to everything inside the SQL server.
+
+15:42.030 --> 15:46.950
+But in real projects, if you are just a user or let's say a developer, you will not have access to
+
+15:46.950 --> 15:50.630
+the system databases only for the database administrators.
+
+15:50.630 --> 15:52.630
+But now we are working on a local copy.
+
+15:52.630 --> 15:55.150
+So let's go to the system database.
+
+15:55.150 --> 16:00.030
+And here you have a special database from the SQL server called Tempdb.
+
+16:00.150 --> 16:04.510
+And if you go inside it we will find here tables and temporary tables.
+
+16:04.510 --> 16:10.030
+So this is exactly where you can find all the temporary tables that you are generating now currently
+
+16:10.030 --> 16:12.110
+we didn't create any temporary tables.
+
+16:12.110 --> 16:13.350
+That's why it's empty.
+
+16:13.350 --> 16:18.910
+But once you start creating temporary tables you will find those tables underneath this folder.
+
+16:18.910 --> 16:22.430
+We will learn about that temporary tables in the next sections.
+
+16:26.470 --> 16:30.080
+So these are the main component of the database architecture.
+
+16:30.120 --> 16:31.280
+So now let's have an example.
+
+16:31.280 --> 16:35.400
+Now we have a table called orders that is stored inside the user storage.
+
+16:35.400 --> 16:38.240
+And the metadata of this table is stored in the catalog.
+
+16:38.240 --> 16:40.640
+So now let's say that you are at the client side.
+
+16:40.640 --> 16:44.200
+And you write a simple Select query in order to select the data of the orders.
+
+16:44.200 --> 16:47.680
+So now that query is sent to the server in order to be executed.
+
+16:47.680 --> 16:51.000
+And the database engine can take the query in order to process it.
+
+16:51.000 --> 16:55.080
+So first the database engine can check whether we have the data in the cache.
+
+16:55.080 --> 16:59.280
+Because if the data is stored in the cache, then things are going to be really fast and the database
+
+16:59.280 --> 17:01.000
+engine can solve the task quickly.
+
+17:01.000 --> 17:04.360
+But in this scenario we don't have the orders information in the cache.
+
+17:04.400 --> 17:08.760
+That's why the database engine can say, okay, it's not in the cache, let's check the disk.
+
+17:08.760 --> 17:13.160
+So it will find the orders information in the disk and the query can be executed.
+
+17:13.200 --> 17:18.520
+Then the result of this query is going to be sent back to the client side where at the end.
+
+17:18.520 --> 17:22.240
+In return you will see in the output the result of the table orders.
+
+17:22.240 --> 17:25.360
+So this is how the SQL database execute.
+
+17:25.400 --> 17:26.840
+Very simple select query.

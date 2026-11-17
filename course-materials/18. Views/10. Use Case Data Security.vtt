@@ -1,0 +1,349 @@
+WEBVTT
+
+00:03.920 --> 00:06.640
+Okay, moving on to the next scenario to the next use case.
+
+00:06.640 --> 00:12.280
+We use SQL views in order to implement security and to protect our data in the database.
+
+00:12.280 --> 00:17.720
+In many scenarios, we have sensitive informations in our data and we cannot go and share it with everyone.
+
+00:17.720 --> 00:24.040
+So one of the best practices is to create views in order to protect your data before sharing it with
+
+00:24.040 --> 00:24.800
+the users.
+
+00:24.800 --> 00:26.440
+So let's understand what this means.
+
+00:26.440 --> 00:30.520
+So now let's understand first the scenario without views only tables.
+
+00:30.520 --> 00:33.960
+So now let's say that you have the table orders four columns and three rows.
+
+00:34.000 --> 00:39.000
+And then you have like for example, a manager that has an access directly to the database and start
+
+00:39.000 --> 00:41.320
+writing some queries in order to retrieve data.
+
+00:41.320 --> 00:46.400
+But in your project you have multiple people that has an access to your database, like for example,
+
+00:46.440 --> 00:47.320
+a data analyst.
+
+00:47.320 --> 00:51.080
+And as well she is writing a script in order to retrieve data from the orders.
+
+00:51.080 --> 00:56.360
+And as well, you have maybe a student that has an access to your database and querying the data like
+
+00:56.360 --> 00:58.680
+any other rule, like a manager and data analyst.
+
+00:58.680 --> 01:04.680
+So as you can see, you have now different rules in your project and all of them having the same rights
+
+01:04.680 --> 01:06.800
+by accessing directly your table.
+
+01:06.850 --> 01:13.530
+So a manager or a data analyst or a student, they are seeing the whole table or rows and all columns.
+
+01:13.530 --> 01:16.570
+And of course in the real projects this is a big problem.
+
+01:16.570 --> 01:20.730
+Sometimes the data are sensitive and you cannot give an access for everyone.
+
+01:20.730 --> 01:24.730
+And of course if you are using only tables, this is going to be a nightmare because you can go and
+
+01:24.730 --> 01:29.210
+create multiple tables, but it's going to be really hard to make all those tables in sync.
+
+01:29.210 --> 01:31.490
+But instead of that, we have views.
+
+01:31.490 --> 01:37.210
+So what you can do, you can go and remove all accesses to the physical table, but instead you can
+
+01:37.210 --> 01:40.450
+go and create multiple views for each role.
+
+01:40.450 --> 01:44.090
+For example, you can go and create a view called orders Managers.
+
+01:44.090 --> 01:49.250
+And maybe you can give all the data and all the columns because the managers are allowed to see, let's
+
+01:49.250 --> 01:50.330
+say, sensitive data.
+
+01:50.330 --> 01:52.010
+But still it's nice to create a view.
+
+01:52.050 --> 01:54.930
+Maybe you change your mind later and you go and remove something.
+
+01:54.970 --> 01:59.890
+Now let's say that for the data analyst, you want to offer all the data, but there is only one column
+
+01:59.890 --> 02:01.530
+that is very sensitive.
+
+02:01.530 --> 02:05.530
+So what you can do, you can go and create another view called orders Analyst.
+
+02:05.530 --> 02:11.610
+So in the view only three columns are available A, B, C and then you give access to all data analyst.
+
+02:11.610 --> 02:15.070
+And with that you have protected this sensitive information.
+
+02:15.070 --> 02:17.390
+So we call this column level security.
+
+02:17.390 --> 02:19.310
+And now we come to our poor students.
+
+02:19.510 --> 02:25.910
+And here we create another view where we are not only protecting the column D, but also we are protecting
+
+02:25.950 --> 02:31.350
+few rows like for example, the row number three because we want to offer only few informations to the
+
+02:31.350 --> 02:32.030
+students.
+
+02:32.030 --> 02:35.030
+So we are protecting the columns and as well the rows.
+
+02:35.070 --> 02:40.350
+And for that we can create another dedicated view called for example order students and we can offer
+
+02:40.350 --> 02:41.270
+it to the students.
+
+02:41.270 --> 02:46.390
+And with that we are doing column level security and as well row level security.
+
+02:46.390 --> 02:52.630
+So we are offering multiple views very easily without having to worry how to load the data from one
+
+02:52.630 --> 02:53.670
+table to another.
+
+02:53.670 --> 03:00.430
+So creating those views are really easy and provide us a perfect tool in order to manage the security
+
+03:00.430 --> 03:01.350
+of our data.
+
+03:01.350 --> 03:05.830
+So this is one very common use case of using views in data projects.
+
+03:05.870 --> 03:06.150
+All right.
+
+03:06.150 --> 03:07.510
+So now let's have the following task.
+
+03:07.510 --> 03:14.790
+And it says provide a view for a new sales team that combines details from all tables and excludes data
+
+03:14.790 --> 03:16.190
+related to the USA.
+
+03:16.430 --> 03:22.120
+So the first part of the task is similar to what we have already done, but we cannot offer all data
+
+03:22.120 --> 03:23.240
+for the user.
+
+03:23.240 --> 03:28.800
+So this time we are providing a view that is specifically created for a team, the sales team.
+
+03:28.800 --> 03:32.960
+So the first part, we have already done it where we are combining all details in one view.
+
+03:32.960 --> 03:37.000
+But the problem with the view that we have created that it shows all data.
+
+03:37.000 --> 03:38.360
+But now the requirement change.
+
+03:38.360 --> 03:39.880
+We cannot show all data.
+
+03:39.880 --> 03:43.720
+We have to go and exclude the USA data from our details.
+
+03:43.720 --> 03:45.000
+So let's see how we can do that.
+
+03:45.000 --> 03:45.680
+It's very simple.
+
+03:45.680 --> 03:47.240
+We're going to go and grab the semi query.
+
+03:47.320 --> 03:48.520
+We'll not repeat that.
+
+03:48.520 --> 03:52.400
+So we have as well here joining tables and prepare everything.
+
+03:52.760 --> 03:57.960
+But instead of showing all data what we're going to do, we're going to go and filter the data based
+
+03:57.960 --> 03:59.560
+on the customer country.
+
+03:59.560 --> 04:00.760
+So it's very simple.
+
+04:00.800 --> 04:09.440
+At the end we will have a where clause where the see country is not equal to USA.
+
+04:10.600 --> 04:12.960
+So we have now a filter.
+
+04:12.960 --> 04:14.160
+Let's go and execute it.
+
+04:14.160 --> 04:19.280
+And with that as you can see in the output, we are getting the orders that are not from USA.
+
+04:19.320 --> 04:22.640
+And with that we are protecting the data of the USA and the EU.
+
+04:23.080 --> 04:27.740
+Sales teams can access only their data so it looks nice and protected.
+
+04:27.740 --> 04:30.380
+And with that, we are doing now row level security.
+
+04:30.380 --> 04:36.580
+That means we are hiding now all the orders, all the rows that are not allowed to be seen and consumed
+
+04:36.580 --> 04:38.180
+from this group of users.
+
+04:38.180 --> 04:39.340
+So now what is the next step?
+
+04:39.340 --> 04:40.100
+It is very simple.
+
+04:40.100 --> 04:42.740
+We're going to go and put everything in one view.
+
+04:42.740 --> 04:46.460
+So with that we have the query ready and we can go and create the new view.
+
+04:46.780 --> 04:49.980
+So we're going to call it create view.
+
+04:50.500 --> 04:51.860
+Then we need the schema.
+
+04:52.340 --> 04:54.740
+And the name going to be almost the same.
+
+04:54.740 --> 04:57.260
+So order details but EU.
+
+04:57.300 --> 05:01.020
+And then we have to have us and parentheses like this.
+
+05:01.500 --> 05:02.860
+So everything is ready.
+
+05:02.860 --> 05:04.100
+Let's go and execute it.
+
+05:04.140 --> 05:07.460
+And now we can go and refresh in order to see our new view.
+
+05:07.460 --> 05:12.460
+If you still don't see it, you can go to the views over here and refresh as well to the folder.
+
+05:12.460 --> 05:15.180
+So with that I can see we have our new view.
+
+05:15.220 --> 05:17.700
+Now of course the next step we go and test it.
+
+05:17.700 --> 05:27.500
+So let's create a new query, select star from sales and the Order Details view.
+
+05:27.940 --> 05:29.220
+So let's test it.
+
+05:29.220 --> 05:34.270
+And with that as you can see, we are getting the combined view only for the data that is relevant for
+
+05:34.270 --> 05:35.510
+the EU sales team.
+
+05:35.510 --> 05:38.630
+So I'm not seeing here any USA records.
+
+05:38.630 --> 05:43.750
+So with that we are providing view that protects few rows like the orders from USA.
+
+05:43.790 --> 05:49.630
+So as you can see, views are really great in order to provide security to our data, whether we are
+
+05:49.630 --> 05:55.310
+protecting the columns or the rows, for example, in our view we can say not only I want to remove
+
+05:55.430 --> 06:00.670
+the USA orders, but let's say that department information is sensitive information and I would like
+
+06:00.670 --> 06:01.790
+to hide it from the view.
+
+06:01.790 --> 06:04.270
+So you can just simply remove it from the select.
+
+06:04.270 --> 06:06.470
+And with that you are doing column level security.
+
+06:06.470 --> 06:09.470
+So now I have two options that I can provide to the users.
+
+06:09.470 --> 06:12.670
+The first option doesn't have any like row level security.
+
+06:12.710 --> 06:15.510
+It is the first view the order details.
+
+06:15.510 --> 06:16.910
+We don't have there any filter.
+
+06:16.910 --> 06:18.470
+So it's going to show all the orders.
+
+06:18.470 --> 06:21.990
+So here we give access only to people that are allowed to see all data.
+
+06:21.990 --> 06:23.950
+And we have another option the details.
+
+06:23.950 --> 06:26.230
+With the EU it doesn't show all data.
+
+06:26.230 --> 06:29.630
+It shows only a subset that is relevant for the EU team.
+
+06:29.630 --> 06:34.190
+So now it's really easy to control the security of my data using the views.
+
+06:34.190 --> 06:36.750
+And this is very important use case for the views.

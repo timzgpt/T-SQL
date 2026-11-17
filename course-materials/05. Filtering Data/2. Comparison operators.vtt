@@ -1,0 +1,562 @@
+WEBVTT
+
+00:00.000 --> 00:00.240
+All right.
+
+00:00.240 --> 00:03.520
+So now let's have an overview about all different operators in SQL.
+
+00:03.560 --> 00:06.840
+So the first group of operators we have the comparison operators.
+
+00:06.840 --> 00:10.440
+They are the easiest one where all what we have to do is to compare two values.
+
+00:10.440 --> 00:13.080
+And we have like six different variants on how to do that.
+
+00:13.120 --> 00:15.960
+Now to the next one we have the logical operators.
+
+00:15.960 --> 00:21.840
+We use it in order to combine multiple operators and moving on to the next one, we have the range operator.
+
+00:21.840 --> 00:23.480
+Here we have only one the between.
+
+00:23.480 --> 00:27.840
+We can use it in order to check whether a value falls within a specific range.
+
+00:27.880 --> 00:30.880
+Now moving on to the next one we have the membership operator.
+
+00:30.880 --> 00:32.000
+And here we have two things.
+
+00:32.000 --> 00:34.040
+We have the in operator or not.
+
+00:34.080 --> 00:38.400
+In here all what you have to do is to check whether a value is in a list or not.
+
+00:38.440 --> 00:41.480
+And the last category that we have is the search operator.
+
+00:41.480 --> 00:47.040
+And here as well we have only one operator that like we use it in order to search for a specific thing
+
+00:47.040 --> 00:47.800
+in a text.
+
+00:47.800 --> 00:51.080
+So my friends, we're going to go through all those operators one by one.
+
+00:51.120 --> 00:51.360
+Okay.
+
+00:51.400 --> 00:55.160
+So now let's go and deep dive into the first category the comparison operators.
+
+00:55.160 --> 00:56.680
+And we're going to cover all those stuff.
+
+00:56.680 --> 00:58.880
+So what is exactly comparison operator.
+
+01:02.890 --> 01:05.210
+Okay, so what is exactly comparison operators?
+
+01:05.250 --> 01:06.170
+It is very simple.
+
+01:06.170 --> 01:08.010
+We want to compare two things.
+
+01:08.010 --> 01:10.930
+And there is a lot of things that we can compare in SQL.
+
+01:10.970 --> 01:13.370
+But the formula for that is going to be always like this.
+
+01:13.370 --> 01:16.290
+So we have the first expression and then operator.
+
+01:16.290 --> 01:18.290
+And then we have another expression.
+
+01:18.290 --> 01:20.730
+And this can form something called condition.
+
+01:20.730 --> 01:22.290
+So here we have a lot of variants.
+
+01:22.290 --> 01:25.210
+We can compare one column to another column.
+
+01:25.210 --> 01:29.330
+So for example you can go and compare the first name with the last name.
+
+01:29.330 --> 01:31.650
+So both of the expressions are columns here.
+
+01:31.650 --> 01:36.330
+Another scenario you want to compare a column with a value static value.
+
+01:36.370 --> 01:41.690
+Like for example you say the first name must be equal to a value like John.
+
+01:41.690 --> 01:44.650
+So now we are comparing a column with a value.
+
+01:44.650 --> 01:46.050
+It's not anymore two columns.
+
+01:46.090 --> 01:51.930
+Now we have another scenario where we want to apply a function to a column and then compare the results
+
+01:51.930 --> 01:53.090
+to maybe a value.
+
+01:53.090 --> 01:56.530
+So for example we apply the upper function to the first name.
+
+01:56.530 --> 02:01.970
+And then this must be equal to a value like John with all the letters in the uppercase.
+
+02:01.970 --> 02:03.930
+And one more thing that you can compare.
+
+02:03.980 --> 02:10.020
+You can write an expression in one of the sides, like for example, you can say, if we multiply price
+
+02:10.020 --> 02:13.900
+with the quantity, it must be equal to 1000 for example.
+
+02:13.900 --> 02:15.380
+So here we have an expression.
+
+02:15.380 --> 02:18.180
+We have multiple columns included in one side.
+
+02:18.180 --> 02:21.340
+And the output of this expression must be equal to 1000.
+
+02:21.380 --> 02:23.740
+And now the last one is going to be a little bit more advanced.
+
+02:23.740 --> 02:24.700
+And we're going to cover that.
+
+02:24.700 --> 02:30.460
+Of course in other chapter we can include a whole query the complete query to one of the sides.
+
+02:30.460 --> 02:32.100
+And we call this a subquery.
+
+02:32.100 --> 02:37.540
+So in one of the sides you're going to write a whole query select from where whatever you want.
+
+02:37.580 --> 02:42.300
+And you go and compare the result of this query to for example a value or a column.
+
+02:42.300 --> 02:46.700
+So as you can see in the SQL we can compare a lot of things together, either comparing the columns
+
+02:46.700 --> 02:53.100
+together or a column with a value, or we use a function or an expression or even a whole query.
+
+02:53.100 --> 02:55.860
+So this is how we build conditions in SQL.
+
+02:55.900 --> 02:56.580
+Okay my friends.
+
+02:56.580 --> 02:59.020
+So let's see how the conditions works in SQL.
+
+02:59.060 --> 03:01.820
+So we have our data the name the country the score.
+
+03:01.820 --> 03:07.350
+And let's say that we have built a condition where it says the country must be equal to the USA.
+
+03:07.390 --> 03:09.670
+So this is a very simple comparison operator.
+
+03:09.670 --> 03:13.510
+And this is the condition that we are using inside the Where clause.
+
+03:13.510 --> 03:19.390
+So once you apply this filter to your data what can happen is SQL can go row by row evaluating whether
+
+03:19.390 --> 03:20.830
+it is meeting the condition.
+
+03:20.830 --> 03:24.830
+If it is not fulfilling the condition, then SQL can remove it from the results.
+
+03:24.830 --> 03:27.310
+But if it is fulfilling the condition, it's going to keep it.
+
+03:27.310 --> 03:32.510
+So now we are comparing the values of column together with a static value the USA.
+
+03:32.550 --> 03:36.550
+So we're going to compare whatever value we get from the country together with the USA.
+
+03:36.590 --> 03:41.510
+So now let's see how SQL can apply this filter to our data for the first customer Maria.
+
+03:41.550 --> 03:44.590
+Now you can see the value inside the country is Germany.
+
+03:44.590 --> 03:47.830
+So SQL is now going to go and compare Germany to USA.
+
+03:47.990 --> 03:54.350
+Since it is not equal then SQL can understand okay, Maria is not fulfilling the condition, so it is
+
+03:54.350 --> 04:00.150
+false and SQL can go and remove this customer from the results so she is not fulfilling the condition.
+
+04:00.150 --> 04:01.790
+Moving on to the next one to John.
+
+04:01.790 --> 04:08.640
+Now SQL can take the value inside the country, the USA it is equal to USA, so that means John is fulfilling
+
+04:08.640 --> 04:09.880
+the condition and skill.
+
+04:09.920 --> 04:11.080
+Going to be happy about it.
+
+04:11.080 --> 04:12.120
+So it is true.
+
+04:12.120 --> 04:15.400
+And this means it's going to keep join in the final results.
+
+04:15.440 --> 04:16.600
+Now moving on to George.
+
+04:16.640 --> 04:18.960
+The value is UK not equal to USA.
+
+04:19.000 --> 04:23.560
+He is not fulfilling the condition is going to go and remove him from the final result.
+
+04:23.600 --> 04:24.840
+Same thing for Martin.
+
+04:24.840 --> 04:28.920
+Germany is not equal to USA is going to remove this customer as well.
+
+04:28.960 --> 04:31.920
+And to the last one you can see the value is USA.
+
+04:31.960 --> 04:34.800
+So USA, USA the condition is fulfilled.
+
+04:34.880 --> 04:38.040
+SQL is happy about it and going to leave the customer in the output.
+
+04:38.080 --> 04:43.720
+So now if you go and apply this condition using the comparison operator to your data, only two customers
+
+04:43.720 --> 04:45.480
+are going to be left in the output.
+
+04:45.520 --> 04:50.000
+This is exactly how the conditions and the comparison operators works in SQL.
+
+04:50.040 --> 04:52.000
+Okay, so now let's start with the first operator.
+
+04:52.000 --> 04:52.880
+It's very simple.
+
+04:52.880 --> 04:53.920
+We have the equal.
+
+04:53.960 --> 04:56.600
+It's going to check if the two values are equal.
+
+04:56.600 --> 04:57.560
+That's very simple.
+
+04:57.560 --> 04:58.640
+Let's have an example.
+
+04:58.680 --> 04:58.880
+Okay.
+
+04:58.920 --> 04:59.960
+So now we have this task.
+
+04:59.960 --> 05:02.120
+It says retrieve all customers from Germany.
+
+05:02.120 --> 05:03.280
+So this is very basic.
+
+05:03.280 --> 05:05.840
+So we're going to go and select and we're going to select all the columns.
+
+05:05.840 --> 05:10.530
+Since we don't have any specifications from the table customers, and if you go and execute it, you
+
+05:10.570 --> 05:11.890
+will get all the customers.
+
+05:11.890 --> 05:15.370
+But we don't need that, only the customers that comes from Germany.
+
+05:15.370 --> 05:21.690
+So we have to go and apply a condition using the Where clause country equal to the value Germany.
+
+05:22.050 --> 05:26.490
+So make sure you are writing it exactly like in the database, otherwise it will not work.
+
+05:26.490 --> 05:27.850
+So let's go and execute.
+
+05:27.850 --> 05:30.970
+And with that we are getting only the customers from Germany.
+
+05:30.970 --> 05:32.010
+So it is very simple.
+
+05:32.010 --> 05:34.770
+And this is why we use the equal operator okay.
+
+05:34.810 --> 05:36.330
+So now moving on to the next one.
+
+05:36.370 --> 05:37.410
+Again very simple.
+
+05:37.410 --> 05:42.610
+If you want to check if two values are not equal, we can use the not equal operator.
+
+05:42.610 --> 05:44.010
+So let's have an example okay.
+
+05:44.050 --> 05:45.730
+So now we just have the opposite task.
+
+05:45.730 --> 05:49.770
+It says retrieve all customers who are not from Germany.
+
+05:49.770 --> 05:51.210
+So this is very simple.
+
+05:51.210 --> 05:55.690
+We are saying here who are nuts, they are not equal to Germany.
+
+05:55.690 --> 06:00.290
+So we can use the not equal operator in order to get these customers.
+
+06:00.290 --> 06:05.850
+So with that, as you can see, after executing, we are getting all the customers country is not equal
+
+06:05.850 --> 06:06.530
+to Germany.
+
+06:06.530 --> 06:10.300
+And there is like another way on how to do that, not equal doing it like this.
+
+06:10.380 --> 06:11.540
+We'll get the same results.
+
+06:11.580 --> 06:13.700
+All right, my friends, moving on to the next one.
+
+06:13.700 --> 06:17.420
+We can check if a value is greater than another value.
+
+06:17.420 --> 06:19.540
+So we use the greater operator.
+
+06:19.580 --> 06:20.540
+Let's have an example.
+
+06:20.580 --> 06:20.780
+Okay.
+
+06:20.820 --> 06:27.220
+So now the next task it says retrieve all customers with score greater than 500.
+
+06:27.260 --> 06:29.820
+Now we want to filter the data based on the score.
+
+06:29.820 --> 06:32.260
+So we're going to say where score.
+
+06:32.300 --> 06:35.420
+And now the task says greater than 500.
+
+06:35.460 --> 06:38.380
+We're going to use the operator greater than 500.
+
+06:38.420 --> 06:39.020
+It's very simple.
+
+06:39.020 --> 06:44.700
+So with that we will get only the customers where the score is higher than 500.
+
+06:44.700 --> 06:47.820
+So for example Maria is not fulfilling the condition.
+
+06:47.860 --> 06:49.660
+The same thing for the Peter.
+
+06:49.660 --> 06:53.180
+And as well for Martin it must be greater than 500.
+
+06:53.180 --> 06:59.660
+So if we go and execute it, you will get only those two customers because they are greater than 500.
+
+06:59.700 --> 07:01.300
+Okay, moving on to the next one.
+
+07:01.300 --> 07:06.100
+This time we're going to check if a value is greater than or equal to another value.
+
+07:06.100 --> 07:09.140
+So it is like mixed between the greater than and the equal.
+
+07:09.180 --> 07:12.470
+If one of them is fulfilled then the value going to meet the condition.
+
+07:12.470 --> 07:13.990
+So let's have an example for that.
+
+07:14.030 --> 07:19.470
+Now if the task says retrieve all customers with a score of 500 or more.
+
+07:19.550 --> 07:25.150
+This time we're going to go and include the customers where their score is equal as well to 500 or higher.
+
+07:25.150 --> 07:29.550
+So we're going to have a similar condition based on the score and the 500 value.
+
+07:29.550 --> 07:33.630
+But this time we're going to say greater or equal to 500.
+
+07:33.630 --> 07:38.870
+So if we go now and execute it this time, we're going to see the customer Martin, with the score of
+
+07:38.870 --> 07:39.710
+500.
+
+07:39.710 --> 07:42.990
+So on this scenario we're going to use greater or equal.
+
+07:43.030 --> 07:43.390
+All right.
+
+07:43.390 --> 07:44.510
+So now let's keep moving.
+
+07:44.510 --> 07:46.070
+The next one is as well very simple.
+
+07:46.070 --> 07:50.230
+We're going to check this time if a value is less than another value.
+
+07:50.230 --> 07:52.230
+So we're going to use the less operator.
+
+07:52.230 --> 07:53.270
+Let's have an example.
+
+07:53.310 --> 07:55.150
+Now moving on to another simple task.
+
+07:55.190 --> 07:59.110
+Retrieve all customers with score less than 500.
+
+07:59.110 --> 08:02.150
+So this time we want all the customers with a lower score.
+
+08:02.150 --> 08:03.870
+And we're going to use exactly the opposite.
+
+08:03.870 --> 08:06.390
+It's going to be the score is less than 500.
+
+08:06.430 --> 08:08.430
+And again here it is not equal right.
+
+08:08.430 --> 08:12.830
+So if you go and execute you will get all the customers with low scores.
+
+08:12.960 --> 08:16.520
+that you will not get Martin, because Martin is equal to 500.
+
+08:16.560 --> 08:17.960
+So with that, we have solved the task.
+
+08:17.960 --> 08:21.120
+We have all the customers with the score less than 500.
+
+08:21.160 --> 08:23.400
+Okay my friends, now moving on to the last one.
+
+08:23.440 --> 08:24.640
+I think you already got it.
+
+08:24.640 --> 08:29.760
+So we're gonna check whether a value is less than or equal to another value.
+
+08:29.760 --> 08:33.200
+So you can go and combine the list operator together with the equal.
+
+08:33.200 --> 08:37.200
+And if one of them is fulfilled then the value going to meet the condition.
+
+08:37.200 --> 08:38.920
+So let's have an example for that.
+
+08:38.920 --> 08:43.560
+This time we are retrieving all customers with a score of 500 or less.
+
+08:43.560 --> 08:45.240
+So the query is going to be very similar.
+
+08:45.240 --> 08:49.120
+But we are saying it is less or equal to 500.
+
+08:49.120 --> 08:51.760
+So we are including the value in our condition.
+
+08:51.760 --> 08:57.560
+And with that, as you can see, we still have our two customers where we have the score less than 500,
+
+08:57.600 --> 08:58.880
+but we have now as well.
+
+08:58.920 --> 09:01.920
+Martin with a score of 500 okay my friends.
+
+09:01.920 --> 09:05.400
+So with that we have covered the first group, the comparison operators.
+
+09:05.440 --> 09:07.160
+Now we can move on to the next group.
+
+09:07.160 --> 09:09.000
+We're going to speak about the logical operators.
+
+09:09.000 --> 09:11.760
+And here we have three and or not.
+
+09:11.760 --> 09:13.240
+So let's start with the first one.
+
+09:13.240 --> 09:14.320
+What is exactly.
+
+09:14.360 --> 09:15.320
+And operator.

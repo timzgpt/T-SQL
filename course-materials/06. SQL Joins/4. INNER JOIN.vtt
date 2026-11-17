@@ -1,0 +1,727 @@
+WEBVTT
+
+00:03.920 --> 00:06.440
+Okay, so now what is exactly an inner join.
+
+00:06.440 --> 00:11.240
+So this type can return only the matching rows from both tables.
+
+00:11.240 --> 00:14.680
+So that means we will see in the output only matching rows.
+
+00:14.680 --> 00:16.520
+So now what do we need from the left table.
+
+00:16.520 --> 00:18.560
+We want only the matching data.
+
+00:18.560 --> 00:21.040
+So we will not get the whole circle of A.
+
+00:21.080 --> 00:26.880
+We will get only where we have an overlapping with the table B, so we want to see the data from A only
+
+00:26.880 --> 00:32.640
+if it exists in the table B and now what do we need from the table B exactly the same thing, only the
+
+00:32.640 --> 00:33.400
+matching data.
+
+00:33.400 --> 00:38.760
+So that means I don't want to see all the data from B, I want to see only the data and B that has a
+
+00:38.760 --> 00:41.440
+match from the table, A from the left side.
+
+00:41.440 --> 00:45.520
+And with that you will get only the matching data from both tables.
+
+00:45.560 --> 00:47.720
+Now let's see how we can write that in SQL.
+
+00:47.720 --> 00:49.360
+So it is usual query.
+
+00:49.360 --> 00:51.240
+And always we start with a select.
+
+00:51.240 --> 00:53.760
+So we select for example all the columns from.
+
+00:53.760 --> 00:55.520
+And here we specify the table name.
+
+00:55.520 --> 00:56.560
+So it's going to be a.
+
+00:56.640 --> 00:57.840
+So so far nothing new.
+
+00:57.840 --> 01:01.080
+But now we want to add as well the table B in the same query.
+
+01:01.080 --> 01:04.100
+In order to do that we use the keyword join.
+
+01:04.100 --> 01:07.140
+And then we say table be the name of the table.
+
+01:07.180 --> 01:13.020
+And since we have different types of joins in SQL, you can specify the type of the join before the
+
+01:13.060 --> 01:13.940
+keyword join.
+
+01:13.940 --> 01:17.780
+And if you don't specify anything, the default type is inner join.
+
+01:17.780 --> 01:21.460
+But my friends, the best practices is always mention the type.
+
+01:21.460 --> 01:26.980
+I don't like to skip the defaults because in projects maybe not everyone is aware of the defaults,
+
+01:26.980 --> 01:27.940
+so don't skip that.
+
+01:27.940 --> 01:29.420
+Always specify the type.
+
+01:29.420 --> 01:30.180
+So now what we're going to do.
+
+01:30.180 --> 01:33.180
+We're going to put the keyword inner before the join.
+
+01:33.180 --> 01:37.340
+And with that SQL gonna know how to deal with the rows between two tables.
+
+01:37.340 --> 01:38.820
+But still we are not done there.
+
+01:38.860 --> 01:41.980
+We have to tell SQL how to combine the tables.
+
+01:41.980 --> 01:43.980
+And with that we use the keyword on.
+
+01:43.980 --> 01:47.220
+And after that you specify the join condition.
+
+01:47.220 --> 01:52.700
+And as we learned in order to join two tables, we have to find out a common column in order to match
+
+01:52.700 --> 01:53.180
+the data.
+
+01:53.180 --> 01:53.580
+Right.
+
+01:53.580 --> 01:56.500
+And usually in SQL they are the keys or IDs.
+
+01:56.500 --> 01:58.100
+So the condition can be like this.
+
+01:58.100 --> 02:03.020
+The key from the table A must be equal to the key from the table B.
+
+02:03.020 --> 02:04.860
+So this is the join condition.
+
+02:04.860 --> 02:10.680
+And using this join scale can go and start matching the data from the left table and the right table.
+
+02:10.680 --> 02:12.680
+And there is one thing that is very important.
+
+02:12.680 --> 02:17.800
+While you are joining the tables, you have to understand about the order of the tables in your query.
+
+02:17.840 --> 02:21.560
+Now in the inner join, the order of the tables doesn't really matter.
+
+02:21.560 --> 02:26.840
+So whether you start from a or you start from B, it doesn't matter because you will get the same results.
+
+02:26.840 --> 02:32.080
+Both of the tables has the same priority and it doesn't matter where we start, whether we say from
+
+02:32.120 --> 02:36.920
+A join B or we say from B, join A, we will get the exact same results.
+
+02:36.920 --> 02:40.760
+So in the inner join you don't have to worry about the order of the tables.
+
+02:40.760 --> 02:42.480
+So that's all about the inner join.
+
+02:42.520 --> 02:45.080
+Now let's go back to SQL in order to practice okay.
+
+02:45.120 --> 02:46.320
+So now we have the following task.
+
+02:46.360 --> 02:52.680
+And it says all customers along with their orders but only for customers who have placed an order.
+
+02:52.680 --> 02:58.160
+So my friends that means we need the data from the customers and from the orders from two tables.
+
+02:58.160 --> 03:00.120
+And we have to put everything in one results.
+
+03:00.120 --> 03:02.480
+That means we have to join two tables.
+
+03:02.520 --> 03:04.280
+Now let's go and do it step by step.
+
+03:04.280 --> 03:08.260
+So we're going to go and say select star from Customers.
+
+03:08.300 --> 03:10.300
+And then we have to go and join it with the orders.
+
+03:10.300 --> 03:12.020
+We're going to say join orders.
+
+03:12.060 --> 03:14.980
+And now you have to go and specify the join type.
+
+03:15.020 --> 03:17.260
+Is it inner left full and so on.
+
+03:17.260 --> 03:19.060
+Well that's depend on the task.
+
+03:19.100 --> 03:24.300
+It says we want all customers but only for customers who have placed an order.
+
+03:24.300 --> 03:26.180
+So there is like condition right here.
+
+03:26.180 --> 03:28.180
+We don't want to see everything from the customer.
+
+03:28.180 --> 03:34.940
+We just want to see only the matching data, only if the customers has an order in the orders table.
+
+03:34.940 --> 03:37.820
+And for that we can go and use the inner join.
+
+03:37.860 --> 03:40.340
+Of course, if you can leave it like this, you will get the same effect.
+
+03:40.340 --> 03:42.380
+But I'm going to go and specify it like this.
+
+03:42.420 --> 03:43.180
+Inner join.
+
+03:43.180 --> 03:47.820
+Just to make it clear, we are speaking about the inner join, and after that we have to go and specify
+
+03:47.820 --> 03:49.140
+the join condition.
+
+03:49.140 --> 03:52.900
+So we have to go and find a common column between the customers and the orders.
+
+03:52.900 --> 03:56.380
+So how I usually do it, I go and explore both of the tables.
+
+03:56.380 --> 04:03.140
+So I'm going to go and select everything from customers and as well everything from the orders.
+
+04:03.340 --> 04:04.860
+So let's go and execute.
+
+04:04.900 --> 04:06.060
+Now we're going to start searching.
+
+04:06.060 --> 04:09.220
+Where do we have a common column between those two tables.
+
+04:09.220 --> 04:14.520
+So we have the from the first table, a first name country score, and you don't find any of those informations
+
+04:14.520 --> 04:15.680
+in the second table.
+
+04:15.720 --> 04:20.440
+The only one is the id, so the ID of the customer and the ID of the customer.
+
+04:20.440 --> 04:22.280
+You can find it in the orders.
+
+04:22.320 --> 04:23.560
+The second column here.
+
+04:23.560 --> 04:26.320
+So this is the common column between those two tables.
+
+04:26.320 --> 04:31.240
+And usually in databases we create IDs exactly for this in order to connect tables.
+
+04:31.240 --> 04:35.720
+So it's really rarely that we can use like a country or score or first name.
+
+04:35.720 --> 04:38.720
+In order to join tables we usually use the IDs.
+
+04:38.720 --> 04:42.200
+So let's go back to our query and use those two columns.
+
+04:42.200 --> 04:46.920
+So it's going to be the ID from the customers equal to the customer ID.
+
+04:46.960 --> 04:47.560
+So that's it.
+
+04:47.560 --> 04:48.600
+With that we have the condition.
+
+04:48.600 --> 04:52.160
+We have decided on the type and we can go and execute it.
+
+04:52.160 --> 04:55.520
+Now you can see we are getting only three customers, right?
+
+04:55.560 --> 04:59.760
+If you don't apply the inner join we can see that we have five customers.
+
+04:59.760 --> 05:06.200
+So that means actually we have two customers without any orders, any matching data from the other table.
+
+05:06.240 --> 05:12.120
+And as well you can see very nicely, we have now not only the columns from the customers, but as well
+
+05:12.160 --> 05:14.820
+all the columns from the orders side by side.
+
+05:14.820 --> 05:18.380
+So with that, we have combined the data and as well with that, we have solved the task.
+
+05:18.380 --> 05:22.380
+But we will not leave our query like this because it is not really good practices.
+
+05:22.380 --> 05:27.300
+What we have to do is to go and select only the columns that really make sense in our query, because
+
+05:27.300 --> 05:31.140
+in many cases in your tables you will have a lot of columns that is not needed.
+
+05:31.140 --> 05:35.540
+Like for example, if you check here, you see we have the customer ID here and as well the customer
+
+05:35.540 --> 05:36.420
+ID over here.
+
+05:36.420 --> 05:39.580
+So it's like repetition and it's enough to see it only once.
+
+05:39.580 --> 05:43.100
+So what you have to do is to go and pick few columns that you want.
+
+05:43.140 --> 05:46.140
+For example, I'm going to start with the ID, maybe the first name.
+
+05:46.140 --> 05:48.060
+And that's all from the first table.
+
+05:48.060 --> 05:51.940
+Let's go and get the order ID and I don't want the customer ID again.
+
+05:51.940 --> 05:54.460
+So from the second table I'll get as well the sales.
+
+05:54.460 --> 05:56.100
+So let's go and execute it.
+
+05:56.100 --> 06:00.780
+And with that you can see very nicely that customer's name and their orders with the sales.
+
+06:00.820 --> 06:02.580
+And now comes something very important.
+
+06:02.580 --> 06:08.060
+Sometimes if you have two tables you might have columns that having the same names like imagine the
+
+06:08.060 --> 06:10.020
+order ID in the table orders.
+
+06:10.020 --> 06:10.980
+It's called ID.
+
+06:11.060 --> 06:13.980
+So that means we have the same name in both tables.
+
+06:14.020 --> 06:16.290
+And this kind of makes Israel very confused.
+
+06:16.290 --> 06:17.490
+And here you will get an error.
+
+06:17.530 --> 06:18.850
+Tells you I really don't know.
+
+06:18.850 --> 06:19.370
+What do you mean?
+
+06:19.370 --> 06:20.010
+With the ID?
+
+06:20.010 --> 06:22.850
+Is it from the table customers or from the orders?
+
+06:22.850 --> 06:24.810
+So we have to tell SQL exactly.
+
+06:24.810 --> 06:27.130
+From which table did this column come from?
+
+06:27.130 --> 06:32.890
+So in SQL, in order to do that, what we do before the column name, you write again the table name
+
+06:32.890 --> 06:35.170
+the customers and then you make a dot.
+
+06:35.210 --> 06:39.730
+And now we are telling SQL this column the ID it comes from the table.
+
+06:39.770 --> 06:42.610
+Customers and SQL will not be confused about it.
+
+06:42.610 --> 06:45.130
+And it's going to go and get the ID from the customers.
+
+06:45.130 --> 06:52.010
+And for the second ID you can go over here and as well before it you say orders.id so that SQL knows
+
+06:52.050 --> 06:56.130
+okay, this ID come from the orders and the other one comes from the customers.
+
+06:56.130 --> 07:01.170
+And it is always good practice, especially if you are joining tables to always assign for each column
+
+07:01.210 --> 07:01.690
+a table.
+
+07:01.690 --> 07:06.530
+Because after a while, if you open your query and you see okay, the sales, does the sales come from
+
+07:06.530 --> 07:08.370
+the customers or the orders?
+
+07:08.370 --> 07:11.690
+And if you have a long list of columns, it's going to be really confusing.
+
+07:11.690 --> 07:13.850
+So that's why we consider it best practices.
+
+07:13.850 --> 07:19.150
+If you always assign for each column the table name, especially if you are doing joins.
+
+07:19.150 --> 07:20.230
+So it's going to be like this.
+
+07:20.230 --> 07:24.870
+But of course if you have like only one table, it's clear that all the columns and the select comes
+
+07:24.870 --> 07:25.670
+from this table.
+
+07:25.710 --> 07:29.190
+But since here we are dealing with multiple tables, it is good to show it like this.
+
+07:29.230 --> 07:33.910
+And of course here we don't have the ID, we have the order ID and the same thing for the join condition.
+
+07:33.910 --> 07:39.510
+So the ID from here comes from the customers and the customer ID come from the orders.
+
+07:40.070 --> 07:43.750
+So now it is clear for everyone which column come from which table.
+
+07:43.750 --> 07:44.870
+But now you might say, you know what.
+
+07:44.910 --> 07:46.870
+Each time I have to write the customers.
+
+07:46.870 --> 07:52.830
+This is very long name and sometimes in real projects you can see tables that has really long name and
+
+07:52.830 --> 07:55.910
+it's going to be really annoying to add it each time before each column.
+
+07:55.910 --> 07:56.350
+Right?
+
+07:56.350 --> 08:01.750
+So instead of that we can go and assign aliases for the tables, not only for the columns.
+
+08:01.750 --> 08:06.910
+So usually we go over here and say as and maybe you can go and use only one character like the first
+
+08:06.910 --> 08:07.870
+character C.
+
+08:07.910 --> 08:12.670
+And now instead of saying customers, you can go over here and say, see the same thing for the second
+
+08:12.670 --> 08:18.070
+column and as well over here, and you can use now the C in everywhere in your query, the same thing
+
+08:18.070 --> 08:18.670
+for the orders.
+
+08:18.670 --> 08:20.530
+You can go over here and say us all.
+
+08:20.570 --> 08:22.490
+And now, instead of orders, you say.
+
+08:22.530 --> 08:22.850
+Oh.
+
+08:24.970 --> 08:29.890
+And here and now it is very easy to see those two columns comes from the sea.
+
+08:29.930 --> 08:32.770
+That means the customers and those two columns comes from the.
+
+08:32.770 --> 08:33.890
+Oh, the orders.
+
+08:33.890 --> 08:37.410
+Those are the best practices as you are joining tables together in SQL.
+
+08:37.450 --> 08:39.250
+And of course, with that we have solved the task.
+
+08:39.250 --> 08:42.290
+And about the order of the tables, it doesn't matter where do you start?
+
+08:42.290 --> 08:48.330
+So for example, if you take the orders here and put it in the join and get the orders in the from,
+
+08:48.330 --> 08:52.690
+so I just switch the tables and execute it, you will get the exact same results.
+
+08:52.690 --> 08:56.730
+So if you are doing inner join between two tables, don't worry about the order of the tables.
+
+08:56.770 --> 09:01.650
+Okay, so now let's go and understand exactly how SQL executed the inner join okay.
+
+09:01.690 --> 09:03.690
+So now again here we have our query.
+
+09:03.690 --> 09:06.250
+Then we have the two tables customers and orders.
+
+09:06.290 --> 09:08.970
+And here we have the ID where we are joining the data.
+
+09:08.970 --> 09:11.170
+So this is the ID from the table customers.
+
+09:11.170 --> 09:13.850
+And this is the customer ID that we have in the orders.
+
+09:13.890 --> 09:15.930
+Now let's see how SQL can execute this.
+
+09:15.930 --> 09:19.010
+So we are seeing I would like to see the ID and the first name.
+
+09:19.010 --> 09:23.190
+So we will get the ID the first name from the table Customers.
+
+09:23.190 --> 09:28.750
+And we would like to get the order ID and as well the sales from the table orders.
+
+09:28.750 --> 09:31.270
+So our result can focus on those four columns.
+
+09:31.310 --> 09:35.510
+Now the data should be joined between those two tables using the inner join and SQL.
+
+09:35.550 --> 09:40.070
+Gonna start from the left table from the customers because we say from customers.
+
+09:40.070 --> 09:44.310
+So its gonna start matching the ID from the left table with the right table.
+
+09:44.310 --> 09:48.710
+So it's gonna say okay, is there a match from the first record from the first order?
+
+09:48.750 --> 09:54.710
+Well, yes, it is the same ID and then it's gonna say, okay, that condition is fulfilled and we are
+
+09:54.710 --> 09:55.950
+allowed to see the data.
+
+09:55.950 --> 09:59.270
+So the data will be presented in the output.
+
+09:59.270 --> 10:05.510
+So we can have the ID Maria and the order ID from Maria and the sales of this order.
+
+10:05.550 --> 10:06.670
+So there is a match.
+
+10:06.670 --> 10:08.830
+Then it's going to go to the second record.
+
+10:08.830 --> 10:13.510
+Well we don't have a match, the third we don't have much and so on for the last one.
+
+10:13.510 --> 10:19.030
+So we have only one match for this ID, then SQL gonna go again to the customers and pick the second
+
+10:19.030 --> 10:21.870
+one and start matching again with the first order.
+
+10:21.870 --> 10:22.710
+Do we have a match?
+
+10:22.710 --> 10:23.310
+We'll know.
+
+10:23.350 --> 10:24.890
+Then it's gonna go to the second.
+
+10:24.930 --> 10:26.450
+Well, now we have a match.
+
+10:26.450 --> 10:27.810
+So SQL going to be happy.
+
+10:27.810 --> 10:30.930
+The condition is fulfilled and we will see the results.
+
+10:30.930 --> 10:32.370
+So we're going to see the first name.
+
+10:32.370 --> 10:36.170
+And as well the order information for this customer in the output.
+
+10:36.210 --> 10:37.570
+It's going to keep searching.
+
+10:37.570 --> 10:39.610
+So we don't have a match as well here.
+
+10:39.610 --> 10:40.570
+So that's it.
+
+10:40.610 --> 10:42.530
+Now for the third customer as well.
+
+10:42.530 --> 10:46.170
+From the start they are match now to the second to the third.
+
+10:46.170 --> 10:47.090
+And here we have a match.
+
+10:47.090 --> 10:51.210
+So SQL going to go and show this information since there is a match.
+
+10:51.210 --> 10:58.010
+So the customer three George with the order from this customer order ID and the sales as well in the
+
+10:58.010 --> 11:00.970
+output, now it's going to go and keep continuing the search.
+
+11:00.970 --> 11:02.530
+Well we don't have any match.
+
+11:02.530 --> 11:05.850
+Then it's going to go to the fourth customer and start matching.
+
+11:05.850 --> 11:07.050
+Do we have here an ID.
+
+11:07.090 --> 11:08.290
+Do we have here a match?
+
+11:08.290 --> 11:08.970
+Well no.
+
+11:09.010 --> 11:11.170
+Then the second, third and fourth.
+
+11:11.170 --> 11:14.850
+We don't have any order for this ID there is no match at all.
+
+11:14.890 --> 11:21.010
+And since we are saying inner join, then SQL will not allow to show the data of this customer in the
+
+11:21.010 --> 11:21.570
+results.
+
+11:21.570 --> 11:24.930
+There is no match and SQL going to totally ignore this customer.
+
+11:24.970 --> 11:29.630
+Then we're going to go to the last one and start as well, matching this ID with the orders.
+
+11:29.630 --> 11:31.510
+Well, there is no match as well.
+
+11:31.550 --> 11:34.710
+SQL going to go and exclude this user from the results.
+
+11:34.710 --> 11:37.350
+So this is exactly how the inner join works.
+
+11:37.350 --> 11:42.590
+It starts from the left side and start matching the data on the right side, and only if there is match,
+
+11:42.590 --> 11:44.630
+the result is going to be presented in the output.
+
+11:44.630 --> 11:48.670
+And this is exactly why we are getting this results and how the inner join works.
+
+11:48.670 --> 11:53.430
+So now if you look again to the reasons why we are joining tables, we can say we can use the inner
+
+11:53.430 --> 11:58.310
+join in order to recombine the multiple tables into one big picture.
+
+11:58.310 --> 12:02.990
+So the first use case and as well we can use the inner join in order to filter the data.
+
+12:02.990 --> 12:07.630
+So since we are saying only the matching data, that means we are filtering the data.
+
+12:07.630 --> 12:11.190
+We are checking the existence of the records in another table.
+
+12:11.190 --> 12:16.670
+So you can use inner join either to combine data from multiple tables, or you can use it as well only
+
+12:16.670 --> 12:20.430
+for filtering purposes only to check the existence of your rows.
+
+12:20.430 --> 12:22.630
+So this is usually the two use cases of inner.
+
+12:22.670 --> 12:23.030
+All right.
+
+12:23.030 --> 12:25.470
+So that's all about the first type the inner join.
+
+12:25.510 --> 12:27.870
+Next we are going to talk about the left join.
+
+12:27.870 --> 12:29.950
+So we're going to focus on the left side.
+
+12:29.950 --> 12:30.470
+So let's go.

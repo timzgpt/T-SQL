@@ -1,0 +1,88 @@
+WEBVTT
+
+00:03.920 --> 00:06.760
+Okay, so now we can understand exactly what is an SQL query.
+
+00:06.800 --> 00:11.040
+Now normally your data is inside the table and your table is inside the database.
+
+00:11.040 --> 00:15.120
+And now you might have a question from the business like what is the total sales.
+
+00:15.120 --> 00:17.160
+What is the total number of customers.
+
+00:17.160 --> 00:22.000
+So any question that you have in your mind and you want to go and ask your data, you want to go and
+
+00:22.000 --> 00:24.400
+retrieve data from the database.
+
+00:24.400 --> 00:29.480
+And in order to do that you have to talk to the database using its language, the SQL.
+
+00:29.520 --> 00:34.560
+So in order to do that, you're going to go and write a query where you write inside the query something
+
+00:34.560 --> 00:36.360
+called select statements.
+
+00:36.360 --> 00:39.200
+And with that you are asking the database for data.
+
+00:39.200 --> 00:43.200
+So once you execute your query the database is going to go and fetch your data.
+
+00:43.200 --> 00:46.280
+And then it prepares the results to be sent back to you.
+
+00:46.280 --> 00:50.600
+So with that you are asking the database question by writing a query.
+
+00:50.600 --> 00:55.560
+And the database is going to process your query and answer your question by sending back data.
+
+00:55.560 --> 00:59.000
+And with that, we are like reading our data from the database.
+
+00:59.000 --> 01:04.840
+And the queries will not modify anything, will not change the data inside your tables, or even change
+
+01:04.840 --> 01:06.480
+the structure of the database.
+
+01:06.480 --> 01:11.160
+So you use select statement only in order to read something from the database.
+
+01:11.160 --> 01:14.160
+You just want to retrieve data from the database.
+
+01:14.160 --> 01:16.240
+So this is what we mean with a query.
+
+01:20.120 --> 01:25.160
+And now my friends each SQL query has usually different sections different components.
+
+01:25.160 --> 01:26.400
+We call them clauses.
+
+01:26.400 --> 01:32.040
+And this is amazing because you can have enough tools to write a query that matches any question that
+
+01:32.040 --> 01:33.160
+you have about your data.
+
+01:33.160 --> 01:38.040
+So what we're going to do, we're going to cover all those clauses step by step in order to write any
+
+01:38.040 --> 01:39.080
+query that you need.
+
+01:39.120 --> 01:41.200
+So now we're going to start with two clauses.
+
+01:41.200 --> 01:45.560
+That makes the simplest query in SQL the select and from.
+
+01:45.560 --> 01:46.760
+So let's start with that.

@@ -1,0 +1,88 @@
+WEBVTT
+
+00:03.760 --> 00:06.600
+All right, friends, now let's do a recap about the case statements.
+
+00:06.640 --> 00:12.480
+Case statements can go and evaluate a list of conditions one by one, and return a value once the first
+
+00:12.480 --> 00:13.400
+condition is met.
+
+00:13.400 --> 00:17.920
+And if you are talking about the rules of using the case statements, we have only one where the data
+
+00:17.960 --> 00:22.200
+types of each condition after the then and else must be matching.
+
+00:22.240 --> 00:28.240
+And now if we talk about the use cases of the case statements, the main use case is to do data transformations
+
+00:28.240 --> 00:32.040
+and especially by creating new columns and deriving new informations.
+
+00:32.040 --> 00:35.680
+So as we saw, there are amazing use cases for the case statements.
+
+00:35.680 --> 00:38.360
+For example, we can use it in order to categorize our data.
+
+00:38.400 --> 00:43.520
+As we learned, we can go and create new groups of data then to be aggregated for our reports.
+
+00:43.520 --> 00:46.360
+And then we saw another use case is mapping values.
+
+00:46.360 --> 00:52.440
+We can use the case statement in order to help us mapping the critical technical values that are stored
+
+00:52.440 --> 00:57.400
+in databases to new values, which is more readable and more friendly to be used.
+
+00:57.400 --> 01:00.560
+And the next use case that we have learned is handling the nulls.
+
+01:00.560 --> 01:06.280
+We can use the case statement in order to replace the nulls with value to make our aggregations more
+
+01:06.280 --> 01:06.920
+accurate.
+
+01:06.920 --> 01:12.240
+And the last use case that we have learned, and I think the most used one in my project is doing conditional
+
+01:12.240 --> 01:18.280
+aggregations, where we can aggregate a subset of data that meets specific conditions in order to do
+
+01:18.320 --> 01:20.200
+focus and target analysis.
+
+01:20.240 --> 01:25.280
+Okay my friends, so with that, we have covered all the topics and all the functions in order to transform
+
+01:25.280 --> 01:28.320
+a single value in SQL, the row level functions.
+
+01:28.320 --> 01:31.520
+That was very important, especially for data engineers.
+
+01:31.520 --> 01:32.960
+So we are done with this chapter.
+
+01:33.000 --> 01:35.560
+Now we are moving to very interesting chapter.
+
+01:35.560 --> 01:38.360
+Finally we can talk about data analytics in SQL.
+
+01:38.360 --> 01:43.400
+And we will be covering now the aggregate and the analytical functions that we have in SQL.
+
+01:43.440 --> 01:45.320
+So first we're going to start with the basics.
+
+01:45.320 --> 01:48.200
+So we will learn simple functions on how to aggregate your data.
+
+01:48.200 --> 01:49.040
+So let's go.

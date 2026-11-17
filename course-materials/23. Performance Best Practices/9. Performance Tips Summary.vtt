@@ -1,0 +1,52 @@
+WEBVTT
+
+00:03.920 --> 00:04.720
+All right, friends.
+
+00:04.720 --> 00:10.160
+So that's all those are the best practices, tips and tricks that I've connected in the many years working
+
+00:10.160 --> 00:11.120
+with SQL.
+
+00:11.160 --> 00:17.040
+And now my final thoughts about this is that try always to focus on making clear queries.
+
+00:17.080 --> 00:22.880
+Make it like easy to read and easy to understand and try to optimize the performance only if it's needed.
+
+00:22.880 --> 00:28.280
+So if you have like small database, don't worry a lot about the performance, because the SQL optimizer
+
+00:28.320 --> 00:32.760
+can pick the best plan for you and focus only on having simple queries.
+
+00:32.760 --> 00:37.280
+And if there is like performance problem, always test using the execution plan.
+
+00:37.280 --> 00:38.560
+It should be your judge.
+
+00:38.560 --> 00:44.240
+So if you are applying an index or you are rewriting your queries, always compare before and after
+
+00:44.240 --> 00:45.680
+using the execution plan.
+
+00:45.680 --> 00:50.320
+And if you are gaining more performance, then adapt the new query or the new index.
+
+00:50.360 --> 00:51.080
+All right my friends.
+
+00:51.080 --> 00:55.840
+So that's all the tips and tricks best practices that I have for you in order to optimize the performance.
+
+00:55.840 --> 00:59.920
+And with that we have covered now everything about this chapter, the performance optimization.
+
+00:59.920 --> 01:05.680
+Now in the next chapter, I'm going to show you how I use AI in order to assist me while I'm using SQL.
+
+01:05.720 --> 01:06.400
+So let's go.

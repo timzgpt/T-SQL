@@ -1,0 +1,271 @@
+WEBVTT
+
+00:03.920 --> 00:04.320
+All right.
+
+00:04.320 --> 00:08.240
+So that was the first part of the window definition within the over clause.
+
+00:08.280 --> 00:09.480
+Let's move to the next part.
+
+00:09.520 --> 00:13.200
+We have the order by for example we can use order by order date.
+
+00:13.200 --> 00:14.320
+It's just a field.
+
+00:14.560 --> 00:19.000
+So the order clause is very important in order to sort your data within a window.
+
+00:19.240 --> 00:22.440
+So the order by is very important as well for many functions.
+
+00:22.440 --> 00:26.600
+So by just checking the overview over here for the aggregate functions it is optional.
+
+00:26.600 --> 00:28.480
+So you could just leave it or add it.
+
+00:28.680 --> 00:33.800
+But for the rank function and as well for the value functions they are a must.
+
+00:33.800 --> 00:39.440
+So if you want to use those functions you must use the order clause because it makes no sense.
+
+00:39.440 --> 00:43.320
+For example, if you are ranking the data without sorting your data first.
+
+00:43.360 --> 00:43.880
+Okay guys.
+
+00:43.880 --> 00:45.440
+So now back to our very simple example.
+
+00:45.440 --> 00:46.800
+And we have the following query.
+
+00:46.800 --> 00:48.640
+So the function this time is going to be ranked.
+
+00:48.640 --> 00:50.440
+So we have to rank the data.
+
+00:50.440 --> 00:53.640
+And the definition of the window is going to be partitioned by month.
+
+00:53.640 --> 00:56.280
+So that means we divide the data by the months.
+
+00:56.280 --> 00:57.760
+So we have it over here.
+
+00:58.000 --> 01:01.640
+And then the second part is going to be order by sales descending.
+
+01:01.640 --> 01:04.970
+So we have to sort each window by descending order.
+
+01:04.970 --> 01:08.890
+That means we start with the highest value and we end up by the lowest value.
+
+01:09.010 --> 01:11.570
+So let's see how SQL is going to go and execute this.
+
+01:11.890 --> 01:13.330
+So first partitioned by month.
+
+01:13.330 --> 01:18.130
+So it's going to divide the data into two partitions because we have two values by the month.
+
+01:18.330 --> 01:20.690
+So let's see how this is going to look like.
+
+01:20.770 --> 01:25.010
+So one window for January and another window for February.
+
+01:25.090 --> 01:25.450
+All right.
+
+01:25.450 --> 01:29.770
+So now SQL can go to the second part and execute order by sales descending.
+
+01:29.930 --> 01:30.770
+So what's going to happen.
+
+01:30.810 --> 01:36.050
+SQL is going to go for each window separately and start sorting the data from the highest to the lowest
+
+01:36.050 --> 01:37.890
+without checking the other window.
+
+01:38.090 --> 01:41.050
+So in those three values the highest one is this one.
+
+01:41.050 --> 01:42.170
+So it's going to be on top.
+
+01:42.170 --> 01:43.290
+Let me just sort it.
+
+01:43.330 --> 01:46.410
+This is going to be the lowest you're going to be in the middle.
+
+01:46.570 --> 01:50.490
+So SQL is going to sort this window separately from the next one.
+
+01:50.490 --> 01:53.050
+And then once it's done it's going to go to the second one.
+
+01:53.050 --> 01:55.410
+So the highest value is going to be this one.
+
+01:55.570 --> 01:57.090
+You are the lowest.
+
+01:57.210 --> 01:58.650
+Let me just do it like this.
+
+01:58.850 --> 02:01.330
+So SQL going to sort it like this.
+
+02:01.330 --> 02:02.570
+The highest one is 70.
+
+02:02.610 --> 02:05.170
+The next one is 40 and the last one is five.
+
+02:05.210 --> 02:08.130
+So with that SQL done with the definition of the window.
+
+02:08.300 --> 02:12.700
+so it's splitted by the month and each window is sorted by the sales.
+
+02:12.820 --> 02:16.060
+The next step is going to go and rank those values.
+
+02:16.060 --> 02:19.660
+So it's really simple in the outputs it's going to rank the data like this.
+
+02:19.660 --> 02:22.180
+So the first one going to be this value.
+
+02:22.180 --> 02:25.900
+The next one going to be two and the third one going to be three.
+
+02:26.060 --> 02:28.300
+So as you can see it's sorting only this window.
+
+02:28.300 --> 02:32.060
+And it's going to go and repeat the same stuff for the second window.
+
+02:32.060 --> 02:34.180
+So each rank is separately from the others.
+
+02:34.180 --> 02:35.380
+So as you can see it's very simple.
+
+02:35.380 --> 02:40.620
+This is how SQL executes partition by together with the order by for the rank function.
+
+02:40.660 --> 02:40.900
+All right.
+
+02:40.940 --> 02:42.740
+So now let's have a quick task for the order by.
+
+02:42.780 --> 02:47.580
+It says rank each order based on their sales from the highest to the lowest.
+
+02:47.580 --> 02:51.140
+And we have to provide additional information like order ID and order date.
+
+02:51.140 --> 02:53.100
+So let's see how we can write the query.
+
+02:53.100 --> 02:56.340
+So we have the basic stuff order ID order date and the sales.
+
+02:56.340 --> 02:59.660
+And now we're going to go and rank the data using window function.
+
+02:59.660 --> 03:01.860
+So we're going to use the function rank.
+
+03:02.300 --> 03:05.980
+And then we're going to tell SQL this is a window function.
+
+03:05.980 --> 03:09.180
+And inside it we have now to provide the definition of the window.
+
+03:09.180 --> 03:13.460
+So now by checking the task you can see that we don't have to divide the data, so we don't have to
+
+03:13.500 --> 03:14.460
+use partition by.
+
+03:14.660 --> 03:15.940
+We have just to use rank.
+
+03:15.940 --> 03:18.420
+And with rank we have to use the order by.
+
+03:18.460 --> 03:19.180
+It is must.
+
+03:19.180 --> 03:24.900
+So we're going to use order by the field going to be the sales and from the highest to the lowest.
+
+03:24.900 --> 03:27.220
+So let's just call it rank sales.
+
+03:27.380 --> 03:29.220
+And let's go and execute this.
+
+03:29.260 --> 03:33.020
+And as you can see our result is going to be sorted from the highest to the lowest.
+
+03:33.020 --> 03:36.740
+So you can see the sales 90 at the top and the lowest going to be the ten.
+
+03:36.780 --> 03:38.060
+And as well we have a rank.
+
+03:38.060 --> 03:40.180
+So for the top rank it's going to be one.
+
+03:40.180 --> 03:41.900
+And the lowest rank going to be ten.
+
+03:41.900 --> 03:45.060
+So as you can see we just quickly create a rank in SQL.
+
+03:45.100 --> 03:46.020
+It's very simple.
+
+03:46.180 --> 03:49.900
+The whole thing is one window since we are not using partition P.
+
+03:49.940 --> 03:55.580
+And of course if you want to have ascending so from the lowest to the highest, you can just remove
+
+03:55.580 --> 03:57.900
+it because optionally you're going to be ascending.
+
+03:57.900 --> 04:00.020
+So let's go and execute the query.
+
+04:00.060 --> 04:02.940
+So now we can see the orders are sorted the way around.
+
+04:02.940 --> 04:05.380
+So we start with the lowest and end up with the highest.
+
+04:05.380 --> 04:09.460
+And of course you're going to get the same results if you go over here and add ascending.
+
+04:09.700 --> 04:13.300
+So if we execute you see we got exactly the same results.
+
+04:13.300 --> 04:16.660
+So this is how you use the order by inside the window definition.

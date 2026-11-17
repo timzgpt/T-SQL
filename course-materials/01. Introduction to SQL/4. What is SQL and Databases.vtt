@@ -1,0 +1,187 @@
+WEBVTT
+
+00:03.960 --> 00:05.000
+So what is exactly?
+
+00:05.040 --> 00:08.360
+SQL everything generate data and data is everywhere.
+
+00:08.360 --> 00:09.640
+Your first name is data.
+
+00:09.680 --> 00:12.680
+Your mobile and everything inside the mobile is data.
+
+00:12.720 --> 00:14.840
+Car is as well generating a lot of data.
+
+00:14.880 --> 00:16.480
+Bank your finance statements.
+
+00:16.520 --> 00:17.480
+Everything is data.
+
+00:17.520 --> 00:20.080
+And now of course the question is where do we store our data?
+
+00:20.120 --> 00:25.440
+Personally, we store a lot of our data in like Excel spreadsheets in a text file.
+
+00:25.440 --> 00:27.960
+So you store a lot of your data in different files.
+
+00:28.000 --> 00:29.360
+Now how about companies?
+
+00:29.360 --> 00:34.840
+They have a lot of things that generate a lot of data that the products that they produce, their customers
+
+00:34.840 --> 00:38.840
+as well, generating a lot of data and sales information and a lot of things.
+
+00:38.840 --> 00:41.640
+So companies generate massive amounts of data.
+
+00:41.640 --> 00:45.000
+So now the big question is how they handle the data, how they store it.
+
+00:45.040 --> 00:47.680
+Of course they cannot go and use like simple files.
+
+00:47.680 --> 00:50.360
+They need something bigger, stronger and smarter.
+
+00:50.360 --> 00:52.400
+And here where the database comes in.
+
+00:52.400 --> 00:53.680
+So think about the database.
+
+00:53.680 --> 00:56.120
+It's like a container for storing data.
+
+00:56.120 --> 01:02.760
+But instead of just dumping files into folders, the database organizes the data so it is easy to access
+
+01:02.760 --> 01:04.240
+to manage and to search.
+
+01:04.240 --> 01:07.840
+So a database simply it is a container that stores data.
+
+01:07.840 --> 01:10.280
+So now you might ask why we are using database.
+
+01:10.280 --> 01:12.800
+Can't we just use files like I do it personally?
+
+01:12.800 --> 01:14.800
+Well let me tell you why we use databases.
+
+01:14.800 --> 01:17.120
+Imagine that someone asks the following question.
+
+01:17.160 --> 01:19.880
+Go and find the total spending in your data.
+
+01:19.880 --> 01:25.320
+So now in order for Mike to find the total spending and the costs, he will be opening each of those
+
+01:25.320 --> 01:29.720
+files one by one, searching for the costs, trying to combine the data.
+
+01:29.720 --> 01:32.440
+And it's going to be very long and messy process.
+
+01:32.440 --> 01:37.040
+But now in the other side, if your data in database and you want to ask a question, it's going to
+
+01:37.040 --> 01:37.920
+be very easy.
+
+01:37.920 --> 01:41.240
+So all what you have to do is to talk to the database to ask a question.
+
+01:41.240 --> 01:44.280
+And the database can answer your question with a result.
+
+01:44.320 --> 01:48.080
+And now comes, of course, the question how do we talk to a database.
+
+01:48.120 --> 01:50.320
+Well we use SQL.
+
+01:50.400 --> 01:54.840
+SQL is the language that you use in order to talk to the database.
+
+01:54.880 --> 01:58.840
+It stands for Structured Query Language SQL.
+
+01:59.240 --> 02:03.760
+And here you have people that call it SQL like me and others that call it SQL.
+
+02:03.760 --> 02:08.320
+There is no right and wrong, but if you follow me through the course, I think you will start saying
+
+02:08.490 --> 02:09.050
+SQL.
+
+02:09.090 --> 02:14.970
+So by using SQL you can ask the database, you can ask your data, and the database can answer your
+
+02:14.970 --> 02:17.050
+question by sending you a result.
+
+02:17.050 --> 02:20.010
+So this process is very easy, simple and fast.
+
+02:20.010 --> 02:23.450
+And this is way better than having your data stored in different files.
+
+02:23.490 --> 02:28.410
+Another reason why we use databases is that they can handle really huge amounts of data.
+
+02:28.410 --> 02:31.930
+So sometimes we have like millions of data inside our database.
+
+02:31.930 --> 02:36.570
+But in the other side, if you are storing your data inside spreadsheets and you have like massive amount
+
+02:36.610 --> 02:37.890
+of data, what can happen?
+
+02:37.890 --> 02:39.810
+Your spreadsheets can just break.
+
+02:39.850 --> 02:41.970
+They simply can't handle big data.
+
+02:41.970 --> 02:44.170
+And another reason why we use databases.
+
+02:44.210 --> 02:45.690
+Thus it is just secure.
+
+02:45.690 --> 02:51.850
+It is safer to store important and critical data inside a database than just storing it in spreadsheets
+
+02:51.850 --> 02:52.450
+and files.
+
+02:52.450 --> 02:56.450
+So the databases are secure and you can control who is accessing what.
+
+02:56.490 --> 03:00.330
+So it is just more professional to store the data inside a database.
+
+03:00.370 --> 03:05.370
+All right my friends, so far what we have learned, most of the companies stores their data inside
+
+03:05.370 --> 03:07.410
+a container called database.
+
+03:07.410 --> 03:12.570
+And for you, in order to ask questions and to talk to your database, you have to speak the language
+
+03:12.570 --> 03:13.650
+of SQL.

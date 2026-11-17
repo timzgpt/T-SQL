@@ -1,0 +1,220 @@
+WEBVTT
+
+00:03.920 --> 00:05.720
+Okay, so what is exactly distinct?
+
+00:05.720 --> 00:09.520
+If you use it in SQL, it's going to go and remove duplicates in your data.
+
+00:09.560 --> 00:15.480
+Duplicates are like repeated values in your data, and it can make sure that each value appears only
+
+00:15.480 --> 00:16.840
+once in the results.
+
+00:16.840 --> 00:18.040
+So it sounds very simple.
+
+00:18.040 --> 00:19.760
+And as well the syntax is easy.
+
+00:19.760 --> 00:22.480
+So as usual we start always with a select by.
+
+00:22.520 --> 00:27.440
+Directly after the select we use the keyword distinct, so there is nothing between them.
+
+00:27.440 --> 00:28.600
+And then the normal stuff.
+
+00:28.600 --> 00:32.600
+We specify the columns and then the from in order to get the data from table.
+
+00:32.600 --> 00:35.760
+Let's say that I would like to get a list of unique values of the country.
+
+00:35.760 --> 00:40.600
+So the first thing that SQL gonna do, of course, is to get the data from the database using the from.
+
+00:40.600 --> 00:43.080
+And now the second step is the select.
+
+00:43.080 --> 00:44.360
+So SQL can execute it.
+
+00:44.360 --> 00:50.080
+And going to select only one column the country all other columns can be excluded or removed from the
+
+00:50.080 --> 00:50.560
+results.
+
+00:50.600 --> 00:52.360
+And now SQL can go to the third step.
+
+00:52.360 --> 00:55.760
+It's going to go and apply the Distincts on the country values.
+
+00:55.760 --> 01:00.520
+So it acts like a filter where it's going to make sure each value happens only once.
+
+01:00.520 --> 01:02.400
+So it's going to start with the first value Germany.
+
+01:02.440 --> 01:03.800
+Now it's going to look to the results.
+
+01:03.800 --> 01:04.640
+Do we have Germany.
+
+01:04.640 --> 01:08.690
+Well we don't have anything yet so that's why it's going to include it in the results.
+
+01:08.690 --> 01:10.330
+Then the next value is going to be USA.
+
+01:10.490 --> 01:11.050
+The same thing.
+
+01:11.050 --> 01:14.490
+We don't have USA in the results so it can go and include it.
+
+01:14.490 --> 01:15.810
+And this happens as well.
+
+01:15.810 --> 01:19.850
+For the UK, we don't have UK in the final results, that's why it's going to go as well.
+
+01:19.850 --> 01:20.490
+Included.
+
+01:20.490 --> 01:22.210
+Now comes Germany again.
+
+01:22.210 --> 01:27.610
+Now it's going to say wait, we have it already so it will not go and add it again in the outputs because
+
+01:27.610 --> 01:29.330
+it must appear only once.
+
+01:29.330 --> 01:34.490
+So we will not have Germany twice and as well for the last value, the USA, we have it already in the
+
+01:34.490 --> 01:35.010
+results.
+
+01:35.010 --> 01:37.130
+That's why it will not appear again.
+
+01:37.130 --> 01:41.530
+And with that we have removed the duplicates or the repetition inside our data.
+
+01:41.530 --> 01:42.970
+So each value is unique.
+
+01:42.970 --> 01:44.850
+Now let's go back to SQL okay.
+
+01:44.890 --> 01:46.010
+That task is very simple.
+
+01:46.010 --> 01:49.170
+It says return unique list of all countries.
+
+01:49.170 --> 01:50.770
+So let's go and do that.
+
+01:50.810 --> 01:51.730
+It's going to be funny.
+
+01:51.730 --> 01:52.450
+So select.
+
+01:52.490 --> 01:55.130
+And now let's get the column country from our table.
+
+01:55.170 --> 01:56.690
+Customers like this.
+
+01:56.690 --> 01:58.810
+Now you can see we have a list of all countries.
+
+01:58.810 --> 02:01.170
+But the task says we need a unique list.
+
+02:01.170 --> 02:03.650
+So that means I cannot have repetitions inside it.
+
+02:03.650 --> 02:06.370
+And with that you can use the very nice distinct.
+
+02:06.770 --> 02:10.490
+So if you do it like this let's go and execute.
+
+02:10.490 --> 02:12.810
+You will see there will be no duplicates in your results.
+
+02:12.810 --> 02:14.980
+And all the values in the result can be unique.
+
+02:14.980 --> 02:16.420
+So thus we have solved the task.
+
+02:16.460 --> 02:17.540
+It's it's very simple.
+
+02:17.580 --> 02:22.900
+Now, there is one thing about the distincts that I see a lot of people using it, a lot in cases that
+
+02:22.900 --> 02:24.260
+it's not really necessary.
+
+02:24.340 --> 02:26.940
+So for example, let's go and get the ID.
+
+02:26.980 --> 02:31.780
+Now if you go and execute it, you can see here we have a list of all IDs and there are no duplicates.
+
+02:31.780 --> 02:36.820
+But now if I go and remove that distinct and execute it, we will get the same results.
+
+02:36.820 --> 02:38.860
+Because the IDs are usually unique.
+
+02:38.860 --> 02:43.860
+So it really makes no sense to go and say distincts because as you can see, the database has to go
+
+02:43.860 --> 02:46.340
+and make sure each value happens only once.
+
+02:46.340 --> 02:50.980
+So there is like extra work for the SQL and it is usually an expensive operation.
+
+02:50.980 --> 02:56.700
+So if your data is already unique, don't go and apply Distincts only if you see repetitions and duplicates,
+
+02:56.700 --> 03:00.540
+and you don't want to see that only in this scenario go and apply that distincts.
+
+03:00.540 --> 03:05.460
+Don't go blindly for each query applying distinct just in case there is duplicates.
+
+03:05.460 --> 03:07.060
+This is usually bad practices.
+
+03:07.100 --> 03:08.900
+Okay, so that's all for Distincts.
+
+03:08.940 --> 03:09.700
+Okay my friends.
+
+03:09.700 --> 03:13.420
+So with that you have learned how to remove the duplicates using the Distincts.
+
+03:13.420 --> 03:18.100
+In the next step, we're going to talk about another keyword that you can use together with the selects.
+
+03:18.100 --> 03:20.620
+You can use top in order to limit your data.
+
+03:20.620 --> 03:22.580
+So now let's go and understand what this means.

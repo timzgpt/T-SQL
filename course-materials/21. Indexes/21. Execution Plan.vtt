@@ -1,0 +1,1273 @@
+WEBVTT
+
+00:00.120 --> 00:00.760
+Hey friends.
+
+00:00.760 --> 00:05.360
+So now we can talk about an advanced topic and that is the execution plan.
+
+00:05.360 --> 00:06.880
+It is a very effective tool.
+
+00:06.880 --> 00:11.280
+In order to find the exact pain point of why your queries are slow.
+
+00:11.280 --> 00:12.040
+So let's go.
+
+00:15.960 --> 00:21.280
+All right friends, so now let's say that you have a large, complex analytical SQL query.
+
+00:21.560 --> 00:25.400
+And it involves a lot of joins and aggregations and so on.
+
+00:25.600 --> 00:26.920
+But it is slow.
+
+00:26.960 --> 00:31.680
+And of course you want to go and optimize the performance of your query by maybe using indexes.
+
+00:31.840 --> 00:37.440
+And now the big question is where exactly am I going to go build this index on which table on which
+
+00:37.440 --> 00:38.160
+columns.
+
+00:38.160 --> 00:41.360
+So that means you have to understand where exactly the problem is.
+
+00:41.400 --> 00:45.920
+Is it by joining tables or sorting data or by the aggregations?
+
+00:45.960 --> 00:51.400
+Now in order to answer all those questions we have something called execution plan.
+
+00:51.680 --> 00:58.840
+So what is that the execution plan going to show you how the database exactly process your query step
+
+00:58.840 --> 00:59.560
+by step.
+
+00:59.870 --> 01:01.310
+and this is what we need.
+
+01:01.350 --> 01:04.910
+It's going to show us where exactly we have a performance issue.
+
+01:05.150 --> 01:07.430
+So in other words, the execution plan.
+
+01:07.430 --> 01:11.790
+It's like your window on how the SQL database thinks.
+
+01:11.790 --> 01:16.710
+And once you understand that, then you're going to make a right decision on building an index.
+
+01:16.710 --> 01:18.990
+So let's understand exactly what this means.
+
+01:19.030 --> 01:19.310
+Okay.
+
+01:19.350 --> 01:24.670
+So now let's imagine that you are doing a query like selecting from table and then joining the data
+
+01:24.670 --> 01:25.710
+with another table.
+
+01:25.710 --> 01:30.950
+So now once you execute this query the database engine will not go immediately and start fetching data
+
+01:30.950 --> 01:31.790
+from the disk.
+
+01:31.790 --> 01:35.790
+But instead of that first the SQL has to make a plan.
+
+01:35.830 --> 01:41.190
+So it's like you are planning a trip where you check the Google map in order to find the best route
+
+01:41.230 --> 01:43.590
+in order to reach the destination.
+
+01:43.590 --> 01:46.270
+And the execution plan is exactly the same thing.
+
+01:46.430 --> 01:51.950
+The database has first to plan how to execute your query, and it's going to build this plan step by
+
+01:51.950 --> 01:55.630
+step based on your query and as well the statistics.
+
+01:55.790 --> 01:59.670
+So the first step for example how to get the data from the tables.
+
+01:59.670 --> 02:03.790
+And there are like multiple ways like scan index or full table scan.
+
+02:03.790 --> 02:09.310
+And then after that it need to decide which type of joins can be done, like is it a hash join or a
+
+02:09.310 --> 02:10.070
+loop join.
+
+02:10.070 --> 02:13.430
+And then at the end of this plan it's going to be the select statements.
+
+02:13.430 --> 02:18.950
+So once the execution plan is ready, the database engine can start implementing the steps.
+
+02:18.950 --> 02:22.310
+So it's going to go and start reading your tables for example from the disk.
+
+02:22.310 --> 02:24.190
+And then after that it's going to join the tables.
+
+02:24.190 --> 02:29.190
+And then select the columns and send at the end the results to the end user.
+
+02:29.190 --> 02:34.070
+And now once everything is done, the database engine can do one more thing where it's going to go and
+
+02:34.070 --> 02:37.510
+take this execution plan and store it at the cache.
+
+02:37.670 --> 02:44.270
+And that's because the database engine can go and reuse this plan if we have a similar query.
+
+02:44.270 --> 02:49.350
+So for example, if you go and execute the same query again, the database engine here can understand,
+
+02:49.390 --> 02:51.390
+ah, this is the same query.
+
+02:51.430 --> 02:54.230
+We have already built an execution plan for that.
+
+02:54.230 --> 02:56.190
+So it can go and check the cache.
+
+02:56.190 --> 03:00.620
+And it is way faster to get it immediately from the cache instead of building it.
+
+03:00.620 --> 03:04.860
+So in this scenario, the database engine doesn't have to make any decisions or something like that.
+
+03:04.900 --> 03:10.340
+It's going to go and get the plan from the cache and start immediately by executing the plan.
+
+03:10.340 --> 03:14.620
+And of course, the database engine will not hide the execution plan from the users.
+
+03:14.780 --> 03:20.140
+You can go and check it, because you can go and check how the database loaded the data, how they are
+
+03:20.180 --> 03:21.180
+joined, and so on.
+
+03:21.180 --> 03:27.060
+And then you can make a correct decision on how to optimize your query, maybe by adding indexes.
+
+03:27.060 --> 03:29.580
+So let's go back to SQL and see how we can do that.
+
+03:33.620 --> 03:33.940
+Okay.
+
+03:33.940 --> 03:38.380
+So now we're going to work with the database Adventureworks 2022.
+
+03:38.420 --> 03:40.140
+And now we're going to go to our tables.
+
+03:40.140 --> 03:42.180
+And we're going to focus on the facts.
+
+03:42.220 --> 03:43.860
+Fact reseller sales.
+
+03:43.900 --> 03:46.220
+Now let's go and check the type of this table.
+
+03:46.220 --> 03:52.220
+So if you go inside it and go to the indexes you can see that we have an index on the primary key.
+
+03:52.220 --> 03:55.420
+So we have a clustered row store index.
+
+03:55.420 --> 03:58.340
+So this means that data is structured in this B-tree.
+
+03:58.380 --> 04:02.340
+So now what we're going to do, we're going to go and create a mirror of this table, but without any
+
+04:02.340 --> 04:03.020
+indexes.
+
+04:03.020 --> 04:04.420
+So it's going to be very simple.
+
+04:04.420 --> 04:09.380
+Select star from our fact reseller sales.
+
+04:09.540 --> 04:11.740
+And we're going to insert it in a new table.
+
+04:11.740 --> 04:16.980
+So into fact reseller sales.
+
+04:17.020 --> 04:19.300
+And I'm going to call it HP for heap.
+
+04:19.300 --> 04:20.900
+So let's go and execute it.
+
+04:20.900 --> 04:24.740
+And now you can see we have inserted in the new table around 60,000 rows.
+
+04:24.780 --> 04:28.540
+So now we can go and refresh our tables in order to find our new table.
+
+04:28.740 --> 04:31.180
+So it is over here factory seller sales.
+
+04:31.180 --> 04:34.340
+And if you check the indexes you will not find any.
+
+04:34.340 --> 04:36.300
+So that means it is a heap table.
+
+04:36.340 --> 04:40.620
+Now let's go and do a very simple query on top of our new table.
+
+04:40.620 --> 04:45.460
+So select star from the factory seller HP like this.
+
+04:45.460 --> 04:46.900
+So let's go and execute it.
+
+04:46.900 --> 04:48.420
+And we got the results.
+
+04:48.420 --> 04:52.540
+So now the question is I would like to see the execution plan of this query.
+
+04:52.580 --> 04:58.370
+Now in order to see the execution plan we're going to go to the toolbar over here and we have three
+
+04:58.370 --> 04:58.890
+things.
+
+04:59.050 --> 05:03.170
+The first one is says display estimated execution plan.
+
+05:03.170 --> 05:07.690
+And we have another one says include actual execution plan.
+
+05:07.690 --> 05:11.490
+And a third one says include live query statistics.
+
+05:11.530 --> 05:14.210
+So now the question is what are the differences between them?
+
+05:14.250 --> 05:18.010
+Let's start with the first one displayed estimated execution plan.
+
+05:18.050 --> 05:23.250
+So here what's going to happen is SQL is going to go and guess the execution plan without executing
+
+05:23.250 --> 05:24.050
+the query.
+
+05:24.050 --> 05:25.770
+So it's just an estimation.
+
+05:25.770 --> 05:28.370
+So this is only a guess an estimation.
+
+05:28.410 --> 05:30.690
+The second one is the actual one.
+
+05:30.690 --> 05:36.690
+So this is going to show you the execution plan that is used in order to process your query.
+
+05:36.690 --> 05:41.730
+So after executing your query SQL going to show for you which plan is used.
+
+05:41.730 --> 05:43.530
+So that means the estimated plan.
+
+05:43.530 --> 05:46.770
+It is something before executing your query.
+
+05:47.090 --> 05:51.090
+And the actual plan is something after executing your query.
+
+05:51.090 --> 05:54.370
+And the third one is while executing the query.
+
+05:54.370 --> 06:00.810
+So you're gonna get real time execution of your query, and you can see how your execution plan is working.
+
+06:00.810 --> 06:02.250
+So now we can go and try that.
+
+06:02.250 --> 06:05.250
+Let's go and activate the estimated execution plan.
+
+06:05.290 --> 06:09.810
+Now we can see over here we have a new output where you can see like few boxes.
+
+06:09.810 --> 06:14.250
+So this is an estimated execution plan without executing your query.
+
+06:14.250 --> 06:19.530
+But now if you go over here and switch it to the actual execution plan, nothing gonna happen.
+
+06:19.530 --> 06:21.530
+Because first you have to execute the query.
+
+06:21.530 --> 06:23.090
+So let's go and do that.
+
+06:23.090 --> 06:26.770
+So once we have executed we got the result the messages.
+
+06:26.770 --> 06:29.730
+And here we have a new tab called execution plan.
+
+06:29.730 --> 06:35.570
+So if you go over here you will find the real execution plan that is used to process your query.
+
+06:35.570 --> 06:39.530
+And let's go and try the third one and let's go and execute.
+
+06:40.450 --> 06:42.970
+It was pretty fast because the query is very fast.
+
+06:42.970 --> 06:48.530
+But here we can see how the data and the plan is working during the execution.
+
+06:48.530 --> 06:50.930
+So this is the live execution plan.
+
+06:50.930 --> 06:55.320
+And of course we have the last one which is the current execution plan.
+
+06:55.360 --> 06:58.080
+So those are the differences between those stuff.
+
+06:58.120 --> 07:03.480
+Now you might ask why do we have this estimated and actual execution plans?
+
+07:03.520 --> 07:08.480
+Well, it is a really nice tool to understand whether everything like is healthy at your database,
+
+07:08.480 --> 07:14.880
+because if the guessing is something else as the actual execution plan, that means this is an indicator
+
+07:14.880 --> 07:19.400
+that something is wrong at the statistics or the index at your database.
+
+07:19.480 --> 07:23.960
+So if they are matching the estimated and the actual, then everything looks good.
+
+07:24.000 --> 07:27.560
+But now we're going to focus only on one type of those execution plans.
+
+07:27.560 --> 07:30.880
+We're going to stick with the actual execution plan.
+
+07:30.920 --> 07:31.760
+So now what we're going to do.
+
+07:31.760 --> 07:37.320
+We're going to go and open two queries side by side, and one going to be from the clustered index.
+
+07:37.320 --> 07:39.920
+And another one is from the heap structure.
+
+07:39.920 --> 07:41.640
+So it's going to be like 1 to 1.
+
+07:41.680 --> 07:43.760
+Let's go and query both of them.
+
+07:43.760 --> 07:46.840
+And now let's go and try to read the execution plan.
+
+07:46.840 --> 07:50.560
+But make sure that you are activating the actual execution plan.
+
+07:50.600 --> 07:53.800
+So we have here now two plants.
+
+07:53.800 --> 07:57.200
+So now we are at the table and we don't have any indexes.
+
+07:57.200 --> 08:00.320
+So now the question is how to read this execution plan.
+
+08:00.320 --> 08:03.840
+Well now the plan is very simple because we have a very simple query.
+
+08:03.840 --> 08:06.400
+But we read it from the right to the left.
+
+08:06.400 --> 08:09.680
+So the first operation is the table scan.
+
+08:09.680 --> 08:13.840
+And then we have here a very small arrow to the next one where we have the select.
+
+08:13.840 --> 08:15.200
+So from right to left.
+
+08:15.200 --> 08:19.280
+So now of course the first operator is how to read your data inside the table.
+
+08:19.280 --> 08:21.200
+And here we have different types of scans.
+
+08:21.200 --> 08:23.200
+And one of them is the table scan.
+
+08:23.200 --> 08:27.280
+So table scan actually is scanning the entire table.
+
+08:27.280 --> 08:32.560
+So it's going to go and scan all the rows inside your tables in order to execute this query.
+
+08:32.600 --> 08:39.640
+Now if you go and mouse hover on the table scan, you will find a lot of details about what is happening
+
+08:39.640 --> 08:42.520
+during loading the data or scanning the table.
+
+08:42.560 --> 08:44.040
+But it is a little bit annoying.
+
+08:44.040 --> 08:49.080
+Better than that, if you go right click on it and then go to properties, you will get in the right
+
+08:49.080 --> 08:52.230
+side the same details, but it is easier to read.
+
+08:52.230 --> 08:56.550
+So the first thing that we have to read is the number of rows that has been read.
+
+08:56.550 --> 09:01.070
+So we can see that we have read all the rows inside the table, which is not really good.
+
+09:01.110 --> 09:04.350
+And we have another important information about the resources and the cost.
+
+09:04.350 --> 09:07.590
+So we have the CPU cost and the input output costs.
+
+09:07.590 --> 09:13.710
+And what is interesting is the logical operator that tables can and we can see some nice informations
+
+09:13.710 --> 09:14.550
+about the storage.
+
+09:14.550 --> 09:16.230
+It says it is roster.
+
+09:16.350 --> 09:22.110
+Now let's go and check the execution plan of this other table where we have a clustered index.
+
+09:22.110 --> 09:24.350
+So let's go to the execution plan.
+
+09:24.430 --> 09:27.190
+And now you can see that we have on the right side something else.
+
+09:27.190 --> 09:28.470
+We don't have table scan.
+
+09:28.470 --> 09:31.750
+We have something called clustered index scan.
+
+09:31.750 --> 09:38.630
+It is either scanning the entire table again or only a range or a part of the index.
+
+09:38.670 --> 09:43.070
+And of course in the details we can see whether it read all the informations or not.
+
+09:43.110 --> 09:48.990
+Now if you go and check the number of rows again, the whole index is read in order to get this results.
+
+09:48.990 --> 09:51.990
+So again we have here the total number of rows inside our table.
+
+09:52.190 --> 09:56.510
+And as you can see over here the logical operation is clustered index scan.
+
+09:56.550 --> 09:58.150
+So it is not table scan.
+
+09:58.190 --> 10:03.270
+Now of course we have to go and check the CPU and the input output costs whether we are consuming the
+
+10:03.270 --> 10:04.630
+same efforts or not.
+
+10:04.670 --> 10:06.270
+So we can go and compare stuff.
+
+10:06.270 --> 10:09.270
+So here we have like 0.07.
+
+10:09.310 --> 10:14.910
+And if we go over here you can see we didn't gain like a lot of information having an index on this
+
+10:14.910 --> 10:15.430
+table.
+
+10:15.430 --> 10:19.670
+And that's of course logical because this query is not using any indexes.
+
+10:19.670 --> 10:22.630
+It is just like selecting everything from the whole table.
+
+10:26.630 --> 10:30.470
+So now let's go and extend it where we're going to sort the data by the primary key.
+
+10:30.630 --> 10:33.590
+Sales order number.
+
+10:34.190 --> 10:35.870
+So let's go and get this one.
+
+10:35.870 --> 10:38.550
+And as well for the heap structure.
+
+10:38.550 --> 10:42.070
+So let's go and execute it and check the execution plan.
+
+10:42.070 --> 10:46.070
+And the same thing for our cluster table.
+
+10:46.110 --> 10:48.390
+Now let's check first the heap structure.
+
+10:48.390 --> 10:50.620
+As you can see here, we have like two steps.
+
+10:50.860 --> 10:54.060
+First it's going to go and scan the whole table.
+
+10:54.060 --> 11:00.300
+And then we have a sort operator in order to go and sort all the data in order to present it in the
+
+11:00.300 --> 11:00.900
+output.
+
+11:00.940 --> 11:04.220
+And at the end we have the select which is not really important.
+
+11:04.220 --> 11:06.060
+So here we have like two operators.
+
+11:06.060 --> 11:10.940
+But now if you go to our clustered index you can see that we have only like two steps.
+
+11:10.940 --> 11:13.380
+There is no sort step right.
+
+11:13.380 --> 11:20.380
+And that's because the clustered index is only sorted and SQL don't have to go and sort the data again.
+
+11:20.380 --> 11:22.740
+So it doesn't have to go and sort anything.
+
+11:22.740 --> 11:24.140
+The data is already sorted.
+
+11:24.140 --> 11:28.380
+So this is the first win that you have if you have an index.
+
+11:28.380 --> 11:30.180
+So everything is already sorted.
+
+11:30.180 --> 11:35.220
+And if you have an order by on this column then SQL don't have to do it during the query.
+
+11:35.220 --> 11:39.340
+So now if you want to go and compare the costs, you can see here we still have the same cost for the
+
+11:39.340 --> 11:45.980
+CPU and the input output in the heap structure without any index we have here, like double cost.
+
+11:46.020 --> 11:48.620
+The first cost is for the table scan.
+
+11:48.620 --> 11:54.220
+It is the exact same amount of CPU and input output like the clustered, but as well.
+
+11:54.260 --> 12:00.860
+On top of it we have high cost for sorting the data, so we are consuming more CPU and input output.
+
+12:00.860 --> 12:07.500
+And if you summarize those costs, of course this query is going to be slower and bad compared to the
+
+12:07.500 --> 12:08.780
+clustered index.
+
+12:08.780 --> 12:13.780
+So with that in the execution plan you can understand exactly the benefit of your index.
+
+12:13.780 --> 12:16.660
+And one more thing about this plan if you go over here.
+
+12:17.020 --> 12:23.740
+So if you go to the objects and let me just extend it like this, you can see the name of the index
+
+12:23.740 --> 12:25.900
+that has been used for your query.
+
+12:25.900 --> 12:29.980
+So it says the index is PKI for primary key.
+
+12:30.020 --> 12:31.420
+And then we have the whole thing.
+
+12:31.420 --> 12:35.180
+So now if you go to our table on the left side check the indexes.
+
+12:35.300 --> 12:37.620
+It's going to be exactly this index.
+
+12:37.740 --> 12:43.420
+So in the execution plan you can find as well which index has been used in your query.
+
+12:43.420 --> 12:45.220
+And this is very important to check.
+
+12:45.340 --> 12:47.130
+If you create a new index.
+
+12:47.130 --> 12:52.170
+Then run your query and check whether the database is using your new created index.
+
+12:52.170 --> 12:55.770
+And if not, then you are making the wrong decisions about your index.
+
+12:55.770 --> 13:00.690
+So each time you create a new index, make sure to check whether in the execution plan the database
+
+13:00.730 --> 13:02.650
+is using your new index.
+
+13:06.530 --> 13:07.930
+Okay, so now let's keep going.
+
+13:07.970 --> 13:13.210
+Now instead of using the primary key I'm going to go and filter the data based on one of those columns
+
+13:13.210 --> 13:14.330
+that we have in this table.
+
+13:14.330 --> 13:15.890
+So let me check the results.
+
+13:15.930 --> 13:20.010
+And let's take for example the carrier tracking number.
+
+13:20.010 --> 13:26.530
+So carrier tracking number and let's go and pick a value the first one here like this.
+
+13:26.570 --> 13:31.410
+And let's do the same thing for the heap table and execute it.
+
+13:31.450 --> 13:35.210
+And now in the execution plan you see we still have a table scan.
+
+13:35.210 --> 13:39.890
+And on this table let's see the execution plan with the clustered index.
+
+13:39.890 --> 13:44.730
+Now let's say that I would like to go and create a non-clustered index for this column.
+
+13:44.730 --> 13:45.690
+So let's go and do it.
+
+13:45.800 --> 13:49.640
+So create non-clustered index.
+
+13:49.640 --> 13:53.040
+And I'm going to call it index fact reseller.
+
+13:53.400 --> 13:55.360
+And then the column name.
+
+13:55.600 --> 14:02.400
+So on our table Facts reseller and the column going to be carrier tracking number.
+
+14:02.400 --> 14:06.840
+So I'm going to take it from here and let's go and create it.
+
+14:06.840 --> 14:10.040
+Now let's see whether our query can use this index.
+
+14:10.040 --> 14:11.720
+So let's go and execute it.
+
+14:11.720 --> 14:13.520
+And let's go to the execution plan.
+
+14:13.560 --> 14:16.320
+Now things looks completely different than before.
+
+14:16.440 --> 14:17.960
+So what is going on.
+
+14:17.960 --> 14:19.960
+We can see that we have now something new.
+
+14:20.000 --> 14:22.000
+We don't have a clustered index.
+
+14:22.000 --> 14:24.480
+We have something called index seq.
+
+14:24.560 --> 14:31.920
+Index seq is an amazing sign in your execution plan, because it tells us the SQL server did find a
+
+14:31.920 --> 14:38.000
+way to use the index in order to find the exact data that we need, without scanning a lot of stuff.
+
+14:38.000 --> 14:40.720
+So that means now we have like three types of scans.
+
+14:40.720 --> 14:45.240
+We have the table scan where the SQL is going to go and scan the whole table.
+
+14:45.240 --> 14:47.440
+And this can happen in the heap structure.
+
+14:47.440 --> 14:50.240
+And the second one we have the index scan.
+
+14:50.240 --> 14:55.480
+And here we don't know whether it is scanning the whole index or a part of the index.
+
+14:55.480 --> 15:01.920
+And the last one we have the index seq where the database is able to find directly the data without
+
+15:01.920 --> 15:03.240
+scanning a lot of stuff.
+
+15:03.240 --> 15:05.640
+So the worst type is the table scan.
+
+15:05.840 --> 15:07.760
+Then we have the index scan.
+
+15:07.760 --> 15:10.600
+And the best one is the index seq.
+
+15:10.880 --> 15:16.840
+So if you check here the details you can see the number of rows that has been read is only 12.
+
+15:16.880 --> 15:18.000
+This is amazing.
+
+15:18.040 --> 15:20.280
+Let's go and check the heap scan over here.
+
+15:20.280 --> 15:22.480
+So to the execution plan.
+
+15:22.480 --> 15:29.880
+And if we go over here you can see that we are reading around 60,000 rows in order to get 12.
+
+15:29.920 --> 15:34.560
+But with the index we are reading only 12 in order to get 12.
+
+15:34.600 --> 15:37.320
+And this is amazing and very fast of course.
+
+15:37.360 --> 15:40.160
+And of course the cost of this is very, very small.
+
+15:40.160 --> 15:45.470
+So if you check the CPU and the input output you can see those numbers are nothing.
+
+15:45.630 --> 15:49.510
+And of course, if you go to the objects over here, you can see which index has been used.
+
+15:49.510 --> 15:53.070
+And this is exactly the index that we have just created.
+
+15:53.070 --> 15:57.310
+So that means it was a really good decision to create this index.
+
+15:57.310 --> 16:02.590
+And the SQL was very happy about it and used it in order to fast find our data.
+
+16:02.590 --> 16:04.430
+So now let's go and check the rest of the plan.
+
+16:04.430 --> 16:06.990
+And now you can see over here we have key lookup.
+
+16:06.990 --> 16:12.070
+The key lookup is an operation that we need in order to get the rest of the columns.
+
+16:12.070 --> 16:17.990
+Because from this index we are getting the data of only one column, the carrier tracking number.
+
+16:17.990 --> 16:22.830
+But since in our query we are saying select star, that means we have a lot of columns.
+
+16:22.830 --> 16:25.390
+And those columns are not part of the index.
+
+16:25.390 --> 16:29.110
+So in this index SQL don't know anything about the rest.
+
+16:29.110 --> 16:32.870
+That's why SQL has to go and search for the other columns.
+
+16:32.870 --> 16:37.070
+And of course it is called a lookup not a scan or something like that.
+
+16:37.110 --> 16:40.670
+And that's why we have here as well only 12 rows.
+
+16:40.710 --> 16:44.030
+But from this step we will get the rest of the columns.
+
+16:44.350 --> 16:49.310
+So and now the next step of that is going to go and join those two informations.
+
+16:49.310 --> 16:55.030
+So we have from the first one the carrier tracking number and the second one we have the rest of course
+
+16:55.110 --> 16:59.350
+SQL has to go and merge all those stuff in one in order to have it as a results.
+
+16:59.390 --> 17:02.710
+And now this operation called a nested loops.
+
+17:02.710 --> 17:07.670
+Behind the scenes there are different types of joins, not the one that we know, the inner lift and
+
+17:07.670 --> 17:08.270
+so on.
+
+17:08.270 --> 17:10.310
+But there is another types of joins.
+
+17:10.310 --> 17:11.950
+We have the nested loop.
+
+17:11.950 --> 17:14.710
+We have the merge join and the hash join.
+
+17:14.710 --> 17:17.790
+The nested loop is very good for small stuff.
+
+17:17.790 --> 17:23.710
+If you have large tables, then the merge and the hash joins are way better than the nested loop.
+
+17:23.710 --> 17:30.310
+So that means if you are getting here a lot of data from the index and the lookups, and you see SQL
+
+17:30.310 --> 17:32.910
+is using a nested loop, this is not good.
+
+17:32.950 --> 17:38.070
+But for now it is okay because we are getting only 12 rows and the operation is going to be fast enough.
+
+17:38.350 --> 17:43.140
+And now one more thing that we can see inside our execution plan is the cost in percentage.
+
+17:43.260 --> 17:47.500
+So from checking this plan, you can see the select is almost costing nothing.
+
+17:47.820 --> 17:51.380
+The cost of the nested loop is as well like 0%.
+
+17:51.420 --> 17:54.700
+And then we have like 6% of the indexiq.
+
+17:54.780 --> 18:01.780
+Thus, because it is pretty fast and the most expensive operation that done in our query is the key
+
+18:01.780 --> 18:05.860
+lookups of course, because it can go and get all the columns.
+
+18:05.900 --> 18:10.620
+And now if you go and compare it to the heap structure, even though that the execution plan of the
+
+18:10.620 --> 18:16.740
+heap structure looks very small, doesn't mean that it's faster than the indexes that we have.
+
+18:16.780 --> 18:23.140
+Still, if you go and add up all those numbers, it is way, way faster than the heap structure.
+
+18:23.180 --> 18:24.780
+Now I would like to show you one more thing.
+
+18:24.780 --> 18:31.540
+If you want to get rid of this key lookup, and in your query you have only selecting the carrier tracking
+
+18:31.540 --> 18:31.900
+number.
+
+18:31.940 --> 18:34.780
+Let's go and execute it and go to the execution plan.
+
+18:34.780 --> 18:40.780
+As you can see, there is no need for the lookup because we have only one column and this data we can
+
+18:40.780 --> 18:43.060
+get it completely from our index.
+
+18:43.060 --> 18:48.380
+So as you can see, it is interesting to understand how SQL is working with your table and with your
+
+18:48.380 --> 18:49.020
+index.
+
+18:49.020 --> 18:54.300
+And this is how to validate whether you are making correct decisions about your indexes.
+
+18:58.300 --> 18:58.540
+Okay.
+
+18:58.540 --> 19:03.100
+So now let's go and add more stuff where we are doing aggregation joins and so on.
+
+19:03.300 --> 19:04.660
+Let's extend our query.
+
+19:04.660 --> 19:07.220
+So I'm going to go and join it with another dimension.
+
+19:07.220 --> 19:13.660
+Like for example the dim products and the join going to be on the product key.
+
+19:13.820 --> 19:18.340
+So products key and equal to as well product key.
+
+19:18.660 --> 19:21.340
+Now after that we're going to go and aggregate view stuff.
+
+19:21.340 --> 19:23.700
+So we're going to aggregate by the product name.
+
+19:24.020 --> 19:25.820
+So I'm going to take the product name.
+
+19:25.820 --> 19:28.580
+So it's going to be the English product name.
+
+19:28.620 --> 19:32.260
+And let's go and call it product name.
+
+19:32.260 --> 19:34.220
+And let's go and aggregate the sales.
+
+19:34.220 --> 19:37.900
+So sum and we're going to get it from the fact table.
+
+19:37.940 --> 19:39.970
+It's going to be sales amount.
+
+19:40.010 --> 19:49.050
+So as total sales and of course we have to go and do group by and not the French name, it's going to
+
+19:49.050 --> 19:50.290
+be the English name.
+
+19:51.530 --> 19:55.690
+So let's go up by the product name and that's it.
+
+19:55.690 --> 19:57.010
+Let's go and execute it.
+
+19:57.050 --> 19:59.850
+Now we have a nice list of products and total sales.
+
+19:59.850 --> 20:02.330
+But let's go and check the execution plan.
+
+20:02.330 --> 20:05.130
+And oh my god we have a lot of stuff.
+
+20:05.130 --> 20:07.170
+So let's start from the right side.
+
+20:07.170 --> 20:09.650
+So let's do it quickly from the right to the left.
+
+20:09.650 --> 20:13.490
+So the first thing is that it's going to go and get the data from the facts.
+
+20:13.490 --> 20:15.890
+So it is using the clustered index.
+
+20:15.890 --> 20:20.650
+And then after that it's going to go and do a hash match for the aggregation.
+
+20:20.650 --> 20:25.970
+And after that it's going to go and sort the data because it is doing later a merge join.
+
+20:25.970 --> 20:29.090
+So all those steps are preparing the fact table.
+
+20:29.090 --> 20:32.650
+And then we have another clustered scan for the dimension.
+
+20:32.650 --> 20:33.450
+So it's going to go.
+
+20:33.450 --> 20:36.090
+And as well select the informations from the dimension.
+
+20:36.090 --> 20:39.610
+And we have here like not a lot of rows, so it is very small table.
+
+20:39.650 --> 20:40.730
+600 rows.
+
+20:40.770 --> 20:45.050
+And now of course the result of the cluster scan is as well sorted.
+
+20:45.050 --> 20:45.490
+Right.
+
+20:45.490 --> 20:48.890
+And of course as we learned the clustered index can go and sort the data.
+
+20:48.890 --> 20:53.610
+So we have here a sorted output together with another sorted output.
+
+20:53.610 --> 20:55.770
+So we have like two data sets that are sorted.
+
+20:55.770 --> 21:02.530
+And SQL here decided to go with the merge join which is a good join in order to join two sorted datasets.
+
+21:02.730 --> 21:06.290
+It is way faster than joining using the nested loop.
+
+21:06.290 --> 21:10.610
+So everything is fine and then the data can be sorted and presented as output.
+
+21:10.650 --> 21:16.290
+And now if you are checking this plan, you can see the most expensive thing happened at the fact table.
+
+21:16.290 --> 21:20.930
+So 71% of the total cost happened in this step.
+
+21:20.970 --> 21:24.690
+Now let's say that the query is slow and I would like to go and optimize it.
+
+21:24.730 --> 21:32.010
+We have learned that if you are doing aggregations on big tables, then the Columnstore index is a good
+
+21:32.010 --> 21:32.650
+idea.
+
+21:32.650 --> 21:35.290
+So let's go and find whether that is true.
+
+21:35.290 --> 21:38.320
+So I'm going to go to our other table.
+
+21:38.480 --> 21:41.440
+So our sales table was with the heap structure.
+
+21:41.440 --> 21:42.840
+And now you say, you know what.
+
+21:42.880 --> 21:46.400
+Let's go and convert this heap structure to a column store.
+
+21:46.440 --> 21:47.560
+So let's go and do that.
+
+21:47.560 --> 21:53.120
+So we're going to say create clustered column store index.
+
+21:53.360 --> 21:55.120
+And we're going to call it index.
+
+21:55.120 --> 22:00.200
+And then the whole name fact reseller sales HP.
+
+22:00.320 --> 22:02.280
+And we don't have to specify any columns.
+
+22:02.280 --> 22:05.720
+So it's going to be our table on.
+
+22:05.760 --> 22:06.600
+And that's it.
+
+22:06.640 --> 22:08.520
+Let's go and execute it.
+
+22:08.560 --> 22:11.720
+So now our table is not anymore heap structure.
+
+22:11.880 --> 22:13.800
+It should be a column store.
+
+22:13.840 --> 22:19.760
+So if you go and check the informations we can see we have like clustered column stored index on it.
+
+22:19.760 --> 22:23.760
+So now let's go and do the same query and check whether we have a better performance.
+
+22:23.800 --> 22:25.240
+Let's go and execute it.
+
+22:25.240 --> 22:28.200
+And of course you have to go and activate the execution plan.
+
+22:28.200 --> 22:28.960
+So I'm going to.
+
+22:29.480 --> 22:32.760
+And now let's go and check from the right again.
+
+22:32.760 --> 22:34.960
+So this is our fact table.
+
+22:34.960 --> 22:38.880
+And as you can see already it is costing only 6%.
+
+22:38.920 --> 22:39.600
+Interesting.
+
+22:39.600 --> 22:41.960
+So let's go and compare what happened to our fact table.
+
+22:42.000 --> 22:46.680
+First of all, we can see that the physical operation is a columnstore index scan.
+
+22:46.720 --> 22:52.120
+And if you go to the objects over here, you can see that the SQL did use the Columnstore.
+
+22:52.160 --> 22:56.680
+And that is of course going to happen because the whole data is stored only in the index.
+
+22:56.680 --> 22:58.240
+So there is no way around it.
+
+22:58.240 --> 23:00.400
+So it can go of course, and use the index.
+
+23:00.400 --> 23:04.680
+But now what is interesting, maybe we have to go and compare the CPU costs.
+
+23:04.680 --> 23:09.200
+So if we check over here it is like zero comma 0067.
+
+23:09.240 --> 23:11.400
+Almost the same thing for the input output.
+
+23:11.440 --> 23:16.080
+Let's go to the previous plan where we don't have a columnstore and check our facts.
+
+23:16.080 --> 23:22.440
+So as you can see here, it is way more expensive reading the fact table than the columnstore.
+
+23:22.560 --> 23:25.600
+And as well we have reduced the input output costs.
+
+23:25.600 --> 23:34.280
+So as you can see, we went from 71% of total costs for the fact table to only 6% and the resources
+
+23:34.280 --> 23:36.550
+that is used to execute the query.
+
+23:36.590 --> 23:40.510
+It is way less than a normal clustered rowstore.
+
+23:40.550 --> 23:43.310
+And this is exactly the power of this index.
+
+23:43.310 --> 23:44.670
+That columnstore index.
+
+23:44.710 --> 23:49.950
+You can use it in big tables like the fact tables like we are doing here in this query.
+
+23:49.990 --> 23:53.710
+You will be getting amazing performance for this scenario.
+
+23:53.710 --> 23:58.070
+So of course you can go and compare the execution plan by moving left and right.
+
+23:58.070 --> 24:03.630
+So as you can see, if I click over here and I just switch to the other tab, I can like quickly compare
+
+24:03.630 --> 24:04.350
+the numbers.
+
+24:04.350 --> 24:07.230
+But there is another way on how to compare execution plans.
+
+24:07.270 --> 24:13.790
+And that is if you go to the execution plan and right click on it, then go to Save Execution Plan as.
+
+24:13.910 --> 24:18.350
+And then you have to go and give it a name, for example query Rowstore.
+
+24:18.550 --> 24:20.590
+So let's go and save it.
+
+24:20.590 --> 24:24.070
+And then you can go to the second query where we have the row store.
+
+24:24.070 --> 24:29.070
+And then right click on the execution plan and say compare Showplan.
+
+24:29.110 --> 24:35.390
+So once you click on that then you have to go and select the one that you want to compare with so open.
+
+24:35.390 --> 24:37.710
+And now on top you have your query.
+
+24:37.710 --> 24:41.550
+And at the bottom you have the execution plan that you have saved.
+
+24:41.550 --> 24:47.710
+And then you have here a lot of informations where they compare both of the execution plan.
+
+24:47.830 --> 24:51.750
+And with that you can go in more details in order to understand which plan is better.
+
+24:51.790 --> 24:56.150
+All right friends, so as you can see having the execution plan is is amazing.
+
+24:56.150 --> 24:59.230
+We can see how the SQL is working behind the scenes.
+
+24:59.230 --> 25:06.070
+And we can understand how SQL is processing my queries step by step, how much resources it is consuming,
+
+25:06.190 --> 25:10.910
+whether my indexes are useful or useless, and I can go and experiment stuff.
+
+25:10.910 --> 25:16.310
+I can go and add like an index, then test and check whether I gained like few performance or not.
+
+25:16.310 --> 25:22.790
+And we can go and compare like multiple execution plans before and after until you get the right index
+
+25:22.790 --> 25:24.990
+for the right table and the right column.
+
+25:24.990 --> 25:32.230
+So the execution plan are amazing in order to help us understanding whether our indexing strategy is
+
+25:32.230 --> 25:33.310
+correct or not.

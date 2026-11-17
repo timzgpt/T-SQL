@@ -1,0 +1,214 @@
+WEBVTT
+
+00:03.920 --> 00:05.520
+Okay, so now we have a lot of functions.
+
+00:05.520 --> 00:10.000
+I would like now to do a quick recap about the data type of the results.
+
+00:10.000 --> 00:14.640
+So as we learned we have functions like day, month, year, date parts.
+
+00:14.840 --> 00:18.080
+And the output of all those functions is going to be integer.
+
+00:18.080 --> 00:19.240
+It's going to be a number.
+
+00:19.280 --> 00:21.600
+Now we have another function the date time.
+
+00:21.600 --> 00:24.760
+If you use it the output of this function is going to be a string.
+
+00:24.760 --> 00:27.920
+Because here we are extracting the name of the date part.
+
+00:27.960 --> 00:31.560
+And if you go and use the date trunk you will get in the output.
+
+00:31.560 --> 00:33.480
+Always date time two.
+
+00:33.520 --> 00:35.720
+So you are getting both the date and time.
+
+00:35.720 --> 00:38.000
+And the last function that we learned end of month.
+
+00:38.000 --> 00:41.440
+If you use it in the results you will get the data type dates.
+
+00:41.440 --> 00:46.560
+So this is really important to understand that data type of the output so that you don't get any unexpected
+
+00:46.560 --> 00:47.200
+results.
+
+00:47.200 --> 00:47.560
+All right.
+
+00:47.560 --> 00:50.320
+So now you might say you know what those are a lot of functions.
+
+00:50.320 --> 00:52.720
+And like I'm saying they are doing the same stuff.
+
+00:52.720 --> 00:55.040
+We are extracting the parts of the dates.
+
+00:55.040 --> 00:59.000
+So now you might ask me how do you decide on when to use which function.
+
+00:59.000 --> 01:00.440
+This is how I usually do it.
+
+01:00.440 --> 01:03.400
+First I ask myself which part I want to extract.
+
+01:03.400 --> 01:09.280
+If I want to extract a date or a month, then I ask the question do I need it as an integer?
+
+01:09.280 --> 01:10.120
+As a number?
+
+01:10.120 --> 01:16.120
+If it's yes, then I go and use the d function or the month function because they are quick and I will
+
+01:16.120 --> 01:17.120
+get exactly what I need.
+
+01:17.160 --> 01:22.920
+But now, if I need the full name of the month or the day, then I go with the function date name.
+
+01:22.960 --> 01:26.160
+Now moving back if I'm interested on the part year.
+
+01:26.200 --> 01:28.240
+So here we don't have a year name or something.
+
+01:28.240 --> 01:31.040
+I'm going to go immediately with the function year.
+
+01:31.080 --> 01:34.360
+But now let's say that I don't need the day, month or year.
+
+01:34.520 --> 01:38.760
+I'm interested in other parts like the week, the quarter, and so on.
+
+01:38.920 --> 01:42.600
+Only for this scenario I go with the function date part.
+
+01:42.640 --> 01:44.560
+So this is my decision process.
+
+01:44.560 --> 01:51.080
+This is how I decide when to use which SQL function in order to extract the parts of the dates.
+
+01:55.000 --> 01:55.280
+All right.
+
+01:55.280 --> 02:00.520
+So now I have prepared for you here a list of all parts that we can use inside those three functions.
+
+02:00.560 --> 02:01.160
+Date part.
+
+02:01.200 --> 02:01.440
+Date.
+
+02:01.480 --> 02:02.040
+Name and date.
+
+02:02.080 --> 02:02.440
+Trunk.
+
+02:02.480 --> 02:07.040
+And you can see in this table that different outputs using those different three functions.
+
+02:07.040 --> 02:11.160
+So for example if you go and use the month with the date part you will get eight.
+
+02:11.200 --> 02:13.040
+But for the date name you will get August.
+
+02:13.040 --> 02:19.000
+And for the date trunk you will get truncated date time at the level of the month where you reset the
+
+02:19.000 --> 02:19.920
+dates and times.
+
+02:19.920 --> 02:21.640
+So this is a full list of all examples.
+
+02:21.640 --> 02:22.760
+You can go and check it.
+
+02:22.760 --> 02:27.360
+And one more thing that I have prepared for you in order to practice with all those different parts,
+
+02:27.360 --> 02:30.600
+I have made one big query with all different parts.
+
+02:30.600 --> 02:34.760
+So if you go and download the queries of this chapter, you will find the following files.
+
+02:34.760 --> 02:37.960
+And let's go now and open all date parts.
+
+02:37.960 --> 02:39.840
+So we're going to go inside it.
+
+02:39.840 --> 02:42.080
+And here we have a long query.
+
+02:42.080 --> 02:45.040
+So what we're going to do we're going to select everything and copy it.
+
+02:45.080 --> 02:47.480
+And let's go back to our SQL and paste it.
+
+02:47.680 --> 02:53.320
+So let me just zoom out and then let's go and execute the whole thing.
+
+02:53.320 --> 02:57.440
+So now in my code I have just done a union for each possible part.
+
+02:57.480 --> 03:01.080
+For example for the year we have date part date name and date trunk.
+
+03:01.280 --> 03:03.600
+And I'm using currently the get dates.
+
+03:03.600 --> 03:05.160
+So we are manipulating this one.
+
+03:05.160 --> 03:06.920
+And then the output can be presented over here.
+
+03:06.920 --> 03:08.360
+So you can see it like this.
+
+03:08.360 --> 03:14.120
+So if you use the part here for the date name you will get 2020 for the same thing for the date name.
+
+03:14.120 --> 03:15.800
+And this is for the date trunk.
+
+03:16.120 --> 03:21.240
+And with that you have all possible parts that you can use in SQL in one query.
+
+03:21.240 --> 03:25.120
+So with that you can learn what are the outputs for different parts.
+
+03:25.160 --> 03:25.520
+All right.
+
+03:25.520 --> 03:30.600
+So with that we have learned all those functions on how to extract the parts of dates.
+
+03:30.640 --> 03:35.480
+All right moving to the second category we're going to learn how to do formatting and casting for the
+
+03:35.480 --> 03:38.480
+date information in SQL using three functions.

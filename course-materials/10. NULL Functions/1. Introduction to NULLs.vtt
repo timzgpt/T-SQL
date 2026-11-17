@@ -1,0 +1,157 @@
+WEBVTT
+
+00:00.080 --> 00:01.240
+So what are the nulls?
+
+00:01.280 --> 00:06.720
+Imagine you are filling out a form and there will be usually like fields that are required and another
+
+00:06.720 --> 00:08.080
+fields that are optional.
+
+00:08.080 --> 00:09.320
+So what usually happens?
+
+00:09.320 --> 00:15.160
+We leave those optional fields unanswered so we don't provide any values and we leave it empty.
+
+00:15.200 --> 00:20.840
+And now once we are done filling out the form and we click on register, the data will be inserted into
+
+00:20.840 --> 00:22.000
+database tables.
+
+00:22.000 --> 00:22.960
+So now what can happen?
+
+00:22.960 --> 00:28.760
+The fields where you have provided answers and values can be filled inside the table, while the unanswered
+
+00:28.760 --> 00:31.200
+fields will have no value.
+
+00:31.200 --> 00:33.640
+And this is what we call in SQL a null.
+
+00:33.640 --> 00:37.320
+So in databases a null means nothing unknown.
+
+00:37.360 --> 00:39.160
+It is not equal to anything.
+
+00:39.160 --> 00:43.480
+So it is not equal to zero or empty string or blank space.
+
+00:43.520 --> 00:45.360
+And null is simply nothing.
+
+00:45.640 --> 00:48.720
+It tells us there is no value and it is missing.
+
+00:48.720 --> 00:51.640
+It's like saying I do not know what this value is.
+
+00:51.640 --> 00:54.080
+So this is what a null means in SQL.
+
+00:58.080 --> 00:58.800
+All right friends.
+
+00:58.800 --> 01:05.200
+So now we're going to do a deep dive into spatial SQL functions on how to handle the nulls inside our
+
+01:05.200 --> 01:05.640
+data.
+
+01:05.680 --> 01:08.640
+Now in some scenarios we have nulls inside our tables.
+
+01:08.840 --> 01:14.800
+And we would like to go and remove it and replace it with a new value like for example 40.
+
+01:14.840 --> 01:17.440
+And in order to do that in SQL, we have two functions.
+
+01:17.440 --> 01:19.390
+The first one called is a null.
+
+01:19.630 --> 01:22.430
+And the second one called coalesce.
+
+01:22.470 --> 01:27.150
+But now let's say that we have another scenario where we have a value inside our table like the 40,
+
+01:27.190 --> 01:29.630
+and we want to go and make it as a null.
+
+01:29.670 --> 01:31.590
+So now we are doing the exact opposite.
+
+01:31.590 --> 01:34.310
+We are replacing the value with a null.
+
+01:34.310 --> 01:36.830
+And for that we have the SQL function null.
+
+01:36.870 --> 01:37.190
+If.
+
+01:37.270 --> 01:40.430
+So as you can see with those two scenarios we are replacing stuff.
+
+01:40.590 --> 01:43.830
+So from null to value or from value to null.
+
+01:43.830 --> 01:48.190
+So they are really helpful in order to manipulate the data inside our databases.
+
+01:48.230 --> 01:52.030
+Now moving on to another scenario where we don't want to manipulate anything.
+
+01:52.030 --> 01:53.390
+We want just to check.
+
+01:53.390 --> 01:55.830
+So we don't want to replace or convert anything.
+
+01:55.830 --> 01:59.830
+We want just to check in our database whether we have a null value.
+
+01:59.830 --> 02:02.430
+And for that we have a function called isnull.
+
+02:02.470 --> 02:04.910
+But between the is and null there is like space.
+
+02:04.910 --> 02:06.830
+It is different than the first function.
+
+02:06.830 --> 02:10.670
+So if you apply is null you're going to get a boolean true or false.
+
+02:10.670 --> 02:12.470
+For this scenario you will get true.
+
+02:12.510 --> 02:15.990
+Or the second option you can go and check whether the value is not null.
+
+02:15.990 --> 02:17.750
+So we can use is not null.
+
+02:17.950 --> 02:19.990
+And for this example you're going to get false.
+
+02:19.990 --> 02:23.030
+So in the output we are getting a boolean true or false.
+
+02:23.030 --> 02:24.870
+So those keywords are really amazing.
+
+02:24.870 --> 02:28.270
+In order to check whether we have nulls inside our data.
+
+02:28.270 --> 02:33.270
+So this is the big picture of all functions that we have in SQL in order to handle the nulls.
+
+02:33.270 --> 02:36.230
+So now let's go and understand those functions one by one.

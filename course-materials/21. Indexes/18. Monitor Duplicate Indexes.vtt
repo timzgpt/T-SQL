@@ -1,0 +1,157 @@
+WEBVTT
+
+00:03.960 --> 00:05.400
+Okay, so now to the next step.
+
+00:05.560 --> 00:09.360
+We have to go and monitor the duplicates in indexing.
+
+00:09.360 --> 00:15.080
+If you are working in a team with multiple developers and you are working parallelly in order to optimize
+
+00:15.080 --> 00:21.800
+the performance of the queries, what might happen is that different developers creating different indexes
+
+00:21.960 --> 00:24.280
+for the same column in the same table.
+
+00:24.320 --> 00:29.320
+But of course this must not happen if you have a clean and solid review process in the projects.
+
+00:29.320 --> 00:31.840
+But we are human and those things could happen.
+
+00:31.840 --> 00:35.640
+So that's why you have to monitor whether there are like duplicates.
+
+00:35.800 --> 00:41.200
+So the mission is to find whether there is a column that is involved in multiple indexes.
+
+00:41.200 --> 00:43.680
+So let's see how we can monitor that in SQL okay.
+
+00:43.720 --> 00:48.680
+So now it's very simple in order to find the duplicates of indexes inside your database.
+
+00:48.680 --> 00:54.000
+So we have learned before that we can find the list of all indexes in this table indexes in the system
+
+00:54.000 --> 00:54.520
+schema.
+
+00:54.520 --> 00:57.720
+And then we join it with the tables in order to get the table name.
+
+00:57.720 --> 01:03.820
+And then we have another table in order to find the columns that are involved in the index.
+
+01:03.860 --> 01:07.100
+Those informations we can find it inside the index columns.
+
+01:07.140 --> 01:12.060
+And now in order to get the full name of the columns we're going to go and join it with the columns
+
+01:12.060 --> 01:12.580
+table.
+
+01:12.580 --> 01:14.300
+So it's very simple and makes sense.
+
+01:14.300 --> 01:16.500
+Let's go and execute the whole query.
+
+01:16.740 --> 01:20.140
+Now as you can see it is sorted by the table name and the column name.
+
+01:20.180 --> 01:23.300
+And that's because we can find them easier the duplicate.
+
+01:23.300 --> 01:25.260
+So let's go and check the first table.
+
+01:25.460 --> 01:30.340
+So the country is part of this index where we have the column store non-clustered.
+
+01:30.340 --> 01:35.380
+And again the country is involved in another index where we have the customers country.
+
+01:35.380 --> 01:38.860
+And this is a row store non-clustered index.
+
+01:38.860 --> 01:40.340
+So this is of course bad thing.
+
+01:40.340 --> 01:44.420
+We have to go and decide now do we want it as a column store or row store.
+
+01:44.460 --> 01:50.060
+And if we check as well this table, we can find that the first name in two different clusters, the
+
+01:50.060 --> 01:50.820
+same story.
+
+01:50.820 --> 01:54.500
+And that's because we were practicing and creating those indexes and that's it.
+
+01:54.500 --> 01:59.580
+But now if you have like a large schema and a lot of indexes, I would go and make like a flag in order
+
+01:59.580 --> 02:01.700
+to understand whether we have a duplicate or not.
+
+02:01.740 --> 02:07.960
+And that's by calculating the number of rows of unique table name and index name, and we can do that
+
+02:07.960 --> 02:10.240
+very easily using the window functions.
+
+02:10.240 --> 02:11.520
+So let's have a new row.
+
+02:11.520 --> 02:13.600
+And we're going to go and use the function count.
+
+02:13.640 --> 02:19.000
+Since we want to find the number of rows over then we're going to go and partition by.
+
+02:20.160 --> 02:24.840
+We need the table name and as will the column name.
+
+02:25.480 --> 02:27.920
+Our expectation of this column should be one.
+
+02:27.920 --> 02:30.760
+If we have more than one, then there is an issue.
+
+02:30.800 --> 02:34.680
+And that means the column is inside two different indexes.
+
+02:34.720 --> 02:38.600
+And now let's go and sort it by the column name and descending.
+
+02:39.040 --> 02:41.200
+So let's go and execute it.
+
+02:41.200 --> 02:46.760
+And now we have here a nice flag where we can see how many rows we have for a specific column in a table.
+
+02:46.760 --> 02:50.080
+So if it's one like those columns they are fine.
+
+02:50.080 --> 02:53.280
+Those columns are involved only once in one index.
+
+02:53.320 --> 02:57.840
+But for the first four rows we have here an issue because we count here two columns.
+
+02:57.840 --> 03:00.800
+That means we have two indexes for the same column.
+
+03:00.800 --> 03:02.400
+So as you can see the query is very simple.
+
+03:02.400 --> 03:05.200
+And with that we have a nice report about that.
+
+03:05.200 --> 03:08.040
+Duplicates of indexes inside our database.

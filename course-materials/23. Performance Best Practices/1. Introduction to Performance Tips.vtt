@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00.120 --> 00:05.360
+And now, before we deep dive into the 30 best practices, I'm going to give you the golden rule.
+
+00:05.360 --> 00:09.400
+The SQL optimizer responds differently for different sizes of tables.
+
+00:09.400 --> 00:14.320
+So that means if you have small and medium tables like hundreds of thousands, you might not notice
+
+00:14.320 --> 00:17.440
+any performance differences if you are following the best practices.
+
+00:17.440 --> 00:19.600
+And that's because the size of the data is small.
+
+00:19.600 --> 00:25.160
+But if you have like million or hundreds of millions of records in tables, you will immediately notice
+
+00:25.160 --> 00:28.280
+how things can be faster if you follow the best practices.
+
+00:28.280 --> 00:33.280
+And here is my golden rule if you get any best practice from me, or let's say you are reading something
+
+00:33.280 --> 00:37.200
+in the internet, always you have to test using the execution plan.
+
+00:37.240 --> 00:41.840
+So for example, if you have like two queries are returning the same result of the data, I'm going
+
+00:41.880 --> 00:44.280
+to recommend you here to check the execution plan.
+
+00:44.280 --> 00:49.480
+And if you noticed, there is no differences between them in the execution plan, then pick the one
+
+00:49.480 --> 00:50.240
+that you see.
+
+00:50.240 --> 00:55.200
+It is easier to read and to understand because sometimes if you are following the best practices for
+
+00:55.200 --> 00:59.200
+the performance, your query might be like a little bit more complicated.
+
+00:59.200 --> 01:04.760
+So always write the query to be understandable and only optimize it if you notice it is slow.
+
+01:04.760 --> 01:07.680
+So the golden rule here is always test.
+
+01:07.680 --> 01:13.440
+If you find you are optimizing the performance with the new query, then pick that and if there is no
+
+01:13.440 --> 01:17.200
+gain in the performance, then focus on making your queries readable.
+
+01:17.200 --> 01:18.520
+So this is the golden rule.
+
+01:18.520 --> 01:21.160
+Always test test test using execution plan.
+
+01:21.200 --> 01:23.520
+So let's deep dive into best practices.
+
+01:23.520 --> 01:27.200
+And we're going to start by optimizing the performance of our queries.

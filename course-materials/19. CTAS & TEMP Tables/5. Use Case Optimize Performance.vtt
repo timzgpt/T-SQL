@@ -1,0 +1,403 @@
+WEBVTT
+
+00:03.920 --> 00:04.200
+Okay.
+
+00:04.200 --> 00:08.840
+So now we're going to check the scenarios and use cases where it makes sense to use CTAs.
+
+00:08.880 --> 00:10.280
+So let's start with the first one.
+
+00:10.280 --> 00:16.600
+Now we have learned before it makes sense to have a complex logic stored inside a database so that our
+
+00:16.600 --> 00:22.320
+end users don't have to keep repeating the same logic over and over, and it's as well maybe complicated
+
+00:22.320 --> 00:23.360
+for some users.
+
+00:23.360 --> 00:25.000
+So that's why we have used views.
+
+00:25.000 --> 00:27.960
+And the result of the view can be used from our users.
+
+00:27.960 --> 00:31.840
+So everything can stay easy and friendly to consume for our users.
+
+00:31.840 --> 00:38.600
+But now what might happen that the logic of the view could be very complicated and needs a lot of time
+
+00:38.600 --> 00:44.600
+to be executed from the database, so it takes really long time until we get the intermediate result
+
+00:44.600 --> 00:45.560
+from the database.
+
+00:45.560 --> 00:51.680
+So that means if it's going to take 30 minutes, then each user has to wait 30 minutes until the query
+
+00:51.680 --> 00:52.600
+is executed.
+
+00:52.600 --> 00:55.600
+And none of your users are going to be happy with this situation.
+
+00:55.600 --> 01:00.160
+In this scenario, if this happens, you have to try maybe to optimize the query.
+
+01:00.160 --> 01:05.960
+But if you cannot do anything about that, you have to switch the view to a CTAs table.
+
+01:05.960 --> 01:12.370
+So now what you have to do, you have to take the same logic and then put it in CTAs so that the intermediate
+
+01:12.370 --> 01:14.370
+results are stored in a table.
+
+01:14.410 --> 01:18.330
+And of course, at the moment of creating the table, it will take 30 minutes.
+
+01:18.330 --> 01:23.450
+It will take long time because it is the same query, and the database is going to need the time until
+
+01:23.730 --> 01:25.570
+creating the intermediate results.
+
+01:25.570 --> 01:31.330
+But the big advantage is that once everything is prepared, maybe at the night and the morning, once
+
+01:31.330 --> 01:37.130
+your users are like online and start querying the data, they have everything prepared.
+
+01:37.130 --> 01:42.690
+So the user is going to go and start selecting and analyzing the intermediate result, but this time
+
+01:42.690 --> 01:46.050
+using the table that you have created from the CTAs.
+
+01:46.130 --> 01:50.130
+And the response time is going to be for all users again, normal and fast.
+
+01:50.130 --> 01:55.330
+So if you have a scenario where your views are very slow, you have to go and prepare the data at night
+
+01:55.330 --> 02:00.610
+using the Ctace and prepare the tables to be analyzed from the end users.
+
+02:00.610 --> 02:03.330
+So this is the most common use case for the Ctace.
+
+02:03.490 --> 02:10.010
+And this scenario happens a lot in projects where you decide to go instead of use to go with the ctace
+
+02:10.050 --> 02:13.210
+in order to have data, and you gain performance.
+
+02:13.250 --> 02:13.570
+Okay.
+
+02:13.610 --> 02:15.170
+So finally back to SQL.
+
+02:15.330 --> 02:17.650
+Let's go and create a table using CTAs.
+
+02:17.690 --> 02:22.650
+Now we're going to go and create a table that shows the total number of orders for each month.
+
+02:22.690 --> 02:23.610
+Let's go and do it.
+
+02:23.610 --> 02:24.610
+So first what do we need.
+
+02:24.650 --> 02:25.690
+We need a query.
+
+02:25.690 --> 02:29.650
+So let's write it select I'm going to go with the date name.
+
+02:29.650 --> 02:34.610
+In order to get the name of the month from our order date.
+
+02:34.610 --> 02:37.570
+And we're going to call it order month.
+
+02:37.930 --> 02:47.010
+And then we're going to go and aggregate the data by counting the order ID for total orders from our
+
+02:47.010 --> 02:49.570
+table sales orders.
+
+02:49.810 --> 02:52.610
+And don't forget to group by our month.
+
+02:52.610 --> 02:54.410
+So something like this.
+
+02:55.330 --> 02:56.850
+Let's go and execute it.
+
+02:56.850 --> 02:58.330
+So the result is very simple.
+
+02:58.330 --> 03:00.890
+We have the order month and the total orders.
+
+03:00.890 --> 03:03.290
+So we have two columns and three rows.
+
+03:03.290 --> 03:04.290
+So we have our query.
+
+03:04.290 --> 03:06.290
+And of course we didn't create anything yet.
+
+03:06.330 --> 03:13.050
+Now in SQL server in order to create a table from the query, what we're going to do exactly before
+
+03:13.050 --> 03:15.130
+the from, we're going to write into.
+
+03:15.170 --> 03:17.980
+And now we have to specify the schema and the table name.
+
+03:17.980 --> 03:25.140
+I'm gonna stay with the schema sales, and I'm going to call it monthly orders like this.
+
+03:25.140 --> 03:27.140
+So that means we have our query.
+
+03:27.140 --> 03:30.540
+And the DDL is exactly between the from and select.
+
+03:30.540 --> 03:33.980
+So now if I go and execute this what's going to happen.
+
+03:33.980 --> 03:36.220
+We will not see here the result of the query.
+
+03:36.260 --> 03:38.660
+We're going to get here like three rows affected.
+
+03:38.660 --> 03:40.540
+Because this is DDL statement.
+
+03:40.540 --> 03:42.180
+It is not anymore query.
+
+03:42.180 --> 03:45.980
+And the database is telling us I have created now a table with three rows.
+
+03:46.020 --> 03:48.060
+Now if you check our tables we don't see it yet.
+
+03:48.060 --> 03:50.740
+Let's go and refresh and check again the tables.
+
+03:50.780 --> 03:52.580
+Now we can see our table here.
+
+03:52.780 --> 03:54.500
+Sales monthly orders.
+
+03:54.540 --> 03:57.140
+Now of course we have to go and check whether everything is fine.
+
+03:57.460 --> 04:04.420
+So let's go and select the rows from our new table sales monthly orders.
+
+04:05.820 --> 04:09.180
+So let's go select it first and execute.
+
+04:09.180 --> 04:12.380
+And now we can see again the result of our query.
+
+04:12.380 --> 04:13.940
+But we are not writing the query.
+
+04:13.940 --> 04:15.820
+We are just selecting it from the table.
+
+04:15.820 --> 04:18.580
+So our data is stored in our table.
+
+04:18.580 --> 04:21.260
+And we can go and check the structure of this table.
+
+04:21.260 --> 04:25.990
+So if we go to the columns, you can see we have here the order month and the total orders.
+
+04:25.990 --> 04:28.390
+And those information comes from our query.
+
+04:28.390 --> 04:33.990
+So psql is saying here the order month is varchar which is correct because here we have the names of
+
+04:33.990 --> 04:34.470
+the month.
+
+04:34.470 --> 04:39.430
+So psql is able to define the data type of the table from our query.
+
+04:39.430 --> 04:41.310
+And the second column the total orders.
+
+04:41.310 --> 04:42.390
+It is an integer.
+
+04:42.390 --> 04:43.950
+And that's because we have here numbers.
+
+04:43.950 --> 04:50.830
+So as you can see SQL is defining the structure of the table based on the result of our query over here.
+
+04:50.830 --> 04:54.150
+And of course the data inside the table comes as well from the query.
+
+04:54.150 --> 04:58.430
+And the result of this table can stay like this as long as you don't change anything.
+
+04:58.430 --> 05:03.590
+So if you go and close this and open it after one year, it's going to show exact same results.
+
+05:03.590 --> 05:07.310
+So it's going to live in the database as long as you don't drop this table.
+
+05:07.350 --> 05:13.030
+But if things change in the table orders, this table will not be updated automatically like we have
+
+05:13.030 --> 05:14.150
+learned in the views.
+
+05:14.150 --> 05:17.230
+So now if you want to say you know what, I would like to go and drop this table.
+
+05:17.230 --> 05:18.630
+Well it is very simple.
+
+05:18.750 --> 05:23.150
+Just go and say drop table and the table name over here.
+
+05:23.150 --> 05:25.630
+So make sure you select it and execute it.
+
+05:25.630 --> 05:28.120
+And now if you go over here and refresh.
+
+05:28.160 --> 05:29.440
+So let's check the tables.
+
+05:29.440 --> 05:31.840
+You can see here the table is dropped.
+
+05:35.760 --> 05:41.920
+And now if you say you know what, let's go and refresh the table that come from the CTAs every day
+
+05:41.920 --> 05:45.080
+so that we always get refresh data inside this table.
+
+05:45.400 --> 05:48.160
+So now let's go and execute again our CTAs.
+
+05:48.280 --> 05:52.520
+And with that, if we go and refresh we're gonna find again our table inside it.
+
+05:52.520 --> 05:57.600
+Now if you go and execute it one more time in order to refresh the data of the table, what are you
+
+05:57.600 --> 05:57.920
+gonna get?
+
+05:57.920 --> 05:58.800
+You're going to get an error.
+
+05:58.840 --> 06:02.840
+The database is going to tell you we have already this table so we cannot recreate it.
+
+06:02.840 --> 06:06.760
+So now the question is how we can update then the content of this table.
+
+06:06.760 --> 06:10.120
+Well we have to go and drop it first and then recreate it.
+
+06:10.120 --> 06:16.280
+And if you want to put everything in one statement we have to go and use the Tsql is Transact-sql.
+
+06:16.320 --> 06:20.760
+It's like extension where you can do some programming inside SQL.
+
+06:20.760 --> 06:25.160
+So in order to do that, what we're going to do, we're going to go at the start over here and we're
+
+06:25.160 --> 06:26.600
+going to make an if logic.
+
+06:26.600 --> 06:29.040
+So we're going to go and search for the objects.
+
+06:29.040 --> 06:35.520
+So we're going to say if the object ID and now we have to go and specify the name of this object together
+
+06:35.520 --> 06:36.360
+with the schema.
+
+06:36.400 --> 06:40.640
+Make sure to select everything sales monthly order and put it inside here.
+
+06:41.040 --> 06:44.760
+And then we have to define the type of this object.
+
+06:44.760 --> 06:46.160
+And here we're going to go with you.
+
+06:46.200 --> 06:48.520
+It is user defined table.
+
+06:48.520 --> 06:54.560
+So we are saying if the object sales monthly orders is not null.
+
+06:54.560 --> 06:56.360
+So that means it exists.
+
+06:56.480 --> 06:59.040
+So what you want to do we have to go and drop it.
+
+06:59.040 --> 07:00.960
+I'm going to take the statement from here.
+
+07:00.960 --> 07:04.320
+And then we're going to put it after the if over here.
+
+07:04.320 --> 07:08.240
+So we are saying if this table exists then drop the table.
+
+07:08.440 --> 07:13.320
+Otherwise don't do anything because we don't have any new table and the query can work.
+
+07:13.320 --> 07:18.360
+And at the end of the tsql we have to go in order to say that T-sql is done.
+
+07:18.360 --> 07:20.720
+And then our usual query after that.
+
+07:20.720 --> 07:23.120
+So let's go and execute the whole thing.
+
+07:23.640 --> 07:25.520
+And as you can see it is working.
+
+07:25.520 --> 07:26.280
+So what happens.
+
+07:26.280 --> 07:31.400
+The database did find this table and drop it and then executed our query.
+
+07:31.400 --> 07:35.880
+So if you keep executing this you are just refreshing the content of this table.
+
+07:35.880 --> 07:39.000
+So this is how we work with the CTAs in SQL.

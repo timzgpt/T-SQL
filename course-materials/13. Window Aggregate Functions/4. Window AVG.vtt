@@ -1,0 +1,568 @@
+WEBVTT
+
+00:03.880 --> 00:04.200
+All right.
+
+00:04.200 --> 00:06.520
+So now let's understand what is an average function.
+
+00:06.520 --> 00:10.920
+As the name says it's going to find the average of values within each window.
+
+00:11.000 --> 00:14.360
+So now let's go and understand how SQL works with the average.
+
+00:14.400 --> 00:16.280
+All right so now back to our very simple example.
+
+00:16.280 --> 00:19.800
+And the task says find the average sales for each product.
+
+00:19.880 --> 00:20.520
+So it's really easy.
+
+00:20.560 --> 00:24.040
+We're going to use the average then pass to it the column sales.
+
+00:24.240 --> 00:26.960
+And we define the window like this partition by products.
+
+00:26.960 --> 00:30.080
+So the first thing that SQL is going to go is to define the window.
+
+00:30.080 --> 00:34.880
+So it's going to divide our data into two partitions one for the caps and one for the gloves.
+
+00:34.920 --> 00:37.360
+And now I hope that everyone knows how to calculate the average.
+
+00:37.360 --> 00:42.920
+So as you know that it's going to go and summarize all the values and divide it by the number of rows.
+
+00:42.920 --> 00:48.160
+So it's going to go and summarize 20 plus ten plus five and divide it on three rows.
+
+00:48.280 --> 00:49.920
+And the output is going to be 11.
+
+00:49.920 --> 00:51.720
+So we're going to get it for each row.
+
+00:51.720 --> 00:54.440
+So as you can see SQL just ignored everything.
+
+00:54.440 --> 00:57.560
+In the next window we are focusing only on the caps.
+
+00:57.720 --> 01:01.080
+Now SQL going to go to the second window and start doing the same aggregations.
+
+01:01.210 --> 01:03.170
+But here we have the special case of null.
+
+01:03.210 --> 01:05.930
+So the null is going to be ignored in the calculations.
+
+01:05.930 --> 01:07.130
+And we're going to have it like this.
+
+01:07.170 --> 01:08.290
+It's going to say you know what.
+
+01:08.330 --> 01:09.730
+30 plus 70.
+
+01:09.770 --> 01:12.050
+And we are just including two rows.
+
+01:12.050 --> 01:13.730
+So it's going to be divided by two.
+
+01:13.930 --> 01:15.530
+And the average is going to be 50.
+
+01:15.570 --> 01:18.210
+So we will get the result 50 for each row.
+
+01:18.370 --> 01:20.730
+And we are completely ignoring the nulls.
+
+01:20.730 --> 01:24.370
+But now we might be in a scenario where your users understand the business like this.
+
+01:24.410 --> 01:27.210
+If we find a null in the sales, it means it's zero.
+
+01:27.210 --> 01:31.970
+So there is no sales and it is actually a zero, but we store it in the database as a null.
+
+01:31.970 --> 01:35.410
+So that means the average that we have divided is not really correct.
+
+01:35.410 --> 01:37.010
+We have to divide by three.
+
+01:37.010 --> 01:42.690
+So that means first we have to handle the nulls before doing the aggregations before finding the average.
+
+01:43.090 --> 01:46.210
+Now we're going to have a whole chapter on how to handle nulls in SQL.
+
+01:46.210 --> 01:47.610
+What are the different functions.
+
+01:47.930 --> 01:49.730
+But for now we're going to go with the functions.
+
+01:50.650 --> 01:50.850
+Okay.
+
+01:50.890 --> 01:53.970
+So now what we're going to do we will not use the sales as it is.
+
+01:54.010 --> 01:55.770
+First we're going to handle the nulls.
+
+01:55.770 --> 02:00.450
+So that means we're going to use the coalesce sales and replace it with zeros.
+
+02:00.570 --> 02:03.230
+So as you can see we are not using immediately the sales.
+
+02:03.230 --> 02:06.670
+We are handling it first and then we're going to find the average.
+
+02:06.670 --> 02:11.830
+So SQL going to go over here and if it finds any null it's going to go and replace it with zero.
+
+02:12.070 --> 02:15.070
+And that's going to have an effect on our average over here.
+
+02:15.070 --> 02:17.870
+So it's going to be 30 plus seven plus 70.
+
+02:17.910 --> 02:19.270
+But now plus zero.
+
+02:19.310 --> 02:20.670
+And now we have three rows.
+
+02:20.670 --> 02:24.230
+So instead of dividing by two it's going to go and divide it by three.
+
+02:24.230 --> 02:26.910
+And the total result is going to be like this 33.
+
+02:27.070 --> 02:30.510
+So that means we're going to have in the output 33 for each row.
+
+02:30.910 --> 02:34.790
+And with that we are now fulfilling the expectation from the business.
+
+02:34.990 --> 02:39.070
+If we have a null it's going to be handled as zero and the result is going to be more accurate.
+
+02:39.110 --> 02:39.470
+You see.
+
+02:39.510 --> 02:39.990
+Right.
+
+02:40.110 --> 02:43.670
+It is very tricky if you are doing data analysis and aggregations.
+
+02:43.710 --> 02:48.910
+Be very careful with the nulls, understand them, understand what they mean for the business, handle
+
+02:48.910 --> 02:53.510
+them correctly in order to get correct results in your analysis.
+
+02:53.510 --> 02:58.670
+So now let's go back in order to practice SQL using some tasks and use cases okay.
+
+02:58.710 --> 02:59.750
+So let's start with the basics.
+
+02:59.750 --> 03:00.750
+We have the following task.
+
+03:00.790 --> 03:05.760
+Find the average sales across all orders, and as well find the average sales for each product.
+
+03:05.760 --> 03:07.360
+And don't forget the details.
+
+03:07.360 --> 03:09.520
+So now let's go and solve it step by step.
+
+03:09.520 --> 03:14.840
+So select order ID order dates and let's get the sales as well.
+
+03:14.920 --> 03:16.760
+Let's go and find the average sales.
+
+03:16.760 --> 03:18.440
+So it's going to be a window function.
+
+03:18.440 --> 03:20.000
+And we have the sales inside it.
+
+03:20.000 --> 03:22.640
+The usual stuff the window going to be empty.
+
+03:22.880 --> 03:28.280
+So average sales we're going to call it the table is going to be sales orders.
+
+03:28.880 --> 03:30.000
+So that's it.
+
+03:30.000 --> 03:31.560
+Let's go and execute it.
+
+03:31.560 --> 03:33.200
+Oh we have to select everything of course.
+
+03:33.200 --> 03:34.760
+So what SQL did in the output.
+
+03:34.760 --> 03:38.960
+It's going to go and summarize all those values and then divide it by ten.
+
+03:38.960 --> 03:41.880
+So that we have the average sales of 38.
+
+03:41.920 --> 03:42.680
+Very easy.
+
+03:42.680 --> 03:45.440
+So this is again what we call an overall analysis.
+
+03:45.480 --> 03:46.600
+Let's move to the next one.
+
+03:46.640 --> 03:48.800
+Find the average sales for each products.
+
+03:48.960 --> 03:54.600
+So again we're going to go and build the window function like this average sales over.
+
+03:55.040 --> 03:57.640
+And we can divide it by product ID.
+
+03:57.920 --> 04:01.620
+And we're going to call it average sales by Byproducts.
+
+04:02.100 --> 04:04.660
+And we're going to go and add the product ID in the query.
+
+04:04.980 --> 04:06.100
+So that's it.
+
+04:06.140 --> 04:07.580
+Let's go and execute.
+
+04:07.580 --> 04:09.100
+And we miss something here.
+
+04:09.100 --> 04:11.220
+So it is the partition by.
+
+04:11.420 --> 04:12.820
+Going to execute again.
+
+04:12.860 --> 04:14.700
+So with that we have the following data.
+
+04:14.700 --> 04:16.700
+So now I'm going to go and divide the data.
+
+04:16.700 --> 04:19.940
+So for example for this product we have those four orders.
+
+04:19.940 --> 04:20.780
+So what's going to happen.
+
+04:20.780 --> 04:25.100
+It's going to go and summarize the four values and then divide it by four.
+
+04:25.140 --> 04:28.580
+That's why we have here 35 the same thing for the next order.
+
+04:28.620 --> 04:30.220
+It's going to divide it by three.
+
+04:30.500 --> 04:32.900
+And the last one is just going to divide it by one.
+
+04:32.900 --> 04:34.260
+That's why we have 60.
+
+04:34.300 --> 04:37.780
+So as you can see the aggregation can be done separately for each window.
+
+04:37.780 --> 04:43.180
+And this is as well very nice way in order to compare the averages between the different products.
+
+04:43.220 --> 04:43.420
+Okay.
+
+04:43.460 --> 04:44.860
+So now let's have an example.
+
+04:44.860 --> 04:48.700
+In order to learn how to deal with the nulls, let's say that we have the following task.
+
+04:48.740 --> 04:54.700
+Find the average scores of customers and show as well additional informations like the customer ID and
+
+04:54.700 --> 04:55.500
+the last name.
+
+04:55.900 --> 04:57.860
+So let's go and solve this.
+
+04:58.180 --> 05:01.060
+We are now targeting the table customers.
+
+05:01.500 --> 05:04.830
+So let's just select it first like this.
+
+05:04.870 --> 05:09.750
+And now let's go and include the customer ID and the last name.
+
+05:10.070 --> 05:11.470
+And let's have as well the score.
+
+05:11.670 --> 05:14.390
+But this time we're going to go and find the average score.
+
+05:14.630 --> 05:16.590
+So it's going to be the average score.
+
+05:16.630 --> 05:21.190
+And since we don't partition the data we're going to leave the definition like this.
+
+05:21.230 --> 05:23.350
+And it's going to be the average score.
+
+05:23.390 --> 05:24.790
+So that's it.
+
+05:24.830 --> 05:26.230
+Let's go and execute it.
+
+05:26.230 --> 05:29.470
+So now as you can see we have the average score of 625.
+
+05:29.910 --> 05:34.030
+SQL can go and summarize the four values and divide it by four.
+
+05:34.230 --> 05:35.670
+But here we have a null.
+
+05:35.670 --> 05:38.190
+So now we have to understand the business or ask about it.
+
+05:38.230 --> 05:40.830
+What the null means in the scores of the customers.
+
+05:41.070 --> 05:43.430
+Is it zero or is it something empty?
+
+05:43.750 --> 05:49.230
+If it's zero, then the average that we have is wrong because it should be divided by five and not four.
+
+05:49.670 --> 05:51.070
+So let's say it's zero.
+
+05:51.270 --> 05:53.390
+That means we have to go and handle the nulls.
+
+05:53.430 --> 05:56.390
+So what we're going to do now we're going to go and use the function coalesce.
+
+05:56.590 --> 05:57.430
+So coalesce.
+
+05:58.030 --> 06:01.750
+And for the score and replace the null with zero.
+
+06:01.850 --> 06:03.650
+So you are the customer score.
+
+06:03.850 --> 06:05.570
+Let's go and execute this.
+
+06:05.570 --> 06:08.970
+So now as you can see if there is a value it's going to be exactly the same value.
+
+06:08.970 --> 06:10.210
+But only if you have a null.
+
+06:10.210 --> 06:11.850
+It's going to be replaced with zero.
+
+06:11.850 --> 06:13.810
+So now let's go and correct the average.
+
+06:13.810 --> 06:15.170
+I'm just going to do it like this.
+
+06:15.850 --> 06:18.290
+So let's go and copy the whole thing.
+
+06:18.290 --> 06:23.250
+But now instead of using the score we're going to use the score that is handled with nulls.
+
+06:23.250 --> 06:25.450
+So I'm just going to go and replace it like this.
+
+06:25.450 --> 06:28.050
+So here without nulls.
+
+06:28.570 --> 06:30.370
+So let's go and execute it.
+
+06:30.370 --> 06:35.130
+So now as you can see we are getting more valid results at the output compared to the previous one.
+
+06:35.130 --> 06:38.290
+And this is only for the case if the null means zero.
+
+06:38.290 --> 06:43.610
+So guys as you see be very careful with the nulls, especially if you are doing aggregations and handled
+
+06:43.610 --> 06:46.530
+correctly before doing any aggregations like the average.
+
+06:46.570 --> 06:52.170
+All right, moving on to the last use case, we have the comparison analysis and the task says find
+
+06:52.210 --> 06:57.330
+all orders where the sales are higher than the average sales across all orders.
+
+06:57.610 --> 07:03.100
+So that means we have to go and compare the current sales with the aggregated value at this time, the
+
+07:03.140 --> 07:04.020
+average of sales.
+
+07:04.020 --> 07:05.700
+So now let's go and do it step by step.
+
+07:05.700 --> 07:09.260
+So what we're going to do we're going to go and select of course the order ID.
+
+07:09.460 --> 07:10.300
+What do we need.
+
+07:10.340 --> 07:13.820
+The let's take the product ID and we need the current sales.
+
+07:13.820 --> 07:16.020
+So it's going to be the sales as it is.
+
+07:16.060 --> 07:17.460
+And that's it for now.
+
+07:17.460 --> 07:19.980
+So from sales orders.
+
+07:20.020 --> 07:21.300
+So that's it.
+
+07:21.340 --> 07:23.100
+Let's go and execute it.
+
+07:23.100 --> 07:26.980
+So now by checking the result you can see that we got the first part of the equation right.
+
+07:26.980 --> 07:28.940
+We have the sales for each order.
+
+07:28.980 --> 07:32.300
+Now we need the second part the average sales across all orders.
+
+07:32.300 --> 07:36.540
+In order to do that we're going to go and use the window function average sales.
+
+07:36.540 --> 07:40.940
+And we're going to use over since across all orders that means it's going to be empty.
+
+07:40.940 --> 07:43.260
+So let's give it a name average sales.
+
+07:43.740 --> 07:45.300
+So let's go and execute it.
+
+07:45.300 --> 07:47.620
+So now in the output we got the average sales.
+
+07:47.620 --> 07:49.100
+So it's going to be 38.
+
+07:49.140 --> 07:52.780
+So now we need all the orders that are higher than the average.
+
+07:52.780 --> 07:59.220
+So as you can see for example the order one is not higher but the order four is higher than the average.
+
+07:59.220 --> 08:03.640
+So in order to filter the data we cannot use the window function in the Where clause.
+
+08:03.640 --> 08:04.120
+Right.
+
+08:04.360 --> 08:08.560
+So what we're going to do sadly we're going to go and use the subquery.
+
+08:08.600 --> 08:11.120
+So it's going to be like this select star from.
+
+08:11.960 --> 08:16.920
+And then we're going to define the condition outside the subquery.
+
+08:16.920 --> 08:22.200
+So it's going to be where the sales is higher than the average sales.
+
+08:22.440 --> 08:24.000
+So that's it.
+
+08:24.160 --> 08:25.400
+Let's go and execute it.
+
+08:25.440 --> 08:26.840
+And now as you can see it's very simple.
+
+08:26.840 --> 08:30.600
+We got all the orders that are higher than the average right.
+
+08:30.600 --> 08:33.560
+So you can see all those sales are higher than the average.
+
+08:33.560 --> 08:36.680
+It would be nice if we can do all those stuff in the first query.
+
+08:36.920 --> 08:43.440
+But since we cannot do that, we need to use the subqueries in order to filter the data afterwards so
+
+08:43.440 --> 08:46.800
+that we can understand the importance of the comparison analysis.
+
+08:46.840 --> 08:52.240
+For example, here we are finding or evaluating the data whether they are above the average or below
+
+08:52.280 --> 08:52.960
+the average.
+
+08:53.080 --> 08:56.040
+And this is very important in the business analysis.
+
+08:56.080 --> 08:56.760
+All right everyone.
+
+08:56.760 --> 08:58.760
+So that's all for the window function average.
+
+08:58.800 --> 09:02.920
+Next we're going to talk about two very interesting functions the min and max.

@@ -1,0 +1,1501 @@
+WEBVTT
+
+00:03.960 --> 00:07.520
+So with that, we have learned the standalone CTE and the necessity.
+
+00:07.720 --> 00:12.160
+And both of them belongs to a type called Non-recursive CTE.
+
+00:12.400 --> 00:14.120
+So what is a non-recursive CTE?
+
+00:14.280 --> 00:17.720
+It means it is a city that is executed only once.
+
+00:17.720 --> 00:23.560
+So there is no repetitions or looping or anything so that SQL can executed in one go and that's it.
+
+00:23.560 --> 00:27.400
+But in the other hand, the recursive CTE is exactly the opposite.
+
+00:27.400 --> 00:28.640
+So a recursive CTE.
+
+00:28.680 --> 00:36.600
+It is a self-referencing query that repeatedly processing the data until a certain condition is met.
+
+00:36.600 --> 00:42.400
+And we usually use the recursive CTE if we have like hierarchical structure and we want to navigate
+
+00:42.400 --> 00:44.320
+and travel through the hierarchy.
+
+00:44.360 --> 00:46.520
+I know this might be confusing, but don't worry about it.
+
+00:46.520 --> 00:48.280
+We can have very simple examples.
+
+00:48.320 --> 00:52.000
+Now again we have our tables in the database and we have CTE.
+
+00:52.280 --> 00:55.640
+Now the query of the CTE is going to be executed for the first time.
+
+00:55.640 --> 00:59.400
+And in the results we are going to have the initial data from the CTE.
+
+00:59.400 --> 01:01.590
+city, but it is not everything yet.
+
+01:01.630 --> 01:07.590
+Now this intermediate result is not ready yet for the main query, but instead of that, it's going
+
+01:07.630 --> 01:09.070
+to go back to the CTE.
+
+01:09.390 --> 01:15.230
+And the CTE is going to check whether the current results is meeting a specific condition.
+
+01:15.270 --> 01:20.110
+So now if the check says no, it's not meeting the condition, what can happen?
+
+01:20.150 --> 01:23.830
+The CTE query can be executed for the second time.
+
+01:23.830 --> 01:26.430
+So as you can see we are looping through the CTE.
+
+01:26.590 --> 01:33.590
+Now the result of the second iteration the second execution will be added to the intermediate results.
+
+01:33.590 --> 01:36.630
+So now the intermediate result has more data.
+
+01:36.630 --> 01:41.550
+And again before we can use it from the main query it's going to be checked from the CTE.
+
+01:41.830 --> 01:44.270
+Does the result fulfill the condition?
+
+01:44.270 --> 01:47.990
+If it's still no then go and execute the CTE again.
+
+01:47.990 --> 01:50.190
+So we're going to have a third iteration.
+
+01:50.190 --> 01:53.790
+And a new data are going to be added to the intermediate results.
+
+01:53.790 --> 01:55.670
+So this is our third iteration.
+
+01:55.670 --> 01:57.630
+Now it's going to be checked again from the CTE.
+
+01:57.950 --> 01:59.900
+Did we fulfill the condition?
+
+02:00.020 --> 02:04.100
+If the answer is yes, then the loop cannot break and everything ends.
+
+02:04.100 --> 02:06.820
+So there will be no fourth iteration of the CTE.
+
+02:06.860 --> 02:09.540
+So with that, the city says, okay, I'm done.
+
+02:09.580 --> 02:13.420
+This is the final result of the intermediate result.
+
+02:13.460 --> 02:19.420
+Then the loop cannot break and everything ends, and the CTE will not be executed for the first time.
+
+02:19.460 --> 02:21.780
+And now the city can say, okay, I'm done.
+
+02:21.820 --> 02:27.140
+Now my intermediate result is ready to be used from the main query, and now nothing new happens.
+
+02:27.140 --> 02:32.220
+The main query can go and retrieve the data from the intermediate results and do some magic in order
+
+02:32.220 --> 02:34.100
+to prepare the final results.
+
+02:34.100 --> 02:38.220
+So that means there will be no iterations or looping inside the main query.
+
+02:38.220 --> 02:43.300
+The loop is going to be happen only in the CTE, and that's why we call it recursive CTE.
+
+02:43.460 --> 02:48.860
+So now if you compare it with the other types, all other types are always in one direction, and all
+
+02:48.860 --> 02:54.940
+the city is going to be executed only once, but the recursive city is going to be keep looping until
+
+02:54.940 --> 03:00.850
+the condition is met, and only then it can forward the data to the main query, and normally we use
+
+03:00.850 --> 03:02.170
+the recursive ctes.
+
+03:02.370 --> 03:05.130
+If you are navigating through hierarchical structure.
+
+03:05.130 --> 03:10.250
+So if you have in your data like hierarchical structures, you can go and use the recursive cities in
+
+03:10.250 --> 03:11.690
+order to navigate through it.
+
+03:11.730 --> 03:13.810
+So this is the recursive city.
+
+03:13.850 --> 03:14.050
+Okay.
+
+03:14.090 --> 03:16.410
+So now let's check the syntax of the recursive CTE.
+
+03:16.570 --> 03:19.370
+It is a little bit complicated but we're going to do it step by step.
+
+03:19.450 --> 03:20.330
+So what do we have.
+
+03:20.370 --> 03:23.570
+We have a query and we would like to put it in a city.
+
+03:23.610 --> 03:29.970
+So we're going to have the usual stuff with clause the name of the city and us and then the query.
+
+03:30.130 --> 03:32.370
+So this is the definition of our city.
+
+03:32.410 --> 03:35.730
+But now if you leave it like this SQL can execute it only once.
+
+03:35.730 --> 03:37.890
+But we would like to make a loop iteration.
+
+03:37.890 --> 03:44.610
+So in order to do that we have to go and define a second select statement inside our CTE like this.
+
+03:44.610 --> 03:46.450
+So we are selecting the data.
+
+03:46.650 --> 03:49.370
+And here we have to define a breaking condition.
+
+03:49.370 --> 03:53.890
+So here in the second query we are defining a condition in order to break the loop.
+
+03:54.170 --> 03:57.370
+Otherwise it's going to loop for infinite or the system going to break.
+
+03:57.410 --> 04:02.210
+You could use it in the Where clause, or you can use it even in an inner join, because both of them
+
+04:02.210 --> 04:05.490
+are filtering the data, and you can use it in order to break the condition.
+
+04:05.530 --> 04:05.890
+All right.
+
+04:05.890 --> 04:08.050
+So now still there is something missing.
+
+04:08.050 --> 04:10.370
+How are we going to make like things looping.
+
+04:10.370 --> 04:13.330
+Well we have to reference this CTE to itself.
+
+04:13.330 --> 04:18.730
+So what we're going to do we're going to say the second query going to select the data from the same
+
+04:18.730 --> 04:19.250
+CTE.
+
+04:19.450 --> 04:22.570
+So that means we have now a query that is querying itself.
+
+04:22.570 --> 04:24.130
+And this is of course what we want.
+
+04:24.170 --> 04:27.250
+We want to make iterations and we want to make a loop.
+
+04:27.250 --> 04:29.730
+That's why we have to go and reference it to itself.
+
+04:29.770 --> 04:31.970
+And now in SQL you cannot have it like this.
+
+04:31.970 --> 04:35.050
+You cannot have like two Select statements in one query.
+
+04:35.090 --> 04:36.530
+You have to connect it somehow.
+
+04:36.570 --> 04:41.730
+That's why we can go and use the union all or union depend if you want to have duplicates or not.
+
+04:41.730 --> 04:45.090
+So now we call the first query the anchor query.
+
+04:45.090 --> 04:50.530
+The anchor query is going to be the first query that interacts with the database and provide us the
+
+04:50.530 --> 04:52.770
+initial intermediate results.
+
+04:52.770 --> 04:59.000
+So it is the starting point of the iteration, and we can say it is the first step in the process.
+
+04:59.120 --> 05:04.040
+So this is going to be executed only once, and it's going to provide us the initial step, the first
+
+05:04.040 --> 05:05.120
+step in the process.
+
+05:05.120 --> 05:08.520
+Now we call the second step as a recursive query.
+
+05:08.520 --> 05:09.560
+And we call it like this.
+
+05:09.560 --> 05:16.760
+Because this query can be executed multiple times and it will keep repeating and add data to the intermediate
+
+05:16.760 --> 05:19.880
+results until the condition is met.
+
+05:19.920 --> 05:24.080
+Or let's say there will be no more data that is available to be processed.
+
+05:24.080 --> 05:27.600
+So this is the syntax of the CTE query for the main query.
+
+05:27.640 --> 05:28.720
+Nothing is changed.
+
+05:28.720 --> 05:32.840
+So we have to go and use the CTE name in the main query.
+
+05:33.080 --> 05:36.080
+So this is the syntax of the recursive CTE.
+
+05:36.200 --> 05:41.480
+So think about it like this SQL going to go and execute the anchor query only once.
+
+05:41.600 --> 05:45.080
+And then after that SQL going to go through the recursive query.
+
+05:45.080 --> 05:50.440
+And keep looping and looping and iterating until a certain condition is met.
+
+05:50.440 --> 05:53.040
+And then SQL is going to go out from the CTE.
+
+05:53.200 --> 05:56.830
+So this is actually what we mean with the anchor and recursive queries.
+
+05:56.870 --> 05:57.150
+All right.
+
+05:57.150 --> 06:00.510
+So now let's have a simple task in order to understand the recursive city.
+
+06:00.710 --> 06:05.310
+So the task says generate a sequence of numbers from 1 to 20.
+
+06:05.350 --> 06:07.070
+So now let's do it step by step.
+
+06:07.190 --> 06:10.270
+So that means we have to create a loop from 1 to 20.
+
+06:10.510 --> 06:12.870
+And after 20 the loop should stop.
+
+06:12.870 --> 06:14.230
+So let's go and do it.
+
+06:14.270 --> 06:18.710
+Now the first step of the recursive CTE is to build the anchor query.
+
+06:18.710 --> 06:22.350
+So the anchor query is responsible for the first iteration.
+
+06:22.350 --> 06:24.910
+So that means the first row of the output.
+
+06:24.910 --> 06:27.710
+So what is the first value between 1 and 20.
+
+06:27.750 --> 06:28.830
+It is the one.
+
+06:28.830 --> 06:32.190
+So let's go and write a query that generate the value one.
+
+06:32.630 --> 06:39.110
+So select and we're going to say one as I'm going to give it the name my number.
+
+06:39.670 --> 06:40.950
+So that's it.
+
+06:40.950 --> 06:42.190
+Let's go and execute it.
+
+06:42.190 --> 06:46.270
+Now we can see in the output we have the first member of our sequence.
+
+06:46.270 --> 06:49.470
+And this is exactly the task of the anchor query.
+
+06:49.550 --> 06:52.630
+It retrieves the first step in the iteration.
+
+06:52.700 --> 06:58.300
+So let's go and call it Anchor Query.
+
+06:58.460 --> 07:01.420
+Now the next step that we have to go and build the iteration.
+
+07:01.420 --> 07:02.540
+So we need a CTE.
+
+07:03.020 --> 07:05.020
+So I will build now the CTE.
+
+07:05.180 --> 07:08.300
+So we're going to say with we're going to call it serious.
+
+07:08.460 --> 07:11.700
+And then we're going to put everything in parentheses.
+
+07:12.060 --> 07:13.940
+And then we're going to go to the main query.
+
+07:14.100 --> 07:15.700
+So this is the main query.
+
+07:15.980 --> 07:21.700
+And we will go and select everything from the serious the CTE.
+
+07:21.940 --> 07:25.660
+So let's go and execute it just to make sure that everything is working fine.
+
+07:25.660 --> 07:27.900
+So we didn't create any loop or anything.
+
+07:27.900 --> 07:34.020
+We have just created a city on top on the anchor query, and we just call it from the main query.
+
+07:34.020 --> 07:37.540
+So now we come to the second step of building the recursive CTE.
+
+07:37.780 --> 07:40.300
+We have to build the recursive query.
+
+07:40.300 --> 07:42.940
+So let's do it I will just make this a little bit smaller.
+
+07:42.980 --> 07:49.780
+And now before we start writing the query we have to go and use union all in order to go and connect
+
+07:49.780 --> 07:52.010
+the anchor query with the recursive query.
+
+07:52.410 --> 07:56.570
+And let me say this is the recursive query.
+
+07:56.610 --> 07:57.810
+So how are we going to build it.
+
+07:58.090 --> 07:59.890
+Let's go and start with the select.
+
+07:59.890 --> 08:04.370
+And now next what I usually do I just make sure that we are making a recursive CTE.
+
+08:04.610 --> 08:06.650
+So I go with selecting from.
+
+08:06.850 --> 08:12.570
+And then we're going to use the name of the current CTE so that we are referencing the city to itself
+
+08:12.570 --> 08:16.690
+in order to make the city recursive and to do the looping.
+
+08:16.730 --> 08:18.690
+Now here comes the tricky part.
+
+08:18.970 --> 08:21.290
+So we need to create like the sequence.
+
+08:21.330 --> 08:22.810
+Now what is the current value?
+
+08:22.850 --> 08:24.410
+The current value is one right.
+
+08:24.450 --> 08:25.210
+Now what do we need.
+
+08:25.210 --> 08:28.770
+We need the second value in the sequence which is two.
+
+08:28.810 --> 08:31.650
+So we can do it by one plus one.
+
+08:31.650 --> 08:34.170
+So if we do it like this you will get the output two.
+
+08:34.210 --> 08:38.210
+But actually what we are doing here we are always taking the current value.
+
+08:38.210 --> 08:42.410
+And we are saying plus one in order to generate the next value.
+
+08:42.410 --> 08:48.050
+So in order to do that, instead of saying one we're going to take the my number, the current value,
+
+08:48.050 --> 08:53.600
+and we're going to add to it plus one in order to generate the second value in the sequence.
+
+08:53.600 --> 09:00.000
+So that means my number always holds the current value, and we do the operation plus one inch order
+
+09:00.000 --> 09:02.640
+to generate the next sequence.
+
+09:02.640 --> 09:07.200
+So having it like this, what we are doing, we are generating the sequence of numbers.
+
+09:07.240 --> 09:10.800
+Now if you go and execute it like this, let me just execute it.
+
+09:11.080 --> 09:11.880
+What will happen?
+
+09:11.880 --> 09:14.440
+It's going to break because SQL will not allow it.
+
+09:14.440 --> 09:17.000
+And SQL set it to 100 iterations.
+
+09:17.000 --> 09:22.920
+So more than 100 is SQL going to break the query so that we don't have infinite number of looping.
+
+09:22.920 --> 09:27.440
+So this is bad because we didn't define the breaking mechanism of the looping.
+
+09:27.440 --> 09:32.000
+So now we have to define as well in the recursive query how the loop can ends.
+
+09:32.040 --> 09:33.680
+And we usually use a condition.
+
+09:33.680 --> 09:39.400
+For example we can go and use the Where clause and we can say okay keep looping and keep generating.
+
+09:39.400 --> 09:46.440
+But always check whether the value of the my number is less than 20.
+
+09:47.080 --> 09:50.750
+And you might ask okay, it should be less or equal to 20, right?
+
+09:50.790 --> 09:55.030
+Well, no, because if you are making less and equal to 20, what can happen?
+
+09:55.030 --> 10:01.270
+Once the my number is equal to 20, you are allowing one more iterations where you will get in the output
+
+10:01.310 --> 10:02.230
+21.
+
+10:02.230 --> 10:04.710
+So that's why we are making it with 20.
+
+10:04.750 --> 10:08.510
+So now let's go and execute it and let's check the sequence.
+
+10:08.510 --> 10:12.550
+It starts with one, 2345 and until we reach the 20.
+
+10:12.550 --> 10:14.870
+So with that you have solved the task again here.
+
+10:14.870 --> 10:16.230
+It's not that hard right?
+
+10:16.230 --> 10:18.950
+We are just providing the initial step.
+
+10:19.150 --> 10:24.350
+And then we are providing the loop where we are defining inside it how the loop can end.
+
+10:24.390 --> 10:30.150
+Now there is one more thing that you can do with the recursive CTE is to define the limit of iterations.
+
+10:30.150 --> 10:36.710
+So for example, in your code, if you say okay, if this iterates more than ten times, then the SQL
+
+10:36.750 --> 10:38.470
+should breaks and stops.
+
+10:38.470 --> 10:42.510
+So you can define for the SQL the maximum number of recursions.
+
+10:42.510 --> 10:43.550
+So how we can do that.
+
+10:43.550 --> 10:45.670
+We can do that in the main query.
+
+10:45.790 --> 10:51.910
+So if you go over here and say Option, then two parentheses and then max recursion.
+
+10:53.070 --> 10:55.390
+And after that you can define the limit.
+
+10:55.390 --> 10:57.390
+So for example let's go with the ten.
+
+10:57.430 --> 11:00.630
+Now of course we are iterating in our code now more than 20.
+
+11:00.830 --> 11:02.350
+But here we are making the rule.
+
+11:02.350 --> 11:04.350
+It should not iterate more than ten.
+
+11:04.350 --> 11:05.990
+So let's go and execute it.
+
+11:05.990 --> 11:11.190
+So now we can see that our SQL breaks and it says the maximum recursion is ten.
+
+11:11.190 --> 11:15.990
+So as you can see now in the output we are getting the error of having more than ten iterations which
+
+11:15.990 --> 11:16.750
+is not allowed.
+
+11:16.750 --> 11:19.750
+So with that you can control how many recursions you can have.
+
+11:19.790 --> 11:22.910
+Let's say that you would like to have like 1000 iterations.
+
+11:22.910 --> 11:27.990
+So if you go over here and say, you know what, I would like to have a sequence of 1000 if you let
+
+11:27.990 --> 11:29.950
+me just comment this out.
+
+11:29.950 --> 11:33.950
+So if you execute it, you will get an error because the default is 100.
+
+11:33.950 --> 11:37.430
+But of course you can go and increase the maximum recursion.
+
+11:37.430 --> 11:40.670
+For example, let's go with 5000 in the output.
+
+11:40.670 --> 11:43.750
+It will work and you will get a sequence of 1000.
+
+11:43.790 --> 11:47.540
+So with this you can control how many iterations are allowed in your query.
+
+11:47.540 --> 11:49.580
+So with that you have like a control on it.
+
+11:49.620 --> 11:49.860
+Okay.
+
+11:49.900 --> 11:54.220
+So now we can understand step by step how SQL executed the recursive query.
+
+11:54.260 --> 11:59.940
+And here we have like a flow diagram in order to understand the process the steps of executing the recursive
+
+11:59.940 --> 12:00.460
+query.
+
+12:00.460 --> 12:01.780
+So let's go and do it.
+
+12:01.780 --> 12:06.300
+Now in the start we have the first step is to run the anchor query.
+
+12:06.300 --> 12:09.820
+So our anchor query is just to select for the value one.
+
+12:09.820 --> 12:13.500
+So in the output we will get the value one inch my number.
+
+12:13.500 --> 12:17.300
+And as you can see the anchor query can be executed only once.
+
+12:17.660 --> 12:23.100
+So there is no iterations or anything SQL executed once and then goes to the next step.
+
+12:23.100 --> 12:26.860
+So what is the next step is going to execute the recursive query.
+
+12:26.860 --> 12:28.460
+So it's going to go over here.
+
+12:28.460 --> 12:29.420
+And now what's going to happen.
+
+12:29.420 --> 12:32.140
+We will get the current value of my number.
+
+12:32.140 --> 12:33.660
+The current value is one.
+
+12:33.660 --> 12:35.780
+And then we're going to add to it one.
+
+12:36.020 --> 12:42.780
+So one plus one we will get from the recursive query the two which is added to our results.
+
+12:42.820 --> 12:44.580
+Now it's going to check the condition.
+
+12:44.580 --> 12:47.850
+Is my number now smaller than 20.
+
+12:47.890 --> 12:49.930
+Well, yes, it's smaller than 20.
+
+12:50.130 --> 12:56.370
+And what's going to happen since it's true it's going to go and re-execute the recursive query.
+
+12:56.410 --> 12:58.890
+So now we are doing the second iteration.
+
+12:58.890 --> 13:01.490
+So again it's going to go to the recursive query.
+
+13:01.490 --> 13:04.450
+And I'm going to say okay what is the current value of my number.
+
+13:04.490 --> 13:05.250
+It is two.
+
+13:05.490 --> 13:06.730
+So two plus one.
+
+13:07.210 --> 13:10.290
+The second iteration will give us the value three.
+
+13:10.290 --> 13:17.530
+So as you can see each time the recursive query is executed it is adding more values to our results.
+
+13:17.530 --> 13:21.970
+So the same question can be asked is now my number smaller than 20.
+
+13:22.010 --> 13:23.690
+Well yes it is smaller.
+
+13:23.930 --> 13:25.210
+Well what's going to happen.
+
+13:25.250 --> 13:28.370
+It's going to re-execute the recursive query.
+
+13:28.370 --> 13:35.490
+So it's going to keep looping and iterating and adding values to the output until we reach the value
+
+13:35.530 --> 13:36.250
+20.
+
+13:36.290 --> 13:41.330
+So now SQL can ask is 20 my number now smaller than 20.
+
+13:41.370 --> 13:42.290
+Well no.
+
+13:42.530 --> 13:44.010
+So it is false.
+
+13:44.010 --> 13:45.160
+And what can happen.
+
+13:45.160 --> 13:48.360
+The chain will break and we will not loop anymore.
+
+13:48.600 --> 13:53.560
+So it's going to be the end of the city, and this is going to be the final results that's going to
+
+13:53.560 --> 13:55.600
+be used from the main query.
+
+13:55.600 --> 13:58.920
+So this is how SQL executed this recursive CTE.
+
+13:58.960 --> 13:59.200
+Okay.
+
+13:59.240 --> 14:01.920
+So now let's have another task for the recursive CTE.
+
+14:02.080 --> 14:04.040
+This time it's going to be a little bit more advanced.
+
+14:04.040 --> 14:11.040
+So the task says show the employee hierarchy by displaying each employee's level within the organization.
+
+14:11.040 --> 14:16.800
+So that means we have to show for each employee for each row a level that tells us the hierarchy of
+
+14:16.840 --> 14:17.680
+the employee.
+
+14:17.840 --> 14:21.440
+So first let's go and explore the table employees.
+
+14:21.440 --> 14:27.280
+So let's go and select everything from sales employees okay.
+
+14:27.320 --> 14:28.360
+Let's go execute it.
+
+14:28.360 --> 14:32.000
+So now by looking to the results we have like few informations about the employee.
+
+14:32.040 --> 14:35.520
+We have information about which department the gender salaries.
+
+14:35.520 --> 14:36.840
+But here we have the key.
+
+14:36.880 --> 14:38.480
+It is the manager ID.
+
+14:38.480 --> 14:42.000
+So this is like self referencing to the same table.
+
+14:42.000 --> 14:45.110
+So for example the first employee, the value is null.
+
+14:45.150 --> 14:51.070
+That means this employee has no manager, which makes this employee like the big boss, the CEO.
+
+14:51.230 --> 14:56.030
+Then now by looking to the next two employees, they have manager ID one.
+
+14:56.030 --> 14:58.310
+So who is the manager of those two?
+
+14:58.510 --> 15:01.750
+It's going to be the first row the manager ID number one.
+
+15:01.750 --> 15:05.550
+So the manager ID number one is the pose of those two employees.
+
+15:05.550 --> 15:09.630
+And then for the fourth one we can see the manager ID number two.
+
+15:09.670 --> 15:12.710
+So the manager of Michael is actually Kevin.
+
+15:12.750 --> 15:13.630
+The second row.
+
+15:13.630 --> 15:16.190
+And for Carol the manager ID is three.
+
+15:16.230 --> 15:19.430
+That means Mary is the manager of Carol.
+
+15:19.430 --> 15:22.350
+And this is exactly what we can do with the recursive ctes.
+
+15:22.390 --> 15:25.870
+We can use such informations in order to create like a loop.
+
+15:25.870 --> 15:28.070
+So let's go and do it step by step.
+
+15:28.110 --> 15:31.310
+First we're going to start with the anchor query as usual.
+
+15:31.670 --> 15:35.270
+So this is the anchor query.
+
+15:35.270 --> 15:41.110
+And here the first step or the first record is going to be the highest manager which is the CEO.
+
+15:41.150 --> 15:41.590
+Right.
+
+15:41.590 --> 15:43.020
+The first record.
+
+15:43.020 --> 15:51.500
+So in order to select now the only the first record, what we can say, we can say where manager ID
+
+15:51.540 --> 15:52.780
+is null.
+
+15:53.340 --> 15:55.180
+So let's go and execute it.
+
+15:55.180 --> 15:57.100
+And with that we have now the first row.
+
+15:57.100 --> 16:00.020
+And we can use this as the first step in our iteration.
+
+16:00.020 --> 16:06.260
+So now let's go and pick few informations in the select like the employee ID and the first name.
+
+16:06.620 --> 16:08.820
+And as well let's go and get the manager ID.
+
+16:09.180 --> 16:11.820
+And now we have to start creating the levels right.
+
+16:11.820 --> 16:13.940
+So this is the first level.
+
+16:13.940 --> 16:17.740
+So I'm going to have the value one as let's have it like level.
+
+16:17.740 --> 16:20.980
+So our CEO has the level number one.
+
+16:20.980 --> 16:22.860
+So let's go and execute it.
+
+16:22.860 --> 16:28.020
+So now as you can see Frank is the CEO and he is in the level number one.
+
+16:28.020 --> 16:30.180
+So this is our anchor query.
+
+16:30.220 --> 16:32.220
+Now we have to do the iteration right.
+
+16:32.220 --> 16:34.780
+So we have to go and start creating the CTE.
+
+16:35.140 --> 16:39.780
+So let's call it with CTE employee hierarchy.
+
+16:40.860 --> 16:46.050
+And I've been asked and then this is the definition of our city.
+
+16:46.210 --> 16:47.890
+So let me just make it like this.
+
+16:48.210 --> 16:49.370
+And of course, what do we need?
+
+16:49.370 --> 16:50.930
+We need the main query.
+
+16:51.130 --> 17:00.330
+So main query we will select everything from our new city like this.
+
+17:00.330 --> 17:02.090
+So let's go and test it.
+
+17:02.810 --> 17:03.170
+All right.
+
+17:03.170 --> 17:06.050
+So now we have prepared the CTE and the main query.
+
+17:06.090 --> 17:09.970
+And of course the next step is that we're going to go and build the recursive query.
+
+17:09.970 --> 17:17.930
+But first we need the union all in order to connect the two queries and recursive query.
+
+17:18.250 --> 17:19.970
+And now we can start building the logic.
+
+17:19.970 --> 17:25.610
+So now we want to find all the employees where their manager is the employee ID number one.
+
+17:25.610 --> 17:26.050
+Right.
+
+17:26.050 --> 17:29.130
+Because they can have the second level in the hierarchy.
+
+17:29.130 --> 17:33.370
+So what we're going to do we're going to go and select and we need the same stuff.
+
+17:33.370 --> 17:37.410
+So we would like to get the employee ID the first name and the manager ID.
+
+17:37.410 --> 17:38.530
+And we need the level.
+
+17:38.530 --> 17:40.530
+So this is going to be the level number two.
+
+17:40.810 --> 17:46.370
+It's not correct yet, but I just want to show what this means because we need to get the employee ID
+
+17:46.370 --> 17:47.650
+and the first name and so on.
+
+17:47.970 --> 17:50.850
+We cannot get it yet from the CTE because in the CTE.
+
+17:50.890 --> 17:52.210
+We have only one employee.
+
+17:52.210 --> 17:56.690
+So we still have to go to the database and grab the next employees.
+
+17:56.730 --> 18:03.250
+So now we'll give this as an alias like E, and I will select it as well from those employees.
+
+18:03.250 --> 18:06.410
+So so far we are not doing any recursive yet right.
+
+18:06.610 --> 18:09.730
+And the recursive query we're still querying the database.
+
+18:09.730 --> 18:12.970
+But now we don't need all the employees from this table.
+
+18:12.970 --> 18:17.010
+We need all the employees where the manager ID equal to one.
+
+18:17.010 --> 18:17.410
+Right.
+
+18:17.450 --> 18:21.890
+Now of course, in order to get those employees where the manager equal to one.
+
+18:21.890 --> 18:28.610
+So we can do it with the word clouds for example, and say manager id equal to one, let me just select
+
+18:28.610 --> 18:29.770
+this and query it.
+
+18:29.810 --> 18:35.370
+Now we will get those two employees where their manager is the CEO the top manager.
+
+18:35.370 --> 18:37.330
+But of course we cannot do it like this.
+
+18:37.370 --> 18:41.560
+What we're going to do we're going to join this table with our current CTE.
+
+18:41.880 --> 18:43.360
+In order to make a loop.
+
+18:43.360 --> 18:44.600
+So let me show you what I mean.
+
+18:44.600 --> 18:45.960
+We will remove this.
+
+18:46.240 --> 18:52.040
+We're going to use the inner join, and we're going to reference it from the CTE.
+
+18:53.080 --> 18:54.800
+And let's give this a name see.
+
+18:55.760 --> 18:57.160
+And we connect it like this.
+
+18:57.160 --> 19:04.680
+So on we're going to say the manager ID of the employee should be equal to the employee ID.
+
+19:04.880 --> 19:08.280
+So the employee ID at the start is going to be the number one.
+
+19:08.280 --> 19:11.920
+So it's going to be like this employee ID.
+
+19:12.000 --> 19:16.040
+Now we are connecting the manager ID with the employee ID.
+
+19:16.040 --> 19:21.920
+And we are as well reusing the CTE inside itself in order to make the iterations.
+
+19:21.920 --> 19:27.040
+And here we don't need the Where clause because the inner join can filter the data automatically.
+
+19:27.040 --> 19:32.080
+As we learned, the inner join is going to show only the matching rows from the left and to the right.
+
+19:32.080 --> 19:33.920
+So that means there will be filtering.
+
+19:33.920 --> 19:35.080
+So we are almost there.
+
+19:35.080 --> 19:38.550
+But of course we don't want to show it as a tool to what we're going to do.
+
+19:38.590 --> 19:41.870
+We're going to show it like this level plus one.
+
+19:41.870 --> 19:43.310
+So the current level is one.
+
+19:43.310 --> 19:46.950
+The second iteration is going to be two, and the third iteration is going to be three.
+
+19:46.950 --> 19:50.790
+So I think we have everything for our iteration.
+
+19:50.790 --> 19:53.270
+Let me just check and make this smaller.
+
+19:53.310 --> 19:55.430
+Now again we have here our anchor query.
+
+19:55.430 --> 19:58.030
+This is only for the top level manager.
+
+19:58.030 --> 20:01.950
+And then here we are just connecting the managers with the employees.
+
+20:01.950 --> 20:07.230
+And we are reusing the CTE in order to make the effect of the loop.
+
+20:07.270 --> 20:13.270
+And as well we are using the inner join in order to break the loop once there are no more rows to process.
+
+20:13.270 --> 20:15.350
+So let's go and execute it.
+
+20:15.390 --> 20:16.710
+Now let's check the output.
+
+20:16.710 --> 20:18.150
+This is our top manager.
+
+20:18.150 --> 20:21.510
+So level one this information comes from the anchor query.
+
+20:21.510 --> 20:27.070
+Then the second iteration it is the employees where the manager ID equal to one.
+
+20:27.510 --> 20:29.590
+So it's going to be those two employees.
+
+20:29.710 --> 20:34.710
+So those employees in our hierarchy are the second level in our organization.
+
+20:34.710 --> 20:41.020
+And then we're going to search for employees where their manager ID is equal to either 2 or 3.
+
+20:41.060 --> 20:44.460
+And this is going to be those two employees, Carroll and Merkel.
+
+20:44.460 --> 20:49.980
+And now to the third iteration, we're going to search for all employees where their manager ID is equal
+
+20:50.020 --> 20:51.780
+to either 2 or 3.
+
+20:51.820 --> 20:57.060
+And now to the third iteration, we're going to search for all employees where their manager ID equal
+
+20:57.100 --> 20:58.660
+to either 2 or 3.
+
+20:58.700 --> 21:04.780
+And this can result having those two employees because their manager ID is equal to 3 or 2.
+
+21:05.020 --> 21:06.780
+And they're going to get the level of three.
+
+21:06.820 --> 21:12.500
+And then after that it's going to try to search for employees where their manager ID is equal to five
+
+21:12.540 --> 21:13.140
+and four.
+
+21:13.340 --> 21:14.980
+And this will not find anything.
+
+21:15.020 --> 21:16.820
+And that's why it can breaks.
+
+21:16.820 --> 21:18.700
+So with that we have solved the task.
+
+21:18.740 --> 21:23.380
+All right I totally understand if this is complicated, but now we're going to do it step by step in
+
+21:23.380 --> 21:28.100
+order to understand how SQL executed this and why we have done it in this way.
+
+21:28.140 --> 21:30.140
+So again we have our flow diagram.
+
+21:30.380 --> 21:34.220
+We start by running the anchor query then the recursive query.
+
+21:34.380 --> 21:35.810
+And then we have a check.
+
+21:35.810 --> 21:37.570
+If the check fails, we iterate.
+
+21:37.610 --> 21:39.130
+Otherwise we end.
+
+21:39.170 --> 21:40.530
+So let's do it step by step.
+
+21:40.530 --> 21:45.010
+Here we have the table employees and beneath it we have the result of the CTE.
+
+21:45.170 --> 21:49.650
+So the first step it says we run the anchor query and we run it only once.
+
+21:49.650 --> 21:52.890
+So SQL going to go to the anchor query and start executing it.
+
+21:52.890 --> 21:55.970
+So here we are selecting from the table employees.
+
+21:55.970 --> 21:58.410
+But we are making a filter on the manager ID.
+
+21:58.410 --> 22:00.210
+So the manager ID should be null.
+
+22:00.490 --> 22:03.850
+So that means we will get the record of Frank.
+
+22:04.330 --> 22:06.450
+And Frank going to be at the output.
+
+22:06.450 --> 22:09.890
+And we are saying the level of this employee is one.
+
+22:09.890 --> 22:12.290
+So we will have here at the level one.
+
+22:12.290 --> 22:15.210
+So this is the output of the anchor query.
+
+22:15.210 --> 22:16.010
+And that's it.
+
+22:16.010 --> 22:17.650
+This will never be executed.
+
+22:17.690 --> 22:19.450
+Now we go to the next step.
+
+22:19.450 --> 22:21.810
+Now we will run the recursive query.
+
+22:21.810 --> 22:23.050
+So what's going to happen.
+
+22:23.210 --> 22:27.970
+And the recursive query we are saying okay I would like to select as well data from the employees and
+
+22:27.970 --> 22:30.170
+join it with the CTE results.
+
+22:30.170 --> 22:32.290
+But the join should be an inner join.
+
+22:32.290 --> 22:35.880
+So only the matching data between the CTE and the employees.
+
+22:35.920 --> 22:37.800
+And now comes the join condition.
+
+22:37.800 --> 22:40.320
+And this is the key for this iteration.
+
+22:40.320 --> 22:46.480
+We are saying the manager ID of the employee should be matching to the employee ID from the CTE.
+
+22:46.760 --> 22:49.960
+So it's going to go and join the table with the CTE.
+
+22:50.160 --> 22:52.920
+So now we have here only employee number ID one.
+
+22:52.920 --> 22:56.760
+So it's going to do it step by step searching for any matches.
+
+22:56.920 --> 23:02.160
+So for the first one we don't have a match because the manager ID is not equal to one.
+
+23:02.160 --> 23:08.040
+So that's why it will not be included in the result that the second row here the manager ID is equal
+
+23:08.040 --> 23:08.600
+to one.
+
+23:08.600 --> 23:10.800
+And this is a match with the employee ID.
+
+23:11.080 --> 23:14.480
+So SQL going to take it and put it at the output.
+
+23:14.520 --> 23:17.360
+Not only that it's going to increase the level.
+
+23:17.360 --> 23:19.640
+So we have here the current value is one.
+
+23:19.920 --> 23:22.280
+So level plus one what can happen.
+
+23:22.280 --> 23:23.960
+We will get the value two.
+
+23:24.000 --> 23:25.600
+We are still in the same iteration.
+
+23:25.600 --> 23:26.920
+We are not iterating yet.
+
+23:26.920 --> 23:30.640
+So this is the first iteration of the recursive query.
+
+23:31.080 --> 23:34.590
+So until the whole join is done to the next row.
+
+23:34.630 --> 23:40.790
+We have a match as well, because the manager ID is equal to one and we can have the same thing.
+
+23:40.830 --> 23:42.110
+The level is going to be as well.
+
+23:42.150 --> 23:46.950
+Two because the value of the level didn't change, it's still the current value is equal to one and
+
+23:46.950 --> 23:48.030
+it's going to keep going.
+
+23:48.030 --> 23:50.310
+So two three we don't have any matches.
+
+23:50.310 --> 23:54.630
+And with that the SQL is done executing the recursive query.
+
+23:54.670 --> 23:55.070
+All right.
+
+23:55.070 --> 23:58.590
+So now the SQL is going to say okay did we process everything.
+
+23:58.990 --> 24:01.310
+Well no we still have missing output.
+
+24:01.310 --> 24:02.990
+We still have missing employees.
+
+24:02.990 --> 24:05.230
+That's why we didn't fulfill the condition.
+
+24:05.230 --> 24:07.230
+And we're gonna run this again.
+
+24:07.230 --> 24:10.350
+So now in the second iteration it's going to join as well.
+
+24:10.390 --> 24:16.670
+Again, the city result with the employees by matching the manager ID and the employee ID, but this
+
+24:16.670 --> 24:19.350
+time it's going to focus only on those two IDs.
+
+24:19.630 --> 24:21.230
+So the two and three.
+
+24:21.230 --> 24:27.350
+So SQL is going to go and find any matching where the manager ID equal to 2 or 3.
+
+24:27.390 --> 24:28.950
+So it's going to do it step by step.
+
+24:28.950 --> 24:29.950
+The first one is none.
+
+24:29.990 --> 24:35.670
+The second one is as well Not the third one is not because the manager ID is one.
+
+24:35.670 --> 24:39.950
+But now to the employee number four, we have a match.
+
+24:39.950 --> 24:45.310
+So SQL going to take this one and put it in the output like this.
+
+24:45.310 --> 24:47.950
+And now in this iteration what is the current level.
+
+24:47.950 --> 24:50.590
+It is two but we add to it one.
+
+24:50.590 --> 24:53.430
+That's why we will get in the output three.
+
+24:53.470 --> 24:54.870
+And then SQL keep going.
+
+24:54.870 --> 24:59.550
+So we have here the employee number five and the manager ID is equal to three.
+
+24:59.550 --> 25:00.390
+So what happens.
+
+25:00.470 --> 25:06.230
+SQL takes it as well and put it in the output as the result of the CTE.
+
+25:06.430 --> 25:11.350
+And as well the current level is two plus one we can have as well three.
+
+25:11.350 --> 25:17.990
+So with that SQL done joining the tables and you can ask again did we process all employees.
+
+25:17.990 --> 25:19.750
+Well yes it's true.
+
+25:19.790 --> 25:22.630
+That means we don't have to do any more iterations.
+
+25:22.630 --> 25:26.270
+Because if you do any iterations SQL will not find anything.
+
+25:26.270 --> 25:32.020
+So for example if you go over here let me just remove this and let's say we are joining with the four
+
+25:32.020 --> 25:32.860
+and five.
+
+25:32.860 --> 25:37.900
+So what's going to happen is we're going to search in the manager's ID for four and five, and it will
+
+25:37.900 --> 25:38.820
+not find anything.
+
+25:38.820 --> 25:41.820
+So that means we will not be adding anything to the CTE.
+
+25:41.860 --> 25:43.220
+That's why SQL stops.
+
+25:43.220 --> 25:44.580
+So we have a complete results.
+
+25:44.580 --> 25:48.180
+And we have now all the data from the employees in the output.
+
+25:48.180 --> 25:50.860
+And this results can be passed to the main query.
+
+25:50.860 --> 25:52.860
+So this is why we have done it like this.
+
+25:52.860 --> 25:56.180
+And this is how SQL executed this recursive query.
+
+25:56.220 --> 26:01.260
+Now I would like to visual for you what this means the level or the structure of the organization.
+
+26:01.260 --> 26:03.020
+So the hierarchy looks like this.
+
+26:03.220 --> 26:05.820
+The level one the top manager is frank.
+
+26:05.820 --> 26:08.940
+So this is the level number one.
+
+26:08.940 --> 26:10.700
+And then we go to the level number two.
+
+26:10.740 --> 26:13.260
+So we have those two employees.
+
+26:13.460 --> 26:14.660
+So we have Kevin.
+
+26:14.660 --> 26:16.860
+So this is the level number one.
+
+26:16.860 --> 26:20.700
+And then we have two employees Kevin and Mary at the level two.
+
+26:21.140 --> 26:25.980
+So they work together and their boss is Frank.
+
+26:26.100 --> 26:28.220
+So it's gonna look like this.
+
+26:28.220 --> 26:30.930
+And they are at that level too.
+
+26:30.970 --> 26:35.690
+We have then Michael that directly reports to who?
+
+26:35.730 --> 26:38.890
+To Kevin because here we have the employee ID two and two.
+
+26:38.930 --> 26:40.770
+So we have one employee here.
+
+26:40.770 --> 26:44.010
+And as well Carol is as well at the level three.
+
+26:44.290 --> 26:46.450
+And she reports to Mary.
+
+26:46.450 --> 26:49.890
+And both Michael and Carol are at the level three.
+
+26:49.890 --> 26:52.010
+So this is what we mean with the level.
+
+26:52.010 --> 26:56.690
+It can help us to identify which employee, at which level in the organization.
+
+26:56.690 --> 27:03.610
+If you have like hierarchy in your data and you can see in one table things are referencing each others,
+
+27:03.650 --> 27:10.010
+like here the manager ID is actually the employee ID, so it's like we are referencing those ID to each
+
+27:10.050 --> 27:10.570
+others.
+
+27:10.610 --> 27:14.570
+This means there is hierarchy and there is a structure in this table.
+
+27:14.570 --> 27:21.570
+And you can use the recursive CTE in order to build those levels and to navigate as well through the
+
+27:21.570 --> 27:22.290
+hierarchy.
+
+27:22.450 --> 27:22.770
+All right.
+
+27:22.770 --> 27:24.330
+So that's all for the recursive city.
+
+27:24.330 --> 27:28.930
+And with that we have covered all the different types of cities that we have in SQL.

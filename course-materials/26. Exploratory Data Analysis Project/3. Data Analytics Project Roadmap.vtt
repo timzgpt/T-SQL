@@ -1,0 +1,94 @@
+WEBVTT
+
+00:00.040 --> 00:04.560
+So I'm going to show you the steps that we usually do in the industry to do data analysis.
+
+00:04.600 --> 00:07.400
+So the first phase is the EDA projects.
+
+00:07.400 --> 00:10.120
+Usually the first step is we explore the database.
+
+00:10.120 --> 00:12.720
+So what are the tables and the columns inside it.
+
+00:12.720 --> 00:16.360
+Then we explore the dimensions inside the tables.
+
+00:16.360 --> 00:20.400
+And then we explore different dates to understand the range of the data.
+
+00:20.440 --> 00:26.000
+And then we try to explore the measures like how many customers, how many orders, how many products.
+
+00:26.000 --> 00:29.280
+And then in the next step we do something called magnitude analysis.
+
+00:29.280 --> 00:32.280
+It is just we group up something by another thing.
+
+00:32.280 --> 00:38.520
+So you take one dimension and one measure and combine them like find the number of orders by products,
+
+00:38.520 --> 00:41.240
+the total sales by customers.
+
+00:41.240 --> 00:43.320
+So it's like we are combining two things together.
+
+00:43.320 --> 00:46.000
+And the last step is we start doing ranking.
+
+00:46.000 --> 00:49.160
+So top customers, top products, top categories and so on.
+
+00:49.160 --> 00:54.760
+So those are generally the steps that we use to explore any data sets for any industry.
+
+00:54.760 --> 00:59.240
+I worked in five different industries and I end up using always those tips.
+
+00:59.280 --> 01:04.440
+Now after that we start doing some advanced analytical stuff, like for example, the changes over time
+
+01:04.440 --> 01:07.520
+in order to see how things evolves over the time.
+
+01:07.520 --> 01:12.680
+We have to learn to do cumulative analyses to show how values build up over time.
+
+01:12.680 --> 01:18.160
+And of course, very famous one performance analysis in order to compare things together and another
+
+01:18.160 --> 01:23.280
+type of analysis, we have the part to whole to explain how each part contributes to the total.
+
+01:23.280 --> 01:26.720
+And this can help us to understand the importance of the data.
+
+01:26.720 --> 01:32.400
+And another type is data segmentations, where you can group up and segment the data of, for example,
+
+01:32.400 --> 01:33.840
+the users, their products.
+
+01:33.840 --> 01:38.360
+And of course, another type we do is reporting and this is a classical one that we do.
+
+01:38.360 --> 01:43.360
+So we build one view in order to answer multiple business questions in one go.
+
+01:43.360 --> 01:46.120
+And of course you can do the whole thing using SQL.
+
+01:46.120 --> 01:48.280
+So now this is the whole roadmap for the projects.
+
+01:48.280 --> 01:50.680
+And of course we're going to do everything step by step.
+
+01:50.760 --> 01:52.720
+And we're going to start with the EDA project.
+
+01:52.760 --> 01:53.400
+Let's go.

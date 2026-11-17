@@ -1,0 +1,136 @@
+WEBVTT
+
+00:03.880 --> 00:06.520
+Okay, so now let's focus more about the SQL itself.
+
+00:06.520 --> 00:09.120
+We have an SQL different type of commands.
+
+00:09.120 --> 00:10.640
+So let's say that we have a database.
+
+00:10.640 --> 00:12.040
+And this database is empty.
+
+00:12.040 --> 00:13.440
+So we have nothing inside it.
+
+00:13.480 --> 00:19.000
+Now of course the first thing that you have to do is to write an SQL with the command create in order
+
+00:19.000 --> 00:21.800
+to create brand new table in the database.
+
+00:21.800 --> 00:24.400
+So once you executed the database can go and build one.
+
+00:24.400 --> 00:27.440
+But this table is empty so we have nothing inside it.
+
+00:27.440 --> 00:30.720
+So now what you have done here is you have defined something new right.
+
+00:30.720 --> 00:34.120
+And we call this type of commands the data definition language.
+
+00:34.120 --> 00:40.320
+The DDL we have create to create something new alter in order to edit something that already exists
+
+00:40.320 --> 00:44.080
+and drop in order to delete something to drop, for example a table.
+
+00:44.080 --> 00:46.200
+So this is the first family of commands.
+
+00:46.240 --> 00:48.160
+Now if you look at our table it is empty.
+
+00:48.200 --> 00:48.880
+What do we need?
+
+00:48.920 --> 00:49.800
+We need data.
+
+00:49.800 --> 00:52.480
+So let's say that we have a website or an application.
+
+00:52.480 --> 00:54.960
+Now this application is generating a lot of data.
+
+00:55.000 --> 01:00.920
+Now in order for this application to move the data inside our new table, it must use the SQL command
+
+01:00.920 --> 01:01.560
+insert.
+
+01:01.560 --> 01:05.700
+So if you execute insert you can add new data inside your table.
+
+01:05.700 --> 01:09.300
+This type of commands, we call it data manipulation language.
+
+01:09.300 --> 01:10.620
+And here we have three commands.
+
+01:10.620 --> 01:15.900
+Insert in order to insert a new data update, in order to update an already existing data and delete
+
+01:15.900 --> 01:18.260
+in order to go and delete data from your table.
+
+01:18.260 --> 01:22.860
+And that's why we call it data manipulation language, because you are manipulating your data.
+
+01:22.860 --> 01:23.660
+So what do you have now?
+
+01:23.660 --> 01:24.380
+We have table.
+
+01:24.380 --> 01:26.060
+We have data inside the table.
+
+01:26.100 --> 01:28.820
+Now what we can do we can start asking questions.
+
+01:28.820 --> 01:31.660
+So let's say that you have analytical question about your data.
+
+01:31.700 --> 01:35.100
+Now all what you have to do is to write something called SQL query.
+
+01:35.100 --> 01:37.580
+And inside it you use the command select.
+
+01:37.580 --> 01:39.340
+But the whole thing we call it a query.
+
+01:39.340 --> 01:45.580
+So you send a query to the database, you have a question and the database can return for you the result
+
+01:45.580 --> 01:48.420
+that data answering your query or question.
+
+01:48.420 --> 01:53.220
+And we call this type of activities using SQL the data query language.
+
+01:53.260 --> 01:54.500
+And here we have only one.
+
+01:54.500 --> 01:55.940
+And it is very famous.
+
+01:55.980 --> 01:57.220
+We have the select.
+
+01:57.220 --> 01:59.620
+We can use it in order to query our data.
+
+01:59.620 --> 02:02.620
+So those are the three different commands in SQL.
+
+02:02.660 --> 02:04.260
+And of course we're going to learn all of them.
+
+02:04.260 --> 02:10.500
+But we will spend most of our time learning how to write the correct query for the correct answer.

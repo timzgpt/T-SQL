@@ -1,0 +1,193 @@
+WEBVTT
+
+00:00.120 --> 00:01.280
+So what is a date?
+
+00:01.280 --> 00:08.400
+If you take a look at the calendar and you pick any date, for example August 20th, 2025.
+
+00:08.440 --> 00:12.160
+This date could represent an event like a birth date.
+
+00:12.440 --> 00:13.200
+Happy birthday.
+
+00:15.960 --> 00:16.760
+Happy birthday.
+
+00:18.160 --> 00:20.320
+Or a project deadline at your work.
+
+00:20.360 --> 00:22.440
+And mainly it has three components.
+
+00:22.440 --> 00:26.160
+The first part is a four digit number indicating the year.
+
+00:26.200 --> 00:28.760
+Then the next component it is the month.
+
+00:28.760 --> 00:33.160
+So normally we represent the month with a number between 1 and 12.
+
+00:33.160 --> 00:35.320
+And the last component is the day.
+
+00:35.360 --> 00:38.520
+This is a number between 1 and 31 depending on the month.
+
+00:38.560 --> 00:42.920
+Now in database we call this structure of the three components a date.
+
+00:42.920 --> 00:45.560
+So this is what we mean with dates in SQL.
+
+00:45.600 --> 00:45.920
+All right.
+
+00:45.920 --> 00:47.240
+So now let's move to the next one.
+
+00:47.240 --> 00:48.160
+What is time.
+
+00:48.200 --> 00:51.280
+Time refers to a specific point within a day.
+
+00:51.280 --> 00:56.320
+Like for example we have 18:00 55 minutes and 45 seconds.
+
+00:56.320 --> 00:59.120
+So this structure has as well three components.
+
+00:59.160 --> 01:01.040
+The first one we call it the hours.
+
+01:01.080 --> 01:06.120
+It is as well a number between 0 and 23 indicating the hour of the day.
+
+01:06.160 --> 01:08.040
+Then the next one it is the minutes.
+
+01:08.040 --> 01:10.360
+This is a number between 0 and 59.
+
+01:10.400 --> 01:12.680
+Moving on to the last component, we have the second.
+
+01:12.720 --> 01:17.280
+This is again the same thing in number between 0 and 59.
+
+01:17.280 --> 01:22.160
+So now this structure with all three components we call it in databases and SQL a time.
+
+01:22.160 --> 01:24.040
+So this is what we mean with the time.
+
+01:24.320 --> 01:25.520
+Now to the last type.
+
+01:25.520 --> 01:31.640
+If you go and combine both the date together with the time and you put them side by side, you will
+
+01:31.640 --> 01:37.160
+get a new structure and a new name in the databases and we call it usually timestamp.
+
+01:37.160 --> 01:42.840
+This name is used in many databases like Oracle, Postgres and MySQL, but in the SQL server we have
+
+01:42.840 --> 01:43.760
+another name for that.
+
+01:43.760 --> 01:45.480
+We call it date time.
+
+01:45.480 --> 01:46.600
+So again it's very simple.
+
+01:46.600 --> 01:51.640
+The date time or timestamp has the date information together with the time information.
+
+01:51.640 --> 01:54.720
+So here in this example we have six components from left to right.
+
+01:54.720 --> 01:57.200
+And here we have like a hierarchy in this structure.
+
+01:57.200 --> 01:59.840
+So we start with the highest which is the year.
+
+01:59.880 --> 02:02.080
+Then we have the month the day.
+
+02:02.120 --> 02:05.520
+And then we continue to the hour minutes and seconds.
+
+02:05.520 --> 02:09.160
+So those are the three different types about date and time information.
+
+02:09.160 --> 02:15.360
+In SQL we have the date alone or the time alone or together in the date time.
+
+02:15.360 --> 02:15.680
+All right.
+
+02:15.680 --> 02:21.120
+Let's explore now the data that we have inside our database searching for date and time informations.
+
+02:21.160 --> 02:23.160
+Now let's go to the table orders.
+
+02:23.160 --> 02:27.640
+And if you go and expand it you will find here two columns having the data type date.
+
+02:27.640 --> 02:32.480
+So we have the order dates with the date and as well the shipping date with the data type dates.
+
+02:32.480 --> 02:35.200
+And if you check the last column the creation date.
+
+02:35.200 --> 02:37.240
+This one is date time two.
+
+02:37.320 --> 02:40.720
+So now let's go and query those informations in order to understand the structure.
+
+02:40.840 --> 02:51.880
+I'm just going to select the order ID, the order date and the ship date and the creation time from
+
+02:52.200 --> 02:54.880
+sales orders and from his big.
+
+02:54.880 --> 02:56.240
+So let's go and execute it.
+
+02:56.240 --> 03:01.600
+Now if we go and check both order date and ship date you can find that here we have only the structure
+
+03:01.600 --> 03:05.440
+or the informations about the dates and we have nothing about the time.
+
+03:05.440 --> 03:10.000
+So again here we have a year, month and day and that's why they have the data type date.
+
+03:10.040 --> 03:12.040
+Now let's go and check the creation time.
+
+03:12.080 --> 03:16.200
+Not only we have the date information but as well we have the time information.
+
+03:16.200 --> 03:18.920
+So it starts with the date information year month day.
+
+03:19.040 --> 03:22.200
+And then we have our minute and seconds.
+
+03:22.200 --> 03:25.360
+And then we have fractions of the seconds milliseconds and so on.
+
+03:25.360 --> 03:28.920
+So this is how the date time or timestamp looks like in databases.
+
+03:29.160 --> 03:31.400
+And this is how the date looks like.

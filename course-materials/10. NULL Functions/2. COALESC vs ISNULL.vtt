@@ -1,0 +1,673 @@
+WEBVTT
+
+00:06.440 --> 00:08.680
+So let's start with the first function is null.
+
+00:08.960 --> 00:12.920
+Is null going to go and replace a null with a specific value?
+
+00:12.960 --> 00:15.280
+Now the syntax of the is null is very simple.
+
+00:15.280 --> 00:19.440
+We're going to use the keyword isnull and it accepts two arguments.
+
+00:19.440 --> 00:22.880
+First the value and then the second the replacement value.
+
+00:22.880 --> 00:23.960
+So let's have an example.
+
+00:23.960 --> 00:28.120
+We can go and use the isnull for the column called shipping address.
+
+00:28.120 --> 00:30.080
+So we are checking the nulls inside it.
+
+00:30.080 --> 00:35.600
+And if SQL encounters any null it's going to go and replace it with the value unknown.
+
+00:35.600 --> 00:38.600
+So this can be like a default value for the nulls.
+
+00:38.600 --> 00:40.480
+So the first value is a column.
+
+00:40.480 --> 00:42.640
+And the second value is like static.
+
+00:42.640 --> 00:46.080
+Always going to be the unknown if we find any nulls.
+
+00:46.120 --> 00:50.160
+Now of course in other scenarios we don't want to have it always like the unknown.
+
+00:50.200 --> 00:54.040
+We would like to use another column to help the first one.
+
+00:54.040 --> 00:55.600
+So let's have this scenario.
+
+00:55.600 --> 00:59.120
+So now with this syntax we are checking the values of the shipping address.
+
+00:59.120 --> 01:04.650
+And if we find any nulls it's going to get the replacement from the billing address.
+
+01:04.650 --> 01:06.770
+So here in this example we have two columns.
+
+01:06.770 --> 01:08.890
+We don't have here any static value.
+
+01:08.930 --> 01:13.810
+We will get the values of the billing address only if the shipping address is null.
+
+01:13.810 --> 01:17.610
+So we are replacing the nulls using the help of other column.
+
+01:17.770 --> 01:23.250
+And in the first scenario we are replacing the nulls with a static value, the default value.
+
+01:23.250 --> 01:26.610
+So let's have a very simple example in order to learn how this works.
+
+01:26.610 --> 01:29.930
+So what we are doing we are checking whether the value is null.
+
+01:29.970 --> 01:34.090
+If it's yes, then we're going to go and get the value from the replacement.
+
+01:34.090 --> 01:37.570
+And if the value is not null then show the value itself.
+
+01:37.570 --> 01:38.850
+So we have the following example.
+
+01:38.850 --> 01:41.690
+We are going to check the values from the shipping address.
+
+01:41.930 --> 01:46.130
+And if there is nulls then go replace it with the default value na.
+
+01:46.170 --> 01:49.290
+So let's see how SQL going to go and execute this very simple example.
+
+01:49.290 --> 01:50.370
+We have two orders.
+
+01:50.570 --> 01:53.970
+The first order we are checking the shipment address is.
+
+01:53.970 --> 01:56.370
+The value of this address is null.
+
+01:56.490 --> 01:58.450
+Well no we have a value a.
+
+01:58.650 --> 02:02.290
+So that's why SQL going to go and return the same value.
+
+02:02.290 --> 02:05.130
+So in the outputs we will get a.
+
+02:05.170 --> 02:07.910
+So if it's not null, it's going to return the same value.
+
+02:07.910 --> 02:09.910
+So now it's going to move to the second order.
+
+02:09.910 --> 02:12.590
+And here we have the shipment address as a null.
+
+02:12.590 --> 02:13.790
+So what can happen here.
+
+02:13.790 --> 02:17.510
+If the value is null then we're going to get the replacement value.
+
+02:17.710 --> 02:20.470
+So what is the replacement value is the na.
+
+02:20.910 --> 02:24.150
+So that's why in the output we will not get a null.
+
+02:24.150 --> 02:26.110
+We will get the n a.
+
+02:26.230 --> 02:28.150
+So if you check the result what happens.
+
+02:28.150 --> 02:30.910
+We're going to get the addresses from the shipping address.
+
+02:30.910 --> 02:32.470
+But only if we have a null.
+
+02:32.470 --> 02:34.270
+We will get like default value.
+
+02:34.270 --> 02:39.310
+It's very important to understand if you are using the default value in the output, you will never
+
+02:39.350 --> 02:40.230
+get a null.
+
+02:40.270 --> 02:40.550
+All right.
+
+02:40.550 --> 02:45.030
+So let's have another example for the second scenario where we are not using a default value.
+
+02:45.070 --> 02:46.430
+We are using a column.
+
+02:46.430 --> 02:48.950
+So we have a supportive column that's going to be checked.
+
+02:49.150 --> 02:53.070
+So in this scenario we are saying is null shipping address and billing address.
+
+02:53.070 --> 02:54.270
+So we have two columns.
+
+02:54.310 --> 02:56.350
+And of course the logic can be the same.
+
+02:56.350 --> 02:56.590
+Right.
+
+02:56.590 --> 02:58.470
+So we are checking only once.
+
+02:58.510 --> 03:00.670
+Let's see how SQL can execute this example.
+
+03:00.670 --> 03:02.350
+We have this time three orders.
+
+03:02.350 --> 03:05.630
+And we have addresses from the shipments and as well from billing.
+
+03:05.630 --> 03:11.480
+So now SQL is always focusing on the shipping address since it is the first column, so we are not checking
+
+03:11.480 --> 03:12.640
+the billing address at all.
+
+03:12.960 --> 03:14.520
+So it starts with the first order.
+
+03:14.640 --> 03:15.400
+Is it null?
+
+03:15.440 --> 03:16.160
+Well, no.
+
+03:16.200 --> 03:20.080
+We have the value a so we will get it as well in the output.
+
+03:20.080 --> 03:23.760
+And SQL will not get anything from the billing address.
+
+03:23.760 --> 03:24.960
+So we will get a.
+
+03:25.000 --> 03:26.520
+So that's it for the first order.
+
+03:26.560 --> 03:28.520
+Now it's going to go to the second order.
+
+03:28.520 --> 03:30.440
+And this time we're going to have a null.
+
+03:30.480 --> 03:36.320
+So now in the rule we are saying if the shipping address is a null go get the value from the billing
+
+03:36.360 --> 03:36.960
+address.
+
+03:37.000 --> 03:39.800
+So this time we're going to go to the replacement right.
+
+03:39.920 --> 03:45.720
+So we will get the value see in the output because the shipping address is the null.
+
+03:45.760 --> 03:46.960
+Now let's move to the third row.
+
+03:47.000 --> 03:48.880
+As you can see here we have again a null.
+
+03:48.880 --> 03:52.800
+So SQL can go and get the value from the billing address.
+
+03:52.800 --> 03:56.680
+But here in this scenario the billing address is as well null.
+
+03:56.720 --> 04:00.720
+That's why we will get the value null in the output.
+
+04:00.760 --> 04:06.040
+So as you can see having the replacement values from a column, there is no guarantee that there will
+
+04:06.040 --> 04:10.360
+be always a value like here in the third order it is a null.
+
+04:10.400 --> 04:13.210
+That's why we will get null as well in the output.
+
+04:13.250 --> 04:19.170
+So if you think you are using is null to replace all the nulls by having two columns, you might end
+
+04:19.170 --> 04:21.610
+up as well having a null in the output.
+
+04:21.650 --> 04:23.570
+If the replacement having nulls.
+
+04:23.570 --> 04:29.010
+So if you want to make sure you don't get any nulls in the output, you have to go and use a static
+
+04:29.010 --> 04:29.530
+value.
+
+04:29.530 --> 04:32.370
+So this is how SQL executes the is null.
+
+04:36.290 --> 04:36.730
+All right.
+
+04:36.730 --> 04:38.290
+So what is coalesce.
+
+04:38.330 --> 04:43.050
+Coalesce is going to go and return the first non-null value from a list.
+
+04:43.050 --> 04:43.370
+All right.
+
+04:43.370 --> 04:47.450
+So now the syntax of that coalesce is way better than the is null here.
+
+04:47.450 --> 04:50.650
+It accepts like a list of many values.
+
+04:50.650 --> 04:52.970
+So here for example we have value 123.
+
+04:53.010 --> 04:55.930
+You can add four five as much as you want.
+
+04:55.970 --> 04:59.170
+So we are creating here a list of values to be checked.
+
+04:59.170 --> 05:04.650
+So for example we still can use it like the is null where we have the shipping address, where we replace
+
+05:04.650 --> 05:07.290
+the null with static value, the unknown.
+
+05:07.290 --> 05:11.530
+Or as we learned we can go and use two columns shipping address and the billing address.
+
+05:11.530 --> 05:14.300
+So so far it's like the same use cases as the is null.
+
+05:14.340 --> 05:17.420
+But now, of course, the coalesce is not only limited to two.
+
+05:17.460 --> 05:19.260
+We can go and use three.
+
+05:19.260 --> 05:21.380
+So we are saying go check the shipping address.
+
+05:21.380 --> 05:24.100
+If it's null, then go check the billing address.
+
+05:24.100 --> 05:29.460
+If it's as well null then use at the end the default value, the static one, the unknown.
+
+05:29.460 --> 05:32.940
+So as you can see, we can use more than two values with the coalesce.
+
+05:32.980 --> 05:33.220
+Okay.
+
+05:33.260 --> 05:36.220
+So now let's understand that coalesce and how this works.
+
+05:36.500 --> 05:39.460
+Now the workflow is something similar to the Isnull.
+
+05:39.460 --> 05:43.460
+So in this example we have two columns shipping address and the billing address.
+
+05:43.820 --> 05:45.140
+Again consider it as a list.
+
+05:45.140 --> 05:47.820
+And it's going to start checking from left to right.
+
+05:47.820 --> 05:50.820
+So it's going to check the first value from the shipping address.
+
+05:51.140 --> 05:52.020
+Whether it's null.
+
+05:52.060 --> 05:55.820
+If no it's not null then we're going to go and get the value one.
+
+05:55.820 --> 05:58.420
+So we will get the value from the shipping address.
+
+05:58.420 --> 06:02.580
+And if yes it is null then it's going to go and get the value two.
+
+06:02.620 --> 06:04.900
+So we're going to get the value from the shipping address.
+
+06:04.900 --> 06:06.260
+Now we have the similar data.
+
+06:06.260 --> 06:07.300
+We have three orders.
+
+06:07.300 --> 06:08.940
+Let's see how SQL can execute it.
+
+06:08.940 --> 06:12.780
+So it's going to start with the first row and it's going to focus on the shipping address.
+
+06:12.780 --> 06:14.700
+So here the value is not null.
+
+06:14.700 --> 06:16.220
+So we have it as an A.
+
+06:16.560 --> 06:19.320
+So that's why we will get the value one.
+
+06:19.320 --> 06:24.240
+So we will get the value from the shipping address and nothing else going to be checked.
+
+06:24.280 --> 06:25.920
+Now moving on to the second row.
+
+06:25.960 --> 06:27.960
+This time the shipping address is null.
+
+06:28.280 --> 06:32.400
+So SQL going to go and get the value from the second column.
+
+06:32.400 --> 06:34.040
+And it's going to be the C right.
+
+06:34.600 --> 06:37.000
+So in the output we will get C.
+
+06:37.040 --> 06:39.480
+Now to the last example we have it as a null.
+
+06:39.480 --> 06:42.560
+And the SQL is going to go and get the value from the second column.
+
+06:42.840 --> 06:46.960
+And this time we're going to get as well a null like that is null function.
+
+06:47.320 --> 06:51.280
+So at the results we are getting exactly the same result as is null.
+
+06:51.320 --> 06:55.000
+So for this scenario it doesn't matter whether you use Isnull or coalesce.
+
+06:55.040 --> 06:59.760
+So now of course we are still not happy with that because I don't want to see any nulls in the output,
+
+06:59.960 --> 07:04.400
+and I will still need to use the billing address instead of any static values.
+
+07:04.400 --> 07:07.560
+So I would like to have everything, the values from the billing address.
+
+07:07.560 --> 07:13.440
+And as well I would like to have at the end a default value so that I don't have any nulls in the output.
+
+07:13.440 --> 07:14.560
+So how are we going to solve it?
+
+07:14.560 --> 07:20.970
+So now we can use the power of the coalesce where we can include multiple values in one function.
+
+07:20.970 --> 07:24.810
+So what we're going to do, we're going to have the shipping address first then the billing address.
+
+07:24.850 --> 07:27.530
+And at the end we're going to have the default value.
+
+07:27.530 --> 07:29.770
+So we have now a list of three values.
+
+07:29.770 --> 07:32.530
+And of course our workflow is going to be a little bit bigger.
+
+07:32.530 --> 07:35.330
+So again here it's going to start from the left to the right.
+
+07:35.330 --> 07:37.650
+So first it's going to go and check the value one.
+
+07:37.810 --> 07:41.730
+If it is null then it's going to go as well checking the value two.
+
+07:41.770 --> 07:45.410
+And if the value two is as well null we will get the last value.
+
+07:45.410 --> 07:46.850
+It's going to be the value three.
+
+07:46.850 --> 07:49.850
+So now let's run the example again using the new coalesce.
+
+07:49.850 --> 07:54.170
+So the first thing we're going to go and check the first value which is the shipping address for the
+
+07:54.170 --> 07:55.090
+record number one.
+
+07:55.090 --> 07:57.490
+So now as you can see the value is not null.
+
+07:57.490 --> 07:58.810
+So we have here an A.
+
+07:58.970 --> 08:00.130
+So what's going to happen.
+
+08:00.130 --> 08:03.210
+We're going to get the value A as well in the output.
+
+08:03.210 --> 08:06.010
+So that means this one is going to be activated.
+
+08:06.010 --> 08:08.130
+And we will not check anything else.
+
+08:08.130 --> 08:11.170
+So that means in the output it's going to be like this.
+
+08:11.170 --> 08:15.410
+And the first value is returned and everything else will be ignored.
+
+08:15.410 --> 08:17.250
+So SQL will not check anything.
+
+08:17.250 --> 08:22.100
+So as you can see we are returning the first non-null value.
+
+08:22.100 --> 08:23.900
+So now let's move to the second order.
+
+08:23.900 --> 08:25.580
+Now we're going to check again the first value.
+
+08:25.580 --> 08:26.380
+Is it null?
+
+08:26.420 --> 08:27.180
+Well yes.
+
+08:27.180 --> 08:28.820
+As you can see we have here a null.
+
+08:29.020 --> 08:34.100
+So that means we're going to go and activate this path over here on the right side.
+
+08:34.100 --> 08:38.940
+So now SQL will not go blindly putting anything from the billing address in the results.
+
+08:38.980 --> 08:40.860
+First SQL has to check it.
+
+08:40.860 --> 08:43.580
+So SQL is going to check it whether it's null or not.
+
+08:43.620 --> 08:46.540
+This SQL is going to go and return it as well in the output.
+
+08:46.540 --> 08:49.060
+And we have activated this path.
+
+08:49.060 --> 08:54.060
+So SQL is returning the value two which is the value from the billing address.
+
+08:54.060 --> 08:59.100
+So now let's move to the third order SQL is going to go and check the shipping address.
+
+08:59.140 --> 08:59.980
+Is it null.
+
+09:00.020 --> 09:01.420
+Well yes it is null.
+
+09:01.420 --> 09:06.140
+So that's why SQL is going to go and start checking the second value.
+
+09:06.140 --> 09:09.740
+So this time SQL will not return the billing address value.
+
+09:09.780 --> 09:10.860
+Since it's null.
+
+09:10.980 --> 09:13.900
+It's going to go and return the third value.
+
+09:13.900 --> 09:15.340
+And what is the third value.
+
+09:15.340 --> 09:17.820
+It is our static value the na.
+
+09:17.980 --> 09:23.180
+So in the output we're going to get that na our default value.
+
+09:23.180 --> 09:26.230
+So with that, as you can see in the output, we will not get any nulls.
+
+09:26.230 --> 09:29.870
+We are using the default value and as well multiple columns.
+
+09:29.870 --> 09:35.390
+So if you check the output, it's always the first priority to check the values from the first column
+
+09:35.390 --> 09:36.510
+the shipping address.
+
+09:36.510 --> 09:40.310
+If it's null, then the second priority is going to be the billing address.
+
+09:40.310 --> 09:44.710
+If it's null, then the last priority it's going to be the default value.
+
+09:44.710 --> 09:50.950
+So as you can see SQL is checking the values from left to right, and it stops immediately once it encounters
+
+09:51.150 --> 09:54.790
+the first not null value and return it in the results.
+
+09:54.790 --> 09:56.830
+So this is how the Cavaliers works.
+
+10:00.710 --> 10:00.990
+All right.
+
+10:00.990 --> 10:05.230
+So now let's have a quick summary about the differences between the Coalesce and Isnull.
+
+10:05.230 --> 10:10.990
+So as we learned the Isnull is limited only to two values where the coalesce is amazing, where you
+
+10:10.990 --> 10:15.990
+can have a list of multiple values, which is a great advantage compared to the Isnull.
+
+10:16.030 --> 10:21.030
+Now, if you are talking about the performance, the Isnull is faster than the coalesce.
+
+10:21.030 --> 10:24.910
+So if you want to optimize the performance of your query, then go with the Isnull.
+
+10:24.950 --> 10:30.970
+Now there is another problem with the that is not that we have different keywords for different databases.
+
+10:30.970 --> 10:34.850
+So for Microsoft SQL server we use the Isnull as we learned.
+
+10:34.850 --> 10:37.450
+But in Oracle they have different implementations.
+
+10:37.450 --> 10:42.770
+They use the Nvl and other databases like MySQL you have Ifnull.
+
+10:42.810 --> 10:45.130
+And all those three functions are doing the same.
+
+10:45.250 --> 10:47.810
+But we have different implementations for different databases.
+
+10:47.810 --> 10:52.010
+But in the other hand the coalesce, it is available in all different databases.
+
+10:52.010 --> 10:56.250
+So here we have like an agreement or standards between the databases of using the coalesce.
+
+10:56.250 --> 11:01.730
+So here again this is a great advantage for the Coalesce because if you are writing like scripts and
+
+11:01.730 --> 11:06.290
+someday you want to migrate from one database to another, if you are using the coalesce, you don't
+
+11:06.290 --> 11:07.450
+have to change anything.
+
+11:07.450 --> 11:13.250
+But if you are using the Isnull, then you have to go and adjust your queries and scripts with the correct
+
+11:13.250 --> 11:13.930
+functions.
+
+11:14.170 --> 11:20.490
+That's why I tend always to use the coalesce and avoid using the Isnull only if it's really necessary
+
+11:20.490 --> 11:22.450
+that I have really bad performance.
+
+11:22.450 --> 11:26.330
+I go and try the isnull, but I usually stick with the coalesce.
+
+11:26.370 --> 11:27.890
+So that is my advice for you.
+
+11:28.090 --> 11:30.210
+Go with the coalesce and stick with the standard.

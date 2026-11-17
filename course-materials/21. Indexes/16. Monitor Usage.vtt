@@ -1,0 +1,718 @@
+WEBVTT
+
+00:00.120 --> 00:04.800
+All right, friends, so now let's say that you have created your indexes in your database and your
+
+00:04.800 --> 00:10.160
+query is optimized and you have fast performance, but the job is not done yet.
+
+00:10.480 --> 00:11.960
+No God.
+
+00:13.400 --> 00:14.000
+No.
+
+00:14.000 --> 00:14.920
+God, please.
+
+00:14.920 --> 00:17.240
+No, no, no.
+
+00:17.800 --> 00:25.440
+Because over the time the indexes get fragmented, outdated, unused and this can lead to a poor performance
+
+00:25.440 --> 00:29.200
+in your queries and as well can increase the storage costs.
+
+00:29.240 --> 00:33.080
+And the overall performance of your database cannot drop down.
+
+00:33.080 --> 00:36.400
+So indexes like having a car, it needs maintenance.
+
+00:36.400 --> 00:39.480
+So you need to change the oil and the tire of the car.
+
+00:39.760 --> 00:41.800
+And the same thing goes for the indexes.
+
+00:42.040 --> 00:43.120
+You have to maintain them.
+
+00:43.120 --> 00:46.920
+They need attention to keep everything running smoothly.
+
+00:46.920 --> 00:52.520
+So now I'm going to show you how I manage, maintain and monitor the indexes of my SQL projects.
+
+00:52.560 --> 00:53.320
+So let's go.
+
+00:57.520 --> 01:02.090
+The first and the most important task is to monitor the usage of your indexes.
+
+01:02.290 --> 01:07.570
+So of course, the first question we have to ask ourselves over the time are we using really the indexes
+
+01:07.570 --> 01:09.090
+that you have created?
+
+01:09.090 --> 01:14.690
+Are they really helping improving the speed of my queries, or was it just a good idea at the start
+
+01:14.690 --> 01:18.290
+of the project and later no one used those indexes?
+
+01:18.290 --> 01:24.330
+This is very crucial because if you are having an unused index, you are consuming unnecessary storage
+
+01:24.330 --> 01:30.890
+space and as well, the right performance in the tables can be slow, which is completely unnecessary
+
+01:30.890 --> 01:32.450
+if you are not using the index.
+
+01:32.450 --> 01:37.890
+So now our task is to find out the usage of each index that we have in the projects.
+
+01:37.890 --> 01:39.290
+So let's see how we can do that.
+
+01:39.290 --> 01:44.090
+So now we have created like multiple indexes on that table DB customers.
+
+01:44.090 --> 01:48.450
+So if you go to the DB customers and to the indexes you can see that we have four indexes.
+
+01:48.490 --> 01:54.410
+Now you can go and show those informations by using a special stored procedures from the SQL server
+
+01:54.410 --> 01:56.090
+called SP Help Index.
+
+01:56.090 --> 01:56.970
+Let's go and do that.
+
+01:56.970 --> 02:00.420
+So ESP help index.
+
+02:00.620 --> 02:04.220
+So it is a system stored procedure that comes with the database.
+
+02:04.340 --> 02:08.580
+So this stored procedure needs only one value and that is the table name.
+
+02:08.580 --> 02:11.980
+So we have it over here sales db customers.
+
+02:12.020 --> 02:13.660
+Let's go and query it.
+
+02:13.660 --> 02:15.060
+So we have four indexes.
+
+02:15.060 --> 02:17.340
+Then we have a nice description of the index.
+
+02:17.340 --> 02:19.540
+So it says it is non-clustered index.
+
+02:19.540 --> 02:22.980
+And whether it is columnstore and let's say where it is located.
+
+02:22.980 --> 02:25.580
+So it says it's located on primary.
+
+02:25.620 --> 02:29.020
+Primary is the name of the file group where the data is stored.
+
+02:29.020 --> 02:31.420
+And as a default can be stored as primary.
+
+02:31.420 --> 02:33.980
+And now the next information we have the index keys.
+
+02:34.020 --> 02:39.660
+It is nice information to understand which keys are used or which columns are used for the index.
+
+02:39.660 --> 02:41.700
+So the first one you can see we have two columns.
+
+02:41.700 --> 02:43.900
+That means it is a composite index.
+
+02:43.900 --> 02:46.700
+And of course for the column store we don't have any columns.
+
+02:46.700 --> 02:48.460
+And then we have the first name last name.
+
+02:48.460 --> 02:53.260
+So this is a really nice quick stored procedure in order to see information about our index okay.
+
+02:53.260 --> 02:57.510
+So now let's focus on our task on how to monitor the usage of the indexes.
+
+02:57.550 --> 03:04.910
+Now, in databases we have a lot of schemas and tables that protocol the metadata of our database.
+
+03:04.910 --> 03:10.550
+And in SQL server we have a special schema called SSIS where you can find a lot of metadata information
+
+03:10.550 --> 03:16.870
+about the SQL server metadata like the description of the tables, views, columns, and as well the
+
+03:16.870 --> 03:17.550
+indexes.
+
+03:17.550 --> 03:21.550
+So now let's check what we can find inside the table indexes.
+
+03:21.550 --> 03:22.310
+So let's go and do it.
+
+03:22.350 --> 03:24.310
+Select star from SSIS.
+
+03:24.350 --> 03:25.710
+This is the schema name.
+
+03:26.230 --> 03:29.150
+And then as you can see we have a list of many informations.
+
+03:29.150 --> 03:31.470
+But we want to focus on the indexes.
+
+03:31.510 --> 03:33.390
+Now let's go and execute it.
+
+03:33.390 --> 03:40.590
+Now we get a huge list of all indexes that we have and a lot of informations for each index.
+
+03:40.590 --> 03:45.110
+We don't have to go and understand now each column, but I'm going to go and select the main important
+
+03:45.110 --> 03:47.110
+informations from this table.
+
+03:47.110 --> 03:47.830
+So what do we need.
+
+03:47.830 --> 03:48.710
+The object ID.
+
+03:48.750 --> 03:54.230
+This is the table id so the object id and we have the name.
+
+03:54.430 --> 03:56.280
+It is the index name.
+
+03:57.720 --> 04:02.400
+And then here we have a nice information whether it is clustered or non-clustered.
+
+04:02.400 --> 04:03.680
+So let's go and select it.
+
+04:03.720 --> 04:05.680
+Type disk as.
+
+04:05.800 --> 04:07.600
+So let's call it index type.
+
+04:07.640 --> 04:10.480
+And we can go and check whether it is primary key or not.
+
+04:10.480 --> 04:15.560
+So let's get this information as well is primary key I will go and just rename.
+
+04:15.560 --> 04:18.040
+It is primary key.
+
+04:18.200 --> 04:20.320
+And what else do we need whether it is unique.
+
+04:20.320 --> 04:22.560
+So it is as well nice information to have.
+
+04:22.800 --> 04:24.000
+So is unique.
+
+04:28.040 --> 04:30.320
+So of course you can go and grab a lot of stuff.
+
+04:30.320 --> 04:32.560
+It depends really on what you are monitoring.
+
+04:32.560 --> 04:35.480
+So for example I'm going to go and check whether it is disabled or not.
+
+04:35.480 --> 04:39.920
+So is disabled and I'll just rename it.
+
+04:42.480 --> 04:44.520
+So with that I have like focus monitoring.
+
+04:44.520 --> 04:46.200
+I don't have to have all those informations.
+
+04:46.200 --> 04:47.400
+So let's go and execute.
+
+04:47.400 --> 04:49.320
+But now I would like to go and change a few stuff.
+
+04:49.320 --> 04:54.210
+Like for example I don't want the object ID, I would like to have the full name of the table.
+
+04:54.210 --> 04:59.130
+And as well there is a lot of indexes that is relevant for my database.
+
+04:59.130 --> 05:03.610
+So now in order to do that, we have to go and get the informations from another metadata table.
+
+05:03.610 --> 05:08.890
+So let's go and call this index and let's go and join it with another metadata table.
+
+05:09.810 --> 05:11.170
+It's called tables.
+
+05:11.330 --> 05:15.130
+So TBL and we're going to go and join it using the.
+
+05:15.170 --> 05:21.570
+So the index object ID equal to the table object ID.
+
+05:22.610 --> 05:27.370
+And now if you'd like to see the content of this table we can go and create separately.
+
+05:27.370 --> 05:30.810
+So select star from our new table.
+
+05:31.290 --> 05:33.090
+So let's see the content of this table.
+
+05:33.090 --> 05:35.610
+So you can see we have the name which is the table name.
+
+05:35.610 --> 05:37.010
+And I think that's all what we need.
+
+05:37.010 --> 05:39.490
+We have a lot of other informations about the table.
+
+05:39.650 --> 05:41.370
+Well I just need the table name.
+
+05:41.370 --> 05:46.650
+So let's go and do it at the start table name as table name.
+
+05:48.010 --> 05:50.330
+And I don't need any more the object ID.
+
+05:50.370 --> 05:54.980
+But of course we have to go and use the alias for each of those informations in order to understand
+
+05:54.980 --> 05:57.180
+those informations comes from the index.
+
+05:57.180 --> 05:59.100
+So let's go and do that.
+
+05:59.140 --> 05:59.620
+All right.
+
+05:59.620 --> 06:00.980
+So my query is ready.
+
+06:00.980 --> 06:02.500
+Let's go and execute it again.
+
+06:02.540 --> 06:04.660
+So now as you can see we are getting the table name.
+
+06:04.660 --> 06:10.020
+And the list is very short because it is only focusing on the tables that you have in the database.
+
+06:10.020 --> 06:12.420
+And this filter happens because of the inner join.
+
+06:12.420 --> 06:14.780
+But one more thing I would like to go and sort the data.
+
+06:14.780 --> 06:15.980
+So I'm going to say order by.
+
+06:15.980 --> 06:21.460
+I would like to sort it by the table name and then the index name.
+
+06:21.460 --> 06:22.060
+All right.
+
+06:22.100 --> 06:24.820
+So now let's go and check for example the table customers.
+
+06:24.820 --> 06:27.380
+You can see that we have two non-clustered index.
+
+06:27.380 --> 06:29.500
+And one of them is Columnstore index.
+
+06:29.500 --> 06:31.820
+Those two we have created from the previous tutorial.
+
+06:31.820 --> 06:34.060
+And we have an index on the primary key.
+
+06:34.060 --> 06:36.380
+As you can see here is primary key equal to one.
+
+06:36.380 --> 06:38.260
+And this is as well unique.
+
+06:38.260 --> 06:43.260
+So with that we have a really nice list of all indexes that we have in our database.
+
+06:43.260 --> 06:49.020
+But we are not there yet because our task is how to monitor the usage of the index.
+
+06:49.020 --> 06:55.870
+Now in order to get the usage For each of those indexes, we have to go to a special view called dynamic
+
+06:55.870 --> 06:56.750
+Management view.
+
+06:56.790 --> 07:01.150
+And there the SQL server can provide a lot of statistics about the usage for that index.
+
+07:01.150 --> 07:03.110
+And we can find it as well in the same schema.
+
+07:03.390 --> 07:05.430
+So let's go and query this table.
+
+07:05.430 --> 07:07.710
+So it's going to be select star from.
+
+07:07.870 --> 07:15.670
+So the same schema is.dm underscore db underscore index usage stats.
+
+07:15.870 --> 07:19.110
+So let's go and explore this table and execute it.
+
+07:19.150 --> 07:24.950
+Now in those statistics we can find the usage of two indexes the index number three and one.
+
+07:24.950 --> 07:28.910
+And we can see there are like three usage informations of that index number one.
+
+07:28.910 --> 07:33.070
+And next we have like user six user scans and user lookups.
+
+07:33.150 --> 07:37.750
+So this is how many times the index is used as sex or scans or lookups.
+
+07:37.990 --> 07:41.670
+We will understand those informations as we learn about the execution plan.
+
+07:41.670 --> 07:46.630
+And here we have a very nice information about how many times our index got updated.
+
+07:46.630 --> 07:51.920
+So as you can see here is zero because I didn't add any new data after creating the index.
+
+07:51.920 --> 07:56.120
+But of course, all those numbers might be different at your side because it depends whether you are
+
+07:56.120 --> 07:58.000
+doing more queries and practicing.
+
+07:58.000 --> 08:04.960
+And you can find here more informations about when was exactly the last usage of those indexes and many,
+
+08:04.960 --> 08:06.560
+many nice informations.
+
+08:06.560 --> 08:10.160
+So now let's go and integrate this view with our query.
+
+08:10.160 --> 08:12.640
+So now what I'm going to do I'm going to do a left join.
+
+08:12.640 --> 08:17.760
+Because if I do an inner join I will only find the used indexes.
+
+08:17.760 --> 08:22.360
+But I don't want that because I want to see a full build of all my indexes in the database.
+
+08:22.360 --> 08:28.120
+So left join and we're going to go and get our view and call it's.
+
+08:28.120 --> 08:30.360
+And then we have to join it on the keys.
+
+08:30.360 --> 08:31.440
+So s on.
+
+08:31.440 --> 08:36.440
+So let's say let's go and grab the object ID equal to the index object ID.
+
+08:37.400 --> 08:40.680
+And of course we have to join on the index ID.
+
+08:40.680 --> 08:46.480
+So it's going to be the index id equal to the index id like this.
+
+08:46.480 --> 08:49.730
+Now we have to go and select few informations from this view.
+
+08:49.730 --> 08:52.530
+So I'm going to go and select like all those.
+
+08:52.570 --> 08:53.610
+Number of usage.
+
+08:53.610 --> 09:02.770
+So s let's get the user six s the user scans and the lookups.
+
+09:04.010 --> 09:06.930
+And maybe as well the user updates.
+
+09:07.210 --> 09:11.090
+And it is really nice information to understand when it was the last time used.
+
+09:11.090 --> 09:17.370
+So last user seek and the last user scan.
+
+09:17.650 --> 09:19.210
+Let me just correct it over here.
+
+09:19.210 --> 09:22.530
+And actually I can go and put those two dates in one date.
+
+09:22.530 --> 09:27.650
+Because if it's like the last week it's going to be null over here or the opposite.
+
+09:27.690 --> 09:31.610
+And now what we can do, we can go and put those two together actually in one column.
+
+09:31.610 --> 09:35.050
+Because when we have a value over here, it's going to be null and vice versa.
+
+09:35.050 --> 09:39.450
+So we can do that using the null function coalesce like this.
+
+09:39.450 --> 09:44.050
+And we can get this over here and we can call the whole thing last update.
+
+09:45.810 --> 09:46.900
+So like this.
+
+09:46.940 --> 09:49.260
+And maybe I'm going to go and rename all those stuff.
+
+09:56.620 --> 09:57.020
+All right.
+
+09:57.020 --> 09:58.140
+So now we are done.
+
+09:58.140 --> 09:59.660
+Let's go and execute it.
+
+09:59.700 --> 10:00.060
+Okay.
+
+10:00.100 --> 10:02.660
+So let's go and check our new reports over here.
+
+10:02.660 --> 10:03.980
+So this is our query.
+
+10:03.980 --> 10:08.020
+And let's start with the first table for example the customers and go to the right side.
+
+10:08.060 --> 10:10.460
+And now we can see that we have three indexes.
+
+10:10.660 --> 10:15.700
+And from these two indexes we have only one index that is not used at all.
+
+10:15.700 --> 10:21.460
+So we can see over here that the non-clustered index on the country is not being used.
+
+10:21.460 --> 10:26.300
+And that's because we have another index above the country that comes from the column store.
+
+10:26.300 --> 10:30.500
+So it could be like this that you are querying the table using the country.
+
+10:30.500 --> 10:35.860
+But the SQL saying, I would like to go and use this index instead of the first one, so we can say,
+
+10:35.900 --> 10:37.980
+okay, this one is not really useful.
+
+10:38.020 --> 10:39.820
+Maybe we can go and drop it, right?
+
+10:39.820 --> 10:45.230
+And for the rest you can see, okay, this Columnstore index is used twice and the next one is Once
+
+10:45.270 --> 10:50.030
+again, the numbers at your side might be different, and if you have a look to all other tables, we
+
+10:50.030 --> 10:51.310
+have a lot of nulls.
+
+10:51.310 --> 10:55.710
+So that means all those indexes that we have created on the DB customers.
+
+10:55.710 --> 10:56.550
+Let me check.
+
+10:56.590 --> 10:57.630
+Only one is used.
+
+10:57.630 --> 10:59.830
+But now you might say you know what, I've used the index.
+
+10:59.830 --> 11:00.190
+But why.
+
+11:00.190 --> 11:02.070
+I'm not seeing here any numbers about it.
+
+11:02.110 --> 11:05.630
+Well that's because those numbers will not live forever.
+
+11:05.870 --> 11:09.590
+And we are using now the Express Edition locally at our PC.
+
+11:09.590 --> 11:14.150
+So each time you shut down your PC and you close the client, that database is going to shut down as
+
+11:14.150 --> 11:14.470
+well.
+
+11:14.470 --> 11:17.750
+And those statistics are going to be lost because they are in the memory.
+
+11:17.750 --> 11:21.310
+But in real projects, the number is going to be totally different than here.
+
+11:21.310 --> 11:23.470
+And of course you're going to get realistic numbers.
+
+11:23.510 --> 11:27.230
+Now let's try to target one of those not used indexes.
+
+11:27.230 --> 11:29.150
+So for example let's go with this index.
+
+11:29.150 --> 11:31.670
+It is not clustered index on the products.
+
+11:31.670 --> 11:32.830
+So let's go and query that.
+
+11:32.830 --> 11:34.830
+Currently it is completely not used.
+
+11:34.830 --> 11:46.400
+So if I go and select it so select star from sales products where products equal to cups.
+
+11:46.600 --> 11:49.360
+So with that we have used the index I think.
+
+11:49.400 --> 11:51.800
+Let's go back and query again.
+
+11:51.840 --> 11:55.360
+And let's go to our index and check whether it is used.
+
+11:55.360 --> 11:56.360
+Well it is correct.
+
+11:56.360 --> 11:58.400
+So our query did use this index.
+
+11:58.400 --> 12:00.680
+And we can see here it is used once.
+
+12:00.720 --> 12:05.200
+And now you can go and analyze in your project all the indexes that you have on your tables.
+
+12:05.480 --> 12:09.560
+And you can see whether you are really using it with your queries or not.
+
+12:09.560 --> 12:13.400
+And if you are not using the query, of course you have to make a decision about it.
+
+12:13.440 --> 12:17.400
+Maybe if you are working in a team to ask about it, who did create it and why.
+
+12:17.520 --> 12:22.120
+Maybe there is like one task in the database that is not frequently used.
+
+12:22.160 --> 12:25.600
+Maybe it's something that is run like once a month or something like that.
+
+12:25.600 --> 12:28.120
+So the index is needed, but not that frequently.
+
+12:28.120 --> 12:33.480
+But still now we have like insights about what is going on with those indexes and whether we need them
+
+12:33.480 --> 12:34.120
+or not.
+
+12:34.160 --> 12:36.800
+And if you don't need them, go and drop them.
+
+12:36.840 --> 12:37.680
+All right, my friends.
+
+12:37.680 --> 12:42.650
+So here is the secret that 90% of SQL developers don't do that.
+
+12:42.650 --> 12:45.810
+It's gonna make you in one minute the hero of the project.
+
+12:45.850 --> 12:51.090
+So once I joined a project and after saying hello to everyone, I opened the database of the project
+
+12:51.090 --> 12:52.770
+and do one query.
+
+12:52.810 --> 12:58.410
+I checked the usage of the indexes of the projects, and I can tell you, after working 15 years with
+
+12:58.450 --> 13:05.290
+SQL, that 90% of indexes created in projects are totally untouched and unused.
+
+13:05.370 --> 13:09.050
+So I collect all unused indexes and discuss it with the team.
+
+13:09.050 --> 13:13.930
+And if we don't find a real usage for those indexes, we go and drop them.
+
+13:14.010 --> 13:19.490
+So after dropping all those unused indexes, you have done two great things for the projects.
+
+13:19.610 --> 13:22.890
+First, you have saved a lot of storage in the database.
+
+13:22.890 --> 13:28.970
+And second, which is way more important, you have improved and optimized the right performance on
+
+13:28.970 --> 13:29.890
+the database.
+
+13:30.010 --> 13:35.370
+So in your first day with one query, you have optimized the performance of the database, you have
+
+13:35.370 --> 13:39.130
+saved storage and you can shine like an expert in your projects.
+
+13:39.170 --> 13:41.290
+So if you haven't done that do that now.

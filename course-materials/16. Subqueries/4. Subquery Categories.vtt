@@ -1,0 +1,106 @@
+WEBVTT
+
+00:03.920 --> 00:05.160
+Now for the subqueries.
+
+00:05.160 --> 00:07.560
+There are many different types and categories.
+
+00:07.560 --> 00:12.120
+So now what we're going to do I'm going to show you an overview of all those types and categories.
+
+00:12.120 --> 00:15.040
+And then later we're going to deep dive into each of those types.
+
+00:15.120 --> 00:20.040
+So first of all, if you are thinking about the dependencies between the subquery and the main query,
+
+00:20.040 --> 00:22.960
+there is mainly two types of subqueries.
+
+00:22.960 --> 00:25.640
+We have the Non-correlated subquery.
+
+00:25.680 --> 00:29.840
+That means the subquery is independent from the main query.
+
+00:29.840 --> 00:32.800
+And the second type is the correlated subquery.
+
+00:32.800 --> 00:34.080
+It's exactly the opposite.
+
+00:34.120 --> 00:37.400
+The subquery cannot depend on the main query.
+
+00:37.440 --> 00:39.520
+Of course we can explain all those stuff in details.
+
+00:39.520 --> 00:40.480
+Don't worry about it.
+
+00:40.480 --> 00:42.040
+So this is the first group.
+
+00:42.040 --> 00:48.200
+Now there is another group on how to group up the subqueries depending on the result type.
+
+00:48.200 --> 00:52.360
+So I mean with this that the subquery has different output and results.
+
+00:52.360 --> 00:54.840
+For example we have scalar subquery.
+
+00:54.880 --> 00:58.000
+It returns only one single value or another type.
+
+00:58.000 --> 01:00.360
+It's called the row subquery.
+
+01:00.400 --> 01:05.420
+It can return multiple rows and the final type called the table subquery.
+
+01:05.460 --> 01:09.780
+It is a subquery that returns multiple rows and as well multiple columns.
+
+01:09.820 --> 01:14.220
+Now we come to the third way and the last way on how to categorize the subqueries.
+
+01:14.220 --> 01:17.300
+And this time based on the location and the clauses.
+
+01:17.300 --> 01:22.740
+So we are describing here where the subquery is going to be used within the main query.
+
+01:22.740 --> 01:27.060
+So we can use it in different locations and clauses like the Select clause.
+
+01:27.100 --> 01:29.340
+Or we can use it in the From clause.
+
+01:29.340 --> 01:32.140
+And this is the most common type for the subqueries.
+
+01:32.140 --> 01:34.500
+Or we can use it before joining tables.
+
+01:34.500 --> 01:38.900
+And we can use it in order to filter the data in the Where clause and in the Where clause.
+
+01:38.900 --> 01:42.220
+As we learned, there are two different sets of operators.
+
+01:42.220 --> 01:48.260
+We can use the subquery together with the comparison operators, the list greater equal and so on.
+
+01:48.300 --> 01:54.620
+Or we can use it with the logical operators like the in any all and exists.
+
+01:54.620 --> 01:59.020
+So now those are the different types and categories for the subqueries.
+
+01:59.020 --> 02:01.500
+And we're going to now deep dive into all of them.
+
+02:01.500 --> 02:06.580
+So now let's go and start with the easiest category the result types of the subqueries.

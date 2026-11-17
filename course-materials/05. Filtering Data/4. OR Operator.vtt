@@ -1,0 +1,193 @@
+WEBVTT
+
+00:03.920 --> 00:04.400
+All right.
+
+00:04.440 --> 00:05.680
+Now the Or operator.
+
+00:05.720 --> 00:08.680
+It says at least one condition must be true.
+
+00:08.680 --> 00:10.600
+So it is less restrictive than the.
+
+00:10.640 --> 00:12.760
+And it is enough to have one condition.
+
+00:12.760 --> 00:13.160
+True.
+
+00:13.200 --> 00:15.240
+In order to keep the row in the results.
+
+00:15.280 --> 00:17.000
+Let's understand exactly what this means.
+
+00:17.040 --> 00:18.640
+Okay, so now we have the same scenario.
+
+00:18.680 --> 00:19.960
+We have two conditions.
+
+00:19.960 --> 00:25.760
+And in SQL you have to connect them either using the and operator or the or operator.
+
+00:25.760 --> 00:28.200
+And this scenario we're going to talk about the Or operator.
+
+00:28.200 --> 00:33.840
+And as we said at least one of the conditions must be fulfilled in order to leave the record in the
+
+00:33.840 --> 00:34.320
+results.
+
+00:34.320 --> 00:35.880
+So let's see what's going to happen here.
+
+00:35.920 --> 00:42.200
+Now the first customer, Maria, she is not fulfilling the first condition and as well the second condition.
+
+00:42.200 --> 00:43.760
+So both of them is false.
+
+00:43.760 --> 00:49.520
+And this is the only scenario where SQL cannot remove the record from the results because it is not
+
+00:49.520 --> 00:50.760
+fulfilling the minimum.
+
+00:50.760 --> 00:52.400
+At least one of them should be true.
+
+00:52.440 --> 00:53.560
+Both of them is false.
+
+00:53.560 --> 00:55.520
+Then SQL can go and remove this row.
+
+00:55.560 --> 00:57.440
+Now moving on to the next one to John.
+
+00:57.640 --> 01:01.280
+John is from USA and has higher score than 500.
+
+01:01.320 --> 01:04.600
+Both of the conditions is green, so both of them is true.
+
+01:04.600 --> 01:08.000
+And this is more than enough to keep the row in the output.
+
+01:08.000 --> 01:09.800
+That's why we will see John in the output.
+
+01:09.840 --> 01:11.600
+Now moving on to the third one George.
+
+01:11.640 --> 01:16.080
+George is not fulfilling the first condition because UK is not equal to USA.
+
+01:16.240 --> 01:19.600
+Adjourn this time is fulfilling the second condition.
+
+01:19.600 --> 01:20.440
+So we have here.
+
+01:20.440 --> 01:20.920
+True.
+
+01:20.920 --> 01:25.880
+And since we have at least one true, this is good enough to keep the record in the output.
+
+01:25.880 --> 01:28.100
+So you will see George in their results.
+
+01:28.140 --> 01:29.500
+Now moving on to Martin.
+
+01:29.500 --> 01:34.020
+He is not fulfilling the first condition as well, not fulfilling the second condition.
+
+01:34.020 --> 01:35.180
+Both of them is false.
+
+01:35.180 --> 01:38.140
+And this is not enough to keep their result in the output.
+
+01:38.140 --> 01:39.980
+So that's why SQL can go and remove it.
+
+01:40.020 --> 01:41.780
+Now moving on to the last one better.
+
+01:41.780 --> 01:45.420
+He is fulfilling the first condition but not the second condition.
+
+01:45.420 --> 01:49.580
+But still everything is fine because he is fulfilling at least one condition.
+
+01:49.580 --> 01:52.580
+So we have the minimum and the SQL going to leave it in the outputs.
+
+01:52.580 --> 01:56.700
+So as you can see, the Or operator is not restrictive like the and operator.
+
+01:56.700 --> 02:00.020
+It's enough to have one true in order to keep the data in the output.
+
+02:00.020 --> 02:02.780
+And this is exactly how the Or operator works.
+
+02:02.820 --> 02:04.140
+Now let's see the second task.
+
+02:04.180 --> 02:10.180
+Retrieve all customers who are either from USA or have a score greater than 500.
+
+02:10.220 --> 02:11.860
+So it is a very similar task.
+
+02:11.860 --> 02:13.060
+We have two conditions.
+
+02:13.060 --> 02:16.020
+So we need the customers that are either from USA.
+
+02:16.140 --> 02:19.140
+So it is based on this country equal to USA.
+
+02:19.180 --> 02:22.980
+And the second condition is the score is greater than 500.
+
+02:23.020 --> 02:24.900
+But this time we are very relaxed.
+
+02:24.900 --> 02:27.660
+Either this condition is fulfilled or the second one.
+
+02:27.660 --> 02:31.260
+So instead of having ands we will be using the operator or.
+
+02:31.300 --> 02:33.980
+So it is enough to fulfill one of those conditions.
+
+02:33.980 --> 02:39.580
+And if you go and execute now as you can see, we are getting more results because it is easier to fulfill
+
+02:39.580 --> 02:40.340
+the conditions.
+
+02:40.340 --> 02:45.540
+So we can see those three customers either fulfilling the first condition or the second one.
+
+02:45.580 --> 02:46.380
+All right, my friends.
+
+02:46.380 --> 02:47.500
+So that's all for the Or.
+
+02:47.500 --> 02:51.020
+Operator and we're going to move to the last one in this group, the nuts.
+
+02:51.020 --> 02:53.140
+So what do we mean with the nut operator.

@@ -1,0 +1,253 @@
+WEBVTT
+
+00:00.040 --> 00:00.360
+All right.
+
+00:00.360 --> 00:03.360
+So now we come to an important step in any projects.
+
+00:03.360 --> 00:05.760
+And that's by creating the git repository.
+
+00:05.760 --> 00:07.840
+So if you are new to git don't worry about it.
+
+00:07.880 --> 00:09.240
+It is simpler than it sounds.
+
+00:09.240 --> 00:13.840
+So it's all about to have a safe place where you can put your codes that you are developing, and you
+
+00:13.840 --> 00:18.400
+will have the possibility to track everything happened to their codes, and as well, you can use it
+
+00:18.400 --> 00:20.360
+in order to collaborate with your team.
+
+00:20.360 --> 00:23.240
+And if something goes wrong, you can always rollback.
+
+00:23.280 --> 00:27.600
+And the best part here, once you are done with the projects, you can share your repository as a part
+
+00:27.600 --> 00:32.160
+of your portfolio and it is really an amazing thing if you are applying for a job by showcasing your
+
+00:32.160 --> 00:37.000
+skills that you have built a data warehouse by using well-documented git repository.
+
+00:37.000 --> 00:40.000
+So now let's go and create the repository of the project.
+
+00:40.040 --> 00:42.440
+Now we are at the overview of our account.
+
+00:42.440 --> 00:46.080
+So the first thing that you have to do is to go to the repositories over here.
+
+00:46.080 --> 00:49.360
+And then we're going to go to this green button and click on new.
+
+00:49.400 --> 00:52.280
+The first thing that we have to do is to give the repository name.
+
+00:52.280 --> 00:56.600
+So let's call it SQL Data Warehouse Project.
+
+00:57.160 --> 00:59.360
+And then here we can go and give it a description.
+
+00:59.360 --> 01:03.440
+So for example I'm saying building a modern data warehouse with SQL server.
+
+01:03.480 --> 01:08.180
+Now the next option whether you want to make it public and private I'm gonna leave it as a public.
+
+01:08.220 --> 01:11.180
+And then let's go and add here a readme file.
+
+01:11.180 --> 01:12.740
+And then here about the license.
+
+01:12.740 --> 01:15.380
+We can go over here and select the MIT.
+
+01:15.540 --> 01:19.740
+MIT license gives everyone the freedom of using and modifying your code.
+
+01:19.780 --> 01:21.940
+Okay, so I think I'm happy with the setup.
+
+01:21.940 --> 01:24.260
+Let's go and create the repository.
+
+01:24.700 --> 01:27.300
+And with that we have our brand new repository.
+
+01:27.340 --> 01:32.020
+Now the next step that I usually do is to create the structure of the repository.
+
+01:32.020 --> 01:35.260
+And usually I always follow the same patterns in any projects.
+
+01:35.260 --> 01:38.820
+So here we need few folders in order to put our files right.
+
+01:38.820 --> 01:44.580
+So what I usually do I go over here to add file, create a new file, and I start creating the structure
+
+01:44.580 --> 01:45.220
+over here.
+
+01:45.220 --> 01:48.700
+So the first thing is that we need datasets then slash.
+
+01:48.700 --> 01:52.540
+And with that the repository can understand this is a folder not a file.
+
+01:52.660 --> 01:58.420
+And then you can go and add anything like here place holder just an empty file.
+
+01:58.420 --> 02:00.700
+This just can help me to create the folders.
+
+02:00.700 --> 02:02.180
+So let's go and commit.
+
+02:02.180 --> 02:03.460
+So commit the changes.
+
+02:03.460 --> 02:08.460
+And now if you go back to the main projects you can see now we have a folder called datasets.
+
+02:08.460 --> 02:10.780
+So now I'm going to go and keep creating stuff.
+
+02:10.980 --> 02:14.950
+So I will go and create that documents placeholder.
+
+02:15.070 --> 02:16.230
+Commit the changes.
+
+02:16.230 --> 02:20.350
+And then I'm going to go and create the scripts placeholder.
+
+02:22.590 --> 02:28.510
+And the final one what I usually add is the tests something like this.
+
+02:29.590 --> 02:33.710
+So with that as you can see now we have the main folders of our repository.
+
+02:33.750 --> 02:37.870
+Now what I usually do the next step that I'm going to go and edit the main readme.
+
+02:37.870 --> 02:39.510
+So you can see it over here as well.
+
+02:39.510 --> 02:41.830
+So what we're going to do, we're going to go inside the Readme.
+
+02:41.830 --> 02:43.990
+And then we're going to go to the edit button here.
+
+02:43.990 --> 02:47.630
+And we're going to start writing the main information about our project.
+
+02:47.630 --> 02:49.270
+This is really depend on your style.
+
+02:49.270 --> 02:51.550
+So you can go and add whatever you want.
+
+02:51.590 --> 02:54.590
+This is the main page of your repository.
+
+02:54.590 --> 02:57.790
+And now as you can see the file name here is MD.
+
+02:57.830 --> 02:59.830
+It stands for markdown.
+
+02:59.830 --> 03:03.750
+It is just an easy and friendly format in order to write a text.
+
+03:03.750 --> 03:06.630
+So if you have like documentations you are writing a text.
+
+03:06.670 --> 03:11.670
+It is really nice format in order to organize it structured and it is very friendly.
+
+03:11.670 --> 03:15.990
+So what I'm going to do at the start, I'm going to give a few description about the project.
+
+03:15.990 --> 03:17.730
+So we have the main title.
+
+03:17.730 --> 03:21.370
+And then we have like a welcome message and what this repository is about.
+
+03:21.370 --> 03:24.890
+And in the next section maybe we can start with the project requirements.
+
+03:24.890 --> 03:30.930
+And then maybe at the end you can say a few words about the licensing and a few words about you.
+
+03:30.970 --> 03:34.410
+So as you can see, it's like the home page of the project and the repository.
+
+03:34.410 --> 03:37.210
+So once you are done, we're going to go and commit the changes.
+
+03:37.770 --> 03:43.210
+And now if you go to the main page of the repository, you can see always the folder and files at the
+
+03:43.210 --> 03:43.570
+start.
+
+03:43.570 --> 03:47.330
+And then below it we're going to see the informations from the Readme.
+
+03:47.330 --> 03:51.770
+So again here we have the welcome statement and then the project requirements.
+
+03:51.770 --> 03:53.530
+And at the end we have the licensing.
+
+03:53.530 --> 03:54.450
+And about me.
+
+03:54.450 --> 03:55.810
+So my friends that's it.
+
+03:55.850 --> 04:00.330
+We have now a repository and we have now the main structure of the project.
+
+04:00.330 --> 04:04.570
+And through the projects, as we are building the data warehouse, we're going to go and commit all
+
+04:04.610 --> 04:06.610
+our work in this repository.
+
+04:06.650 --> 04:07.090
+Nice.
+
+04:07.090 --> 04:07.650
+Right.
+
+04:07.690 --> 04:08.170
+All right.
+
+04:08.170 --> 04:11.210
+So with that we have now your repository ready.
+
+04:11.210 --> 04:14.170
+And as we go in the project we will be adding stuff to it.
+
+04:14.170 --> 04:15.730
+So this step is done.
+
+04:15.730 --> 04:19.370
+And now the last step finally we're going to go to the SQL server.
+
+04:19.370 --> 04:24.010
+And we're going to write our first script where we're going to create a database and schemas.

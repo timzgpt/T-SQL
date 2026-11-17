@@ -1,0 +1,314 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.840
+Alright, so what is DateDiff?
+
+2
+00:00:05.840 --> 00:00:12.600
+Diff stands for difference, and DateDiff can allow us to find the differences between two dates.
+
+3
+00:00:12.600 --> 00:00:15.800
+Alright, so let's understand how the DateDiff works in SQL.
+
+4
+00:00:15.800 --> 00:00:22.239
+Now imagine we have two dates, we have the order date at 2025, August 20th, and the shipping
+
+5
+00:00:22.239 --> 00:00:26.500
+date is the 1st of February in the next year, 2026.
+
+6
+00:00:26.500 --> 00:00:33.220
+Now we might ask the question, how many years have passed between the order date and the shipping date?
+
+7
+00:00:33.220 --> 00:00:38.619
+So in order to answer this question, we can use the function DateDiff, and we can define the part year.
+
+8
+00:00:38.619 --> 00:00:43.220
+If you do it like this, SQL can subtract those two dates, and it can return 1.
+
+9
+00:00:43.220 --> 00:00:47.259
+So the date difference between those two dates is exactly 1 year.
+
+10
+00:00:47.259 --> 00:00:52.299
+But now if the question is, how many months are between the order date and the shipping date?
+
+11
+00:00:52.299 --> 00:00:55.939
+So here again, we can go and use the DateDiff between the order date and the shipping date,
+
+12
+00:00:55.939 --> 00:00:57.860
+but we use the part month.
+
+13
+00:00:57.860 --> 00:01:01.380
+If you do it like this, in the output, you will get 3 months.
+
+14
+00:01:01.380 --> 00:01:06.940
+And now of course, if the question is, how many days are between the order date and the shipping date?
+
+15
+00:01:06.940 --> 00:01:11.419
+So here we can use the function DateDiff, where we specify the day inside it, and in
+
+16
+00:01:11.419 --> 00:01:13.500
+the output, you will get 68.
+
+17
+00:01:13.500 --> 00:01:15.500
+So this is how the DateDiff works.
+
+18
+00:01:15.500 --> 00:01:21.339
+You go and subtract two different dates, and you will get in the output a number. How many years?
+
+19
+00:01:21.339 --> 00:01:24.339
+How many months? How many days? So that's it.
+
+20
+00:01:24.339 --> 00:01:26.220
+So this is the syntax of the DateDiff.
+
+21
+00:01:26.220 --> 00:01:28.459
+It accepts here as well, three parameters.
+
+22
+00:01:28.459 --> 00:01:32.379
+So the first one is the parts, as usual, year, month, day.
+
+23
+00:01:32.379 --> 00:01:35.580
+And then here we need two dates, not only one, we need two.
+
+24
+00:01:35.580 --> 00:01:39.080
+So we need the starting dates and the ending dates.
+
+25
+00:01:39.080 --> 00:01:44.220
+So that means here we have the youngest dates, and the end date is going to be the oldest dates.
+
+26
+00:01:44.220 --> 00:01:48.940
+So for example, here we have DateDiff, and we are saying, find the differences in years
+
+27
+00:01:48.940 --> 00:01:51.220
+between the order dates.
+
+28
+00:01:51.220 --> 00:01:54.620
+This is the start date and the shipping date.
+
+29
+00:01:54.620 --> 00:01:56.019
+So which dates normally happen?
+
+30
+00:01:56.019 --> 00:01:57.580
+First, we have to order something.
+
+31
+00:01:57.580 --> 00:01:59.059
+So we have the order date.
+
+32
+00:01:59.059 --> 00:02:02.180
+And once you order, what can happen next is the shipping date.
+
+33
+00:02:02.180 --> 00:02:05.300
+That's why the shipping date is as an end date.
+
+34
+00:02:05.300 --> 00:02:08.339
+So we want to find the differences between them in years.
+
+35
+00:02:08.339 --> 00:02:12.300
+Or of course, if we want to find the differences between them in days, we have to go and change
+
+36
+00:02:12.300 --> 00:02:14.419
+the part from year to day.
+
+37
+00:02:14.419 --> 00:02:17.419
+So as you can see, the syntax is very simple and very logical, right?
+
+38
+00:02:17.580 --> 00:02:22.100
+All right, let's have the following simple task, and it says, calculate the age of employees.
+
+39
+00:02:22.100 --> 00:02:23.539
+So let's see how we can solve that.
+
+40
+00:02:23.539 --> 00:02:27.940
+We're going to go and select first all the information from employees.
+
+41
+00:02:27.940 --> 00:02:29.740
+So sales and employees.
+
+42
+00:02:29.740 --> 00:02:31.660
+Okay, let's execute it.
+
+43
+00:02:31.660 --> 00:02:36.539
+Now in the employees, we don't have any information about the age, but we have the birthday.
+
+44
+00:02:36.539 --> 00:02:39.660
+So we can go and transform this birthday to an age.
+
+45
+00:02:39.660 --> 00:02:45.660
+And of course, how we calculate the age, we count how many years between this year and the birthday.
+
+46
+00:02:45.699 --> 00:02:51.059
+So that means we have to go and use two functions, the date diff and the get day in order to
+
+47
+00:02:51.059 --> 00:02:53.300
+have the year of the current year.
+
+48
+00:02:53.300 --> 00:02:55.820
+So this means we have to go and use the function date diff.
+
+49
+00:02:55.820 --> 00:02:57.020
+So let's go and do that.
+
+50
+00:02:57.020 --> 00:03:00.259
+I'm going to go first selecting only a few informations.
+
+51
+00:03:00.259 --> 00:03:04.100
+So employee IT and birth date.
+
+52
+00:03:04.100 --> 00:03:05.860
+So let's start with the date diff.
+
+53
+00:03:05.860 --> 00:03:09.179
+So if we're talking about the age, we are calculating how many years.
+
+54
+00:03:09.179 --> 00:03:12.119
+That's why we're going to say as a part, it's going to be the year.
+
+55
+00:03:12.119 --> 00:03:16.020
+So what is the starting date is the birth date of the person.
+
+56
+00:03:16.020 --> 00:03:17.679
+So it's going to be the birth dates.
+
+57
+00:03:17.679 --> 00:03:18.960
+And now we need the end date.
+
+58
+00:03:18.960 --> 00:03:23.639
+We don't have here anything about the end dates, the end date going to be the current year.
+
+59
+00:03:23.639 --> 00:03:27.479
+So in order to get the current year, we're going to go with the function get dates.
+
+60
+00:03:27.479 --> 00:03:30.479
+And with that, we are getting the current date information.
+
+61
+00:03:30.479 --> 00:03:32.360
+And this is exactly what you want.
+
+62
+00:03:32.360 --> 00:03:33.360
+So let's close it.
+
+63
+00:03:33.360 --> 00:03:35.119
+And let's go and call it an age.
+
+64
+00:03:35.119 --> 00:03:36.160
+So it's very simple.
+
+65
+00:03:36.160 --> 00:03:41.000
+We are counting how many years between the birth dates and the current dates.
+
+66
+00:03:41.000 --> 00:03:42.580
+So let's go and execute it.
+
+67
+00:03:42.580 --> 00:03:44.119
+So now we are getting the ages.
+
+68
+00:03:44.119 --> 00:03:46.320
+As you can see, the first person is 33.
+
+69
+00:03:46.320 --> 00:03:48.779
+The second one is 52 and so on.
+
+70
+00:03:48.779 --> 00:03:52.279
+And now you might getting different values than I'm getting now.
+
+71
+00:03:52.279 --> 00:03:56.440
+And that's maybe you are doing the course now in 2025 or 2026.
+
+72
+00:03:56.440 --> 00:03:58.199
+And employees can be older than now.
+
+73
+00:03:58.199 --> 00:04:01.160
+Now we are 2024 and I'm getting those ages.
+
+74
+00:04:01.160 --> 00:04:07.520
+So this is how we calculate the age using the help of two functions, the date diff and the get dates.
+
+75
+00:04:07.520 --> 00:04:11.759
+All right, so those two functions, we have learned how to do mathematical operations
+
+76
+00:04:11.759 --> 00:04:14.800
+on date information, or we can call it date calculations.
+
+77
+00:04:14.800 --> 00:04:19.079
+Now moving on to the easiest and the last group, we have the date validation.
+
+78
+00:04:19.079 --> 00:04:21.279
+And here we have only one function that is dates.
+

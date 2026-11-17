@@ -1,0 +1,103 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+Okay.
+
+00:04.280 --> 00:04.800
+Moving on.
+
+00:04.800 --> 00:06.520
+We have a lot of use cases for the views.
+
+00:06.520 --> 00:07.680
+They are just amazing.
+
+00:07.680 --> 00:14.400
+So the next one is we can use views in order to introduce a second version of my data model in another
+
+00:14.400 --> 00:17.800
+language, so we could offer multiple languages to the users.
+
+00:17.840 --> 00:19.240
+Let's understand what this means.
+
+00:19.240 --> 00:20.560
+So now we have the following scenario.
+
+00:20.600 --> 00:25.840
+We have again our table orders where the data is persisted and everything in English.
+
+00:25.840 --> 00:31.440
+And of course what happens sometimes you have like international team that are accessing your data.
+
+00:31.440 --> 00:35.000
+So you have team in USA and maybe you have team from Germany.
+
+00:35.000 --> 00:38.280
+That as well are end users that want to access the data.
+
+00:38.320 --> 00:42.160
+Of course, it depends on the number of users that are using your database.
+
+00:42.160 --> 00:47.960
+But if you have a lot of users that come from Germany and as well from India, it might make sense that
+
+00:47.960 --> 00:53.320
+you go and translate your data and the table structure into another language.
+
+00:53.320 --> 01:00.000
+So for example, instead of giving access to the table orders, we can create another view called Stellung.
+
+01:00.040 --> 01:01.400
+That's the order in German.
+
+01:01.400 --> 01:07.610
+But not only you are giving a new name for the object, you could go as well and rename all the columns
+
+01:07.610 --> 01:09.010
+inside the view.
+
+01:09.090 --> 01:14.450
+Then the German users can access the German view and it's going to be for them, easier to understand
+
+01:14.450 --> 01:16.130
+the content of your database.
+
+01:16.170 --> 01:19.210
+The same thing for the Indian team and for the Indian users.
+
+01:19.210 --> 01:22.370
+You can go and provide a view in Hindi.
+
+01:22.410 --> 01:27.890
+I'm not sure whether I'm pronouncing that word correctly, but this is the first word that I said in
+
+01:27.890 --> 01:28.250
+Hindi.
+
+01:28.290 --> 01:33.250
+I don't promise that I'm going to learn the Hindi language because it's enough to learn Germany.
+
+01:33.250 --> 01:36.370
+So I'm trying as well to write this word adesh.
+
+01:36.890 --> 01:38.050
+I hope it is correct.
+
+01:38.050 --> 01:42.290
+And to be honest, it is really interesting how you write this word in Hindi.
+
+01:42.290 --> 01:43.730
+So now back to the topic.
+
+01:43.890 --> 01:50.450
+As you can see now we are using like the views in order to provide a translation for our database by
+
+01:50.450 --> 01:54.090
+just giving a new name for the views and as well for the columns.
+
+01:54.090 --> 01:59.250
+So this is another nice use case that I usually use as well in my projects, in order to provide multi
+
+01:59.250 --> 02:04.050
+languages for the data model that I have, and I can do that with the power of views.

@@ -1,0 +1,313 @@
+WEBVTT
+
+00:03.920 --> 00:07.560
+Okay, so what is except sometimes we call it minus in other databases.
+
+00:07.560 --> 00:09.680
+But in SQL server we call it except.
+
+00:09.680 --> 00:16.640
+So it can go and return a distinct rows from the first query that are not found in the second query.
+
+00:16.640 --> 00:22.160
+So from this definition, we can understand that the order of the queries can affect the final result.
+
+00:22.160 --> 00:27.760
+There is a first query and a second query, so it is the only set operator where you have to pay attention
+
+00:27.760 --> 00:29.600
+to the order of the queries.
+
+00:29.600 --> 00:33.960
+And as well it's like the others it can go and remove the duplicates from the result sets.
+
+00:34.000 --> 00:36.080
+Alright, again we have this very simple example.
+
+00:36.080 --> 00:41.640
+We have two sets, five customers, five employees and there is the same persons as a customer and as
+
+00:41.640 --> 00:42.960
+employees, Kevin and Mary.
+
+00:42.960 --> 00:45.840
+So now we're going to go and combine those two sets using the excepts.
+
+00:45.840 --> 00:47.240
+Or sometimes we call it minus.
+
+00:47.480 --> 00:52.800
+So it says it's going to return unique rows in the first table that are not in the second table.
+
+00:52.800 --> 00:53.680
+So what's going to happen.
+
+00:53.680 --> 00:54.560
+What is the first table.
+
+00:54.560 --> 00:56.600
+Let's say the customers on the left side.
+
+00:56.600 --> 01:00.760
+So here we have five persons Joseph, Mark, Anna, Kevin and Mary.
+
+01:00.760 --> 01:05.130
+So now the rule is we need the customers that are not employees.
+
+01:05.130 --> 01:10.770
+So it's safe for Joseph, Mark and Anna because they are not existing in the second set.
+
+01:10.770 --> 01:13.410
+That's why SQL can return those three values.
+
+01:13.410 --> 01:17.770
+But now for the two customers given and marry here there is an issue given and marry.
+
+01:17.770 --> 01:21.290
+They are members of the second sets, the second table, the employees.
+
+01:21.530 --> 01:27.810
+That's why SQL can go and exclude them from the output because they are not fulfilling the rule.
+
+01:27.810 --> 01:34.130
+So the output will get only three customers and all the values from employees and the common values
+
+01:34.130 --> 01:38.650
+between customers and employees will be excluded from the output.
+
+01:38.650 --> 01:40.690
+So this is how the accepts works.
+
+01:40.730 --> 01:41.050
+All right.
+
+01:41.050 --> 01:42.730
+So let's have a very simple SQL task.
+
+01:42.730 --> 01:47.850
+And it says find the employees who are not customers at the same time okay.
+
+01:47.890 --> 01:49.290
+So let's see how we're going to solve that.
+
+01:49.330 --> 01:51.290
+We're going to stay with the same queries as usual.
+
+01:51.290 --> 01:53.530
+We have the employees and the customers.
+
+01:53.730 --> 01:57.810
+But instead of having union all we're going to use the set operator except.
+
+01:57.810 --> 02:02.450
+So now since we are using except we have to make sure that the order of the queries are correct.
+
+02:02.450 --> 02:08.740
+So the first query is the employees, which is correct because we have to find the employees who are
+
+02:08.740 --> 02:10.100
+not customers at the same time.
+
+02:10.100 --> 02:11.940
+So we are focusing on the employees.
+
+02:11.940 --> 02:15.300
+The first table is correct and the second table is customers.
+
+02:15.300 --> 02:20.740
+If the task says find the customers who are not employees at the same time, then we have to go and
+
+02:20.740 --> 02:21.300
+switch it.
+
+02:21.340 --> 02:23.460
+We have first to query the customers.
+
+02:23.460 --> 02:26.500
+So now everything is correct, let's go and execute it.
+
+02:26.500 --> 02:30.540
+And now in the output we see three employees who are not customers at the same time.
+
+02:30.540 --> 02:32.780
+So we have Carl, Frank and Michael.
+
+02:32.820 --> 02:35.340
+But as we know we have five employees Kevin and Mary.
+
+02:35.340 --> 02:38.660
+They are not here in the result because they are customers as well.
+
+02:38.700 --> 02:42.620
+So now let me show you what can happen if I just switch those informations.
+
+02:42.620 --> 02:45.620
+So we start with customers and then with employees.
+
+02:45.660 --> 02:46.980
+Let's go and execute it.
+
+02:46.980 --> 02:49.020
+As you can see we're going to get completely different results.
+
+02:49.060 --> 02:51.780
+Now we are getting customers informations.
+
+02:51.820 --> 02:56.500
+And now in the output we got three customers who are not employees at the same time.
+
+02:56.500 --> 02:58.460
+This is not what we want from this task.
+
+02:58.460 --> 03:00.540
+So if you do it like this it's going to be incorrect.
+
+03:00.540 --> 03:03.460
+So pay close attention here to the order of the query.
+
+03:03.460 --> 03:05.140
+So now let's go and correct it.
+
+03:05.140 --> 03:07.940
+So we can have first employees and then customers.
+
+03:07.980 --> 03:09.140
+Let's execute it.
+
+03:09.140 --> 03:13.140
+And now let's go and understand how SQL execute the except operator.
+
+03:13.180 --> 03:16.740
+Alright, so again we have the results from the two queries or from two tables.
+
+03:16.740 --> 03:18.900
+And now we are doing except between them.
+
+03:18.900 --> 03:20.660
+So let's see how SQL gonna execute it.
+
+03:20.700 --> 03:26.420
+It's going to take as usual first the names from the first query from the employees and put it in the
+
+03:26.460 --> 03:26.980
+output.
+
+03:27.020 --> 03:31.220
+And now it's going to present data only from the first query in the output.
+
+03:31.260 --> 03:34.620
+And it's going to go and use the customers only as a check.
+
+03:34.780 --> 03:38.580
+So SQL will not put any data or rows from the customers.
+
+03:38.580 --> 03:42.900
+It will just use the second query as a lookup in order to check the data.
+
+03:42.900 --> 03:45.940
+So it's going to start with that first employee, Frank Li.
+
+03:46.100 --> 03:48.180
+Do we have frankly in the customers?
+
+03:48.180 --> 03:49.460
+Well, no, we don't have it.
+
+03:49.460 --> 03:53.340
+That's why SQL can accept it and put it in the output.
+
+03:53.340 --> 03:56.540
+And then in the next step it's going to go to the second employee and check.
+
+03:56.580 --> 03:59.020
+As you can see we have it already in the customers.
+
+03:59.020 --> 04:00.820
+So SQL going to go and ignore it.
+
+04:00.820 --> 04:03.060
+It's not allowed to be in the output.
+
+04:03.060 --> 04:04.380
+The same thing for Mary.
+
+04:04.420 --> 04:06.500
+We have it as well in the customers.
+
+04:06.500 --> 04:09.100
+That's why it will not be presented in the output.
+
+04:09.340 --> 04:12.500
+So Michael we don't have a Michael in the customers.
+
+04:12.780 --> 04:15.110
+That's why it can be presented in the output.
+
+04:15.390 --> 04:16.710
+And as well for Carol.
+
+04:16.750 --> 04:17.550
+The same thing.
+
+04:17.550 --> 04:21.910
+We don't have Carol as a customer and we're gonna have it in the output.
+
+04:22.030 --> 04:26.430
+So as you can see, we will get data only from the first table, and the second table only going to
+
+04:26.430 --> 04:29.110
+be used in order to check the information from it.
+
+04:29.110 --> 04:31.110
+So we don't have in the output any customers.
+
+04:31.110 --> 04:32.110
+It's only employees.
+
+04:32.150 --> 04:34.790
+So now let's check quickly what's going to happen if we switch the tables.
+
+04:34.790 --> 04:39.630
+So now we have the customers as the first table is going to take the columns from the first table.
+
+04:39.630 --> 04:43.510
+And it's going to start presenting the customers information in the output.
+
+04:43.550 --> 04:46.430
+And it's going to go and use the employees only as a lookup.
+
+04:46.430 --> 04:47.950
+So do we have Joseph.
+
+04:47.990 --> 04:50.390
+We don't have it in the employee.
+
+04:50.790 --> 04:53.270
+And then Kevin and Mary, we have it already in the employees.
+
+04:53.270 --> 04:57.030
+And Mark and Anna are not part of the employees.
+
+04:57.030 --> 05:00.870
+That's why SQL can go and present the results in the output like this.
+
+05:00.870 --> 05:03.590
+So now as you can see, SQL is focusing on the table customers.
+
+05:03.590 --> 05:06.790
+And we are getting data from the customers, not from the employees.
+
+05:06.830 --> 05:08.630
+Employees is only as a check.
+
+05:08.630 --> 05:12.790
+So with that we understand the order of the queries is very important for the exceptions.
+
+05:12.790 --> 05:15.430
+We will get different results if we have different order.
+
+05:15.470 --> 05:15.790
+All right.
+
+05:15.790 --> 05:17.910
+So that's all for the except operator.

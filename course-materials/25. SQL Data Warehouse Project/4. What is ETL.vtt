@@ -1,0 +1,199 @@
+WEBVTT
+
+00:00.040 --> 00:00.360
+Okay.
+
+00:00.360 --> 00:03.440
+So now we're going to zoom in and focus on the component ETL.
+
+00:03.480 --> 00:08.760
+If you are building such a project, you're going to spend almost 90% just building this component,
+
+00:08.800 --> 00:09.520
+the ETL.
+
+00:09.560 --> 00:12.040
+So it is the core element of the data warehouse.
+
+00:12.240 --> 00:16.640
+And I want you to have a clear understanding what is exactly an ETL.
+
+00:16.680 --> 00:19.280
+So our data exists in a source system.
+
+00:19.280 --> 00:24.480
+And now what we want to do is, is to get our data from the source and move it to the target.
+
+00:24.480 --> 00:26.720
+Source and target could be like database tables.
+
+00:26.840 --> 00:32.240
+So now the first step that we have to do is to specify which data we have to load from the source.
+
+00:32.280 --> 00:37.200
+Of course we can say that we want to load everything, but let's say that we are doing incremental loads.
+
+00:37.200 --> 00:42.520
+So we're going to go and specify a subset of the data from the source in order to prepare it and load
+
+00:42.520 --> 00:43.720
+it later to the target.
+
+00:43.720 --> 00:46.600
+So this step in the ETL process we call it extracts.
+
+00:46.600 --> 00:49.240
+We are just identifying the data that we need.
+
+00:49.280 --> 00:51.920
+We pull it out and we don't change anything.
+
+00:51.920 --> 00:54.720
+It's going to be like 1 to 1 like the source system.
+
+00:54.720 --> 01:00.760
+So the extract has only one task to identify the data that you have to pull out from the source and
+
+01:00.760 --> 01:01.880
+to not change anything.
+
+01:01.880 --> 01:04.080
+So we will not manipulate the data at all.
+
+01:04.240 --> 01:05.720
+It can stay as it is.
+
+01:05.720 --> 01:09.280
+So this is the first step in the ETL process that extracts.
+
+01:09.320 --> 01:13.280
+Now moving on to the stage number two we're going to take this extracted data.
+
+01:13.280 --> 01:16.360
+And we will do some manipulations transformations.
+
+01:16.640 --> 01:19.520
+And we're going to change the shape of those data.
+
+01:19.520 --> 01:22.040
+And this process is really heavy working.
+
+01:22.040 --> 01:28.440
+We can do a lot of stuff like data cleansing, data integration and a lot of formatting and data normalization.
+
+01:28.440 --> 01:30.480
+So a lot of stuff we can do in this step.
+
+01:30.480 --> 01:34.040
+So this is the second step in the ETL process, the transformation.
+
+01:34.040 --> 01:40.280
+We're going to take the original data and reshape it, transform it into exactly the format that we
+
+01:40.280 --> 01:44.680
+need into a new format and shapes that we need for analysis and reporting.
+
+01:44.720 --> 01:47.400
+Now finally we get to the last step in the ETL process.
+
+01:47.400 --> 01:48.600
+We have the load.
+
+01:48.600 --> 01:53.880
+So in this step we're going to take this new data and we're going to insert it into the target.
+
+01:53.880 --> 01:54.840
+So it is very simple.
+
+01:54.840 --> 01:58.240
+We're going to take this prepared data from the transformation step.
+
+01:58.240 --> 02:03.400
+And we're going to move it into its final destination the target like for example data warehouse.
+
+02:03.400 --> 02:05.280
+So that's ETL in a nutshell.
+
+02:05.320 --> 02:11.760
+First extract the raw data, then transform it into something meaningful and finally load it to a target
+
+02:11.760 --> 02:13.120
+where it's going to make a difference.
+
+02:13.120 --> 02:14.000
+So that's it.
+
+02:14.000 --> 02:16.840
+This is what we mean with the ETL process.
+
+02:16.840 --> 02:22.000
+Now in real projects we don't have like only source and targets our data architecture can have like
+
+02:22.000 --> 02:28.120
+multiple layers depend on your design, whether you are building a warehouse or data lake or data warehouse.
+
+02:28.120 --> 02:32.400
+And usually there are like different ways on how to load the data between all those layers.
+
+02:32.400 --> 02:35.930
+And in order now to load the data from one layer to another one.
+
+02:35.930 --> 02:39.170
+There are like multiple ways on how to use the ETL process.
+
+02:39.170 --> 02:44.330
+So usually if you are loading the data from the source to the layer one like only extract the data from
+
+02:44.330 --> 02:49.410
+the source and load it directly to the layer number one without doing any transformations, because
+
+02:49.410 --> 02:54.810
+I want to see the data as it is in the first layer, and now between the layer number one and the layer
+
+02:54.810 --> 03:01.130
+number two, you might go and use the full ETL so we can extract from the layer one, transform it and
+
+03:01.130 --> 03:03.170
+then load it to the layer number two.
+
+03:03.210 --> 03:05.810
+So with that we are using the whole process the ETL.
+
+03:05.850 --> 03:10.370
+And now between layer two and layer three we can do only transformation and then load.
+
+03:10.370 --> 03:15.730
+So we don't have to deal with how to extract the data because it is maybe using the same technology.
+
+03:15.730 --> 03:19.010
+And we are taking all data from layer two to layer three.
+
+03:19.010 --> 03:22.650
+So we transform the whole layer two and then load it to layer three.
+
+03:22.690 --> 03:26.130
+And now between 3 and 4 you can use only the Elm.
+
+03:26.130 --> 03:29.610
+So maybe it's something like duplicating and replicating the data.
+
+03:29.610 --> 03:31.890
+And then you are doing the transformation.
+
+03:31.890 --> 03:34.570
+So you load to the new layer and then transform it.
+
+03:34.610 --> 03:36.290
+Of course this is not a real scenario.
+
+03:36.290 --> 03:41.810
+I'm just showing you that in order to move from source to a target, you don't have to always, to use
+
+03:41.810 --> 03:45.330
+a complete ETL, depend on the design of your data architecture.
+
+03:45.330 --> 03:48.610
+You might use only few components from the ETL.
+
+03:48.650 --> 03:52.290
+Okay, so this is how ETL looks like in real projects.

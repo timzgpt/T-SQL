@@ -1,0 +1,742 @@
+WEBVTT
+
+00:00.240 --> 00:03.600
+So now we're going to start with the big question how to build the server layer.
+
+00:03.640 --> 00:04.840
+What is the process.
+
+00:04.880 --> 00:05.200
+Okay.
+
+00:05.240 --> 00:08.040
+As usual first things first we have to analyze.
+
+00:08.080 --> 00:13.120
+And now the task before building anything in the server layer, we have to go and explore the data in
+
+00:13.120 --> 00:15.800
+order to understand the content of our sources.
+
+00:15.800 --> 00:18.880
+Once we have it, what we're going to do, we will be starting coding.
+
+00:18.880 --> 00:21.920
+And here the transformation that we're going to do is data cleansing.
+
+00:21.920 --> 00:26.560
+This is usually a process that takes really long time, and I usually do it in three steps.
+
+00:26.560 --> 00:31.600
+The first step is to check first the data quality issues that we have in the bronze layer.
+
+00:31.600 --> 00:36.040
+So before writing any data transformations, first we have to understand what are the issues.
+
+00:36.040 --> 00:42.040
+And only then I start writing data transformations in order to fix all those quality issues that we
+
+00:42.040 --> 00:43.000
+have in the bronze.
+
+00:43.000 --> 00:47.560
+And the last tip, once I have clean results, what we're going to do, we're going to go and insert
+
+00:47.560 --> 00:49.080
+it into the silver layer.
+
+00:49.080 --> 00:53.920
+And those are the three phases that we will be doing as we are writing the code for the silver layer.
+
+00:53.920 --> 00:58.320
+And the third step, once we have all the data in the silver layer, we have to make sure that the data
+
+00:58.320 --> 01:01.600
+is now correct and we don't have any quality issues anymore.
+
+01:01.640 --> 01:03.360
+And if you find any issues, Of course.
+
+01:03.360 --> 01:05.360
+What you're going to do, we're going to go back to coding.
+
+01:05.360 --> 01:06.840
+We're going to do the data cleansing.
+
+01:06.840 --> 01:07.800
+And again check.
+
+01:07.800 --> 01:10.640
+So it is like a cycle between validating and coding.
+
+01:10.640 --> 01:16.280
+Once the quality of the silver layer is good, we cannot skip the last phase where we're going to document
+
+01:16.280 --> 01:17.960
+and commit our work in the GitHub.
+
+01:17.960 --> 01:20.240
+And here we're going to have two new documentations.
+
+01:20.240 --> 01:24.920
+We're going to build the data flow diagram and as well the data integration diagram.
+
+01:24.960 --> 01:29.040
+After we understood the relationship between the sources from the first step.
+
+01:29.040 --> 01:32.640
+So this is the process and this is how we're going to build the server layer.
+
+01:32.680 --> 01:33.040
+All right.
+
+01:33.040 --> 01:35.360
+So now exploring the data in the bronze layer.
+
+01:35.360 --> 01:40.880
+So why it is very important because understanding the data it is the key to make smart decisions in
+
+01:40.880 --> 01:41.680
+the server layer.
+
+01:41.720 --> 01:43.800
+It was not the focus in the bronze layer.
+
+01:43.840 --> 01:49.560
+To understand the content of the data at all, we focused only how to get the data to the data warehouse.
+
+01:49.560 --> 01:55.600
+So that's why we have now to take a moment in order to explore and understand the tables, and as well
+
+01:55.640 --> 01:56.680
+how to connect them.
+
+01:56.680 --> 01:58.960
+What are the relationship between these tables?
+
+01:58.960 --> 02:04.080
+And it is very important, as you are learning about new source system is to create like some kind of
+
+02:04.120 --> 02:05.080
+documentation.
+
+02:05.120 --> 02:07.400
+So now let's go and explore the sources.
+
+02:07.440 --> 02:07.680
+Okay.
+
+02:07.720 --> 02:09.840
+So now let's go and explore them one by one.
+
+02:09.840 --> 02:12.000
+We can start with the first one from the CRM.
+
+02:12.120 --> 02:13.560
+We have the customer info.
+
+02:13.560 --> 02:16.440
+So right click on it and say select top 1000 rows.
+
+02:16.480 --> 02:17.600
+And this is of course important.
+
+02:17.600 --> 02:20.840
+If you have like a lot of data don't go and explore millions of rows.
+
+02:20.880 --> 02:22.200
+Always limit your query.
+
+02:22.200 --> 02:26.640
+So for example here we are using the top 1000 just to make sure that you are not impacting the system
+
+02:26.640 --> 02:27.560
+with your queries.
+
+02:27.560 --> 02:29.800
+So now let's have a look to the content of this table.
+
+02:29.800 --> 02:32.680
+So we can see that we have here customer informations.
+
+02:32.680 --> 02:35.800
+So we have an ID we have a key for the customer.
+
+02:35.800 --> 02:41.280
+We have first name, last name marital status gender and the creation date of the customer.
+
+02:41.280 --> 02:46.280
+So simply this is a table for the customer information and a lot of details for the customers.
+
+02:46.280 --> 02:48.160
+And here we have like two identifiers.
+
+02:48.160 --> 02:53.320
+One it is like technical ID and another one it's like the customer number.
+
+02:53.320 --> 02:57.320
+So maybe we can use either the ID or the key in order to join it with other tables.
+
+02:57.320 --> 03:03.600
+So now what I usually do is to go and draw like a data model or let's say integration model, just to
+
+03:03.640 --> 03:06.200
+document and visual what I am understanding.
+
+03:06.240 --> 03:08.800
+Because if you don't do that, you're going to forget it after a while.
+
+03:08.840 --> 03:10.560
+So now we go and search for a shape.
+
+03:10.560 --> 03:11.800
+Let's search for a table.
+
+03:11.800 --> 03:14.120
+And I'm going to go and pick this one over here.
+
+03:14.120 --> 03:16.200
+So here we can go and change the style.
+
+03:16.200 --> 03:20.440
+For example we can make it rounded or you can go make it sketch and so on.
+
+03:20.520 --> 03:22.560
+And we can go and change the color.
+
+03:22.600 --> 03:23.720
+So I'm going to make it blue.
+
+03:23.800 --> 03:25.000
+Then go to the text.
+
+03:25.040 --> 03:31.720
+Make sure to select the whole thing and let's make it bigger 26 and then what I'm gonna do for those
+
+03:31.720 --> 03:38.040
+items, I'm just going to select them and go to arrange and maybe make it 40 something like this.
+
+03:38.040 --> 03:41.600
+So now what we're going to do, we're going to just go and put the table name.
+
+03:41.600 --> 03:44.520
+So this is the one that we are now learning about.
+
+03:44.520 --> 03:47.640
+And what I'm going to do, I'm just going to go and put here the primary key.
+
+03:47.640 --> 03:49.840
+I will not go and list all the informations.
+
+03:49.840 --> 03:54.280
+So the primary key was the ID and I will go and remove all those stuff.
+
+03:54.280 --> 03:55.320
+I don't need it now.
+
+03:55.320 --> 03:57.480
+As you can see the table name is not really friendly.
+
+03:57.480 --> 04:04.520
+So I can go and bring a text and put it here on top and say this is the customer information, just
+
+04:04.520 --> 04:11.000
+to make it friendly and do not forget about it and as well can increase the size to maybe 20 something
+
+04:11.000 --> 04:11.520
+like this.
+
+04:11.560 --> 04:11.840
+Okay.
+
+04:11.880 --> 04:15.720
+With that, we have our first table and we're going to go and keep exploring.
+
+04:15.720 --> 04:17.280
+So let's move to the second one.
+
+04:17.280 --> 04:19.520
+We're going to take the product information.
+
+04:19.520 --> 04:22.600
+Right click on it and select the top 1000 rows.
+
+04:22.640 --> 04:25.400
+I will just put it below the previous query.
+
+04:25.440 --> 04:26.040
+Query it.
+
+04:26.080 --> 04:29.440
+Now by looking to this table we can see we have product information.
+
+04:29.440 --> 04:32.120
+So we have here a primary key for the products.
+
+04:32.120 --> 04:35.120
+And then we have like a key or let's say product number.
+
+04:35.160 --> 04:38.960
+And after that we have the full name of the product the product costs.
+
+04:38.960 --> 04:40.840
+And then we have the product line.
+
+04:40.840 --> 04:43.320
+And then we have like start and end.
+
+04:43.360 --> 04:46.800
+Well this is interesting to understand why we have starts and ends.
+
+04:46.840 --> 04:52.520
+Let's have a look for example for those three rows, all of those three having the same key but they
+
+04:52.520 --> 04:53.920
+have different IDs.
+
+04:53.920 --> 04:58.040
+So it is the same product but with different costs.
+
+04:58.040 --> 05:01.080
+So for 2011 we have the cost of 12.
+
+05:01.120 --> 05:03.480
+Then 2012 we have 14.
+
+05:03.480 --> 05:07.000
+And for the last year 2013 we have 13.
+
+05:07.000 --> 05:09.440
+So it's like we have like a history for the changes.
+
+05:09.440 --> 05:15.440
+So this table not only holding the current information of the product, but also history information
+
+05:15.440 --> 05:16.280
+of the products.
+
+05:16.280 --> 05:19.360
+And that's why we have those two date start and end.
+
+05:19.400 --> 05:21.920
+Now let's go back and draw this information over here.
+
+05:21.920 --> 05:23.880
+So I'm just going to go and duplicate it.
+
+05:23.880 --> 05:26.760
+So the name of this table is going to be the bird info.
+
+05:26.800 --> 05:34.120
+And let's go and give it like a short description current and history products information.
+
+05:34.320 --> 05:35.320
+Something like this.
+
+05:35.320 --> 05:37.760
+Just to not forget that we have history in this table.
+
+05:37.800 --> 05:44.000
+And here we have as well the bird ID and there is like nothing that we can use in order to join those
+
+05:44.000 --> 05:44.840
+two tables.
+
+05:44.840 --> 05:47.560
+We don't have like a customer ID here or in the other table.
+
+05:47.560 --> 05:50.640
+We don't have any product ID okay, so that's it for this table.
+
+05:50.640 --> 05:53.560
+Let's jump to the third table and the last one in the CRM.
+
+05:53.960 --> 05:57.360
+So let's go and select I just made the other queries as well short.
+
+05:57.360 --> 05:58.600
+So let's go and execute.
+
+05:58.600 --> 05:59.600
+So what do we have over here.
+
+05:59.600 --> 06:04.200
+We have a lot of informations about the order the sales and a lot of measures.
+
+06:04.200 --> 06:05.160
+Order number.
+
+06:05.160 --> 06:06.760
+We have the product key.
+
+06:06.920 --> 06:09.640
+So this is something that we can use in order to join it.
+
+06:09.640 --> 06:14.040
+With the product table we have the customer ID we don't have the customer key.
+
+06:14.080 --> 06:16.640
+So here we have like ID and here we have key.
+
+06:16.680 --> 06:19.520
+So there is like two different ways on how to join tables.
+
+06:19.520 --> 06:25.040
+And then we have here like dates the order dates, the shipping dates the due dates.
+
+06:25.040 --> 06:28.200
+And then we have the sales amount, the quantity and the price.
+
+06:28.320 --> 06:30.200
+So this is like an event table.
+
+06:30.200 --> 06:33.320
+It is transactional table about the orders and sales.
+
+06:33.320 --> 06:39.880
+And it is a great table in order to connect the customers with the products and as well with the orders.
+
+06:39.880 --> 06:42.880
+So let's do comment this new information that we have.
+
+06:42.880 --> 06:45.520
+So the table name is the sales details.
+
+06:45.520 --> 06:47.280
+So we can go and describe it like this.
+
+06:47.520 --> 06:53.280
+Transactional records about sales and orders.
+
+06:54.600 --> 06:58.600
+And now we have to go and describe how we can connect this table to the other two.
+
+06:58.640 --> 07:03.840
+So we are not using the product ID we are using the product key.
+
+07:03.880 --> 07:05.480
+And now we need a new column over here.
+
+07:05.480 --> 07:07.480
+So you can hold Ctrl and enter.
+
+07:07.480 --> 07:10.120
+Or you can go over here and add a new row.
+
+07:10.160 --> 07:12.320
+And the other row is going to be the customer ID.
+
+07:12.320 --> 07:14.200
+So now for the customer ID it is easy.
+
+07:14.240 --> 07:17.590
+We can go and grab an arrow in order to connect those two tables.
+
+07:17.590 --> 07:20.670
+But for the product key, we are not using the ID.
+
+07:20.670 --> 07:24.550
+So that's why I'm just going to go and remove this one and say product key.
+
+07:24.590 --> 07:25.830
+Let's have again a check.
+
+07:25.830 --> 07:27.390
+So this is a product key.
+
+07:27.430 --> 07:28.870
+It's not a product ID.
+
+07:28.910 --> 07:34.750
+And if we go and check the old table the products info you can see we are using this key and not the
+
+07:34.750 --> 07:35.430
+primary key.
+
+07:35.470 --> 07:41.190
+So what we're going to do now we will just go and link it like this and maybe switch those two tables.
+
+07:41.190 --> 07:43.350
+So I will put the customers below.
+
+07:43.350 --> 07:44.190
+Just perfect.
+
+07:44.190 --> 07:45.110
+It looks nice.
+
+07:45.150 --> 07:46.670
+Okay so let's keep moving.
+
+07:46.670 --> 07:48.630
+Let's go now to the other source system.
+
+07:48.630 --> 07:49.670
+We have the ERP.
+
+07:49.710 --> 07:51.910
+And the first one is ERP costs.
+
+07:51.990 --> 07:53.750
+And we have this Cryptical name.
+
+07:53.790 --> 07:55.870
+Let's go and select the data.
+
+07:55.870 --> 07:58.830
+So now here it's small table and we have only three informations.
+
+07:58.830 --> 08:01.310
+So we have here something called CID.
+
+08:01.310 --> 08:06.070
+And then we have something I think this is the birthday and the gender information.
+
+08:06.070 --> 08:07.790
+So we have here male female and so on.
+
+08:07.790 --> 08:10.150
+So it looks again like the customer informations.
+
+08:10.150 --> 08:12.750
+But here we have like extra data about the birthday.
+
+08:12.790 --> 08:17.790
+And now if you go and compare it to the customer table that we have from the other source system.
+
+08:17.790 --> 08:19.030
+Let's go and query it.
+
+08:19.070 --> 08:20.950
+You can see the new table from the ARB.
+
+08:20.990 --> 08:22.350
+Don't have IDs.
+
+08:22.590 --> 08:25.630
+It has actually the customer number or the key.
+
+08:25.630 --> 08:29.510
+So we can go and join those two tables using the customer key.
+
+08:29.550 --> 08:31.550
+Let's go and document this information.
+
+08:31.550 --> 08:34.870
+So I will just go and copy paste and put it here on the right side.
+
+08:34.870 --> 08:36.470
+I will just go and change the color.
+
+08:36.470 --> 08:39.670
+Now since we are now talking about different source system.
+
+08:39.670 --> 08:44.510
+And here the table name going to be this one and the key called CID.
+
+08:44.550 --> 08:48.710
+Now in order to join this table with the customer info we cannot join it.
+
+08:48.710 --> 08:50.870
+With the customer ID we need the customer key.
+
+08:50.910 --> 08:53.150
+That's why here we have to go and add a new row.
+
+08:53.150 --> 08:56.630
+So Ctrl enter and we're going to say customer key.
+
+08:56.670 --> 09:00.830
+And then we have to go and make a nice arrow between those two keys.
+
+09:00.830 --> 09:05.430
+So we're going to go and give it a description customer information.
+
+09:05.910 --> 09:08.030
+And here we have the birth date.
+
+09:08.550 --> 09:08.790
+Okay.
+
+09:08.830 --> 09:10.790
+So now let's keep going.
+
+09:11.230 --> 09:12.950
+We're going to go to the next one.
+
+09:12.950 --> 09:15.790
+We have the ERP location.
+
+09:15.790 --> 09:17.550
+Let's go and query this table.
+
+09:17.550 --> 09:18.550
+So what do you have over here.
+
+09:18.550 --> 09:22.870
+We have the kid again and as you can see, we have country informations.
+
+09:22.870 --> 09:25.590
+And this is of course again the customer number.
+
+09:25.590 --> 09:27.750
+And we have only this information the country.
+
+09:27.750 --> 09:29.990
+So let's go and comment this information.
+
+09:30.030 --> 09:33.550
+This is the customer location table name going to be like this.
+
+09:33.550 --> 09:35.550
+And we still have the same ID.
+
+09:35.550 --> 09:37.670
+So we have here still the customer ID.
+
+09:37.670 --> 09:40.310
+And we can go and join it using the customer key.
+
+09:40.430 --> 09:44.710
+And we have to give it the description location of customers.
+
+09:45.150 --> 09:47.310
+And we can say here the country okay.
+
+09:47.350 --> 09:50.150
+So now let's go to the last table and explore it.
+
+09:50.190 --> 09:53.790
+We have the ERP catalog.
+
+09:54.230 --> 09:56.790
+So let's go and query those informations.
+
+09:56.790 --> 09:57.670
+So what do we have here.
+
+09:57.670 --> 10:01.470
+We have like an ID a category a subcategory.
+
+10:01.470 --> 10:04.870
+And the maintenance here we have like either yes and no.
+
+10:04.870 --> 10:09.990
+So by looking to this table we have all the categories and the subcategories of the products.
+
+10:09.990 --> 10:13.670
+And here we have like special identifier for those informations.
+
+10:13.710 --> 10:15.990
+Now the question is how to join it.
+
+10:15.990 --> 10:19.470
+So I would like to join it actually with the product informations.
+
+10:19.470 --> 10:21.750
+So let's go and check those two tables together.
+
+10:21.790 --> 10:27.870
+Okay, so in the products we don't have any ID for the categories, but we have these informations actually
+
+10:28.110 --> 10:29.550
+in the product key.
+
+10:29.590 --> 10:34.110
+So the first five characters of the product key is actually the category ID.
+
+10:34.150 --> 10:39.310
+So we can use this information over here in order to join it with the categories.
+
+10:39.310 --> 10:42.350
+So we can go and describe this information like this.
+
+10:42.350 --> 10:44.190
+And then we have to go and give it a name.
+
+10:44.230 --> 10:46.190
+And then here we have the id.
+
+10:46.190 --> 10:49.630
+And the ID could be joined using the product key.
+
+10:49.630 --> 10:55.430
+So that means for the product information we don't need at all the product ID the primary key, all
+
+10:55.430 --> 10:58.390
+what we need is the product key or the product number.
+
+10:58.390 --> 11:02.670
+And what I would like to do is like to group those informations in a box.
+
+11:03.230 --> 11:10.870
+So let's go grab like any boxes here on the left side and make it bigger and then make the edges a little
+
+11:10.910 --> 11:12.070
+bit smaller.
+
+11:12.110 --> 11:14.190
+Let's remove the fill and the line.
+
+11:14.190 --> 11:15.870
+I will make a dotted line.
+
+11:15.870 --> 11:22.470
+And then let's grab another box over here and say this is the CRM and we can go and increase the size,
+
+11:22.470 --> 11:29.590
+maybe something like 40 smaller 35 bold and change the color to blue and just place it here on top of
+
+11:29.590 --> 11:30.350
+this box.
+
+11:30.350 --> 11:34.590
+So with that we can understand all those tables belongs to the source system CRM.
+
+11:34.790 --> 11:38.550
+And we can do the same stuff for the right side as well.
+
+11:38.590 --> 11:41.510
+Now of course we have to go and add the description here.
+
+11:41.510 --> 11:44.350
+So it's going to be the product categories.
+
+11:44.750 --> 11:45.190
+All right.
+
+11:45.190 --> 11:50.270
+So with that we have now a clear understanding how the tables are connected to each others.
+
+11:50.270 --> 11:52.990
+We understand now the content of each table.
+
+11:53.030 --> 11:58.110
+And of course it can help us to clean up the data in the silver layer in order to prepare it.
+
+11:58.110 --> 12:03.390
+So as you can see, it is very important to take time understanding the structure of the tables, the
+
+12:03.390 --> 12:06.430
+relationship between them before you start writing any code.
+
+12:06.590 --> 12:06.950
+All right.
+
+12:06.950 --> 12:09.990
+So with that, we have now clear understanding about the sources.
+
+12:09.990 --> 12:14.150
+And with that we have as well created a data integration in the Draw.io.
+
+12:14.190 --> 12:18.110
+So with that we have more understanding about how to connect the sources.
+
+12:18.150 --> 12:22.750
+And now in the next two tasks we will go back to SQL where we're going to start checking the quality
+
+12:23.030 --> 12:25.510
+and as well doing a lot of data transformations.
+
+12:25.510 --> 12:26.350
+So let's go.

@@ -1,0 +1,130 @@
+WEBVTT
+
+00:04.040 --> 00:04.400
+There.
+
+00:04.400 --> 00:09.840
+Create insert method is the classical way on how we define and create tables in SQL, where first we
+
+00:09.840 --> 00:15.760
+have to go and create the table and define the structure, and after that we insert our data into the
+
+00:15.760 --> 00:20.920
+database table where the other method, the CTAs create table as select.
+
+00:20.960 --> 00:27.040
+This one can create a new table as well, but this time based on the result of SQL query.
+
+00:27.040 --> 00:28.840
+So let's understand what this means.
+
+00:28.880 --> 00:31.240
+Okay so now to the first method create insert.
+
+00:31.240 --> 00:32.640
+So here we have two steps.
+
+00:32.640 --> 00:37.680
+The first step is we have a DDL statements where we use the command create.
+
+00:37.680 --> 00:40.160
+So once we execute the first step what's going to happen.
+
+00:40.160 --> 00:44.160
+The database engine is going to go and create for us an empty table.
+
+00:44.160 --> 00:47.280
+It is a brand new table where we can hold our data.
+
+00:47.280 --> 00:52.080
+So with that we have defined the structure of our table but it's still an empty table.
+
+00:52.080 --> 00:56.680
+So now in the next step we have to go and insert our data inside this new table.
+
+00:56.680 --> 01:02.680
+So our data can come from multiple sources like CSV file or maybe completely from another database where
+
+01:02.680 --> 01:03.920
+we are doing migration.
+
+01:04.080 --> 01:09.600
+Or maybe you are inserting manually your data, or maybe it come from an application, or you are doing
+
+01:09.800 --> 01:12.360
+data migration from one database to another.
+
+01:12.360 --> 01:15.480
+So at the end, once you execute insert, what's going to happen?
+
+01:15.720 --> 01:18.840
+Your data going to be inserted in this new table.
+
+01:18.840 --> 01:20.960
+So in this method we have like two steps.
+
+01:20.960 --> 01:27.220
+First we define the structure of the table, and the second step we take care of inserting our data
+
+01:27.220 --> 01:28.140
+inside the table.
+
+01:28.180 --> 01:32.140
+And now this new table and your data can be persisted permanently.
+
+01:32.180 --> 01:34.820
+Now let's check the other method the CTAs.
+
+01:34.860 --> 01:38.180
+Here it's only one step where you define a query.
+
+01:38.180 --> 01:40.740
+And once you execute this query, what's going to happen?
+
+01:40.980 --> 01:44.580
+The database has to retrieve the data from another table.
+
+01:44.580 --> 01:49.220
+So it might retrieve data from our new table that we just created using create insert.
+
+01:49.220 --> 01:52.820
+So once the query is executed we will get a result.
+
+01:52.820 --> 01:56.900
+So now what the database is going to do is going to create a new brand table.
+
+01:56.940 --> 02:02.940
+But this time the definition and the data of this new table, it doesn't come from any definition that
+
+02:02.940 --> 02:03.820
+we specify.
+
+02:04.180 --> 02:06.860
+It comes from the result of the query.
+
+02:06.860 --> 02:12.020
+So whatever structure that we have in the results it's going to be reflected in our new table.
+
+02:12.020 --> 02:19.460
+So again the definition and the data that we see in this new table comes 1 to 1 from the result of our
+
+02:19.460 --> 02:20.060
+query.
+
+02:20.060 --> 02:24.620
+So in this type we don't have to define anything or to insert any data.
+
+02:24.620 --> 02:26.380
+We are just writing a query.
+
+02:26.380 --> 02:28.780
+And the output of this query is going to define the table.
+
+02:28.780 --> 02:34.460
+But in this method as you can see it always needs a database table in order to execute the query.
+
+02:34.460 --> 02:38.540
+But the create insert method we are creating something from the scratch.
+
+02:38.700 --> 02:44.300
+So these are the two different ways on how you create tables in SQL and the differences between them.

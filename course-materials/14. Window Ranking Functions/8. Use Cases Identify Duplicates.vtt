@@ -1,0 +1,322 @@
+WEBVTT
+
+00:03.880 --> 00:04.160
+All right.
+
+00:04.160 --> 00:08.480
+So now I'm going to show you the last use case for the function row number that I usually use in my
+
+00:08.480 --> 00:09.360
+real projects.
+
+00:09.680 --> 00:14.840
+So sometimes if you are doing data analysis you can find out that there are data quality issues, especially
+
+00:14.840 --> 00:15.920
+with the duplicates.
+
+00:16.040 --> 00:20.800
+So what I usually use I use the row number in order to identify the duplicates.
+
+00:20.840 --> 00:24.360
+Not only that, I can use it in order to delete the duplicates.
+
+00:24.520 --> 00:27.240
+So we can use it in order to do data cleansing.
+
+00:27.360 --> 00:33.320
+And this is essential task for each data engineer, not only data analyst, in order to prepare and
+
+00:33.320 --> 00:36.080
+clean up the data before doing data analysis.
+
+00:36.160 --> 00:37.440
+So let's have the following task.
+
+00:37.480 --> 00:43.960
+Identify duplicate rows in the table orders archive and return a clean result without any duplicates.
+
+00:44.080 --> 00:49.160
+So not only we have to identify the duplicates, we have to return no duplicates in our results.
+
+00:49.240 --> 00:50.480
+So let's see how we can do this.
+
+00:50.480 --> 00:51.920
+Let's first select the data.
+
+00:51.960 --> 00:56.400
+So select star from sales orders archive.
+
+00:56.600 --> 00:58.040
+So let's go and execute.
+
+00:58.040 --> 01:00.600
+So now by looking to the data you can see that we have duplicates.
+
+01:00.600 --> 01:01.480
+We have an issue.
+
+01:01.680 --> 01:04.520
+So the order ID number four is twice in our database.
+
+01:04.520 --> 01:05.600
+It doesn't make sense right.
+
+01:05.600 --> 01:06.840
+It should be only one.
+
+01:07.160 --> 01:09.110
+So which one is the correct one?
+
+01:09.110 --> 01:13.710
+If you check the data over here, you can see that this order is shipped and then delivered.
+
+01:13.710 --> 01:16.550
+So it looks like the last one is the correct one.
+
+01:16.910 --> 01:18.070
+So how we can do that?
+
+01:18.070 --> 01:23.590
+If you just scroll to the right, you can see that we have a creation time, and we usually use such
+
+01:23.630 --> 01:28.630
+a timestamp in order to identify what was the last valid like order.
+
+01:28.630 --> 01:34.310
+And here we can see immediately that this order time is higher than the previous one, which means this
+
+01:34.310 --> 01:35.870
+is the more up to date, right?
+
+01:35.910 --> 01:37.310
+The more current.
+
+01:37.590 --> 01:42.870
+So what we're going to do, we're going to go and rank our data for each order ID and sort the data
+
+01:42.870 --> 01:48.830
+by the creation time in order to find the last inserted or created row for this order.
+
+01:48.830 --> 01:50.430
+So let's see how we can do that.
+
+01:50.470 --> 01:51.150
+What we're going to do.
+
+01:51.150 --> 01:56.950
+We're going to go over here and say let's have row number and then over.
+
+01:57.110 --> 02:00.310
+And what we're going to do, we're going to partition by the primary key.
+
+02:00.550 --> 02:02.710
+So partition by order ID.
+
+02:02.710 --> 02:06.950
+And as we said, we have to order the data by this time stamp at the end.
+
+02:06.950 --> 02:12.190
+So partition by order by creation time and descending.
+
+02:12.190 --> 02:14.500
+So we want the highest then the lowest.
+
+02:14.500 --> 02:15.700
+So that's it.
+
+02:15.740 --> 02:18.900
+Let's call it our own and execute the query.
+
+02:19.100 --> 02:23.740
+So now by checking the data, if everything is clean and we don't have duplicates, everything should
+
+02:23.740 --> 02:28.260
+be one because maximum for each primary key we should have one row.
+
+02:28.500 --> 02:31.660
+So but you can see over here we have here two and we have here three two.
+
+02:31.780 --> 02:35.620
+So that means this is indicator that we have duplicates inside our data.
+
+02:35.660 --> 02:39.260
+So now by checking one by one as you can see the order ID is only one.
+
+02:39.420 --> 02:40.660
+So we have the rank one.
+
+02:40.660 --> 02:43.260
+The second one as well we have the rank one.
+
+02:43.300 --> 02:44.460
+But here we have the issue.
+
+02:44.460 --> 02:48.340
+So as you can see we have now two ranks for the order ID four.
+
+02:48.380 --> 02:49.900
+So now which one is the correct.
+
+02:50.060 --> 02:54.740
+In our logic we said it is the last row that is inserted inside our data.
+
+02:54.740 --> 02:56.300
+And this is rank number one.
+
+02:56.300 --> 03:01.460
+So if you scroll to the right side you can see that the creation time here is higher than the second
+
+03:01.460 --> 03:01.860
+one.
+
+03:02.060 --> 03:04.500
+So with that we have identified what we want.
+
+03:04.540 --> 03:07.940
+We want the last inserted row for each ID.
+
+03:08.460 --> 03:10.420
+And now let's check this over here.
+
+03:10.420 --> 03:12.020
+So here we have it three times.
+
+03:12.260 --> 03:15.220
+So it says the first one is the highest creation date.
+
+03:15.220 --> 03:21.240
+So if you go to the right side and now by comparing those timestamps you can see that At this record.
+
+03:21.280 --> 03:25.800
+The first one is the latest one that is inserted inside our data.
+
+03:26.080 --> 03:29.080
+So as you can see, this one is the one that we need.
+
+03:29.120 --> 03:32.240
+The other two we don't need it because it is old informations.
+
+03:32.240 --> 03:34.200
+So now everything that doesn't has the rank.
+
+03:34.240 --> 03:36.040
+Number one is not valid.
+
+03:36.040 --> 03:39.520
+It's something old and it's actually bad data quality.
+
+03:39.520 --> 03:42.000
+So we want to remove it or not to select it.
+
+03:42.000 --> 03:46.760
+So now in order to have a clean data what we're going to do, we're going to go and select the following
+
+03:46.800 --> 03:47.880
+as sub select.
+
+03:47.880 --> 03:50.160
+So select star from the table.
+
+03:50.720 --> 03:54.960
+And now we are interested only with the rank number one.
+
+03:54.960 --> 03:56.360
+We don't need anything else.
+
+03:56.360 --> 03:57.480
+So let's go and execute.
+
+03:57.480 --> 04:00.200
+And now if you check the results you can check the order ID over here.
+
+04:00.440 --> 04:01.240
+It is unique.
+
+04:01.240 --> 04:04.760
+We don't have any duplicates right 1234567.
+
+04:04.800 --> 04:06.600
+There is no duplicates at all.
+
+04:06.720 --> 04:10.800
+And we have now only the latest inserted data inside the orders.
+
+04:10.800 --> 04:13.600
+And we don't have any duplicates or data quality issue.
+
+04:13.600 --> 04:17.160
+So now of course now we can go with this results in order to do further analysis.
+
+04:17.160 --> 04:19.880
+And this is exactly what data engineers usually do.
+
+04:20.120 --> 04:24.080
+Clean up the data and prepare the data before doing any data analysis.
+
+04:24.080 --> 04:28.470
+And of course, if you want to communicate those data quality issues to the source of the data.
+
+04:28.510 --> 04:30.830
+Let's say you are not the owner of those informations.
+
+04:31.150 --> 04:35.990
+You can generate a list of all bad data quality issues, and you can send it to the source system and
+
+04:35.990 --> 04:37.990
+tell them to clean it up from the sources.
+
+04:38.030 --> 04:43.070
+So now in order to select the bad data, what we're going to do is we can just change here the condition
+
+04:43.070 --> 04:47.710
+and say if it is higher than one then you are like bad data.
+
+04:47.830 --> 04:49.510
+So let's go and execute this.
+
+04:49.510 --> 04:54.950
+And now with this we have in the results all records that shouldn't exist in the data in the first place.
+
+04:54.950 --> 04:59.630
+So we can go and export it and communicate it to the source and tell them check here, you have something
+
+04:59.630 --> 05:00.670
+wrong in your system.
+
+05:00.870 --> 05:03.710
+And those informations should not be inserted in the data.
+
+05:03.710 --> 05:05.630
+So everyone it is very strong, right?
+
+05:05.630 --> 05:06.550
+It is very powerful.
+
+05:06.550 --> 05:08.070
+I use it a lot in my projects.
+
+05:08.270 --> 05:11.630
+There are many use cases for the row number function in SQL.
+
+05:11.830 --> 05:17.230
+We can do it in order to find the top n analysis, the bottom end analysis, the best performance,
+
+05:17.270 --> 05:18.390
+worst performance.
+
+05:18.390 --> 05:21.630
+And as well we can assign unique IDs to do Paginating.
+
+05:21.630 --> 05:25.750
+Or we can use it in order to discover data quality issues to clean up our data.
+
+05:25.750 --> 05:29.310
+So it is amazing function in SQL and you're going to use it a lot.
+
+05:29.350 --> 05:32.230
+So that's it for the three functions row number, rank and Denserank.
+
+05:32.270 --> 05:33.910
+Now we're going to talk about the entire.

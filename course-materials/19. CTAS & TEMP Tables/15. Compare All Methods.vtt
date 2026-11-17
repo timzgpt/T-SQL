@@ -1,0 +1,466 @@
+WEBVTT
+
+00:00.120 --> 00:00.920
+Hey my friends.
+
+00:00.920 --> 00:06.480
+So we have learned that in real data projects, if you have a database, there will be a lot of analytical
+
+00:06.480 --> 00:10.280
+use cases that want to access your data and do analytics.
+
+00:10.280 --> 00:11.160
+And what can happen.
+
+00:11.160 --> 00:16.840
+They can write complex queries because in many scenarios they are doing complex analyses.
+
+00:16.880 --> 00:21.720
+And if you don't do anything about it in your projects, you're going to face a lot of challenges like
+
+00:21.720 --> 00:28.720
+complexity and a lot of redundancy of the same complex logic, but from multiple users and maybe performance
+
+00:28.720 --> 00:29.920
+and security issues.
+
+00:29.920 --> 00:32.680
+And we have learned we have five amazing techniques.
+
+00:32.800 --> 00:34.840
+In order to solve those problems.
+
+00:34.840 --> 00:42.320
+We have learned the subqueries and cities and as well how to create objects like views, CTAs and temporary
+
+00:42.320 --> 00:42.960
+tables.
+
+00:42.960 --> 00:47.000
+So now what we're going to do, we're going to go and compare them side by side in order to have a big
+
+00:47.000 --> 00:51.320
+picture about the advantages and the disadvantages of each method.
+
+00:51.320 --> 00:52.920
+So let's go and compare them okay.
+
+00:52.960 --> 00:54.720
+So now we have our five methods.
+
+00:54.720 --> 00:58.960
+And the first criteria that I would like to compare them is the storage type.
+
+00:58.960 --> 01:03.280
+We have learned that if you are using subqueries and CTE what can happen.
+
+01:03.280 --> 01:09.590
+The database can put the result of those two techniques in the memory in the cache, so that later the
+
+01:09.590 --> 01:13.110
+main query has a fast access to those intermediate results.
+
+01:13.110 --> 01:19.230
+But in the other hand, if we are using temporary tables or tables from the new created table can be
+
+01:19.230 --> 01:21.470
+stored inside the disk storage.
+
+01:21.510 --> 01:22.750
+And now for the views.
+
+01:22.790 --> 01:28.190
+As we understood, there will be no data stored and that means we are not using any storage from the
+
+01:28.190 --> 01:28.950
+database.
+
+01:28.990 --> 01:31.110
+Now if you are talking about the lifetime.
+
+01:31.110 --> 01:35.270
+So that means how long the object can live or persist in the database.
+
+01:35.270 --> 01:39.230
+Now our three techniques subqueries, CTE and temporary tables.
+
+01:39.390 --> 01:42.230
+All of them can live a short time in the database.
+
+01:42.230 --> 01:44.070
+So all of them are temporary.
+
+01:44.070 --> 01:50.070
+But now if you are talking about creating objects using CTAs and views, those two can be permanent.
+
+01:50.070 --> 01:54.550
+So that means they're going to live in the database as long as you don't drop them.
+
+01:54.550 --> 01:59.430
+Now we're going to compare them with something similar is when the database is going to go and drop
+
+01:59.430 --> 02:01.190
+or delete those objects.
+
+02:01.230 --> 02:05.550
+Now we have learned that the subqueries and the cities have a short time.
+
+02:05.550 --> 02:09.060
+They can live only during the execution of the query.
+
+02:09.060 --> 02:13.700
+So once the query ends, the database is going to go to the cache and delete everything.
+
+02:13.700 --> 02:19.100
+But for the temporary tables, they leave a little bit longer as long as you are in the session.
+
+02:19.100 --> 02:24.300
+But once you end the session, the database is going to go and drop and delete your table.
+
+02:24.300 --> 02:27.540
+Now for the objects that comes from the CTAs and views.
+
+02:27.580 --> 02:32.940
+As we learned, they are persistent and permanent and the database can only delete them if you ask the
+
+02:32.940 --> 02:36.620
+database to do that by using the DDL command drop.
+
+02:36.620 --> 02:39.180
+So the database will not delete anything for these two.
+
+02:39.220 --> 02:41.700
+So now the next one is the query scope.
+
+02:41.740 --> 02:44.100
+Like how we can access those objects.
+
+02:44.140 --> 02:46.140
+Now for the subquery and the CTE.
+
+02:46.180 --> 02:47.780
+The scope is here very small.
+
+02:47.980 --> 02:54.100
+It is accessed only from one single query, the query itself where you write the city and subquery.
+
+02:54.100 --> 02:56.900
+So you cannot access it from external queries.
+
+02:56.900 --> 03:03.500
+But we have learned that the temporary table CTAs and views you can access all those objects from multiple
+
+03:03.500 --> 03:04.260
+queries.
+
+03:04.260 --> 03:08.860
+So that means you can access those objects from multiple external queries.
+
+03:08.900 --> 03:14.480
+Now the next one If you are thinking about the reusability, if you look to the subqueries, they are
+
+03:14.480 --> 03:15.400
+very limited.
+
+03:15.440 --> 03:20.280
+The subquery is going to be used only in one query and only in one place.
+
+03:20.280 --> 03:24.400
+So if you need it in multiple places, you have to go and repeat the same logic.
+
+03:24.400 --> 03:27.280
+So subqueries are the worst with their usability.
+
+03:27.280 --> 03:30.200
+But now if you are talking about the CTE, it is a little bit better.
+
+03:30.200 --> 03:36.120
+You still can access it only from one single query, but you can access it in the same query from multiple
+
+03:36.120 --> 03:40.080
+places, so you can access it multiple times from different joins.
+
+03:40.080 --> 03:43.200
+And you don't have to repeat the same logic over and over.
+
+03:43.200 --> 03:47.880
+But still, it is limited because you have only one query that is using the logic.
+
+03:47.880 --> 03:53.200
+Now, if you think about the temporary tables, I could say the reusability here is medium, and that's
+
+03:53.200 --> 03:59.000
+because you can access the data by multiple queries, but only during this session.
+
+03:59.000 --> 04:04.560
+So once the session is ended, you cannot access it anymore, which means you have to recreate it in
+
+04:04.560 --> 04:06.080
+order to reuse it again.
+
+04:06.080 --> 04:12.950
+So it is more reusable than the CTE and the subqueries, but not that good like the CTAs and views Those
+
+04:12.950 --> 04:19.390
+techniques can offer the highest reusability for you, so they are always there for multiple users from
+
+04:19.390 --> 04:20.670
+multiple queries.
+
+04:20.670 --> 04:23.310
+So it can eliminate a lot of redundancies.
+
+04:23.310 --> 04:25.190
+And you have to do the job only once.
+
+04:25.230 --> 04:29.630
+Now moving into the next one, if you are thinking about the intermediate result of those techniques,
+
+04:29.630 --> 04:32.390
+the question is how fresh is the data?
+
+04:32.390 --> 04:35.110
+Is the data from these objects always up to date?
+
+04:35.150 --> 04:41.110
+Now for the subqueries and the cities, they are always up to date because the SQL is executing the
+
+04:41.110 --> 04:44.310
+logic on the fly and storing the data in the memory.
+
+04:44.310 --> 04:47.550
+And immediately after that going to come the main query and get the data.
+
+04:47.550 --> 04:51.310
+So always the intermediate results in the memory are up to date.
+
+04:51.310 --> 04:56.990
+But now if you think about that temporary tables and the CTAs, the query is only executed once.
+
+04:56.990 --> 05:03.390
+And if there is like an update and changes on the original table, you will not find those changes in
+
+05:03.390 --> 05:04.190
+those objects.
+
+05:04.190 --> 05:07.030
+And that's because SQL executed once and that's all.
+
+05:07.030 --> 05:11.550
+So if you query those tables, there is no guarantee that the data are up to date.
+
+05:11.550 --> 05:17.140
+So if you want a fresh data, you have always to drop the table and create it again from the query.
+
+05:17.180 --> 05:19.540
+Now if you are talking about the views, they are amazing.
+
+05:19.540 --> 05:23.220
+They are always up to date because views does not store any data.
+
+05:23.220 --> 05:28.580
+So each time you ask the views for data what can happen, the database is going to go to the original
+
+05:28.620 --> 05:30.740
+table and fetch the data to the view.
+
+05:30.740 --> 05:33.380
+So your data are always fresh and up to date.
+
+05:33.380 --> 05:39.260
+So this is a big picture about the behavior of those advanced techniques that you can use in SQL projects.
+
+05:39.260 --> 05:43.540
+And if you ask my opinion, my favorite is going to be the views in the first place.
+
+05:43.540 --> 05:46.020
+Then in the second in my list is the CTE.
+
+05:46.300 --> 05:49.980
+They are amazing, but don't use more than five cities in one query.
+
+05:50.140 --> 05:52.500
+Otherwise it's going to be really annoying and hard to read.
+
+05:52.540 --> 05:56.820
+And then I'm going to say in the third place, the subqueries and then the cities.
+
+05:56.860 --> 05:59.260
+I use cities if the views are slow.
+
+05:59.380 --> 06:04.780
+If that's a scenario, I'm jump to the cities and create a permanent physical tables for my query.
+
+06:04.780 --> 06:08.540
+And the last one that I rarely use is the temporary tables.
+
+06:08.540 --> 06:12.180
+So this is how I rank those techniques in my SQL projects.
+
+06:16.220 --> 06:20.490
+Now I would like to show you as well a big picture on how things works in my projects.
+
+06:20.490 --> 06:24.690
+In order to see all those different techniques and possibilities that you can use.
+
+06:24.690 --> 06:26.570
+It's like a big picture and recap.
+
+06:26.650 --> 06:27.850
+So story time.
+
+06:27.850 --> 06:33.730
+So you have a database and things starts where you have a database administrator or let's say data engineer.
+
+06:33.730 --> 06:39.450
+That is creating a new table from the scratch so he can write a DDL statement in order to create one
+
+06:39.450 --> 06:41.530
+physical table at our database.
+
+06:41.570 --> 06:43.450
+And now our database table is empty.
+
+06:43.490 --> 06:48.930
+That's why in the second step, you're going to go and write an Insert statement in order to fill our
+
+06:48.930 --> 06:50.330
+new table with data.
+
+06:50.370 --> 06:55.330
+Now once we have a table, we're going to give the access maybe to a data scientist or data analyst
+
+06:55.330 --> 06:57.690
+in order to start writing SQL queries.
+
+06:57.690 --> 07:01.010
+So now the first thing that could happen is that the logic is complex.
+
+07:01.010 --> 07:03.210
+And she has to do that in two steps.
+
+07:03.370 --> 07:08.850
+So the first step is a query that prepares the data in order to execute the second step.
+
+07:08.850 --> 07:11.450
+So that's why she's going to go and use the subquery.
+
+07:11.450 --> 07:16.210
+And the main query is going to go and retrieve the data from the intermediate results in order to prepare
+
+07:16.210 --> 07:18.530
+the final results for the analyst.
+
+07:18.570 --> 07:23.790
+Now what could happen is that there will be an SQL logic in the query where it keep repeating in the
+
+07:23.790 --> 07:24.270
+scripts.
+
+07:24.310 --> 07:29.590
+So now instead of writing another sub query for that, she's going to go and put this logic in CTE.
+
+07:29.790 --> 07:35.430
+And now she's going to go to the main query and use the result of the CTE in multiple places in the
+
+07:35.430 --> 07:36.270
+same query.
+
+07:36.270 --> 07:41.550
+So all those stuff, the sub queries and the CTE queries, the main queries, all those stuff happens
+
+07:41.550 --> 07:43.070
+in one single query.
+
+07:43.110 --> 07:47.070
+And now what could happen is that she is writing an amazing code.
+
+07:47.070 --> 07:50.550
+So instead of using it only in her query, what can happen?
+
+07:50.550 --> 07:54.070
+Is she going to go and persist this logic in the database?
+
+07:54.230 --> 08:00.190
+So she can put it as a view in the database, so that all other users and analysts can benefit from
+
+08:00.190 --> 08:02.470
+this logic, and they don't have to write it again.
+
+08:02.470 --> 08:05.190
+So instead they're going to go and query the view.
+
+08:05.190 --> 08:07.310
+And this makes the life easier.
+
+08:07.310 --> 08:11.590
+And of course our data analysts can as well use this view in the main query.
+
+08:11.630 --> 08:12.470
+And now one more thing.
+
+08:12.510 --> 08:15.790
+She has as well another logic that is really complex.
+
+08:15.950 --> 08:17.990
+And as well everyone can benefit from it.
+
+08:17.990 --> 08:20.710
+But the issue this query is very slow.
+
+08:20.710 --> 08:27.180
+So now she has to decide do I put it in view or do I create a new table based on the query using CTAs?
+
+08:27.340 --> 08:32.100
+Now, of course, because of the performance and the view takes around 30 minutes to be executed, she
+
+08:32.100 --> 08:38.020
+decided to execute the query using the CTAs, where she generates a physical table so that all other
+
+08:38.020 --> 08:42.780
+analysts as well can access this new table in order to reuse the results.
+
+08:42.820 --> 08:45.340
+And of course, she can use it in her main query.
+
+08:45.460 --> 08:49.420
+And with that, now you have experience how things works in real projects.
+
+08:49.460 --> 08:52.300
+It is not simple select query from table.
+
+08:52.300 --> 08:53.300
+It is like this.
+
+08:53.300 --> 09:00.060
+People are creating subquery cities views, temporary tables, CTAs for different purposes.
+
+09:00.100 --> 09:00.820
+All right my friends.
+
+09:00.820 --> 09:01.740
+So that's all about that.
+
+09:01.740 --> 09:04.100
+CTAs and the temporary tables.
+
+09:04.100 --> 09:08.300
+And with that we have learned all the techniques on how to organize our complex projects.
+
+09:08.340 --> 09:11.340
+Now next we're going to start talking about something completely different.
+
+09:11.340 --> 09:16.460
+We're going to talk about the stored procedures on how to put our code inside a database.
+
+09:16.460 --> 09:22.500
+This is all about the programmability and how to add stuff like parameters, variables, error handling.
+
+09:22.500 --> 09:23.860
+So it's like programming.
+
+09:23.860 --> 09:24.660
+So let's go.
+
+09:24.780 --> 09:28.060
+So let's uncover this world of the stored procedures and let's go.

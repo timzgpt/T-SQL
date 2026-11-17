@@ -1,0 +1,292 @@
+WEBVTT
+
+00:03.920 --> 00:04.160
+Okay.
+
+00:04.160 --> 00:08.720
+So now what we're going to do with the data exploration, we're going to go and explore the boundaries
+
+00:08.720 --> 00:10.720
+of the data that we have in the data sets.
+
+00:10.760 --> 00:16.200
+What is the earliest and the latest dates in my data we can understand the time span.
+
+00:16.240 --> 00:19.280
+Do we have in our business two years or like ten years?
+
+00:19.320 --> 00:24.760
+And this is of course very important to understand in order later to make different types of time analyses.
+
+00:24.800 --> 00:26.680
+Now the formula for that is very simple.
+
+00:26.720 --> 00:32.040
+All what we need is the min and max functions in order to get the earliest and the latest dates.
+
+00:32.080 --> 00:35.840
+And of course we can apply that on date columns date dimensions.
+
+00:35.840 --> 00:41.000
+So for example we're going to have like min order date max create date min birth dates.
+
+00:41.000 --> 00:42.840
+So any date that you have in your data sets.
+
+00:42.880 --> 00:47.120
+And if you look to any date column inside your data you will find multiple values.
+
+00:47.120 --> 00:52.800
+But what is interesting is to understand what is the earliest date like here, for example 2018 and
+
+00:52.800 --> 00:56.240
+what is the latest date for example 2028.
+
+00:56.280 --> 01:02.720
+And with that we can understand how we have like time span of ten years using the date diff function.
+
+01:02.720 --> 01:06.420
+So now let's go and apply our new formula on our date columns.
+
+01:06.460 --> 01:06.820
+All right.
+
+01:06.860 --> 01:10.220
+So now let's search for date information inside our database.
+
+01:10.220 --> 01:12.380
+And usually you're going to find a lot in the facts.
+
+01:12.380 --> 01:13.900
+So let's go to the fact cells.
+
+01:13.900 --> 01:17.580
+And here we have like multiple dates the order date shipping date and due dates.
+
+01:17.620 --> 01:20.620
+Now let's go and explore the boundaries of the order date.
+
+01:20.620 --> 01:21.860
+So we have the following task.
+
+01:21.860 --> 01:24.940
+Find the date of the first and last order.
+
+01:24.940 --> 01:25.900
+So how are we going to do that.
+
+01:25.900 --> 01:31.860
+We're going to say select and we are targeting the order date from our table cells.
+
+01:32.100 --> 01:34.180
+So let's go and execute it.
+
+01:34.180 --> 01:37.700
+And now we can see we have a lot of values inside our database.
+
+01:37.700 --> 01:42.900
+So now in order to find the first date what you're going to do we're going to go and use the function
+
+01:42.900 --> 01:46.140
+min in order to get the minimum order dates.
+
+01:46.140 --> 01:49.540
+So we're going to go and call it first order dates.
+
+01:49.540 --> 01:51.020
+So let's go and execute it.
+
+01:51.020 --> 01:55.460
+So now we can see the date of the first order is in December 2010.
+
+01:55.460 --> 01:58.540
+Now let's go and find the date of the last order.
+
+01:58.540 --> 02:02.140
+So we're going to have this time the max order date.
+
+02:03.140 --> 02:06.450
+And let's go and call it last Order dates.
+
+02:06.450 --> 02:08.170
+So let's go and explore.
+
+02:08.210 --> 02:09.490
+Now the other boundary.
+
+02:09.490 --> 02:10.890
+And with that we can see.
+
+02:10.930 --> 02:15.730
+In January 2014 it is the date of the last order in our system.
+
+02:15.730 --> 02:17.170
+So with that we have explored.
+
+02:17.290 --> 02:20.890
+The boundaries of the order dates the first and the last.
+
+02:20.890 --> 02:26.890
+And of course, we can now understand very quickly that we have four years of sales inside our business,
+
+02:26.890 --> 02:28.410
+but we can go and calculate it.
+
+02:28.410 --> 02:31.650
+So now the task says how many years of sales are available.
+
+02:31.690 --> 02:36.490
+Now, in order to find the years between those two dates, we have another SQL function.
+
+02:36.530 --> 02:37.930
+It's called Datediff.
+
+02:37.970 --> 02:40.290
+And now we have to go and subtract two dates.
+
+02:40.330 --> 02:42.370
+Now this function needs three arguments.
+
+02:42.370 --> 02:45.930
+The first one you have to specify whether it is a year, month and day.
+
+02:45.930 --> 02:47.850
+And we start with the smallest date.
+
+02:47.850 --> 02:50.810
+So it's going to be the min order dates.
+
+02:50.810 --> 02:54.810
+And then the last argument is going to be the latest or the highest date.
+
+02:54.810 --> 02:57.410
+And it's going to be the max order date.
+
+02:57.450 --> 03:01.130
+And we can go and call it order range in years.
+
+03:01.170 --> 03:01.450
+Okay.
+
+03:01.490 --> 03:03.330
+So let's go and execute it.
+
+03:03.330 --> 03:06.250
+And with that you can see in the output we have four years.
+
+03:06.290 --> 03:08.670
+Of course if you want to go and check the their monthlies.
+
+03:08.710 --> 03:11.030
+You can go over here and say month and execute.
+
+03:11.030 --> 03:14.070
+So between those two dates we have 37 months.
+
+03:14.110 --> 03:20.590
+And of course now we have to go and rename it so that we have explored the dimension order dates.
+
+03:20.590 --> 03:24.510
+But what is more interesting is to check the customers.
+
+03:24.750 --> 03:26.710
+And here we have the birth dates.
+
+03:26.710 --> 03:31.550
+So now what we can do, we can go and find the youngest and the oldest customer.
+
+03:31.550 --> 03:32.510
+So let's go and do that.
+
+03:32.510 --> 03:35.870
+We're going to say select min birth dates.
+
+03:35.910 --> 03:38.950
+And with that we are getting the oldest birth dates.
+
+03:39.190 --> 03:41.990
+And we will get now the max birth dates.
+
+03:42.390 --> 03:49.030
+And with that we will get the youngest birth dates from our table customers.
+
+03:49.030 --> 03:51.110
+So let's go and explore that.
+
+03:51.150 --> 03:54.030
+Now we can see the birth dates of the oldest customer.
+
+03:54.070 --> 03:55.830
+I hope he or she is still alive.
+
+03:55.830 --> 04:01.870
+So it is more than 100 years and the youngest customer is around like 40 years.
+
+04:01.870 --> 04:05.270
+So we don't have really young customers inside our business.
+
+04:05.270 --> 04:08.990
+And of course, if you don't want to see the birth dates, you want to see the age.
+
+04:09.070 --> 04:11.540
+What you have to do is actually very simple.
+
+04:11.540 --> 04:13.220
+You're going to use as well the diff.
+
+04:13.380 --> 04:14.900
+And we want the year.
+
+04:14.900 --> 04:20.660
+And then we're going to say min birthdates with the current date and time.
+
+04:20.660 --> 04:23.220
+And for that we have a function called get dates.
+
+04:23.220 --> 04:25.860
+And we're going to call it oldest age.
+
+04:25.860 --> 04:31.220
+So if we go and execute this one over here you can see the age of the oldest customer.
+
+04:31.220 --> 04:32.540
+It is 109.
+
+04:32.580 --> 04:38.380
+And of course you can do the same thing for the youngest if you just replace this with Max.
+
+04:38.380 --> 04:40.900
+And here we have the youngest age.
+
+04:40.900 --> 04:42.820
+So let's go and execute it.
+
+04:42.860 --> 04:43.900
+It is 39.
+
+04:43.900 --> 04:48.180
+So my friends this is how we explore the boundaries of a date.
+
+04:48.180 --> 04:53.820
+And by finding the first date and the last date and the years between them, we are having now more
+
+04:53.820 --> 04:56.500
+understanding of the time span of our business.
+
+04:56.500 --> 05:00.780
+And that's going to help us later by making different types of complex analyses.
+
+05:00.780 --> 05:02.980
+So this is how we explore the dates.
+
+05:03.020 --> 05:03.380
+All right.
+
+05:03.380 --> 05:08.220
+So with that, we have now a clear picture about the scope of our projects and the date range inside
+
+05:08.220 --> 05:09.020
+our datasets.
+
+05:09.060 --> 05:13.780
+Now in the next step we're going to go and explore the second type of data the measures.

@@ -1,0 +1,421 @@
+WEBVTT
+
+00:00.080 --> 00:04.400
+Now the methods that we're going to use in order to load the data from the source to the data warehouse
+
+00:04.440 --> 00:06.080
+is the bulk inserts.
+
+00:06.120 --> 00:13.280
+Bulk insert is a method of loading massive amounts of data very quickly from files like CSV files,
+
+00:13.280 --> 00:16.840
+or maybe a text file directly into a database.
+
+00:16.880 --> 00:22.400
+It is not like the classical normal inserts where it can go and insert the data row by row, but instead
+
+00:22.400 --> 00:28.240
+the bulk insert is one operation that's going to load all the data in one go into the database, and
+
+00:28.240 --> 00:29.960
+that's what makes it very fast.
+
+00:30.000 --> 00:31.600
+So let's go and use this method.
+
+00:31.640 --> 00:31.800
+Okay.
+
+00:31.840 --> 00:37.120
+So now let's start writing the script in order to load the first table in the source CRM.
+
+00:37.120 --> 00:42.760
+So we're going to go and load the table customer info from the CSV file to the database table.
+
+00:42.760 --> 00:44.160
+So the syntax is very simple.
+
+00:44.160 --> 00:46.920
+We're going to start with saying bulk insert.
+
+00:46.920 --> 00:49.760
+So with that SQL understand we are doing not a normal insert.
+
+00:49.760 --> 00:51.240
+We are doing a bulk insert.
+
+00:51.240 --> 00:53.720
+And then we have to go and specify the table name.
+
+00:53.720 --> 00:58.680
+So it is bronze dot CRM cost info.
+
+00:58.680 --> 01:04.550
+So now we have to specify the full location of the file that we are trying to load in this table.
+
+01:04.590 --> 01:08.550
+So now what we have to do is to go and get the path where the file is stored.
+
+01:08.590 --> 01:14.230
+So I'm going to go and copy the whole path and then add it to the bulk insert exactly like where the
+
+01:14.230 --> 01:15.350
+data exists.
+
+01:15.350 --> 01:21.030
+So for me it is in C SQL Data Warehouse project datasets in the source CRM.
+
+01:21.350 --> 01:23.510
+And then I have to specify the file name.
+
+01:23.510 --> 01:27.070
+So it's going to be the cost underscore info dot csv.
+
+01:27.230 --> 01:31.910
+You have to get it exactly like the path of your files, otherwise it will not be working.
+
+01:31.910 --> 01:35.230
+So after the path now we come to the With clause.
+
+01:35.270 --> 01:38.870
+Now we have to tell the SQL server how to handle our file.
+
+01:38.870 --> 01:40.790
+So here comes the specifications.
+
+01:40.790 --> 01:43.070
+There is a lot of stuff that we can define.
+
+01:43.070 --> 01:46.390
+So let's start with the very important one is the row header.
+
+01:46.430 --> 01:53.030
+Now if you check the content of our files you can see always the first row includes the header information
+
+01:53.030 --> 01:54.030
+of the file.
+
+01:54.030 --> 01:56.590
+So those informations are actually not the data.
+
+01:56.590 --> 01:58.430
+It's just the column names.
+
+01:58.430 --> 02:04.510
+The actual data starts from the second row, and we have to tell the database about this information.
+
+02:04.510 --> 02:08.910
+So we're gonna say first row is actually the second row.
+
+02:08.910 --> 02:12.910
+So with that we are telling SQL to skip the first row in the file.
+
+02:12.910 --> 02:18.350
+We don't need to load those informations because we have already defined the structure of our table.
+
+02:18.350 --> 02:23.870
+So this is the first specifications the next one which is as well very important in loading any CSV
+
+02:23.910 --> 02:28.310
+file is the separator between fields, the delimiter between fields.
+
+02:28.310 --> 02:31.710
+So here it's really depend on the file structure that you are getting from the source.
+
+02:31.710 --> 02:35.670
+As you can see, all those values are splitted with a comma.
+
+02:35.670 --> 02:39.230
+And we call this comma as a file separator or a delimiter.
+
+02:39.230 --> 02:44.630
+And I saw a lot of different csvs like sometimes they use a semicolon or a pipe or special character
+
+02:44.630 --> 02:45.990
+like a hash and so on.
+
+02:45.990 --> 02:48.950
+So you have to understand how the values are splitted.
+
+02:48.950 --> 02:51.230
+And in this file it's splitted by the comma.
+
+02:51.230 --> 02:53.510
+And we have to tell SQL about this info.
+
+02:53.510 --> 02:54.270
+It's very important.
+
+02:54.270 --> 02:56.670
+So we can say field terminator.
+
+02:56.830 --> 02:59.300
+And then we're going to say it is the comma.
+
+02:59.460 --> 03:05.100
+And basically those two informations are very important for SQL in order to be able to read your CSV
+
+03:05.140 --> 03:05.540
+file.
+
+03:05.580 --> 03:11.020
+Now there are like many different options that you can go and add for example tape lock.
+
+03:11.060 --> 03:17.100
+It is an option in order to improve the performance where you are locking the entire table during loading
+
+03:17.100 --> 03:17.340
+it.
+
+03:17.380 --> 03:22.500
+So as SQL is loading the data to this table, it's going to go and lock the whole table.
+
+03:22.500 --> 03:25.140
+So that's it for now I'm just going to go and add the semicolon.
+
+03:25.140 --> 03:28.900
+And let's go and insert the data from the file inside our bronze table.
+
+03:28.900 --> 03:29.820
+Let's execute it.
+
+03:29.820 --> 03:34.220
+And now we can see SQL did insert around 80,000 rows inside our table.
+
+03:34.220 --> 03:35.060
+So it is working.
+
+03:35.060 --> 03:37.260
+We just loaded the file into our database.
+
+03:37.260 --> 03:40.020
+But now it is not enough to just write the script.
+
+03:40.020 --> 03:45.060
+You have to test the quality of your bronze table, especially if you are working with files.
+
+03:45.060 --> 03:47.500
+So let's go and just do a simple select.
+
+03:47.820 --> 03:49.260
+So from our new table.
+
+03:51.380 --> 03:52.980
+And let's run it.
+
+03:52.980 --> 03:57.170
+So now the first thing that I check is do we have data like in each column.
+
+03:57.170 --> 03:57.850
+Well, yes.
+
+03:57.850 --> 03:59.250
+As you can see, we have data.
+
+03:59.250 --> 04:03.210
+And the second thing is do we have the data in the correct column.
+
+04:03.210 --> 04:07.330
+This is very critical as you are loading the data from a file to a database.
+
+04:07.330 --> 04:09.330
+Do we have the data in the correct column.
+
+04:09.330 --> 04:12.290
+So for example here we have the first name which of course makes sense.
+
+04:12.290 --> 04:13.650
+And here we have the last name.
+
+04:13.650 --> 04:14.730
+But what could happen.
+
+04:14.730 --> 04:20.410
+And this mistakes happens a lot is that you find the first name informations inside the key.
+
+04:20.450 --> 04:25.610
+And as well you see the last name inside the first name and the status inside the last name.
+
+04:25.610 --> 04:28.010
+So there is like shifting of the data.
+
+04:28.010 --> 04:32.890
+And this data engineering mistake is very common if you are working with CSV files and they are like
+
+04:32.890 --> 04:38.490
+different reasons why it happens, maybe the definition of your table is wrong or the field separator
+
+04:38.490 --> 04:39.170
+is wrong.
+
+04:39.210 --> 04:41.370
+Maybe it's not a comma, it's something else.
+
+04:41.410 --> 04:47.130
+Or the separator is a bad separator because sometimes maybe in the keys or in the first name, there
+
+04:47.130 --> 04:50.770
+is a comma and the SQL is not able to split the data correctly.
+
+04:50.770 --> 04:53.970
+So the quality of the CSV file is not really good.
+
+04:54.010 --> 04:58.960
+And there are many different reasons why you are not getting the data in the correct column, but for
+
+04:58.960 --> 05:01.000
+now, everything looks fine for us.
+
+05:01.040 --> 05:05.400
+And the next step that I go and count the rows inside this table.
+
+05:05.520 --> 05:10.560
+So let's go and select that so we can see we have 18,493.
+
+05:10.600 --> 05:15.880
+And now what we can do we can go to our CSV file and check how many rows do we have inside this file.
+
+05:15.880 --> 05:19.440
+And as you can see we have 18,494.
+
+05:19.560 --> 05:20.600
+We are almost there.
+
+05:20.640 --> 05:23.120
+There is like one extra row inside the file.
+
+05:23.120 --> 05:25.040
+And that's because of the header.
+
+05:25.320 --> 05:28.800
+The first header information is not loaded inside our table.
+
+05:28.800 --> 05:33.960
+And that's why always in our tables we are going to have one less row than the original files.
+
+05:33.960 --> 05:35.200
+So everything looks nice.
+
+05:35.200 --> 05:36.880
+And we have done this step correctly.
+
+05:36.880 --> 05:39.960
+Now if I go and run it again what can happen?
+
+05:40.160 --> 05:43.160
+We will get duplicates inside the bronze layer.
+
+05:43.200 --> 05:48.840
+So now we have loaded the file like twice inside the same table, which is naturally correct.
+
+05:48.840 --> 05:55.240
+The method that we have discussed is first to make the table empty and then load truncate, and then
+
+05:55.280 --> 05:55.920
+inserts.
+
+05:55.920 --> 06:01.920
+In order to do that before the bulk inserts, what we're going to do, we're going to say truncate table.
+
+06:01.920 --> 06:06.760
+And then we're going to have our table and that's it with a semicolon.
+
+06:06.760 --> 06:13.680
+So now what we are doing is first we are making the table empty and then we start loading from the scratch.
+
+06:13.680 --> 06:17.040
+We are loading the whole content of the file inside a table.
+
+06:17.040 --> 06:18.680
+And this is what we call full load.
+
+06:18.680 --> 06:22.040
+So now let's go and mark everything together and execute.
+
+06:22.040 --> 06:28.000
+And again if you go and check the content of the table you can see we have only 18,000 rows.
+
+06:28.040 --> 06:29.760
+Let's go and run it again.
+
+06:29.800 --> 06:31.320
+The count of the bronze layer.
+
+06:31.320 --> 06:33.640
+You can see we still have the 18,000.
+
+06:33.640 --> 06:40.360
+So each time you run the script now we are refreshing the table customer info from the file into the
+
+06:40.360 --> 06:41.160
+database table.
+
+06:41.160 --> 06:43.600
+So we are refreshing the bronze layer table.
+
+06:43.600 --> 06:49.240
+So that means if there is like now any changes in the file, it will be loaded to the table.
+
+06:49.240 --> 06:55.070
+So this is how you do a full load in the bronze layer by truncating the table and then doing the inserts.
+
+06:55.110 --> 07:00.230
+And now, of course, what we have to do is to pause the video and go and write the same script for
+
+07:00.230 --> 07:01.510
+all six files.
+
+07:01.590 --> 07:02.910
+So let's go and do that.
+
+07:08.430 --> 07:08.790
+Okay.
+
+07:08.830 --> 07:09.150
+Back.
+
+07:09.150 --> 07:11.910
+So I hope that you have as well written all those scripts.
+
+07:11.910 --> 07:17.190
+So I have the three tables in order to load the first source system and then three sections in order
+
+07:17.190 --> 07:18.910
+to load the second source system.
+
+07:18.910 --> 07:22.270
+And as I'm writing those scripts, make sure to have the correct path.
+
+07:22.270 --> 07:26.270
+So for the second source system you have to go and change the path for the other folder.
+
+07:26.270 --> 07:30.990
+And as well don't forget that table name on the bronze layer is different from the file name, because
+
+07:30.990 --> 07:34.270
+we start always with the source system name with the files.
+
+07:34.270 --> 07:35.150
+We don't have that.
+
+07:35.150 --> 07:37.710
+So now I think I have everything is ready.
+
+07:37.710 --> 07:40.150
+So let's go and execute the whole thing.
+
+07:40.190 --> 07:40.670
+Perfect.
+
+07:40.670 --> 07:41.150
+Awesome.
+
+07:41.150 --> 07:42.990
+So everything is working.
+
+07:42.990 --> 07:48.750
+Let me check the messages so we can see from the message how many rows are inserted in each table.
+
+07:48.790 --> 07:52.870
+And now of course the task is to go through each table and check the content.

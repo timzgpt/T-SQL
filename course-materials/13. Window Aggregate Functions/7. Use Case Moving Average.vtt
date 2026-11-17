@@ -1,0 +1,574 @@
+WEBVTT
+
+00:03.920 --> 00:04.160
+Okay.
+
+00:04.160 --> 00:05.280
+So now we have the following task.
+
+00:05.280 --> 00:11.040
+And it says calculate the moving average of sales for each products over the time.
+
+00:11.280 --> 00:13.960
+So now we have here something called moving average.
+
+00:14.080 --> 00:16.360
+It is very similar to the running total.
+
+00:16.360 --> 00:19.640
+In the running total we used count and sum and so on.
+
+00:19.840 --> 00:22.560
+But here we're going to go and use the function average.
+
+00:22.800 --> 00:26.920
+And instead of calling it running average we call it moving average.
+
+00:27.000 --> 00:28.320
+So let's go and solve the task.
+
+00:28.320 --> 00:31.040
+Let's start always by selecting the usual stuff.
+
+00:31.040 --> 00:34.200
+So let's get the order ID let's get the product ID.
+
+00:34.400 --> 00:39.000
+And I would say since it's over the time I will get the order date as well.
+
+00:39.040 --> 00:43.880
+And the last one the sales from our table sales orders.
+
+00:44.360 --> 00:45.520
+So that's it.
+
+00:45.560 --> 00:47.080
+Let's go and execute it.
+
+00:47.080 --> 00:51.040
+So now we got our ten orders with the products order date and sales.
+
+00:51.280 --> 00:54.120
+Let's start building our window function step by step.
+
+00:54.120 --> 00:55.680
+So which function do we need.
+
+00:55.720 --> 00:56.800
+We need the average.
+
+00:56.800 --> 00:57.760
+This is the easiest one.
+
+00:57.800 --> 00:59.080
+It says moving average.
+
+00:59.080 --> 01:00.120
+So that's it.
+
+01:00.160 --> 01:01.160
+We need the sales.
+
+01:01.160 --> 01:03.660
+So it's going to be the average of sales.
+
+01:03.700 --> 01:05.340
+Let's go and define the window.
+
+01:05.700 --> 01:07.540
+So now do we have to divide the data.
+
+01:07.540 --> 01:08.420
+Partition the data.
+
+01:08.500 --> 01:09.340
+Well yes.
+
+01:09.380 --> 01:15.100
+It says for each product that means we're going to go and use the partition by clause by the product
+
+01:15.580 --> 01:16.100
+ID.
+
+01:16.140 --> 01:18.820
+So now I would say that's it for the first step.
+
+01:18.820 --> 01:21.140
+So average by product.
+
+01:21.340 --> 01:23.340
+So let's go and execute it.
+
+01:23.340 --> 01:26.260
+So now if you check the result you can see that we got our windows.
+
+01:26.260 --> 01:28.780
+So the first one for the product 101.
+
+01:28.780 --> 01:32.380
+And the total average of the sales is going to be 35.
+
+01:32.420 --> 01:35.980
+So we have like aggregated one value for each window.
+
+01:36.020 --> 01:39.660
+The same thing for the next product and for the next and so on.
+
+01:39.660 --> 01:44.220
+So we don't have any progress over time or something like moving average all the time.
+
+01:44.220 --> 01:44.380
+Right.
+
+01:44.380 --> 01:45.580
+We don't have this effect.
+
+01:45.580 --> 01:47.700
+We have just one average for each window.
+
+01:47.700 --> 01:51.900
+So now in order to have the effect of the moving average, it's going to be like the running total.
+
+01:52.060 --> 01:55.740
+We have to use the aggregate function together with the order by.
+
+01:55.980 --> 01:59.380
+So I'm just going to make it a new column.
+
+01:59.500 --> 02:01.860
+I'm just going to copy everything like here.
+
+02:02.320 --> 02:02.880
+and now.
+
+02:02.920 --> 02:03.840
+What are we going to do?
+
+02:03.880 --> 02:04.680
+Order by.
+
+02:05.520 --> 02:09.480
+And since it's over the time, we're going to go and use the order dates.
+
+02:09.920 --> 02:11.360
+Order dates.
+
+02:11.360 --> 02:14.280
+And we're going to have it as ascending because it's over time.
+
+02:14.280 --> 02:14.760
+Over time.
+
+02:14.760 --> 02:18.720
+Always like start with the earliest dates end up with the latest dates.
+
+02:18.880 --> 02:21.960
+So from the lowest to the highest we're going to leave it like this.
+
+02:22.080 --> 02:25.200
+So let's call it moving average.
+
+02:25.240 --> 02:27.040
+So now let's go and execute it.
+
+02:27.080 --> 02:30.200
+And we got here an extra comma because of the copy paste.
+
+02:30.320 --> 02:31.720
+So let's execute it again.
+
+02:31.760 --> 02:32.120
+All right.
+
+02:32.120 --> 02:33.680
+So now let's check the results.
+
+02:33.720 --> 02:35.680
+Let's take the first window over here.
+
+02:35.880 --> 02:39.320
+And you can see we have on the moving average like a progress.
+
+02:39.480 --> 02:42.760
+So it starts with 1015 1435.
+
+02:43.000 --> 02:44.840
+So there is like moving average.
+
+02:44.840 --> 02:47.880
+We don't have one solid number for the average.
+
+02:48.000 --> 02:49.400
+We have different values.
+
+02:49.440 --> 02:51.160
+So now how is SQL going to solve this.
+
+02:51.200 --> 02:52.040
+It's really simple.
+
+02:52.080 --> 02:53.520
+It's going to start row by row.
+
+02:53.560 --> 02:55.880
+So the first row what is the average of ten.
+
+02:55.920 --> 02:56.880
+It's going to be ten.
+
+02:57.080 --> 03:00.920
+Then moving on to the next one it's going to be ten plus 20 divided by two.
+
+03:00.960 --> 03:02.200
+You will get 15.
+
+03:02.400 --> 03:04.490
+So now moving to the third one.
+
+03:04.530 --> 03:08.530
+Although three values can be summarized divided by three, you will get 40.
+
+03:08.730 --> 03:11.170
+And now to the last row in the window.
+
+03:11.570 --> 03:15.130
+It's going to be summarizing all those four values divided by four.
+
+03:15.170 --> 03:16.610
+And you will get 35.
+
+03:16.810 --> 03:21.890
+And this is exactly the same value in the previous column you have here the average by products we don't
+
+03:21.890 --> 03:26.290
+have order by you got as well 35 exactly like the last row.
+
+03:26.410 --> 03:28.530
+And that's because we have the same calculation.
+
+03:28.570 --> 03:32.050
+It is summarizing all those four values dividing it by four.
+
+03:32.090 --> 03:34.370
+But now it's interesting the next value.
+
+03:34.370 --> 03:37.890
+So as you can see the next value it comes from another window.
+
+03:38.170 --> 03:41.450
+So you see here we have 15 for the product 102.
+
+03:41.850 --> 03:44.010
+But the average is going to be as well 15.
+
+03:44.010 --> 03:48.290
+So SQL is not considering the old values from the other window.
+
+03:48.530 --> 03:51.490
+So SQL is going to calculate each window separately.
+
+03:51.490 --> 03:52.650
+So it's again here.
+
+03:52.650 --> 03:56.490
+This is the first value of this window 15 the average 15.
+
+03:56.530 --> 03:58.130
+Then the same stuff right.
+
+03:58.170 --> 04:00.810
+So summarizing those values divided by two and so on.
+
+04:00.810 --> 04:03.150
+And this recall in data analysis Analyses.
+
+04:03.350 --> 04:06.230
+This last field over here, we call it a moving average.
+
+04:06.230 --> 04:11.630
+And you can implement it very simply using an average function together with the order by.
+
+04:11.670 --> 04:12.070
+All right.
+
+04:12.070 --> 04:13.110
+Let's move to the next task.
+
+04:13.110 --> 04:19.990
+And it says calculate the moving average of sales for each product over time including only the next
+
+04:19.990 --> 04:20.550
+order.
+
+04:20.750 --> 04:23.430
+So as you can see, the first part we have already done is right.
+
+04:23.430 --> 04:27.350
+We have the moving average and divided by partition by for the products.
+
+04:27.350 --> 04:32.190
+But here we have more specifications that says including only the next order.
+
+04:32.230 --> 04:37.150
+That means we are talking about the current order and as well the next order.
+
+04:37.230 --> 04:40.310
+So here we have like a fixed frame or fixed window.
+
+04:40.310 --> 04:42.910
+So we don't need the whole average of the window.
+
+04:43.070 --> 04:46.830
+We need only maximum two orders in each calculation.
+
+04:46.830 --> 04:47.830
+So how are we going to do that.
+
+04:47.830 --> 04:52.110
+We can have our custom frame clause inside our window function.
+
+04:52.110 --> 04:54.830
+So that means we cannot leave it as a default.
+
+04:54.830 --> 04:56.790
+We have to specify it.
+
+04:56.790 --> 04:58.150
+So let's go and do that.
+
+04:58.190 --> 05:02.390
+I will just copy the old definition of the window because we have the exact stuff.
+
+05:02.670 --> 05:07.570
+So we have the average sales over partition by product ID order by date.
+
+05:07.570 --> 05:09.850
+So this is the first part.
+
+05:09.890 --> 05:12.570
+So now we would like to have this fixed window.
+
+05:12.570 --> 05:15.170
+So we're going to go now and define our frame close.
+
+05:15.210 --> 05:17.170
+I'm just gonna zoom out a little bit.
+
+05:17.290 --> 05:19.130
+It's going to be rows between.
+
+05:19.370 --> 05:23.330
+So we have now the boundaries of the frame it says including the next order.
+
+05:23.330 --> 05:25.410
+So we're going to go and use the following.
+
+05:25.450 --> 05:28.130
+So the first boundary is going to be the current row.
+
+05:28.130 --> 05:32.090
+And since it's next order so it's going to be one following.
+
+05:32.370 --> 05:35.770
+So that is our frame including only the next order.
+
+05:35.930 --> 05:41.770
+And we have it like this one following let's call it yeah rolling average.
+
+05:41.770 --> 05:42.570
+So that's it.
+
+05:42.570 --> 05:43.930
+Let's go and execute.
+
+05:43.930 --> 05:45.410
+So now let's go and check the result.
+
+05:45.410 --> 05:50.130
+You can see the moving average has completely different values as the rolling average.
+
+05:50.130 --> 05:52.850
+So let's go and understand why we're going to do it row by row.
+
+05:52.890 --> 05:54.610
+Let's take the first row over here.
+
+05:54.610 --> 05:58.690
+So the sales here is ten and the rolling average is 15.
+
+05:58.690 --> 06:00.010
+So why is that.
+
+06:00.010 --> 06:03.490
+Because in the calculation we are considering the next value.
+
+06:03.690 --> 06:07.910
+So ten plus 20 divided by two you will get 15.
+
+06:07.910 --> 06:10.950
+So that means the SQL define the frame like this.
+
+06:10.990 --> 06:14.030
+Those two rows for this calculation for the first row.
+
+06:14.030 --> 06:16.070
+So now moving on to the second row.
+
+06:16.190 --> 06:20.470
+SQL can include as well the third one right the next one.
+
+06:20.590 --> 06:25.870
+But since the window is only two orders it's going to go and drop the first row.
+
+06:26.070 --> 06:28.590
+So the next frame is going to be like this.
+
+06:28.870 --> 06:32.510
+And as you can see it's going to be 20 plus 19 divided by two.
+
+06:32.550 --> 06:33.830
+You will get 55.
+
+06:33.870 --> 06:37.150
+So now you can see the effect of the rolling average right.
+
+06:37.310 --> 06:39.310
+So now for the next one it's going to be exact same.
+
+06:39.310 --> 06:40.870
+So we are at the third row.
+
+06:40.910 --> 06:43.070
+It's going to go and include the next one.
+
+06:43.310 --> 06:44.590
+And we're going to get the same value.
+
+06:44.590 --> 06:48.030
+Because 19 plus 20 divided by two you will get 55.
+
+06:48.070 --> 06:51.150
+Now interesting to the last row in the window over here.
+
+06:51.470 --> 06:56.350
+It will not go and consider the next value because it is outside of the window.
+
+06:56.350 --> 07:00.150
+So it's going to be 20 and it's going to stay as will 20.
+
+07:00.190 --> 07:01.270
+So that's it.
+
+07:01.270 --> 07:01.990
+All right guys.
+
+07:01.990 --> 07:07.640
+So with that we have learned about the moving average the rolling average, and those amazing concepts
+
+07:07.640 --> 07:09.000
+using the window function.
+
+07:09.000 --> 07:09.280
+All right.
+
+07:09.320 --> 07:14.640
+Now we can have a quick overview of the different use cases in the aggregate functions and how the definition
+
+07:14.640 --> 07:17.360
+of the window is going to change the whole use case.
+
+07:17.360 --> 07:20.600
+So now the first use case is finding the overall total.
+
+07:20.800 --> 07:25.720
+And here if you don't define anything in the window, if you leave it empty what's going to happen.
+
+07:25.720 --> 07:28.000
+You are doing your overall analysis.
+
+07:28.000 --> 07:34.200
+So you're going to go and aggregate the whole data sets and then provide this aggregation for each row.
+
+07:34.200 --> 07:35.240
+So this is what happened.
+
+07:35.240 --> 07:37.440
+If you leave it empty you don't define anything.
+
+07:37.640 --> 07:40.160
+You are aggregating the whole data sets.
+
+07:40.200 --> 07:45.080
+Now moving to the next step we can do analysis called total per groups.
+
+07:45.080 --> 07:49.600
+So what we're going to do we will add partition by to the definition of the window.
+
+07:49.600 --> 07:52.480
+So by adding for example here partition by products.
+
+07:52.520 --> 07:56.720
+What can happen that that's going to be split into two categories or two groups.
+
+07:56.720 --> 08:00.120
+And the aggregation can be done for each window separately.
+
+08:00.120 --> 08:05.280
+This is of course a great analysis in order to go and compare different products like here the caps
+
+08:05.280 --> 08:06.100
+and gloves.
+
+08:06.100 --> 08:08.940
+So this is helpful in order to compare categories.
+
+08:08.940 --> 08:10.260
+So you can do this analysis.
+
+08:10.300 --> 08:11.300
+Total per groups.
+
+08:11.300 --> 08:16.700
+If you use the partition by now if you go and use the order by, you're going to land in the third use
+
+08:16.700 --> 08:19.980
+case, as we learned, we will be doing running total.
+
+08:19.980 --> 08:24.300
+So as you can see in the output, we are building a cumulative value for the sales.
+
+08:24.540 --> 08:30.020
+And this can help us in order to do progress over time analyses in order to understand the performance
+
+08:30.020 --> 08:30.980
+of our business.
+
+08:31.020 --> 08:35.820
+And now moving on to the last use case, the final phase of the window function with the aggregation.
+
+08:35.820 --> 08:41.460
+Here you have the aggregate function together with the order by which customized fixed window.
+
+08:41.460 --> 08:46.780
+And of course we can use it in order to help us building progress over time in specific fixed window.
+
+08:46.820 --> 08:48.740
+And of course you can use those use cases.
+
+08:48.740 --> 08:53.420
+You will get the same effect if you use the other functions, not only the sum, you can use average
+
+08:53.420 --> 08:53.780
+count.
+
+08:53.820 --> 08:54.660
+Max min.
+
+08:54.660 --> 08:55.980
+So all aggregate functions.
+
+08:55.980 --> 09:01.020
+So guys as you can see the window function in SQL is very important in order to do that analytics.
+
+09:01.220 --> 09:07.100
+By just like changing the part of the window, you are generating a whole new use case for data analytics.

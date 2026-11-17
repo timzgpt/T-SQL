@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Assignment</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial,
+          sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p,
+      ul,
+      ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: bold;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      .code-snippet {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .code-block {
+        background-color: #fff;
+        color: #b4690e;
+        font-size: 90%;
+      }
+      .black-block {
+        color: #000000;
+      }
+      .italic-text {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <h1 id="coding-title"></h1>
+    <div>
+      <h2>Instructions</h2>
+      <div id="coding-instructions"></div>
+    </div>
+    <div>
+      <h2>Test(s)</h2>
+      <div id="coding-tests"></div>
+    </div>
+    <div>
+      <h2>Solution(s)</h2>
+      <div id="coding-solutions"></div>
+    </div>
+
+    <script>
+      const quizData = {"title":"Assign levels with CASE","hasInstructions":false,"hasTests":true,"hasSolutions":true,"instructions":"<p>The loyalty team starts customer levels based on the score. They need every customer with their level, to send the right welcome message.</p><p><strong>Tables you can use:</strong></p><ul><li><p>Sales.Customers: CustomerID, FirstName, Score</p></li></ul><p><strong>Your task:</strong></p><ul><li><p>Return four columns: CustomerID, FirstName, Score, LoyaltyLevel.</p></li><li><p>LoyaltyLevel: 'Bronze' below 500 points, 'Silver' from 500 points and 'Gold' from 750 points.</p></li><li><p>A customer always gets the highest level they reach.</p></li><li><p>A customer without a score gets the level 'No score'.</p></li><li><p>Sort by CustomerID.</p></li></ul>","tests":[],"solutions":[{"file_name":"query.sql","content":"SELECT\n    CustomerID,\n    FirstName,\n    Score,\n    CASE\n        WHEN Score IS NULL THEN 'No score'\n        WHEN Score >= 750  THEN 'Gold'\n        WHEN Score >= 500  THEN 'Silver'\n        ELSE 'Bronze'\n    END AS LoyaltyLevel\nFROM Sales.Customers\nORDER BY CustomerID;"}]};
+      const escapeHTML = s =>
+        s.replace(
+          /[&<>"]/g,
+          c =>
+            ({
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+            }[c])
+        );
+
+      function renderCodeList(rootElement, codeList, className, titlePrefix) {
+        for (var i = 0; i < codeList.length; i++) {
+          var elem = codeList[i];
+          var jsElem = document.createElement('div');
+          jsElem.className = className;
+          var jsElemTitle = document.createElement('h3');
+          jsElemTitle.innerHTML = titlePrefix + ' ' + (i + 1);
+          var jsElemBody = document.createElement('code');
+          jsElemBody.className = 'code-block black-block';
+          jsElemBody.innerHTML = '<pre>' + escapeHTML(elem.content) + '</pre>';
+          jsElem.appendChild(jsElemTitle);
+          jsElem.appendChild(jsElemBody);
+          rootElement.appendChild(jsElem);
+        }
+      }
+
+      function main() {
+        // display the assignment
+        var codingTitle = document.getElementById('coding-title');
+        codingTitle.innerHTML = quizData.title;
+
+        var codingInstructions = document.getElementById('coding-instructions');
+        if (quizData.hasInstructions) {
+          codingInstructions.innerHTML = quizData.instructions;
+        } else {
+          codingInstructions.innerHTML = '<span class="italic-text">' + quizData.instructions + '</span>';
+        }
+
+        // display the test(s)
+        var codingTests = document.getElementById('coding-tests');
+        if (!quizData.hasTests) {
+          codingTests.innerHTML = '<span class="italic-text">' + quizData.tests + '</span>';
+        } else {
+          renderCodeList(codingTests, quizData.tests, 'coding-test', 'Test');
+        }
+
+        // display the solution(s)
+        var codingSolutions = document.getElementById('coding-solutions');
+        if (!quizData.hasSolutions) {
+          codingSolutions.innerHTML = '<span class="italic-text">' + quizData.solutions + '</span>';
+        } else {
+          renderCodeList(codingSolutions, quizData.solutions, 'coding-solution', 'Solution');
+        }
+      }
+    </script>
+  </body>
+</html>

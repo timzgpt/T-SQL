@@ -1,0 +1,523 @@
+WEBVTT
+
+00:03.920 --> 00:04.240
+All right.
+
+00:04.240 --> 00:06.720
+So now we have another use case for the lead and lag function.
+
+00:06.720 --> 00:10.040
+We can use them in order to do customer retention analysis.
+
+00:10.160 --> 00:13.520
+It's all about measuring the customer behavior and loyalty.
+
+00:13.520 --> 00:19.560
+So we are helping the business and decision makers to build strong relationships with the loyal customers
+
+00:19.560 --> 00:21.640
+and for them as well to focus on their needs.
+
+00:21.640 --> 00:26.840
+So now let's see how we can use lead and lag function in order to do customer retention analysis.
+
+00:26.840 --> 00:27.400
+So let's go.
+
+00:27.440 --> 00:27.720
+All right.
+
+00:27.720 --> 00:28.720
+So now we have the following task.
+
+00:28.760 --> 00:35.200
+And it says in order to analyze customer loyalty rank customers based on the average days between their
+
+00:35.200 --> 00:35.800
+orders.
+
+00:35.800 --> 00:37.800
+So there is a lot of things going on over here.
+
+00:37.840 --> 00:39.280
+Let's do it step by step.
+
+00:39.480 --> 00:42.240
+And I would like always to start with a very simple select.
+
+00:42.240 --> 00:48.120
+So let's go select informations like the order ID let's get the customer ID.
+
+00:48.560 --> 00:52.040
+And as well since we want the days we would like to have the date.
+
+00:52.040 --> 00:57.080
+So order dates from the table sales orders.
+
+00:57.120 --> 00:58.880
+And let's go and sort the data.
+
+00:58.950 --> 01:03.430
+so order by customer ID and order dates.
+
+01:03.790 --> 01:04.670
+So that's it.
+
+01:04.670 --> 01:06.030
+Let's go and execute.
+
+01:06.030 --> 01:08.750
+So now as usual we get our ten orders the customers.
+
+01:08.750 --> 01:10.310
+And when they did order.
+
+01:10.550 --> 01:11.910
+So now let's check the task.
+
+01:11.910 --> 01:15.510
+Let's solve this over here days between their orders.
+
+01:15.510 --> 01:19.150
+So we have to find how many days are between two orders.
+
+01:19.390 --> 01:24.870
+For example if we check the customer number one over here, he did order around 10th January.
+
+01:25.270 --> 01:29.830
+And the second order is like after ten days, 20th January.
+
+01:30.070 --> 01:32.750
+So we have to go and subtract those two dates.
+
+01:33.150 --> 01:37.790
+Now in order to subtract those informations and do calculations, we have to have everything in the
+
+01:37.790 --> 01:38.590
+same row.
+
+01:38.590 --> 01:44.190
+So for example, if we are at the first row over here, I would like to have as well one column about
+
+01:44.190 --> 01:45.190
+the next order.
+
+01:45.190 --> 01:47.110
+So the date of the next order.
+
+01:47.230 --> 01:49.790
+So we have to access a value from another row.
+
+01:49.830 --> 01:54.110
+Of course we can go and do joins but we have lead and lag functions.
+
+01:54.110 --> 01:57.580
+And for this scenario we're going to go and use the lead window function.
+
+01:57.580 --> 01:58.780
+So let's go and do that.
+
+01:58.780 --> 02:03.260
+I'm going to go and call the order date over here as a current order.
+
+02:03.580 --> 02:05.820
+And let's go and calculate the lead.
+
+02:05.980 --> 02:09.500
+So we I would like to get the next order date.
+
+02:09.500 --> 02:12.700
+So I would like to get this value over here in the same row.
+
+02:12.740 --> 02:16.860
+That's why we this time we're going to get the order dates.
+
+02:16.980 --> 02:18.660
+And now let's go and define the window.
+
+02:18.980 --> 02:23.660
+Now we have to go and partition the data because we are analyzing each customers separately.
+
+02:23.660 --> 02:24.180
+Right.
+
+02:24.340 --> 02:28.620
+So that's why we have to partition that by the customer ID.
+
+02:28.900 --> 02:31.940
+And of course in order to do the lead we have to use the order by.
+
+02:31.980 --> 02:33.940
+So let's go and define that as well.
+
+02:34.180 --> 02:37.300
+Order by and it's going to be by the order date.
+
+02:37.700 --> 02:39.100
+So now we have to give it a name.
+
+02:39.140 --> 02:43.500
+The order date here is the current order is going to be the next order.
+
+02:43.540 --> 02:45.340
+So next order.
+
+02:45.380 --> 02:48.460
+Let me zoom out a little bit and make this smaller.
+
+02:48.820 --> 02:50.580
+So let's go and execute it.
+
+02:50.580 --> 02:54.460
+So as you can see in the output we got a new column called Next Order.
+
+02:54.700 --> 03:00.560
+And with that we got the current order, the current row, and as well the value from the next row.
+
+03:00.640 --> 03:01.520
+So what is the next row?
+
+03:01.520 --> 03:03.400
+It's going to be the 20th January.
+
+03:03.400 --> 03:09.160
+The same thing of course for the next row over here we have the current order date and the next order
+
+03:09.160 --> 03:09.480
+date.
+
+03:09.480 --> 03:14.200
+So this value is going to be exactly as the next one over here 15 of February.
+
+03:14.440 --> 03:18.280
+And then since we are working with windows this is this is the whole window over here.
+
+03:18.800 --> 03:20.840
+The last order for this customer.
+
+03:21.040 --> 03:23.080
+It's 15 of the February.
+
+03:23.280 --> 03:24.600
+There is no next order.
+
+03:24.600 --> 03:25.880
+So this is going to be null.
+
+03:26.320 --> 03:31.400
+The same thing if you check the other customers you can see always the last order don't have any next
+
+03:31.400 --> 03:31.920
+order.
+
+03:32.320 --> 03:34.960
+So looks like everything is fine.
+
+03:34.960 --> 03:37.680
+And for the last customer he has only one order.
+
+03:37.680 --> 03:40.760
+So now with this we got all the informations for our calculations.
+
+03:40.960 --> 03:44.680
+So we have the current order and the next order in the same row.
+
+03:44.840 --> 03:49.960
+Now we can go and subtract them in order to get the dates between those two orders.
+
+03:50.000 --> 03:53.710
+And now in order to subtract date we have to use the function date diff.
+
+03:53.830 --> 03:55.230
+Don't worry about those functions.
+
+03:55.230 --> 03:57.670
+We can explain all those stuff in the next chapters.
+
+03:57.950 --> 03:59.710
+So now just follow me with those steps.
+
+03:59.710 --> 04:00.270
+What we're going to do.
+
+04:00.270 --> 04:05.310
+We're going to go and subtract this date the order date with the whole thing over here.
+
+04:05.350 --> 04:05.790
+Right.
+
+04:05.830 --> 04:07.670
+So the whole thing here is the next order.
+
+04:07.910 --> 04:09.390
+So let's do it in a new line.
+
+04:10.150 --> 04:11.550
+And it's going to be very simple.
+
+04:11.550 --> 04:13.070
+So date diff.
+
+04:13.230 --> 04:16.110
+We are finding the differences between two dates.
+
+04:16.110 --> 04:17.550
+So the syntax can be like this.
+
+04:17.550 --> 04:19.910
+First we have to define what we are talking about.
+
+04:19.910 --> 04:22.110
+Are they days months years and so on.
+
+04:22.110 --> 04:25.350
+So we have to tell SQL find me the differences in days.
+
+04:25.390 --> 04:27.630
+Now we have to specify two days.
+
+04:27.630 --> 04:30.110
+So the first one is going to be the order date.
+
+04:30.150 --> 04:31.550
+This is the current date.
+
+04:31.550 --> 04:34.550
+And the second date is going to be the whole thing from here.
+
+04:34.590 --> 04:37.390
+So let's take it and put it side by side.
+
+04:37.510 --> 04:40.390
+And this calculation is going to give us the number of days.
+
+04:40.390 --> 04:44.510
+So we're going to call this days until next order.
+
+04:44.710 --> 04:45.110
+All right.
+
+04:45.110 --> 04:47.510
+So now let's go and execute the whole thing.
+
+04:47.550 --> 04:48.630
+So now let's check the result.
+
+04:48.630 --> 04:50.470
+As you can see over here we got ten.
+
+04:50.470 --> 04:54.060
+So this is ten days between those two dates and the next one.
+
+04:54.060 --> 04:55.900
+We have around 26 days.
+
+04:56.300 --> 05:01.820
+Here we have a null because we don't have here a date, and for the next one we have 31 days.
+
+05:01.820 --> 05:03.580
+So we have a whole month over here.
+
+05:03.580 --> 05:05.220
+So everything is working perfectly.
+
+05:05.220 --> 05:09.900
+And with that we have solved only this part days between their orders.
+
+05:09.900 --> 05:10.900
+So guys you see right.
+
+05:10.900 --> 05:13.340
+This is the magic of the lead and lag function.
+
+05:13.340 --> 05:18.780
+We can very easily access any information you need in the same row in order to do such an important
+
+05:18.780 --> 05:19.580
+analysis.
+
+05:19.780 --> 05:25.380
+And with very simple query, we are not doing any crazy stuff like joining and stuff, we are just specifying
+
+05:25.380 --> 05:26.260
+the lead function.
+
+05:26.260 --> 05:28.460
+So now we got all the information that we need.
+
+05:28.460 --> 05:31.780
+Next we are going to go and calculate the average of those days.
+
+05:31.780 --> 05:34.860
+So in order to do that we have to go and use a subquery.
+
+05:34.860 --> 05:36.620
+So let me just zoom out.
+
+05:36.620 --> 05:39.220
+So let's go and select star.
+
+05:39.580 --> 05:41.420
+Just prepare the subquery.
+
+05:41.580 --> 05:46.540
+So the whole thing going to be a subquery I'm just get rid of the order by it's not now necessary.
+
+05:46.900 --> 05:50.490
+So let me just put it like this and shift it.
+
+05:50.490 --> 05:51.410
+So now what do we need?
+
+05:51.450 --> 05:53.290
+We need the average of the days.
+
+05:53.290 --> 05:55.170
+So we need the average of this value.
+
+05:55.170 --> 05:56.050
+So what can we do.
+
+05:56.050 --> 05:57.650
+We can go and use a group by.
+
+05:57.690 --> 06:02.170
+So customer ID since we have to find the average for each customers.
+
+06:02.330 --> 06:07.250
+And we're going to get this value and say average days until the next order.
+
+06:07.250 --> 06:09.730
+And we're going to call it average days.
+
+06:10.050 --> 06:14.610
+So and we have here to group by so group by customer ID.
+
+06:14.890 --> 06:19.410
+So like this just make this a little bit smaller and zoom in here.
+
+06:19.610 --> 06:20.410
+So that's it.
+
+06:20.450 --> 06:24.290
+Now we are just doing a very simple average and group by statements.
+
+06:24.290 --> 06:25.850
+So let's go and execute it.
+
+06:25.850 --> 06:28.250
+Now as you can see it's going to go and aggregate the data.
+
+06:28.250 --> 06:35.290
+So we have now only for customers and for each customer we have the average days between their orders.
+
+06:35.290 --> 06:36.770
+So now what is missing in our task.
+
+06:36.770 --> 06:41.330
+If you check over here it says rank the customers based on this average.
+
+06:41.330 --> 06:43.690
+So we have to go and use the rank function.
+
+06:43.690 --> 06:46.890
+So here again another window function that we have to go and use.
+
+06:46.930 --> 06:49.190
+We're going to do it together with the group by.
+
+06:49.230 --> 06:53.630
+So let me just make this a little bit smaller and then let's do it over here.
+
+06:54.110 --> 06:56.590
+So I'm just going to go with the rank function.
+
+06:56.590 --> 07:00.230
+Then we are going to define the window like this over order by.
+
+07:00.270 --> 07:03.350
+And then we're going to go and sort the data by the average days.
+
+07:03.350 --> 07:08.190
+So that means we're going to go and get this calculation over here and put it as order by.
+
+07:08.230 --> 07:09.190
+It's going to be ascending.
+
+07:09.190 --> 07:12.110
+So we are focusing on the lowest average days.
+
+07:12.510 --> 07:13.510
+So that's it.
+
+07:13.510 --> 07:15.670
+Let's call it rank average.
+
+07:15.830 --> 07:17.750
+So now let's go and execute this.
+
+07:17.750 --> 07:21.990
+So now by checking the result you can see now we have a ranking for the average.
+
+07:22.270 --> 07:28.590
+And here SQL says that the number one customer or the number one loyal customer is the customer number
+
+07:28.590 --> 07:32.950
+four which is not really correct because the number four, we don't have a lot of informations about
+
+07:32.950 --> 07:33.790
+this customer.
+
+07:34.030 --> 07:36.230
+He or she did order only once.
+
+07:36.230 --> 07:41.270
+So either now you go and like filter the data and remove this customer where you say if the average
+
+07:41.270 --> 07:43.630
+is null, then don't put it in the rank.
+
+07:43.750 --> 07:49.100
+Or we can go and replace this value with a is a very huge value in order to make it at the end of our
+
+07:49.100 --> 07:55.660
+list, for example, we can go over here and replace the null with Schleske like this.
+
+07:55.660 --> 08:01.620
+And we say if the average is null, then let's say give me a crazy number like this very huge one.
+
+08:02.100 --> 08:04.380
+So that's it, let's go and execute.
+
+08:04.380 --> 08:07.540
+And now as you can see, this customer is going to be at the end of our list.
+
+08:07.740 --> 08:11.540
+And now we can see that the most loyal customer is number one.
+
+08:11.540 --> 08:14.340
+And then the other two customers are in the rank two.
+
+08:14.580 --> 08:17.380
+And here we are sharing the same rank since we have the same average.
+
+08:17.380 --> 08:21.980
+So guys, with that we have solved the task and we have ranked the customers based on the average days
+
+08:22.420 --> 08:23.700
+between their orders.
+
+08:23.700 --> 08:28.140
+So we have now a really nice rank and we can understand now the behavior of the customers.
+
+08:28.340 --> 08:32.740
+And maybe we have to go and focus on the customer number one and understand here or share needs.
+
+08:32.780 --> 08:37.860
+And of course, the function that helped us here in order to do such a customer retention analysis is
+
+08:37.860 --> 08:42.340
+the lead function in order to find the next order to calculate the dates.
+
+08:42.340 --> 08:45.220
+So this is how you use lead functions to do such a use case.

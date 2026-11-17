@@ -1,0 +1,688 @@
+WEBVTT
+
+00:00.040 --> 00:05.000
+So that means now we have a really nice script in order to load the bronze layer.
+
+00:05.000 --> 00:07.800
+And we will use this script in daily basis every day.
+
+00:07.800 --> 00:12.080
+We have to run it in order to get a new content to the data warehouse.
+
+00:12.080 --> 00:17.680
+And as we learned before, if you have like a script of SQL that is frequently used, what we can do,
+
+00:17.680 --> 00:21.880
+we can go and create a stored procedure from those scripts.
+
+00:21.880 --> 00:22.920
+So let's go and do that.
+
+00:22.920 --> 00:24.080
+It's going to be very simple.
+
+00:24.080 --> 00:28.120
+We're going to go over here and say create or alter procedure.
+
+00:28.440 --> 00:31.000
+And now we have to define the name of the stored procedure.
+
+00:31.000 --> 00:35.560
+I'm going to go and put it in the schema bronze because it belongs to the bronze layer.
+
+00:35.760 --> 00:38.600
+So then we're going to go and follow the naming convention.
+
+00:38.600 --> 00:42.320
+The stored procedure starts with load underscore and then the bronze layer.
+
+00:42.320 --> 00:43.640
+So that's it about the name.
+
+00:43.640 --> 00:49.000
+And then very important we have to define the begin and as well the end of our SQL statements.
+
+00:49.000 --> 00:50.360
+So here is the begin.
+
+00:50.400 --> 00:54.120
+And let's go to the end and say this is the end.
+
+00:54.120 --> 00:58.880
+And then let's go highlight everything in between and give it one push with tab.
+
+00:58.880 --> 01:00.800
+So with that it is easier to read.
+
+01:00.800 --> 01:03.270
+So now next what we're going to do, we're going to go and execute it.
+
+01:03.270 --> 01:05.110
+So let's go and create this stored procedure.
+
+01:05.150 --> 01:08.510
+And now if you want to go and check your stored procedure you go to the database.
+
+01:08.510 --> 01:11.030
+And then we have here a folder called programmability.
+
+01:11.030 --> 01:12.950
+And then inside it we have stored procedure.
+
+01:12.950 --> 01:16.110
+So if you go and refresh you will see our new stored procedure.
+
+01:16.150 --> 01:17.270
+Let's go and test it.
+
+01:17.270 --> 01:19.190
+So I'm going to go and have a new query.
+
+01:19.190 --> 01:19.950
+And what we're going to do.
+
+01:19.950 --> 01:24.150
+We're going to say execute bronze dot load bronze.
+
+01:24.350 --> 01:26.430
+So let's go and execute it.
+
+01:26.430 --> 01:30.190
+And with that we have just loaded completely the bronze layer.
+
+01:30.190 --> 01:35.190
+So as you can see SQL did go and insert all the data from the files to the bronze layer.
+
+01:35.190 --> 01:38.710
+It is way easier than each time running those scripts of course.
+
+01:38.750 --> 01:39.110
+All right.
+
+01:39.110 --> 01:44.910
+So now the next step is that as you can see the output message it is really not having a lot of informations.
+
+01:44.910 --> 01:49.390
+The message of your ETL stored procedure, it will not be really clear.
+
+01:49.390 --> 01:54.870
+So that's why if you are writing an ETL script always take care of the messaging of your code.
+
+01:54.870 --> 01:56.350
+So let me show you a nice design.
+
+01:56.350 --> 01:58.150
+Let's go back to our stored procedure.
+
+01:58.150 --> 01:58.990
+So now what we can do.
+
+01:58.990 --> 02:02.550
+We can go and divide the message based on our code.
+
+02:02.550 --> 02:04.070
+So now we can start with the message.
+
+02:04.070 --> 02:08.870
+For example, over here let's say print and we say what we are doing with this stored procedure.
+
+02:08.870 --> 02:11.470
+We are loading the bronze layer.
+
+02:11.630 --> 02:14.310
+So this is the main message the most important one.
+
+02:14.310 --> 02:17.230
+And we can go and play with the separators like this.
+
+02:17.230 --> 02:18.430
+So we can say print.
+
+02:18.430 --> 02:24.230
+And now we can go and add some nice separators like for example the equals at the start and at the end
+
+02:24.270 --> 02:25.750
+just to have like a section.
+
+02:25.750 --> 02:27.950
+So this is just a nice message at the start.
+
+02:27.950 --> 02:32.430
+So now by looking to our code we can see that our code is split into two sections.
+
+02:32.430 --> 02:36.670
+The first section we are loading all the tables from the source system CRM.
+
+02:36.670 --> 02:42.710
+And the second section is loading the tables from the ERP so we can split the prints by the source system.
+
+02:42.710 --> 02:43.870
+So let's go and do that.
+
+02:43.870 --> 02:49.590
+So we're going to say print and we're going to say loading CRM tables.
+
+02:49.590 --> 02:50.830
+This is for the first section.
+
+02:50.830 --> 02:54.710
+And then we can go and add some nice separators like the one.
+
+02:54.750 --> 02:56.070
+Let's take the minus.
+
+02:56.950 --> 03:00.030
+And of course don't forget to add semicolons like me.
+
+03:00.030 --> 03:03.220
+So we can have semicolon column for each print.
+
+03:03.700 --> 03:05.060
+Same thing over here.
+
+03:05.060 --> 03:09.260
+I'll go and copy the whole thing, because we're gonna have it at the start and as well at the end.
+
+03:09.300 --> 03:12.220
+Let's go copy the whole thing for the second section.
+
+03:12.220 --> 03:14.900
+So for the IRB it starts over here.
+
+03:15.180 --> 03:18.620
+And we're gonna have it like this and we're gonna call it loading ERP.
+
+03:18.660 --> 03:23.940
+So with that in the output we can see nice separation between loading each source system.
+
+03:23.940 --> 03:28.340
+Now we go to the next step where we go and add like a print for each action.
+
+03:28.340 --> 03:31.580
+So for example here we are truncating the table.
+
+03:31.580 --> 03:32.900
+So we say print.
+
+03:32.900 --> 03:36.980
+And now what we can do we can go and add two arrows and we say what we are doing.
+
+03:36.980 --> 03:39.060
+So we are truncating the table.
+
+03:39.060 --> 03:42.580
+And then we can go and add the table name in the message as well.
+
+03:42.580 --> 03:44.660
+So this is the first action that we are doing.
+
+03:44.660 --> 03:48.060
+And we can go and add another print for inserting the data.
+
+03:48.060 --> 03:52.260
+So we can say inserting data into.
+
+03:53.140 --> 03:54.500
+And then we have the table name.
+
+03:54.500 --> 03:57.780
+So with that in the output we can understand what SQL is doing.
+
+03:57.780 --> 04:00.860
+So let's go and repeat this for all other tables okay.
+
+04:00.900 --> 04:04.890
+So I just added all those prints and don't forget the semicolon at the end.
+
+04:04.890 --> 04:08.450
+So I would say let's go and execute it and check the output.
+
+04:08.490 --> 04:12.890
+So let's go and do that and then maybe add a start just to have quick output.
+
+04:12.930 --> 04:15.810
+Execute our stored procedure like this.
+
+04:15.930 --> 04:17.330
+So let's see.
+
+04:17.370 --> 04:21.130
+Now if you check the output you can see things are more organized than before.
+
+04:21.250 --> 04:24.530
+So at the start we are reading okay we are loading the bronze layer.
+
+04:24.570 --> 04:27.210
+Now first we are loading the source system CRM.
+
+04:27.250 --> 04:29.570
+And then the second section is for the ERP.
+
+04:29.610 --> 04:30.850
+And we can see the actions.
+
+04:30.850 --> 04:34.770
+So we are truncating inserting truncating inserting for each table.
+
+04:34.770 --> 04:37.130
+And as well the same thing for the second source.
+
+04:37.130 --> 04:39.370
+So as you can see it is nice and cosmetic.
+
+04:39.370 --> 04:42.490
+But it's very important as you are debugging any errors.
+
+04:42.530 --> 04:47.290
+And speaking of errors, we have to go and handle the errors in our stored procedure.
+
+04:47.330 --> 04:48.810
+So let's go and do that.
+
+04:48.850 --> 04:50.410
+It's going to be the first thing that we do.
+
+04:50.450 --> 04:52.170
+We say begin try.
+
+04:52.170 --> 04:58.650
+And then we go to the end of our script and we say before the last end, we say end try.
+
+04:58.650 --> 05:01.650
+And then the next thing we have to add the catch.
+
+05:01.650 --> 05:05.610
+So we're going to say begin catch and end catch.
+
+05:05.770 --> 05:08.170
+So now first let's go and organize our code.
+
+05:08.170 --> 05:12.450
+I'm going to take the whole code and give it one more push.
+
+05:12.450 --> 05:14.650
+And as well the begin try.
+
+05:14.690 --> 05:15.810
+So it is more organized.
+
+05:15.810 --> 05:20.050
+And as you know the try and catch is going to go and execute the try.
+
+05:20.250 --> 05:26.210
+And if there is like any errors during executing the script, the second section is going to be executed.
+
+05:26.210 --> 05:31.530
+So the catch will be executed only if the SQL failed to run the try.
+
+05:31.570 --> 05:36.810
+So now what we have to do is to go and define for SQL what to do if there is like an error in your code.
+
+05:36.810 --> 05:42.610
+And here we can do multiple stuff like maybe creating a logging tables and add the messages inside this
+
+05:42.610 --> 05:43.050
+table.
+
+05:43.050 --> 05:46.650
+Or we can go and add some nice messaging to the output.
+
+05:46.690 --> 05:50.250
+Like for example, we can go and add like a section again over here.
+
+05:50.250 --> 05:56.410
+So again sum equals and we can go and repeat it over here and then add some content in between.
+
+05:56.410 --> 06:02.400
+So we can start with something like to say error occurred during Ring.
+
+06:02.440 --> 06:03.280
+Loading.
+
+06:03.320 --> 06:04.200
+Bronze layer.
+
+06:04.960 --> 06:07.080
+And then we can go and add many stuff.
+
+06:07.080 --> 06:10.160
+Like for example we can go and add the error message.
+
+06:11.720 --> 06:16.080
+And here we can go and call the function error message.
+
+06:16.720 --> 06:20.160
+And we can go and add as well for example the error number.
+
+06:20.160 --> 06:21.800
+So error number.
+
+06:22.200 --> 06:24.400
+And of course the output of this is going to be a number.
+
+06:24.400 --> 06:26.320
+But the error message here is a text.
+
+06:26.320 --> 06:28.840
+So we have to go and change the data type.
+
+06:28.840 --> 06:33.200
+So we're going to do a cast as in varchar like this.
+
+06:33.200 --> 06:38.880
+And then there is like many functions that you can add to the output like for example the error states
+
+06:38.880 --> 06:39.480
+and so on.
+
+06:39.480 --> 06:43.240
+So you can design what can happen if there is an error in the ETL.
+
+06:43.280 --> 06:49.480
+Now what else is very important in each ETL process is to add the duration of each like step.
+
+06:49.480 --> 06:54.400
+So for example, I would like to understand how long it takes to load this table over here.
+
+06:54.440 --> 06:56.960
+But looking to the output I don't have any informations.
+
+06:56.960 --> 06:59.480
+How long is taking to load my tables.
+
+06:59.480 --> 07:04.030
+And this is very important because as you are building like a big data warehouse.
+
+07:04.070 --> 07:08.550
+The ETL process is going to take a long time, and you would like to understand where is the issue,
+
+07:08.590 --> 07:09.870
+where is the bottleneck?
+
+07:09.870 --> 07:12.670
+Which table is consuming a lot of time to be loaded.
+
+07:12.670 --> 07:18.310
+So that's why we have to add those informations as well to the output or even maybe to protocol it in
+
+07:18.310 --> 07:18.870
+a table.
+
+07:18.870 --> 07:20.790
+So let's go and add as well this step.
+
+07:20.790 --> 07:22.230
+So we're going to go to the start.
+
+07:22.230 --> 07:26.950
+And now in order to calculate the duration you need the starting time and the end time.
+
+07:26.950 --> 07:32.110
+So we have to understand when we start loaded and when we ended loading the table.
+
+07:32.110 --> 07:36.670
+So now the first thing is we have to go and declare the variables so we can say declare.
+
+07:36.670 --> 07:39.630
+And then let's make one called start time.
+
+07:39.670 --> 07:45.070
+And the data type of this is going to be the date time I need exactly the second when it started, and
+
+07:45.070 --> 07:46.830
+then another one for the end time.
+
+07:47.190 --> 07:51.910
+So another variable end time and as well the same thing date time.
+
+07:51.910 --> 07:53.750
+So with that we have declared the variables.
+
+07:53.750 --> 07:55.750
+And the next step is to go and use them.
+
+07:55.750 --> 07:59.910
+So now let's go to the first table to the customer info and add the start.
+
+07:59.910 --> 08:05.340
+We're going to say set start time Equal to Getdate.
+
+08:05.340 --> 08:09.580
+So we will get the exact time when we start loading this table.
+
+08:09.620 --> 08:13.940
+And then let's go and copy the whole thing and go to the end of loading over here.
+
+08:13.940 --> 08:19.580
+So we're going to say set this time the end time equal as well to the get date.
+
+08:19.580 --> 08:23.980
+So with that now we have the values of when we start loading this table.
+
+08:23.980 --> 08:26.060
+And when we completed loading the table.
+
+08:26.100 --> 08:30.380
+And now the next step is we have to go and print the duration those informations.
+
+08:30.380 --> 08:35.100
+So over here we can go and say print and we can go and have again the same design.
+
+08:35.100 --> 08:41.300
+So two arrows and we can say very simply load duration and then double points and space.
+
+08:41.300 --> 08:44.420
+And now what we have to do is to calculate the duration.
+
+08:44.420 --> 08:50.740
+And we can do that using the date and time function Datediff in order to find the interval between two
+
+08:50.740 --> 08:51.340
+dates.
+
+08:51.340 --> 08:54.540
+So we're going to say plus over here and then use the diff.
+
+08:54.580 --> 08:56.340
+And here we have to define three arguments.
+
+08:56.340 --> 08:57.660
+First one is the unit.
+
+08:57.660 --> 09:00.380
+So here you can define second minute hours and so on.
+
+09:00.380 --> 09:01.660
+So we're going to go with the second.
+
+09:01.660 --> 09:05.580
+And then we're going to define the start of the interval, it's going to be the start time.
+
+09:05.580 --> 09:08.780
+And then the last argument is going to be the end of the boundary.
+
+09:08.820 --> 09:10.420
+It's going to be the end time.
+
+09:10.460 --> 09:12.900
+Now of course the output of this is going to be a number.
+
+09:12.900 --> 09:14.660
+That's why we have to go and cast it.
+
+09:14.660 --> 09:17.900
+So we're going to say cast as Nvarchar.
+
+09:18.100 --> 09:19.780
+And then we're going to close it like this.
+
+09:19.780 --> 09:26.060
+And maybe at the end we're going to say plus space seconds in order to have a nice message.
+
+09:26.060 --> 09:30.740
+So again, what we have done, we have declared the two variables and we are using them at the start.
+
+09:30.740 --> 09:35.820
+We are getting the current date and time, and at the end of loading the table, we are getting the
+
+09:35.820 --> 09:41.140
+current date and time, and then we are finding the differences between them in order to get the load
+
+09:41.140 --> 09:41.860
+duration.
+
+09:41.860 --> 09:44.380
+And in this case, we are just printing this information.
+
+09:44.380 --> 09:48.380
+And now we can go of course and add some nice separator between each table.
+
+09:48.380 --> 09:50.380
+So I'm going to go and do it like this.
+
+09:51.140 --> 09:53.140
+Just few minuses not a lot of stuff.
+
+09:53.140 --> 09:59.420
+So now what we have to do is to go and add this mechanism for each table in order to measure the speed
+
+09:59.420 --> 10:01.540
+of the ETL for each one of them.
+
+10:07.010 --> 10:13.570
+Okay, so now I have added all those configurations for each table and let's go and run the whole thing
+
+10:13.570 --> 10:13.970
+now.
+
+10:14.170 --> 10:19.690
+So let's go and edit the stored procedure this and we're gonna go and run it.
+
+10:19.690 --> 10:21.290
+So let's go and execute.
+
+10:21.290 --> 10:24.770
+So now as you can see we have here one more info about the load durations.
+
+10:24.770 --> 10:28.930
+And it is everywhere I can see we have zero seconds.
+
+10:28.930 --> 10:32.050
+And that's because it is super fast offloading those informations.
+
+10:32.050 --> 10:37.930
+We are doing everything locally at PC, so loading the data from files to database can be mega fast.
+
+10:37.930 --> 10:42.970
+But of course in real projects you have like different servers and networking between them and you have
+
+10:42.970 --> 10:44.770
+millions of rows in the tables.
+
+10:44.810 --> 10:47.970
+Of course the duration is going to be not like zero seconds.
+
+10:47.970 --> 10:53.250
+Things can be slower, and now you can see easily how long it takes to load each of your tables.
+
+10:53.290 --> 10:58.930
+And now, of course, what is very interesting is to understand how long it takes to load the whole
+
+10:58.930 --> 10:59.810
+bronze layer.
+
+10:59.850 --> 11:06.480
+So now your task is as well to print out the ends informations about the whole batch, how long it took
+
+11:06.480 --> 11:08.120
+to load the bronze layer.
+
+11:13.480 --> 11:14.960
+Okay, I hope you are done.
+
+11:14.960 --> 11:15.240
+Now.
+
+11:15.240 --> 11:16.280
+I have done it like this.
+
+11:16.320 --> 11:22.200
+We have to define two new variables so the start time of the batch and the end time of the batch.
+
+11:22.200 --> 11:27.960
+And the first step in the stored procedure is to get the date and time information for the first variable,
+
+11:27.960 --> 11:33.280
+and exactly at the end, the last thing that we do in the stored procedure, we are going to go and
+
+11:33.280 --> 11:37.120
+get the date and time informations for the end time.
+
+11:37.120 --> 11:42.440
+So we say again set, get date for the batch and time and then all what you have to do is to go and
+
+11:42.440 --> 11:43.400
+print a message.
+
+11:43.400 --> 11:48.920
+So we are saying loading bronze layer is completed and then we are printing total load duration.
+
+11:48.920 --> 11:53.200
+And the same thing with a date difference between the batch start time and the end time.
+
+11:53.200 --> 11:55.440
+And we are calculating the seconds and so on.
+
+11:55.440 --> 11:58.640
+So now what we have to do is to go and execute the whole thing.
+
+11:58.640 --> 12:04.560
+So let's go and refresh the definition of the stored procedure and then let's go and execute it.
+
+12:04.560 --> 12:04.600
+Executed.
+
+12:04.600 --> 12:10.240
+So in the output we have to go to the last message and we can see loading bronze layer is completed
+
+12:10.240 --> 12:16.960
+and the total load duration is as well zero seconds because the execution time is less than one seconds.
+
+12:16.960 --> 12:21.040
+So with that you are getting now a feeling about how to build an ETL process.
+
+12:21.040 --> 12:26.360
+So as you can see, the data engineering is not all about how to load the data, it's how to engineer
+
+12:26.360 --> 12:31.680
+the whole pipeline, how to measure the speed of loading the data, what can happen if there is like
+
+12:31.680 --> 12:38.000
+an error, and to print each step in your ETL process and make everything organized and cleared in the
+
+12:38.000 --> 12:43.720
+output, and maybe in the logging, just to make debugging and optimizing the performance way easier.
+
+12:43.720 --> 12:48.240
+And there is like a lot of things that we can add, we can add the quality measures and stuff.
+
+12:48.240 --> 12:53.520
+So we can add many stuff to our ETL scripts to make our data warehouse professional.
+
+12:53.560 --> 12:54.360
+All right, my friends.
+
+12:54.360 --> 12:57.960
+So with that, we have developed a code in order to load the bronze layer.
+
+12:57.960 --> 12:59.480
+And we have tested that as well.
+
+12:59.520 --> 13:04.440
+And now in the next step we're going to go back to Draw.io because we want to draw a diagram about the
+
+13:04.440 --> 13:05.120
+dataflow.
+
+13:05.120 --> 13:05.960
+So let's go.

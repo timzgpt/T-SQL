@@ -1,0 +1,613 @@
+WEBVTT
+
+00:03.720 --> 00:06.240
+All right guys, so what is min and max functions?
+
+00:06.400 --> 00:09.880
+They are very simple but yet very powerful functions for analytics.
+
+00:10.000 --> 00:16.080
+So the min simply is the function that's going to return the minimum or let's say the lowest value within
+
+00:16.080 --> 00:18.760
+a window where the max, it's exactly the opposite.
+
+00:18.760 --> 00:23.440
+It's going to find the maximum value or the highest value within a window.
+
+00:23.520 --> 00:26.920
+So now let's go and understand how SQL works with these functions.
+
+00:26.960 --> 00:27.320
+All right.
+
+00:27.320 --> 00:28.560
+So now we have the same data.
+
+00:28.560 --> 00:29.920
+And we have two tasks.
+
+00:29.920 --> 00:33.320
+First we have to find the lowest sales for each product.
+
+00:33.440 --> 00:34.960
+And the second one side by side.
+
+00:34.960 --> 00:38.160
+We would like to find the highest sales for each product.
+
+00:38.160 --> 00:39.880
+So we're going to go and use the min max.
+
+00:39.880 --> 00:42.040
+And as you can see the syntax is very simple.
+
+00:42.240 --> 00:43.200
+Min the sales.
+
+00:43.200 --> 00:48.120
+And then the partition is going to be by the products and as well the same stuff but having the max.
+
+00:48.160 --> 00:48.320
+Okay.
+
+00:48.360 --> 00:51.360
+So now let's see how SQL can execute the first query as usual.
+
+00:51.360 --> 00:52.920
+First it's going to prepare the data.
+
+00:52.920 --> 00:57.480
+So it's going to split the data into two windows one for the caps and another one for the gloves.
+
+00:57.640 --> 01:02.840
+And after that it's going to search for the lowest sales within each window separately.
+
+01:02.840 --> 01:07.040
+So for the first window we have the following values 2010 and five.
+
+01:07.080 --> 01:09.000
+And of course the lowest value going to be the five.
+
+01:09.000 --> 01:14.320
+So that's why SQL going to find it over here and everywhere for this window it's going to be the value
+
+01:14.360 --> 01:14.960
+five.
+
+01:14.960 --> 01:18.120
+So we have it as the lowest sales for the product cups.
+
+01:18.120 --> 01:21.560
+So now it's going to jump to the next window for the gloves and start searching the values.
+
+01:21.560 --> 01:24.120
+So as you can see we have 3070 and null.
+
+01:24.600 --> 01:25.760
+Null will be ignored.
+
+01:25.760 --> 01:28.840
+So null will not be considered as the lowest value.
+
+01:29.000 --> 01:31.680
+So SQL can find the lowest sales with the 30.
+
+01:31.680 --> 01:34.920
+So it's going to be actually the first row within this window.
+
+01:34.920 --> 01:38.000
+And the value the output is going to be 30 for each row.
+
+01:38.240 --> 01:38.880
+So that's it.
+
+01:38.880 --> 01:40.960
+It's very simple right now let's move to the next one.
+
+01:40.960 --> 01:42.640
+We have the same stuff but using Max.
+
+01:42.640 --> 01:44.120
+So the data is partitions.
+
+01:44.120 --> 01:46.680
+And for the first partition what is the highest value.
+
+01:46.840 --> 01:48.680
+It's going to be the first row right.
+
+01:48.720 --> 01:49.440
+The 20.
+
+01:49.480 --> 01:51.200
+So it's going to find it.
+
+01:51.200 --> 01:54.960
+And in the output we will get the highest sales 20 for this window.
+
+01:54.960 --> 01:58.240
+And then it's going to go to the second window and search for the highest value.
+
+01:58.240 --> 02:00.200
+So here we have two values 30 and 70.
+
+02:00.240 --> 02:02.080
+And it's going to be the 70 right.
+
+02:02.080 --> 02:03.760
+So it's going to point it over here.
+
+02:03.800 --> 02:06.520
+And in the output we will get everywhere 70.
+
+02:06.560 --> 02:09.600
+So guys it's really simple right now let's back to our scenario.
+
+02:09.600 --> 02:14.080
+In the average where in our business we understand nulls as zero in the sales.
+
+02:14.320 --> 02:18.040
+So that means first we have to handle the nulls and replace it with zero.
+
+02:18.200 --> 02:20.240
+And then we're going to go and search for the value.
+
+02:20.480 --> 02:21.840
+So what's going to happen.
+
+02:21.840 --> 02:24.880
+We're going to go and replace nulls with zero for the max.
+
+02:24.880 --> 02:25.880
+Nothing going to change.
+
+02:25.880 --> 02:27.400
+The highest value going to be 70.
+
+02:27.400 --> 02:29.200
+And we're going to get the same output.
+
+02:29.200 --> 02:32.960
+But for the min now we have new lowest value.
+
+02:32.960 --> 02:34.480
+So it's not anymore the 30.
+
+02:34.520 --> 02:36.400
+It's actually the zero.
+
+02:36.400 --> 02:40.320
+So it's going to go over here and replace the 30 with nulls.
+
+02:40.480 --> 02:44.040
+So nulls is the lowest sales for the product gloves.
+
+02:44.040 --> 02:46.320
+So again guys the nulls are very tricky.
+
+02:46.320 --> 02:49.040
+And those functions are really sensitive with the nulls.
+
+02:49.320 --> 02:54.600
+Understand what the nulls means and handle it correctly so that you get correct results in the output.
+
+02:54.600 --> 02:55.320
+So that's it.
+
+02:55.320 --> 03:00.040
+Let's go back to SQL to have some tasks and use cases in order to practice SQL.
+
+03:00.080 --> 03:02.240
+All right everyone, let's start with the basic stuff.
+
+03:02.440 --> 03:05.120
+Find the highest and lowest sales of all orders.
+
+03:05.120 --> 03:08.440
+And as well find the highest and lowest sales for each product.
+
+03:08.440 --> 03:10.720
+And we have to provide additional informations.
+
+03:10.960 --> 03:12.440
+So let's go and solve it.
+
+03:12.440 --> 03:17.250
+let's select order ID order dates and let's take as well the product ID.
+
+03:17.290 --> 03:20.290
+Now let's find the highest sales of all orders.
+
+03:20.330 --> 03:26.330
+It's going to be the max function for the sales and the window function going to be empty since of all
+
+03:26.330 --> 03:27.050
+orders.
+
+03:27.050 --> 03:29.370
+So you are the highest sales.
+
+03:29.370 --> 03:31.490
+Let's go for the lowest sales of all orders.
+
+03:31.490 --> 03:32.970
+It's going to be exactly the opposite.
+
+03:33.010 --> 03:35.450
+The main function for sales over.
+
+03:36.090 --> 03:38.050
+Then we have the lowest sales.
+
+03:38.450 --> 03:40.810
+So I'm just going to make it bigger capital.
+
+03:40.930 --> 03:44.930
+So let's select the table sales orders.
+
+03:44.930 --> 03:46.490
+So I think that's it.
+
+03:46.530 --> 03:48.330
+Let's have as well the sales actually.
+
+03:48.770 --> 03:49.130
+All right.
+
+03:49.130 --> 03:50.490
+So now let's go and execute it.
+
+03:50.490 --> 03:52.130
+So now this is very simple right.
+
+03:52.130 --> 03:53.370
+This is the whole sales.
+
+03:53.370 --> 03:55.010
+What is the highest sales.
+
+03:55.370 --> 03:57.730
+We have the 90 of the order eight.
+
+03:57.730 --> 04:02.650
+So as you can see we have now the highest sales the 90 and the lowest sales is the ten.
+
+04:02.690 --> 04:04.450
+The first order is the lowest.
+
+04:04.450 --> 04:05.690
+So it's very easy.
+
+04:05.730 --> 04:08.570
+Now we're going to go and repeat the same stuff for the product.
+
+04:08.570 --> 04:11.450
+So we have go and partition the data by the product ID.
+
+04:11.450 --> 04:15.130
+So what I'm going to do I'm just going to go and copy paste stuff around.
+
+04:15.130 --> 04:21.650
+So the first one is going to be partition partitioned by the product ID, so highest sales by products
+
+04:21.650 --> 04:23.970
+and the next one going to be the same stuff.
+
+04:24.010 --> 04:26.570
+Copy paste by the products.
+
+04:27.010 --> 04:28.490
+So that's it.
+
+04:28.530 --> 04:29.970
+Let's go and execute it.
+
+04:30.010 --> 04:33.450
+So now again the data is going to be partitioned and divided by the product.
+
+04:33.450 --> 04:36.490
+So for the first window what is the highest sales.
+
+04:36.490 --> 04:37.610
+It's going to be the 90.
+
+04:37.650 --> 04:39.170
+And the lowest sales is going to be the ten.
+
+04:39.170 --> 04:41.570
+So it's exactly like the overall rights.
+
+04:41.610 --> 04:43.210
+Now let's go to the second window.
+
+04:43.210 --> 04:43.730
+Over here.
+
+04:43.730 --> 04:47.010
+We can see that the lowest or the highest sales is the 60.
+
+04:47.050 --> 04:49.690
+The first one and the lowest this time is 15.
+
+04:49.690 --> 04:56.090
+And this is great in order to see that the SQL can execute each of those functions for each window separately.
+
+04:56.090 --> 04:57.290
+So let's go to the last window.
+
+04:57.290 --> 04:57.930
+It's funny one.
+
+04:57.930 --> 05:00.570
+So the sales is 60 and we have only one row.
+
+05:00.730 --> 05:03.370
+So it's going to be the highest and as well the lowest sales.
+
+05:03.370 --> 05:05.970
+So with that as you can see we can define a range for each product.
+
+05:05.970 --> 05:08.650
+And the ranges are different from each product to another one.
+
+05:08.650 --> 05:12.930
+For example, for this product 101 the range from ten until 90.
+
+05:12.970 --> 05:16.530
+But for the second product we have it between 15 and 60.
+
+05:16.570 --> 05:21.410
+Okay guys, let's move to the next one, which is one of my favorites in the window function where we
+
+05:21.410 --> 05:23.970
+filter the data using the min max functions.
+
+05:24.130 --> 05:25.290
+Let's have the following task.
+
+05:25.370 --> 05:29.330
+It says show the employees who have the highest salaries.
+
+05:29.330 --> 05:33.850
+So this sounds very simple, but we can use the help of window functions in order to solve it.
+
+05:33.850 --> 05:36.410
+So now we are working with the table employees.
+
+05:36.450 --> 05:38.210
+Let's just select the data.
+
+05:38.410 --> 05:41.610
+So select from sales employees.
+
+05:41.850 --> 05:43.170
+So that's it.
+
+05:43.330 --> 05:44.810
+Let's go and execute it.
+
+05:44.810 --> 05:48.450
+So now we have five employees and we have those different salaries.
+
+05:48.490 --> 05:52.010
+Let's go and find the highest salary.
+
+05:52.010 --> 05:53.690
+So max salary.
+
+05:53.690 --> 05:55.890
+And let's use the window function over.
+
+05:55.890 --> 05:57.570
+But we don't partition the data at all.
+
+05:57.570 --> 06:00.530
+So it's going to be like this highest salary.
+
+06:00.730 --> 06:03.050
+So let's go and execute it.
+
+06:03.050 --> 06:06.570
+And now by checking the results we got a new column called Highest Salary.
+
+06:06.570 --> 06:08.570
+And inside it we have the 90 K.
+
+06:08.690 --> 06:14.410
+So if you check those five salaries you can see that the highest is from the employee Michael.
+
+06:14.410 --> 06:16.050
+But still the task is not solved.
+
+06:16.050 --> 06:19.570
+We have to show only the employees who have the highest salaries.
+
+06:19.570 --> 06:23.770
+So we have somehow to filter the data and only show this employee.
+
+06:23.770 --> 06:27.210
+So in order to do that, we have to use the subqueries.
+
+06:27.250 --> 06:30.050
+Since we cannot use the window function in the Where clause.
+
+06:30.050 --> 06:31.050
+So what we're going to do.
+
+06:31.330 --> 06:33.650
+Select star from.
+
+06:34.010 --> 06:37.570
+And then our first query is going to be the inner query.
+
+06:38.330 --> 06:40.330
+So we have the following condition.
+
+06:40.330 --> 06:45.930
+It's going to be the salary should be equal to the highest salary.
+
+06:46.170 --> 06:47.050
+So it's very simple.
+
+06:47.050 --> 06:50.130
+So with this we are comparing the salaries with the highest salaries.
+
+06:50.130 --> 06:52.770
+If there is a match the data are going to be presented.
+
+06:52.770 --> 06:54.930
+So let's go and execute that.
+
+06:54.930 --> 06:55.450
+And that's it.
+
+06:55.450 --> 06:58.130
+As you can see we got the employee with the highest salary.
+
+06:58.370 --> 07:03.530
+But if they are like multiple employees with the same salary of 90 K, of course we're going to get
+
+07:03.530 --> 07:04.490
+it in the results.
+
+07:04.490 --> 07:06.490
+I think Michael gonna need a new job, right.
+
+07:07.410 --> 07:08.610
+This is the worst.
+
+07:13.410 --> 07:16.090
+So this is another use case for the window functions.
+
+07:16.090 --> 07:16.930
+Min max.
+
+07:16.930 --> 07:17.170
+All right.
+
+07:17.170 --> 07:22.450
+So now we come to the use case of the comparison analysis where we want to compare the current sales
+
+07:22.450 --> 07:24.530
+with the highest and the lowest value.
+
+07:24.530 --> 07:25.690
+So we have the following task.
+
+07:25.730 --> 07:31.460
+It says find the deviation of each sales from the minimum and the maximum sales amount.
+
+07:31.500 --> 07:33.260
+So as you can see, this is our sales.
+
+07:33.260 --> 07:35.220
+This is the highest and this is the lowest.
+
+07:35.220 --> 07:40.060
+So now we just have to go and subtract the data from each others in order to get the deviation.
+
+07:40.060 --> 07:41.020
+So it's very simple.
+
+07:41.020 --> 07:46.980
+Let's get the first deviation where we're going to go and subtract the sales with the lowest value.
+
+07:47.100 --> 07:48.660
+So it's going to be like this.
+
+07:48.660 --> 07:54.340
+So now what we are doing over here we are subtracting the sales from the lowest sales of all records.
+
+07:54.540 --> 07:58.780
+So we're going to go and call you deviation from min.
+
+07:59.100 --> 08:00.780
+So let's go and execute it.
+
+08:00.780 --> 08:06.540
+So now we can see from those values how far is the current value from the extreme.
+
+08:06.540 --> 08:08.700
+The extreme here is the lowest value.
+
+08:08.700 --> 08:12.500
+So this is a really great way to analyze the extremes in your data.
+
+08:12.900 --> 08:16.580
+So now as we are near to the extreme the value is going to be low.
+
+08:16.620 --> 08:18.180
+So as you can see here we have a zero.
+
+08:18.220 --> 08:22.500
+This is the lowest because we have it exactly as the extreme.
+
+08:22.500 --> 08:24.100
+So actually this is our value.
+
+08:24.100 --> 08:28.940
+So the ten now the next one is little bit far away from the extreme which is 15.
+
+08:28.940 --> 08:30.340
+So we have it here as a five.
+
+08:30.580 --> 08:33.580
+So this is not far away from our extreme value.
+
+08:33.780 --> 08:36.420
+And then if you check this value over here, we have it 80.
+
+08:36.420 --> 08:40.180
+So the distance is very far away from our extreme value.
+
+08:40.220 --> 08:41.340
+The lowest sales.
+
+08:41.340 --> 08:42.980
+So this is really nice analysis.
+
+08:42.980 --> 08:46.500
+In order to analyze and evaluate the sales of your data.
+
+08:46.540 --> 08:52.620
+Now of course we can go and evaluate our data with an another extreme which is the highest sales.
+
+08:52.620 --> 08:59.660
+So in order to do that we're going to first say let's get the highest sorry, this one the highest sales
+
+08:59.820 --> 09:01.780
+and subtract it from the sales.
+
+09:01.780 --> 09:05.380
+So you are the deviation from the max.
+
+09:05.380 --> 09:07.020
+So let's go and execute it.
+
+09:07.020 --> 09:10.820
+So now we can see in the output we're going to get exactly the opposite distances.
+
+09:11.060 --> 09:14.900
+So the order number one is the farthest from the extreme.
+
+09:14.900 --> 09:17.380
+So as you can see we have the value of 80.
+
+09:17.660 --> 09:20.460
+And the order eight is the identical one.
+
+09:20.460 --> 09:22.660
+So that's why we have the distance of zero.
+
+09:22.660 --> 09:27.700
+So now we can see as well very quickly which data points are the nearest to the extreme to the highest
+
+09:27.700 --> 09:28.300
+sales.
+
+09:28.300 --> 09:34.140
+So as you can see guys using the window function min and max, it is very powerful in order to understand
+
+09:34.140 --> 09:37.180
+and evaluate your data points to the extremes.

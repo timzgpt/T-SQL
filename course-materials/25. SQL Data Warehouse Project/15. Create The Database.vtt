@@ -1,0 +1,331 @@
+WEBVTT
+
+00:00.080 --> 00:00.440
+All right.
+
+00:00.480 --> 00:04.040
+Now the first step is we have to go and create a brand new database.
+
+00:04.040 --> 00:07.840
+So now in order to do that first we have to switch to the database master.
+
+00:07.840 --> 00:09.040
+So you can do it like this.
+
+00:09.080 --> 00:11.640
+Use master and Semicolon.
+
+00:11.640 --> 00:15.280
+And if you go and execute it now we are switched to the master database.
+
+00:15.280 --> 00:19.640
+It is a system database in SQL server where you can go and create other databases.
+
+00:19.640 --> 00:23.800
+And you can see from the toolbar that we are now logged into the master database.
+
+00:23.800 --> 00:26.760
+Now the next step we have to go and create our new database.
+
+00:26.760 --> 00:29.640
+So we're going to say create database.
+
+00:29.800 --> 00:31.200
+And you can call it whatever you want.
+
+00:31.240 --> 00:34.640
+So I'm going to go with Data Warehouse Semicolon.
+
+00:34.960 --> 00:36.960
+Let's go and execute it.
+
+00:36.960 --> 00:38.800
+And with that we have created our database.
+
+00:38.800 --> 00:40.960
+Let's go and check it from the Object Explorer.
+
+00:41.000 --> 00:42.000
+Let's go and refresh.
+
+00:42.000 --> 00:43.880
+And you can see our new data warehouse.
+
+00:43.880 --> 00:45.480
+This is our new database.
+
+00:45.480 --> 00:45.960
+Awesome.
+
+00:45.960 --> 00:50.000
+Right now to the next step we're going to go and switch to the new database.
+
+00:50.000 --> 00:54.840
+So we're going to say use Data Warehouse and Semicolon.
+
+00:54.840 --> 00:56.600
+So let's go and switch to it.
+
+00:56.600 --> 00:59.880
+And you can see now we are logged in to the data warehouse database.
+
+00:59.880 --> 01:04.020
+And now we can go and start building stuff inside this data warehouse.
+
+01:04.020 --> 01:08.540
+So now the first step that I usually do is I go and start creating the schemas.
+
+01:08.580 --> 01:09.500
+So what is a schema?
+
+01:09.540 --> 01:10.100
+Think about it.
+
+01:10.100 --> 01:14.540
+It's like a folder or a container that helps you to keep things organized.
+
+01:14.540 --> 01:18.780
+So now as we decided in the architecture we have three layers bronze, silver, gold.
+
+01:18.780 --> 01:21.980
+And now we're going to go and create for each layer a schema.
+
+01:21.980 --> 01:23.220
+So let's go and do that.
+
+01:23.220 --> 01:26.540
+So we're going to start with the first one create schema.
+
+01:26.540 --> 01:28.300
+And the first one is bronze.
+
+01:28.300 --> 01:29.700
+So let's do it like this.
+
+01:29.700 --> 01:30.820
+And a semicolon.
+
+01:30.820 --> 01:33.420
+Let's go and create the first schema.
+
+01:33.460 --> 01:33.820
+Nice.
+
+01:33.820 --> 01:35.060
+So we have new schema.
+
+01:35.060 --> 01:36.580
+Let's go to our database.
+
+01:36.580 --> 01:41.660
+And then in order to check the schemas we go to the security and then to the schemas over here.
+
+01:41.660 --> 01:43.260
+And as you can see we have the bronze.
+
+01:43.260 --> 01:46.860
+And if you don't find it you have to go and refresh the whole schemas.
+
+01:46.860 --> 01:48.620
+And then you will find the new schema.
+
+01:48.660 --> 01:48.980
+Great.
+
+01:48.980 --> 01:50.620
+So now we have the first schema.
+
+01:50.660 --> 01:53.220
+Now what we're going to do we're going to go and create the others two.
+
+01:53.260 --> 01:55.060
+So I'm just going to go and duplicate it.
+
+01:55.060 --> 01:57.140
+So the next one is going to be the silver.
+
+01:57.460 --> 01:59.220
+And the third one is going to be the gold.
+
+01:59.220 --> 02:02.300
+So let's go and execute those two together.
+
+02:02.300 --> 02:03.340
+We will get an error.
+
+02:03.340 --> 02:06.960
+And that's because we are not having the go in between.
+
+02:06.960 --> 02:09.320
+So after each command, let's have a go.
+
+02:09.520 --> 02:15.080
+And now if I highlight the silver and gold and then execute, it will be working the go.
+
+02:15.080 --> 02:17.080
+In SQL it is like separator.
+
+02:17.080 --> 02:22.480
+So it tells SQL first execute completely the first command before go to the next one.
+
+02:22.480 --> 02:23.880
+So it is just a separator.
+
+02:23.920 --> 02:26.200
+Now let's go to our schemas refresh.
+
+02:26.240 --> 02:29.320
+And now we can see as well we have the gold and the silver.
+
+02:29.320 --> 02:30.920
+So with that we have now a database.
+
+02:30.920 --> 02:32.320
+We have the three layers.
+
+02:32.320 --> 02:36.080
+And we can start developing each layer individually okay.
+
+02:36.120 --> 02:38.360
+So now let's go and commit our work in the git.
+
+02:38.360 --> 02:42.720
+So now since it is a script and code we're going to go to the folder scripts over here.
+
+02:42.720 --> 02:45.200
+And then we're going to go and add a new file.
+
+02:45.200 --> 02:48.520
+Let's call it init database dot SQL.
+
+02:48.560 --> 02:51.160
+And now we're going to go and paste our code over here.
+
+02:51.160 --> 02:53.320
+So now I have done a few modifications.
+
+02:53.320 --> 02:58.680
+Like for example before we create the database we have to check whether the database exists.
+
+02:58.680 --> 03:01.920
+This is an important step if you are recreating the database.
+
+03:01.960 --> 03:07.040
+Otherwise if you don't do that you will get an error where SQL going to say the database already exists.
+
+03:07.040 --> 03:11.150
+So first it is checking whether the database exists, then it drops it.
+
+03:11.190 --> 03:16.430
+I have added few comments like here we are saying creating the data warehouse, creating the schemas.
+
+03:16.470 --> 03:18.390
+And now we have a very important step.
+
+03:18.390 --> 03:22.590
+We have to go and add a header comment at the start of each script.
+
+03:22.590 --> 03:27.870
+To be honest, after three months from now, you will not be remembering all the details of these scripts
+
+03:27.870 --> 03:29.550
+and adding a comment like this.
+
+03:29.590 --> 03:35.230
+It is like a sticky note for you later once you visit this script again, and it is as well very important
+
+03:35.230 --> 03:39.870
+for the other developers in the team, because each time you open a script, the first question is going
+
+03:39.870 --> 03:42.270
+to be, what is the purpose of this script?
+
+03:42.270 --> 03:47.750
+Because if you or anyone in the team open the file, the first question is going to be, what is the
+
+03:47.750 --> 03:50.670
+purpose of this script, why we are doing this stuff?
+
+03:50.670 --> 03:56.150
+So as you can see here, we have a comment saying this script creates a new data warehouse after checking
+
+03:56.150 --> 03:57.390
+if it already exists.
+
+03:57.390 --> 04:00.550
+If the database exists, it's going to drop it and recreate it.
+
+04:00.550 --> 04:06.430
+And additionally it's going to go and create three schemas bronze, silver, gold so that it gives clarity
+
+04:06.470 --> 04:08.150
+what this script is about.
+
+04:08.150 --> 04:10.170
+And it makes everyone everyone's life easier.
+
+04:10.210 --> 04:15.210
+Now, the second reason why this is very important to add is that you can add warnings.
+
+04:15.210 --> 04:20.290
+And especially for these scripts, it is very important to add these notes, because if you run these
+
+04:20.290 --> 04:21.370
+scripts, what's going to happen?
+
+04:21.370 --> 04:23.970
+It's going to go and destroy the whole database.
+
+04:24.010 --> 04:26.490
+Imagine someone open these scripts and run it.
+
+04:26.530 --> 04:30.490
+Imagine an admin, open the script and run it in the database.
+
+04:30.530 --> 04:34.170
+Everything going to be destroyed and all the data will be lost.
+
+04:34.170 --> 04:36.810
+And this can be a disaster if you don't have any backup.
+
+04:36.850 --> 04:41.490
+So with that we have nice header comments and we have added few comments in our code.
+
+04:41.490 --> 04:43.810
+And now we are ready to commit our code.
+
+04:43.810 --> 04:45.770
+So let's go and commit it.
+
+04:46.410 --> 04:48.890
+And now we have our scripts in the git as well.
+
+04:48.930 --> 04:54.050
+And of course if you are doing any modifications make sure to update the changes in the git.
+
+04:54.090 --> 04:54.890
+Okay my friends.
+
+04:54.890 --> 04:58.010
+So with that we have an empty database and schemas.
+
+04:58.050 --> 04:59.610
+And we are done with this task.
+
+04:59.650 --> 05:01.410
+And as well we are done with the whole epic.
+
+05:01.410 --> 05:04.210
+So we have completed the project initialization.
+
+05:04.210 --> 05:06.410
+And now we're going to go to the interesting stuff.
+
+05:06.410 --> 05:08.690
+We will go and build the bronze layer.
+
+05:08.730 --> 05:11.690
+So now the first task is to analyze the source systems.
+
+05:11.690 --> 05:12.410
+So let's go.

@@ -1,0 +1,832 @@
+WEBVTT
+
+00:03.880 --> 00:04.240
+All right.
+
+00:04.240 --> 00:09.600
+So now what we're going to do, we're going to go and modify and manipulate your data inside the database.
+
+00:09.600 --> 00:11.040
+So now sometimes what happens.
+
+00:11.040 --> 00:14.240
+You have a table inside your database and the table is empty.
+
+00:14.280 --> 00:16.840
+You don't have any rows any data inside the table.
+
+00:16.880 --> 00:22.040
+Now in order to add your data to the table what you can do you can use the command inserts.
+
+00:22.040 --> 00:25.760
+So insert going to go and add a new rows to your table.
+
+00:25.800 --> 00:26.800
+And of course not always.
+
+00:26.800 --> 00:27.920
+The table must be empty.
+
+00:27.920 --> 00:34.280
+To add your data, you can add new rows to already existing data, and SQL can go and append it at the
+
+00:34.280 --> 00:35.040
+end of the table.
+
+00:35.040 --> 00:40.440
+Now my friends, in order to insert a new data to the target table, there are two methods the first
+
+00:40.440 --> 00:41.480
+and the classical way.
+
+00:41.520 --> 00:47.560
+In order to insert new data, we can use the insert command and manually specifying the values that
+
+00:47.560 --> 00:49.240
+should be inserted to the table.
+
+00:49.240 --> 00:52.200
+So you're going to start specifying in the script the values.
+
+00:52.200 --> 00:55.760
+And then they're going to be inserted as new rows to the target table.
+
+00:55.760 --> 01:01.840
+So in this process you are manually inserting new values to the table using like an SQL scripts.
+
+01:01.880 --> 01:04.670
+So now we're going to focus on this scenario on how to insert data.
+
+01:04.710 --> 01:05.110
+All right.
+
+01:05.150 --> 01:07.790
+Now let's check quickly the syntax of the insert command.
+
+01:07.830 --> 01:09.990
+Let's start with the keyword insert into.
+
+01:10.030 --> 01:12.390
+And after that we have to specify the table name.
+
+01:12.390 --> 01:13.710
+So where we want to insert.
+
+01:13.710 --> 01:17.670
+And then we make a list of all columns that we want to insert.
+
+01:17.670 --> 01:21.990
+And then we specify a list of columns where we're going to insert values into them.
+
+01:21.990 --> 01:23.790
+And after that we say values.
+
+01:23.790 --> 01:28.430
+And finally we're going to go now and specify the data that should be inserted to the table.
+
+01:28.470 --> 01:31.790
+And we make it as well as a list like we have done for the columns.
+
+01:31.830 --> 01:36.510
+Now in the insert statements specifying those columns it is totally optional.
+
+01:36.510 --> 01:43.030
+So if you don't specify the columns of the table, then SQL can expect you to insert values into each
+
+01:43.030 --> 01:43.470
+column.
+
+01:43.470 --> 01:47.110
+Because sometimes, of course, we don't want to insert value for each column.
+
+01:47.110 --> 01:52.110
+You can skip few columns, of course, but if you want to insert a value for each column, either you
+
+01:52.110 --> 01:55.030
+go and specify them as a list or you can skip it.
+
+01:55.070 --> 02:00.550
+Now for the insert statements, there is a very important rule the number of columns and values must
+
+02:00.550 --> 02:01.110
+match.
+
+02:01.110 --> 02:06.740
+So if you specify here three columns then you must insert as well exactly three values.
+
+02:06.740 --> 02:08.300
+So this must be matching.
+
+02:08.340 --> 02:10.340
+And one last thing about the syntax.
+
+02:10.340 --> 02:12.940
+You can insert multiple values in one go.
+
+02:12.940 --> 02:17.140
+So for each row you can specify a list of values that must be inserted.
+
+02:17.140 --> 02:18.620
+So that's all about the syntax.
+
+02:18.620 --> 02:22.260
+Let's go back to SQL in order to practice insert commands.
+
+02:22.420 --> 02:24.460
+So now let's go and insert a new customers.
+
+02:24.460 --> 02:25.340
+So it's very simple.
+
+02:25.340 --> 02:27.500
+Let's start with insert into.
+
+02:27.540 --> 02:30.460
+So we are saying we want to insert data into.
+
+02:30.460 --> 02:33.100
+So we have to go and specify the table name customers.
+
+02:33.140 --> 02:37.860
+Now after that we have to specify a list of columns where we want to insert data into it.
+
+02:37.900 --> 02:38.620
+And what we can do.
+
+02:38.620 --> 02:41.740
+We can go and check which columns do we have inside our table.
+
+02:41.740 --> 02:46.020
+So we can see we have ID first name country score, and we can go and make a list of that.
+
+02:46.020 --> 02:51.460
+So we can say ID first name country and score.
+
+02:51.860 --> 02:54.900
+So we just have a list of all columns inside our table.
+
+02:54.900 --> 02:55.700
+Customers.
+
+02:55.740 --> 02:58.020
+Now what we need we need the values.
+
+02:58.020 --> 02:59.580
+So which data should be inserted.
+
+02:59.580 --> 03:01.460
+So we can go and open two parenthesis.
+
+03:01.500 --> 03:03.220
+And now we have to specify an ID.
+
+03:03.260 --> 03:05.180
+We know the last customer was five.
+
+03:05.180 --> 03:07.060
+So we're going to go with the customer sex.
+
+03:07.060 --> 03:09.180
+Now we have to give the name of the customer.
+
+03:09.220 --> 03:12.100
+Let's go for Anna and then a country.
+
+03:12.140 --> 03:13.420
+Let's go for USA.
+
+03:13.620 --> 03:15.940
+And this customer has no scores.
+
+03:15.980 --> 03:17.740
+So what we can do, we can say null.
+
+03:17.740 --> 03:20.100
+So we don't know the score of this customer.
+
+03:20.140 --> 03:22.500
+Nulls means nothing we don't know.
+
+03:22.500 --> 03:24.700
+So with that you can go and insert one row.
+
+03:24.700 --> 03:27.820
+But now let's say that I would like to go and insert like a second row.
+
+03:27.860 --> 03:28.820
+One more customer.
+
+03:28.860 --> 03:32.260
+What we can do, we can separate this with a comma.
+
+03:32.300 --> 03:34.820
+And then we can go and repeat the whole thing again.
+
+03:34.820 --> 03:36.100
+So the ID is seven.
+
+03:36.140 --> 03:38.780
+The next one let's call this customer Sam.
+
+03:38.780 --> 03:41.260
+And we don't know the country of this customer.
+
+03:41.260 --> 03:42.660
+So we're going to say it's null.
+
+03:42.700 --> 03:44.140
+But the score we know it already.
+
+03:44.180 --> 03:45.180
+It is 100.
+
+03:45.180 --> 03:47.980
+So as you can see we are adding a value for each of those columns.
+
+03:48.020 --> 03:52.300
+And if you don't know the answer then make it null if the database allows it to be null.
+
+03:52.340 --> 03:55.620
+Some columns they are not allowed to be null like the primary key.
+
+03:55.620 --> 03:58.820
+So if you go say over here null, the database will not allow it.
+
+03:58.860 --> 04:00.740
+Well actually we can go and test it.
+
+04:00.780 --> 04:01.740
+Let's execute.
+
+04:01.740 --> 04:05.460
+And you can see you cannot insert the value null into the column ID.
+
+04:05.460 --> 04:06.580
+So this is not allowed.
+
+04:06.580 --> 04:07.500
+You can have a seven.
+
+04:07.500 --> 04:09.530
+But for the other columns it is allowed.
+
+04:09.530 --> 04:11.570
+You can go and check the definition of the table.
+
+04:11.610 --> 04:13.530
+Now we go and execute.
+
+04:13.570 --> 04:18.570
+Now the output of the modifications command is going to always indicate what happens to the data.
+
+04:18.610 --> 04:21.170
+So it says two rows affected.
+
+04:21.210 --> 04:23.690
+Affected might be inserted updated deleted.
+
+04:23.690 --> 04:26.610
+So you can get a general statement from the database.
+
+04:26.610 --> 04:29.050
+But you are getting how many record is affected.
+
+04:29.050 --> 04:31.650
+So we got two because we have inserted two records.
+
+04:31.650 --> 04:33.930
+So now as you can see it's not like the query.
+
+04:33.970 --> 04:36.370
+We are not getting any data in the output.
+
+04:36.370 --> 04:37.730
+We are just getting a message.
+
+04:37.730 --> 04:43.250
+So this is a big difference between querying the data, using the selects and modifying the data using
+
+04:43.250 --> 04:43.730
+inserts.
+
+04:43.730 --> 04:47.930
+We are doing now direct modifications to the data inside our database.
+
+04:47.970 --> 04:52.690
+Of course, if you want to see the data in the customers, what we can do, we can go and query the
+
+04:52.690 --> 04:53.450
+data, right.
+
+04:53.690 --> 04:54.690
+So let's go and do that.
+
+04:54.690 --> 04:58.370
+Select star from customers I would like to see the whole table.
+
+04:58.370 --> 05:00.090
+So mark it and execute it.
+
+05:00.130 --> 05:02.250
+Now you can see we have seven customers.
+
+05:02.250 --> 05:04.050
+So we just manipulated our data.
+
+05:04.050 --> 05:05.810
+We have here Anna and Sam.
+
+05:05.850 --> 05:08.010
+This is how you can insert data to the database.
+
+05:08.010 --> 05:09.170
+Now there is like few rules.
+
+05:09.170 --> 05:13.960
+You have to be careful As you are inserting new data to your tables, you have to pay attention that
+
+05:13.960 --> 05:19.840
+the order of the columns that you have defined insert is matching the values that you are inserting
+
+05:19.840 --> 05:20.320
+over here.
+
+05:20.320 --> 05:21.240
+Let's have an example.
+
+05:21.240 --> 05:23.600
+I'm going to go and remove this over here.
+
+05:23.640 --> 05:26.000
+And let's say that we are inserting a new one.
+
+05:26.040 --> 05:26.760
+Number eight.
+
+05:26.800 --> 05:32.400
+And now in the first name instead of the name of the customers, we have inserted the country like USA
+
+05:32.520 --> 05:35.040
+and in the country we have inserted the name.
+
+05:35.040 --> 05:37.200
+This is just a mistake and we are all human, right?
+
+05:37.200 --> 05:38.600
+So let's have a name like this.
+
+05:38.600 --> 05:39.000
+Max.
+
+05:39.000 --> 05:43.640
+Now if you go and execute it, the database can accept it because it is really hard for the database
+
+05:43.640 --> 05:45.440
+to understand that you have made here an error.
+
+05:45.480 --> 05:49.600
+Both of them are varchar and the database doesn't care about the content of the data.
+
+05:49.640 --> 05:52.160
+As long as you are following the rules of the data type.
+
+05:52.160 --> 05:57.040
+So now if you go and select the data from the customers, you can see now we have a customer called
+
+05:57.080 --> 05:59.160
+USA from the country Max.
+
+05:59.160 --> 06:02.440
+So the SQL going to do it blindly like you insert the data.
+
+06:02.480 --> 06:06.400
+As long as you are following the data type rules and the constraints.
+
+06:06.400 --> 06:12.350
+So for example, if you made this error over here and you say the ID is max and let's say the first
+
+06:12.390 --> 06:16.030
+name is let's say nine and you execute it here.
+
+06:16.030 --> 06:18.030
+The database is smart enough to say, you know what?
+
+06:18.030 --> 06:19.030
+There is something wrong.
+
+06:19.070 --> 06:22.510
+The ID should not be a string so the database can reject your inserts.
+
+06:22.550 --> 06:24.710
+Be careful of the order of your columns.
+
+06:24.750 --> 06:26.710
+Now let's go and query again our table.
+
+06:26.750 --> 06:31.710
+Now if you are in the insert commands defining all the columns exactly like the table.
+
+06:31.710 --> 06:35.030
+So as you can see we have here complete match ID first name country score.
+
+06:35.030 --> 06:37.430
+We have all the columns and as well the correct order.
+
+06:37.470 --> 06:40.670
+There is like lazy way you can go and remove the whole thing over here.
+
+06:40.710 --> 06:46.070
+And with that the database can understand okay we are inserting values to all of the columns so SQL
+
+06:46.110 --> 06:46.750
+can understand.
+
+06:46.750 --> 06:50.550
+You are inserting something to each columns in the correct direction.
+
+06:50.550 --> 06:53.110
+So let's go and do that correctly nine.
+
+06:53.110 --> 06:55.910
+And here let's say we have Andreas.
+
+06:56.070 --> 06:57.830
+Andreas is from Germany.
+
+06:57.830 --> 07:02.510
+So if you go and execute it it will be working even though we didn't define the columns.
+
+07:02.510 --> 07:08.190
+And that's because the values that we are inserting are exactly the same number of columns of the table
+
+07:08.190 --> 07:09.670
+and following as well the rules.
+
+07:09.710 --> 07:14.630
+Now moving on to the next one, you can go and add only two columns in the definition if you're not
+
+07:14.630 --> 07:15.270
+already.
+
+07:15.270 --> 07:18.150
+Always the country and the score is null.
+
+07:18.190 --> 07:20.870
+We know only two informations the id and the name.
+
+07:20.870 --> 07:23.910
+Then you don't have always to go and say null, null, null and so on.
+
+07:23.910 --> 07:25.270
+We can go and skip that.
+
+07:25.310 --> 07:25.470
+Okay.
+
+07:25.510 --> 07:26.670
+So now let me show you what I mean.
+
+07:26.670 --> 07:32.030
+We're going to go after the table name and we're going to define only two columns the ID and the first
+
+07:32.070 --> 07:32.590
+name.
+
+07:32.590 --> 07:36.070
+So that means we are telling SQL we want to insert only two columns.
+
+07:36.110 --> 07:37.470
+And now you have to be careful.
+
+07:37.470 --> 07:41.470
+If you define here two columns then the values should be as well two columns.
+
+07:41.470 --> 07:44.270
+So we can remove the country and the score.
+
+07:44.270 --> 07:46.670
+And we can go and add only two informations.
+
+07:46.670 --> 07:49.710
+So ten and we can go and add here for example Sarah.
+
+07:49.830 --> 07:52.550
+So if we go and execute it it will be working.
+
+07:52.550 --> 07:55.990
+And now what this skill is doing with the other two columns it's going to be nulls.
+
+07:55.990 --> 07:58.190
+So let's go and select again from our table.
+
+07:58.190 --> 08:03.670
+You can see here Sarah has null in the country and as well in the score because we didn't define those
+
+08:03.670 --> 08:04.390
+informations.
+
+08:04.390 --> 08:05.110
+But be careful.
+
+08:05.110 --> 08:08.430
+You cannot here skip a column that is not allowed to be null.
+
+08:08.430 --> 08:12.470
+So you have always to have in your list all the columns that are not null.
+
+08:12.510 --> 08:15.070
+So for example, I cannot go and insert only the first name.
+
+08:15.070 --> 08:20.140
+I will get an error because the database can try to insert a null in the ID and this is not allowed,
+
+08:20.140 --> 08:22.940
+so you can skip only nullable columns.
+
+08:26.860 --> 08:27.780
+All right my friends.
+
+08:27.780 --> 08:31.820
+So that was the first method on how to insert data to your target table.
+
+08:31.860 --> 08:37.500
+As you saw by typing manually the values inside an insert command using values.
+
+08:37.540 --> 08:39.380
+And now let's move to another method.
+
+08:39.380 --> 08:42.420
+We can insert data, but this time not manually.
+
+08:42.420 --> 08:45.020
+We can insert data using another table.
+
+08:45.020 --> 08:46.780
+So imagine we have the following scenario.
+
+08:46.820 --> 08:49.500
+We have an already existing table with data.
+
+08:49.500 --> 08:52.380
+And this is going to be the source table the source of your data.
+
+08:52.380 --> 08:53.820
+And we have another table.
+
+08:53.820 --> 08:55.300
+This table is empty.
+
+08:55.300 --> 08:58.260
+And we want to insert a new data to this target table.
+
+08:58.300 --> 09:04.420
+Now what we can do we can take the data from the source table and insert it into the target table without
+
+09:04.420 --> 09:07.220
+manually writing a script for the values.
+
+09:07.220 --> 09:09.940
+So we are moving the data from one table to another.
+
+09:09.980 --> 09:12.660
+Now, in order to do that, we need to do two steps.
+
+09:12.660 --> 09:18.130
+The first step we have to write an SQL query using select from, and so on.
+
+09:18.130 --> 09:22.090
+In order to select the data that we need from the source table.
+
+09:22.090 --> 09:24.530
+And once you do that, you will get the results.
+
+09:24.530 --> 09:27.010
+So this is like you are doing a normal query.
+
+09:27.050 --> 09:30.130
+You write select and you will get an answer with the results.
+
+09:30.170 --> 09:32.250
+And now what we can do in the next step.
+
+09:32.250 --> 09:39.210
+We can take these results and use an insert command in order to insert this results into the target
+
+09:39.250 --> 09:39.770
+table.
+
+09:39.770 --> 09:43.610
+And with that, we have moved the data from the source table to the target table.
+
+09:43.610 --> 09:47.330
+So first write the query on the source table and the second step.
+
+09:47.330 --> 09:50.570
+Use an insert to move this result to the target table.
+
+09:50.570 --> 09:52.850
+So let's go back to SQL in order to do that.
+
+09:52.850 --> 09:53.970
+So now we have the following task.
+
+09:53.970 --> 09:58.370
+And it says insert data from the table customers into the table persons.
+
+09:58.370 --> 10:03.570
+So that means the source table is the customers and the target table is persons.
+
+10:03.650 --> 10:09.250
+Now how I usually do it is that I keep my eye on the target table to understand the structure of this
+
+10:09.250 --> 10:13.850
+table, and I start writing the query from the source table.
+
+10:13.850 --> 10:18.330
+If you go to the left side, you can see okay, we have here an ID, we have here person name, birth
+
+10:18.330 --> 10:19.090
+date and phone.
+
+10:19.090 --> 10:22.800
+And you can see only the birth date except nulls and the rest.
+
+10:22.800 --> 10:24.560
+We have always to provide informations.
+
+10:24.560 --> 10:27.760
+So with that I have now understanding about the table persons.
+
+10:27.800 --> 10:31.080
+Now next I'm going to go and start writing the query from the source.
+
+10:31.080 --> 10:32.560
+So we start like this.
+
+10:32.560 --> 10:37.320
+Select star from our table customers just to have an overview of our table.
+
+10:37.360 --> 10:43.880
+Now the next step we're going to go and design a perfect result from this query that is matching the
+
+10:43.880 --> 10:44.800
+target table.
+
+10:44.800 --> 10:48.120
+So in the output we need ID and we have it from the customer.
+
+10:48.120 --> 10:51.160
+From the original table we're going to go and select ID okay.
+
+10:51.200 --> 10:53.600
+So now next we need a person name.
+
+10:53.600 --> 10:56.480
+And here we have from the original table something called first name.
+
+10:56.480 --> 10:58.240
+So this is a perfect match.
+
+10:58.240 --> 11:01.480
+So we're going to go and select this table as a second column.
+
+11:01.480 --> 11:03.000
+So we have covered the first two.
+
+11:03.040 --> 11:05.080
+Then the third one is going to be the birth date.
+
+11:05.080 --> 11:09.640
+Well my friends we don't have birth dates but the database can accept it as a null.
+
+11:09.640 --> 11:14.120
+So I'm going to go and write a null because I don't have such information from the source table.
+
+11:14.160 --> 11:16.200
+And now the next one is going to be the phone as well.
+
+11:16.200 --> 11:21.080
+We don't have phone informations, but we cannot have it as a null because it says here not null.
+
+11:21.080 --> 11:24.240
+So what we're going to do, we're going to go and add a static value.
+
+11:24.280 --> 11:25.200
+A default value.
+
+11:25.200 --> 11:27.400
+So we're going to have two single quotes.
+
+11:27.400 --> 11:29.400
+And in between we're going to say unknown.
+
+11:29.600 --> 11:32.360
+Since it is Varchar it can accept these words.
+
+11:32.360 --> 11:34.600
+So now let's go and just query.
+
+11:34.600 --> 11:37.320
+So we have the ID we have the first name.
+
+11:37.320 --> 11:40.640
+The birth date is empty and the font is unknown.
+
+11:40.680 --> 11:45.600
+Now you might say, but the column name is not matching with the column name of the persons.
+
+11:45.600 --> 11:51.680
+Well, the database does not care about that as long as the result of the data is matching the table,
+
+11:51.720 --> 11:53.120
+it can go and insert it.
+
+11:53.120 --> 11:56.240
+So the database will never compare the column names together.
+
+11:56.240 --> 12:02.040
+But if you like and go and add here like the aliases, exactly like the target table, it will not hurt,
+
+12:02.040 --> 12:04.280
+but it has no effect on the results.
+
+12:04.280 --> 12:04.920
+All right okay.
+
+12:04.960 --> 12:07.800
+So now we have like query selects and we have a results.
+
+12:07.800 --> 12:09.480
+But this is not an insert.
+
+12:09.480 --> 12:12.760
+So how are we going to insert the result of this into the table.
+
+12:12.800 --> 12:13.400
+Persons.
+
+12:13.400 --> 12:17.520
+Well for that we need the insert into commands.
+
+12:17.520 --> 12:18.760
+So insert into.
+
+12:18.960 --> 12:22.720
+And now we have to specify the target table can be the persons.
+
+12:22.760 --> 12:28.030
+And of course you can go and list all the column names, but if you have like exact match, you can
+
+12:28.030 --> 12:28.390
+skip it.
+
+12:28.390 --> 12:32.990
+But for me, I would like always to add it just to make sure that we don't have any issue.
+
+12:33.030 --> 12:36.910
+So the ID person name, birth date and the phone.
+
+12:38.430 --> 12:39.550
+So that's it.
+
+12:39.590 --> 12:41.350
+Let's go and execute.
+
+12:41.350 --> 12:42.430
+So it is working.
+
+12:42.430 --> 12:44.430
+Now we can see ten rows affected.
+
+12:44.430 --> 12:50.830
+Well that means ten rows are inserted from the table customers into the target persons.
+
+12:50.870 --> 12:55.990
+And now what we can do we can go and query the table persons just to check that everything is working
+
+12:55.990 --> 12:56.790
+perfectly.
+
+12:57.110 --> 13:00.550
+Select star from persons and let's go and execute.
+
+13:00.590 --> 13:04.830
+And with that you can see our ten persons that we have added from the customers.
+
+13:04.830 --> 13:09.710
+So with that we have moved the data from one table and inserted into another table.
+
+13:09.750 --> 13:11.510
+And as you can see it was very simple.
+
+13:11.510 --> 13:17.070
+First you have to write a query from the source table in order to collect the data that you need.
+
+13:17.110 --> 13:20.750
+And then you go and insert it into the target table.
+
+13:20.750 --> 13:22.430
+So this is really nice and easy.
+
+13:22.470 --> 13:26.230
+And this is another way on how to insert data into your database.

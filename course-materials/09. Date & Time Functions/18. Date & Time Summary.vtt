@@ -1,0 +1,55 @@
+WEBVTT
+
+00:03.880 --> 00:04.280
+All right.
+
+00:04.280 --> 00:09.120
+So with that we have covered 13 different date and time functions in SQL.
+
+00:09.120 --> 00:13.800
+So we have learned how to extract the date parts using seven different functions.
+
+00:13.800 --> 00:16.000
+And we have learned as well when to use which one.
+
+00:16.000 --> 00:20.240
+So they are amazing in order to do that aggregations and as well filtering.
+
+00:20.240 --> 00:25.360
+And then we have learned how to change the date format from one to another and as well how to change
+
+00:25.360 --> 00:26.280
+the data types.
+
+00:26.280 --> 00:29.920
+And then we learned how to do mathematical operations on our dates.
+
+00:29.920 --> 00:37.160
+So how we can add or subtract days, years, months from a date or the amazing function that date diff
+
+00:37.200 --> 00:41.600
+where we can go and find the differences in days or years between two days.
+
+00:41.640 --> 00:46.640
+And the last one, we can go and validate whether the values that we have are dates or not.
+
+00:46.640 --> 00:52.440
+So as we learned, date functions are amazing functions in order to do data analysis and reporting.
+
+00:52.440 --> 00:53.240
+All right my friends.
+
+00:53.240 --> 00:58.480
+So with that, we have learned a lot of very important SQL functions on how to manipulate the date and
+
+00:58.480 --> 01:00.880
+time values in your database using SQL.
+
+01:00.920 --> 01:06.120
+Now in the next section, we can start talking about the null functions in order to handle the nulls
+
+01:06.120 --> 01:07.160
+inside your tables.
+
+01:07.160 --> 01:07.880
+So let's go.

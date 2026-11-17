@@ -1,0 +1,238 @@
+WEBVTT
+
+00:00.080 --> 00:00.880
+All right, my friends.
+
+00:00.880 --> 00:06.440
+So, so far in the bronze layer and in the silver layer, we didn't discuss anything about the business.
+
+00:06.440 --> 00:08.800
+So the bronze and silver were very technical.
+
+00:08.800 --> 00:10.760
+We are focusing on data ingestion.
+
+00:10.760 --> 00:13.920
+We are focusing on cleaning up the data quality of the data.
+
+00:13.920 --> 00:17.240
+But still the tables are very oriented to the source system.
+
+00:17.240 --> 00:22.760
+Now comes the fun part and the gold layer where we're going to go and break the whole data model of
+
+00:22.760 --> 00:23.480
+the sources.
+
+00:23.480 --> 00:29.000
+So we're going to create something completely new to our business that is easy to consume for business
+
+00:29.000 --> 00:30.640
+reporting and analysis.
+
+00:30.640 --> 00:35.000
+And here it is very important to have a clear understanding of the business and the processes.
+
+00:35.000 --> 00:40.480
+And if you don't know it already at this phase, you have really to invest time by meeting maybe process
+
+00:40.480 --> 00:46.160
+experts, the domain experts, in order to have clear understanding what we are talking about in the
+
+00:46.160 --> 00:46.600
+data.
+
+00:46.600 --> 00:51.120
+So now what we're going to do, we're going to try to detect what are the business objects that are
+
+00:51.120 --> 00:53.040
+hidden in the source systems.
+
+00:53.080 --> 00:54.960
+So now let's go and explore that.
+
+00:55.000 --> 00:55.320
+All right.
+
+00:55.360 --> 01:00.120
+Now in order to build a new data model I have to understand first the original data model.
+
+01:00.120 --> 01:04.360
+What are the main business objects that we have, how things are related to each others.
+
+01:04.400 --> 01:07.680
+And this is very important process in building a new model.
+
+01:07.680 --> 01:11.480
+So now what I usually do I start giving labels to all those tables.
+
+01:11.480 --> 01:14.880
+So if you go to the shapes over here let's go and search for label.
+
+01:14.920 --> 01:19.050
+And if you go to more icons I'm gonna go and take this label over here.
+
+01:19.050 --> 01:23.290
+So drag and drop it, and then I'm going to go and increase maybe the size of the font.
+
+01:23.330 --> 01:25.730
+So let's go with 20 and bold.
+
+01:25.730 --> 01:27.330
+Just make it a little bit bigger.
+
+01:27.330 --> 01:33.410
+So now by looking to this data model we can see that we have a product informations in the CRM and as
+
+01:33.410 --> 01:34.330
+well in the ERP.
+
+01:34.370 --> 01:38.050
+And then we have like customer informations and transactional table.
+
+01:38.050 --> 01:39.770
+So now let's focus on the products.
+
+01:39.770 --> 01:42.290
+So the products information is over here.
+
+01:42.290 --> 01:45.410
+We have here the current and the history product informations.
+
+01:45.410 --> 01:48.530
+And here we have the categories that belong to the products.
+
+01:48.530 --> 01:51.370
+So in our data model we have something called products.
+
+01:51.370 --> 01:52.850
+So let's go and create this label.
+
+01:52.850 --> 01:54.370
+It's going to be the products.
+
+01:55.090 --> 01:57.690
+And let's go and give it a color to the style.
+
+01:57.730 --> 02:00.210
+Let's pick for example the red one.
+
+02:00.210 --> 02:04.410
+Now let's go and move this label and put it beneath this table over here.
+
+02:04.450 --> 02:09.690
+And with that I have like a label saying this table belongs to the objects called products.
+
+02:09.770 --> 02:13.090
+Now I'm going to do the same thing for the other table over here.
+
+02:13.090 --> 02:18.490
+So I'm going to go and tag this table to the product as well, so that I can see easily which tables
+
+02:18.490 --> 02:19.450
+from the sources.
+
+02:19.490 --> 02:22.690
+This has informations about that products, business objects.
+
+02:22.730 --> 02:23.050
+All right.
+
+02:23.090 --> 02:23.810
+Now moving on.
+
+02:23.810 --> 02:26.610
+We have here a table called Customer information.
+
+02:26.610 --> 02:28.610
+So we have a lot of information about the customer.
+
+02:28.610 --> 02:33.180
+We have as well in the ERP customer information where we have the birth date and the country.
+
+02:33.180 --> 02:35.860
+So those three tables has to do with the objects.
+
+02:35.860 --> 02:36.380
+Customer.
+
+02:36.380 --> 02:38.820
+So that means we're going to go and label it like that.
+
+02:38.820 --> 02:40.860
+So let's call it customer.
+
+02:40.860 --> 02:43.580
+And I'm going to go and pick a different color for that.
+
+02:43.620 --> 02:45.420
+Let's go with the green.
+
+02:45.420 --> 02:48.260
+So I will tag this table like this.
+
+02:48.300 --> 02:50.180
+And the same thing for the other tables.
+
+02:50.620 --> 02:54.220
+So copy tag the second table and the third table.
+
+02:54.260 --> 02:59.460
+Now it is very easy for me to see which table to belong to which business objects.
+
+02:59.460 --> 03:05.100
+And now we have the final table over here, and only one table about the sales and orders in the IRB.
+
+03:05.140 --> 03:07.100
+We don't have any information about that.
+
+03:07.100 --> 03:08.660
+So this one is going to be easy.
+
+03:08.700 --> 03:12.820
+Let's call it sales and let's move it over here.
+
+03:12.860 --> 03:17.300
+And as well maybe change the color of that to for example this color over here.
+
+03:17.340 --> 03:18.940
+Now this step is very important.
+
+03:18.940 --> 03:23.420
+By building any data model in the gold layer, it gives you a big picture about the things that you
+
+03:23.460 --> 03:24.660
+are going to model.
+
+03:24.660 --> 03:28.060
+So now the next step is that we're going to go and build those objects step by step.
+
+03:28.060 --> 03:30.780
+So let's start with the first object with the customers.
+
+03:30.780 --> 03:31.980
+So here we have three tables.
+
+03:31.980 --> 03:33.740
+And we're going to start with the CRM.
+
+03:33.740 --> 03:35.820
+So let's start with this table over here.
+
+03:35.860 --> 03:36.220
+All right.
+
+03:36.220 --> 03:39.060
+So with that we know what are our business objects.
+
+03:39.060 --> 03:40.580
+And this task is done.
+
+03:40.580 --> 03:46.100
+And now in the next step we're going to go back to SQL and start doing data integrations and building
+
+03:46.340 --> 03:47.860
+completely new data model.
+
+03:47.860 --> 03:49.180
+So let's go and do that.

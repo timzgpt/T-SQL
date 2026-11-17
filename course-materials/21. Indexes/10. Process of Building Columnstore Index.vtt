@@ -1,0 +1,301 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.280 --> 00:06.680
+So now let's say that we have a table for the customers.
+
+00:06.680 --> 00:09.600
+We have three columns ID name and status.
+
+00:09.600 --> 00:13.320
+And as well we have around 2 million rows 2 million customers.
+
+00:13.320 --> 00:18.960
+And as we learned as a default, the table can be built as a heap structure where the rows are stored
+
+00:19.000 --> 00:20.760
+row by row inside data pages.
+
+00:20.760 --> 00:25.280
+But now we go and create a column store index on top of this table.
+
+00:25.280 --> 00:31.200
+So now once you do that, SQL gonna go through a process in order to build the column store.
+
+00:31.240 --> 00:36.600
+So the first step is, is go and divide the data the rows into row groups.
+
+00:36.640 --> 00:41.120
+Now in SQL server each row group can contain around like 1 million row.
+
+00:41.120 --> 00:45.160
+So in this example our table can be split into two row groups.
+
+00:45.160 --> 00:49.440
+The first 1 million row in one group and the second one in another row group.
+
+00:49.440 --> 00:53.400
+Now you might ask me, we are talking about columns why we are splitting the rows.
+
+00:53.440 --> 00:59.080
+Well, this is just a pre step in order just to optimize the performance and to do parallel processing.
+
+00:59.120 --> 01:03.320
+And of course the data will not be stored like this because we have the second step.
+
+01:03.360 --> 01:07.290
+Now in the next step is SQL going to go and segment the columns.
+
+01:07.290 --> 01:12.810
+So now scale will go for each row group and start splitting the data by the columns.
+
+01:12.850 --> 01:18.170
+And that's why we call it a column store because we are separating the columns from each others.
+
+01:18.170 --> 01:24.490
+So that means we have one segment for the ID, another one for the name, and a third one for the status.
+
+01:24.490 --> 01:26.490
+And this can happen for each row group.
+
+01:26.530 --> 01:28.290
+And now scale move to the third step.
+
+01:28.290 --> 01:31.410
+In this process we have the data compression.
+
+01:31.410 --> 01:37.930
+And this is the most important step in this process because it is the reason why column store is very
+
+01:37.930 --> 01:40.290
+fast compared to the roster.
+
+01:40.330 --> 01:44.730
+So in this process there are like different techniques on how to do data compression.
+
+01:44.730 --> 01:48.890
+And the most famous one is that it's going to go and create like a dictionary.
+
+01:48.890 --> 01:55.370
+Let's take for example the column status, the status of the customer, whether it is active or inactive.
+
+01:55.370 --> 02:01.890
+So the word active and inactive can be repeated like 2 million times because we have 2 million customers.
+
+02:01.930 --> 02:05.890
+And since it is like string, it is like taking a lot of space and storage.
+
+02:05.890 --> 02:08.970
+But now instead of that, we're going to go and compress the data.
+
+02:08.970 --> 02:16.180
+So first it's going to go and create a dictionary by replacing the value active and inactive into smaller
+
+02:16.180 --> 02:18.060
+values like one and two.
+
+02:18.180 --> 02:22.540
+So we have like a mapping between the long value to small value.
+
+02:22.540 --> 02:28.780
+And after that it's going to store like a data stream where we have like only two values 121, two.
+
+02:28.940 --> 02:31.620
+So we can have like a big stream of 2 million rows.
+
+02:31.660 --> 02:34.460
+So SQL going to go and do this for each column.
+
+02:34.460 --> 02:37.500
+And with that the size of each column is going to be changed.
+
+02:37.540 --> 02:41.220
+Depends of course on how much different values you have in each column.
+
+02:41.460 --> 02:47.740
+So this step is very important in order to reduce the size of the data and as well to increase the performance.
+
+02:47.860 --> 02:54.060
+So now once everything is organized and compressed, SQL is going to go and start storing the results
+
+02:54.060 --> 02:55.300
+in databases.
+
+02:55.460 --> 02:59.940
+But SQL will not use the standard databases that we have learned previously.
+
+02:59.940 --> 03:05.420
+But instead it's going to use a special database called Lob Large Object Page.
+
+03:05.460 --> 03:10.260
+So now let's quickly compare the structure of the normal database that we have learned in the row store
+
+03:10.300 --> 03:13.660
+with the new one that column store the Lob data page.
+
+03:13.740 --> 03:15.870
+So as usual each page has a header.
+
+03:15.910 --> 03:20.350
+This is same as any data page, but the next section is going to be the segment header.
+
+03:20.390 --> 03:25.990
+It has like metadata informations about the column segment that is stored in this page.
+
+03:25.990 --> 03:32.830
+Like we have the segment ID, the row group ID, the column ID and it has as well very important information
+
+03:33.070 --> 03:35.470
+the ID to the dictionary page.
+
+03:35.550 --> 03:39.590
+So the dictionary page is as well a type of pages in SQL.
+
+03:39.630 --> 03:41.190
+It has as well a header.
+
+03:41.190 --> 03:43.310
+But inside it we have like a mapping.
+
+03:43.390 --> 03:49.630
+So it maps the original value that long one the inactive to the smaller version of this value.
+
+03:49.750 --> 03:50.830
+For example one.
+
+03:50.830 --> 03:52.590
+And that's all for the dictionary page.
+
+03:52.590 --> 03:56.710
+It has the mapping between the original values and the smaller values.
+
+03:56.710 --> 03:59.110
+And beneath the segment header we're going to have.
+
+03:59.150 --> 04:01.630
+Now the important place where our data can be stored.
+
+04:01.630 --> 04:03.150
+We have the data stream.
+
+04:03.150 --> 04:10.390
+So it is like a sequence of IDs from the dictionary that represents the values of the columns side by
+
+04:10.390 --> 04:10.830
+side.
+
+04:10.830 --> 04:15.630
+And of course we cannot fit the whole 1 million rows inside this data stream.
+
+04:15.630 --> 04:18.550
+We're going to have like multiple Lob databases.
+
+04:18.550 --> 04:21.800
+So this is how exactly the SQL stores your data.
+
+04:22.080 --> 04:24.360
+If you decided to go with the column store.
+
+04:24.400 --> 04:26.160
+So let's go back to the process.
+
+04:26.280 --> 04:27.680
+So back to the process.
+
+04:27.680 --> 04:31.760
+As you can see SQL is storing the data as a blob data storage.
+
+04:31.760 --> 04:33.160
+So this is the last step.
+
+04:33.160 --> 04:37.240
+And with that SQL did convert your table into a column store.
+
+04:37.280 --> 04:43.320
+So now we cannot just create a column store without defining whether it is clustered index or non-clustered
+
+04:43.320 --> 04:43.960
+index.
+
+04:43.960 --> 04:47.040
+So let's start with the first one the clustered column store index.
+
+04:47.280 --> 04:52.840
+So if you create such index, SQL of course will not be building a B-tree structure.
+
+04:52.960 --> 04:57.080
+SQL is going to use exactly this structure, the column store structure.
+
+04:57.080 --> 05:01.440
+So as we learned, the clustered index is a complete makeover of your table.
+
+05:01.440 --> 05:02.280
+When you applied.
+
+05:02.320 --> 05:09.320
+Then SQL can format everything column wise, and it is fully replacing the old row based table structure
+
+05:09.320 --> 05:10.560
+that we have at the start.
+
+05:10.560 --> 05:15.480
+So once you apply the clustered column store index, it will not leave anything behind.
+
+05:15.520 --> 05:19.000
+And your table is going to be completely structured as a column store.
+
+05:19.040 --> 05:20.680
+And one more thing, which is make sense.
+
+05:20.680 --> 05:27.010
+Of course all the columns from the original table can be converted to a column store, so it is not
+
+05:27.010 --> 05:28.370
+leaving anything behind it.
+
+05:28.370 --> 05:34.410
+But in the other hand, if you are using non-clustered column store index, as we learned, it is like
+
+05:34.410 --> 05:37.090
+a companion to your existing table.
+
+05:37.090 --> 05:41.650
+So it co-exists with the table and it will not replace anything.
+
+05:41.650 --> 05:47.410
+So the column store index can be an additional thing that is stored beside your table.
+
+05:47.410 --> 05:52.970
+So that means the original table will not be deleted at all like the clustered column store index.
+
+05:53.010 --> 05:56.210
+The first one is in the old row based storage.
+
+05:56.210 --> 05:57.250
+The regular table.
+
+05:57.290 --> 05:58.570
+The first one and your.
+
+05:58.570 --> 06:03.530
+That is going to be as well stored in a separate structure in the column store index.
+
+06:03.530 --> 06:06.530
+And of course in the non-clustered column store index.
+
+06:06.530 --> 06:12.690
+Since we are creating an extra index outside of your original table, you can go and define which column
+
+06:12.690 --> 06:14.530
+should be included in this process.
+
+06:14.530 --> 06:18.490
+It must not be all the columns you can go, for example, with only the status.
+
+06:18.490 --> 06:24.290
+So that means you build a column store index only for one column for the status of their customers.
+
+06:24.290 --> 06:30.010
+So this is what we mean with the clustered column store index and the non-clustered column store index.

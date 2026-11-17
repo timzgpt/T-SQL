@@ -1,0 +1,424 @@
+WEBVTT
+
+00:04.000 --> 00:05.080
+Okay, one more thing.
+
+00:05.080 --> 00:09.280
+In order to maintain our indexes is by updating the statistics.
+
+00:09.280 --> 00:15.600
+The database engines usually use statistics in order to understand which index should be used for our
+
+00:15.600 --> 00:21.080
+query, and if these statistics are not up to date, SQL can make wrong decisions.
+
+00:21.080 --> 00:22.640
+So let's understand what this means.
+
+00:22.680 --> 00:27.880
+Now let's say that you have created a table and you start inserting data to this new table.
+
+00:27.920 --> 00:32.800
+Now the database engine can go and create a new table and insert the data behind the scenes.
+
+00:32.800 --> 00:37.320
+The database engine can go and create for your new table statistics.
+
+00:37.320 --> 00:40.240
+It's like metadata information about your data.
+
+00:40.440 --> 00:46.720
+And that's like a report or insights about your table where you can find a lot of information like the
+
+00:46.720 --> 00:50.640
+number of rows, the distribution of values in a column.
+
+00:50.640 --> 00:58.360
+And as well we can find the number of distinct values and histograms and patterns and many other informations
+
+00:58.360 --> 00:59.480
+about your table.
+
+00:59.480 --> 01:03.810
+So now of course the question is why do we have those informations in the database.
+
+01:03.850 --> 01:07.010
+Now imagine that you are doing select from where.
+
+01:07.050 --> 01:07.850
+What's going to happen.
+
+01:07.850 --> 01:11.530
+The database engine has to go and create an execution plan.
+
+01:11.770 --> 01:14.050
+We're going to learn about this later in details.
+
+01:14.050 --> 01:17.490
+It is just a roadmap on how to execute this query.
+
+01:17.490 --> 01:22.170
+So here for example in order to load the data from the table, there are like different ways on how
+
+01:22.170 --> 01:22.970
+to do it.
+
+01:22.970 --> 01:26.610
+So there is like a table scan index scan index seek.
+
+01:26.770 --> 01:31.850
+So that means the database engine has here three different ways on how to do it.
+
+01:31.890 --> 01:38.490
+And now in order for the database to decide which way to use, it's going to go and read the statistics
+
+01:38.490 --> 01:39.490
+of the table.
+
+01:39.490 --> 01:41.490
+So it's going to go and collect informations okay.
+
+01:41.530 --> 01:42.930
+How many rows do we have.
+
+01:42.970 --> 01:44.770
+Are the informations are unique.
+
+01:44.810 --> 01:47.490
+How is the distribution of the data and so on.
+
+01:47.490 --> 01:53.930
+And now based on those statistics and numbers the database can now make a good decision about which
+
+01:53.970 --> 01:56.570
+methods to use in order to load the data.
+
+01:56.570 --> 02:01.170
+So for example here the index scan is the best way to load our table.
+
+02:01.170 --> 02:07.780
+So this is exactly why the database needs the statistics in order to make the correct decision and to
+
+02:07.820 --> 02:09.500
+use the correct index.
+
+02:09.500 --> 02:13.060
+So now you might ask okay, this is something internal for the database.
+
+02:13.260 --> 02:14.780
+Why do we have to care about it.
+
+02:14.820 --> 02:16.100
+Well there is an issue.
+
+02:16.140 --> 02:18.740
+Now for example in our table we have 50 rows.
+
+02:18.780 --> 02:24.260
+And let's say that in the next day you went and inserted to this table like around 1 million row.
+
+02:24.460 --> 02:29.940
+Now the issue that could happen is that the statistics will not get updated about this table.
+
+02:29.940 --> 02:33.540
+And the statistics can still say that we have only 50 rows.
+
+02:33.580 --> 02:37.740
+So that means the statistics of this table is now outdated.
+
+02:37.740 --> 02:44.260
+And the big issue that once you query this table, the SQL engine does not know at all about the 1 million
+
+02:44.260 --> 02:49.340
+row that you have inserted in the table, because it's going to go and ask the statistics, and it's
+
+02:49.340 --> 02:51.380
+going to answer with only 50 rows.
+
+02:51.420 --> 02:56.460
+And the database is going to say, okay, this is very small table and let's maybe skip an index or
+
+02:56.460 --> 02:57.020
+something.
+
+02:57.020 --> 03:03.060
+So that means the database can make wrong decisions because the statistics are outdated.
+
+03:03.420 --> 03:08.670
+And now your task is to monitor those statistics and to keep updating them.
+
+03:08.670 --> 03:10.310
+So let's see how we can do that.
+
+03:10.350 --> 03:10.590
+Okay.
+
+03:10.630 --> 03:16.310
+So now the first thing that we have to do is to find out whether our statistics are up to date or outdated.
+
+03:16.430 --> 03:20.630
+In order to do that, we have as well to access the metadata about our database.
+
+03:20.630 --> 03:26.790
+And for that as well, we have tables and dynamic management functions in the system schema, where
+
+03:26.790 --> 03:29.510
+we can find a lot of details about the statistics.
+
+03:29.510 --> 03:33.710
+And in order to monitor the statistics, I have prepared a query like this.
+
+03:33.710 --> 03:39.550
+So here I'm using a table called stats where here you're going to get a list of all statistics inside
+
+03:39.550 --> 03:42.270
+our database and the name of the statistics.
+
+03:42.270 --> 03:45.870
+And then I'm joining it with the tables in order to get the table name.
+
+03:45.870 --> 03:49.670
+And what is very important is that dynamic management function.
+
+03:49.670 --> 03:54.790
+So here we're going to get very important informations like the last updates and the number of rows
+
+03:54.830 --> 03:57.150
+and the number of modifications.
+
+03:57.150 --> 03:59.150
+So let's go and query it.
+
+03:59.150 --> 04:03.350
+So here we can see informations like the table name the statistics name.
+
+04:03.350 --> 04:07.750
+And now it's very important when the last time the statistics get updated.
+
+04:07.750 --> 04:10.920
+So now let's go and check our table DB customers.
+
+04:10.920 --> 04:13.040
+We can see here that statistics name.
+
+04:13.040 --> 04:15.880
+And what is very important is the last update.
+
+04:15.880 --> 04:18.920
+So this tells us how old is the statistics.
+
+04:18.920 --> 04:20.680
+So for me it is like four days.
+
+04:20.720 --> 04:23.640
+And then we can find the total number of rows in this table.
+
+04:23.680 --> 04:29.480
+And now what is very important is the number of modifications that have been done on the table.
+
+04:29.480 --> 04:36.360
+So after updating the statistics on the 19 of October, there were around 15 rows that got modification.
+
+04:36.360 --> 04:39.760
+And this could be an insert update delete.
+
+04:39.760 --> 04:42.800
+So any operation on the table is considered to be a modification.
+
+04:42.800 --> 04:45.760
+So with that you can see there were a lot of modifications.
+
+04:45.760 --> 04:47.800
+So this statistics should be updated.
+
+04:47.800 --> 04:52.480
+So now for the table customers you can see that the statistics are up to date.
+
+04:52.480 --> 04:55.000
+So we have here zero as a modifications.
+
+04:55.000 --> 04:57.840
+And there will be no need to update the statistics.
+
+04:57.840 --> 05:03.160
+So this is how you can go and check the statistics informations inside your database in order to make
+
+05:03.160 --> 05:03.920
+a decision.
+
+05:03.920 --> 05:06.280
+Should I update the statistics or not.
+
+05:06.320 --> 05:10.880
+So now let's say that I would like to go and update the statistics of our table DB customers.
+
+05:11.240 --> 05:14.000
+Now as you can see we have here multiple statistics.
+
+05:14.160 --> 05:16.600
+So over here we have these statistics on this table.
+
+05:16.600 --> 05:19.640
+And as well we have the statistics on the index.
+
+05:19.760 --> 05:25.760
+So as you can see we have here multiple statistics in one table one for the table itself and one for
+
+05:25.760 --> 05:27.760
+each index that we have in this table.
+
+05:27.800 --> 05:31.880
+So now let's say that I would like to go and update the statistics only for one.
+
+05:31.920 --> 05:35.760
+I don't want to update everything in this table only for one statistics.
+
+05:35.760 --> 05:37.280
+Let's go and do that.
+
+05:37.520 --> 05:40.520
+So it's going to be very simple update statistics.
+
+05:41.080 --> 05:42.720
+And then you have to go and mention the name.
+
+05:42.720 --> 05:45.080
+So it's going to be sales DB customers.
+
+05:45.600 --> 05:48.280
+And then we have to specify the name of that statistic.
+
+05:48.280 --> 05:52.600
+So let's go and get this over here and let's go and execute it.
+
+05:53.280 --> 05:54.720
+So it was very fast.
+
+05:54.720 --> 05:58.680
+Let's go and re execute our query and check the data.
+
+05:58.720 --> 06:00.320
+So now let's go and find it.
+
+06:00.360 --> 06:02.240
+It was exactly this one.
+
+06:02.240 --> 06:04.560
+And as you can see it just got updated.
+
+06:04.560 --> 06:08.800
+And the number of rows is five and the number of modifications is zero.
+
+06:08.800 --> 06:12.760
+So we have now an up to date statistics for this table.
+
+06:12.800 --> 06:17.490
+But let's say that I would like to go and update the rest, but I don't want to do it one by one.
+
+06:17.650 --> 06:24.130
+So what we can do, we can just copy the same thing over here, but we don't specify any name of the
+
+06:24.130 --> 06:24.850
+statistic.
+
+06:25.090 --> 06:28.570
+So we are saying update statistics and then only the table name.
+
+06:28.690 --> 06:30.090
+So let's go and execute it.
+
+06:30.090 --> 06:34.850
+So now what's going to happen is we're going to go and update all the statistics that belongs to this
+
+06:34.850 --> 06:35.370
+table.
+
+06:35.530 --> 06:37.770
+So let's go and check our query again.
+
+06:37.890 --> 06:39.850
+Now you can see everything disappeared.
+
+06:39.850 --> 06:45.610
+And the DB customer is completely up to date with no modifications problem.
+
+06:45.690 --> 06:48.170
+So this is how you can go and update your table.
+
+06:48.170 --> 06:50.730
+And you can do then for the rest as well.
+
+06:50.730 --> 06:56.810
+But now there is like one more thing where you can go and update the statistics of the whole database.
+
+06:57.130 --> 07:03.210
+But beware, this might take really long time, and we're going to do that by executing a special stored
+
+07:03.210 --> 07:03.850
+procedure.
+
+07:03.930 --> 07:07.570
+So execute ESP update stats.
+
+07:07.930 --> 07:09.050
+This one over here.
+
+07:09.090 --> 07:11.490
+Let's go and do that.
+
+07:11.530 --> 07:12.530
+And now it is done.
+
+07:12.530 --> 07:14.690
+And we have here a pretty long log.
+
+07:14.930 --> 07:17.740
+It was fast because we don't have a big database.
+
+07:17.740 --> 07:22.140
+It is a very small database, so it's not compared to any real databases.
+
+07:22.140 --> 07:27.300
+So now you can see over here that SQL is going through everything that you have in the database and
+
+07:27.300 --> 07:29.020
+trying to update the statistics.
+
+07:29.020 --> 07:33.340
+So in many situations it's going to be not necessary because there is nothing to update.
+
+07:33.340 --> 07:35.740
+There were no modifications and so on.
+
+07:35.780 --> 07:40.420
+That's why the database is smart enough to say no, it is not required and it go and skip it.
+
+07:40.420 --> 07:46.260
+So now how I usually do it in my project that I have like a job in the weekend where it's going to go
+
+07:46.260 --> 07:49.380
+and update the whole database statistics.
+
+07:49.380 --> 07:55.260
+So with that, I make sure all my tables and indexes having up to date statistics.
+
+07:55.300 --> 07:58.940
+Of course, if you have small database, you can run this like every day.
+
+07:59.100 --> 08:02.540
+But if this takes a long time then you can schedule it in the weekends.
+
+08:02.580 --> 08:08.340
+And as well, if I know in the project that there will be in one day a lot of new incoming data.
+
+08:08.540 --> 08:10.820
+So we are doing some kind of data migrations.
+
+08:10.820 --> 08:15.980
+So I go and update the statistics after the data migration is done, just to make sure we have up to
+
+08:16.020 --> 08:17.060
+date statistics.
+
+08:17.060 --> 08:20.820
+So this is how we monitor and update the statistics of the database.

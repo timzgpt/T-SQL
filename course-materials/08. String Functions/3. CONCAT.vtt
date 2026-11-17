@@ -1,0 +1,193 @@
+WEBVTT
+
+00:00.280 --> 00:04.800
+So now, since we have a lot of string functions, I'm going to go and divide them into categories based
+
+00:04.800 --> 00:05.520
+on the purpose.
+
+00:05.560 --> 00:10.160
+So for example we have a group of functions that's going to go and manipulate the string values.
+
+00:10.160 --> 00:13.160
+So we have concatenation upper lower replace and so on.
+
+00:13.160 --> 00:15.320
+And another group where we have only one function.
+
+00:15.320 --> 00:18.240
+It is where we can do calculations on the string values.
+
+00:18.240 --> 00:22.720
+And the last group, it is all about how to extract something from a string value.
+
+00:22.760 --> 00:25.400
+And here we have three functions left right substring.
+
+00:25.400 --> 00:28.520
+So now let's go and start with the first group about the data manipulation.
+
+00:28.520 --> 00:30.800
+And the first function we have here concat.
+
+00:34.720 --> 00:35.120
+All right.
+
+00:35.120 --> 00:37.720
+So what is exactly concat or concatenation.
+
+00:37.720 --> 00:41.880
+It's going to go and combine multiple string values into one value.
+
+00:41.880 --> 00:45.080
+So if you have multiple things you can put everything in one value.
+
+00:45.080 --> 00:46.680
+So let's have a very simple example okay.
+
+00:46.720 --> 00:49.240
+So now let's say that you have one value called Michael.
+
+00:49.240 --> 00:50.560
+So here you have the first name.
+
+00:50.600 --> 00:53.800
+And you have totally separated value for the last name.
+
+00:53.800 --> 00:55.960
+Another column where you have a value like Scott.
+
+00:56.000 --> 00:57.160
+And now you say you know what?
+
+00:57.160 --> 01:00.360
+It makes no sense to have the first name separated from the last name.
+
+01:00.360 --> 01:05.690
+I would like to go and combine them in one value so you can go and use the concat in order to combine
+
+01:05.690 --> 01:10.210
+those two values or multiple values into one single value, like Michael Scott.
+
+01:11.410 --> 01:13.410
+I think that pretty much sums it up.
+
+01:14.370 --> 01:19.250
+So it is nicer to see their full name in one value instead of having like two columns for that.
+
+01:19.290 --> 01:20.090
+So that's it.
+
+01:20.090 --> 01:22.050
+This is why we need the Concatenations.
+
+01:22.090 --> 01:24.650
+Now let's go back to SQL in order to try that out.
+
+01:24.690 --> 01:24.890
+Okay.
+
+01:24.930 --> 01:26.330
+So now we have the following task.
+
+01:26.370 --> 01:31.050
+Show a list of customers first names together with their country in one column.
+
+01:31.050 --> 01:33.250
+So that means we have to make a list of customers.
+
+01:33.250 --> 01:35.370
+And we have to combine two columns in one.
+
+01:35.370 --> 01:37.490
+So let's start writing the query select.
+
+01:37.490 --> 01:42.410
+We need the first name the country from the table customers.
+
+01:42.410 --> 01:44.050
+So first let's go and execute this.
+
+01:44.050 --> 01:46.050
+Now as you can see we have a list of customers.
+
+01:46.050 --> 01:51.050
+But the issue here the first name and the countries those two informations are in different columns.
+
+01:51.050 --> 01:53.610
+But the task says they should be in one column.
+
+01:53.610 --> 01:57.610
+So now in order to combine those two things we have to use the concatenate function.
+
+01:57.610 --> 01:58.810
+So concat.
+
+01:58.850 --> 02:00.370
+So we're going to start with the first argument.
+
+02:00.370 --> 02:05.190
+It's going to be the first name and then the country like this, and we're going to give it a name,
+
+02:05.190 --> 02:07.310
+let's call it like this name country.
+
+02:07.870 --> 02:09.670
+Now let's go and execute it.
+
+02:09.670 --> 02:11.710
+Now in the output you can see we have a new column.
+
+02:11.710 --> 02:13.070
+It's called Name Country.
+
+02:13.070 --> 02:15.630
+And we have both of the informations in one column.
+
+02:15.630 --> 02:18.030
+So we have Maria Germany join USA.
+
+02:18.190 --> 02:21.950
+But it doesn't really look good because there is like no spacing between them.
+
+02:21.950 --> 02:27.750
+Now we can go and make some separation between them by just adding one more thing in between.
+
+02:27.750 --> 02:29.710
+Like for example maybe space.
+
+02:29.710 --> 02:35.670
+So now we are concatenating the first name together with a space this over here and then the country.
+
+02:35.670 --> 02:37.110
+So let's go and execute it.
+
+02:37.110 --> 02:41.030
+Now as you can see, we have nice separations between the first name and the country.
+
+02:41.030 --> 02:46.030
+And of course you can go and add different separations like maybe minus or underscore and you will get
+
+02:46.030 --> 02:46.830
+the same effect.
+
+02:46.830 --> 02:52.150
+So with that we have a list of customers where we have the first name together with the country in one
+
+02:52.150 --> 02:52.470
+column.
+
+02:52.470 --> 02:53.790
+As you can see, it is very simple.
+
+02:53.790 --> 02:56.390
+This is how you combine two columns in one.
+
+02:56.390 --> 02:58.270
+It is really nice and easy transformation.
+
+02:58.310 --> 03:00.830
+Okay, so that's all about the concatenation in SQL.
+
+03:00.870 --> 03:04.190
+Next we're going to talk about two functions the upper and the lower.

@@ -1,0 +1,661 @@
+WEBVTT
+
+00:03.920 --> 00:04.240
+Okay.
+
+00:04.240 --> 00:08.760
+Now in the next section, I'm going to show you the prompts that you can use as a students or if you
+
+00:08.800 --> 00:11.040
+are learning any new programming language.
+
+00:11.080 --> 00:11.320
+Okay.
+
+00:11.360 --> 00:17.200
+So the first thing that you can do with ChatGPT is that you can ask it to generate an SQL course.
+
+00:17.280 --> 00:23.080
+So you can ask the ChatGPT to guide you step by step in your journey, learning any programming language.
+
+00:23.080 --> 00:25.840
+And you want to do it completely 1 to 1 with the AI.
+
+00:26.000 --> 00:31.400
+So first it is very important in creating a course is that to give enough context.
+
+00:31.400 --> 00:32.960
+So in this example it is very short.
+
+00:32.960 --> 00:37.680
+I'm saying create an SQL course with a detailed roadmap and agenda.
+
+00:37.680 --> 00:40.320
+But of course you can go and give more specifications.
+
+00:40.320 --> 00:42.600
+You can tell about your current knowledge.
+
+00:42.600 --> 00:47.560
+You can specify which database type you would like to work with MySQL SQL server.
+
+00:47.560 --> 00:52.320
+So the more context and details you give for the AI, the better results you're going to get.
+
+00:52.360 --> 00:57.960
+And then you go and configure your course so you can say, for example, start with SQL fundamentals
+
+00:58.160 --> 01:00.400
+and advanced to complex topics.
+
+01:00.440 --> 01:05.460
+And as well you can say make it beginner friendly and it is important if it is the first time you are
+
+01:05.460 --> 01:06.580
+learning about the topic.
+
+01:06.620 --> 01:09.220
+And now we have to shape the focus of the course.
+
+01:09.260 --> 01:15.260
+Like I'm saying here, include topics that is relevant for data analytics because SQL is widely used
+
+01:15.260 --> 01:18.700
+in different topics for that engineering, data analytics.
+
+01:18.700 --> 01:22.420
+And it's really important in each course to focus on use cases.
+
+01:22.420 --> 01:26.860
+So we are saying focus on real world data analytics, use cases and scenarios.
+
+01:26.900 --> 01:30.100
+And of course you can go and add more details about your course.
+
+01:30.140 --> 01:30.340
+Okay.
+
+01:30.380 --> 01:34.020
+So now I just asked the ChatGPT in order to make this course.
+
+01:34.020 --> 01:37.500
+So now let's see the roadmap and the structure of our course.
+
+01:37.500 --> 01:40.660
+So let's start with the phase one with the SQL fundamentals.
+
+01:40.660 --> 01:43.660
+So it starts with the basic select where and so on.
+
+01:43.700 --> 01:48.060
+Then the next section we are talking about order by groupby and insert update delete.
+
+01:48.060 --> 01:52.340
+So the basic stuff now in the roadmap you get the phase two intermediate SQL.
+
+01:52.380 --> 01:57.780
+So here we are talking about inner joins, few functions about the text, the date and the case statements
+
+01:57.780 --> 01:58.580
+and views.
+
+01:58.620 --> 02:02.620
+And now to the phase three we have the advanced SQL for analytics.
+
+02:02.620 --> 02:09.720
+So we have the window functions, the CTE and data cleaning using the null functions and few transformations.
+
+02:10.000 --> 02:12.040
+Then we go to the phase number four.
+
+02:12.080 --> 02:15.640
+Here in your roadmap you start talking about real world use cases.
+
+02:15.640 --> 02:18.040
+And here you have like multiple projects.
+
+02:18.040 --> 02:22.320
+So as you can see this is really solid roadmap in order to learn SQL.
+
+02:22.360 --> 02:27.600
+And now in the next step what you can do, you can start deep diving into each of those chapters until
+
+02:27.640 --> 02:32.400
+SQL to start okay with the phase number one with the week one to give more details.
+
+02:32.440 --> 02:32.760
+All right.
+
+02:32.760 --> 02:37.600
+So now the next one, once you have the agenda and the roadmap learning the SQL, now you can go and
+
+02:37.600 --> 02:41.040
+focus on specific chapter specific SQL concepts.
+
+02:41.040 --> 02:43.200
+So in this prompt we are saying the context.
+
+02:43.200 --> 02:47.480
+First I want detailed explanation about SQL window functions.
+
+02:47.520 --> 02:52.560
+And now after that we are specifying for the I the exact structure of the explanation.
+
+02:52.560 --> 02:55.720
+So first it should explain what are the window functions.
+
+02:55.720 --> 02:56.520
+And maybe as well.
+
+02:56.560 --> 03:00.600
+To give an analogy, in order to understand exactly what is window functions.
+
+03:00.600 --> 03:05.410
+And after that it should explain why we need them and when to use the window functions.
+
+03:05.410 --> 03:10.570
+So once you understand the basics, then you can start learning about the syntax of the window functions.
+
+03:10.570 --> 03:13.570
+And it should provide as well few simple examples.
+
+03:13.570 --> 03:19.970
+And at the end the I should show you the best or the most frequently use cases used for the SQL window
+
+03:19.970 --> 03:20.570
+functions.
+
+03:20.570 --> 03:23.810
+So this is the pattern that I like in order to learn something new.
+
+03:23.850 --> 03:24.170
+All right.
+
+03:24.170 --> 03:27.050
+So now let's see how the I can explain the SQL window function.
+
+03:27.050 --> 03:31.090
+So as you can see it starts with the big title understanding a SQL with the functions.
+
+03:31.530 --> 03:33.210
+So we have here a quick definition.
+
+03:33.210 --> 03:38.850
+And then we have here an analogy and the analogy about like a teacher grading students.
+
+03:38.850 --> 03:41.530
+Well that's nice because we have the rank function.
+
+03:41.530 --> 03:44.410
+So you have here a nice analogy about the window function.
+
+03:44.410 --> 03:47.410
+And then we understand why do we need the window functions.
+
+03:47.410 --> 03:48.690
+Well I totally agree.
+
+03:48.690 --> 03:52.090
+In order to have low level details with the aggregations.
+
+03:52.090 --> 03:56.330
+So you can do aggregations while maintaining the low level details.
+
+03:56.370 --> 04:00.610
+And as well you can do complex calculations because you cannot do everything with a group by there is
+
+04:00.610 --> 04:02.690
+functions that only work with the window.
+
+04:02.730 --> 04:05.430
+And then we have some explanation when to use them.
+
+04:05.430 --> 04:09.270
+So we see here, for example the syntax of the window function.
+
+04:09.270 --> 04:12.510
+So it divided to a function partition order by over.
+
+04:12.550 --> 04:14.510
+And here a few explanation about that.
+
+04:14.510 --> 04:18.070
+Then we have a few simple examples with queries.
+
+04:18.110 --> 04:21.270
+So explaining the different functions but not all of them.
+
+04:21.310 --> 04:26.230
+Of course you can go and ask the ChatGPT to extend the examples for all functions.
+
+04:26.270 --> 04:29.710
+And now we can see that top three use cases for the window functions.
+
+04:29.710 --> 04:36.230
+So we use it in order to rank the data, and as well to build the running totals and the moving average.
+
+04:36.270 --> 04:37.550
+And at the end we have a summary.
+
+04:37.550 --> 04:42.710
+So as you can see we have wonderful explanation about the concept of the SQL window functions.
+
+04:42.750 --> 04:42.910
+Okay.
+
+04:42.950 --> 04:43.950
+Moving on to the next one.
+
+04:43.950 --> 04:46.830
+And this one I use it very frequently in my projects.
+
+04:46.830 --> 04:52.430
+There is like in programming, always different concepts that are very close to each others, and sometimes
+
+04:52.430 --> 04:56.710
+it is confusing and not really clear what are the big differences between them.
+
+04:56.710 --> 05:00.710
+So here I have for you a prompt in order to compare different SQL concepts.
+
+05:00.710 --> 05:06.610
+So now the prompt says, I want to understand the differences between SQL window functions and the groupby.
+
+05:06.810 --> 05:10.170
+So both of them are used usually to aggregate data in SQL.
+
+05:10.210 --> 05:13.170
+And I would like to understand more what are the differences between them.
+
+05:13.170 --> 05:15.210
+So we define for the AI the following task.
+
+05:15.250 --> 05:18.330
+Explain the key differences between the two concepts.
+
+05:18.330 --> 05:21.130
+And then it's really important to understand when to use what.
+
+05:21.170 --> 05:24.610
+So describe when to use each concept with examples.
+
+05:24.610 --> 05:29.730
+And it's really nice to understand as well the advantages and the disadvantages of each concept.
+
+05:29.730 --> 05:34.650
+And at the end you would like maybe to get a quick summarization about the differences between those
+
+05:34.650 --> 05:36.930
+two functions side by side in one table.
+
+05:37.050 --> 05:40.490
+Okay, so now let's see how the ChatGPT can compare those two concepts.
+
+05:40.530 --> 05:44.210
+So first we have really nice table in order to see the differences between those two.
+
+05:44.250 --> 05:50.290
+So for example the output granularity, it says that when the function provides calculation at the row
+
+05:50.330 --> 05:55.410
+level details where the groupby provides aggregated results at the group level detail.
+
+05:55.410 --> 06:00.570
+And if you are talking about the functions it allows ranking, running total, moving average and the
+
+06:00.570 --> 06:01.050
+group by.
+
+06:01.050 --> 06:04.610
+It allows only the basic aggregations like sum average counts.
+
+06:04.610 --> 06:07.300
+So this is really nice overview for the their differences.
+
+06:07.420 --> 06:10.060
+Then we have when to use which concepts.
+
+06:10.060 --> 06:11.580
+So it's telling the window function.
+
+06:11.580 --> 06:15.860
+It is used if you want row level details together with the aggregations.
+
+06:15.860 --> 06:19.100
+And here you have like a nice example for the groupby.
+
+06:19.140 --> 06:24.980
+It says you can use it for example when summarizing data into categories like here grouping up the data
+
+06:24.980 --> 06:26.180
+by the region.
+
+06:26.220 --> 06:29.620
+And then after that we have like pros and cons for each concept.
+
+06:29.620 --> 06:32.540
+So the advantage of the window function we get all the rows.
+
+06:32.580 --> 06:38.340
+And for the groupby it is like easier to understand and use for the disadvantage of the window function.
+
+06:38.340 --> 06:40.660
+It is more complex for the group by.
+
+06:40.700 --> 06:46.660
+The disadvantage is it removes the details about the rows and at the end we have like side by side comparison
+
+06:46.660 --> 06:48.300
+between those two concepts.
+
+06:48.300 --> 06:53.940
+So as you can see we have really nice full details comparison between those two SQL concepts.
+
+06:53.980 --> 06:55.860
+Practicing SQL with the AI.
+
+06:56.060 --> 07:02.060
+Well, it is really not enough to just read about something, or maybe to follow and watch a course.
+
+07:02.100 --> 07:05.020
+In order to learn something, you have always to practice.
+
+07:05.020 --> 07:10.440
+And of course it is really hard to find a Materials in order to practice a new programming language
+
+07:10.440 --> 07:11.480
+so we can do it like this.
+
+07:11.520 --> 07:17.280
+We give a rule, act as an SQL trainer, and then a context where we say and help me practice.
+
+07:17.320 --> 07:18.560
+SQL window functions.
+
+07:18.560 --> 07:22.680
+And then we go and configure this training, this practice by doing the following.
+
+07:22.720 --> 07:25.360
+We tell it to make it interactive practicing.
+
+07:25.360 --> 07:28.400
+So the I provide a task and you give a solution.
+
+07:28.400 --> 07:32.200
+And what else is important is that it provides you a simple datasets.
+
+07:32.240 --> 07:35.240
+And of course you can specify which dataset you want.
+
+07:35.280 --> 07:39.080
+Is it industrial datasets or healthcare or anything you want.
+
+07:39.120 --> 07:43.520
+And then we tell the I give SQL task that gradually increase in difficulty.
+
+07:43.520 --> 07:46.560
+So we start with the basics until getting advanced tasks.
+
+07:46.560 --> 07:51.600
+And you can tell the AI to act as an SQL server and show the results of your query.
+
+07:51.600 --> 07:57.000
+So you would like to get as a result, not only the correct solution or feedback, you want to see the
+
+07:57.000 --> 07:58.800
+result of the query that you gives.
+
+07:58.840 --> 08:04.520
+And then finally the AI should go and review your queries, provide a feedback and suggest improvements.
+
+08:04.560 --> 08:06.320
+Okay, so now let's start practicing.
+
+08:06.320 --> 08:10.860
+I give the prompt to ChatGPT and now we have simple data sets.
+
+08:10.900 --> 08:11.900
+So it is very simple.
+
+08:11.900 --> 08:15.700
+We have the sales ID, employee region, sales dates and amounts.
+
+08:15.700 --> 08:17.420
+And then we have the first task.
+
+08:17.420 --> 08:22.020
+So it says write a query to rank employees by their total sales.
+
+08:22.140 --> 08:24.340
+So here you have like an example output.
+
+08:24.380 --> 08:25.820
+And now it says your turn.
+
+08:26.020 --> 08:28.700
+So the output is waiting for your answer.
+
+08:28.740 --> 08:28.980
+Okay.
+
+08:29.020 --> 08:31.420
+So now I just prepared a query for it.
+
+08:31.460 --> 08:34.060
+Let's see what can happen once I post it.
+
+08:34.100 --> 08:36.340
+Oh no I got some errors in the query.
+
+08:36.340 --> 08:37.620
+So let's see what we have.
+
+08:37.660 --> 08:39.460
+So it says error in the aggregations.
+
+08:39.460 --> 08:42.740
+You should use the amount instead of sales.
+
+08:42.740 --> 08:46.740
+And it says unnecessary partitioned by in the rank and so on.
+
+08:46.740 --> 08:48.780
+So let's check the correct query.
+
+08:48.940 --> 08:50.420
+So we have here the group by.
+
+08:50.420 --> 08:55.020
+And then we have to do the window function without using partition pi.
+
+08:55.060 --> 08:56.460
+So that was a mistake.
+
+08:56.500 --> 08:58.900
+And the result of this query is going to be this one.
+
+08:58.900 --> 09:02.300
+And here I have really nice feedback about the first task.
+
+09:02.300 --> 09:04.220
+So now it asks me about the next task.
+
+09:04.220 --> 09:05.540
+So I'm going to say yes.
+
+09:05.660 --> 09:08.460
+So now we have this task number two about the running total.
+
+09:08.460 --> 09:13.520
+We have a task and we have the data, and we have now to write a query in order to solve the task.
+
+09:13.560 --> 09:15.560
+So my friends, it is nice, right?
+
+09:15.600 --> 09:17.240
+Interactive and not only SQL.
+
+09:17.240 --> 09:19.680
+You can go and practice any programming language.
+
+09:19.720 --> 09:21.480
+Now moving on to the last prompt.
+
+09:21.480 --> 09:25.560
+You can use AI in order to prepare you for SQL interview.
+
+09:25.560 --> 09:30.280
+So let's say that you are invited to an interview and you would like to prepare yourself for it so you
+
+09:30.280 --> 09:33.920
+can do a quick preparation together with the AI so you can say the following.
+
+09:33.960 --> 09:37.480
+Act as interviewer and prepare me for SQL interview.
+
+09:37.520 --> 09:42.960
+And now you can go and configure the interview where you can say ask a comment, SQL interview questions
+
+09:42.960 --> 09:44.400
+and make it interactive.
+
+09:44.400 --> 09:47.800
+So it will provide you a question and then wait for you to answer.
+
+09:47.800 --> 09:50.680
+And then you can say gradually progress to advanced topics.
+
+09:50.680 --> 09:52.400
+So from basics to advanced.
+
+09:52.400 --> 09:56.760
+And it is very important that it evaluates your answer and give you a feedback.
+
+09:56.760 --> 09:59.680
+So it is a really great way to prepare for interviews.
+
+09:59.680 --> 10:01.360
+And I really recommend it to do it.
+
+10:01.360 --> 10:04.120
+And you can prepare yourself not only for an SQL interview.
+
+10:04.160 --> 10:06.560
+You can prepare yourself for an SQL exam.
+
+10:06.600 --> 10:08.960
+Okay, so now let's prepare for an SQL interview.
+
+10:08.960 --> 10:10.700
+And here we have the first question.
+
+10:10.700 --> 10:14.660
+ChatGPT says, what is the difference between where and having?
+
+10:14.660 --> 10:16.340
+So now it is waiting for an answer.
+
+10:16.340 --> 10:29.340
+We can say where filters data before an irrigation and having filters data after aggregation.
+
+10:29.900 --> 10:31.340
+So let's check the answer.
+
+10:31.340 --> 10:35.220
+So here it is giving me an example of a very solid answer.
+
+10:35.220 --> 10:37.780
+But in general I have answered correctly.
+
+10:37.780 --> 10:39.980
+So it says the answer is correct.
+
+10:39.980 --> 10:44.900
+But the feedback says here maybe the interviewer like needs more details, not only one sentence about
+
+10:44.900 --> 10:45.780
+the differences.
+
+10:45.780 --> 10:50.740
+So here it is like encouraging me to speak more and to give more details as an answer.
+
+10:50.740 --> 10:53.180
+But still, the answer is correct.
+
+10:53.180 --> 10:54.820
+So now let's go to the next question.
+
+10:54.820 --> 10:55.580
+What you have here.
+
+10:55.620 --> 10:59.180
+Can you explain the differences between inner join and left join?
+
+10:59.180 --> 11:00.540
+So I hope you know the answer.
+
+11:00.540 --> 11:02.980
+But as you can see it is very interactive and nice.
+
+11:03.020 --> 11:05.260
+And I think those questions are really relevant.
+
+11:05.260 --> 11:10.420
+So if I'm interviewing someone I'm gonna go and ask this question, what is the difference between where
+
+11:10.460 --> 11:10.980
+and having.
+
+11:11.020 --> 11:14.030
+And as well the differences between the joint types.
+
+11:14.030 --> 11:15.670
+So this is amazing, right?
+
+11:15.710 --> 11:20.390
+I really recommend you if you have like an interview, go and prepare yourself using ChatGPT.
+
+11:20.430 --> 11:24.230
+And you can go and practice and prepare yourself before going to the interview.
+
+11:24.270 --> 11:29.670
+Alright, so with that you have learned how I use AI in order to assist me while I'm coding using SQL.
+
+11:29.710 --> 11:33.950
+And now my friends, we come to the most important chapter from the whole course.
+
+11:33.950 --> 11:39.190
+You have now learned a lot of things about SQL, a lot of advanced techniques, a lot of functions,
+
+11:39.190 --> 11:41.510
+how to transform data, how to aggregate data.
+
+11:41.510 --> 11:46.430
+But now what we have to do is to take everything and to apply it in SQL projects.
+
+11:46.430 --> 11:49.030
+And those projects are not only like easy projects.
+
+11:49.030 --> 11:50.310
+I bought projects for you.
+
+11:50.310 --> 11:54.030
+That is very similar to the real project that I do in the industry.
+
+11:54.030 --> 11:57.630
+So you will not learn only like how to do project in SQL, but as well.
+
+11:57.630 --> 12:01.430
+What are the main steps and how we implement projects in real world?
+
+12:01.430 --> 12:07.030
+And here I have for you three projects data warehousing, data exploration and advanced data analytics.
+
+12:07.030 --> 12:09.990
+We're gonna start with the first one the data warehousing projects.
+
+12:09.990 --> 12:11.390
+This one can be amazing.
+
+12:11.390 --> 12:13.110
+So let's go and deep dive in that.

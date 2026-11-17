@@ -1,0 +1,148 @@
+WEBVTT
+
+00:03.960 --> 00:07.640
+Subquery is a query inside another query.
+
+00:07.640 --> 00:10.880
+So what this means let's have a sketch to understand it.
+
+00:10.880 --> 00:16.200
+So so far what we have learned we have different database tables like the orders customers and so on.
+
+00:16.200 --> 00:19.760
+And we write a simple SQL queries like select from where.
+
+00:19.800 --> 00:22.800
+So the SQL can retrieve data from the database tables.
+
+00:22.800 --> 00:25.640
+And in the output we will get some kind of results.
+
+00:25.640 --> 00:27.000
+So this is so far what you have done.
+
+00:27.000 --> 00:28.960
+We have done very simple queries.
+
+00:29.000 --> 00:32.000
+Now in our query we can have things a little bit different.
+
+00:32.000 --> 00:38.080
+So we could have another query that is inside our query where we do the same things like select from
+
+00:38.080 --> 00:38.520
+where.
+
+00:38.560 --> 00:43.080
+So we have now a query inside our query and we call this embedded query.
+
+00:43.080 --> 00:44.680
+We call it a subquery.
+
+00:44.680 --> 00:49.880
+And the original query the first one where we have select from we call it main query.
+
+00:49.880 --> 00:53.400
+So now if you execute the whole query what's going to happen is SQL first is going to go and select
+
+00:53.400 --> 00:54.320
+the subquery.
+
+00:54.320 --> 00:55.600
+And then it's going to execute it.
+
+00:55.600 --> 00:59.560
+So it's going to go and select and retrieve data from our database tables.
+
+00:59.560 --> 01:03.560
+And the result of the subquery will not be sent to the users to us.
+
+01:03.560 --> 01:04.840
+So we cannot see it.
+
+01:04.880 --> 01:05.680
+What can happen.
+
+01:05.680 --> 01:10.000
+The result can stay inside the query as an intermediate results.
+
+01:10.200 --> 01:16.760
+And then now our main query can go and start interacting with this intermediate result from the subquery.
+
+01:16.760 --> 01:21.760
+So the main query going to do some kind of operations on top of this intermediate results and use it
+
+01:21.760 --> 01:24.190
+for filtering or joining or any purpose.
+
+01:24.190 --> 01:28.550
+And still the main query can go and query the original database tables.
+
+01:28.550 --> 01:33.150
+So now the main query has two sources for data the original database tables.
+
+01:33.270 --> 01:36.310
+And as well the result from another query.
+
+01:36.310 --> 01:41.710
+So now by looking to this you can see the subquery is a query inside the main query.
+
+01:41.710 --> 01:44.110
+And it's play a role of supporter.
+
+01:44.150 --> 01:47.310
+So it supports the main query with data.
+
+01:47.310 --> 01:53.030
+And the main job of the main query is of course to get all those data and to show us at the end the
+
+01:53.030 --> 01:53.990
+final results.
+
+01:54.030 --> 01:59.550
+Now there is now two things about this intermediate results that we got as a result from the subquery.
+
+01:59.590 --> 02:05.830
+Once the execution of the query is completely done, what can happen is going to go and destroy this
+
+02:05.870 --> 02:06.750
+intermediate result.
+
+02:06.750 --> 02:08.310
+So it's going to totally drop it.
+
+02:08.310 --> 02:10.390
+So we will not find it anywhere.
+
+02:10.430 --> 02:11.550
+It's completely lost.
+
+02:11.590 --> 02:16.790
+Now the other thing about the intermediate results is that imagine you are making another query that
+
+02:16.790 --> 02:19.230
+is completely outside of the first query.
+
+02:19.270 --> 02:21.790
+We are selecting few tables from our database.
+
+02:21.830 --> 02:23.550
+Now you might say, you know what?
+
+02:23.590 --> 02:28.390
+Is it possible to access the intermediate results from the first query.
+
+02:28.390 --> 02:31.550
+So now we are talking about completely external query.
+
+02:31.590 --> 02:32.630
+You cannot do that.
+
+02:32.670 --> 02:38.510
+The intermediate result of the subquery is only locally known from the main query itself.
+
+02:38.550 --> 02:41.310
+And it is not globally available for any other query.
+
+02:41.310 --> 02:44.870
+So the subquery can be used only from the main query.

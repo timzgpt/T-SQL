@@ -1,0 +1,394 @@
+WEBVTT
+
+00:03.920 --> 00:04.240
+All right.
+
+00:04.240 --> 00:08.400
+So now I'm going to talk about how to use the subquery in the Select clause.
+
+00:08.480 --> 00:14.440
+So now we typically use the subqueries in the Select clause to aggregate the data side by side with
+
+00:14.480 --> 00:16.400
+the columns of the main query.
+
+00:16.440 --> 00:16.640
+Okay.
+
+00:16.680 --> 00:20.280
+So let's check the syntax of the subquery in the Select clause.
+
+00:20.320 --> 00:25.840
+So we start with the simple stuff where we say okay let's go and select a column that you want to retrieve
+
+00:26.040 --> 00:27.440
+from a specific table.
+
+00:27.440 --> 00:28.240
+So nothing new.
+
+00:28.280 --> 00:29.880
+We are just querying a table.
+
+00:29.920 --> 00:35.480
+And now what we can do in SQL is that not only we can go and select the columns from a specific table,
+
+00:35.760 --> 00:43.120
+we can go and insert here inside the select another query like a full query like select from and where.
+
+00:43.120 --> 00:45.680
+So again it's like query inside another query.
+
+00:45.920 --> 00:48.080
+And we call this of course a subquery.
+
+00:48.080 --> 00:52.960
+In order to tell SQL this is a subquery we go and add the parentheses.
+
+00:52.960 --> 00:54.760
+So with that SQL can understand huh.
+
+00:54.800 --> 00:56.080
+This is a subquery.
+
+00:56.080 --> 00:59.520
+And the result of this query is going to be used in the select.
+
+00:59.520 --> 01:01.870
+So we can handle it like any other column.
+
+01:01.870 --> 01:03.670
+We can go and give it like an alias.
+
+01:03.710 --> 01:06.430
+It is here optional and not masked to add an alias.
+
+01:06.430 --> 01:08.990
+So this inner query, we call it a subquery.
+
+01:08.990 --> 01:11.470
+And the outer query is going to be the main query.
+
+01:11.470 --> 01:14.990
+So this is how you put a subquery in the Select clause.
+
+01:14.990 --> 01:21.950
+But there is one rule for this query that the result of this subquery must be scalar query.
+
+01:21.950 --> 01:26.470
+That means the result must be a single value because otherwise it will not work.
+
+01:26.550 --> 01:29.750
+SQL here is expecting only one value.
+
+01:29.750 --> 01:32.950
+So this is how we use the subquery inside the Select clause.
+
+01:32.990 --> 01:34.310
+All right let's have the following task.
+
+01:34.350 --> 01:40.630
+And it says show the product IDs product names prices and the total number of orders.
+
+01:40.630 --> 01:43.030
+So now if we check the task there is like two parts.
+
+01:43.030 --> 01:47.830
+The first part is that we are showing the details about the products, and the second part that we have
+
+01:47.830 --> 01:50.750
+to go and calculate the total number of orders.
+
+01:50.750 --> 01:51.870
+So let's see what we're going to do.
+
+01:51.910 --> 01:57.990
+First, let's go and solve this simple part here where we have the product ID, product names and prices.
+
+01:57.990 --> 02:05.970
+So we're going to go and select the product ID and the product and then the price from the table.
+
+02:06.450 --> 02:07.130
+Sales.
+
+02:07.130 --> 02:07.890
+Products.
+
+02:07.930 --> 02:09.370
+Let's go and execute it.
+
+02:09.410 --> 02:12.330
+So with that, we have solved the first part of the task.
+
+02:12.330 --> 02:14.530
+We have the details about the products.
+
+02:14.610 --> 02:16.450
+Now we go and solve the second part.
+
+02:16.490 --> 02:19.290
+We have to go and calculate the total number of orders.
+
+02:19.330 --> 02:22.650
+Now this information come from different tables from the products.
+
+02:22.650 --> 02:24.250
+We cannot calculate it from products.
+
+02:24.250 --> 02:26.170
+We have to go and query the orders.
+
+02:26.210 --> 02:31.690
+So now what I'm going to do I'm going to go and calculate this part in separate query instead of having
+
+02:31.690 --> 02:33.250
+it here inside the products.
+
+02:33.410 --> 02:37.690
+So let's have a semicolon in order to have a second query.
+
+02:37.850 --> 02:40.690
+So we're going to go and select the total number of orders.
+
+02:40.690 --> 02:47.010
+That means we can go simply do a count star from the table sales orders.
+
+02:47.050 --> 02:49.130
+Let me just make it a little bit bigger.
+
+02:49.130 --> 02:54.210
+So we're going to call it total orders and a semicolon as well.
+
+02:54.330 --> 02:58.770
+So now if we just execute the whole thing you will get here like two parts in the results.
+
+02:58.770 --> 03:01.480
+First you have the details of the product.
+
+03:01.480 --> 03:04.800
+And the second part we have now the total number of orders.
+
+03:04.800 --> 03:06.040
+We have ten orders.
+
+03:06.040 --> 03:11.160
+But now with that we have like two different queries like separated from each other and we have two
+
+03:11.160 --> 03:12.240
+different results.
+
+03:12.480 --> 03:16.440
+But in the task we have to show all those informations in one result.
+
+03:16.440 --> 03:20.360
+So now what we can do, we can put one query inside another query.
+
+03:20.360 --> 03:25.280
+So now if you check the second query the total orders, you can see we have only single value.
+
+03:25.280 --> 03:28.400
+So we have a scalar query scalar subquery.
+
+03:28.640 --> 03:34.080
+That's why we can go with this as a subquery like this.
+
+03:34.080 --> 03:38.040
+And I'm going to go and put everything in one line in order to see it.
+
+03:38.040 --> 03:39.720
+So let's remove the semicolons.
+
+03:39.720 --> 03:40.600
+We don't need it.
+
+03:40.600 --> 03:46.440
+And now what we're going to do we're going to go and take the whole thing and put it inside the main
+
+03:46.440 --> 03:47.080
+query.
+
+03:47.440 --> 03:50.480
+So this is the main query.
+
+03:50.480 --> 03:53.240
+And now think about it as new column.
+
+03:53.240 --> 03:55.360
+So I will put the query here.
+
+03:55.360 --> 03:58.280
+So it is just one new column in our select.
+
+03:58.280 --> 04:04.260
+But in order to have it as a subquery we have to use the parenthesis at the start and at the end.
+
+04:04.300 --> 04:06.420
+And of course we have to go and give it a name.
+
+04:06.420 --> 04:08.900
+So I'm going to go and use the same name over here.
+
+04:09.260 --> 04:12.620
+So it's going to be as total orders.
+
+04:12.620 --> 04:15.460
+So that's the setup for the subquery is ready.
+
+04:15.460 --> 04:20.180
+And it is inside the Select clause in the main query.
+
+04:20.220 --> 04:21.580
+Let's go and execute it.
+
+04:21.620 --> 04:23.820
+Now as you can see we have everything together.
+
+04:23.820 --> 04:26.540
+We have the three informations the product details.
+
+04:26.540 --> 04:29.260
+And as well side by side with the total orders.
+
+04:29.260 --> 04:33.620
+And since it is always the same value it can go and be repeated for each row.
+
+04:33.620 --> 04:38.580
+So this is what we call scalar subquery inside the Select clause.
+
+04:38.580 --> 04:40.500
+And here again very important to understand.
+
+04:40.540 --> 04:47.300
+If you are using a subquery inside the Select clause only the scalar subquery is allowed.
+
+04:47.300 --> 04:52.740
+So for example instead of having one value from the aggregation we can go and use the order id.
+
+04:53.380 --> 04:55.180
+So let's see what can happen.
+
+04:55.180 --> 04:56.260
+We will get an error.
+
+04:56.300 --> 04:59.700
+It's going to say subquery is returning more than one value.
+
+04:59.700 --> 05:04.130
+And this is not allowed because we are using the subquery in the Select clause.
+
+05:04.130 --> 05:07.290
+So that's why we have to have only one value.
+
+05:07.290 --> 05:09.570
+And by using the aggregation you will get one value.
+
+05:09.570 --> 05:12.050
+So let's repair it and it's working.
+
+05:12.090 --> 05:16.850
+And now again if you would like only to see the results from the subquery what you can do you can go
+
+05:16.850 --> 05:21.410
+and highlight the subquery like this without the parenthesis of course.
+
+05:21.450 --> 05:23.090
+And you go and execute it.
+
+05:23.090 --> 05:27.850
+And with that you can see in the output that then this is the intermediate results that's going to be
+
+05:27.850 --> 05:29.770
+passed to the main query.
+
+05:29.810 --> 05:34.290
+And if you want the whole thing to be executed just like unmark it and execute.
+
+05:34.290 --> 05:37.610
+And with that everything can be executed the subquery and the main query.
+
+05:37.610 --> 05:41.250
+So this is the scalar subquery in the Select clause okay.
+
+05:41.290 --> 05:44.970
+So now let's see quickly how SQL executed this query step by step.
+
+05:44.970 --> 05:46.570
+So this is our original query.
+
+05:46.570 --> 05:49.090
+And we need two tables from our database for it.
+
+05:49.090 --> 05:52.810
+So the first step is that is going to go and identify the subquery.
+
+05:53.050 --> 05:54.970
+And it's going to go and execute it.
+
+05:54.970 --> 05:56.650
+So this is the first step.
+
+05:56.650 --> 05:59.090
+So the query is targeting the orders table.
+
+05:59.090 --> 06:01.530
+And we are just simply doing a count.
+
+06:01.530 --> 06:01.550
+Account.
+
+06:01.550 --> 06:06.990
+So in the output we will get an intermediate result where we are counting the number of rows of the
+
+06:06.990 --> 06:07.510
+orders.
+
+06:07.550 --> 06:12.590
+Now the next step that is going to go and pass this value to the main query.
+
+06:12.590 --> 06:14.030
+So this is the second step.
+
+06:14.030 --> 06:18.230
+And if you go and pass this value to the main query it's going to look like this.
+
+06:18.230 --> 06:21.550
+So you are saying product ID products and the ten.
+
+06:21.550 --> 06:25.870
+So after SQL prepared the main query SQL can go and execute it.
+
+06:25.870 --> 06:28.030
+So this time we are targeting the products.
+
+06:28.030 --> 06:32.110
+And in the output we will get all the information from the products without any filter.
+
+06:32.110 --> 06:33.910
+Because here we don't have any Where clause.
+
+06:34.110 --> 06:35.750
+And the final results.
+
+06:35.750 --> 06:36.910
+We will get it like this.
+
+06:36.910 --> 06:41.750
+So we will have the product ID, the product and the total that we got it from the subquery.
+
+06:41.750 --> 06:47.310
+So as you can see the subquery here is a scalar subquery where we have only one single value.
+
+06:47.310 --> 06:51.350
+So again it's very simple always SQL starts with a subquery.
+
+06:51.350 --> 06:54.950
+And then it's going to go and pass the values to the main query.
+
+06:54.950 --> 06:57.590
+And at the end the main query is going to be executed.
+
+06:57.710 --> 06:59.710
+And we will get the final result from it.
+
+06:59.710 --> 07:02.670
+So this is how SQL executed our query.

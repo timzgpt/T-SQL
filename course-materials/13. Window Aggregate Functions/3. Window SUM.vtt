@@ -1,0 +1,358 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:08.399
+Alright, so now let's understand what is the sum function, it's very simple, it can return
+
+2
+00:00:08.399 --> 00:00:13.359
+the sum of all values within each window, so now let's go and understand how SQL works
+
+3
+00:00:13.359 --> 00:00:14.359
+with this function.
+
+4
+00:00:14.359 --> 00:00:18.719
+Alright, so this is very easy and we are using the same simple example and now we would like
+
+5
+00:00:18.719 --> 00:00:24.399
+to find the total sales for each product, so we can define it like this, sum of sales
+
+6
+00:00:24.399 --> 00:00:29.360
+since we are finding the total sales and then we define the window like this, over partition
+
+7
+00:00:29.360 --> 00:00:35.040
+by products, so as we learned, SQL gonna go first and divide our data into two windows,
+
+8
+00:00:35.040 --> 00:00:40.119
+so one window for the caps and another window for the gloves, right, so now after SQL defined
+
+9
+00:00:40.119 --> 00:00:45.400
+the windows, it's gonna go and start aggregating the data, so the sum of sales, that means
+
+10
+00:00:45.400 --> 00:00:49.439
+for the first window we have the three sales and it's gonna go and just simply summarize
+
+11
+00:00:49.439 --> 00:00:56.479
+all those values, so we are adding 20 plus 10 plus 5 and we will get the result 35, so
+
+12
+00:00:56.599 --> 00:01:01.720
+in the output we will get everywhere 35, so that's it for the first window and as you
+
+13
+00:01:01.720 --> 00:01:07.000
+can see SQL gonna go aggregate the data within each window separately, so that means as we
+
+14
+00:01:07.000 --> 00:01:11.760
+are aggregating the data for the caps, SQL will not check anything with the gloves, so
+
+15
+00:01:11.760 --> 00:01:16.440
+they are completely separated, so now it's gonna go for the next window and here we have
+
+16
+00:01:16.440 --> 00:01:21.239
+two values and a null, so again here the null will just be ignored, so what we're gonna
+
+17
+00:01:21.239 --> 00:01:26.760
+have, we're gonna have 30 plus 70 and the total sales for that's gonna be 100, so as
+
+18
+00:01:26.760 --> 00:01:32.839
+you can see it is very simple, right, so 100, 100 and so guys that's it, it's really simple,
+
+19
+00:01:32.839 --> 00:01:37.559
+we don't have here like a lot of special cases like the count function, it's only that it
+
+20
+00:01:37.559 --> 00:01:42.879
+ignores the null in the calculation and as well the requirement here, it allows only
+
+21
+00:01:42.879 --> 00:01:48.080
+integers or let's say numbers, so we cannot go and say sum the products since the products
+
+22
+00:01:48.080 --> 00:01:53.400
+are not numbers, they are characters, so you can only use numbers for the sum function,
+
+23
+00:01:53.400 --> 00:01:57.720
+let's go now and have some tasks and some use cases in order to practice in SQL, find
+
+24
+00:01:57.720 --> 00:02:02.639
+the total sales across all orders and as well find the total sales for each product and
+
+25
+00:02:02.639 --> 00:02:07.120
+additionally we have to provide some details like the order ID and the order date, so let's
+
+26
+00:02:07.120 --> 00:02:12.320
+go and do that, select order ID, order date and let's get as well the sales and now we
+
+27
+00:02:12.320 --> 00:02:16.279
+have to find the total sales across all orders, that means we're gonna use the window function
+
+28
+00:02:16.279 --> 00:02:22.199
+sum sales and the definition of the window gonna be empty since we don't have to divide
+
+29
+00:02:22.199 --> 00:02:28.320
+the data, so that's it, total sales and we have to select the table sales orders, so
+
+30
+00:02:28.320 --> 00:02:32.639
+that's it, let's go and execute it, so with that as you can see we got all the details
+
+31
+00:02:32.639 --> 00:02:38.360
+that we need and as well the total sales, the summarization of all those sales in one
+
+32
+00:02:38.360 --> 00:02:44.160
+field, so with that we have our overall analysis, one big number for our reporting, we know
+
+33
+00:02:44.279 --> 00:02:49.199
+how much sales we did made in the entire business, so now let's go for the next task, it says
+
+34
+00:02:49.199 --> 00:02:53.119
+total sales for each product, I think you know already what we're gonna do, so sum of
+
+35
+00:02:53.119 --> 00:03:01.199
+sales and we're gonna do it like this, partition by product ID, so that's it, we're gonna call
+
+36
+00:03:01.199 --> 00:03:06.800
+it sales by products and with that we are dividing the data by the product, so let's
+
+37
+00:03:06.800 --> 00:03:10.839
+go and execute it, so as you can see we don't have the product information, so let's go
+
+38
+00:03:10.839 --> 00:03:15.679
+and add the product ID in the query just in order to analyze the results, so we can
+
+39
+00:03:15.679 --> 00:03:21.520
+see from the data that the winner is the product ID 101, so as you can see we have here the
+
+40
+00:03:21.520 --> 00:03:26.800
+highest sales if you compare it with the other products and the lowest one gonna be the product
+
+41
+00:03:26.800 --> 00:03:32.160
+ID 105, so as you can see we can use the window function sum together with the partition by
+
+42
+00:03:32.160 --> 00:03:36.559
+in order to compare stuff, to do comparison between the products in order to understand
+
+43
+00:03:36.559 --> 00:03:41.839
+the performance for example of the products, so it's really great analyzers for the performance,
+
+44
+00:03:41.839 --> 00:03:45.399
+alright now we're gonna move to a very interesting use case for the aggregate functions not only
+
+45
+00:03:45.399 --> 00:03:50.119
+for the sum but as well for the others, it is the comparison analyzers, okay so let's
+
+46
+00:03:50.119 --> 00:03:54.520
+understand quickly what is the comparison use cases, so it's gonna go and compare the
+
+47
+00:03:54.520 --> 00:03:58.880
+current value, for example let's say we are currently at the month of March and the sales
+
+48
+00:03:58.880 --> 00:04:04.960
+is 30, so we're gonna compare this value, the current sales with an aggregated value,
+
+49
+00:04:04.960 --> 00:04:09.360
+for example let's say the total sales using the sum function, so what happen if you compare
+
+50
+00:04:09.360 --> 00:04:14.279
+the current value with the total sales, you are comparing here or doing analysis called
+
+51
+00:04:14.279 --> 00:04:18.880
+part to whole analysis, where it gonna help us to understand how important was the sales
+
+52
+00:04:18.880 --> 00:04:24.559
+in this month compared to the total sales, or we can go and compare it to the best months
+
+53
+00:04:24.559 --> 00:04:28.679
+to the highest value, for example the highest value is June and we can go and compare this
+
+54
+00:04:28.679 --> 00:04:33.480
+month with the best months of the year, or to the lowest month in the year, or we can
+
+55
+00:04:33.480 --> 00:04:37.679
+go and compare the sales of the current month with the average in order to understand are
+
+56
+00:04:37.679 --> 00:04:43.559
+we above the typical sales or below the average, and this is very important analysis in order
+
+57
+00:04:43.559 --> 00:04:47.920
+to study and understand the performance of the current data, alright let's have an example
+
+58
+00:04:47.920 --> 00:04:52.959
+in order to understand the use case, find the percentage contribution of each product
+
+59
+00:04:52.959 --> 00:04:57.519
+sales to the total sales, so let's go and solve it step by step, what we're gonna do
+
+60
+00:04:57.519 --> 00:05:04.359
+we're gonna go and let's select the order ID and as well let's take the product ID and
+
+61
+00:05:04.359 --> 00:05:10.600
+the sales just like this from sales orders, so let's go and execute it, ok so now as you
+
+62
+00:05:10.600 --> 00:05:15.119
+can see in the results we got the first part of the equation, we have the sales so nothing
+
+63
+00:05:15.119 --> 00:05:21.880
+like a crazy over here, now we need the total sales over all data, so what we're gonna do
+
+64
+00:05:22.000 --> 00:05:27.359
+we're gonna have the sum of sales and the definition gonna be empty, so this is the
+
+65
+00:05:27.359 --> 00:05:32.640
+total sales, let's go and execute it, so now we have everything for the equation, we have
+
+66
+00:05:32.640 --> 00:05:37.559
+the sales and as well the total sales, and that is enough in order to find the percentage
+
+67
+00:05:37.559 --> 00:05:41.320
+of the contribution, so the calculation for that is gonna be very simple, we're gonna
+
+68
+00:05:41.320 --> 00:05:47.000
+divide the sales by the total sales, so it's really simple, let's go and do that, it's
+
+69
+00:05:47.000 --> 00:05:52.239
+gonna be the sales divided by the total sales, so we're gonna go and copy the whole window
+
+70
+00:05:52.239 --> 00:05:57.640
+function over here, and then we're gonna multiply it with 100, so that's it, let's go and execute
+
+71
+00:05:57.640 --> 00:06:02.519
+it, so now you notice that in the output we got zeros, this is because of the data type,
+
+72
+00:06:02.519 --> 00:06:07.959
+so now if we go to our table over here on the left side, you can see that the orders
+
+73
+00:06:07.959 --> 00:06:12.760
+has the data type of integer, so if you divide integers you will not get a float or decimal
+
+74
+00:06:12.760 --> 00:06:16.480
+number, you have to go and change the data type, so now what we're gonna do we're gonna
+
+75
+00:06:16.480 --> 00:06:20.799
+go and change the data type for one of them, so it's enough for the sales over here, so
+
+76
+00:06:20.799 --> 00:06:26.440
+we're gonna use the following statement, so cast sales as floats, so that's it, I'm just
+
+77
+00:06:26.440 --> 00:06:30.559
+converting the integer to floats, so that's it, let me just give it a name, so it's gonna
+
+78
+00:06:30.559 --> 00:06:37.119
+be percentage of total, so that's it, let's go and execute it, so now in the output you
+
+79
+00:06:37.119 --> 00:06:42.279
+can see we got now the percentage of the total, or let's say percentage of contribution, so
+
+80
+00:06:42.279 --> 00:06:45.399
+now what we're gonna do with that, we're gonna go around those numbers, because we have a
+
+81
+00:06:45.399 --> 00:06:50.359
+lot of decimals, in order to do that we're gonna use the round function like this, then
+
+82
+00:06:50.359 --> 00:06:55.920
+we're gonna have two decimals, and let's go and execute it, so now as you can see it is
+
+83
+00:06:55.920 --> 00:06:59.679
+really easier to read, because we have only two decimals, and we can find immediately
+
+84
+00:06:59.679 --> 00:07:05.480
+that the order rate is the highest contributor to the total, so this is what we call part
+
+85
+00:07:05.480 --> 00:07:10.640
+to whole analysis, where we find the percentage of total, it is very common analysis in order
+
+86
+00:07:10.640 --> 00:07:16.399
+to understand the performance of each order compared to the total, so this is an example
+
+87
+00:07:16.399 --> 00:07:21.359
+how the window function is helping us here to compare the current value with an aggregated
+
+88
+00:07:21.359 --> 00:07:24.959
+value, alright everyone, so that's all for the window function sum, next we're gonna
+
+89
+00:07:24.959 --> 00:07:26.959
+talk about the average function.
+

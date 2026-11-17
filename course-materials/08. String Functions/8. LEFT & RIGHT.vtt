@@ -1,0 +1,178 @@
+WEBVTT
+
+00:03.920 --> 00:10.520
+Now the lift function can go and extract specific number of characters from the start of a string value.
+
+00:10.520 --> 00:15.240
+So if you want to get few characters at the beginning of a value, you can use the lift.
+
+00:15.240 --> 00:17.840
+But now the write function is exactly the opposite.
+
+00:17.880 --> 00:22.960
+It can go and extract specific number of characters from the end of string value.
+
+00:22.960 --> 00:27.160
+So if you want few characters from the end of your value, you can use right now.
+
+00:27.160 --> 00:32.000
+In order to apply the lift or the right function, you have to give SQL two things the value where you
+
+00:32.000 --> 00:36.960
+want to extract apart from it, and the number of characters, how many characters you want to extract.
+
+00:36.960 --> 00:38.960
+And this is the same for the left and the right.
+
+00:39.000 --> 00:41.240
+Now let's say that we have again this value, Mariam.
+
+00:41.240 --> 00:45.120
+And now the task says, I would like to extract the first two characters.
+
+00:45.120 --> 00:49.280
+And since we are talking about the starting position, we're going to use the lift function.
+
+00:49.280 --> 00:51.840
+And since it says two characters, we're going to go with the two.
+
+00:51.880 --> 00:57.200
+So it's going to start counting M is one, A is two, and after that it's going to stop and make a cut,
+
+00:57.240 --> 00:59.520
+and it's going to go and return the two characters.
+
+00:59.560 --> 01:00.040
+Ma.
+
+01:00.160 --> 01:04.130
+So we are counting from the left side going to the right side right now.
+
+01:04.130 --> 01:10.290
+If your task says extract the last two characters, here we are talking about the end position of your
+
+01:10.330 --> 01:15.090
+value, and for that we're going to use the right function since we are approaching from the right side,
+
+01:15.090 --> 01:18.330
+and since we want only two characters, the number of characters is going to be two.
+
+01:18.370 --> 01:22.450
+So this time it's going to start counting from the right side, moving to the left side.
+
+01:22.450 --> 01:25.450
+So A is one, I is two and that's it.
+
+01:25.450 --> 01:30.730
+Then a square is going to stop and extract only those two characters I so if you want to extract data
+
+01:30.770 --> 01:32.810
+at the starting position you use the left.
+
+01:32.810 --> 01:38.370
+But if you want to extract characters from the end position of your value, then you use the right function.
+
+01:38.370 --> 01:40.770
+Now let's go back to scalar order to practice okay.
+
+01:40.810 --> 01:42.130
+So now we have the following task.
+
+01:42.130 --> 01:45.290
+Retrieve the first two characters of each first name.
+
+01:45.290 --> 01:47.370
+So we just need the first two characters.
+
+01:47.410 --> 01:51.690
+Since we are coming from the left side, we can go and use the function lift.
+
+01:51.970 --> 01:53.930
+So it's very simple first name.
+
+01:54.250 --> 01:56.090
+And we need only two characters.
+
+01:56.090 --> 01:56.570
+So two.
+
+01:56.610 --> 01:59.730
+So we're going to call it first two character.
+
+01:59.770 --> 02:01.050
+Let's go and execute it.
+
+02:01.050 --> 02:03.930
+And now you can see in the output we have two characters Ma.
+
+02:04.050 --> 02:07.910
+Now with John we have only G because we have a the leading space.
+
+02:07.910 --> 02:10.590
+Well, you can leave it like this or you can transform it.
+
+02:10.590 --> 02:12.390
+And then George, we have GE and so on.
+
+02:12.390 --> 02:16.150
+So with that, we are getting the first two characters now in order to fix it for Joan, what we're
+
+02:16.150 --> 02:20.670
+going to do, we're going to say trim first and then apply the lift.
+
+02:20.670 --> 02:24.670
+So with that we are getting rid of all white spaces and then we apply the lift.
+
+02:24.670 --> 02:26.630
+So with that everything looks perfect.
+
+02:26.630 --> 02:28.110
+So for John we have Geo.
+
+02:28.110 --> 02:31.590
+So this is how we can get the first two characters of a column.
+
+02:31.590 --> 02:32.870
+Now let's move to the next one.
+
+02:32.870 --> 02:36.950
+The task says retrieve the last two characters of each first name.
+
+02:36.950 --> 02:38.750
+So this time we need the last two.
+
+02:38.790 --> 02:41.910
+So we are coming from the right side so we can do it like this.
+
+02:41.910 --> 02:49.510
+We're going to say right first name and then as well to the last two character.
+
+02:49.550 --> 02:50.910
+Let's go and execute it.
+
+02:50.950 --> 02:55.030
+And now as you can see in the output we have new column where we have the last two characters from the
+
+02:55.030 --> 02:55.670
+first name.
+
+02:55.670 --> 02:59.710
+So we have here IA air and for John as well working.
+
+02:59.750 --> 03:02.230
+And that's because we don't have any trailing spaces.
+
+03:02.230 --> 03:06.270
+But if you have any trailing spaces then go and use that trim function.
+
+03:06.270 --> 03:06.590
+All right.
+
+03:06.590 --> 03:08.030
+So that's all for the left and right.
+
+03:08.030 --> 03:09.670
+And now we're going to go to the last function.
+
+03:09.670 --> 03:10.950
+We have the substring.

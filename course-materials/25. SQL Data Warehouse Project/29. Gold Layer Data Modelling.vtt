@@ -1,0 +1,355 @@
+WEBVTT
+
+00:00.080 --> 00:00.320
+All right.
+
+00:00.320 --> 00:01.640
+So now we come to the big question.
+
+00:01.640 --> 00:03.160
+How are we going to build the gold layer.
+
+00:03.200 --> 00:05.200
+As usual we start with analyzing.
+
+00:05.200 --> 00:10.840
+So now what we're going to do here is to explore and understand what are the main business objects that
+
+00:10.840 --> 00:12.640
+are hidden inside our source system.
+
+00:12.640 --> 00:14.720
+So as you can see we have two sources six files.
+
+00:14.720 --> 00:17.200
+And here we have to identify what are the business objects.
+
+00:17.200 --> 00:20.280
+Once we have this understanding then we can start coding.
+
+00:20.280 --> 00:23.800
+And here the main transformation that we are doing is data integration.
+
+00:23.800 --> 00:26.280
+And here usually I split it into three steps.
+
+00:26.280 --> 00:30.800
+The first one we're going to go and build those business objects that we have identified.
+
+00:30.800 --> 00:36.120
+And after we have a business objects, we have to look at it and decide what is the type of this table?
+
+00:36.120 --> 00:37.200
+Is it a dimension?
+
+00:37.200 --> 00:40.360
+Is it a fact or is it like maybe a flat table?
+
+00:40.360 --> 00:42.320
+So what type of table that we have built?
+
+00:42.320 --> 00:47.800
+And the last step is of course we have now to rename all the columns into something friendly and easy
+
+00:47.800 --> 00:51.600
+to understand so that our consumers don't struggle with technical names.
+
+00:51.600 --> 00:55.320
+So once we have all those steps, what we're going to do, it's time to validate what we have created.
+
+00:55.320 --> 00:59.720
+So what we have to do, the new data model that we have created, it should be connectable.
+
+00:59.720 --> 01:03.130
+And we have to check that the data integration is done correctly.
+
+01:03.130 --> 01:06.210
+And once everything is fine, we cannot skip the last step.
+
+01:06.210 --> 01:09.490
+We have to document and as well commit our work in the git.
+
+01:09.490 --> 01:12.370
+And he will be introducing new type of documentations.
+
+01:12.370 --> 01:14.970
+So we're gonna have a diagram about the data model.
+
+01:14.970 --> 01:18.890
+We're going to build a data dictionary where we're going to describe the data model.
+
+01:18.890 --> 01:21.330
+And of course we can extend the data flow diagram.
+
+01:21.330 --> 01:22.650
+So this is our process.
+
+01:22.650 --> 01:26.490
+Those are the main steps that we will do in order to build the gold layer.
+
+01:30.570 --> 01:30.930
+Okay.
+
+01:30.930 --> 01:32.730
+So what is exactly data modeling.
+
+01:32.730 --> 01:39.690
+Usually the source system can deliver for you raw data and organized messy not very useful in its current
+
+01:39.690 --> 01:40.250
+state.
+
+01:40.250 --> 01:46.370
+But now the data modeling is the process of taking this raw data and then organize it and structure
+
+01:46.410 --> 01:48.170
+it in meaningful way.
+
+01:48.170 --> 01:54.290
+So what we are doing, we are putting the data in a new, friendly and easy to understand objects like
+
+01:54.290 --> 01:56.370
+customers, orders, products.
+
+01:56.410 --> 01:59.010
+Each one of them is focused on specific information.
+
+01:59.010 --> 02:04.010
+And what is very important is we're going to describe the relationship between those objects.
+
+02:04.010 --> 02:06.250
+So by connecting them using lines.
+
+02:06.250 --> 02:09.570
+So what we have built on the right side we call it logical data model.
+
+02:09.570 --> 02:13.930
+If you compare it to the left side you can see the data model makes it really easy to understand our
+
+02:13.930 --> 02:16.730
+data and the relationship the processes behind them.
+
+02:16.730 --> 02:21.690
+Now in data modeling we have three different stages or let's say three different ways on how to draw
+
+02:21.690 --> 02:22.490
+a data model.
+
+02:22.490 --> 02:25.130
+The first stage is the conceptual data model.
+
+02:25.130 --> 02:27.690
+Here the focus is only on the entity.
+
+02:27.690 --> 02:31.690
+So we have customers orders products and we don't go in details at all.
+
+02:31.690 --> 02:35.210
+So we don't specify any columns or attributes inside those boxes.
+
+02:35.210 --> 02:40.650
+We just want to focus what are the entities that we have and as well the relationship between them.
+
+02:40.650 --> 02:44.290
+So the conceptual data model don't focus at all on the details.
+
+02:44.290 --> 02:46.090
+It just gives the big picture.
+
+02:46.090 --> 02:49.970
+So the second data model that we can build is the logical data model.
+
+02:49.970 --> 02:55.290
+And here we start specifying what are the different columns that we can find in each entity.
+
+02:55.290 --> 02:58.570
+Like we have the customer ID, the first name, last name and so on.
+
+02:58.570 --> 03:01.300
+And we still draw the relationship between those entities.
+
+03:01.300 --> 03:04.660
+And as well, we make it clear which columns are the primary key and so on.
+
+03:04.660 --> 03:06.540
+So as you can see, we have here more details.
+
+03:06.540 --> 03:10.020
+But one thing we don't describe a lot of details for each column.
+
+03:10.020 --> 03:15.100
+And we are not to worry how exactly we can store those tables in the database.
+
+03:15.140 --> 03:18.220
+The third and last stage we have the physical data model.
+
+03:18.220 --> 03:22.180
+This is where everything gets ready before creating it in the database.
+
+03:22.180 --> 03:27.540
+So here you have to add all the technical details like adding for each column, the data types and the
+
+03:27.540 --> 03:32.180
+links of each data type, and many other database techniques and details.
+
+03:32.180 --> 03:35.860
+So again, if you look to the conceptual data model, it gives us the big picture.
+
+03:35.860 --> 03:39.900
+And in the logical data model, we dive into details of what data we need.
+
+03:39.940 --> 03:44.980
+And the physical layer model prepares everything for the implementation in the database.
+
+03:44.980 --> 03:50.780
+And to be honest, in my projects I only draw the conceptual and the logical data model because drawing
+
+03:50.780 --> 03:54.460
+and building the physical data model needs a lot of efforts and time.
+
+03:54.460 --> 03:59.260
+And there are many tools like in Databricks, they automatically Generate those models.
+
+03:59.300 --> 04:03.740
+So in this project, what we're going to do, we're going to draw the logical data model for the gold
+
+04:03.740 --> 04:04.180
+layer.
+
+04:08.220 --> 04:13.100
+All right so now for analytics and especially for data warehousing and business intelligence we need
+
+04:13.140 --> 04:17.300
+a special data model that is optimized for reporting and analytics.
+
+04:17.300 --> 04:21.140
+And it should be flexible, scalable and as well easy to understand.
+
+04:21.140 --> 04:23.380
+And for that we have two special data models.
+
+04:23.380 --> 04:25.940
+The first type of data model we have the star schema.
+
+04:25.940 --> 04:30.140
+It has a central fact table in the middle and surrounded by dimensions.
+
+04:30.180 --> 04:36.260
+The fact table contains transactions, events and the dimensions contains descriptive informations and
+
+04:36.260 --> 04:41.500
+the relationship between the fact table and the middle and the dimensions around it forms like a star
+
+04:41.500 --> 04:41.980
+shape.
+
+04:41.980 --> 04:43.940
+And that's why we call it star schema.
+
+04:43.940 --> 04:47.140
+And we have another data model called snowflake schema.
+
+04:47.180 --> 04:49.180
+It looks very similar to the star schema.
+
+04:49.180 --> 04:52.740
+So we have again the fact in the middle and surrounded by dimensions.
+
+04:52.740 --> 04:59.310
+But the big difference is that we break the dimensions into smaller sub dimensions and the shape of
+
+04:59.310 --> 05:00.310
+this data model.
+
+05:00.350 --> 05:04.110
+As you are extending the dimensions, it's going to look like a snowflake.
+
+05:04.150 --> 05:08.270
+So now if you compare them side by side, you can see that the star schema looks easier, right?
+
+05:08.310 --> 05:11.470
+So it is usually easy to understand easy to query.
+
+05:11.510 --> 05:13.310
+It is really perfect for analysis.
+
+05:13.310 --> 05:15.110
+But it has one issue with that.
+
+05:15.110 --> 05:19.950
+The dimension might contain duplicates and your dimensions get bigger with time.
+
+05:19.950 --> 05:24.070
+Now if you compare it to the snowflake, you can see the schema is more complex you.
+
+05:24.070 --> 05:28.790
+So you need a lot of knowledge and efforts in order to query something from the snowflake.
+
+05:28.790 --> 05:31.510
+But the main advantage here comes with the normalization.
+
+05:31.510 --> 05:36.950
+As you are breaking those redundancies in small tables, you can optimize the storage, but to be honest,
+
+05:36.990 --> 05:38.070
+who care about the storage.
+
+05:38.070 --> 05:43.350
+So for this project, I have choose to use the star schema because it is very commonly used perfect
+
+05:43.350 --> 05:44.270
+for reporting.
+
+05:44.270 --> 05:48.710
+Like for example, if you are using power BI and we don't have to worry about the storage.
+
+05:48.710 --> 05:52.430
+So that's why we can adapt this model to build our gold layer.
+
+05:56.510 --> 06:01.470
+Okay, so now one more thing about those data models is that they contain two types of tables fact and
+
+06:01.470 --> 06:02.230
+dimensions.
+
+06:02.230 --> 06:08.030
+So when I say this is a fact table or a dimension table, well the dimension contains descriptive informations
+
+06:08.030 --> 06:11.310
+or like categories that gives some context to your data.
+
+06:11.310 --> 06:16.110
+For example a product info, you have product name, category subcategories and so on.
+
+06:16.150 --> 06:21.110
+This is like a table that is describing the products and this we call it dimension.
+
+06:21.110 --> 06:22.830
+But in the other hand we have facts.
+
+06:22.830 --> 06:25.110
+They are events like transactions.
+
+06:25.110 --> 06:27.310
+They contain three important informations.
+
+06:27.350 --> 06:31.230
+First you have multiple ideas from multiple dimensions.
+
+06:31.230 --> 06:36.590
+Then we have like date informations like when the transaction or the event did happen.
+
+06:36.590 --> 06:40.270
+And the third type of information you're gonna have like measures and numbers.
+
+06:40.270 --> 06:44.830
+So if you see those three types of data in one table then this is a fact.
+
+06:44.830 --> 06:49.510
+So if you have a table that answers how much or how many then this is a facts.
+
+06:49.510 --> 06:54.710
+But if you have a table that answers who what where then this is a dimension table.
+
+06:54.710 --> 06:57.150
+So this is what dimension and fact tables.

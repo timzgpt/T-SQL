@@ -1,0 +1,97 @@
+WEBVTT
+
+00:03.960 --> 00:06.520
+All right, moving on to another use case of the CTAs.
+
+00:06.840 --> 00:13.320
+We can use it in order to create our data marts to make it physical data mart instead of virtual data
+
+00:13.320 --> 00:14.560
+marts using views.
+
+00:14.560 --> 00:16.360
+So let's understand what this means now.
+
+00:16.360 --> 00:20.600
+As we learned before, if you have a data warehouse system, our data warehouse, they are going to
+
+00:20.600 --> 00:22.240
+store the data inside tables.
+
+00:22.240 --> 00:28.240
+But for the second layer the data marts, we can go and use views in order to have dynamic and flexibility
+
+00:28.240 --> 00:30.760
+in order to generate multiple data marts.
+
+00:31.000 --> 00:33.440
+And we called it the virtual layer.
+
+00:33.440 --> 00:39.560
+But now in some scenarios, if things get complicated, your data mart and reports can be slow because
+
+00:39.560 --> 00:42.520
+therefore each action you are generating a query.
+
+00:42.520 --> 00:47.840
+So the power BI reports and dashboards are creating queries on your data marts, and your data marts
+
+00:47.840 --> 00:52.920
+have always to go to the data warehouse in order to retrieve the data for the reports.
+
+00:52.920 --> 00:56.280
+And the whole thing could take minutes or maybe sometimes hours.
+
+00:56.520 --> 01:01.160
+So in these scenarios, we cannot stay using views because they are slowing everything down.
+
+01:01.160 --> 01:05.720
+But instead of that, we have to convert our data mart to a physical layer.
+
+01:05.760 --> 01:11.540
+That means instead of using views, we have to go and use tables and one very common way in order to
+
+01:11.540 --> 01:17.940
+generate the tables of the data marts on daily basis is to use CTAs queries between the data warehouse
+
+01:17.940 --> 01:19.500
+layer and the data mart layer.
+
+01:19.500 --> 01:21.260
+It's still going to take maybe 30 minutes.
+
+01:21.260 --> 01:23.820
+That's why you can go and prepare the data at the night.
+
+01:23.820 --> 01:28.820
+But at the reporting layer where things and the performance really matters, the performance can be
+
+01:28.820 --> 01:33.980
+better because the response time from the tables is way faster than views, and the reports don't have
+
+01:33.980 --> 01:38.660
+always to waste time waiting for the data marts to get data from the warehouse.
+
+01:38.660 --> 01:44.060
+So this is another use case where we use CTAs, where the views at the data marts are slow, and we
+
+01:44.060 --> 01:48.140
+have to go and replace them with tables using CTAs to speed up things.
+
+01:48.140 --> 01:51.820
+But still, my recommendation here is that start first with the views.
+
+01:51.820 --> 01:56.980
+So create a virtual data mart using views, because the implementation is going to be very dynamic and
+
+01:56.980 --> 02:00.260
+fast, and you are always getting fresh data from the warehouse.
+
+02:00.260 --> 02:06.340
+But maybe later if you notice, okay, some data marts and models are complex, then maybe go and replace
+
+02:06.380 --> 02:09.940
+few marts from views to a tables using CTAs.
+
+02:10.100 --> 02:15.220
+So this is another use case for the CTAs, and it is a nice workaround for your data warehouse system.

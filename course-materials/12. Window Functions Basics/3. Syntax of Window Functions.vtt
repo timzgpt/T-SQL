@@ -1,0 +1,328 @@
+WEBVTT
+
+00:04.000 --> 00:04.640
+All right everyone.
+
+00:04.640 --> 00:08.600
+So now we're going to go and dive into the syntax of the SQL window functions.
+
+00:08.600 --> 00:13.720
+We're going to cover everything, each part of the syntax for you to understand how to use them.
+
+00:13.720 --> 00:14.360
+So let's go.
+
+00:14.400 --> 00:14.720
+All right.
+
+00:14.720 --> 00:19.960
+So let's start first by understanding the basic components or the basic parts of each window syntax.
+
+00:20.120 --> 00:21.840
+Mainly we have two parts.
+
+00:21.840 --> 00:23.960
+The first part is going to be the window function.
+
+00:24.120 --> 00:26.480
+We have like sum average and so on.
+
+00:26.720 --> 00:29.360
+The second main part is going to be the over clause.
+
+00:29.360 --> 00:32.720
+And inside the over clause we have three different parts.
+
+00:32.720 --> 00:37.760
+The first one is going to be the partition clause, the second order clause and the last one we have
+
+00:37.760 --> 00:38.600
+the frame clause.
+
+00:38.640 --> 00:42.680
+And those are all components that you can use inside that window function.
+
+00:42.680 --> 00:45.600
+So two main parts window function and therefore clause.
+
+00:45.640 --> 00:48.440
+And inside the over we have partition order and frame.
+
+00:48.440 --> 00:49.680
+Let's go more in details.
+
+00:49.680 --> 00:52.360
+So for example we have the following window function.
+
+00:52.360 --> 00:54.960
+So as you can see we have a lot of stuff going on here.
+
+00:54.960 --> 00:58.280
+We're going to understand them step by step component by component.
+
+00:58.320 --> 01:00.320
+Let's start from the left from the first one.
+
+01:00.320 --> 01:01.530
+So what do we have over here?
+
+01:01.530 --> 01:03.970
+We have a function window function.
+
+01:03.970 --> 01:06.610
+So what is a window function like here we have the average.
+
+01:06.610 --> 01:08.490
+It's like any other function in SQL.
+
+01:08.530 --> 01:12.290
+You can use it in order to do calculations on top of the window.
+
+01:12.290 --> 01:17.810
+So the first thing to do or to define in a window is to define the function of the window.
+
+01:17.810 --> 01:22.690
+And as we learned before, we have a long list of many window functions available in SQL.
+
+01:22.690 --> 01:24.890
+And we group them into three groups.
+
+01:24.890 --> 01:27.210
+The first one we have the aggregate functions.
+
+01:27.210 --> 01:29.530
+So we have the count, sum, average, max min.
+
+01:29.570 --> 01:30.330
+All those functions.
+
+01:30.330 --> 01:32.410
+We have them as well for the group by.
+
+01:32.650 --> 01:35.610
+So those are used for the aggregations.
+
+01:35.730 --> 01:39.290
+The second group of functions we have the ranking functions.
+
+01:39.290 --> 01:42.410
+So we have the row number rank and tile and so on.
+
+01:42.410 --> 01:45.730
+So we can use those groups in order to give a rank for our data.
+
+01:45.930 --> 01:49.970
+The last group we call it value or sometimes analytics functions.
+
+01:49.970 --> 01:55.010
+So here we have very important functions like the lead lag, first value and the last value in order
+
+01:55.010 --> 01:56.890
+to access a specific value.
+
+01:56.890 --> 02:01.210
+And of course we're going to go and learn all of them one by one understanding the concepts.
+
+02:01.290 --> 02:05.730
+some examples and as well for you to understand when to use them for data analysis.
+
+02:05.770 --> 02:06.090
+All right.
+
+02:06.090 --> 02:06.970
+So now let's keep moving.
+
+02:07.010 --> 02:09.490
+Understanding the other parts of the windows syntax.
+
+02:09.690 --> 02:14.250
+Now inside the function average we have here a field name or column name called sales.
+
+02:14.490 --> 02:16.810
+This called a function expression.
+
+02:16.930 --> 02:21.810
+It's like a value a parameter argument that we can pass it to the function.
+
+02:21.810 --> 02:24.090
+And here we can use multiple different stuff.
+
+02:24.090 --> 02:26.330
+For example depend of the function of course.
+
+02:26.450 --> 02:28.770
+So here it could be empty like here in the ranking.
+
+02:28.770 --> 02:30.770
+It doesn't allow to use an expression.
+
+02:30.770 --> 02:32.570
+So it should be always empty.
+
+02:32.850 --> 02:36.290
+Or we can use a column like in the example we use the sales.
+
+02:36.290 --> 02:40.170
+So we use the column name as an argument or an expression.
+
+02:40.170 --> 02:43.170
+For the average we are finding the average of sales.
+
+02:43.170 --> 02:44.490
+Or we could use a number.
+
+02:44.490 --> 02:48.370
+So here in the interval we are allowed only to use numbers.
+
+02:48.650 --> 02:50.090
+Or we could have multiple stuff.
+
+02:50.090 --> 02:53.610
+For example in the lead we can have sales then numbers and so on.
+
+02:53.610 --> 02:54.970
+So things get complicated.
+
+02:54.970 --> 02:56.970
+Don't worry about it I'm going to explain that.
+
+02:57.090 --> 02:58.490
+So here we have multiple stuff.
+
+02:58.690 --> 03:01.620
+Or we can have a whole conditional logic.
+
+03:01.740 --> 03:06.340
+So for example here we have the case when and so on inside the sum.
+
+03:06.340 --> 03:10.180
+So the whole thing over here called an expression for the sum.
+
+03:10.180 --> 03:12.500
+So as you can see we can build here a complex logic.
+
+03:12.500 --> 03:16.300
+And the output of this logic can be passed to the function sum.
+
+03:16.300 --> 03:21.260
+So that means as an expression for the function we can use different stuff of course depends whether
+
+03:21.260 --> 03:22.860
+the function allows it or not.
+
+03:22.900 --> 03:23.180
+All right.
+
+03:23.180 --> 03:28.260
+So now let's have a quick overview in order to understand which data types are allowed in the expressions
+
+03:28.260 --> 03:31.100
+for those functions, let's see the aggregate functions.
+
+03:31.100 --> 03:36.820
+As you can see, the count function accepts any data type, but the others like the sum average, min
+
+03:36.820 --> 03:37.180
+max.
+
+03:37.180 --> 03:40.140
+They allow only numerical data types.
+
+03:40.180 --> 03:40.500
+All right.
+
+03:40.500 --> 03:42.300
+So now let's move to the rank function.
+
+03:42.300 --> 03:43.180
+The expressions.
+
+03:43.180 --> 03:44.180
+It's pretty easy.
+
+03:44.380 --> 03:45.300
+It should be empty.
+
+03:45.340 --> 03:48.980
+It doesn't allow any argument or anything inside those functions.
+
+03:48.980 --> 03:54.700
+So as you can see all of them are empty but only one that accepts numerical values, which is the end
+
+03:54.700 --> 03:55.020
+title.
+
+03:55.020 --> 03:56.940
+You have to define a numeric value.
+
+03:56.980 --> 04:00.180
+And now moving on to the last type, we have the value functions.
+
+04:00.180 --> 04:03.180
+They accept any data types inside the expressions.
+
+04:03.180 --> 04:08.620
+So as you can see, each functions has its own specifications and you have to be careful which data
+
+04:08.660 --> 04:10.740
+type you are using in the expressions.
+
+04:10.780 --> 04:12.620
+Okay, so now let's keep moving to the next one.
+
+04:12.620 --> 04:15.580
+We have a very important part in the windows syntax.
+
+04:15.580 --> 04:16.740
+So so far what do we have.
+
+04:16.740 --> 04:17.580
+We have a function.
+
+04:17.580 --> 04:18.860
+We have an expression.
+
+04:18.980 --> 04:19.980
+It's like usual stuff.
+
+04:19.980 --> 04:22.060
+We have done that before using the groupby.
+
+04:22.420 --> 04:26.220
+Now we have to tell SQL that we are dealing with the window function.
+
+04:26.220 --> 04:27.580
+It's not a normal one.
+
+04:27.580 --> 04:30.980
+In order to do that we have to specify the keyword okay.
+
+04:31.500 --> 04:35.140
+So the second main part in the syntax is the overall clause.
+
+04:35.140 --> 04:37.660
+And we use it in order to define a window.
+
+04:37.660 --> 04:42.900
+And inside that we can define multiple stuff like the partition by the order by the frame.
+
+04:42.900 --> 04:44.540
+But all those stuff are optional.
+
+04:44.540 --> 04:46.980
+We can skip it and leave it empty.
+
+04:46.980 --> 04:50.020
+So the main task of the over it tells first SQL.
+
+04:50.020 --> 04:55.860
+We are dealing with the window function here, and as well you can use it in order to define a window
+
+04:56.020 --> 04:56.900
+of your data.
+
+04:56.900 --> 04:59.980
+So now we're going to go and cover everything inside the over clause.
+
+05:00.020 --> 05:02.500
+And we're going to start with the first one the partition by.

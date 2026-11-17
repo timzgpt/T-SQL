@@ -1,0 +1,346 @@
+WEBVTT
+
+00:03.880 --> 00:06.800
+All right, moving on to the next use case for the coalesce and Isnull.
+
+00:06.960 --> 00:12.520
+We can use them in order to handle the nulls before doing any mathematical operations.
+
+00:12.520 --> 00:15.440
+So let's understand what this means using the plus operator.
+
+00:15.440 --> 00:20.680
+So if you do plus operator between two numbers like one plus five, you are summarizing the values and
+
+00:20.680 --> 00:21.720
+you will get six.
+
+00:21.720 --> 00:26.480
+And if you do the plus operator between string values like a plus b.
+
+00:26.480 --> 00:31.320
+So now what we are doing, we are doing data concatenations and the output is going to be a B.
+
+00:31.360 --> 00:36.840
+So now if you go and replace the one with value like zero, so zero plus five we will get five.
+
+00:36.880 --> 00:38.440
+Nothing fancy about that.
+
+00:38.440 --> 00:44.200
+And for the strings if you go and replace a value with an empty string, so there is zero characters
+
+00:44.200 --> 00:50.640
+between the two quotes plus the b, so in the output you will get only B, so it's fine and nothing
+
+00:50.640 --> 00:51.480
+is critical.
+
+00:51.480 --> 00:52.800
+But now we come to the problem.
+
+00:52.800 --> 00:58.480
+If you use a null, if you replace the one with a null in the output, you will get a null because you
+
+00:58.520 --> 01:01.800
+are saying okay, five plus something that I don't know.
+
+01:01.800 --> 01:06.020
+So SQL scale says, okay, you are summarizing now a value with a null value.
+
+01:06.060 --> 01:06.940
+It is unknown.
+
+01:06.940 --> 01:09.540
+So I don't as well know what's going to be the answer.
+
+01:09.540 --> 01:11.500
+That's why it's going to say it's going to be null.
+
+01:11.580 --> 01:13.540
+SQL just don't know what is the answer.
+
+01:13.540 --> 01:16.260
+And the same thing can happen with anything else like the string.
+
+01:16.260 --> 01:22.740
+So if you are saying null plus b and he is going to say the same thing, the null is unknown and the
+
+01:22.740 --> 01:24.580
+answer is going to be as well unknown.
+
+01:24.580 --> 01:28.860
+So my friends, this is very critical in the analysis and working with data.
+
+01:28.860 --> 01:33.180
+So this means we have to handle the nulls before doing any mathematical operations.
+
+01:33.180 --> 01:35.380
+And this is not only for the plus operator.
+
+01:35.620 --> 01:38.580
+It's as well for the other operators like minus and so on.
+
+01:38.580 --> 01:38.860
+All right.
+
+01:38.860 --> 01:40.140
+So now let's have the following task.
+
+01:40.140 --> 01:46.620
+And it says display the full name of the customers in a single field by merging their first and last
+
+01:46.660 --> 01:50.860
+names and add ten bonus points for each customer's score.
+
+01:50.900 --> 01:52.260
+So let's go and solve it.
+
+01:52.300 --> 01:54.500
+We're going to select first the basic informations.
+
+01:54.500 --> 01:55.940
+Let's get the customer ID.
+
+01:55.940 --> 01:56.660
+What do we need.
+
+01:56.740 --> 01:58.980
+The first name the last name.
+
+01:59.220 --> 02:00.540
+And we need the scores.
+
+02:00.780 --> 02:04.640
+So that's it from sales customers.
+
+02:04.800 --> 02:06.160
+Let's go and excuse it.
+
+02:06.200 --> 02:11.480
+Now, the first task is that we have to generate a new field called full name, where we have to go
+
+02:11.480 --> 02:15.000
+and merge or concatenate their first and last names.
+
+02:15.000 --> 02:16.280
+So let's go and do that.
+
+02:16.280 --> 02:18.760
+We need the first name plus.
+
+02:19.000 --> 02:23.080
+Then let's have a space between the first and last name.
+
+02:23.440 --> 02:29.960
+And then plus let's have the last name as full name.
+
+02:29.960 --> 02:31.760
+So let's go and execute it.
+
+02:31.800 --> 02:34.640
+Now if you check the results for the first customer it is working.
+
+02:34.640 --> 02:39.040
+So we have Joseph Goldenberg the same thing for the second customer.
+
+02:39.040 --> 02:41.720
+But for the third customer we have here a problem.
+
+02:41.720 --> 02:46.040
+Customer doesn't have any last name but she has a first name.
+
+02:46.040 --> 02:47.480
+So we have here a Mary.
+
+02:47.520 --> 02:51.080
+So the full name here is completely null which is not correct.
+
+02:51.080 --> 02:55.960
+For this example we have at least to show the first name Mary, even though that the last name is missing.
+
+02:55.960 --> 02:57.800
+So the result is not really accurate.
+
+02:57.800 --> 03:03.000
+And that's because we are using the plus operator between a null and Mary.
+
+03:03.040 --> 03:08.420
+So that means we have to go and handle the nulls before doing any plus operator.
+
+03:08.500 --> 03:11.500
+So again, here we can go with the coalesce or the Isnull.
+
+03:11.500 --> 03:14.580
+So let's go and create a new field using the coalesce.
+
+03:15.260 --> 03:17.300
+So it's going to be the last name.
+
+03:18.220 --> 03:20.900
+And now we have to define a new value if it's null.
+
+03:21.060 --> 03:23.260
+So we could have like something unknown.
+
+03:23.260 --> 03:25.580
+Or we could have like an empty string.
+
+03:25.580 --> 03:27.460
+And we can do that using two quotes.
+
+03:27.460 --> 03:29.140
+And between them there is nothing.
+
+03:29.140 --> 03:31.180
+So we are using an empty string.
+
+03:31.860 --> 03:33.940
+So let's go and check the results.
+
+03:34.260 --> 03:36.060
+Last name two.
+
+03:36.660 --> 03:38.380
+So let's go and execute it.
+
+03:39.140 --> 03:44.220
+Now we can see that the last name over here for Mary, it has an empty string.
+
+03:44.220 --> 03:45.900
+And it is not anymore a null.
+
+03:45.940 --> 03:51.020
+So now SQL knows okay, this is a string and there is no characters inside it.
+
+03:51.020 --> 03:56.540
+So with that SQL knows more informations and we can go and now concatenate those informations.
+
+03:56.540 --> 03:57.700
+So let's go and do that.
+
+03:57.700 --> 04:03.660
+So we're going to take the whole thing and replace the last name with the coalesce.
+
+04:03.660 --> 04:07.600
+So let me just remove this last name over here and execute it.
+
+04:07.600 --> 04:09.480
+So now as you can see, things looks better.
+
+04:09.520 --> 04:12.960
+Now we have in the full name for Mari only the first name.
+
+04:12.960 --> 04:16.840
+And of course, if you don't like it like this, you would like to have another default value.
+
+04:16.880 --> 04:21.880
+You can go over here and say something like nah, not available, so let's go and execute it.
+
+04:21.880 --> 04:26.760
+And with that, you can see immediately how there is here a missing last name, but it doesn't really
+
+04:26.760 --> 04:27.160
+look good.
+
+04:27.200 --> 04:30.320
+So I will just remove it and go with the empty string.
+
+04:30.320 --> 04:31.560
+We're going to go and execute it.
+
+04:31.560 --> 04:36.480
+So with that, we have solved the first part of the task where we have the full names and we are not
+
+04:36.480 --> 04:39.560
+missing any information from the first name and the last name.
+
+04:39.560 --> 04:44.480
+Now let's go to the second part of the task, where we have to add ten bonus points for each customer
+
+04:44.480 --> 04:44.960
+score.
+
+04:45.240 --> 04:47.920
+So we have to go and add a ten for each score.
+
+04:47.920 --> 04:48.880
+So let's go and do it.
+
+04:48.880 --> 04:50.280
+I'm going to put it at the end.
+
+04:50.280 --> 04:57.440
+So score plus ten and let's give it the name score with bonus.
+
+04:58.240 --> 04:58.920
+So that's it.
+
+04:58.920 --> 05:00.280
+Let's go and execute it.
+
+05:00.280 --> 05:01.960
+So now in the output you can see it's very easy.
+
+05:02.000 --> 05:04.160
+We have added a ten for each score.
+
+05:04.360 --> 05:07.480
+So we have increased the score points for each customer.
+
+05:07.480 --> 05:09.180
+But now for the last customer.
+
+05:09.220 --> 05:14.980
+Anna, you can see over here she doesn't have a value in the scores and that's why SQL didn't go and
+
+05:14.980 --> 05:15.580
+add it in.
+
+05:15.580 --> 05:17.300
+So we will get as well a null.
+
+05:17.340 --> 05:21.940
+And of course, this might not be fair that the last customer is not getting any point, even though
+
+05:21.940 --> 05:23.700
+that we have increased for all others.
+
+05:23.700 --> 05:28.020
+So that means we have to go and handle the null by replacing the null to zero.
+
+05:28.020 --> 05:31.020
+And only after that we're going to add a plus to it.
+
+05:31.020 --> 05:32.220
+So let's go and do that.
+
+05:32.220 --> 05:33.820
+I'm going to add a coalesce.
+
+05:35.860 --> 05:39.020
+If it is null then go and make it zero.
+
+05:39.020 --> 05:41.820
+And afterwards go and add a ten points.
+
+05:41.820 --> 05:43.500
+So let's go and execute it.
+
+05:43.500 --> 05:49.740
+So now as you can see the results everything now is fair where we have a ten bonus points for each customers.
+
+05:49.740 --> 05:53.700
+Even if the customer doesn't have any values in the scores like here.
+
+05:53.740 --> 05:57.260
+Anna, she has like null, but still she is getting a ten points.
+
+05:57.260 --> 06:02.580
+So here again, as you can see, if you don't handle the nulls correctly before doing the mathematical
+
+06:02.580 --> 06:05.620
+operations, you might get unexpected results.
+
+06:05.620 --> 06:10.380
+So be careful with the nulls and handle them correctly before adding anything.

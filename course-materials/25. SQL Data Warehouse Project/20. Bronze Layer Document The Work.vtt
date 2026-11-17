@@ -1,0 +1,283 @@
+WEBVTT
+
+00:00.080 --> 00:01.680
+So now what is a data flow diagram?
+
+00:01.680 --> 00:07.840
+We can draw a simple visual in order to map the flow of your data, where it comes from and where it
+
+00:07.840 --> 00:08.360
+ends up.
+
+00:08.360 --> 00:14.120
+So you want just to make clear how the data flows through different layers of your projects and thus
+
+00:14.120 --> 00:16.920
+help us to create something called the data lineage.
+
+00:16.920 --> 00:20.320
+And this is really nice, especially if you are analyzing an issue.
+
+00:20.320 --> 00:25.160
+So if you have like multiple layers and you don't have a real data lineage or flow, it's going to be
+
+00:25.160 --> 00:29.960
+really hard to analyze the scripts in order to understand the origin of the data.
+
+00:29.960 --> 00:33.640
+And having this diagram can improve the process of finding issues.
+
+00:33.640 --> 00:35.640
+So now let's go and create one okay.
+
+00:35.680 --> 00:36.880
+So now back to Draw.io.
+
+00:36.880 --> 00:39.000
+And we're going to go and build the flow diagram.
+
+00:39.000 --> 00:42.120
+So we're going to start first with the source system.
+
+00:42.120 --> 00:46.240
+So let's build the layer I'm going to go and remove the fill dotted.
+
+00:46.280 --> 00:50.480
+And then we're going to go and add like a box saying sources.
+
+00:50.480 --> 00:55.000
+And we're going to put it over here increase the size 24.
+
+00:55.160 --> 00:57.520
+And as well without any lines.
+
+00:57.560 --> 00:59.360
+Now what do we have inside the sources.
+
+00:59.360 --> 01:01.390
+We have like folder and files.
+
+01:01.790 --> 01:04.070
+So let's go and search for a folder icon.
+
+01:04.110 --> 01:08.270
+I'm going to go and take this one over here and say you are the CRM.
+
+01:08.350 --> 01:10.550
+We can as well increase the size.
+
+01:10.590 --> 01:11.870
+And we have another source.
+
+01:11.870 --> 01:13.590
+We have the ERP.
+
+01:14.630 --> 01:14.990
+Okay.
+
+01:15.030 --> 01:17.150
+So this is the first layer.
+
+01:17.190 --> 01:19.790
+Let's go and now have the bronze layer.
+
+01:19.790 --> 01:22.110
+So we're going to go and grab another box.
+
+01:22.110 --> 01:24.870
+And we're going to go and make the coloring like this.
+
+01:24.870 --> 01:31.270
+And instead of auto maybe take the hatch maybe something like this whatever you know so rounded.
+
+01:31.270 --> 01:34.990
+And then we can go and put on top of it like the title.
+
+01:35.150 --> 01:41.750
+So we can say you are the bronze layer and increase as well the size of the fonts.
+
+01:41.830 --> 01:46.150
+So now what we're going to do, we're going to go and add boxes for each table that we have in the bronze
+
+01:46.150 --> 01:46.590
+layer.
+
+01:46.590 --> 01:49.270
+So for example we have the sales details.
+
+01:49.270 --> 01:54.030
+We can go and make it a little bit smaller maybe 16 and not bold.
+
+01:54.150 --> 01:57.310
+And we have other two tables from the CRM.
+
+01:57.510 --> 02:02.110
+We have the customer info and as well the product info.
+
+02:02.110 --> 02:05.350
+So those are the three tables that comes from the CRM.
+
+02:05.390 --> 02:07.630
+And now what we're going to do we're going to go and connect.
+
+02:07.670 --> 02:11.630
+Now the source CRM with those three tables.
+
+02:11.630 --> 02:16.630
+So what we're going to do we're going to go to the folder and start making arrows from the folder to
+
+02:16.670 --> 02:18.430
+the bronze layer like this.
+
+02:18.470 --> 02:22.430
+And now we have to do the same thing for the ERP source.
+
+02:22.430 --> 02:28.270
+So as you can see the data flow diagram shows us in one picture the data lineage between the two layers.
+
+02:28.270 --> 02:32.270
+So here we can see easily those three tables actually comes from the CRM.
+
+02:32.390 --> 02:36.230
+And as well those three tables in the bronze layer are coming from the ERP.
+
+02:36.270 --> 02:39.950
+I understand if we have like a lot of tables it's going to be a huge mess.
+
+02:39.950 --> 02:45.350
+But if you have like small or medium data warehouse building, those diagrams are going to make things
+
+02:45.350 --> 02:51.190
+really easier to understand how everything is flowing from the sources into the different layers in
+
+02:51.190 --> 02:52.310
+your data warehouse.
+
+02:52.310 --> 02:52.790
+All right.
+
+02:52.790 --> 02:55.750
+So with that we have the first version of the data flow.
+
+02:55.750 --> 03:00.660
+So this step is done and the final step is to commit our code in the git repo.
+
+03:00.700 --> 03:02.700
+Okay, so now let's go and commit our work.
+
+03:02.700 --> 03:05.220
+Since it is scripts we're going to go to the folder scripts.
+
+03:05.220 --> 03:08.540
+And here we can have like scripts for the bronze, silver and gold.
+
+03:08.540 --> 03:12.220
+That's why maybe it makes sense to create a folder for each layer.
+
+03:12.220 --> 03:14.620
+So let's go and start creating the bronze folder.
+
+03:14.620 --> 03:16.300
+So I'm going to go and create a new file.
+
+03:16.300 --> 03:18.820
+And then I'm going to say bronze slash.
+
+03:18.860 --> 03:23.260
+And then we can have the script of the bronze layer dot SQL.
+
+03:23.300 --> 03:27.020
+So now I'm going to go and paste the code that we have created.
+
+03:27.020 --> 03:32.260
+So those six tables and as usual at the start we have a comment where we are explaining the purpose
+
+03:32.260 --> 03:33.100
+of this script.
+
+03:33.100 --> 03:36.340
+So we are saying this scripts creates tables in the bronze schema.
+
+03:36.340 --> 03:41.220
+And by running these scripts you are redefining the digital structure of the bronze tables.
+
+03:41.220 --> 03:45.220
+So let's have it like that and I'm going to go and commit the changes.
+
+03:45.660 --> 03:46.140
+All right.
+
+03:46.140 --> 03:50.060
+So now as you can see inside the scripts we have a folder called bronze.
+
+03:50.060 --> 03:53.700
+And inside it we have the DDL script for the bronze layer.
+
+03:53.700 --> 03:57.060
+And as well in the bronze layer we're going to go and put our stored procedure.
+
+03:57.060 --> 03:59.140
+So we're going to go and create a new file.
+
+03:59.180 --> 04:03.180
+Let's call it proc load bronze dot SQL.
+
+04:03.220 --> 04:05.580
+And then let's go and paste our scripts.
+
+04:05.580 --> 04:10.220
+And as usual I have put it at the start and explanation about the stored procedure.
+
+04:10.220 --> 04:14.940
+So we are saying this stored procedure is going to go and load the data from the CSV files into the
+
+04:14.940 --> 04:19.900
+bronze schema, so it can go and truncate first the tables and then do a bulk insert.
+
+04:19.900 --> 04:21.420
+And about the parameters.
+
+04:21.540 --> 04:25.340
+The stored procedure does not accept any parameter or return any values.
+
+04:25.380 --> 04:27.580
+And here quick example how to execute it.
+
+04:27.580 --> 04:28.020
+All right.
+
+04:28.020 --> 04:30.060
+So I think I'm happy with that.
+
+04:30.060 --> 04:32.420
+So let's go and commit it.
+
+04:33.380 --> 04:34.180
+All right my friends.
+
+04:34.180 --> 04:36.740
+So with that we have committed our code into the git.
+
+04:36.740 --> 04:39.540
+And with that we are done building the bronze layer.
+
+04:39.540 --> 04:41.100
+So the whole peak is done.
+
+04:41.100 --> 04:43.020
+Now we're going to go to the next one.
+
+04:43.020 --> 04:47.420
+This one is going to be more advanced than the bronze layer, because there will be a lot of struggle
+
+04:47.420 --> 04:48.980
+with cleaning the data and so on.
+
+04:48.980 --> 04:53.220
+So we're going to start with the first task where we're going to analyze and explore the data in the
+
+04:53.220 --> 04:54.140
+source systems.
+
+04:54.140 --> 04:55.060
+So let's go.

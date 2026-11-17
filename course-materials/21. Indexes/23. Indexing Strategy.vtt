@@ -1,0 +1,70 @@
+WEBVTT
+
+00:03.960 --> 00:04.440
+All right.
+
+00:04.440 --> 00:08.040
+So this is my indexing strategy that I usually follow in my projects.
+
+00:08.040 --> 00:14.280
+And as you can see, each phase builds upon the previous one moving from a general strategy to more
+
+00:14.280 --> 00:20.720
+targeted, refined, specific strategy where we define first the goal of the indexing strategy of the
+
+00:20.720 --> 00:21.280
+project.
+
+00:21.280 --> 00:26.080
+And as we move with the phases, we're going to be targeting more specific scenarios.
+
+00:26.080 --> 00:27.840
+And this cycle keep repeating.
+
+00:27.840 --> 00:29.200
+It's not only one time.
+
+00:29.200 --> 00:30.840
+So you have to keep discussing.
+
+00:30.880 --> 00:33.640
+Is the goal still suitable for the projects?
+
+00:33.640 --> 00:39.560
+You have to keep analyzing the frequently used tables and columns, and keep searching and finding those
+
+00:39.560 --> 00:40.800
+slow queries.
+
+00:40.800 --> 00:44.080
+And always keep an eye by monitoring the indexes.
+
+00:44.120 --> 00:46.440
+And of course, I can only keep repeating this.
+
+00:46.800 --> 00:48.640
+Avoid over indexing.
+
+00:48.720 --> 00:49.560
+All right my friends.
+
+00:49.560 --> 00:51.400
+So that's all about the indexes.
+
+00:51.400 --> 00:54.240
+That was a lot of information and a lot of technique.
+
+00:54.240 --> 00:56.800
+So now you know everything about indexing in SQL.
+
+00:56.840 --> 01:01.400
+Now in the next one there is another important techniques on how to optimize the performance.
+
+01:01.400 --> 01:03.400
+So we're going to talk about the partitions.
+
+01:03.400 --> 01:06.760
+So how to divide our data in order to optimize the performance.
+
+01:06.760 --> 01:07.400
+So let's go.

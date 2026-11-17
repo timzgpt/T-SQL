@@ -1,0 +1,235 @@
+WEBVTT
+
+00:00.040 --> 00:00.760
+All right, my friends.
+
+00:00.760 --> 00:06.360
+So now we're going to talk about how to transform the numeric values inside our data by using two very
+
+00:06.360 --> 00:09.560
+simple functions the round and the EPs the absolute.
+
+00:09.560 --> 00:11.360
+So let's go and explore them.
+
+00:15.160 --> 00:15.400
+Okay.
+
+00:15.400 --> 00:18.240
+So now let's have this example three points 516.
+
+00:18.280 --> 00:23.000
+Now let's say that you want to apply the function round and you are using two decimal places.
+
+00:23.000 --> 00:27.720
+So what can happen is you can go and keep only two digits after the decimal point.
+
+00:27.720 --> 00:31.640
+So five and one and the third digit after the decimal six.
+
+00:31.680 --> 00:35.400
+It will decide whether the number gonna round up or stay as it is.
+
+00:35.440 --> 00:38.000
+And now since six is higher than five.
+
+00:38.040 --> 00:41.680
+So that means SQL is going to go around the numbers up.
+
+00:41.680 --> 00:44.880
+So instead of having 51 we will get 52.
+
+00:44.920 --> 00:47.480
+And after that the third digit is gonna reset to zero.
+
+00:47.480 --> 00:50.280
+So in the output you will get 3.52.
+
+00:50.440 --> 00:54.400
+Now let's say that you have done round but only for one decimal place.
+
+00:54.400 --> 00:59.600
+Now SQL can go and keep only one decimal place and that is the five and the second digit.
+
+00:59.600 --> 01:02.400
+This time going to decide whether we round up or not.
+
+01:02.440 --> 01:04.970
+And now since one is less than five.
+
+01:05.010 --> 01:08.010
+There is no need to round up and the five can stay as it is.
+
+01:08.010 --> 01:13.450
+It will not turn to six, so there is no round up and the digits after the five can reset to zero.
+
+01:13.450 --> 01:15.330
+So we're going to get 3.5.
+
+01:15.370 --> 01:17.610
+Now let's say that you say round zero.
+
+01:17.610 --> 01:21.090
+So that means I don't want to see any digits after the decimal point.
+
+01:21.090 --> 01:25.090
+So now SQL is going to go and check the first digit after the decimal point.
+
+01:25.130 --> 01:25.730
+The five.
+
+01:25.770 --> 01:29.010
+This one going to decide whether the three is going to turn to four or not.
+
+01:29.050 --> 01:35.090
+And now since we have five, it is good enough to round the number because either five or above five
+
+01:35.130 --> 01:36.770
+can round the numbers.
+
+01:36.770 --> 01:38.930
+So that's why it's going to be a round up.
+
+01:38.930 --> 01:44.690
+And SQL can return at the end four and all the digits after the decimal point can be reset to zero.
+
+01:44.730 --> 01:48.210
+So this is exactly how the round function works in SQL.
+
+01:48.210 --> 01:50.690
+So now let's see how we can do that in SQL okay.
+
+01:50.730 --> 01:53.130
+So now let's go and practice about the number functions.
+
+01:53.130 --> 01:55.410
+So what we're going to do we're going to write SQL select.
+
+01:55.410 --> 01:58.250
+But this time we will not select any data from the database.
+
+01:58.250 --> 02:04.490
+We're going to practice using our static value like for example the value three dots 516.
+
+02:04.530 --> 02:06.010
+So let's go and execute it.
+
+02:06.010 --> 02:07.970
+So with that I have this decimal number.
+
+02:08.010 --> 02:11.250
+Now let's go and start practicing the round function.
+
+02:11.250 --> 02:15.330
+So now let's go around this number three dots 516.
+
+02:15.370 --> 02:17.970
+And this time we are rounding to decimals.
+
+02:17.970 --> 02:20.570
+So let's go and call it round two.
+
+02:20.610 --> 02:22.050
+And let's go and execute it.
+
+02:22.050 --> 02:25.850
+So as you can see in the output we are rounding to two decimal places.
+
+02:25.850 --> 02:30.010
+And we have the two because as we learned the six cannot go and round it up.
+
+02:30.010 --> 02:33.690
+Now let's go and do the same thing for one.
+
+02:33.690 --> 02:35.930
+So let's round one execute.
+
+02:35.970 --> 02:39.290
+And as you can see in the output we are rounding to one decimal.
+
+02:39.290 --> 02:41.370
+So we have the five and everything is zero.
+
+02:41.370 --> 02:44.970
+And we don't have six here because the one is lower than five.
+
+02:45.010 --> 02:47.170
+And it will not round up the numbers.
+
+02:47.170 --> 02:49.490
+And let's round by the zero.
+
+02:50.930 --> 02:56.490
+It is rounding it to an integer to the four, and all the decimal digits are zero, and we have four
+
+02:56.490 --> 02:59.890
+because we have five and five can round up that number.
+
+02:59.890 --> 03:01.370
+So as you can see it is really nice.
+
+03:01.410 --> 03:03.570
+And this is how we round numbers in SQL.
+
+03:07.610 --> 03:13.060
+Now there is another number function which is really cool, called apps or the absolute what it's going
+
+03:13.060 --> 03:16.660
+to do, it's going to go and convert any negative number to a positive.
+
+03:16.700 --> 03:18.020
+So let me show you what I mean.
+
+03:18.020 --> 03:20.380
+Let's go and say we have like minus ten.
+
+03:20.380 --> 03:21.820
+So this is a negative number.
+
+03:21.820 --> 03:28.340
+But if I say apps so the absolute of the minus ten what I will get I will get a positive number.
+
+03:28.340 --> 03:30.860
+So it's like giving us the absolute of any number.
+
+03:30.860 --> 03:34.820
+Or in other words it is like converting the negative to a positive.
+
+03:34.820 --> 03:38.420
+And if the number is already positive, nothing going to happen.
+
+03:38.420 --> 03:41.940
+So if I say the absolute of the ten, I will get as well a ten.
+
+03:41.940 --> 03:47.140
+So this is really nice and cool function that is really important in order to transform numbers in many
+
+03:47.140 --> 03:52.940
+scenarios, like if you have mistakes on your database, like let's say a minus sales makes no sense
+
+03:52.940 --> 03:54.620
+to have sales, that is minus.
+
+03:54.620 --> 03:59.580
+So in order to correct the data, we can use the apps in order to convert all the negative numbers to
+
+03:59.620 --> 04:00.300
+a positive.
+
+04:00.340 --> 04:03.700
+So this is really nice, cool and easy function to learn.
+
+04:03.740 --> 04:04.500
+All right my friends.
+
+04:04.500 --> 04:06.140
+So that's all for the numeric functions.
+
+04:06.140 --> 04:08.100
+We have covered two very simple functions.
+
+04:08.100 --> 04:13.380
+And now in the next topic we have a lot of functions about how to manipulate the date and time in SQL.
+
+04:13.380 --> 04:14.060
+So let's go.

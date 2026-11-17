@@ -1,0 +1,100 @@
+WEBVTT
+
+00:03.920 --> 00:05.720
+So what do we mean with no join?
+
+00:05.720 --> 00:10.160
+Well, we want the returns, the data from two tables without combining them.
+
+00:10.160 --> 00:14.080
+So actually this is not a join type because we are not combining anything.
+
+00:14.080 --> 00:16.520
+We just want to query the data from two tables.
+
+00:16.520 --> 00:20.800
+So that means from the table A we want to see all the rows everything.
+
+00:20.800 --> 00:24.480
+And from the table B we want to see everything as well all the rows.
+
+00:24.480 --> 00:28.320
+So that means we want to see two results and there is no need to combine them.
+
+00:28.320 --> 00:30.040
+So let's see the syntax of that.
+
+00:30.040 --> 00:31.800
+So what we have to do is very simple.
+
+00:31.800 --> 00:35.000
+Select star from table A and then semicolon.
+
+00:35.000 --> 00:36.840
+And then start another query.
+
+00:36.880 --> 00:38.400
+Select star from table B.
+
+00:38.400 --> 00:39.320
+So that's it.
+
+00:39.320 --> 00:43.760
+And of course since we are not combining the data there will be no join in the syntax.
+
+00:43.760 --> 00:44.560
+So that's it.
+
+00:44.560 --> 00:46.640
+Let's go to SQL in order to do that okay.
+
+00:46.680 --> 00:47.920
+So now we have the following task.
+
+00:47.920 --> 00:53.200
+It says retrieve all data from customers and orders in two different results.
+
+00:53.200 --> 00:56.480
+So that sounds that we don't have to go and combine the tables together.
+
+00:56.520 --> 00:56.880
+And all.
+
+00:56.880 --> 00:58.160
+What you can do is the following.
+
+00:58.200 --> 01:02.400
+We can go and select the data from the first table like this.
+
+01:02.400 --> 01:07.640
+And then we make another query for the second table the orders.
+
+01:07.640 --> 01:10.680
+And we don't have to go and combine them in one big query.
+
+01:10.720 --> 01:14.400
+We just use a very simple Select statements in order to retrieve the data.
+
+01:14.400 --> 01:18.960
+So if you go and execute it, since you have two separate queries, you will get two results.
+
+01:18.960 --> 01:23.600
+And with that in one result you will get all the customers and in the other result you will get all
+
+01:23.600 --> 01:26.960
+the orders and the data is not combined at all.
+
+01:26.960 --> 01:30.280
+So this is how you query two tables without combining them.
+
+01:30.280 --> 01:33.240
+So with that you are getting all the data without joining the tables.
+
+01:33.280 --> 01:38.320
+Now we're going to start talking about the first type of join the inner join where we start combining
+
+01:38.320 --> 01:39.640
+the data from two tables.
+
+01:39.640 --> 01:40.240
+So let's go.

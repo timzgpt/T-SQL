@@ -1,0 +1,268 @@
+WEBVTT
+
+00:03.840 --> 00:04.160
+All right.
+
+00:04.160 --> 00:06.080
+So now let's say that we have the following data.
+
+00:06.080 --> 00:08.000
+We have products and their sales.
+
+00:08.000 --> 00:10.520
+If you want now to go and rank your products.
+
+00:10.720 --> 00:16.520
+First you have to sort the data based on something like for example ranking the products based on their
+
+00:16.520 --> 00:17.040
+sales.
+
+00:17.040 --> 00:22.360
+So that means SQL is going to go and start sorting your data from the highest to the lowest.
+
+00:22.360 --> 00:28.480
+So sorting the data is always the first thing SQL has to do before ranking anything.
+
+00:28.480 --> 00:30.920
+Now, in order to rank our data, we have two methods.
+
+00:31.040 --> 00:34.480
+The first method, we call it the integer based ranking.
+
+00:34.480 --> 00:41.240
+So that means SQL can go and assign for each row an integer a whole number based on the position of
+
+00:41.240 --> 00:41.800
+the row.
+
+00:41.800 --> 00:47.240
+So now by looking to the example the first row, we have the product E with the sales 70 is going to
+
+00:47.240 --> 00:48.760
+be ranked number one.
+
+00:48.800 --> 00:50.800
+Then the next row the product B.
+
+00:50.840 --> 00:54.080
+With the 30 sales we will get the rank number two.
+
+00:54.240 --> 00:57.680
+Then the next one can be three four and the last one going to be five.
+
+00:57.720 --> 01:04.280
+So that means SQL here is assigning an integer for each row based on their position in the sorted list.
+
+01:04.280 --> 01:07.400
+So this method we call it integer based ranking.
+
+01:07.400 --> 01:08.920
+Now let's go to the second method.
+
+01:08.920 --> 01:11.360
+We have the percentage based ranking.
+
+01:11.360 --> 01:17.880
+So in this method SQL going to go first and calculate the relative position of the row compared to all
+
+01:17.880 --> 01:18.520
+others.
+
+01:18.520 --> 01:21.240
+And then assign a percentage for each row.
+
+01:21.240 --> 01:25.480
+So here in the output is going to start assigning percentages instead of integer.
+
+01:25.720 --> 01:28.640
+And we're going to have a scale from 0 to 1.
+
+01:28.640 --> 01:33.000
+So now if you go and compare both of the methods you can see that on the left side on the integer based
+
+01:33.000 --> 01:37.000
+ranking we have discrete distinct values.
+
+01:37.000 --> 01:41.280
+So it starts from one, then two three and end up in this example by five.
+
+01:41.280 --> 01:45.280
+So it's really depends on how many rows do we have in the results.
+
+01:45.280 --> 01:46.200
+So it could be five.
+
+01:46.240 --> 01:48.760
+It could be 505 million and so on.
+
+01:48.760 --> 01:53.480
+But in the right side we have always the same scale from 1 to 0.
+
+01:53.480 --> 01:56.880
+So between 0 and 1 we have infinite number of data points.
+
+01:57.120 --> 02:03.800
+And this scale we call it a normalized scale or we call it continuous scale, continuous values.
+
+02:03.800 --> 02:06.160
+So now the question is when to use which method.
+
+02:06.240 --> 02:10.640
+So for example for the percentage based ranking it is great to answer such questions.
+
+02:10.880 --> 02:14.480
+Find the top 20% products based on their sales.
+
+02:14.480 --> 02:20.480
+So this method is a great way in order to understand the contributions of data values to the overall
+
+02:20.520 --> 02:21.120
+total.
+
+02:21.120 --> 02:26.240
+And we call this kind of analysis a distribution analysis, where in the other hand, in the integer
+
+02:26.240 --> 02:30.880
+based ranking, we can answer questions like find the top three products.
+
+02:30.880 --> 02:35.800
+So with this question we are not interesting about the contributions of each product to the overall
+
+02:35.840 --> 02:36.440
+total.
+
+02:36.440 --> 02:40.680
+We are just interested in the position of the value within a list.
+
+02:40.680 --> 02:44.000
+So this is as well very commonly used analysis and reporting.
+
+02:44.000 --> 02:46.800
+We call it top button and analysis.
+
+02:46.800 --> 02:50.320
+So now let's group up our ranking functions based on those two methods.
+
+02:50.520 --> 02:56.640
+For the first group in the integer based ranking we have four functions row number, rank, dense Denserank
+
+02:56.680 --> 02:57.440
+and entail.
+
+02:57.480 --> 03:01.840
+But on the other hand, we have only two functions that generate percentage based ranking.
+
+03:01.960 --> 03:05.160
+We have the list and as well the percentile.
+
+03:05.480 --> 03:11.400
+So now that was an introduction an overview of those methods and how we group up those ranking functions.
+
+03:11.440 --> 03:15.120
+Next we're going to go and learn about the syntax of the ranking functions.
+
+03:15.120 --> 03:17.040
+Most of them follow the same rules.
+
+03:17.040 --> 03:19.600
+So for example we start always with the function name.
+
+03:19.600 --> 03:21.200
+So we have here the rank.
+
+03:21.400 --> 03:24.080
+But as you can see we don't use any expressions.
+
+03:24.080 --> 03:27.480
+So they don't allow you to use any argument inside it.
+
+03:27.520 --> 03:28.840
+It must be empty.
+
+03:28.840 --> 03:31.320
+So this is the first rule using rank functions.
+
+03:31.320 --> 03:33.320
+Then about the definition of the window.
+
+03:33.560 --> 03:36.680
+As usual, the partition by it is an optional thing.
+
+03:36.680 --> 03:38.200
+You can use it or leave it.
+
+03:38.200 --> 03:40.600
+And now to the second part we have the order by.
+
+03:40.640 --> 03:42.360
+It is as well required.
+
+03:42.360 --> 03:48.040
+So you must order the data or sort your data in order to do ranking, so you cannot leave it empty.
+
+03:48.280 --> 03:53.880
+So that means for the definition of the window at least we should have an order by for example here
+
+03:53.920 --> 03:54.560
+sales.
+
+03:54.560 --> 03:56.400
+So we cannot leave it empty.
+
+03:56.440 --> 03:56.800
+All right.
+
+03:56.800 --> 04:00.960
+So the two requirements you cannot use any expressions for those functions.
+
+04:00.960 --> 04:04.000
+And as well you have to sort your data using order by.
+
+04:04.040 --> 04:04.240
+Okay.
+
+04:04.280 --> 04:06.360
+So now let's have an overview of all functions.
+
+04:06.360 --> 04:09.480
+So as you can see all those functions are ranking functions.
+
+04:09.480 --> 04:14.200
+And almost all of them don't allow to use any expressions inside them.
+
+04:14.400 --> 04:16.960
+Besides this function here we have the internal.
+
+04:17.160 --> 04:19.120
+It accepts a number inside it.
+
+04:19.120 --> 04:21.000
+So that means you cannot use it empty.
+
+04:21.040 --> 04:22.800
+You should use a number inside it.
+
+04:22.800 --> 04:24.960
+All others must be empty.
+
+04:24.960 --> 04:30.280
+So now for the partition by all of them are optional, and for the order by all of them are required.
+
+04:30.280 --> 04:34.000
+So you must use order by and the frame clause.
+
+04:34.280 --> 04:40.360
+They are not allowed to use in the ranking functions, so you cannot change the definition of the frame
+
+04:40.480 --> 04:41.720
+inside the window function.
+
+04:41.720 --> 04:45.880
+So now what we're going to do as usual we're going to go and deep dive into all of those functions in
+
+04:45.880 --> 04:51.440
+order to understand when to use them and what are their use cases and as well practice in SQL.
+
+04:51.440 --> 04:54.280
+So we're going to start with the first one, the row number.

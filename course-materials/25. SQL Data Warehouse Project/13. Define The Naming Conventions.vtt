@@ -1,0 +1,346 @@
+WEBVTT
+
+00:00.080 --> 00:00.400
+All right.
+
+00:00.400 --> 00:04.480
+So now at this phase of the projects we usually define the naming conventions.
+
+00:04.480 --> 00:05.360
+So what is that.
+
+00:05.400 --> 00:11.960
+It is a set of rules that you define for naming everything in the projects, whether it is a database
+
+00:12.000 --> 00:16.080
+schema, tables, stored procedures, folders, anything.
+
+00:16.120 --> 00:20.920
+And if you don't do that at the early phase of the projects, I promise you chaos can happen.
+
+00:20.920 --> 00:22.000
+Because what's going to happen?
+
+00:22.000 --> 00:26.880
+You will have different developers in your projects, and each of those developers have their own style,
+
+00:26.880 --> 00:27.400
+of course.
+
+00:27.400 --> 00:33.360
+So one developer might name a table dimension customers, where everything is lowercase and between
+
+00:33.360 --> 00:34.280
+them underscore.
+
+00:34.280 --> 00:39.840
+And you have another developer creating another table called dimension Products, but using the camel
+
+00:39.840 --> 00:40.280
+case.
+
+00:40.280 --> 00:44.640
+So there is no separation between the words and the first character is capitalized, and maybe another
+
+00:44.640 --> 00:48.720
+one using some prefixes like dim underscore categories.
+
+00:48.720 --> 00:50.880
+So we have here like a shortcut of the dimension.
+
+00:50.880 --> 00:53.840
+So as you can see there are different designs and styles.
+
+00:53.840 --> 00:57.160
+And if we leave the door open, what can happen in the middle of the projects.
+
+00:57.160 --> 01:03.560
+You will notice, okay, everything looks inconsistent and you can define a big task to go and rename
+
+01:03.560 --> 01:05.570
+everything following a specific role.
+
+01:05.570 --> 01:11.570
+So instead of wasting all this time at this phase, you go and define the naming conventions and let's
+
+01:11.570 --> 01:12.450
+go and do that.
+
+01:12.450 --> 01:15.370
+So we will start with a very important decision.
+
+01:15.370 --> 01:19.290
+And that is which naming convention we're going to follow in the whole project.
+
+01:19.290 --> 01:26.370
+So you have different cases like the camel case, the Pascal case, the kebab case and the snake case.
+
+01:26.370 --> 01:31.490
+And for this project we're going to go with the snake case, where all the letters of a word are going
+
+01:31.490 --> 01:33.170
+to be lowercase.
+
+01:33.170 --> 01:36.690
+And the separation between words can be an underscore.
+
+01:36.730 --> 01:42.530
+For example, a table name called customer info, customer is lowercase, info is as well lowercase
+
+01:42.530 --> 01:44.370
+and between them an underscore.
+
+01:44.370 --> 01:48.370
+So this is always the first thing that you have to decide for your data projects.
+
+01:48.370 --> 01:50.970
+The second thing is to decide the language.
+
+01:50.970 --> 01:55.850
+So for example I work in Germany and there is always like a decision that we have to make whether we
+
+01:55.850 --> 01:57.370
+use Germany or English.
+
+01:57.370 --> 02:00.930
+So we have to decide for our project which language we're going to use.
+
+02:00.970 --> 02:05.530
+And a very important general rule that avoid reserved words.
+
+02:05.530 --> 02:11.900
+So don't use SQL reserved word as an object name like for example table don't give a table name as a
+
+02:11.900 --> 02:12.340
+table.
+
+02:12.340 --> 02:14.500
+So those are the general principles.
+
+02:14.500 --> 02:18.660
+So those are the general rules that you have to follow in the whole project.
+
+02:18.660 --> 02:23.980
+This applies for everything for tables, columns, stored procedures, any names that you are giving
+
+02:23.980 --> 02:24.820
+in your scripts.
+
+02:24.860 --> 02:25.540
+Now moving on.
+
+02:25.540 --> 02:28.220
+We have specifications for the table names.
+
+02:28.220 --> 02:31.380
+And here we have different set of rules for each layer.
+
+02:31.380 --> 02:35.100
+So here the rule says source system underscore entity.
+
+02:35.100 --> 02:40.540
+So we are saying all the tables in the bronze layer should start first with the source system name like
+
+02:40.540 --> 02:42.820
+for example CRM or IRB.
+
+02:42.820 --> 02:44.660
+And after that we have an underscore.
+
+02:44.700 --> 02:48.180
+And then at the end we have the entity name or the table name.
+
+02:48.180 --> 02:51.660
+So for example we have this table name CRM underscore.
+
+02:51.780 --> 02:55.580
+So that means this table comes from the source system CRM.
+
+02:55.580 --> 02:59.220
+And then we have the table name the entity name customer info.
+
+02:59.220 --> 03:03.260
+So this is the rule that we're going to follow in naming all tables in the bronze layer.
+
+03:03.300 --> 03:08.820
+Then moving on to the silver layer, it is exactly like the bronze because we are not going to rename
+
+03:08.820 --> 03:09.260
+anything.
+
+03:09.260 --> 03:12.100
+We are not going to build any new data model.
+
+03:12.100 --> 03:15.440
+So the naming can be 1 to 1 like the bronze.
+
+03:15.440 --> 03:18.000
+So it is exactly the same rules as the bronze.
+
+03:18.000 --> 03:23.920
+But if we go to the gold here, since we are building a new data model, we have to go and rename things.
+
+03:23.960 --> 03:29.720
+And since as well we are integrating multiple sources together, we will not be using the source system
+
+03:29.720 --> 03:34.000
+name in the tables because inside one table you could have multiple sources.
+
+03:34.000 --> 03:39.840
+So the rule says all the names must be meaningful business aligned names for the tables, starting with
+
+03:39.840 --> 03:41.280
+the category prefix.
+
+03:41.280 --> 03:46.320
+So here the rule says it starts with category, then underscore and then entity.
+
+03:46.360 --> 03:50.760
+Now what is category we have in the gold layer different types of tables.
+
+03:50.760 --> 03:53.440
+So we could build a table called a fact table.
+
+03:53.440 --> 03:55.320
+Another one could be a dimension.
+
+03:55.400 --> 03:58.560
+A third type could be an aggregation or reports.
+
+03:58.600 --> 04:00.720
+So we have different types of tables.
+
+04:00.880 --> 04:04.400
+And we can specify those types as a prefix at the start.
+
+04:04.400 --> 04:08.840
+So for example we are saying here a facts underscore sales.
+
+04:08.840 --> 04:12.320
+So the category is the fact and the table name called sales.
+
+04:12.320 --> 04:15.800
+And here I just made like a table with different type of patterns.
+
+04:15.800 --> 04:17.370
+So we could have a dimension.
+
+04:17.370 --> 04:20.010
+So we say it starts with the dim underscore.
+
+04:20.050 --> 04:23.050
+For example dim customers or products.
+
+04:23.050 --> 04:25.330
+And then we have another type called fact table.
+
+04:25.330 --> 04:30.850
+So it starts with fact underscore or aggregated table where we have the first three characters like
+
+04:30.890 --> 04:33.730
+aggregating the customers or the sales monthly.
+
+04:33.730 --> 04:38.770
+So as you can see, as you are creating a naming convention, you have first to make it clear what is
+
+04:38.770 --> 04:43.170
+the rule, describe each part of the rule and start giving examples.
+
+04:43.170 --> 04:47.290
+So with that, we make it clear for the whole team which names they should follow.
+
+04:47.290 --> 04:50.250
+So we talked here about the table naming convention.
+
+04:50.250 --> 04:53.410
+Then you can as well go and make a naming convention for the columns.
+
+04:53.450 --> 04:58.090
+Like for example in the gold layer we're going to go and have surrogate keys so we can define it like
+
+04:58.090 --> 04:58.650
+this.
+
+04:58.690 --> 05:02.770
+The surrogate key should start with a table name and then underscore a key.
+
+05:02.810 --> 05:05.530
+Like for example we can call it customer underscore key.
+
+05:05.570 --> 05:08.010
+It is a surrogate key in that dimension.
+
+05:08.010 --> 05:10.570
+Customers the same thing for technical columns.
+
+05:10.610 --> 05:16.170
+As a data engineer, we might add our own columns to the tables that don't come from the source system.
+
+05:16.170 --> 05:20.650
+And those columns are the technical columns, or sometimes we call them metadata columns.
+
+05:20.690 --> 05:27.100
+Now in order to separate them from the original columns that comes from the source system, we can have
+
+05:27.100 --> 05:28.500
+like a prefix for that.
+
+05:28.500 --> 05:33.180
+Like for example, the rule says if you are building any technical or metadata columns, the columns
+
+05:33.180 --> 05:37.380
+should start with DW, underscore and then the column name.
+
+05:37.380 --> 05:43.060
+For example, if you want the metadata load date, we can have DW underscore load dates.
+
+05:43.100 --> 05:49.340
+So with that, if anyone sees that column starts with DW, we understand this data comes from a data
+
+05:49.340 --> 05:49.820
+engineer.
+
+05:49.820 --> 05:53.580
+And we can keep adding rules like for example, the stored procedure over here.
+
+05:53.580 --> 05:59.100
+If you are making an ETL script, then it should start with the prefix load underscore and then the
+
+05:59.100 --> 05:59.420
+layer.
+
+05:59.420 --> 06:05.300
+For example, the stored procedure that is responsible for loading the bronze can be called load underscore
+
+06:05.300 --> 06:05.860
+bronze.
+
+06:05.860 --> 06:08.540
+And for the silver load underscore silver.
+
+06:08.540 --> 06:11.660
+So those are currently the rules for the stored procedure.
+
+06:11.660 --> 06:13.660
+So this is how I do it usually in my projects.
+
+06:13.660 --> 06:14.420
+All right my friends.
+
+06:14.420 --> 06:17.780
+So with that we have a solid naming conventions for our projects.
+
+06:17.780 --> 06:18.820
+So this is done.
+
+06:18.820 --> 06:20.860
+And now the next tip that we're going to go to git.
+
+06:20.860 --> 06:23.540
+And you will create a brand new repository.
+
+06:23.540 --> 06:25.340
+And we're going to prepare its structure.
+
+06:25.340 --> 06:25.980
+So let's go.

@@ -1,0 +1,241 @@
+WEBVTT
+
+00:03.960 --> 00:09.520
+Okay, so now Union Oil, Union Oil can go and return all rows from both queries.
+
+00:09.520 --> 00:10.960
+So it's very similar to Union.
+
+00:10.960 --> 00:16.360
+It can go and combine all the rows and everything going to be presented in the combined result sets.
+
+00:16.400 --> 00:18.320
+But the big difference to the union.
+
+00:18.360 --> 00:21.200
+Union all will not remove any duplicates.
+
+00:21.200 --> 00:25.360
+It is the only set operators that doesn't remove duplicates.
+
+00:25.360 --> 00:28.000
+And it's going to show all the rows as it is.
+
+00:28.000 --> 00:33.360
+So if you have row ten times from the query, you will find it as well in the output ten times.
+
+00:33.440 --> 00:36.480
+Now you might ask me when to use union and when to use union.
+
+00:36.480 --> 00:42.080
+All I'm going to say that there is one big difference between them is that union all has way better
+
+00:42.080 --> 00:48.320
+performance and it's faster than the union, and that's because union all doesn't perform additional
+
+00:48.320 --> 00:50.360
+steps like removing duplicates.
+
+00:50.360 --> 00:54.960
+So my friends, that means if you know already that in my queries there is no duplicates.
+
+00:54.960 --> 00:58.120
+I know my tables, I know my queries, there is no duplicates.
+
+00:58.320 --> 01:03.030
+Don't use union and always use union, all because you will get better performance.
+
+01:03.070 --> 01:06.230
+Another scenario for the union all is that I would like to see the duplicate.
+
+01:06.230 --> 01:11.670
+I'm doing data quality checks and I would like to see whether there is duplicate after I combine multiple
+
+01:11.670 --> 01:12.310
+queries.
+
+01:12.310 --> 01:15.470
+So in this situation I go and use as well the union all.
+
+01:15.510 --> 01:16.910
+Now we have again the same example.
+
+01:16.910 --> 01:22.670
+We have the customers and employees and we have as well the same persons given and Mary as customers
+
+01:22.670 --> 01:24.110
+and as well as employees.
+
+01:24.110 --> 01:30.390
+So now if we want to combine the data using union all, it can return all rows including duplicates.
+
+01:30.390 --> 01:33.270
+So that means SQL can go and execute union all like this.
+
+01:33.310 --> 01:37.510
+It can return everything from customers and everything from employees.
+
+01:37.630 --> 01:41.110
+And Kevin and Mary can be presented twice in the output.
+
+01:41.110 --> 01:46.830
+So as you can see, Union all is returning all the rows as it is from the two result sets.
+
+01:46.870 --> 01:50.630
+And if there is duplicates in the sets, we will get as well duplicates in the output.
+
+01:50.710 --> 01:54.950
+So Kevin is going to be existing twice in the output and Mary as well twice.
+
+01:54.950 --> 01:56.750
+So this is how the union all works.
+
+01:56.790 --> 01:57.140
+All right.
+
+01:57.140 --> 01:58.740
+So now we have very similar SQL task.
+
+01:58.740 --> 02:04.900
+And it says combine the data from employees and customers into one table including duplicates.
+
+02:04.900 --> 02:06.500
+So it's exactly like the last task.
+
+02:06.500 --> 02:09.980
+But this time in the task we are saying include duplicates.
+
+02:10.140 --> 02:11.660
+So we cannot go and use union.
+
+02:11.660 --> 02:15.700
+We have now to go and use union all we will have the exact same query.
+
+02:15.700 --> 02:19.820
+So we are selecting the employees first last name and as well customers first last name.
+
+02:20.060 --> 02:23.220
+And now instead of using union we're going to go and use union.
+
+02:23.220 --> 02:24.540
+All so all what we have to do with that.
+
+02:24.540 --> 02:26.820
+So go over here and say union all.
+
+02:27.020 --> 02:28.420
+So now pay attention to this.
+
+02:28.420 --> 02:34.540
+As you can see in the union previously we got eight records or eight persons from the output.
+
+02:34.540 --> 02:37.260
+So now let's go and execute it and check the results.
+
+02:37.300 --> 02:40.060
+Now as you can see we got now ten persons instead of eight.
+
+02:40.060 --> 02:43.540
+And that's because we have five customers and five employees.
+
+02:43.700 --> 02:45.140
+And we have duplicates inside the data.
+
+02:45.140 --> 02:46.140
+We have two duplicates.
+
+02:46.180 --> 02:47.740
+Now if you check we have here Mary.
+
+02:47.740 --> 02:49.500
+And as well over here we have Mary.
+
+02:49.500 --> 02:50.820
+And same goes for Kevin.
+
+02:50.820 --> 02:52.700
+We have Kevin over here and as well here.
+
+02:52.700 --> 02:55.020
+So we have duplicates inside the data and SQL.
+
+02:55.120 --> 02:56.480
+just combine the two tables.
+
+02:56.520 --> 02:56.680
+Okay.
+
+02:56.720 --> 02:58.800
+So now we can understand how SQL execute.
+
+02:58.840 --> 03:00.720
+Union all in order to combine data.
+
+03:00.720 --> 03:01.040
+All right.
+
+03:01.040 --> 03:02.680
+Again we have the two results from queries.
+
+03:02.680 --> 03:04.480
+We have the employees and customers.
+
+03:04.480 --> 03:05.640
+And SQL can do the same.
+
+03:05.640 --> 03:06.000
+Steps.
+
+03:06.000 --> 03:10.520
+First going to go and get the column names from the first query and put it in the output.
+
+03:10.560 --> 03:16.000
+It's going to go and take all the employees and put it in the output without checking anything.
+
+03:16.000 --> 03:20.080
+So that means if there is duplicates in the data, it's going to be presented as well in the outputs.
+
+03:20.120 --> 03:21.080
+It's very simple.
+
+03:21.120 --> 03:22.720
+Now it's going to go to the second step.
+
+03:22.720 --> 03:28.800
+And as well take all the customers and append it into to the output like this.
+
+03:28.800 --> 03:29.520
+So that's it.
+
+03:29.520 --> 03:30.240
+It's very fast.
+
+03:30.240 --> 03:34.840
+It's going to go and just combine all the rows from the employees and all the rows from the customers.
+
+03:34.840 --> 03:36.960
+And with that we're going to get that ten persons.
+
+03:36.960 --> 03:38.680
+And as you can see we have duplicates in the data.
+
+03:38.680 --> 03:41.640
+So we have married twice and given as well twice.
+
+03:41.640 --> 03:44.080
+And that's why union all is the fastest.
+
+03:44.120 --> 03:46.480
+It doesn't have any extra steps or checks.
+
+03:46.520 --> 03:50.080
+Just taking all rows from all queries and put it in the output.
+
+03:50.120 --> 03:50.520
+All right.
+
+03:50.520 --> 03:52.320
+So as you can see it's very simple right.
+
+03:52.320 --> 03:54.000
+So that's all for the union all.

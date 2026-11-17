@@ -1,0 +1,274 @@
+WEBVTT
+
+00:00.080 --> 00:00.400
+All right.
+
+00:00.440 --> 00:03.400
+So now the big question is how to build the bronze layer.
+
+00:03.440 --> 00:05.840
+So first things first we do analizing.
+
+00:05.880 --> 00:09.440
+As you are developing anything you don't immediately start writing a code.
+
+00:09.440 --> 00:14.760
+So before we start coding the bronze layer, what we usually do is we have to understand the source
+
+00:14.760 --> 00:15.320
+system.
+
+00:15.320 --> 00:21.200
+So what I usually do, I make an interview with the source system experts and ask them many, many questions
+
+00:21.200 --> 00:26.760
+in order to understand the nature of the source system that I'm connecting to the data warehouse.
+
+00:26.760 --> 00:30.160
+And once you know the source systems, then we can start coding.
+
+00:30.160 --> 00:33.160
+And the main focus here is to do the data ingestion.
+
+00:33.160 --> 00:39.080
+So that means we have to find a way on how to load the data from the source into the data warehouse.
+
+00:39.080 --> 00:44.200
+So it's like we are building a bridge between the source and our target system, the data warehouse.
+
+00:44.200 --> 00:48.560
+And once we have the code ready, the next step is to have to do data validation.
+
+00:48.560 --> 00:50.440
+So here comes the quality control.
+
+00:50.440 --> 00:53.920
+It is very important in the bronze layer to check the data completeness.
+
+00:53.920 --> 01:00.280
+So that means we have to compare the number of records between the source system and the bronze layer,
+
+01:00.320 --> 01:02.760
+just to make sure we are not losing any data in between.
+
+01:02.760 --> 01:07.300
+And another check that we will be doing is the schema checks, and that's to make sure that the data
+
+01:07.300 --> 01:09.300
+is placed on the right position.
+
+01:09.300 --> 01:14.540
+And finally, we don't have to forget about documentation and committing our work in the git.
+
+01:14.580 --> 01:18.140
+So this is the process that we're going to follow to build the bronze layer.
+
+01:18.300 --> 01:19.140
+All right my friends.
+
+01:19.140 --> 01:23.620
+So now before connecting any source systems to our data warehouse, we have to make a very important
+
+01:23.620 --> 01:26.180
+step is to understand the sources.
+
+01:26.180 --> 01:31.460
+So how I usually do it I set up a meeting with the source systems experts in order to interview them,
+
+01:31.460 --> 01:33.940
+to ask them a lot of stuff about the source.
+
+01:33.980 --> 01:39.220
+And gaining this knowledge is very important, because asking the right question will help you to design
+
+01:39.220 --> 01:44.500
+the correct scripts in order to extract the data and to avoid a lot of mistakes and challenges.
+
+01:44.540 --> 01:49.100
+And now I'm going to show you the most common questions that I usually ask before connecting anything.
+
+01:49.140 --> 01:49.380
+Okay.
+
+01:49.420 --> 01:53.420
+So we start first by understanding the business context and the ownership.
+
+01:53.420 --> 01:56.020
+So I would like to understand the story behind the data.
+
+01:56.060 --> 02:00.300
+I would like to understand who is responsible for the data, which IT departments and so on.
+
+02:00.300 --> 02:04.580
+And then it's nice to understand as well what business process it supports.
+
+02:04.580 --> 02:10.520
+Does it support the customer transactions, the supply chain logistics or maybe finance reporting.
+
+02:10.600 --> 02:13.160
+So with that you can understand the importance of your data.
+
+02:13.200 --> 02:16.560
+And then I ask about the system and data documentation.
+
+02:16.560 --> 02:20.960
+So having documentations from the source is your learning materials about your data.
+
+02:20.960 --> 02:26.480
+And it saves you a lot of time later when you are working and designing maybe new data models.
+
+02:26.480 --> 02:31.080
+And as well I would like always to understand the data model for the source system.
+
+02:31.080 --> 02:35.280
+And if they have like descriptions of the columns and the tables, it's going to be nice to have the
+
+02:35.280 --> 02:36.000
+data catalog.
+
+02:36.000 --> 02:40.480
+This can helps me a lot in the data warehouse, how I'm going to go and join the tables together.
+
+02:40.480 --> 02:45.840
+So with that you get a solid foundations about the business context, the processes and the ownership
+
+02:45.840 --> 02:46.480
+of the data.
+
+02:46.520 --> 02:50.000
+And now in the next step we're going to start talking about the technicality.
+
+02:50.000 --> 02:53.600
+So I would like to understand the architecture and as well the technology stack.
+
+02:53.600 --> 02:58.360
+So the first question that I usually ask is how the source system is storing the data.
+
+02:58.360 --> 03:04.160
+Do we have the data on the on prem like in SQL Server or Oracle, or is it in the cloud like Azure,
+
+03:04.600 --> 03:05.520
+AWS and so on.
+
+03:05.560 --> 03:11.150
+And then once we understand that, then we can discuss what are the integration capabilities, like
+
+03:11.150 --> 03:12.790
+how I'm gonna go and get the data.
+
+03:12.790 --> 03:18.630
+Do the source system offer APIs, maybe Kafka, or they have only like file extractions, or they're
+
+03:18.630 --> 03:21.630
+gonna give you, like a direct connection to the database.
+
+03:21.630 --> 03:25.910
+So once you understand the technology that you're going to use in order to extract the data, then we're
+
+03:25.910 --> 03:28.390
+gonna deep dive into more technical questions.
+
+03:28.390 --> 03:33.590
+And here we can understand how to extract the data from the source system and then load it into the
+
+03:33.590 --> 03:34.590
+data warehouse.
+
+03:34.590 --> 03:39.790
+So the first thing that we have to discuss with the experts, can we do an incremental load or a full
+
+03:39.790 --> 03:40.150
+load.
+
+03:40.190 --> 03:44.310
+And then after that we're going to discuss the data scope the sterilizations.
+
+03:44.310 --> 03:45.590
+Do we need all data.
+
+03:45.590 --> 03:47.870
+Do we need only maybe ten years of the data?
+
+03:47.950 --> 03:53.430
+Are there histories already in the source system or should we build it in the data warehouse and so
+
+03:53.430 --> 03:53.750
+on.
+
+03:53.790 --> 03:57.990
+And then we're going to go and discuss what is the expected size of the extracts.
+
+03:58.030 --> 04:01.510
+Are we talking here about megabytes gigabytes, terabytes.
+
+04:01.550 --> 04:07.150
+And this is very important to understand whether we have the right tools and platform to connect the
+
+04:07.150 --> 04:07.870
+source system.
+
+04:07.910 --> 04:12.590
+And then I try to understand whether there are any data volume limitations, like if you have some old
+
+04:12.590 --> 04:16.250
+source systems they might struggle a lot with performance and so on.
+
+04:16.250 --> 04:21.690
+So if you have like an ETL that is extracting large amounts of data, you might bring the performance
+
+04:21.690 --> 04:23.050
+down of that source system.
+
+04:23.050 --> 04:27.610
+So that's why you have to try to understand whether there are any limitations for your extracts, and
+
+04:27.610 --> 04:31.610
+as well other aspects that might impact the performance of the source system.
+
+04:31.610 --> 04:32.530
+This is very important.
+
+04:32.530 --> 04:37.650
+If they give you an access to the database, you have to be responsible that you are not bringing the
+
+04:37.650 --> 04:39.810
+performance of the database down.
+
+04:39.810 --> 04:44.730
+And of course, very important question is to ask about the authentication and the authorization, like
+
+04:44.730 --> 04:47.370
+how are you going to go and access the data in the source system?
+
+04:47.370 --> 04:50.410
+Do you need any tokens, keys, passwords and so on.
+
+04:50.410 --> 04:55.450
+So those are the questions that you have to ask if you are connecting new source system to the data
+
+04:55.450 --> 04:56.130
+warehouse.
+
+04:56.130 --> 05:01.090
+And once you have the answers for those questions, you can proceed with the next steps to connect the
+
+05:01.090 --> 05:03.050
+sources to the data warehouse.
+
+05:03.090 --> 05:03.850
+All right, my friends.
+
+05:03.850 --> 05:08.770
+So with that, you have learned how to analyze new source systems that you want to connect to your data
+
+05:08.770 --> 05:09.370
+warehouse.
+
+05:09.370 --> 05:10.770
+So this tip is done.
+
+05:10.770 --> 05:15.250
+And now we're going to go back to coding where we're going to write scripts in order to do the data
+
+05:15.250 --> 05:18.210
+ingestion from the CSV files to the process layer.

@@ -1,0 +1,97 @@
+WEBVTT
+
+00:03.920 --> 00:09.720
+So now I'm combining two tables and I want to see in the results only the matching data between two
+
+00:09.760 --> 00:10.440
+tables.
+
+00:10.440 --> 00:12.560
+Then I go and use the inner join.
+
+00:12.560 --> 00:15.120
+We don't have any other type for that, so that's simple.
+
+00:15.120 --> 00:20.280
+But now if I want to see everything, all the data, I don't want to miss anything after joining two
+
+00:20.320 --> 00:20.880
+tables.
+
+00:20.880 --> 00:22.120
+Then I take a different path.
+
+00:22.160 --> 00:26.080
+And here I ask myself, is there like one side more important than the other?
+
+00:26.120 --> 00:29.360
+Am I interested in all data from one table?
+
+00:29.360 --> 00:30.120
+From one side?
+
+00:30.120 --> 00:33.000
+Like here we have like a main table or a master table.
+
+00:33.000 --> 00:35.080
+Then I go and use the left join.
+
+00:35.080 --> 00:39.040
+But if I want to see all the data from all tables in my query, everything.
+
+00:39.040 --> 00:43.720
+So there is no one table more important than other, then I go with the full join.
+
+00:43.720 --> 00:45.160
+So this is another path.
+
+00:45.160 --> 00:49.320
+And now the third path if I'm interested to see only the unmatching data.
+
+00:49.320 --> 00:51.920
+So I'm doing some kind of checkups and so on.
+
+00:51.920 --> 00:53.040
+And here again the same thing.
+
+00:53.080 --> 00:56.080
+Do I want to see the unmatching data from only one side?
+
+00:56.120 --> 00:58.200
+There is like one table that is important.
+
+00:58.200 --> 01:00.760
+Then I go and use the left anti-join.
+
+01:00.760 --> 01:06.520
+So I want to see the unmatching data from one table, and I'm using the other table only for the check.
+
+01:06.520 --> 01:11.720
+But in my query, if both of the tables are important, there is no main table and secondary table.
+
+01:11.760 --> 01:12.880
+Both are important.
+
+01:12.920 --> 01:15.320
+Then I go and use the full Antijoin.
+
+01:15.320 --> 01:16.520
+So actually that's it.
+
+01:16.520 --> 01:22.160
+This is the decision tree that I follow usually as I'm writing a query and you might ask me how about
+
+01:22.160 --> 01:23.120
+the right join?
+
+01:23.120 --> 01:28.040
+Well, as you know me, I don't have it at all in my decision tree, so I don't use it at all.
+
+01:28.080 --> 01:33.720
+Now, by looking to this, I can tell you if I check most of the queries that I write very often I use
+
+01:33.720 --> 01:38.160
+the left join so I can tell you this is my favorite way on how to join tables.
+
+01:38.160 --> 01:39.760
+So let me show you exactly why.

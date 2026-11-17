@@ -1,0 +1,529 @@
+WEBVTT
+
+00:03.920 --> 00:09.040
+Okay, so what is exactly ordered by you can use this type of clause in order to sort your data.
+
+00:09.040 --> 00:12.720
+And of course, in order to sort your data, you have to decide on two mechanisms.
+
+00:12.760 --> 00:18.400
+Either you want to sort your data ascending from the lowest value to the highest value, or exactly
+
+00:18.400 --> 00:22.400
+the opposite way, using descending from the highest value to the lowest.
+
+00:22.400 --> 00:24.200
+And the syntax can looks like this.
+
+00:24.200 --> 00:30.040
+So as usual, we start with the select, then from and after the from, you can specify order by and.
+
+00:30.040 --> 00:34.440
+With that you are telling SQL we have to sort the data and you have to specify two things.
+
+00:34.480 --> 00:40.000
+First you have to specify for SQL the column that should be used in order to sort the results.
+
+00:40.000 --> 00:41.840
+So for example you can say score.
+
+00:41.840 --> 00:44.760
+And after the column name you have to specify the mechanism.
+
+00:44.760 --> 00:48.000
+So for example you say ascending from the lowest to the highest.
+
+00:48.000 --> 00:53.120
+And in SQL if you don't specify the mechanism the default is going to be ascending.
+
+00:53.120 --> 00:57.040
+So you will not get an error if you don't specify anything after the column name.
+
+00:57.040 --> 01:03.730
+But my advice here is always to specify Something after the column easier because it's just straightforward
+
+01:03.730 --> 01:05.050
+and easier to understand.
+
+01:05.050 --> 01:08.610
+And if someone reads it, can understand immediately it's going to be ascending.
+
+01:08.610 --> 01:12.170
+Because maybe not everyone knows what is the default in SQL.
+
+01:12.170 --> 01:15.930
+So always specify a value, even if it's like easier to skip it.
+
+01:15.930 --> 01:20.650
+And if you want to store the data from the highest to the lowest, then you can specify descending.
+
+01:20.650 --> 01:23.010
+So as usual SQL can go and start from the from.
+
+01:23.010 --> 01:25.210
+It's going to go and grab your data from database.
+
+01:25.210 --> 01:28.770
+Then the second step is going to go and sort the results.
+
+01:28.770 --> 01:30.610
+So the order by is going to be executed.
+
+01:30.610 --> 01:33.370
+And SQL is going to say okay, I'm going to sort it by the score.
+
+01:33.370 --> 01:39.330
+And using descending mechanism and SQL can go and start like moving around your rows where the first
+
+01:39.330 --> 01:42.130
+row is going to be the customer with the highest score.
+
+01:42.130 --> 01:45.770
+And in this example John has the highest score, the 900.
+
+01:45.770 --> 01:49.170
+So John can appear as a first row at the results.
+
+01:49.170 --> 01:50.650
+And that's because his score.
+
+01:50.650 --> 01:54.370
+And after that the second highest is going to be George with 750.
+
+01:54.410 --> 01:56.850
+And SQL is going to go and keep sorting the data.
+
+01:56.850 --> 02:03.180
+And then we have 500 then Than 350, and the last row going to be the customer with the lowest score.
+
+02:03.340 --> 02:03.900
+The zero.
+
+02:03.900 --> 02:06.580
+So this is how SQL executes your order by now.
+
+02:06.580 --> 02:08.540
+Let's go back to SQL in order to practice.
+
+02:08.540 --> 02:08.900
+All right.
+
+02:08.900 --> 02:10.180
+So now we have the following task.
+
+02:10.180 --> 02:15.980
+And it says retrieve all customers and sort the result by the highest score first.
+
+02:15.980 --> 02:18.620
+So now by looking to the task we need all the customers.
+
+02:18.620 --> 02:21.540
+So there is like no conditions or anything to filter.
+
+02:21.540 --> 02:23.260
+But we have to sort the results.
+
+02:23.260 --> 02:24.500
+So let's go and do that.
+
+02:24.500 --> 02:29.340
+So we're going to start as usual by selecting all the columns from the table customers.
+
+02:29.340 --> 02:32.460
+So now if you go and execute it you will get all your customers.
+
+02:32.460 --> 02:35.780
+And you are now seeing the data exactly like stored in the database.
+
+02:35.780 --> 02:39.060
+And you can see the result is not sorted by the scores.
+
+02:39.060 --> 02:42.900
+So we have here a low score, then high score, then low and so on.
+
+02:42.900 --> 02:45.500
+Now the task says we have to sort the results.
+
+02:45.500 --> 02:48.140
+So we have to go and use the order by.
+
+02:48.180 --> 02:50.180
+And now you have to understand from which column.
+
+02:50.180 --> 02:51.940
+And we can get that from the task.
+
+02:51.940 --> 02:54.700
+So it says it should be sorted by the score.
+
+02:54.700 --> 02:56.700
+So we're going to go and define the score here.
+
+02:56.700 --> 03:01.470
+And the final thing that you have to define is the mechanism descending or ascending, and you can get
+
+03:01.470 --> 03:02.510
+it as well from the task.
+
+03:02.510 --> 03:05.470
+So we have to sort the data by the highest score first.
+
+03:05.470 --> 03:07.550
+So the highest first and then the lowest.
+
+03:07.550 --> 03:10.350
+So that means we're going to go and use that descending.
+
+03:10.350 --> 03:11.350
+So that's all.
+
+03:11.390 --> 03:12.710
+Let's go and execute it.
+
+03:12.750 --> 03:16.150
+Now as you can see in the results the first customer has the highest score.
+
+03:16.230 --> 03:21.230
+Then we have the second one with the second highest until the last one with the lowest score.
+
+03:21.270 --> 03:21.790
+That's it.
+
+03:21.790 --> 03:23.070
+This is how you sort your data.
+
+03:23.070 --> 03:24.710
+And with that we have solved the task.
+
+03:24.710 --> 03:26.750
+Now let's do exactly the opposite.
+
+03:26.750 --> 03:30.270
+So we want to sort the results by the lowest score first.
+
+03:30.270 --> 03:33.630
+So that means we want to see first the customers with the lowest score.
+
+03:33.670 --> 03:38.910
+Like here in this example we should see the ID number five as the first because he has the lowest score
+
+03:38.950 --> 03:39.470
+the zero.
+
+03:39.510 --> 03:42.870
+Now in order to do that all what you have to do is to switch the mechanism.
+
+03:42.870 --> 03:45.270
+Instead of descending, we can use ascending.
+
+03:45.310 --> 03:46.670
+Let's go and execute it.
+
+03:46.670 --> 03:47.310
+And that's it.
+
+03:47.310 --> 03:49.550
+As you can see now we have the lowest score.
+
+03:49.590 --> 03:54.950
+Then the second lowest score until the last row it's going to be the customer with the highest score.
+
+03:54.950 --> 03:57.150
+So the lowest score comes first.
+
+03:57.190 --> 03:58.280
+So it is very simple.
+
+03:58.280 --> 04:00.400
+This is how you sort your data using SQL.
+
+04:04.280 --> 04:07.160
+And now I'm going to show you one more thing that you can do with the order by.
+
+04:07.200 --> 04:11.800
+You can sort your data using multiple columns and we call it nested sorting.
+
+04:11.840 --> 04:16.640
+So now let's take this very simple example where you want to sort your data using country.
+
+04:16.640 --> 04:19.360
+So we are saying order by the column country.
+
+04:19.360 --> 04:21.240
+And the mechanism is going to be ascending.
+
+04:21.240 --> 04:23.000
+So from the lowest to the highest.
+
+04:23.040 --> 04:27.120
+Now if you do that SQL can go and sort the data this time based on the country.
+
+04:27.120 --> 04:31.480
+So we're going to have like the first two customers from Germany is sorting it alphabetically.
+
+04:31.480 --> 04:34.640
+Then we have the UK and the last two are going to be from USA.
+
+04:34.680 --> 04:37.920
+Now if you are checking the final results, you might say, you know what?
+
+04:37.920 --> 04:39.280
+There is like something wrong.
+
+04:39.280 --> 04:42.040
+The data is not completely sorted correctly.
+
+04:42.040 --> 04:47.040
+So if you are looking to the first two customers that come from country Germany, you can see the scores
+
+04:47.080 --> 04:50.840
+are sorted in ascending way from the lowest to the highest.
+
+04:50.840 --> 04:54.040
+So first we have 350, then 500, then UK.
+
+04:54.080 --> 04:56.040
+It's fine because we have only one customer.
+
+04:56.080 --> 04:58.260
+Now if you look to the customers from USA.
+
+04:58.300 --> 05:00.860
+You see that it is like sorted the way around.
+
+05:00.860 --> 05:03.940
+It is sorted, descending from the highest to the lowest.
+
+05:03.940 --> 05:06.420
+So first we have the score 900, then zero.
+
+05:06.420 --> 05:11.300
+So there is like no clean way on how the data is sorted and the result is not really clean.
+
+05:11.300 --> 05:16.580
+And this issue happens usually if you are sorting your data based in a column that has repetition,
+
+05:16.620 --> 05:19.460
+like here, the country we have twice Germany and twice USA.
+
+05:19.500 --> 05:25.860
+So now in order to refine the sorting and make it more correct, we can include in the sorting another
+
+05:25.860 --> 05:26.380
+column.
+
+05:26.380 --> 05:28.260
+And this scenario for example the score.
+
+05:28.260 --> 05:33.180
+So we can make a list of columns in the order by and we can separate them using the comma.
+
+05:33.180 --> 05:35.820
+And of course you can have different mechanism for each column.
+
+05:35.820 --> 05:38.180
+Like for the country we are seeing it is ascending.
+
+05:38.180 --> 05:41.140
+But for the score we say, you know what, let's make a descending.
+
+05:41.140 --> 05:43.780
+It will not be only one for all columns.
+
+05:43.780 --> 05:47.580
+So now what can happen is we can start sorting the data for each section.
+
+05:47.580 --> 05:52.140
+So for the two customers from Germany, the sorting going to be from the highest to the lowest.
+
+05:52.140 --> 05:54.540
+So it can go and switch the two customers.
+
+05:54.540 --> 05:58.270
+So Martin going to be first because he has higher score than Mario.
+
+05:58.270 --> 06:01.350
+And with that, we are refining the scores based on the same value.
+
+06:01.390 --> 06:05.710
+Of course, the country now for the UK, nothing going to happen because we have only one value.
+
+06:05.710 --> 06:11.470
+And for the USA as well, nothing can happen because it is already sorted in the correct way from the
+
+06:11.470 --> 06:12.390
+highest to the lowest.
+
+06:12.390 --> 06:17.150
+So as you can see, if you are including a second column, you are refining your sorting.
+
+06:17.150 --> 06:20.110
+And as well my friends, the order is very important.
+
+06:20.110 --> 06:23.470
+So this is how you can do nested sorting in SQL.
+
+06:23.510 --> 06:26.030
+Let's go back to our SQL and start practicing.
+
+06:26.070 --> 06:26.390
+All right.
+
+06:26.390 --> 06:27.550
+So now we have the following task.
+
+06:27.550 --> 06:34.830
+And it says retrieve all customers and sort the results by the country and then by the highest score.
+
+06:34.870 --> 06:36.710
+So again we need all customers.
+
+06:36.710 --> 06:39.670
+So select everything from customers table.
+
+06:39.710 --> 06:43.030
+And now the task says we have to sort the result by the country.
+
+06:43.030 --> 06:44.990
+So we're going to start with the order by.
+
+06:44.990 --> 06:49.630
+And since it says by the country we're going to go with the country and we're going to sort it alphabetically.
+
+06:49.630 --> 06:51.070
+So it's going to be ascending.
+
+06:51.070 --> 06:52.350
+So let's go execute it.
+
+06:52.350 --> 06:56.030
+Now you can see the data is sorted completely differently by the country.
+
+06:56.120 --> 06:58.680
+So we have first Germany, UK and then USA.
+
+06:58.720 --> 06:59.960
+But that's not all.
+
+07:00.000 --> 07:02.880
+And says then by the highest score.
+
+07:02.920 --> 07:05.880
+So we have to go and include another column in the sorting.
+
+07:05.880 --> 07:10.360
+And we can go and add that by adding a comma and then mention another column the score.
+
+07:10.360 --> 07:12.320
+And now we have to specify the mechanism.
+
+07:12.360 --> 07:14.280
+It says by the highest score.
+
+07:14.280 --> 07:16.000
+So the highest must come first.
+
+07:16.000 --> 07:17.760
+And with that we are using descending.
+
+07:17.800 --> 07:22.920
+Now what is the current situation is that if you look to the results, for example, for those two customers
+
+07:22.920 --> 07:25.360
+we have 350 and then 500.
+
+07:25.360 --> 07:28.480
+So that means the scores are sorted ascending right.
+
+07:28.520 --> 07:29.920
+The same thing for USA.
+
+07:30.120 --> 07:31.760
+So from the lowest to the highest.
+
+07:31.800 --> 07:36.080
+Now if you go and do it like this, what can happen is you can go and switch it.
+
+07:36.080 --> 07:37.240
+So you can see over here.
+
+07:37.280 --> 07:42.080
+Now for Germany, first comes the highest the 500 and then the 350.
+
+07:42.120 --> 07:44.120
+And for USA as well they switched.
+
+07:44.120 --> 07:46.080
+So we have the highest and then the lowest.
+
+07:46.080 --> 07:47.520
+And with that we have solved the task.
+
+07:47.520 --> 07:50.160
+Now again the order of those columns are very important.
+
+07:50.160 --> 07:56.090
+So since the scores comes after the country we will not get the highest scores first at are the results.
+
+07:56.090 --> 07:59.010
+So we will not get the 900 as a first row.
+
+07:59.050 --> 08:02.650
+And that's because the scores must be sorted after the country.
+
+08:02.650 --> 08:04.490
+So the country has more priority.
+
+08:04.530 --> 08:06.050
+Now if you go and flip that.
+
+08:06.050 --> 08:10.410
+So let's go over here and say sort first the score and then the country.
+
+08:10.410 --> 08:11.810
+So let's go and execute it.
+
+08:11.890 --> 08:16.650
+School has first to sort the scores so that you will get the 901st.
+
+08:16.650 --> 08:17.050
+Right.
+
+08:17.050 --> 08:18.410
+And then the countries.
+
+08:18.450 --> 08:22.690
+And since there is like no duplicates in the scores, this makes no sense at all.
+
+08:22.690 --> 08:24.090
+So you can go and skip it.
+
+08:24.090 --> 08:28.490
+So nested sorting only makes sense if you have repetition in your results.
+
+08:29.050 --> 08:34.170
+And you can use the help of a second column in order to make the sorting perfect.
+
+08:34.170 --> 08:34.930
+So that's it.
+
+08:34.930 --> 08:37.050
+And with that of course we have solved the task.
+
+08:37.050 --> 08:37.450
+All right.
+
+08:37.450 --> 08:41.530
+So with that you have learned how to sort your data using order by now.
+
+08:41.530 --> 08:47.130
+In the next tip we're going to talk about how to aggregate and group up your data using groupby.
+
+08:47.130 --> 08:51.890
+And we're going to put it between the where and the order by because in the order of the query, the
+
+08:51.890 --> 08:54.770
+groupby comes between the where and the order by.
+
+08:54.810 --> 08:55.530
+So let's go.

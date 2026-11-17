@@ -1,0 +1,334 @@
+WEBVTT
+
+00:03.880 --> 00:04.720
+All right, friends.
+
+00:04.720 --> 00:07.360
+So now you might ask me why we are doing all those stuff.
+
+00:07.360 --> 00:10.400
+Why I would split my data by the columns.
+
+00:10.400 --> 00:13.000
+Well, it's all because of analytics.
+
+00:13.000 --> 00:18.640
+Because in analytics we have like big complex query where we have a lot of data aggregations and stuff
+
+00:18.760 --> 00:19.880
+on big tables.
+
+00:19.880 --> 00:26.880
+And the roster index is perfectly designed in order to improve the performance of such big queries.
+
+00:26.920 --> 00:33.760
+And that's why SQL databases like SQL server and as well BI tools like Tableau and Power BI did adopt
+
+00:33.760 --> 00:38.760
+this method in order to offer fast platform for data analysis.
+
+00:38.760 --> 00:44.680
+So now let's understand exactly why that Columnstore index is way faster for data analysis than the
+
+00:44.680 --> 00:45.680
+row store index.
+
+00:45.680 --> 00:46.400
+So let's go.
+
+00:46.560 --> 00:48.280
+So again we have the customers tables.
+
+00:48.280 --> 00:51.800
+And let's say we have like five customers where we have ID name and status.
+
+00:51.800 --> 00:57.160
+And as we learned before if you are using row store index the data can be stored in multiple databases.
+
+00:57.160 --> 01:02.780
+And in each database we can have the whole record, the whole information about one customer.
+
+01:02.780 --> 01:05.580
+So for this example we're going to have like three databases.
+
+01:05.580 --> 01:09.780
+But if you are using the Columnstore index it's going to be stored a little bit differently.
+
+01:09.780 --> 01:12.540
+So the first column the ID is going to be stored in one database.
+
+01:12.660 --> 01:17.300
+And here the SQL will not go and build a dictionary because the IDs are already short.
+
+01:17.300 --> 01:20.380
+So we're going to have like one data stream with all IDs.
+
+01:20.420 --> 01:21.780
+And now for the next column name.
+
+01:21.780 --> 01:26.620
+It's going to be stored in separate database where we're going to have an extra dictionary page where
+
+01:26.620 --> 01:30.420
+each name is going to be mapped to one small value so that data can be compressed.
+
+01:30.420 --> 01:31.860
+And we're going to save storage.
+
+01:31.860 --> 01:36.300
+Now the database is going to create for the third column the status one more data page.
+
+01:36.300 --> 01:38.260
+And the dictionary here is going to be very small.
+
+01:38.260 --> 01:39.980
+So for active we're going to have one.
+
+01:39.980 --> 01:41.660
+And for the inactive we're going to have two.
+
+01:41.700 --> 01:45.700
+And in the data stream we will be storing only the IDs of the dictionary.
+
+01:45.700 --> 01:48.300
+So now let's understand why the columnstore is faster.
+
+01:48.300 --> 01:50.300
+Let's have the following query.
+
+01:50.340 --> 01:54.380
+We want to find the total number of customers that are active.
+
+01:54.380 --> 01:57.900
+So we have the query select count star from customers.
+
+01:57.900 --> 02:01.990
+And we're going to filter the data by the status where it is equal to active.
+
+02:02.110 --> 02:07.070
+So now if we query the table with the row store, what can happen is we will have first to go and collect
+
+02:07.070 --> 02:07.710
+the data.
+
+02:07.710 --> 02:12.110
+So it's going to go to the first data page and collect the first two customer, then to the second to
+
+02:12.190 --> 02:13.270
+the third and so on.
+
+02:13.270 --> 02:19.470
+And as you can see SQL here is reading everything the whole row, the ID, the name, the status.
+
+02:19.510 --> 02:23.750
+Even though that for the query we actually don't need all those informations.
+
+02:23.750 --> 02:28.030
+We just need to count how many customers we need with the status active.
+
+02:28.070 --> 02:32.310
+But still SQL cannot go and selectively only reading the status.
+
+02:32.630 --> 02:35.150
+SQL has to read the whole record.
+
+02:35.150 --> 02:38.230
+So after SQL has all the data, it's going to go and filter the data.
+
+02:38.230 --> 02:41.030
+So it's going to go and remove the inactive rows.
+
+02:41.070 --> 02:43.750
+And then it's going to do the aggregate operation.
+
+02:43.750 --> 02:46.150
+And with that we're going to get three rows.
+
+02:46.190 --> 02:49.470
+So that's why the total count of active customers is going to be three.
+
+02:49.510 --> 02:52.910
+But now let's see how SQL can query the column store.
+
+02:52.910 --> 02:57.810
+So SQL first have to analyze okay which columns do I need actually for this query.
+
+02:57.850 --> 03:00.130
+Well, we need only the status.
+
+03:00.130 --> 03:03.770
+So SQL will not go and open all three data pages and read it.
+
+03:03.930 --> 03:08.650
+SQL will target only one data page, the data page where we have the column status.
+
+03:08.650 --> 03:11.130
+So it can take this very simple data stream.
+
+03:11.130 --> 03:13.450
+And then it can go and understand the dictionary.
+
+03:13.450 --> 03:16.970
+And it can go and remove all the values where it is equal to two.
+
+03:17.050 --> 03:19.050
+So without in the output we have only three values.
+
+03:19.050 --> 03:22.770
+And SQL going to go and do a very quick count for those values.
+
+03:22.770 --> 03:27.050
+So in the output we will get as well three total number of active customers.
+
+03:27.050 --> 03:32.770
+So now if you compare this intermediate result sets from the roster and the column store, you can see
+
+03:32.770 --> 03:38.890
+that in the row store we have fetched and retrieved a lot of unnecessary informations for this query.
+
+03:38.930 --> 03:42.490
+And this of course can make the speed of the query very slow.
+
+03:42.490 --> 03:47.170
+But in that column store SQL reads exactly what it needs for this aggregation.
+
+03:47.170 --> 03:53.450
+And we didn't read any extra informations about the names of the customers, the IDs it didn't like.
+
+03:53.490 --> 03:55.170
+Open any extra data pages.
+
+03:55.170 --> 03:59.060
+It exactly gets the data that it needs for the aggregation.
+
+03:59.060 --> 04:05.340
+And that's exactly why the performance of queries, where we have aggregations and data analysis is
+
+04:05.340 --> 04:09.900
+going to be very fast if you are using Columnstore compared to the row store.
+
+04:09.980 --> 04:14.460
+So that's why we use Columnstore for big data and data analytics.
+
+04:14.500 --> 04:14.860
+All right.
+
+04:14.860 --> 04:19.860
+So now let's summarize the differences between the roster and the columnstore indexes side by side.
+
+04:19.980 --> 04:21.580
+So let's start by the definition.
+
+04:21.580 --> 04:24.980
+The row store can go and organize and store the data row by row.
+
+04:25.020 --> 04:28.460
+It is really nice method if you need a lot of columns in one row.
+
+04:28.500 --> 04:34.100
+But in the other hand the Columnstore index can go and store the data and organize it column by column,
+
+04:34.100 --> 04:36.980
+which is really great if you're focusing on specific column.
+
+04:37.020 --> 04:42.500
+Now, if you are talking about the storage efficiency, the roster index can take more space compared
+
+04:42.500 --> 04:43.940
+to the Columnstore index.
+
+04:43.940 --> 04:48.700
+And that's because, as we learned, the column store can go and compress the data, which can save
+
+04:48.740 --> 04:50.980
+a lot of storage if you have large tables.
+
+04:51.020 --> 04:56.760
+Now to the next point, which is more important about the performance, the read and write optimizations.
+
+04:56.760 --> 05:02.360
+We can say for the roster, things are more balanced, so you will get a decent speed for both write
+
+05:02.360 --> 05:03.720
+and read operations.
+
+05:03.720 --> 05:05.960
+But things in the columnstore is different.
+
+05:05.960 --> 05:12.040
+It is fast for reading, especially if you are doing data analytics, but writing data like inserting
+
+05:12.040 --> 05:18.600
+and updating it is slower because as we learned, there are like multiple steps until the data is written
+
+05:18.600 --> 05:19.680
+in the pages.
+
+05:19.680 --> 05:25.560
+So in one hand you are optimizing the speed of your analytical queries, but in the other hand changing
+
+05:25.560 --> 05:25.920
+data.
+
+05:25.920 --> 05:28.240
+It is slower than the row store index.
+
+05:28.280 --> 05:31.520
+Now let's talk about the next point input and output efficiency.
+
+05:31.520 --> 05:36.480
+Well, the roaster index is not really good because you are retrieving a lot of columns.
+
+05:36.480 --> 05:41.760
+So a lot of data should be read from the disk storage in order to answer your queries.
+
+05:41.760 --> 05:44.800
+But in the other hand for the column store it is lower.
+
+05:44.840 --> 05:50.200
+And that's because it targets exactly the data and columns that is needed for the query.
+
+05:50.200 --> 05:54.570
+So there will be generally less data that is read from that disk storage.
+
+05:54.570 --> 05:57.570
+And of course that's why we are getting fast read performance.
+
+05:57.570 --> 06:03.130
+So now if you are thinking which systems are best for Rowstore index, well, the roster index is very
+
+06:03.130 --> 06:10.010
+suitable for the OLTP systems, online transactional systems like banking and commerce systems, where
+
+06:10.010 --> 06:12.810
+the full records are accessed very frequently.
+
+06:12.810 --> 06:17.010
+But on the other hand, the Columnstore index is great for OLAp.
+
+06:17.050 --> 06:22.730
+OLAp systems are online analytical processing where you have like data warehouses, data lake, business
+
+06:22.730 --> 06:23.570
+intelligence.
+
+06:23.610 --> 06:25.930
+You are building reports and analyses.
+
+06:25.930 --> 06:30.130
+You have large data sets and very complicated aggregated queries.
+
+06:30.130 --> 06:34.290
+So if you have such a project, then the Columnstore index is the way to go.
+
+06:34.290 --> 06:37.370
+So that means the use case for the Rowstore index.
+
+06:37.370 --> 06:42.650
+If you have high frequency transactions where the system has to quickly access records.
+
+06:42.650 --> 06:48.770
+And the use case for the Columnstore is big data analytics where the SQL has to scan large datasets.
+
+06:48.810 --> 06:54.130
+So those are the main differences between the Rowstore index and the Columnstore index.

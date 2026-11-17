@@ -1,0 +1,112 @@
+WEBVTT
+
+00:03.960 --> 00:07.920
+And now, my friends, there are different types of databases, so let's see what we have.
+
+00:07.960 --> 00:12.000
+The first and the most famous one, it is the relational database.
+
+00:12.000 --> 00:12.800
+It is very simple.
+
+00:12.800 --> 00:16.840
+It is like spreadsheets call them table where we have columns and rows.
+
+00:16.880 --> 00:21.520
+And then there is like a relationship between those tables to describe how they relate to each other.
+
+00:21.560 --> 00:23.880
+And that's why we call it relational database.
+
+00:23.880 --> 00:27.040
+So if people hear a database they're going to think about this one.
+
+00:27.040 --> 00:30.000
+Now we have another type of databases called key value.
+
+00:30.040 --> 00:35.320
+This time the data is organized completely different where you have pairs of keys and values.
+
+00:35.360 --> 00:35.960
+Think about it.
+
+00:35.960 --> 00:40.920
+It's like a big dictionary where you have a word like the key and the definition of the word.
+
+00:40.920 --> 00:41.800
+This is the value.
+
+00:41.840 --> 00:43.080
+And now moving on to the next one.
+
+00:43.080 --> 00:45.320
+This is as well important column based.
+
+00:45.360 --> 00:51.360
+So now instead of grouping the data by the rows, this type of databases group the data into columns.
+
+00:51.360 --> 00:53.000
+That's why it's called column based.
+
+00:53.000 --> 00:58.160
+And this is very advanced database in order to handle huge amounts of data where the main purpose is
+
+00:58.160 --> 00:59.360
+to search for data.
+
+00:59.400 --> 01:02.160
+Moving on to another database called Graph database.
+
+01:02.160 --> 01:05.320
+The main focus here is the relationship between objects.
+
+01:05.320 --> 01:08.390
+So the main idea here is how to connect my data points.
+
+01:08.430 --> 01:11.470
+And now finally we have the document database.
+
+01:11.470 --> 01:16.430
+The data is stored as entire documents where the structure of the data is not that important.
+
+01:16.430 --> 01:19.950
+What is more important is to fit everything in one page, in one document.
+
+01:19.950 --> 01:25.230
+And now if you look to those five types, we can group the document graph, column based key value.
+
+01:25.270 --> 01:31.910
+All those databases called NoSQL databases and the relational database is SQL database.
+
+01:31.910 --> 01:35.430
+And in this course we will be focusing of course on the relational database.
+
+01:35.430 --> 01:41.710
+And I'm sure you have heard about like the Microsoft SQL server, the MySQL, the PostgreSQL, all those
+
+01:41.710 --> 01:44.910
+databases, they are SQL relational database.
+
+01:44.910 --> 01:48.710
+And for the key value you have the Redis, the Amazon DynamoDB.
+
+01:48.750 --> 01:52.070
+And we have for the column based, we have the Cassandra and the redshift.
+
+01:52.070 --> 01:58.390
+For the graph database, we have the Neo4j's and the very famous database, the MongoDB as a document
+
+01:58.390 --> 01:59.150
+database.
+
+01:59.190 --> 02:04.550
+Now my friends, for this course we're going to be focusing on the SQL relational databases because
+
+02:04.550 --> 02:08.230
+it is the most famous one and the most used one in companies.
+
+02:08.230 --> 02:11.070
+And I will be focusing on the Microsoft SQL server.
+
+02:11.070 --> 02:13.550
+So those are the different types of databases.

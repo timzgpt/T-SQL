@@ -1,0 +1,97 @@
+WEBVTT
+
+00:00.120 --> 00:00.800
+Hey friends.
+
+00:00.800 --> 00:05.240
+So now we can talk about a very special kind of indexes in databases.
+
+00:05.240 --> 00:07.360
+We have the Columnstore index.
+
+00:07.360 --> 00:10.240
+This topic is very confusing for a lot of developers.
+
+00:10.240 --> 00:11.320
+But now what are we gonna do?
+
+00:11.360 --> 00:17.520
+We're gonna deep dive on how SQL works with the Columnstore index, and why it is very important for
+
+00:17.520 --> 00:19.200
+big data and data analytics.
+
+00:19.240 --> 00:22.720
+And of course, we're going to go and practice by creating this index.
+
+00:22.720 --> 00:23.440
+So let's go.
+
+00:27.440 --> 00:28.840
+So now let's say that we have a table.
+
+00:28.840 --> 00:31.080
+We have multiple rows and multiple columns.
+
+00:31.120 --> 00:35.240
+Now if we use Rowstore index this is the classical one.
+
+00:35.240 --> 00:36.160
+What can happen.
+
+00:36.200 --> 00:39.280
+Our table is going to be split into multiple rows.
+
+00:39.320 --> 00:43.320
+And as we learned each group of rows is going to be stored inside a database.
+
+00:43.440 --> 00:49.640
+So that means we are organizing the data row by row, which means all the columns for each row are going
+
+00:49.640 --> 00:51.160
+to be stored together.
+
+00:51.160 --> 00:57.640
+This is the traditional way on how the databases organize their data, where the informations are stored
+
+00:57.680 --> 00:58.640
+row by row.
+
+00:58.640 --> 01:03.680
+But now in the other side, if you use Columnstore index, the SQL is going to go and split your table
+
+01:03.680 --> 01:06.040
+into multiple separate columns.
+
+01:06.080 --> 01:11.400
+And then SQL can go and store the values of one column together in database.
+
+01:11.520 --> 01:16.160
+So that means if you go and open a database, you will find only the values of one column.
+
+01:16.160 --> 01:18.360
+You will not find the entire row.
+
+01:18.680 --> 01:22.320
+So if it's like the first name, you will see only the first name informations.
+
+01:22.320 --> 01:25.200
+You will not see the last name information in this data page.
+
+01:25.200 --> 01:31.160
+So if you compare them the row store index store the data row by row that columnstore index stores the
+
+01:31.160 --> 01:33.000
+data column by column.
+
+01:33.000 --> 01:37.760
+So this is a very high level representation on how the Columnstore index is stored.
+
+01:37.800 --> 01:43.960
+As you know me, we go in details in order to understand exactly how SQL works with the Columnstore
+
+01:43.960 --> 01:44.640
+index.
+
+01:44.640 --> 01:45.320
+So let's go.

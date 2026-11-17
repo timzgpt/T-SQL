@@ -1,0 +1,307 @@
+WEBVTT
+
+00:03.960 --> 00:04.840
+All right friends.
+
+00:04.840 --> 00:11.200
+So so far we have learned that the SQL server can make its own decisions on how to execute your queries.
+
+00:11.200 --> 00:14.320
+And the SQL makes those plans based on the statistics.
+
+00:14.320 --> 00:20.920
+But sometimes the plan that you are getting from the database might be not the best one for your query,
+
+00:21.000 --> 00:23.520
+and there could be many reasons why this could happen.
+
+00:23.520 --> 00:30.440
+Maybe the statistics are not up to date, or you have a lot of indexes and the database engine get confused.
+
+00:30.440 --> 00:34.600
+And here exactly where we need the SQL hints.
+
+00:34.600 --> 00:42.800
+So you can use the SQL hints in order to command to force the SQL database on how exactly your SQL query
+
+00:42.840 --> 00:48.800
+should be executed, so you can intervene and change the steps in the execution plan.
+
+00:48.840 --> 00:50.360
+So let's see how we can do that.
+
+00:50.400 --> 00:50.760
+All right.
+
+00:50.760 --> 00:52.360
+So now let's have a very simple query.
+
+00:52.400 --> 00:55.240
+We are just joining the table orders with the customers.
+
+00:55.280 --> 00:57.200
+And we are showing like few columns.
+
+00:57.240 --> 01:02.800
+Now if you go and execute it and we go and check the execution plan, we can see in this plan that it
+
+01:02.800 --> 01:08.110
+is using the clustered index in order to read the data from the orders and the customers, and then
+
+01:08.110 --> 01:11.390
+it is using the nested loop in order to do the joins.
+
+01:11.430 --> 01:13.630
+Now let's see that our tables are really big.
+
+01:13.630 --> 01:16.910
+But still the SQL is using the nested loops.
+
+01:16.910 --> 01:19.430
+And of course this is not good for large tables.
+
+01:19.430 --> 01:23.950
+And maybe the SQL was confused with the indexes and statistics and so on.
+
+01:23.950 --> 01:26.310
+And it decided to use the nested loops.
+
+01:26.310 --> 01:33.150
+So now in order to force the SQL to use another type of join, we can go and give a hint in our query
+
+01:33.150 --> 01:36.590
+for the SQL to use different types for the join.
+
+01:36.590 --> 01:37.990
+So let's go and do that.
+
+01:38.030 --> 01:40.630
+We're going to go at the end of our query.
+
+01:40.630 --> 01:42.350
+And we're going to say option.
+
+01:42.670 --> 01:47.510
+And inside it we're going to say use the hash join like this.
+
+01:47.750 --> 01:48.990
+So that's it.
+
+01:48.990 --> 01:50.190
+This is our query.
+
+01:50.230 --> 01:54.150
+And at the end we are giving the database a hint for the execution plan.
+
+01:54.150 --> 01:56.070
+So let's go and try that out.
+
+01:56.070 --> 01:57.910
+So let's check the execution plan.
+
+01:57.910 --> 02:01.910
+And now as you can see SQL is using different type of join.
+
+02:01.910 --> 02:05.070
+So with that we are intervening in the execution plan.
+
+02:05.070 --> 02:11.550
+Learn, and we are making choices so that we have changed that technicality on how the SQL is joining
+
+02:11.550 --> 02:12.550
+those two tables.
+
+02:12.590 --> 02:12.910
+All right.
+
+02:12.910 --> 02:14.550
+So now let's go and change something else.
+
+02:14.550 --> 02:20.630
+Like for example, instead of having index scan I would like to have an index seek.
+
+02:20.670 --> 02:27.070
+So if you have the right index in your table, you can go and tell SQL how to read your data in the
+
+02:27.070 --> 02:27.550
+table.
+
+02:27.550 --> 02:29.230
+So let's go and do that.
+
+02:29.270 --> 02:33.630
+Currently here we have an index scan on the table customers.
+
+02:33.630 --> 02:35.870
+So we can go over here near the table.
+
+02:35.870 --> 02:37.470
+And we're going to say width.
+
+02:37.510 --> 02:41.310
+And inside it we're going to say for SQL force seek.
+
+02:41.350 --> 02:44.270
+So we are forcing a SQL to use the Seek index.
+
+02:44.270 --> 02:50.990
+So we can use those keywords near the table in order to specify for SQL how to load the data.
+
+02:50.990 --> 02:55.230
+If you are not specifying anything like here with the orders, we don't have here any hints.
+
+02:55.230 --> 03:01.190
+That means we are counting on the execution plan that is generated from the SQL.
+
+03:01.230 --> 03:06.670
+But if you don't want the recommendations, you can go and specify which one should be used.
+
+03:06.710 --> 03:08.820
+So now let's go and execute it.
+
+03:08.860 --> 03:14.660
+Now we got an error because the SQL is not able to process what we are asking for.
+
+03:14.700 --> 03:17.580
+And I think maybe we are using the force command as well.
+
+03:17.580 --> 03:18.500
+The hash join.
+
+03:18.540 --> 03:21.940
+Let me just uncomment this and let's go and give it another try.
+
+03:21.980 --> 03:23.540
+And now it is working.
+
+03:23.540 --> 03:25.300
+So let's go to the execution plan.
+
+03:25.340 --> 03:27.660
+So you can see we got again the nested loop.
+
+03:27.700 --> 03:32.620
+And now if you go to the customers table you can see now it is using the index seq.
+
+03:32.660 --> 03:35.660
+So it is not using anymore the index scan.
+
+03:35.700 --> 03:40.300
+So as you can see again we are intervening and forcing a SQL to use the method.
+
+03:40.300 --> 03:42.540
+That might be better for our query.
+
+03:42.580 --> 03:49.500
+Now if you are creating a lot of indexes in one table and the SQL is still not targeting the right index.
+
+03:49.500 --> 03:53.460
+So if you check the object, you can see it is targeting specific index.
+
+03:53.460 --> 04:00.260
+But if you have a better index than that, you can give a hint for the SQL to use a specific index.
+
+04:00.340 --> 04:02.140
+And we can do that like this.
+
+04:02.180 --> 04:06.860
+If you go over here and remove the force seq and you say use index.
+
+04:06.860 --> 04:10.050
+And then we have to go and specify the index name.
+
+04:10.050 --> 04:12.970
+So let's go and get again the primary key over here.
+
+04:13.010 --> 04:18.850
+Now I'm telling SQL you have to go and use this index in order to scan the table customers.
+
+04:18.890 --> 04:20.730
+So let's go and try this out.
+
+04:20.770 --> 04:25.850
+And if you go to the execution plan you can see it is as well targeting this index.
+
+04:25.930 --> 04:34.370
+So not only can force SQL for specific type of loading or joining, you can force SQL to use a specific
+
+04:34.410 --> 04:35.810
+index that you created.
+
+04:35.850 --> 04:36.770
+All right friends.
+
+04:36.770 --> 04:39.610
+So as you can see SQL hints are very powerful.
+
+04:39.610 --> 04:45.530
+But we have to be very careful with them because I really had a bad experience using them in my projects.
+
+04:45.570 --> 04:46.970
+So here are my recommendations.
+
+04:46.970 --> 04:48.010
+And what happened.
+
+04:48.050 --> 04:53.610
+So what could happen is that you are optimizing the performance in the development database, and you
+
+04:53.610 --> 04:54.890
+start using the hands.
+
+04:54.890 --> 04:56.690
+And the speed was really good.
+
+04:56.730 --> 05:03.490
+And once you roll that out to another database, the production database, this hint will not be working
+
+05:03.490 --> 05:04.250
+correctly.
+
+05:04.250 --> 05:08.370
+The same hint that you are using might not improve the performance.
+
+05:08.370 --> 05:14.290
+And one reason is that sometimes the productive predictive database has like large data compared to
+
+05:14.330 --> 05:16.050
+the development database.
+
+05:16.050 --> 05:20.330
+So you have really to test the hint in each database that you have.
+
+05:20.330 --> 05:25.850
+So if your hint is working in one environment, that doesn't mean it's going to work in the other one.
+
+05:25.850 --> 05:27.490
+So always make sure to test.
+
+05:27.490 --> 05:33.210
+And the second recommendation that don't use the hint as a permanent fix for your queries.
+
+05:33.210 --> 05:38.290
+So what this means let's say that you are working in the project and one of your queries are very slow.
+
+05:38.330 --> 05:44.850
+Now, if it's not clear why the execution plan is really bad, you can go and use the hints as a workaround
+
+05:44.850 --> 05:48.970
+in order to speed up your query again, but it still has a workaround.
+
+05:49.010 --> 05:49.770
+Temporary.
+
+05:49.810 --> 05:55.170
+You still have to invest and spend time in order to analyze what was the root cause.
+
+05:55.170 --> 05:59.330
+So maybe it is an old statistics or you have wrong indexing and so on.
+
+05:59.330 --> 06:05.570
+So use hints only to work around and speed up your queries, but don't use it as a permanent fix.
+
+06:05.570 --> 06:11.970
+So friends, SQL hints are really amazing in order to control the execution plan, but use it very carefully
+
+06:11.970 --> 06:14.570
+and only if there is like an emergency.

@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00.080 --> 00:01.200
+Now in real projects.
+
+00:01.200 --> 00:02.920
+This happens a lot as a data analyst.
+
+00:02.960 --> 00:08.280
+You're gonna, like, be introduced to a new dataset, and someone from the business is gonna ask you
+
+00:08.280 --> 00:13.480
+a question now before jumping immediately to the new data and start like answering the question, you
+
+00:13.480 --> 00:18.720
+have to calm down and take a pre-step in order to understand first the data.
+
+00:18.720 --> 00:25.240
+So that means you have to explore the content of this new dataset by doing few analyses to get yourself
+
+00:25.240 --> 00:26.680
+familiar with the data.
+
+00:26.680 --> 00:31.320
+And this activity, we call it exploratory data analysis EDA.
+
+00:31.480 --> 00:36.480
+So that means you have to start checking some basics, like how big the data sets, what the columns
+
+00:36.480 --> 00:39.160
+means, whether we have any missing values.
+
+00:39.160 --> 00:44.840
+Then you start doing some basic stuff like grouping up by time, by regions, by products, and all
+
+00:44.840 --> 00:45.800
+those activities.
+
+00:45.800 --> 00:47.160
+Maybe has nothing to do.
+
+00:47.200 --> 00:50.920
+Yet with the real business question, you are just exploring it.
+
+00:50.920 --> 00:57.520
+So as you can see, those basic activities can get you closer to the data and it can protect you from
+
+00:57.520 --> 01:00.280
+any wrong conclusions that you give as an answer.
+
+01:00.280 --> 01:06.600
+So you can close the doors, deep dive into the data, explore it, and only then start answering the
+
+01:06.600 --> 01:09.440
+business questions that is related to this data sets.
+
+01:09.440 --> 01:14.640
+And this is exactly what we mean with EDA and why you as a data analyst, you have to master it.

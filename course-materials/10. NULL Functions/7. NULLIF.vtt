@@ -1,0 +1,349 @@
+WEBVTT
+
+00:03.800 --> 00:05.000
+So what is the function?
+
+00:05.000 --> 00:05.240
+Null.
+
+00:05.280 --> 00:11.640
+If null if going to go and compare two values and it's going to return a null if they are equal.
+
+00:11.680 --> 00:16.080
+Otherwise if they are not equal it again returns the first value.
+
+00:16.120 --> 00:16.360
+Okay.
+
+00:16.400 --> 00:20.120
+So now the syntax of the null if it accepts only two values.
+
+00:20.160 --> 00:21.600
+Value one and value two.
+
+00:21.640 --> 00:26.600
+So here again of course you can go and use a column with a static value like the unknown.
+
+00:26.600 --> 00:30.560
+So we are comparing the values between a column and a static value.
+
+00:30.680 --> 00:35.040
+Or you can go and compare two columns the shipping address and the billing address.
+
+00:35.080 --> 00:37.200
+So again here it accepts only two values.
+
+00:37.200 --> 00:41.800
+We cannot have it like that coalesce where we have a list of multiple values.
+
+00:41.840 --> 00:42.120
+All right.
+
+00:42.120 --> 00:44.640
+So now let's understand exactly what do we mean with the null.
+
+00:44.680 --> 00:44.960
+If.
+
+00:45.040 --> 00:50.320
+So the workflow can be like this SQL can go and check two values the value one and the value two.
+
+00:50.600 --> 00:54.480
+And if they are equal then SQL can go and return a null.
+
+00:54.520 --> 00:59.560
+But if the two values are not equal it's going to go and return the first value.
+
+00:59.560 --> 01:01.510
+So it is the one on the left side.
+
+01:01.510 --> 01:06.070
+So by checking the outcomes here, we will never have a scenario where we're going to get the second
+
+01:06.070 --> 01:06.430
+value.
+
+01:06.430 --> 01:09.710
+That means the second value always used as a check.
+
+01:09.710 --> 01:12.070
+So we are checking against this value.
+
+01:12.070 --> 01:14.430
+So either we're going to get the value one or a null.
+
+01:14.470 --> 01:15.870
+Let's have this very simple example.
+
+01:15.870 --> 01:20.950
+We are saying null if price and we are checking whether it's equal to minus one.
+
+01:20.950 --> 01:26.230
+So we are saying if the price is equal to minus one, then go and replace it with a null because it
+
+01:26.230 --> 01:30.870
+is a data quality issue that we have a price that is negative, it makes no sense for our business,
+
+01:30.870 --> 01:33.590
+and if it is minus one, then it means for us a null.
+
+01:33.590 --> 01:38.150
+We don't know the price of this product, so we will correct it using the null.
+
+01:38.190 --> 01:38.470
+If.
+
+01:38.590 --> 01:39.950
+Let's check this very simple example.
+
+01:39.950 --> 01:44.270
+We have two orders, so SQL can start with the first order and check the first value.
+
+01:44.270 --> 01:46.510
+So what is the first value is the price.
+
+01:46.510 --> 01:48.710
+So here we have a 90 SQL going to go.
+
+01:48.710 --> 01:51.230
+And check is 90 equal to minus one.
+
+01:51.230 --> 01:55.350
+Well no that means it's going to go and execute this path.
+
+01:55.350 --> 02:00.100
+So that means in the output we will get the first value which is 90.
+
+02:00.100 --> 02:02.820
+So in the output we will get a 90.
+
+02:02.860 --> 02:04.500
+Now let's move to the second order.
+
+02:04.500 --> 02:06.020
+Here we have a minus one.
+
+02:06.020 --> 02:11.060
+So SQL can check is minus one here equal to the minus one that we have in the Nullif.
+
+02:11.260 --> 02:12.060
+Well yes.
+
+02:12.060 --> 02:17.420
+So that means it's going to go and execute this path where we're going to get the null value in the
+
+02:17.420 --> 02:17.860
+output.
+
+02:17.900 --> 02:19.500
+And we're going to get it like this.
+
+02:19.500 --> 02:24.300
+So now if you compare the result from Nullif and the price, you can see we don't have any more the
+
+02:24.300 --> 02:24.980
+minus one.
+
+02:24.980 --> 02:28.700
+And as you can see now we are doing exactly the opposite as coalesce and Isnull.
+
+02:28.700 --> 02:32.100
+We are replacing a real value with a null.
+
+02:32.140 --> 02:36.580
+Now moving on to the second example, and this is a very interesting one in the analytics where we can
+
+02:36.580 --> 02:39.500
+go and use two columns inside the nullif.
+
+02:39.500 --> 02:44.220
+So in this example we are saying null if original price and discount price.
+
+02:44.220 --> 02:47.540
+So SQL have to go and compare the prices between those two columns.
+
+02:47.540 --> 02:49.820
+And if they are equal it should return a null.
+
+02:49.860 --> 02:54.980
+And now you might say okay in this example why we are doing this, well, we can use it in order to
+
+02:55.020 --> 02:58.500
+highlight or flag special cases inside our data.
+
+02:58.500 --> 03:05.210
+And the special case here is if the original price is equal to the discount price, and if those two
+
+03:05.250 --> 03:10.570
+prices are equal, that means we have an issue in our program or something like went wrong as we are
+
+03:10.570 --> 03:11.530
+inserting data.
+
+03:11.570 --> 03:13.770
+So let's see what's going to happen for the first row.
+
+03:13.930 --> 03:18.810
+We're going to go and compare the 150 from the original price with the discount price.
+
+03:19.010 --> 03:20.610
+So they are not equal right.
+
+03:20.610 --> 03:26.490
+So that means SQL is going to go and return the original price the 150 in the output.
+
+03:26.490 --> 03:28.130
+So let's move to the second order.
+
+03:28.250 --> 03:30.490
+Here we have the original price 250.
+
+03:30.490 --> 03:33.370
+And as well the discount price is 250.
+
+03:33.410 --> 03:34.330
+So they are equal.
+
+03:34.330 --> 03:38.210
+And if they are equal then we will get a null in the output.
+
+03:38.210 --> 03:41.490
+So as you can see again here we are not getting any values from the discount.
+
+03:41.490 --> 03:43.410
+We are using it only for a check.
+
+03:43.410 --> 03:48.930
+So with that we have a quick flag, like using the nulls as flag in order to identify where we have
+
+03:48.970 --> 03:49.930
+equal values.
+
+03:49.930 --> 03:51.890
+So this is how the null works.
+
+03:55.850 --> 04:01.110
+All right friends here we have a very nice use case for the nullif and that is preventing the error
+
+04:01.150 --> 04:03.350
+of dividing by zero.
+
+04:03.390 --> 04:04.590
+Let's see what this means.
+
+04:04.630 --> 04:04.870
+Okay.
+
+04:04.910 --> 04:05.990
+Let's have the following task.
+
+04:06.030 --> 04:12.190
+And it says find the sales price for each order by dividing the sales by quantity.
+
+04:12.190 --> 04:13.390
+So let's go and solve it.
+
+04:13.390 --> 04:14.630
+This should be very easy.
+
+04:14.630 --> 04:25.590
+So we need the order ID we need the sales and the quantity from sales orders.
+
+04:25.630 --> 04:26.950
+Let's go and execute it.
+
+04:26.950 --> 04:28.270
+So now we have ten orders.
+
+04:28.270 --> 04:30.030
+Those are the sales and the quantity.
+
+04:30.030 --> 04:33.430
+So now it's very easy to calculate the price.
+
+04:33.470 --> 04:36.630
+It's going to be the sales divided by quantity.
+
+04:37.310 --> 04:39.230
+And we're going to call it price.
+
+04:39.230 --> 04:40.830
+So let's go and execute it.
+
+04:40.870 --> 04:45.070
+Now as you can see we got an error says divide by zero error encountered.
+
+04:45.070 --> 04:48.670
+So that means somewhere we have zero for the quantity.
+
+04:48.670 --> 04:50.150
+And this is a problem.
+
+04:50.150 --> 04:51.590
+Let's go and check the data again.
+
+04:51.590 --> 04:56.310
+So I'm just going to comment the whole thing and let's go and execute it.
+
+04:56.310 --> 04:57.780
+So now by checking the results.
+
+04:57.780 --> 05:00.180
+Yes, we got for the order ID ten.
+
+05:00.220 --> 05:03.740
+Here we have quantity zero, so it will not work if you divide by zero.
+
+05:03.780 --> 05:04.300
+Of course.
+
+05:04.380 --> 05:05.500
+So how we can solve it?
+
+05:05.540 --> 05:11.140
+We can use the magic of the nullif, where we're going to go and replace the zero with a null.
+
+05:11.180 --> 05:14.780
+So getting a null is way better than getting an error, right?
+
+05:14.820 --> 05:16.140
+So let's go and do that.
+
+05:16.220 --> 05:17.860
+I'm just going to remove the comments.
+
+05:17.860 --> 05:23.420
+And here we're going to say null if if the quantity equal to the zero value.
+
+05:23.940 --> 05:25.180
+So that's it.
+
+05:25.180 --> 05:26.660
+Let's go and execute it.
+
+05:26.700 --> 05:28.340
+Now as you can see it is working.
+
+05:28.340 --> 05:32.500
+And with that we are making sure that we are not dividing by zero.
+
+05:32.500 --> 05:35.020
+And that's because we replace it with a null.
+
+05:35.220 --> 05:37.980
+And if you divide anything by null you will get a null.
+
+05:38.020 --> 05:43.260
+So if you check the result over here the order ten, we got the price of null which is correct.
+
+05:43.260 --> 05:48.500
+And for the all other values everything is working because we have values and we didn't replace it with
+
+05:48.540 --> 05:49.060
+a null.
+
+05:49.100 --> 05:51.380
+That's why we have values for the price.
+
+05:51.380 --> 05:57.740
+And this is a very common use case for the null if we can use it in order to prevent dividing by zero.

@@ -1,0 +1,268 @@
+WEBVTT
+
+00:03.920 --> 00:06.760
+Okay, so now let's have a quick look to the syntax of the stored procedure.
+
+00:06.760 --> 00:07.720
+It is very simple.
+
+00:07.720 --> 00:09.280
+So it has always two parts.
+
+00:09.320 --> 00:11.880
+First we have to define the stored procedure.
+
+00:11.880 --> 00:12.960
+So we can do it like this.
+
+00:12.960 --> 00:13.920
+Create procedure.
+
+00:13.920 --> 00:16.280
+Then we have to define the procedure name.
+
+00:16.280 --> 00:19.120
+And then we say as and then we have begin and end.
+
+00:19.160 --> 00:23.400
+It's very important for SQL to understand when the definition starts and when it ends.
+
+00:23.440 --> 00:27.680
+And then between the begin and end we're going to have a set of SQL statements.
+
+00:27.680 --> 00:31.840
+So here you can insert whatever you want, insert update queries anything.
+
+00:31.880 --> 00:36.280
+And once you have defined the stored procedure the next step is that we're going to go and execute it.
+
+00:36.280 --> 00:37.480
+So the syntax is very simple.
+
+00:37.480 --> 00:38.680
+We're going to say execute.
+
+00:38.680 --> 00:40.240
+And then the procedure name.
+
+00:40.240 --> 00:45.800
+So that's it with that SQL going to go to the third procedure and start executing all the SQL statements
+
+00:45.800 --> 00:47.360
+that you have in the definition.
+
+00:47.360 --> 00:49.400
+So this is the syntax of the stored procedure.
+
+00:49.400 --> 00:50.800
+As I said it is very simple.
+
+00:50.840 --> 00:51.520
+All right guys.
+
+00:51.520 --> 00:53.120
+So now let's do it step by step.
+
+00:53.440 --> 00:55.760
+The first step is that we're going to go and write a query.
+
+00:55.760 --> 00:57.400
+So let's say that we have a very simple task.
+
+00:57.440 --> 01:03.690
+And it says for us customers find the total number of customers and the average score.
+
+01:03.730 --> 01:04.730
+So let's go and do it.
+
+01:04.810 --> 01:05.450
+It's very simple.
+
+01:05.450 --> 01:07.770
+So select count star.
+
+01:08.610 --> 01:10.330
+Total customers.
+
+01:10.650 --> 01:18.770
+And then the average of scores as average score from our table sales customers.
+
+01:19.010 --> 01:24.130
+And then since it says US customers we have to go and filter the data based on the column country.
+
+01:24.450 --> 01:26.130
+Country is equal to USA.
+
+01:26.250 --> 01:27.330
+So that's it.
+
+01:27.330 --> 01:28.170
+This is our query.
+
+01:28.210 --> 01:29.570
+Let's go and execute it.
+
+01:29.570 --> 01:34.330
+So we have a very quick nice report about the total number of customers and the average score.
+
+01:34.370 --> 01:40.010
+So now let's say that I have a weekly meeting and I have to represent this report over and over.
+
+01:40.050 --> 01:45.850
+So that means I have to go and execute this query like frequently in weekly basis in order to get the
+
+01:45.850 --> 01:47.290
+data for the reports.
+
+01:47.330 --> 01:51.610
+So now what this means I have to go and save this query in order to use it later.
+
+01:51.650 --> 01:53.530
+Now that each time I have to rewrite it.
+
+01:53.530 --> 01:59.490
+So that means I have to store this text somewhere that I don't go and rewrite the query over and over.
+
+01:59.730 --> 02:01.090
+So what I usually do, let's go.
+
+02:01.130 --> 02:05.370
+And we copy the whole query, and then we create a new text.
+
+02:05.410 --> 02:10.290
+And let's say it's going to be my weekly query and it's going to be SQL.
+
+02:10.410 --> 02:12.370
+So I'm going to go and edit it.
+
+02:12.370 --> 02:14.930
+And here I'm going to save my query.
+
+02:14.930 --> 02:19.810
+And each time I need this query I have to go and copy it, go back to my SQL.
+
+02:19.850 --> 02:22.970
+And then I'm going to go and paste it in order to execute it.
+
+02:22.970 --> 02:26.250
+So either going to write it each time or copy and paste it.
+
+02:26.290 --> 02:27.690
+Well we don't have to do that.
+
+02:27.690 --> 02:29.610
+We have stored procedures.
+
+02:29.610 --> 02:34.850
+So that means we're going to go to the step two where we're going to turn this query into a stored procedure.
+
+02:34.850 --> 02:35.650
+So let's do that.
+
+02:35.650 --> 02:36.530
+It's very simple.
+
+02:36.530 --> 02:39.530
+So we're going to say create procedure.
+
+02:39.690 --> 02:41.090
+And now we have to go and give it a name.
+
+02:41.090 --> 02:44.370
+So it's going to be get customer summary.
+
+02:44.370 --> 02:45.970
+And then after that we're going to say us.
+
+02:46.010 --> 02:48.490
+And then we need the begin and end.
+
+02:48.530 --> 02:50.930
+And in between we're going to put our query.
+
+02:50.930 --> 02:55.170
+So let's go and copy our query and just put it in between.
+
+02:55.170 --> 02:56.050
+So that's it.
+
+02:56.050 --> 02:57.850
+Let's go and execute it.
+
+02:57.890 --> 03:00.730
+And with that we have created our stored procedure.
+
+03:00.770 --> 03:05.660
+And now in order to see our stored procedure we can go to the Object Explorer to our database sales
+
+03:05.660 --> 03:06.060
+DB.
+
+03:06.100 --> 03:08.780
+And then here we have a folder called programmability.
+
+03:08.780 --> 03:10.140
+So let's go inside it.
+
+03:10.140 --> 03:12.940
+And here we have a lot of stuff like functions triggers.
+
+03:12.940 --> 03:14.500
+And we have stored procedures.
+
+03:14.500 --> 03:15.820
+So let's go inside it.
+
+03:15.820 --> 03:20.300
+And we can see over here this is our new created stored procedure.
+
+03:20.300 --> 03:21.660
+So we are almost there.
+
+03:21.700 --> 03:25.140
+The next step is that we're going to go and call our stored procedure.
+
+03:25.140 --> 03:26.740
+And this is the easiest part.
+
+03:26.780 --> 03:29.340
+So it's going to be execute the stored procedure.
+
+03:29.340 --> 03:30.620
+And the syntax is very simple.
+
+03:30.620 --> 03:31.700
+So execute.
+
+03:31.740 --> 03:33.860
+And then the name of the stored procedure.
+
+03:33.860 --> 03:36.900
+So get customer summary.
+
+03:36.900 --> 03:38.980
+So let's go and execute it.
+
+03:38.980 --> 03:42.220
+And with that as you can see we get the result of our query.
+
+03:42.220 --> 03:44.060
+So as you can see it is very simple.
+
+03:44.220 --> 03:47.300
+In just few steps we created a stored procedure.
+
+03:47.300 --> 03:49.860
+And then in the future you don't need the whole thing.
+
+03:49.980 --> 03:53.060
+You just go and execute the stored procedure.
+
+03:53.100 --> 03:58.380
+I don't have to store the query locally at my PC or to copy and paste anything.
+
+03:58.580 --> 04:04.260
+If I want this reports now I just have to execute the stored procedure like this and I will get the
+
+04:04.260 --> 04:04.780
+results.

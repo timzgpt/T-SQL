@@ -1,0 +1,52 @@
+WEBVTT
+
+00:03.840 --> 00:04.160
+All right.
+
+00:04.160 --> 00:06.800
+So now let's quickly compare the three functions side by side.
+
+00:06.800 --> 00:09.840
+Let's start with the first point about the uniqueness of the rank.
+
+00:10.000 --> 00:15.400
+And if you compare those three you can see that only the row number generates unique distinct rank.
+
+00:15.560 --> 00:17.600
+So this is going to be unique rank.
+
+00:17.600 --> 00:21.760
+And the two others we have duplicates or let's say shared ranks okay.
+
+00:21.800 --> 00:26.800
+So now the second point whether the function handles the ties and the only one that doesn't handle the
+
+00:26.800 --> 00:28.640
+ties is the row number.
+
+00:28.640 --> 00:30.960
+So this one doesn't handle the ties.
+
+00:30.960 --> 00:34.960
+And the two others handles the ties since they offer the shared rank.
+
+00:35.000 --> 00:39.200
+And now we have the last point about leaving gaps or skipping ranking.
+
+00:39.360 --> 00:44.200
+So now if you check the row number and the dense rank, you can see there will be no skipping.
+
+00:44.200 --> 00:51.240
+So there is no gaps for the row number and as well for the dense rank only for the rank function, the
+
+00:51.240 --> 00:54.680
+middle one, we are skipping ranks and we are leaving gaps.
+
+00:54.680 --> 00:55.600
+So that's it guys.
+
+00:55.600 --> 00:58.040
+This is the differences between those three functions.
+
+00:58.280 --> 01:02.120
+I tend usually to work with the row number more often than the two others.

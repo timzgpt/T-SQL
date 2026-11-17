@@ -1,0 +1,325 @@
+WEBVTT
+
+00:03.920 --> 00:09.040
+Okay, so now moving on to the final task that I usually do in order to monitor and manage the indexes
+
+00:09.080 --> 00:16.400
+is to monitor the index fragmentations over the time as your data is inserted, updated, deleted into
+
+00:16.400 --> 00:17.200
+your tables.
+
+00:17.680 --> 00:20.280
+Indexes can become fragmented.
+
+00:20.280 --> 00:21.560
+So what is fragmentation?
+
+00:21.560 --> 00:28.120
+It means like there is unused spaces in your databases and the database is not filling them, or your
+
+00:28.120 --> 00:31.320
+data is not anymore sorted correctly in the index.
+
+00:31.320 --> 00:37.120
+And this of course leads to inefficient use of their storage and as well can slow down your queries.
+
+00:43.240 --> 00:48.000
+And in SQL, in order to get everything organized again we have two methods.
+
+00:48.040 --> 00:50.240
+The first method is reorganize.
+
+00:50.240 --> 00:56.360
+So it's going to go and defragment the leaf level of the index in order to get it organized and sorted
+
+00:56.360 --> 00:58.560
+again with the logical order.
+
+00:58.800 --> 01:03.750
+So it is very light operation and it will not block the user from using your table.
+
+01:03.750 --> 01:06.030
+And the second method called rebuild.
+
+01:06.070 --> 01:08.030
+This is heavyweight operation.
+
+01:08.030 --> 01:12.830
+It's going to go and drop the whole index and recreate it from the scratch.
+
+01:12.990 --> 01:18.510
+And this means of course, not only the data going to get sorted again, but as well the fragmentations
+
+01:18.510 --> 01:22.190
+inside your data pages and the index can be eliminated.
+
+01:22.390 --> 01:24.270
+So let's see how we can do that in SQL.
+
+01:24.310 --> 01:24.550
+Okay.
+
+01:24.590 --> 01:26.070
+So now back to our database.
+
+01:26.070 --> 01:31.230
+And the first question that you have to ask do we have an issue with the fragmentations in our indexes.
+
+01:31.310 --> 01:34.830
+So we have to check the health of our indexes in the database.
+
+01:34.990 --> 01:39.950
+And in order to do that we have again to go to the system metadata that we have.
+
+01:39.990 --> 01:43.390
+And we're going to check their dynamic management functions.
+
+01:43.430 --> 01:47.470
+So there is like a special functions in order to get an answer in the SQL server.
+
+01:47.510 --> 01:48.430
+Let's go and do that.
+
+01:48.430 --> 01:51.990
+So we're going to go and select star from the function.
+
+01:51.990 --> 01:53.710
+So it is system dot.
+
+01:53.750 --> 02:00.190
+So it's going to be system.dm db index physical states.
+
+02:00.190 --> 02:00.670
+This one.
+
+02:00.670 --> 02:03.100
+And this is a function that we have to pass few parameters.
+
+02:03.100 --> 02:04.220
+We will not go in details.
+
+02:04.220 --> 02:05.380
+Just follow me with this.
+
+02:05.380 --> 02:09.300
+So we have to give it the db id and the null.
+
+02:09.740 --> 02:12.260
+Another null and a third null.
+
+02:12.260 --> 02:14.500
+And the last one I'm going to be limited.
+
+02:14.500 --> 02:15.940
+So we have to do it like this.
+
+02:15.940 --> 02:17.420
+So let's go and query it.
+
+02:17.460 --> 02:18.260
+Now what do we find.
+
+02:18.260 --> 02:19.500
+We have the object ID.
+
+02:19.500 --> 02:22.300
+We have the index ID and few other formations.
+
+02:22.300 --> 02:26.900
+But the most important one is the average fragmentation in percent.
+
+02:26.900 --> 02:31.060
+So this column gives us the degree of the fragmentation in our index.
+
+02:31.060 --> 02:33.620
+If it is zero, then it is perfect.
+
+02:33.620 --> 02:38.180
+We have no fragmentation in the index and our index is very healthy.
+
+02:38.180 --> 02:44.540
+But if it is like 100, then that means it is completely out of order and we have to do something about
+
+02:44.540 --> 02:44.860
+it.
+
+02:44.860 --> 02:48.860
+And now you might say, you know what, I don't know which object does and which index.
+
+02:48.860 --> 02:54.620
+Well, you have to go and join few tables like the system dot tables and six dot index in order to get
+
+02:54.620 --> 02:55.740
+those informations.
+
+02:55.740 --> 02:59.500
+So we have to go and do that like we have done the first query okay.
+
+02:59.540 --> 03:00.820
+So offline I have done that.
+
+03:00.820 --> 03:06.570
+So I joined with the tables and the their indexes, and I'm sorting the data by the average recommendations
+
+03:06.570 --> 03:11.610
+and percentage descending in order to get the problems at the start, because we are interested where
+
+03:11.610 --> 03:12.930
+we have high percentage.
+
+03:12.930 --> 03:14.730
+So let's go and execute this.
+
+03:14.770 --> 03:18.970
+And now since it is practicing database, I didn't insert any data and so on.
+
+03:18.970 --> 03:22.050
+But in real projects you will get here different numbers.
+
+03:22.290 --> 03:25.130
+And here is my recommendations about the percentage.
+
+03:25.130 --> 03:30.490
+If the fragmentation is between like zero and ten, that means everything is like okay and you don't
+
+03:30.490 --> 03:31.890
+have to do anything about it.
+
+03:31.890 --> 03:37.730
+But if the percentage is between like ten and 30, then here we have to do something about it.
+
+03:37.730 --> 03:43.130
+So here I recommend to use the reorganize methods in order to sort the data again correctly.
+
+03:43.130 --> 03:49.810
+But if you have more than 30%, then here my recommendation is to go and rebuild the whole index because
+
+03:49.810 --> 03:55.730
+not only the data is in wrong order, but as well there is unused spaces in your database in the index,
+
+03:55.730 --> 03:57.210
+so you have to do something about it.
+
+03:57.210 --> 03:59.410
+So now let's go and imagine one of those indexes.
+
+03:59.410 --> 04:03.880
+For example this one over here has fragmentation of 15%.
+
+04:03.920 --> 04:07.000
+So now what we have to do is to go and reorganize this index.
+
+04:07.000 --> 04:08.320
+Let's see how we can do that.
+
+04:08.320 --> 04:12.600
+So let's go over here and say the following alter index.
+
+04:12.600 --> 04:14.480
+And then we need the index name.
+
+04:14.480 --> 04:16.520
+So let's go and get it from here.
+
+04:16.800 --> 04:19.800
+And then you have to mention the table name where the index exists.
+
+04:19.800 --> 04:21.440
+So we have it from the customers.
+
+04:21.440 --> 04:24.160
+So from sales customers.
+
+04:24.160 --> 04:25.720
+So now we are editing the index.
+
+04:25.720 --> 04:27.760
+And we have to tell SQL what to do now.
+
+04:27.760 --> 04:29.800
+So we just want to reorganize the index.
+
+04:29.800 --> 04:32.160
+So you go and use the keyword reorganize.
+
+04:32.160 --> 04:35.320
+So reorganize and that's it.
+
+04:35.320 --> 04:36.360
+This is very simple.
+
+04:36.360 --> 04:38.840
+So let's go and do that and let's go and see.
+
+04:38.840 --> 04:39.680
+It is completed.
+
+04:39.680 --> 04:42.000
+And it was very fast because we have small database.
+
+04:42.000 --> 04:45.800
+But sometimes it takes a little more time if you have a big index and big table.
+
+04:45.800 --> 04:51.080
+So after reorganizing you can go and again check the table over here and see the results.
+
+04:51.080 --> 04:52.960
+And it should be like here zero.
+
+04:53.000 --> 04:57.880
+Now let's see that we have another index where the fragmentation around like 50%.
+
+04:57.920 --> 04:59.680
+So let's go and copy it.
+
+04:59.680 --> 05:03.880
+And this time instead of reorganize we're going to do rebuild.
+
+05:03.880 --> 05:05.830
+So I'm going to take the whole thing.
+
+05:06.590 --> 05:11.350
+And this time we're going to go and rebuild this index over here on the same table.
+
+05:11.350 --> 05:14.110
+And instead of reorganize we're going to say rebuild.
+
+05:14.510 --> 05:17.110
+So let's go and execute that.
+
+05:17.110 --> 05:21.750
+And with that SQL did drop the whole index and created from the scratch.
+
+05:21.750 --> 05:25.470
+And this is usually takes more time than reorganize of course.
+
+05:25.510 --> 05:29.630
+And the next step of course is to go and check again the fragmentations and so on.
+
+05:29.630 --> 05:36.350
+So that's all about how to make your index healthy and remove the fragmentations from your index.
+
+05:36.870 --> 05:37.790
+All right my friends.
+
+05:37.790 --> 05:42.710
+So as you can see, improving the performance of your queries doesn't end by creating them.
+
+05:42.710 --> 05:44.990
+It's all about staying proactive.
+
+05:45.190 --> 05:51.150
+So monitor the usage of the indexes, check whether there are any missing indexes, and always make
+
+05:51.190 --> 05:54.190
+sure that statistics of the database are up to date.
+
+05:54.190 --> 05:58.950
+And keep your eyes on the fragmentations and make sure you have healthy indexes.
+
+05:58.950 --> 06:04.150
+So with that, you have learned how I manage and monitor the indexes once I create them, and I really
+
+06:04.150 --> 06:05.910
+recommend you to follow those steps.

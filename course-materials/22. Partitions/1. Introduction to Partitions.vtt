@@ -1,0 +1,232 @@
+WEBVTT
+
+00:00.080 --> 00:00.440
+All right.
+
+00:00.440 --> 00:02.120
+So what is SQL partitioning?
+
+00:02.160 --> 00:06.680
+It's a technique in order to divide a large table into small pieces.
+
+00:06.680 --> 00:08.840
+And each piece we call it a partition.
+
+00:08.960 --> 00:12.840
+Well, this sounds like we are dividing one big table into two smaller tables.
+
+00:12.840 --> 00:14.000
+But it's not like that.
+
+00:14.000 --> 00:18.040
+We are just dividing one table into smaller partitions.
+
+00:18.040 --> 00:21.800
+So we're going to see it in the database still as one solid table.
+
+00:21.840 --> 00:25.720
+But behind the scenes it is split into multiple partitions.
+
+00:25.720 --> 00:28.080
+So now let's go and understand what this means okay.
+
+00:28.120 --> 00:30.720
+So now let's say that you have a table at your database.
+
+00:31.120 --> 00:35.840
+And over the time this table is getting bigger and bigger where you have like hundreds of millions of
+
+00:35.840 --> 00:36.320
+rows.
+
+00:36.360 --> 00:39.000
+Now once you have such a big table, what can happen?
+
+00:39.160 --> 00:40.480
+Everything can be slow.
+
+00:40.480 --> 00:46.360
+So for example, if you are reading the table and the execution plan is doing a full scan of the table,
+
+00:46.360 --> 00:49.920
+this can take a long time until all the rows are finished.
+
+00:50.040 --> 00:54.920
+And if you decide to make like an index for this table, what's going to happen is you're going to go
+
+00:54.920 --> 01:01.400
+and build a very big B-tree index where there are a lot of branches and files and so on.
+
+01:01.400 --> 01:07.320
+And having a big index is not always a good thing, because if you do operations like delete rows,
+
+01:07.520 --> 01:12.800
+update rows or inserting rows, these operations are going to need long time to process.
+
+01:12.920 --> 01:18.040
+So having a big index doesn't mean that you can have a good performance for your Bigtable.
+
+01:18.040 --> 01:23.280
+So that means having a Bigtable is problematic because everything is going to be slow.
+
+01:23.400 --> 01:27.680
+So now what we can do in order to optimize the performance of this Bigtable?
+
+01:27.840 --> 01:30.360
+Well, we can use SQL partitioning.
+
+01:30.680 --> 01:36.560
+And in order to do that, we have to understand the behavior and the transactions that are happening
+
+01:36.560 --> 01:37.600
+on our table.
+
+01:37.600 --> 01:41.240
+And what usually happens is that the table grows over the time.
+
+01:41.240 --> 01:47.480
+So you can have like subset of data that belongs to 2023 and another one that is created and updated
+
+01:47.480 --> 01:48.680
+in 2024.
+
+01:48.720 --> 01:52.040
+And then you have something like more current in 2025.
+
+01:52.080 --> 01:56.680
+So that means we have like in our table, all data and as well new data.
+
+01:56.680 --> 02:01.070
+And we usually interact with the new data more often than the old data.
+
+02:01.190 --> 02:05.910
+So maybe, for example, for 2023 there is like only one read transaction.
+
+02:05.910 --> 02:10.790
+And for the data in 2024 we have done like two reads and one writes.
+
+02:10.790 --> 02:13.190
+So it is a little bit more than 2023.
+
+02:13.230 --> 02:17.790
+But for the new data for the current year, there will be heavy transactions.
+
+02:17.790 --> 02:20.270
+So we can have a lot of reads, a lot of writes.
+
+02:20.270 --> 02:22.630
+We are updating, inserting, reading.
+
+02:22.630 --> 02:25.430
+So a lot of things are going on for the new data.
+
+02:25.430 --> 02:30.550
+So that means we are accessing frequently the Bigtable only to interact with the new data.
+
+02:30.550 --> 02:33.110
+And we rarely need the old data.
+
+02:33.230 --> 02:39.430
+So what we can do, we can go and divide this Bigtable, and we usually divide it by like a date.
+
+02:39.430 --> 02:42.350
+So that means we can go and split this table by the year.
+
+02:42.350 --> 02:45.030
+And we put each year in one partition.
+
+02:45.030 --> 02:47.310
+So at the end we're going to have like three partitions.
+
+02:47.350 --> 02:51.110
+And now it's really important to understand that those are three partitions.
+
+02:51.110 --> 02:52.830
+They are not three tables.
+
+02:52.830 --> 02:57.070
+So that means at the client side the users can see only one table.
+
+02:57.230 --> 03:00.110
+But behind the scenes we have like three partitions.
+
+03:00.150 --> 03:04.190
+Now let's say that you have a query in order to read the data from 2025.
+
+03:04.230 --> 03:08.190
+And now what can happen is SQL will not go and scan all the data from the table.
+
+03:08.190 --> 03:12.350
+It's going to go and only target one partition the 2025.
+
+03:12.390 --> 03:18.710
+So that means SQL is only scanning the relevant informations, the relevant partition and not the entire
+
+03:18.710 --> 03:19.270
+table.
+
+03:19.310 --> 03:21.830
+And now we have another benefit of having partitions.
+
+03:21.870 --> 03:24.350
+Let's say that you are using a modern database.
+
+03:24.390 --> 03:26.990
+And normally they support parallel processing.
+
+03:27.070 --> 03:29.470
+So if you have the infrastructure for that what's going to happen.
+
+03:29.470 --> 03:35.070
+The database engine can process each partition independently and parallelly.
+
+03:35.150 --> 03:39.710
+So whether you are reading or writing data so what's going to happen is SQL is going to process your
+
+03:39.710 --> 03:44.790
+queries parallelly, which of course can reduce the overall execution time.
+
+03:44.870 --> 03:50.110
+So that means if you have a modern infrastructure like maybe for example the Azure Synapse and so on,
+
+03:50.390 --> 03:55.820
+go with the partitions because the partition then could be stored in different servers, and this helps,
+
+03:55.860 --> 04:00.100
+of course, the SQL engine to use all the resources at once.
+
+04:00.180 --> 04:07.620
+So this means partitions allow scalability and as well parallel processing partitions can make the indexing
+
+04:07.660 --> 04:08.740
+more efficient.
+
+04:08.740 --> 04:14.900
+So instead of having one very big index for the whole table, if you put an index on a partition table,
+
+04:14.900 --> 04:15.780
+what can happen?
+
+04:15.820 --> 04:22.020
+Each partition can get its own index, which means the size of the indexes can be smaller.
+
+04:22.020 --> 04:27.900
+And of course, this helps a lot with searching for data or as well extending the index itself.
+
+04:27.900 --> 04:33.980
+So for example, if you are inserting data to the partition 2025, the SQL will not go and change anything
+
+04:33.980 --> 04:35.220
+on the other indexes.
+
+04:35.220 --> 04:39.380
+It's going to go and only change the index of the partition 2025.
+
+04:39.380 --> 04:44.700
+So as you can see, the power of the partitioning it improves significantly the performance of your
+
+04:44.700 --> 04:48.980
+table, whether you are reading or writing data to this big table.
+
+04:48.980 --> 04:52.060
+So this is what we mean with partitioning and why we need it.

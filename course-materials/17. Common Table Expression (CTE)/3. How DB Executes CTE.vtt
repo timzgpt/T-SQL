@@ -1,0 +1,121 @@
+WEBVTT
+
+00:03.920 --> 00:07.040
+So again you are at the client side and you are data analyst.
+
+00:07.080 --> 00:11.000
+You are writing a query where you are defining a CTE called details.
+
+00:11.000 --> 00:12.480
+And inside it you have some logic.
+
+00:12.520 --> 00:15.960
+And now in the main query you are selecting the data from the orders.
+
+00:15.960 --> 00:21.960
+And as well you are joining it with the details with the CTE multiple times using multiple conditions.
+
+00:22.000 --> 00:26.800
+Now once you go and execute this query, the database engine can read the query and say aha!
+
+00:26.840 --> 00:30.320
+We have here a CTE and it has the main priority.
+
+00:30.320 --> 00:33.400
+So that means it's going to go and execute the CTE first.
+
+00:33.440 --> 00:38.760
+So and now let's say that in the city you are retrieving data from the table orders and the table orders
+
+00:38.760 --> 00:41.840
+of course in that disk storage inside the user data.
+
+00:41.880 --> 00:47.560
+And now once the city is completely executed, the database engine can go and place the results in the
+
+00:47.560 --> 00:48.040
+cache.
+
+00:48.040 --> 00:50.800
+And it's going to name this result as details.
+
+00:50.880 --> 00:52.040
+It's like a table name.
+
+00:52.040 --> 00:53.960
+So the database engine is done with the CTE.
+
+00:54.000 --> 00:56.400
+It's going to go now and grab the main query.
+
+00:56.400 --> 00:58.800
+And it's going to start executing it step by step.
+
+00:58.880 --> 01:02.000
+So the first step is that to get the data from the orders.
+
+01:02.000 --> 01:06.400
+So since the orders exist in the disk storage it's going to go and retrieve it from there.
+
+01:06.440 --> 01:08.460
+Now the database engine is going to check the details?
+
+01:08.500 --> 01:10.300
+Okay, we have it in the cache.
+
+01:10.300 --> 01:15.220
+That means we don't have to search for it in the disk storage, and it can start retrieving the data
+
+01:15.220 --> 01:17.540
+from the details with high speed.
+
+01:17.580 --> 01:21.180
+And now it's going to go to the second step as well joining the data with the details.
+
+01:21.180 --> 01:25.780
+So again the database engine is going to go to the cache and going to see the table details and retrieve
+
+01:25.780 --> 01:27.900
+the database maybe in different conditions.
+
+01:27.900 --> 01:30.540
+And then to the third time as well we are joining to the details.
+
+01:30.540 --> 01:32.580
+And we're going to get the data from the cache.
+
+01:32.580 --> 01:38.620
+So as you can see from the main query, we are using the result from the CTE multiple times in different
+
+01:38.620 --> 01:39.300
+places.
+
+01:39.300 --> 01:43.580
+And the retrieval of all those informations is happening in high speed.
+
+01:43.820 --> 01:50.140
+So this is one big benefit of using the CTE is to utilize using the high speed memory of the cache.
+
+01:50.140 --> 01:55.380
+So that means retrieving the data from the cache from the details is way faster than retrieving the
+
+01:55.380 --> 01:57.980
+data from the disk storage from the orders.
+
+01:58.020 --> 02:03.220
+Now, once the main query is completely executed, the result is going to be returned to the database
+
+02:03.220 --> 02:05.740
+engine, and then it's going to send it back to the client side.
+
+02:05.740 --> 02:07.940
+And we will see the results in the output.
+
+02:07.940 --> 02:08.620
+So that's it.
+
+02:08.620 --> 02:09.820
+It's amazing right.
+
+02:09.820 --> 02:15.980
+This is how the database server execute the amazing technique the CTE behind the scenes.

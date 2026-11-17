@@ -1,0 +1,40 @@
+WEBVTT
+
+00:03.920 --> 00:04.320
+All right.
+
+00:04.320 --> 00:06.280
+So now we go to the link in the description.
+
+00:06.280 --> 00:10.320
+And after you do that you're going to get a zip file where you have there a lot of stuff.
+
+00:10.320 --> 00:11.840
+So let's go and extract it.
+
+00:11.840 --> 00:16.360
+And now inside it if you go over here you will find the repository structure from git.
+
+00:16.360 --> 00:18.920
+And the most important one here is the datasets.
+
+00:18.960 --> 00:21.880
+So here you have two sources the CRM and the ARB.
+
+00:21.920 --> 00:25.000
+And in each one of them there are three CSV files.
+
+00:25.000 --> 00:27.640
+So those are the datasets for the projects.
+
+00:27.800 --> 00:28.800
+For the other stuffs.
+
+00:28.800 --> 00:29.800
+Don't worry about it.
+
+00:29.840 --> 00:32.160
+We will be explaining that during the projects.
+
+00:32.160 --> 00:36.160
+So go and get the data and put it somewhere at your PC where you don't lose it.

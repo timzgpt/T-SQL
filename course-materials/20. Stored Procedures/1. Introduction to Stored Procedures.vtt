@@ -1,0 +1,466 @@
+WEBVTT
+
+00:00.120 --> 00:02.600
+Now think about stored procedures like this.
+
+00:02.600 --> 00:08.240
+Every time you go to a coffee shop, you say, I would like a large coffee with a coconut milk, no
+
+00:08.240 --> 00:10.080
+sugar and extra whipped cream.
+
+00:10.280 --> 00:12.200
+And you repeat this over and over.
+
+00:12.240 --> 00:16.720
+Each time you go to this coffee shop and now you are working with stored procedures, it's going to
+
+00:16.720 --> 00:17.440
+be like this.
+
+00:17.480 --> 00:23.240
+Whenever you go to the coffee shop, you just say, give me my usual and the barista know exactly what
+
+00:23.240 --> 00:28.400
+you mean behind that, and you will get exactly your order without specifying and repeating everything
+
+00:28.440 --> 00:29.520
+word by word.
+
+00:29.520 --> 00:32.760
+And this is exactly what's going to happen if you work with stored procedures.
+
+00:32.920 --> 00:33.960
+So let's have some coffee.
+
+00:33.960 --> 00:34.400
+Right.
+
+00:36.680 --> 00:37.160
+All right.
+
+00:37.160 --> 00:38.240
+So now we can continue.
+
+00:38.280 --> 00:38.600
+All right.
+
+00:38.600 --> 00:40.400
+So now let's start again from the scratch.
+
+00:40.400 --> 00:41.840
+We have always these two sides.
+
+00:41.840 --> 00:44.760
+We have the client side and the server side of the database.
+
+00:44.760 --> 00:46.800
+And what we have learned we have like a database.
+
+00:46.800 --> 00:52.840
+And you as a user you can go and create like different SQL statements like for example, you can create
+
+00:52.840 --> 00:59.360
+like an SQL select statements in order to retrieve data from the database or another SQL statement where
+
+00:59.360 --> 01:01.960
+you are inserting data to the database.
+
+01:02.000 --> 01:06.650
+And another one, let's say that you are updating the content of your tables and so on.
+
+01:06.650 --> 01:10.370
+So you have like different statements in order to interact with the database.
+
+01:10.370 --> 01:15.530
+Now let's say that what you are doing is not only one time job, you are keep repeating those steps
+
+01:15.570 --> 01:16.650
+over and over.
+
+01:16.650 --> 01:22.930
+So you are always like doing an insert, then an update and then a select, and you keep repeating that
+
+01:22.970 --> 01:23.970
+day after day.
+
+01:24.010 --> 01:29.290
+So now imagine that you are doing something crazy where you go on vacation, but the job should be done.
+
+01:29.290 --> 01:34.570
+So what you do, you hand over all those select statements to your colleagues and they have to do it
+
+01:34.570 --> 01:36.530
+every day as well as you are gone.
+
+01:36.530 --> 01:41.770
+So you go and give them all those SQL scripts and you tell them, okay, you have to execute the first
+
+01:41.770 --> 01:44.730
+query, then the second query and then the third query.
+
+01:44.730 --> 01:50.290
+This is of course not a good way on how to do things, because of course there will be some human errors
+
+01:50.290 --> 01:56.330
+where like the execution of the script is not correct, like first updating, then inserting and things
+
+01:56.330 --> 01:57.330
+can go wrong.
+
+01:57.370 --> 02:01.530
+And that's exactly why we have stored procedures in SQL.
+
+02:01.570 --> 02:08.750
+So what we can do, we can put all those SQL statements together in one frame in one program and we
+
+02:08.790 --> 02:10.430
+call it stored procedure.
+
+02:10.430 --> 02:15.630
+And now once you do that, all your SQL statements will not stay at the client side.
+
+02:15.790 --> 02:19.150
+They will be stored now in the server side of the database.
+
+02:19.150 --> 02:24.870
+So that means in stored procedures we are storing our SQL statements inside the database.
+
+02:24.870 --> 02:29.030
+So you don't have to go and hand over your SQL statements to your colleagues.
+
+02:29.070 --> 02:34.910
+And now all what you have to do in order to interact with your SQL statements is to go and execute the
+
+02:34.910 --> 02:35.910
+stored procedure.
+
+02:35.910 --> 02:40.470
+So you write very simple command called execute SP, for example.
+
+02:40.470 --> 02:44.990
+So with that you are calling your stored procedure that is stored inside the server.
+
+02:44.990 --> 02:47.430
+And once you execute this what can happen.
+
+02:47.430 --> 02:53.230
+That database is going to go to the stored procedure and start executing all the SQL statements that
+
+02:53.230 --> 02:55.390
+you have inside the stored procedure.
+
+02:55.430 --> 02:58.670
+And it's going to do it exactly in the order that you have defined.
+
+02:58.670 --> 03:00.270
+So from top to bottom.
+
+03:00.270 --> 03:05.710
+So now once the database went through all your SQL statements, it's going to return back to the user
+
+03:05.750 --> 03:08.070
+the data that we have from the selects.
+
+03:08.070 --> 03:12.840
+And with that things are really easy and you can tell your colleagues, okay, just execute this stored
+
+03:12.840 --> 03:16.080
+procedure and the rest can be done from the database.
+
+03:16.200 --> 03:21.520
+So with that you minimize the human errors and you make sure that everything can be executed as you
+
+03:21.520 --> 03:21.960
+wish.
+
+03:22.080 --> 03:24.480
+And as well as you are back from your vacation.
+
+03:24.520 --> 03:25.240
+Things are easier.
+
+03:25.240 --> 03:27.840
+You have to just go and execute the stored procedure.
+
+03:27.960 --> 03:30.120
+So this is what we mean with stored procedure.
+
+03:30.160 --> 03:36.360
+You can store inside it multiple SQL statements in specific order, and you can save it inside the database.
+
+03:36.360 --> 03:40.280
+And each time you need your SQL statements you can go and simply execute them.
+
+03:44.320 --> 03:49.800
+So now let's have a quick comparison between a normal query, a normal SQL statements compared to a
+
+03:49.840 --> 03:50.840
+stored procedure.
+
+03:51.040 --> 03:55.040
+So a normal SQL query you have like select from where and so on.
+
+03:55.240 --> 03:57.600
+This is like one time transaction.
+
+03:57.600 --> 04:01.720
+You are asking the database for one thing and the database is answering.
+
+04:01.840 --> 04:03.840
+So it is like one time request.
+
+04:03.840 --> 04:08.240
+But now in the other hand in the stored procedures you have multiple SQL statements.
+
+04:08.240 --> 04:13.780
+And once you execute the stored procedure there will be many interactions with the database in one go.
+
+04:13.780 --> 04:19.020
+So that means you will have multiple transactions that is happening in your stored procedure.
+
+04:19.020 --> 04:21.820
+So an SQL query, it is like a simple request.
+
+04:21.860 --> 04:23.900
+You need one thing and you are getting it.
+
+04:23.900 --> 04:28.100
+But on the other hand in the stored procedure it is like a program.
+
+04:28.100 --> 04:32.620
+As you are writing a code in any programming languages, it is more than one request.
+
+04:32.740 --> 04:34.060
+It has a lot of stuff.
+
+04:34.180 --> 04:40.020
+Like for example, you can go and build looping logic where we go and iterate through something, or
+
+04:40.020 --> 04:45.420
+you can go and build a control flow where you have a logic like the flow statements.
+
+04:45.420 --> 04:48.060
+So they are like different paths in your code.
+
+04:48.060 --> 04:54.540
+And as well in programming we have like parameters and variables in order to make our code dynamic and
+
+04:54.540 --> 04:55.260
+flexible.
+
+04:55.260 --> 05:01.020
+And as well we can build error handling on our code in order to customize what can happen if there is
+
+05:01.060 --> 05:01.860
+like an issue.
+
+05:01.860 --> 05:06.540
+So the stored procedure, it is like having a code like for example in Python.
+
+05:06.540 --> 05:12.300
+So that means you can do more complicated stuff compared to a simple query where you have only like
+
+05:12.300 --> 05:13.220
+one request.
+
+05:13.260 --> 05:18.870
+So in the stored procedures you are doing, like programming and coding, and it is more advanced than
+
+05:18.910 --> 05:20.510
+only just having a query.
+
+05:20.510 --> 05:25.630
+So that means if you are working with stored procedures, things can get more complicated and advanced.
+
+05:25.630 --> 05:31.030
+But of course you will get a lot of flexibility and reusability compared to a simple query.
+
+05:35.110 --> 05:38.270
+So now there is like another alternative to stored procedures.
+
+05:38.390 --> 05:44.150
+Well, you can go and put all your SQL statements in a Python code and things can work as well.
+
+05:44.150 --> 05:49.510
+So either you put your SQL statements inside the stored procedure or in a Python code.
+
+05:49.510 --> 05:52.390
+But now the big question is what are the differences between them?
+
+05:52.430 --> 05:57.070
+Well, there is like a disadvantage if you are having Python in different server because you have to
+
+05:57.070 --> 06:03.390
+go and build a connection between your server and the database server and connection means always networking
+
+06:03.390 --> 06:06.550
+and you might get slightly worse performance.
+
+06:06.550 --> 06:08.830
+So this is one advantage for the stored procedure.
+
+06:08.830 --> 06:13.950
+Another advantage for search procedure that all the scripts that you are going to store inside the stored
+
+06:13.950 --> 06:17.390
+procedure in the database can be precompiled.
+
+06:17.390 --> 06:17.410
+Compiled.
+
+06:17.410 --> 06:23.650
+So precompiled means the SQL database servers knows already about your SQL statements, and there was
+
+06:23.650 --> 06:29.690
+already a check whether all your syntaxes are correct and the database as well can be preparing everything
+
+06:29.730 --> 06:34.570
+to execute the stored procedure, like maybe preparing the execution plans and a lot of stuff.
+
+06:34.570 --> 06:39.650
+So if you store your SQL statements inside stored procedure in the database, it is very close to the
+
+06:39.650 --> 06:40.210
+database.
+
+06:40.210 --> 06:44.850
+And the database knows everything about your scripts and it is ready to execute it.
+
+06:44.850 --> 06:50.370
+But if you put all your SQL statements outside of the database, of course the database has no chance
+
+06:50.370 --> 06:56.970
+to understand what is coming, so it cannot go and compile anything until Python sends the code to the
+
+06:57.010 --> 06:57.850
+database.
+
+06:57.850 --> 07:00.890
+So this is another advantage for the stored procedure.
+
+07:00.890 --> 07:05.530
+But now if you build your SQL statements in Python, you will get a lot of advantages.
+
+07:05.570 --> 07:11.170
+Like for example, you can go and build very flexible Python codes where you can use Python features
+
+07:11.170 --> 07:12.610
+together with the SQL.
+
+07:12.650 --> 07:16.210
+And with that you open the door of many possibilities and flexibility.
+
+07:16.250 --> 07:20.130
+Another thing with Python you can make great version control.
+
+07:20.180 --> 07:22.820
+So everything is integrated in Python tools.
+
+07:22.820 --> 07:27.300
+And one more advantage is that if you have a complex requirement in your projects, it's going to be
+
+07:27.300 --> 07:29.860
+really hard to implement it in stored procedures.
+
+07:29.860 --> 07:34.500
+It can cause you a lot of lines of code and things can be not comfortable.
+
+07:34.500 --> 07:39.620
+But if you are implementing a complex logic in Python, things can be way easier.
+
+07:39.620 --> 07:45.140
+So with Python you can implement complex logics very easily compared to the stored procedure.
+
+07:45.140 --> 07:48.460
+So those are the big differences between the stored procedure and Python.
+
+07:48.460 --> 07:53.340
+Now I have to be honest with you about having your code in stored procedure or in Python.
+
+07:53.340 --> 07:58.300
+Well, if you are working together in a data project, I will never recommend you to use stored procedure
+
+07:58.300 --> 08:01.460
+if you have the possibility to have your code in Python.
+
+08:01.460 --> 08:07.300
+And that's because I saw a lot of projects using stored procedure, and most of them ends in chaos.
+
+08:07.340 --> 08:08.780
+It is really hard to debug.
+
+08:08.780 --> 08:10.220
+It is really hard to test.
+
+08:10.260 --> 08:11.580
+It's like catastrophic.
+
+08:11.580 --> 08:17.500
+So really don't use in your projects any stored procedures, especially if you have like a big project
+
+08:17.500 --> 08:20.060
+and you have a lot of data and tables and so on.
+
+08:20.220 --> 08:25.720
+You can manage everything perfectly using Python, especially if you have a platform like Databricks
+
+08:25.720 --> 08:27.000
+or Snowflake's.
+
+08:27.000 --> 08:31.360
+Then of course, the best way to control your data projects is using Python.
+
+08:31.360 --> 08:35.840
+But of course, if you don't have this possibility and you have only a database server and you can only
+
+08:35.840 --> 08:38.240
+work with this, then you don't have any other option.
+
+08:38.240 --> 08:40.080
+You have to work with the stored procedures.
+
+08:40.080 --> 08:45.160
+But if you have this possibility to put your project inside Python and to run your scripts from there,
+
+08:45.360 --> 08:47.960
+then it is way better than having a stored procedure.
+
+08:47.960 --> 08:49.040
+Well, this is my opinion.
+
+08:49.040 --> 08:52.560
+I'm just talking about working in projects in big projects.
+
+08:52.560 --> 08:56.880
+But if you have like small projects, few tables and so on, then it's fine to stay with the stored
+
+08:56.880 --> 09:03.200
+procedure, but never build a big project using stored procedures because I tell you it will never work.
+
+09:03.200 --> 09:08.560
+So try to always to think about to have the right platform in order to run your projects.
+
+09:08.600 --> 09:09.720
+And now I'm thinking about it.
+
+09:09.720 --> 09:13.560
+Maybe I should have put this tip at the end of the video, not in the middle.
+
+09:13.720 --> 09:14.680
+So whatever.
+
+09:14.680 --> 09:17.600
+If you still want to learn stored procedures, we can continue on that.
+
+09:17.600 --> 09:22.720
+And I'm going to have like a really nice example about how to build stored procedures step by step,
+
+09:22.720 --> 09:24.320
+like having a mini projects.
+
+09:24.320 --> 09:25.840
+So why not learning both of them.
+
+09:25.840 --> 09:26.480
+So let's go.

@@ -1,0 +1,304 @@
+WEBVTT
+
+00:03.960 --> 00:10.160
+So the trim function is going to go and remove the leading and trailing spaces in your string values.
+
+00:10.160 --> 00:15.160
+So it can go and get rid of the empty spaces at the start and at the end of a string value.
+
+00:15.200 --> 00:16.480
+Let's have a simple example.
+
+00:16.520 --> 00:16.680
+Okay.
+
+00:16.680 --> 00:18.240
+So now we're going to have different scenarios.
+
+00:18.280 --> 00:21.720
+The first one you can have like a value drawn where you don't have any spaces.
+
+00:21.720 --> 00:23.240
+And this is the normal case.
+
+00:23.240 --> 00:28.000
+But sometimes you might have it like this where at the start you have a leading space, you have an
+
+00:28.000 --> 00:30.680
+empty space, or sometimes we call it white space.
+
+00:30.680 --> 00:33.720
+In another scenario, the space might be at the end of the world.
+
+00:33.720 --> 00:35.640
+So here we call it trailing space.
+
+00:35.640 --> 00:38.160
+And in another scenario you might have both of them.
+
+00:38.160 --> 00:42.760
+This is really bad where at the start you have the leading space and at the end you have the trailing
+
+00:42.760 --> 00:43.160
+space.
+
+00:43.160 --> 00:45.200
+And of course you might not have only one space.
+
+00:45.200 --> 00:49.680
+You might have multiple spaces depend on how long did the user press the space.
+
+00:49.680 --> 00:50.040
+Right.
+
+00:50.040 --> 00:54.840
+So of course my friends spaces are really evil and this makes no sense to have it in your data.
+
+00:54.880 --> 00:57.080
+Now what you have to do is to do data cleansing.
+
+00:57.080 --> 01:01.560
+We have to clean up this mess, and you have the best function in order to clean up the data.
+
+01:01.560 --> 01:02.600
+You have the trim.
+
+01:02.600 --> 01:07.340
+So if you apply trim for the first value, nothing going to happen because everything is clean and we
+
+01:07.380 --> 01:08.420
+don't have any spaces.
+
+01:08.460 --> 01:13.460
+Now, if you apply it for the second case where you have a leading space, if you do that SQL going
+
+01:13.460 --> 01:16.860
+to go and remove this space, the same thing for the trailing space.
+
+01:16.860 --> 01:20.780
+So if you have space at the end, the trim function can find it and clean that up.
+
+01:20.780 --> 01:24.500
+And if you have it at the start and at the end, then it's as well, no problem.
+
+01:24.540 --> 01:26.100
+It's going to go and clean that up.
+
+01:26.100 --> 01:29.580
+And as well the trim function can go and clean multiple spaces.
+
+01:29.580 --> 01:34.660
+So if you have like five spaces, ten spaces at the end or at the start, the trim function can go and
+
+01:34.660 --> 01:35.380
+clean that up.
+
+01:35.380 --> 01:36.940
+So this is how the trim works.
+
+01:36.940 --> 01:40.940
+And now let's go back to a scale in order to find out whether we have any spaces okay.
+
+01:40.980 --> 01:44.220
+So now we have very tricky and interesting task.
+
+01:44.220 --> 01:50.420
+It says find the customers whose first name contains leading or trailing spaces.
+
+01:50.420 --> 01:55.420
+So now by looking to those values we have to find any spaces inside that customer's name.
+
+01:55.420 --> 02:00.500
+Now, by just looking to this results, you will not find any white spaces because it's really hard
+
+02:00.500 --> 02:03.140
+to see, especially if it is like trailing spaces.
+
+02:03.180 --> 02:08.220
+Now we have to write query auto to detect any spaces in the names.
+
+02:08.220 --> 02:09.660
+So how we can do that?
+
+02:09.700 --> 02:12.800
+Okay, so now think about it a little bit and I can give you hints.
+
+02:12.800 --> 02:18.360
+You can use the function trim in order to remove any white spaces, and you have to use it inside a
+
+02:18.360 --> 02:19.240
+Where clause.
+
+02:19.240 --> 02:21.520
+So what we're going to do, we're going to say where.
+
+02:21.560 --> 02:24.800
+So now we have to build a condition to detect any spaces.
+
+02:24.800 --> 02:32.640
+So if you are saying if the first name is not equal to itself first name after applying a trim.
+
+02:32.640 --> 02:38.680
+So after trimming the first name, if it is not equal to the first name.
+
+02:38.680 --> 02:41.000
+So that means there was spaces.
+
+02:41.000 --> 02:42.440
+So again what is going on here.
+
+02:42.440 --> 02:43.640
+Let's go for Maria.
+
+02:43.640 --> 02:47.640
+If Maria has no nulls, if you trim this value, nothing can happen.
+
+02:47.640 --> 02:51.600
+The value can stay exactly like before because there is no white spaces.
+
+02:51.600 --> 02:58.200
+But if in Maria there is any space inside it, trimming the value will not be equal to the first name
+
+02:58.200 --> 02:59.920
+if it contains any spaces.
+
+02:59.920 --> 03:06.160
+So if the column is not equal to the same column after trimming it, that means there is spaces.
+
+03:06.160 --> 03:07.920
+So let's go and execute it.
+
+03:07.920 --> 03:12.280
+And now we can see in the output we have one customer John where we have this situation.
+
+03:12.280 --> 03:16.980
+Now if you don't believe me or you don't follow me here, we can have another easier check.
+
+03:16.980 --> 03:18.780
+So let's go and comment this out.
+
+03:19.020 --> 03:20.900
+Let's have a look to our first names.
+
+03:20.940 --> 03:25.620
+Now we can go and calculate the length of the first name like we have done before.
+
+03:26.620 --> 03:29.940
+So length name and let's go and execute it.
+
+03:29.980 --> 03:32.700
+Now if you can see here Maria we have five characters.
+
+03:32.700 --> 03:34.700
+But John we have here four characters.
+
+03:34.900 --> 03:36.180
+The length is five.
+
+03:36.220 --> 03:40.940
+And that's because we have somewhere space and the space can count as a character.
+
+03:40.940 --> 03:42.940
+So here there is like something wrong right.
+
+03:42.940 --> 03:44.780
+And you can check the others as well.
+
+03:44.780 --> 03:47.580
+Everything is matching, but only John, we have here an issue.
+
+03:47.620 --> 03:52.620
+And now in order to see this more clearly, we're going to use two functions the trim and the length.
+
+03:52.620 --> 03:55.700
+So first let's go and trim the first name.
+
+03:56.740 --> 04:00.100
+And after trimming the values I'm going to calculate the length.
+
+04:00.100 --> 04:03.460
+So we are nesting together the trim and the length.
+
+04:03.460 --> 04:06.860
+And I'm going to call it length trim name.
+
+04:07.580 --> 04:09.380
+So let's go and execute it.
+
+04:09.380 --> 04:12.820
+Now we can see the length before trimming any value.
+
+04:12.820 --> 04:16.100
+And we can see the length after trimming the values.
+
+04:16.100 --> 04:21.300
+So you can see over here that John before trimming is five and after trimming is four.
+
+04:21.300 --> 04:21.360
+for.
+
+04:21.400 --> 04:23.000
+So we have here an issue.
+
+04:23.000 --> 04:29.760
+Now we can make things more clear where we can go and subtract the length of the first name with the
+
+04:29.760 --> 04:30.880
+length of the first name.
+
+04:30.880 --> 04:32.840
+But first we trim the values.
+
+04:32.840 --> 04:35.160
+So here we can call it maybe a flag or something.
+
+04:35.160 --> 04:38.280
+So let's go and execute it now by looking to the flag.
+
+04:38.320 --> 04:42.080
+It is really easy to now to see if we have a zero then everything is fine.
+
+04:42.080 --> 04:47.920
+We don't have any white spaces, but if we have higher than zero like here one, then this is an indicator
+
+04:47.920 --> 04:49.800
+that we have a white space.
+
+04:49.800 --> 04:55.000
+Either you do it like this where the first name is not equal, the first name after trimming, or you
+
+04:55.000 --> 04:58.080
+use more complicated solution where you say where.
+
+04:58.120 --> 05:00.040
+And I'm gonna remove this from here.
+
+05:00.080 --> 05:05.200
+The length of the first name is not equal to the length after trimming.
+
+05:05.200 --> 05:06.520
+So not equal.
+
+05:06.520 --> 05:09.800
+So if you go and execute it you will get exactly again join.
+
+05:09.800 --> 05:14.760
+So this is how we detect any empty spaces inside our data using the trim function.
+
+05:14.760 --> 05:16.640
+Or maybe as well using the length.
+
+05:16.640 --> 05:18.360
+But I really prefer the first solution.
+
+05:18.360 --> 05:20.520
+It is way easier using one function.
+
+05:20.520 --> 05:20.920
+All right.
+
+05:20.920 --> 05:24.400
+So that's all about how to remove the empty spaces using the trim.
+
+05:24.400 --> 05:27.600
+Next we're going to talk about very important function called replace.

@@ -1,0 +1,205 @@
+WEBVTT
+
+00:00.000 --> 00:03.440
+Okay, so now let's have a quick look to the specifications of the server layer.
+
+00:03.480 --> 00:09.560
+So the main objective to have clean and standardized data we have to prepare the data before going to
+
+00:09.600 --> 00:10.520
+the gold layer.
+
+00:10.520 --> 00:13.360
+And we will be building tables inside the server layer.
+
+00:13.360 --> 00:17.280
+And the way of loading the data from the bronze to the silver is full load.
+
+00:17.280 --> 00:19.840
+So that means we're going to truncate and then insert.
+
+00:19.840 --> 00:21.960
+And here we're going to have a lot of data transformations.
+
+00:21.960 --> 00:23.200
+So we're going to clean the data.
+
+00:23.200 --> 00:26.360
+We're going to bring normalization standardizations.
+
+00:26.360 --> 00:28.160
+We're going to derive new columns.
+
+00:28.160 --> 00:30.640
+We will be doing as well data enrichments.
+
+00:30.640 --> 00:33.280
+So a lot of things to be done in the data transformation.
+
+00:33.280 --> 00:36.000
+But we will not be building any new data model.
+
+00:36.000 --> 00:37.560
+So those are the specifications.
+
+00:37.560 --> 00:40.000
+And we have to commit ourselves to this scope okay.
+
+00:40.040 --> 00:45.240
+So now building the DDL script for the server layer going to be way easier than the bronze, because
+
+00:45.240 --> 00:50.800
+the definition and the structure of each table in the silver can be identical to the bronze layer.
+
+00:50.840 --> 00:52.520
+We are not doing anything new.
+
+00:52.520 --> 00:57.800
+So all what you have to do is to take the DDL script from the bronze layer and just go and search and
+
+00:57.800 --> 00:59.160
+replace for the schema.
+
+00:59.200 --> 01:04.720
+I'm just using the Notepad++ for the scripts, so I'm going to go over here and say replace the bronze
+
+01:04.720 --> 01:08.480
+dots with silver dots, and I'm going to go and replace all.
+
+01:08.480 --> 01:15.220
+So with that now all the DDL is targeting the schema server layer, which is exactly what we need.
+
+01:15.260 --> 01:15.660
+All right.
+
+01:15.700 --> 01:21.060
+Now, before we execute our new DDL script for the server, we have to talk about something called the
+
+01:21.060 --> 01:22.380
+metadata columns.
+
+01:22.420 --> 01:28.660
+They are additional columns or fields that the data engineers add to each table that don't come directly
+
+01:28.660 --> 01:34.780
+from the source systems, but the data engineers use it in order to provide extra information for each
+
+01:34.780 --> 01:35.420
+record.
+
+01:35.460 --> 01:41.820
+Like, we can add a column called Create date is when the record was loaded, or an update date when
+
+01:41.820 --> 01:43.460
+the record got updated.
+
+01:43.460 --> 01:48.780
+Or we can add the source system in order to understand the origin of the data that we have.
+
+01:48.820 --> 01:54.660
+Or sometimes we can add the file location in order to understand the lineage from which file the data
+
+01:54.660 --> 01:55.340
+came from.
+
+01:55.380 --> 02:00.860
+Those are great tool if you have data issue in your data warehouse, if there is like corrupt data and
+
+02:00.860 --> 02:01.460
+so on.
+
+02:01.620 --> 02:06.220
+This can help you to track exactly where this issue happened and when.
+
+02:06.260 --> 02:10.940
+And as well, it is great in order to understand whether I have gap in my data, especially if you are
+
+02:10.940 --> 02:12.300
+doing incremental loads.
+
+02:12.300 --> 02:17.780
+It is like putting labels on everything and you will thank yourself later when you start using them
+
+02:17.780 --> 02:20.860
+in hard times as you have an issue in your data warehouse.
+
+02:20.940 --> 02:22.940
+So now back to our DDL scripts and all.
+
+02:22.940 --> 02:24.940
+What you have to do is to go and do the following.
+
+02:24.940 --> 02:30.720
+So for example, for the first table I will go and add at the end one more extra column.
+
+02:30.720 --> 02:37.080
+So it starts with the prefix DW as we have defined in the naming convention, and then underscore let's
+
+02:37.080 --> 02:41.640
+have the create date and the data type can be date time to.
+
+02:41.680 --> 02:45.200
+And now what we can do is we can go and add a default value for it.
+
+02:45.200 --> 02:48.240
+I want the database to generate these informations automatically.
+
+02:48.240 --> 02:51.200
+We don't have to specify that in any ETL scripts.
+
+02:51.200 --> 02:53.640
+So which value is going to be the get date.
+
+02:53.840 --> 02:59.840
+So each record is going to be inserted in this table will get automatically a value from the current
+
+02:59.840 --> 03:00.560
+date and time.
+
+03:00.560 --> 03:03.480
+So now as you can see the naming convention it is very important.
+
+03:03.480 --> 03:05.720
+All those columns comes from the source system.
+
+03:05.720 --> 03:09.560
+And only this one column comes from the data engineer of the data warehouse.
+
+03:09.600 --> 03:10.720
+Okay, so that's it.
+
+03:10.720 --> 03:13.880
+Let's go and repeat the same thing for all other tables.
+
+03:13.880 --> 03:18.600
+So I will just go and add this piece of information for each DDL.
+
+03:20.560 --> 03:21.160
+All right.
+
+03:21.160 --> 03:22.640
+So I think that's it all.
+
+03:22.640 --> 03:27.240
+What you have to do is now to go and execute the whole DDL script for the server layer.
+
+03:27.280 --> 03:28.120
+Let's go and do that.
+
+03:28.120 --> 03:28.520
+All right.
+
+03:28.520 --> 03:29.040
+Perfect.
+
+03:29.040 --> 03:29.880
+There's no errors.
+
+03:29.920 --> 03:33.160
+Let's go and refresh the tables on the Object explorer.
+
+03:33.160 --> 03:36.800
+And with that as you can see we have six tables for the server layer.
+
+03:36.800 --> 03:42.000
+It is identical to the bronze layer but we have one extra column for the metadata.

@@ -1,0 +1,784 @@
+WEBVTT
+
+00:00.080 --> 00:03.600
+Window functions, or sometimes we call them analytical functions.
+
+00:03.600 --> 00:05.880
+They are very important functions in SQL.
+
+00:06.080 --> 00:09.320
+Everyone must know them, especially if you are doing data analysis.
+
+00:09.600 --> 00:14.200
+Each time I write SQL script in order to do data analytics, I end up using them.
+
+00:14.320 --> 00:18.120
+So as usual, we're going to go and now understand the concept behind them.
+
+00:18.120 --> 00:19.760
+And then we're going to start practicing.
+
+00:19.840 --> 00:20.560
+So let's go.
+
+00:24.520 --> 00:25.080
+Okay guys.
+
+00:25.080 --> 00:26.920
+So now let's start with the first question.
+
+00:26.920 --> 00:29.080
+What are SQL window functions.
+
+00:29.320 --> 00:35.640
+They are functions that allows you to do calculations like aggregations, but on top of subset of data
+
+00:35.840 --> 00:38.800
+without losing the level of details of the rows.
+
+00:38.840 --> 00:41.160
+So it is something very similar to the groupby.
+
+00:41.200 --> 00:42.640
+But here we have special case.
+
+00:42.960 --> 00:44.920
+You don't lose the level of details.
+
+00:45.000 --> 00:48.680
+So now in order to understand the definition let's have a very simple example.
+
+00:48.720 --> 00:48.880
+Okay.
+
+00:48.920 --> 00:52.560
+So now let's understand how SQL works with the group by clause.
+
+00:52.600 --> 00:54.680
+Let's say that we have the very simple example.
+
+00:54.680 --> 00:59.160
+We have four orders two orders for the cabs and two orders for the gloves.
+
+00:59.320 --> 01:03.520
+And let's say that I would like to see the total sales for each products.
+
+01:03.520 --> 01:08.800
+So now if we decided to use the groupby, what SQL going to do, going to take the first two orders
+
+01:08.800 --> 01:11.120
+for the caps and put it in one row.
+
+01:11.120 --> 01:16.120
+So in the output, we're going to have only one row for the caps with the total sales of 40.
+
+01:16.160 --> 01:18.080
+And the same thing can happen for the gloves.
+
+01:18.080 --> 01:20.840
+So it's going to take the two rows of the gloves from the input.
+
+01:20.840 --> 01:23.840
+And in the output we're going to have only one row for the gloves.
+
+01:23.840 --> 01:29.480
+So that means the number of rows is going to be depending on the number of products we have on our data.
+
+01:29.480 --> 01:30.400
+We have two products.
+
+01:30.400 --> 01:31.840
+We get two rows.
+
+01:31.880 --> 01:37.200
+So that means SQL is really like smashing or squeezing the results in the output.
+
+01:37.200 --> 01:39.600
+And this is exactly what the groupby does to our data.
+
+01:39.600 --> 01:44.240
+It aggregates the rows, aggregate the data into different level of details.
+
+01:44.240 --> 01:46.720
+So now on the left side we see four rows.
+
+01:46.720 --> 01:49.000
+On the right side we have two rows.
+
+01:49.200 --> 01:52.040
+And with that we are losing some details in the results.
+
+01:52.040 --> 01:53.760
+But still we have solved the tasks.
+
+01:53.760 --> 01:57.080
+So now let's see what's going to happen if you use window function in SQL.
+
+01:57.120 --> 01:57.320
+Okay.
+
+01:57.360 --> 01:58.610
+So now we have the same data.
+
+01:58.610 --> 02:02.570
+And as with the same task, we have to find the total sales for each product.
+
+02:02.730 --> 02:06.250
+Now if we use window function SQL going to do the following.
+
+02:06.490 --> 02:10.290
+It's going to go and execute each rows individually from each others.
+
+02:10.530 --> 02:11.490
+So what can happen.
+
+02:11.490 --> 02:14.090
+It starts with the first row the order ID one.
+
+02:14.450 --> 02:15.090
+In the output.
+
+02:15.090 --> 02:15.850
+We're going to get as well.
+
+02:15.850 --> 02:18.730
+The same stuff the order ID one, the same row.
+
+02:18.930 --> 02:21.970
+But we will get the total sales for the caps.
+
+02:21.970 --> 02:24.130
+So here the total sales is going to be ten plus 30.
+
+02:24.170 --> 02:25.410
+We will get 40.
+
+02:25.450 --> 02:28.850
+Then it's going to jump to the second row and it's going to process it as well.
+
+02:28.850 --> 02:32.410
+So in the output we will get the order ID two, the product caps.
+
+02:32.410 --> 02:36.370
+And as well we have the same aggregation since we are talking about the same product.
+
+02:36.370 --> 02:37.770
+So we will get 40.
+
+02:37.810 --> 02:39.250
+Then it's going to go to the third order.
+
+02:39.250 --> 02:40.330
+And here we have the gloves.
+
+02:40.330 --> 02:45.250
+So in the output again we have the order ID three, the product gloves and the total sales.
+
+02:45.250 --> 02:47.530
+This time going to be five plus 20.
+
+02:47.570 --> 02:48.930
+So we'll get 25.
+
+02:49.090 --> 02:52.130
+Then it goes to the last row to the order ID number four.
+
+02:52.330 --> 02:55.650
+In the output we're going to get four gloves and as well 25.
+
+02:55.650 --> 03:01.290
+So now we can notice that if we use the window function, you will not lose the level of details of
+
+03:01.290 --> 03:01.930
+your data.
+
+03:02.090 --> 03:05.090
+So we are doing something called row level calculations.
+
+03:05.210 --> 03:09.810
+So if in input data we have four orders in the output we're going to get four orders.
+
+03:09.810 --> 03:12.810
+And as well we will get our aggregations correctly.
+
+03:12.810 --> 03:17.970
+So now if you compare both of the methods side by side we can see that we are solving the same task.
+
+03:17.970 --> 03:20.730
+So we are finding the total sales for each products.
+
+03:20.930 --> 03:28.130
+But with the groupby we are smashing, squeezing the results from four orders into two rows, one row
+
+03:28.130 --> 03:29.290
+for each order.
+
+03:29.290 --> 03:33.610
+So that means with a groupby the granularity is changing right in the input.
+
+03:33.610 --> 03:39.210
+The order id is controlling the level of details, but in the output of the groupby, the product is
+
+03:39.210 --> 03:40.570
+controlling the level of detail.
+
+03:40.570 --> 03:42.170
+So we have different granularity.
+
+03:42.170 --> 03:47.090
+But in the other hand, in the window functions we are still able to do aggregations, but we are not
+
+03:47.090 --> 03:48.850
+losing the level of details.
+
+03:48.850 --> 03:53.410
+So the granularity of the input can be the same like the output in the results.
+
+03:53.410 --> 03:57.340
+So this is exactly the main difference between the groupie and the window function.
+
+03:57.660 --> 04:01.340
+If you want just to do simple aggregations, then go with the groupie.
+
+04:01.620 --> 04:07.100
+But if you care about the level of details and you need to add more details to your results, then you
+
+04:07.100 --> 04:11.860
+can go with the window function where you can do aggregations plus having more details.
+
+04:11.900 --> 04:16.500
+And now if you go and compare the functions between the window and the groupby, we can find that both
+
+04:16.500 --> 04:19.260
+of them has exactly the same functions for the aggregations.
+
+04:19.260 --> 04:21.940
+So we have the count, sum, average, min, max.
+
+04:21.940 --> 04:26.980
+And here comes another difference between the window and the group by the groupby has only the aggregate
+
+04:26.980 --> 04:27.540
+functions.
+
+04:27.540 --> 04:28.380
+So that's it.
+
+04:28.380 --> 04:33.220
+But the window functions we have way more functions to use for analytics.
+
+04:33.220 --> 04:35.500
+So for example we have the ranking functions.
+
+04:35.500 --> 04:39.980
+And we have here another group of functions for the value or we call it analytical functions.
+
+04:39.980 --> 04:42.940
+So that means in the SQL window we have a lot of functions.
+
+04:42.940 --> 04:47.700
+We can cover a lot of analytical use cases and advanced complex stuff.
+
+04:47.780 --> 04:52.860
+But with a groupby we have only the aggregate functions only for simple use cases.
+
+04:52.860 --> 04:56.420
+So this is another difference between the groupby and the window groupby.
+
+04:56.460 --> 05:00.900
+Use it if you have a simple analysis simple aggregations window functions.
+
+05:00.900 --> 05:05.580
+We're going to use it for more advanced data analysis where we're going to cover a lot of use cases.
+
+05:05.620 --> 05:06.180
+All right guys.
+
+05:06.180 --> 05:08.980
+So now we're going to have a few tasks in order to understand one thing.
+
+05:09.260 --> 05:14.860
+Why do we need SQL window functions and why in some scenarios groupby is not enough.
+
+05:14.860 --> 05:17.220
+And we have to use SQL window functions.
+
+05:17.220 --> 05:17.820
+So let's go.
+
+05:17.860 --> 05:18.180
+All right.
+
+05:18.180 --> 05:19.860
+So let's start with a very simple task.
+
+05:19.860 --> 05:23.740
+It's going to say find the total sales across all orders.
+
+05:23.900 --> 05:26.340
+So we need one value the total sales.
+
+05:26.380 --> 05:27.820
+Let's see how we can do that.
+
+05:27.940 --> 05:30.580
+First make sure that you are using the database.
+
+05:30.580 --> 05:36.340
+So use sales database in case you have closed the clients so that you don't get any errors.
+
+05:36.340 --> 05:38.180
+So now we're going to start with the first thing.
+
+05:38.180 --> 05:40.100
+We're going to go and select the sales.
+
+05:40.100 --> 05:43.500
+You're going to find it in the table sales orders.
+
+05:43.700 --> 05:45.060
+So now you just query the data.
+
+05:45.060 --> 05:48.060
+And as you can see we have ten orders with ten sales.
+
+05:48.060 --> 05:49.940
+We didn't aggregate anything yet.
+
+05:49.940 --> 05:51.500
+So we have the raw data now.
+
+05:51.500 --> 05:54.940
+So now in order to solve the task, we can use the function sum.
+
+05:55.180 --> 05:58.060
+So sum of sales and we're going to give it a new name.
+
+05:58.100 --> 05:59.260
+Total sales.
+
+05:59.260 --> 06:03.380
+We don't have to use any groupby because we don't have to group up anything.
+
+06:03.380 --> 06:04.340
+So that's it.
+
+06:04.340 --> 06:05.820
+Let's go and execute that.
+
+06:05.820 --> 06:09.180
+And as you can see SQL can return one value 380.
+
+06:09.460 --> 06:12.140
+This is the total sales that we have inside our data.
+
+06:12.380 --> 06:15.380
+And this is the highest level of aggregations.
+
+06:15.380 --> 06:16.980
+So with that we have solved the task.
+
+06:16.980 --> 06:20.020
+We have the total sales across all orders.
+
+06:20.020 --> 06:21.660
+We don't have to group up anything.
+
+06:21.660 --> 06:23.100
+Let's move to the next example.
+
+06:23.140 --> 06:24.780
+Let's see that in the next task.
+
+06:24.780 --> 06:29.300
+This time we want to find the total sales but for each products.
+
+06:29.460 --> 06:34.020
+So not for the orders for each product we want to find the total sales.
+
+06:34.020 --> 06:36.220
+So this time we don't need only one value.
+
+06:36.260 --> 06:38.700
+We need one value for each product.
+
+06:38.700 --> 06:39.900
+In order to do that.
+
+06:39.940 --> 06:42.820
+Now we're going to go and use the groupby function.
+
+06:42.820 --> 06:49.100
+And we're going to group by the product ID and group up need as well the dimension in the selection.
+
+06:49.100 --> 06:51.070
+So I'm going to do it like this.
+
+06:51.070 --> 06:51.830
+So that's it.
+
+06:51.830 --> 06:53.470
+Let's go and execute the query.
+
+06:53.510 --> 06:55.470
+Now as you can see in the results we don't have one value.
+
+06:55.470 --> 06:57.270
+We don't have the highest aggregations.
+
+06:57.550 --> 07:01.470
+This time we are drilling down to the next level of details.
+
+07:01.470 --> 07:06.630
+So the level of details here is the product ID we have one row for each product.
+
+07:06.630 --> 07:09.070
+So for the first product we have 140.
+
+07:09.150 --> 07:11.270
+The next one 105 and so on.
+
+07:11.270 --> 07:15.830
+So as you can see we are now splitting the data at the level of product ID.
+
+07:15.830 --> 07:17.790
+And we went from ten orders.
+
+07:17.830 --> 07:19.870
+Now in the results we have four orders.
+
+07:19.870 --> 07:22.390
+And that's because we have four products.
+
+07:22.390 --> 07:28.270
+So the number of rows at the output going to be defined by the dimension the product ID.
+
+07:28.270 --> 07:29.830
+And with that we have solved the task.
+
+07:29.830 --> 07:32.070
+We have the total sales for each product.
+
+07:32.070 --> 07:32.670
+All right guys.
+
+07:32.670 --> 07:34.710
+So let's keep progressing in our examples.
+
+07:34.750 --> 07:38.870
+Now the next one is going to be a little bit advanced where we have the same aggregation.
+
+07:38.910 --> 07:41.270
+Find the total sales for each product.
+
+07:41.430 --> 07:46.030
+Additionally provide details such order ID and the order date.
+
+07:46.030 --> 07:50.670
+So as you can see, we have already solved the first part, we are finding the total sales for each
+
+07:50.670 --> 07:51.310
+product.
+
+07:51.350 --> 07:55.430
+Now we just have to add some additional information like the order ID and the order date.
+
+07:55.550 --> 07:58.190
+So let's go over here and just add it in our select.
+
+07:58.190 --> 08:01.550
+So order ID and let's have the order dates.
+
+08:01.630 --> 08:03.630
+So let's go and execute that.
+
+08:03.630 --> 08:05.230
+Just going to make it a little bit bigger.
+
+08:05.350 --> 08:05.910
+So let's go.
+
+08:05.910 --> 08:11.110
+But now as you can see SQL will not be happy and throw an error and says the stuff that you are adding
+
+08:11.150 --> 08:14.430
+to your selects are not included in the group by.
+
+08:14.470 --> 08:18.790
+So as you can see in the group by, we have only one dimension or one field called the product ID,
+
+08:18.950 --> 08:24.190
+but in our selection we have three dimensions the order ID, the order date, and the product ID.
+
+08:24.350 --> 08:29.190
+So there is no matching between the select and group by and SQL will not allow it.
+
+08:29.190 --> 08:30.510
+And now you might say you know what.
+
+08:30.550 --> 08:32.390
+Let's add everything to the group by.
+
+08:32.590 --> 08:34.190
+So with that we're going to get our aggregation.
+
+08:34.190 --> 08:35.870
+And as well we're going to get our details.
+
+08:36.070 --> 08:37.030
+So let's try that.
+
+08:37.030 --> 08:38.670
+I'm just going to zoom out a little bit.
+
+08:38.670 --> 08:42.310
+And instead of having the product ID let's add everything.
+
+08:42.310 --> 08:45.790
+So the order ID order date and the product ID.
+
+08:45.990 --> 08:49.190
+So now we have matching and SQL should not throw any error.
+
+08:49.310 --> 08:50.750
+Let's go and execute it.
+
+08:50.790 --> 08:52.750
+So now let's check whether we have solved the task.
+
+08:52.790 --> 08:54.550
+The task has two parts right.
+
+08:54.590 --> 08:57.270
+We have to do the aggregations and to provide details.
+
+08:57.350 --> 08:59.430
+So as you can see we have solved the second part.
+
+08:59.470 --> 09:02.070
+We have the details with order ID and order dates.
+
+09:02.230 --> 09:06.350
+But now the first part finding the total sales for each product is destroyed.
+
+09:06.350 --> 09:09.790
+Because if you check the results, we have the product ID 101.
+
+09:09.830 --> 09:11.550
+It has the total sales of ten.
+
+09:11.950 --> 09:15.710
+But in the third order we have it as a 20 for the same product.
+
+09:15.710 --> 09:17.950
+So actually the data is not aggregated.
+
+09:17.950 --> 09:20.590
+And that's because we are aggregating at different levels.
+
+09:20.590 --> 09:25.950
+And we have included way more stuff that we don't need for the aggregations we are aggregating at the
+
+09:25.950 --> 09:27.190
+order ID level.
+
+09:27.190 --> 09:30.070
+So as you can see now we are hitting the limits of groupby.
+
+09:30.110 --> 09:35.590
+We cannot provide aggregations and as well provide additional information from our data.
+
+09:35.590 --> 09:36.470
+You have to pick one.
+
+09:36.470 --> 09:40.630
+That's why we have to go to the second option where we can use the window functions.
+
+09:40.630 --> 09:41.670
+So let's do that.
+
+09:41.670 --> 09:46.040
+I'm just going to get rid of the groupby parts and as well all the fields.
+
+09:46.080 --> 09:47.040
+Let's back to the roots.
+
+09:47.040 --> 09:48.760
+So now we have the sum of sales.
+
+09:48.960 --> 09:51.320
+And if I execute this I'm going to get one value.
+
+09:51.320 --> 09:53.400
+So we are at the highest level of aggregations.
+
+09:53.640 --> 09:55.560
+So now we need to use the window function.
+
+09:55.560 --> 09:57.560
+I'm just going to remove the name.
+
+09:57.560 --> 10:03.480
+And now we're going to tell SQL this is a window functions using over after the aggregations or the
+
+10:03.480 --> 10:05.000
+functions tells SQL.
+
+10:05.040 --> 10:06.880
+We are talking about window functions.
+
+10:06.880 --> 10:08.520
+So let's just execute it like this.
+
+10:08.520 --> 10:10.680
+And with that we got ten rows.
+
+10:10.720 --> 10:13.160
+And that's because we have ten orders.
+
+10:13.200 --> 10:15.640
+And for each row we have exactly the same value.
+
+10:15.640 --> 10:19.160
+So we have the total sales of all orders for each row.
+
+10:19.160 --> 10:24.240
+So as you can see SQL understands this is a window function and SQL should not lie.
+
+10:24.280 --> 10:25.800
+Group all the data in one row.
+
+10:25.960 --> 10:30.280
+It should keep exactly the same rows or same number of rows like the input.
+
+10:30.600 --> 10:32.360
+So with that we have the window function.
+
+10:32.360 --> 10:34.680
+But we have to split the data by the products.
+
+10:35.120 --> 10:37.440
+So now we're going to use the keyword partition by.
+
+10:37.480 --> 10:38.360
+It's like the group by.
+
+10:38.360 --> 10:41.560
+But another wording products id the same dimension.
+
+10:41.560 --> 10:46.640
+So with that we have the total sales by products as a name.
+
+10:46.640 --> 10:48.080
+So let's go and execute this.
+
+10:48.080 --> 10:50.960
+So now as you can see in the output we still have the same number of rows.
+
+10:50.960 --> 10:52.040
+We have ten orders.
+
+10:52.040 --> 10:53.360
+We have ten rows.
+
+10:53.520 --> 10:58.160
+But the result did change because now we are aggregating the data at the level of product ID.
+
+10:58.360 --> 11:02.600
+In order to understand the results, we have to add more information to our selects.
+
+11:02.600 --> 11:04.560
+So now let's add the same dimension.
+
+11:04.560 --> 11:08.320
+It's going to be the product ID I'm just going to add it at the front over here.
+
+11:08.320 --> 11:09.960
+So let's select.
+
+11:09.960 --> 11:12.160
+And as you can see now it makes more sense.
+
+11:12.160 --> 11:13.560
+We have those products.
+
+11:13.560 --> 11:17.160
+And they have always the exact same sales.
+
+11:17.160 --> 11:19.280
+And as well for the next product and so on.
+
+11:19.280 --> 11:21.240
+And now here comes the magic of the window function.
+
+11:21.240 --> 11:26.240
+We can add more informations to our select statement without having any errors.
+
+11:26.240 --> 11:29.040
+So now we need additional informations like the order ID.
+
+11:29.200 --> 11:34.720
+So we can go over here and say order ID order date, any type of column.
+
+11:34.720 --> 11:37.840
+You can add it to your select and let's go and execute.
+
+11:37.840 --> 11:39.600
+So as you can see now we got the result.
+
+11:39.600 --> 11:45.330
+Even though that those three dimensions in the select are not part of the window aggregation.
+
+11:45.570 --> 11:47.490
+So with that we have solved the tasks.
+
+11:47.490 --> 11:48.850
+We have additional information.
+
+11:48.850 --> 11:54.730
+We have the order ID, the order dates, and as well the first part of the task to find the total sales
+
+11:54.730 --> 11:55.770
+for each products.
+
+11:55.770 --> 11:59.370
+So each of those values are the total sales for each products.
+
+11:59.570 --> 12:01.570
+And with that we have solved the tasks.
+
+12:01.570 --> 12:04.130
+And this is exactly why we need window functions.
+
+12:04.130 --> 12:06.730
+In real projects things get really complicated.
+
+12:06.730 --> 12:10.570
+You are doing different tasks in one query, so you are doing aggregations.
+
+12:10.570 --> 12:12.290
+You are doing some other stuff.
+
+12:12.650 --> 12:15.410
+So just focusing on the aggregations is not going to be enough.
+
+12:15.450 --> 12:18.730
+You have always to add additional informations to your query.
+
+12:18.730 --> 12:21.730
+So as you can see we use groupby to do simple analysis.
+
+12:21.730 --> 12:28.210
+But as things get complicated in the analytics, we use the window functions in order to show the aggregations
+
+12:28.210 --> 12:30.250
+and as well add additional informations.
+
+12:30.250 --> 12:33.250
+So as you can see we use groupby to do simple analysis.
+
+12:33.250 --> 12:39.690
+But as things get complicated in the analytics, we use the window functions in order to show the aggregations
+
+12:39.690 --> 12:41.690
+and as well add additional informations.

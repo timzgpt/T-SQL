@@ -1,0 +1,211 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.280 --> 00:05.720
+So now we're going to move to the second type.
+
+00:05.720 --> 00:11.600
+And we're gonna understand how exactly a SQL build and create the non-clustered index.
+
+00:11.600 --> 00:12.280
+So let's go.
+
+00:12.280 --> 00:16.400
+So now we are back to the heap structure where our table don't have any index.
+
+00:16.400 --> 00:19.640
+And our data are stored randomly inside the data pages.
+
+00:19.640 --> 00:24.720
+And now if you go and create a non-clustered index on the customer ID what can happen.
+
+00:24.720 --> 00:32.880
+And here the big difference is that SQL will not touch or change anything on the physical, actual data
+
+00:32.880 --> 00:34.280
+on the data pages.
+
+00:34.280 --> 00:38.600
+So the data pages can stay as it is and nothing's going to be changed.
+
+00:38.640 --> 00:42.280
+The and the SQL start immediately building the B structure.
+
+00:42.280 --> 00:45.280
+So it's going to start immediately building an index page.
+
+00:45.280 --> 00:49.360
+And this index page is a little bit different than the one that we have learned previously.
+
+00:49.360 --> 00:52.200
+So since it is index page it's going to store pointers.
+
+00:52.200 --> 00:56.000
+But this time it's really going to store in the key the customer ID.
+
+00:56.000 --> 00:59.760
+So one is the customer ID and now the value the pointer.
+
+00:59.760 --> 01:03.360
+It will not be the data page ID we will be more specific.
+
+01:03.360 --> 01:08.160
+So we're going to have like an address where exactly the row is stored.
+
+01:08.160 --> 01:14.010
+So it's going to start with the file ID the page number because the customer ID one is stored in the
+
+01:14.010 --> 01:22.490
+page one double point 102, but SQL can go add as well the offset number of the row where exactly in
+
+01:22.490 --> 01:25.210
+the page we can find this ID and the whole thing.
+
+01:25.210 --> 01:29.130
+We can call it an air ID the row identifier.
+
+01:29.130 --> 01:35.210
+So now let's see quickly how the index page is pointing exactly to the row inside the data page.
+
+01:35.210 --> 01:40.530
+So the first part of the row identifier is mapping to the data page ID.
+
+01:40.530 --> 01:43.610
+And then from the 96 it's going to take us to the offset.
+
+01:43.610 --> 01:47.290
+And that's exactly the location of the row number one.
+
+01:47.290 --> 01:52.450
+So 96 is the part where we're going to start finding the row number one.
+
+01:52.450 --> 01:58.850
+And that's going to take us exactly to the place where we can read the information about the row ID
+
+01:58.890 --> 01:59.690
+number one.
+
+01:59.690 --> 02:05.370
+So this is how the index page is locating the exact place of the rows.
+
+02:05.410 --> 02:12.330
+So SQL can go and continue and assign for each customer ID a pointer to the exact location.
+
+02:12.330 --> 02:18.050
+So as you can see now in the index page, we don't have like a pointer for each group of customers,
+
+02:18.050 --> 02:24.570
+like we have learned in the clusters index, we have now a pointer for each ID and this type of index
+
+02:24.570 --> 02:27.410
+page, we call it row locator page.
+
+02:27.410 --> 02:33.890
+So now SQL going to go and continue and map a pointer for each customer ID that we have inside our table.
+
+02:33.890 --> 02:38.090
+So we will have multiple index pages pointing to our data page.
+
+02:38.210 --> 02:40.370
+So as you can see we have a lot of pointers.
+
+02:40.530 --> 02:44.570
+And the data inside the index page is of course sorted.
+
+02:44.570 --> 02:47.690
+But inside the data pages it left as it is.
+
+02:47.850 --> 02:54.890
+And now those index pages that has the row identifier is going to be stored at the leaf level of that
+
+02:54.970 --> 02:55.690
+B-tree.
+
+02:55.730 --> 02:59.370
+So at the leaf level we don't have the actual data, the data pages.
+
+02:59.370 --> 03:04.050
+We have index pages where we have pointers then to the actual data.
+
+03:04.090 --> 03:07.410
+And then it's going to go and start building the intermediate nodes.
+
+03:07.410 --> 03:12.850
+It's exactly like the clustered index where it's going to point to another index page.
+
+03:12.850 --> 03:17.850
+So between 1 and 5 customers it can be in the index page number 200.
+
+03:17.850 --> 03:20.410
+So the next step is going to go and build the intermediate nodes.
+
+03:20.410 --> 03:23.050
+It's going to be exactly like the clustered index.
+
+03:23.090 --> 03:24.170
+Nothing going to be changed.
+
+03:24.210 --> 03:25.730
+It's like the same structure.
+
+03:25.730 --> 03:31.290
+So it is an index page pointing to another index page, but this time for a group of customers.
+
+03:31.290 --> 03:34.130
+And then we're going to have as well the root node.
+
+03:34.260 --> 03:40.140
+So again, we call this structure as a B-tree structure where they point to another data pages.
+
+03:40.140 --> 03:43.980
+But the data pages are not part of the B tree.
+
+03:44.020 --> 03:48.580
+So now let's say if you are searching for the customer ID number 14, what's going to happen?
+
+03:48.620 --> 03:51.020
+It's going to start again from the root node.
+
+03:51.140 --> 03:55.420
+And then it's going to find the pointer to the intermediate node and then jump to the next step to the
+
+03:55.420 --> 03:56.300
+intermediate node.
+
+03:56.300 --> 04:00.860
+And then it's going to find the pointer to the index page between 11 and 15.
+
+04:00.860 --> 04:04.780
+And then it's going to go and scan this index page and find okay.
+
+04:04.820 --> 04:08.620
+For the customer ID number 14 we have the following address.
+
+04:08.620 --> 04:11.140
+So it's going to go and locate the exact data page.
+
+04:11.140 --> 04:17.620
+And as well the exact place of the row so it can go and jump immediately to the row without scanning
+
+04:17.660 --> 04:18.540
+anything else.
+
+04:18.700 --> 04:24.820
+So here this time with the non-clustered index, the SQL did read three different index pages.
+
+04:24.820 --> 04:28.340
+And finally the one data page in order to find the data.
+
+04:28.340 --> 04:34.100
+So if you compare to the clustered index you can see that we have here one extra layer, one extra index
+
+04:34.100 --> 04:38.020
+page to be scanned in order to find the right place of the row.
+
+04:38.020 --> 04:45.100
+And this is how SQL creates the B-tree for the non-clustered index and how it scans it in order to find
+
+04:45.100 --> 04:46.100
+the information.

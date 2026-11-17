@@ -1,0 +1,214 @@
+WEBVTT
+
+00:03.920 --> 00:08.840
+And now we come to a very important part where we can understand how the partitions are really improving
+
+00:08.840 --> 00:10.240
+the performance of my query.
+
+00:10.240 --> 00:13.280
+And of course, we can do that by checking the execution plan.
+
+00:13.320 --> 00:18.120
+So now in order to compare like the behavior with and without a partition, what we have to do is to
+
+00:18.160 --> 00:20.440
+create a mirror table without partition.
+
+00:20.440 --> 00:22.560
+So we have our table here, the partition one.
+
+00:22.560 --> 00:28.320
+What I'm just going to do, I will go over here and say into and we're going to call it sales orders
+
+00:28.640 --> 00:30.600
+underscore no partition.
+
+00:31.520 --> 00:35.720
+So we are taking the data and the structure from the orders partitions.
+
+00:35.720 --> 00:37.880
+And of course it will not be partitioned.
+
+00:38.080 --> 00:39.960
+So let's go and execute it.
+
+00:40.000 --> 00:43.760
+Now if you go over here we can see that we have two tables.
+
+00:43.760 --> 00:46.000
+We have the no partition and the partition one.
+
+00:46.000 --> 00:49.960
+So now what we're going to do, we're going to write a query on both tables and then compare the execution
+
+00:49.960 --> 00:50.440
+plan.
+
+00:50.480 --> 00:52.640
+So first let's start with the no partition.
+
+00:53.000 --> 00:58.680
+So from and now in order to see the effect of the partition what we're going to do we're going to say
+
+00:58.840 --> 01:01.680
+where order dates equal to.
+
+01:01.720 --> 01:06.040
+And now we're just going to pick a value like 2026 the 1st of January.
+
+01:06.040 --> 01:07.840
+So let's go and query it.
+
+01:07.880 --> 01:12.240
+And we're going to do the same thing a new query but this time for the partitions.
+
+01:12.300 --> 01:12.780
+So.
+
+01:14.940 --> 01:18.460
+Now in order to see the execution plan, make sure to activate it.
+
+01:18.460 --> 01:23.100
+So we go to the action bar over here and we're going to say include the actual execution plan.
+
+01:23.100 --> 01:25.460
+So let's click on it and execute.
+
+01:25.460 --> 01:27.820
+And with that we have here an execution plan.
+
+01:27.860 --> 01:30.540
+And let's do the same thing for the node partitions.
+
+01:30.580 --> 01:31.700
+So execute.
+
+01:31.740 --> 01:33.740
+And we have here execution plan.
+
+01:33.740 --> 01:35.860
+So now let's check what do we have in the execution plan.
+
+01:35.900 --> 01:37.540
+We're going to focus on this one over here.
+
+01:37.540 --> 01:40.260
+So right click on it and then go to properties.
+
+01:40.300 --> 01:42.900
+And now we can see a lot of details about the execution plan.
+
+01:42.940 --> 01:45.500
+But what is interesting is the number of rows.
+
+01:45.740 --> 01:47.540
+So as you can see we are reading four rows.
+
+01:47.580 --> 01:48.900
+That means the whole table.
+
+01:48.940 --> 01:51.980
+And of course we have here the CPU and the other costs.
+
+01:52.020 --> 01:54.180
+Now let's go and check the partition.
+
+01:54.180 --> 01:55.580
+So let's click over here.
+
+01:55.580 --> 02:00.060
+So now if you check over here you can see that the total number of rows is one.
+
+02:00.060 --> 02:02.580
+So SQL didn't read all four rows.
+
+02:02.620 --> 02:03.900
+It reads only row.
+
+02:03.940 --> 02:06.500
+And that's because we have in this partition only one row.
+
+02:06.540 --> 02:10.620
+And as you can see the number of partitions that is used is as well only one.
+
+02:10.620 --> 02:16.580
+So as you can see using partition we have reduced the number of rows that is retrieved from the files.
+
+02:16.660 --> 02:22.300
+Now let's go and retrieve like two data from two different partitions and check the execution plan.
+
+02:22.860 --> 02:26.760
+So let's target 2025 the last day of the year.
+
+02:26.760 --> 02:27.560
+Like this.
+
+02:27.560 --> 02:29.800
+So let's go and execute it.
+
+02:29.920 --> 02:32.160
+And the same thing for the other query.
+
+02:34.560 --> 02:36.800
+So let's check the without partition.
+
+02:37.280 --> 02:39.600
+We still we are reading like four rows.
+
+02:39.640 --> 02:45.640
+But now if you go to the other one, if you check the execution plan and check the table scan, you
+
+02:45.640 --> 02:51.200
+can see we are reading only two rows, and this time the number of partitions that are involved in this
+
+02:51.200 --> 02:52.200
+query is two.
+
+02:52.240 --> 02:55.640
+And that's because we have partition for 2025 and 2026.
+
+02:55.640 --> 02:57.280
+So as you can see it's worth the efforts.
+
+02:57.320 --> 02:59.120
+We have optimized our queries.
+
+02:59.120 --> 03:02.400
+And this has a great impact on bigtable's.
+
+03:02.400 --> 03:06.480
+The number of resources and the number of reads can be reduced massively.
+
+03:06.520 --> 03:07.240
+All right my friends.
+
+03:07.240 --> 03:09.280
+So that's all about the partitions in SQL.
+
+03:09.320 --> 03:10.120
+It is amazing.
+
+03:10.120 --> 03:15.280
+And you can use it as well not only in databases but as well in many other data platforms and tools
+
+03:15.280 --> 03:18.800
+where you always can divide your data in order to optimize the performance.
+
+03:18.840 --> 03:24.040
+Now, in the next step, what I have prepared for you after 15 years working in real projects using
+
+03:24.080 --> 03:27.080
+SQL, I have a lot of best practices and tips for you.
+
+03:27.080 --> 03:29.000
+So I have collected everything that I know.
+
+03:29.000 --> 03:33.720
+And now I'm going to show you the best practices and tips and tricks that I can give you in order to
+
+03:33.720 --> 03:35.560
+optimize the performance in SQL.
+
+03:35.600 --> 03:36.480
+So let's go.

@@ -1,0 +1,241 @@
+WEBVTT
+
+00:03.920 --> 00:06.680
+Okay, so now what is exactly a left anti-join.
+
+00:06.720 --> 00:12.600
+Now, in this mechanism, we want to return rows from the left side, the left table that has no match
+
+00:12.640 --> 00:13.720
+in the right table.
+
+00:13.720 --> 00:19.520
+So now by looking to our two circles from the left table, we want to see only the unmatching rows.
+
+00:19.520 --> 00:25.920
+So only rows that exist in table A, but it don't exist in the table B so if there is like matching
+
+00:25.920 --> 00:27.480
+data we don't want to see it.
+
+00:27.480 --> 00:29.920
+And now from the right table we don't want anything.
+
+00:29.920 --> 00:31.360
+We don't want any data.
+
+00:31.360 --> 00:34.720
+So that means the only source of your data is going to be the left table.
+
+00:34.720 --> 00:35.760
+And from the right table.
+
+00:35.760 --> 00:37.040
+We don't need any data.
+
+00:37.040 --> 00:40.520
+We are just joining the tables to do a check to filter the data.
+
+00:40.560 --> 00:41.680
+So now for the syntax.
+
+00:41.680 --> 00:42.800
+This is going to be interesting.
+
+00:42.800 --> 00:45.680
+We don't have a special type called left anti-join.
+
+00:45.720 --> 00:48.840
+At least in the SQL server we still can create this effect.
+
+00:48.880 --> 00:54.320
+Since we are saying left we can use the type left join and then as usual the join condition with the
+
+00:54.360 --> 00:54.720
+keys.
+
+00:54.720 --> 00:58.400
+But now if you leave it like this, you will get the effect of the left join.
+
+00:58.400 --> 01:03.040
+And we don't want that because with the left join you will get the complete circle from the left table.
+
+01:03.080 --> 01:07.880
+But now in order to remove the matching data, this overlapping in the middle, what we can do.
+
+01:07.880 --> 01:12.080
+We can use a filter and in order to filter the data we use the Where clause.
+
+01:12.080 --> 01:17.640
+So now in order to get rid of the matching data, we can take the key from the right table.
+
+01:17.640 --> 01:20.200
+And we say the key must be null.
+
+01:20.200 --> 01:21.600
+So if the key is null.
+
+01:21.600 --> 01:24.760
+So that means there is no match on the right side.
+
+01:24.760 --> 01:30.360
+And if you do it like this, you will get the effect of the left anti-join only the data in the left
+
+01:30.360 --> 01:32.360
+that has no match on the right.
+
+01:32.360 --> 01:35.000
+So now let's go and scale and create this effect.
+
+01:35.040 --> 01:36.480
+Okay, so now we have the following task.
+
+01:36.520 --> 01:40.040
+And it says get all customers who haven't placed any order.
+
+01:40.080 --> 01:44.120
+So now by looking to this query clearly we are focusing on the table customers.
+
+01:44.120 --> 01:47.320
+But we want to see the customers that didn't order anything.
+
+01:47.320 --> 01:51.000
+So they are in our database but the customers are inactive now.
+
+01:51.000 --> 01:55.560
+There are like different ways on how to solve this task, but we're going to solve it using the joins.
+
+01:55.600 --> 02:01.520
+Now let's go and start by just writing a very simple query where we are selecting everything from the
+
+02:01.520 --> 02:02.590
+table customers.
+
+02:02.630 --> 02:04.950
+Now you can see this is our five customers.
+
+02:04.990 --> 02:08.630
+And now I want to check which of those customers didn't order anything yet.
+
+02:08.670 --> 02:12.790
+Now since we are talking about the orders, we can go and join it with the table orders.
+
+02:12.790 --> 02:17.550
+So we're going to say left join the table orders as oh, and then we're going to go and connect the
+
+02:17.550 --> 02:21.430
+tables using the IDs with the customer ID.
+
+02:21.430 --> 02:26.350
+So now if we go and execute it now we are still seeing all the customers because we are using the left
+
+02:26.350 --> 02:26.750
+join.
+
+02:26.750 --> 02:30.390
+And now we can see the orders informations of each customer.
+
+02:30.390 --> 02:36.270
+And you can see immediately those two customers didn't order anything because we are seeing here nulls.
+
+02:36.270 --> 02:36.750
+Right.
+
+02:36.750 --> 02:37.750
+So they are empty.
+
+02:37.790 --> 02:38.910
+There is no orders.
+
+02:38.950 --> 02:42.590
+Now we can use this information in order to filter the data.
+
+02:42.590 --> 02:44.870
+I just want to see Martin and Peter.
+
+02:44.870 --> 02:47.830
+So what we can do, we can go and say where and all.
+
+02:47.830 --> 02:51.950
+What you have to do is to take the key that we are using in order to join the tables.
+
+02:51.950 --> 02:55.710
+This is this one over here and say this must be null.
+
+02:55.710 --> 02:57.430
+So is null.
+
+02:57.430 --> 03:00.270
+So if you see it like this, that means you want to see the data.
+
+03:00.270 --> 03:01.870
+If the customer ID is null.
+
+03:01.870 --> 03:04.070
+So let's go and execute it.
+
+03:04.110 --> 03:04.790
+Perfect.
+
+03:04.830 --> 03:08.190
+Now you are getting the customers who haven't ordered anything.
+
+03:08.190 --> 03:10.630
+And this is exactly the effect that we wanted.
+
+03:10.630 --> 03:11.830
+The lift antijoin.
+
+03:11.870 --> 03:17.030
+We are getting the data from the left side where there are no match on the right side.
+
+03:17.030 --> 03:18.910
+So you have always to do it in two steps.
+
+03:18.950 --> 03:24.790
+First, join the data as you normally do using the classical joins the left join and then the second
+
+03:24.790 --> 03:27.990
+step you go and use a filter using the Where clause.
+
+03:27.990 --> 03:31.030
+If you do it like this, you can check for not existence.
+
+03:31.030 --> 03:34.150
+And with that we are getting the effect of the lift antijoin.
+
+03:34.190 --> 03:35.070
+So that's it.
+
+03:35.110 --> 03:39.910
+Okay, so now if you are looking to this picture, I think you already know where we use the lift Antijoin
+
+03:39.910 --> 03:43.830
+we can use it only on the last use case where we are checking the existence.
+
+03:43.830 --> 03:49.070
+So if we use the lift join together with the where you can check for the not existence of your data
+
+03:49.070 --> 03:50.030
+in another table.
+
+03:50.070 --> 03:52.150
+So this is exactly for this scenario.
+
+03:52.190 --> 03:52.590
+All right.
+
+03:52.590 --> 03:54.670
+So that's all about the lift Antijoin.
+
+03:54.710 --> 03:57.550
+Now we're going to speak about the exact opposite of that.
+
+03:57.590 --> 03:59.950
+We will cover the right antijoin.
+
+03:59.950 --> 04:03.030
+So it can be very similar but we are just switching sides.
+
+04:03.030 --> 04:03.830
+So let's go.

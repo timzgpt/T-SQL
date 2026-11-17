@@ -1,0 +1,307 @@
+WEBVTT
+
+00:03.920 --> 00:05.240
+Okay, so what is exactly?
+
+00:05.240 --> 00:05.800
+Functional?
+
+00:05.800 --> 00:06.760
+Why we need it now?
+
+00:06.760 --> 00:08.960
+Again, we have our data inside the table.
+
+00:09.000 --> 00:11.560
+Now there is like a lot of stuff that you can do with your data.
+
+00:11.560 --> 00:15.920
+So sometimes you have to change the values of your data, like doing data manipulation.
+
+00:15.920 --> 00:18.840
+Or you want to do some aggregations and analyses.
+
+00:18.840 --> 00:23.480
+So maybe you want to analyze your data and find insights and maybe build reports.
+
+00:23.520 --> 00:27.840
+And sometimes you might find bad data inside your tables and you want to clean that up.
+
+00:27.840 --> 00:29.560
+So you want to do data cleansing.
+
+00:29.560 --> 00:34.960
+And sometimes you have to do data transformations and data manipulation on our data in order to solve
+
+00:34.960 --> 00:36.240
+some SQL tasks.
+
+00:36.240 --> 00:40.120
+And in SQL, in order to solve those tasks, we have functions.
+
+00:40.120 --> 00:41.880
+So again, what is exactly a function?
+
+00:41.880 --> 00:45.920
+It is a built in code block that accepts an input value.
+
+00:45.960 --> 00:51.000
+Then the function is going to go and process this value and it's going to return a result an output
+
+00:51.000 --> 00:51.440
+value.
+
+00:51.440 --> 00:55.600
+So you give an input value, do some transformations and give an output.
+
+00:55.600 --> 00:58.520
+And we can group the functions into two big categories.
+
+00:58.520 --> 01:01.280
+The first one we call it single row functions.
+
+01:01.280 --> 01:05.850
+So you give the function only one value and add the return, you will get as well one value.
+
+01:05.850 --> 01:10.850
+So the input for the function going to be only one single value like Mariam, and the output of the
+
+01:10.850 --> 01:12.090
+function going to be as well.
+
+01:12.130 --> 01:13.370
+Single row value.
+
+01:13.370 --> 01:15.290
+So one value in one value out.
+
+01:15.330 --> 01:19.530
+And now the other category of functions we call it multi-row functions.
+
+01:19.530 --> 01:25.010
+So for example if you have the function sum this function accepts multiple rows multiple values like
+
+01:25.050 --> 01:27.330
+it gets 30, ten, 20, 40.
+
+01:27.370 --> 01:32.450
+The function is then going to go and summarize all those rows and return in the output only one value.
+
+01:32.490 --> 01:35.210
+The summarization of all those values can be 100.
+
+01:35.210 --> 01:39.250
+So the input is multiple rows and the output is one single value.
+
+01:39.250 --> 01:42.410
+So those are the two main categories of functions in SQL.
+
+01:46.370 --> 01:50.890
+Now my friends, you have to understand something about the functions that you can go and nest functions
+
+01:50.890 --> 01:51.330
+together.
+
+01:51.330 --> 01:55.450
+So you can use multiple functions together in order to manipulate one value.
+
+01:55.450 --> 01:58.730
+And this technique is not only in SQL in any programming language.
+
+01:58.730 --> 01:59.850
+So let's have this example.
+
+01:59.850 --> 02:01.330
+We have the function left.
+
+02:01.330 --> 02:04.650
+It can go and extract like few characters let's say two characters.
+
+02:04.650 --> 02:07.430
+So the input for this function let's say it's Maria.
+
+02:07.470 --> 02:09.070
+This value can enter the function.
+
+02:09.070 --> 02:11.750
+The function is going to go and extract the first two characters.
+
+02:11.750 --> 02:14.270
+And in the output we will get only two characters.
+
+02:14.310 --> 02:14.710
+Ma.
+
+02:14.830 --> 02:15.990
+So this is one function.
+
+02:15.990 --> 02:17.550
+We have an input and output.
+
+02:17.590 --> 02:18.710
+Now you might say you know what.
+
+02:18.710 --> 02:20.630
+We have multiple steps on this value.
+
+02:20.630 --> 02:24.990
+So the first step we want to extract the first two characters using the lift function.
+
+02:24.990 --> 02:26.390
+But we have a second step.
+
+02:26.390 --> 02:29.990
+So we want to transform this output into a lowercase characters.
+
+02:29.990 --> 02:31.590
+So we have another function lower.
+
+02:31.590 --> 02:36.070
+And the input for this second function will be the output of the first function.
+
+02:36.070 --> 02:40.190
+So ma it is at the same time output and input for another function.
+
+02:40.190 --> 02:44.510
+So the lower function can take this value and convert it into lowercase character.
+
+02:44.510 --> 02:49.350
+So it's like inside the factory the material is going to be processed into multiple stations, and the
+
+02:49.350 --> 02:52.390
+output of one station can be the input for the next station.
+
+02:52.390 --> 02:54.630
+And this is exactly what we can do with the functions.
+
+02:54.630 --> 02:55.990
+So now how are we going to build that.
+
+02:55.990 --> 02:58.390
+The first step is to start with the first function.
+
+02:58.390 --> 03:00.190
+So this is simple one function.
+
+03:00.230 --> 03:05.510
+Now for the next step what you're going to do on the left side you can write lower and put the whole
+
+03:05.510 --> 03:06.630
+thing in parentheses.
+
+03:06.630 --> 03:10.680
+So now the whole thing the first function is going to be inside another function.
+
+03:10.680 --> 03:13.280
+And with that you have nested one function in another.
+
+03:13.280 --> 03:17.320
+And of course, if you need a third function like for example, the length, what you're going to do,
+
+03:17.320 --> 03:20.280
+you're going to put the whole thing again between two parentheses.
+
+03:20.280 --> 03:23.160
+So now that means the output of the lift going to go to the lower.
+
+03:23.160 --> 03:26.000
+And the output of the lower is going to go to the length.
+
+03:26.000 --> 03:27.040
+So it is very simple.
+
+03:27.040 --> 03:31.120
+And the order of the execution for this will start always in the inner function.
+
+03:31.120 --> 03:36.080
+So the lift function can be executed first and then the outside function the lower and the last function
+
+03:36.080 --> 03:38.160
+that's going to be executed is the length.
+
+03:38.160 --> 03:42.440
+This is how the nested functions works in SQL or in any programming language.
+
+03:46.360 --> 03:49.000
+Now my friends in SQL we have a lot of functions.
+
+03:49.000 --> 03:52.240
+That's why we have to group them as well into subcategories.
+
+03:52.240 --> 03:57.040
+Like if you are talking about the single row functions, we have functions for the string values and
+
+03:57.040 --> 04:01.960
+as well for the numeric, the date and time and as well functions in order to handle the nulls.
+
+04:01.960 --> 04:05.720
+And if you are talking about the Multi-row functions here we have basically two groups.
+
+04:05.720 --> 04:08.600
+The first one is the simple aggregate functions.
+
+04:08.600 --> 04:10.880
+Those are the basics in order to aggregate your data.
+
+04:10.880 --> 04:12.900
+And we have another advanced one.
+
+04:12.900 --> 04:16.860
+We call it the window functions, or sometimes we call it analytical functions.
+
+04:16.860 --> 04:21.020
+So now if I'm looking to those two groups and now my friends, it is very important to understand those
+
+04:21.020 --> 04:21.540
+functions.
+
+04:21.540 --> 04:24.780
+Because using them you can do whatever you want with your data.
+
+04:24.780 --> 04:29.860
+And if I'm looking to those two groups, the single row functions, those stuff here, they are functions
+
+04:29.860 --> 04:34.260
+in order to manipulate and prepare the data for the second group.
+
+04:34.260 --> 04:38.700
+So if you are thinking about data engineers and data analysts, the data engineer is going to go and
+
+04:38.700 --> 04:41.900
+prepare the data in SQL using the single row functions.
+
+04:41.900 --> 04:47.020
+So you're going to use them in order to clean up, transform, manipulate your data in order to prepare
+
+04:47.060 --> 04:48.620
+it for the analysis.
+
+04:48.620 --> 04:53.980
+And if you are a data analyst, you will be mostly using the aggregate functions in almost every task.
+
+04:53.980 --> 04:55.180
+So I really see it like this.
+
+04:55.180 --> 04:59.620
+The single row functions for that engineers and multi-row functions for data analysts.
+
+04:59.620 --> 05:00.180
+And my friends.
+
+05:00.180 --> 05:01.420
+What are we going to do in this course?
+
+05:01.420 --> 05:07.460
+We're going to visit each of those subgroups one by one, exploring the functions, understanding how
+
+05:07.460 --> 05:09.140
+they work and when we're going to use them.
+
+05:09.140 --> 05:11.940
+So let's start with the first group, the string functions.
+
+05:11.940 --> 05:15.220
+And here we're going to learn how to manipulate the string values.
+
+05:15.220 --> 05:15.940
+So let's go.

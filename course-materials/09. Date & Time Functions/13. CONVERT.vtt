@@ -1,0 +1,391 @@
+WEBVTT
+
+00:03.920 --> 00:05.640
+All right, so what is converge?
+
+00:05.680 --> 00:06.320
+It's very simple.
+
+00:06.320 --> 00:09.480
+It's going to go and change the value to a different type.
+
+00:09.480 --> 00:12.920
+And as well at the same time it helps formatting the value.
+
+00:12.960 --> 00:13.200
+Okay.
+
+00:13.240 --> 00:14.920
+So let's check the syntax of the convert.
+
+00:14.920 --> 00:16.040
+And it looks like this.
+
+00:16.080 --> 00:20.840
+It starts with the function convert and it accepts two parameters the data type.
+
+00:20.880 --> 00:21.400
+First.
+
+00:21.440 --> 00:25.160
+Since we can use this function in order to cast the data types.
+
+00:25.160 --> 00:28.560
+So you can use string, integer, date and so on.
+
+00:28.560 --> 00:30.560
+And then we have to specify the value.
+
+00:30.560 --> 00:32.760
+So which value should be casted.
+
+00:32.760 --> 00:38.840
+And the last parameter it is optional one where you define the style the format of the value.
+
+00:38.880 --> 00:40.360
+Let's have this very simple example.
+
+00:40.360 --> 00:46.480
+We are saying convert to the data type integer int and the value that should be converted is one, two,
+
+00:46.520 --> 00:47.680
+three as a string.
+
+00:47.680 --> 00:49.800
+So it's going to convert it to integer.
+
+00:49.840 --> 00:55.160
+We are saying convert to a varchar and the value that should be converted is the order date.
+
+00:55.160 --> 00:57.240
+So the order date should be a date.
+
+00:57.240 --> 01:03.640
+So we're going to convert it from date to Varchar using the format or the style of 34.
+
+01:03.680 --> 01:07.500
+So here we are specifying a style a format for this value.
+
+01:07.500 --> 01:08.820
+And of course it is optional.
+
+01:08.820 --> 01:14.060
+And if you are not using anything, the default value that's going to be used is zero.
+
+01:14.060 --> 01:16.900
+So this is the syntax of the convert in SQL.
+
+01:16.940 --> 01:17.260
+All right.
+
+01:17.260 --> 01:20.300
+So now we're gonna have a few examples on how to work with the convert.
+
+01:20.300 --> 01:23.780
+So let's go and convert for example string to integer.
+
+01:23.780 --> 01:26.020
+So we're going to say for example convert.
+
+01:26.180 --> 01:27.620
+So what is the target data type.
+
+01:27.620 --> 01:30.100
+It's going to be the integer and the value.
+
+01:30.140 --> 01:32.300
+It's going to be like for example 123.
+
+01:32.300 --> 01:37.220
+So and let's call it like this string to integer.
+
+01:37.220 --> 01:38.940
+And the function is convert.
+
+01:38.940 --> 01:41.580
+So now in the column name as you can see I'm using here brackets.
+
+01:41.580 --> 01:44.740
+And that's because I'm using like empty spaces and so on.
+
+01:44.740 --> 01:47.580
+And with that I will get more freedom on how to name things.
+
+01:47.580 --> 01:48.980
+So this is just the name.
+
+01:48.980 --> 01:51.020
+So this is no function or something.
+
+01:51.220 --> 01:52.620
+Let's go and execute it.
+
+01:52.660 --> 01:53.940
+Now it's going to see it's going to work.
+
+01:53.940 --> 01:57.620
+So we are converting from a string value to an integer.
+
+01:57.980 --> 02:00.940
+And the output this 123 here is not a string.
+
+02:00.980 --> 02:03.020
+This is the data type of integer.
+
+02:03.060 --> 02:03.460
+All right.
+
+02:03.460 --> 02:08.020
+So now let's have another example where we want to convert from string to date.
+
+02:08.070 --> 02:11.550
+So the target is going to be the date and the value.
+
+02:11.870 --> 02:13.350
+Let's have this value as usual.
+
+02:14.030 --> 02:20.230
+And we're going to go and call it string to date convert.
+
+02:20.750 --> 02:21.070
+Okay.
+
+02:21.110 --> 02:22.430
+So let's go and execute it.
+
+02:22.430 --> 02:26.670
+Now in the output we will get this information this string as a date.
+
+02:26.670 --> 02:29.550
+And with that we have converted the data type from string to dates.
+
+02:29.590 --> 02:33.630
+Now let's have another example where we want to convert the date time to a dates.
+
+02:33.630 --> 02:38.190
+As you remember the creation time is a date time and we would like to have it as only date.
+
+02:38.550 --> 02:42.710
+So let's go and convert and we would like it to be as real date.
+
+02:42.710 --> 02:48.270
+But this time it's going to be a column called Creation Time and let's give it a name.
+
+02:49.110 --> 02:53.110
+So we are converting date time to date.
+
+02:53.390 --> 02:55.270
+But of course here we have to go and select.
+
+02:55.270 --> 02:58.110
+So from sales orders.
+
+02:58.270 --> 02:58.830
+That's it.
+
+02:58.830 --> 03:00.430
+Let's go and execute it.
+
+03:00.470 --> 03:06.070
+Now as you can see in the output we got only date I'm going to go and select the creation time in the
+
+03:06.110 --> 03:07.110
+query as well.
+
+03:07.150 --> 03:10.150
+So now as you can see the creation time was before a date time.
+
+03:10.150 --> 03:12.330
+So we have that time information as well.
+
+03:12.330 --> 03:16.090
+But if you go and cast it using the convert and make it only.
+
+03:16.130 --> 03:18.450
+Date so SQL can go and convert it to date.
+
+03:18.450 --> 03:21.010
+And you're going to lose all the information about the time.
+
+03:21.010 --> 03:23.610
+So so far what we are doing here is just casting.
+
+03:23.610 --> 03:26.450
+So we are changing the data type from one to another.
+
+03:26.450 --> 03:28.330
+But in the convert we can do both.
+
+03:28.330 --> 03:30.130
+We can do casting and formatting.
+
+03:30.130 --> 03:31.210
+So let's see how we can do that.
+
+03:31.210 --> 03:34.330
+I will just get rid of those information at the start.
+
+03:34.330 --> 03:35.530
+So creation time.
+
+03:35.930 --> 03:42.290
+And now we're going to go and convert the date time of the creation time to a varchar to a string.
+
+03:42.290 --> 03:45.530
+And as well to give it the format of the USA standard format.
+
+03:45.570 --> 03:46.970
+So let's see how we can do that.
+
+03:47.010 --> 03:48.610
+We're going to start with convert.
+
+03:48.850 --> 03:51.170
+We are changing now to varchar.
+
+03:51.210 --> 03:55.690
+So this is the new data type and the value is the creation time.
+
+03:55.730 --> 03:58.690
+And now if I don't give it a style it's going to stay with the standard format.
+
+03:58.690 --> 04:01.650
+But we would like to have the USA standards.
+
+04:01.650 --> 04:04.890
+So in order to do that we're going to go and add the style of the format.
+
+04:04.890 --> 04:06.970
+So it's going to be 32.
+
+04:07.530 --> 04:08.650
+So that's it.
+
+04:08.690 --> 04:10.690
+Let's have a name like this.
+
+04:11.290 --> 04:17.630
+So USA standard and we are using the style of 32.
+
+04:17.670 --> 04:18.430
+Let's go with that.
+
+04:18.430 --> 04:20.710
+This is just a name again, so it's not a function.
+
+04:20.710 --> 04:21.830
+Let's go and execute it.
+
+04:21.870 --> 04:23.670
+And now in the output we got a new field.
+
+04:23.670 --> 04:26.150
+And the data type of this field is a varchar.
+
+04:26.150 --> 04:27.950
+So it's not a date or date time.
+
+04:27.950 --> 04:31.910
+And as you can see the date now is formatted using this style.
+
+04:31.910 --> 04:33.910
+The 32 the USA standard formats.
+
+04:33.910 --> 04:37.190
+So it starts with a month then a day and then a year.
+
+04:37.190 --> 04:41.750
+So now let's go and do the same thing in order to get the standard format in Europe.
+
+04:41.750 --> 04:44.190
+So I will just go and copy the whole thing.
+
+04:44.590 --> 04:46.110
+I will just change the style.
+
+04:46.510 --> 04:49.790
+So instead of 32 we're going to go with the 34.
+
+04:49.910 --> 04:52.270
+And I will just change the name as well.
+
+04:52.750 --> 04:55.830
+So so we are just changing the style.
+
+04:55.830 --> 04:57.190
+Let's go and execute it.
+
+04:57.190 --> 04:57.390
+Now.
+
+04:57.390 --> 05:00.190
+As you can see, we got the same thing we have as well a varchar.
+
+05:00.430 --> 05:02.110
+And the format now is different.
+
+05:02.110 --> 05:05.750
+So we have here the day then the month and then the year.
+
+05:05.750 --> 05:07.910
+So this is how you work with the convert function.
+
+05:07.910 --> 05:14.270
+You can use it in order to do only casting or not only that you can do casting and as well formatting.
+
+05:14.270 --> 05:16.190
+So you have both things in one function.
+
+05:20.160 --> 05:25.040
+And if you're talking about which styles are available, we have many styles that you can use inside
+
+05:25.040 --> 05:25.800
+the convert.
+
+05:25.800 --> 05:29.800
+So I have prepared for you a list of all styles that you can use with the convert.
+
+05:29.800 --> 05:36.800
+So we have styles only for the dates and other styles only for the time and styles for only date time.
+
+05:36.800 --> 05:41.440
+Now in the download folders you can find here one file called all Culture Formats.
+
+05:41.440 --> 05:46.880
+And here you can find one query that I've prepared where you can find inside it the different cultures
+
+05:46.880 --> 05:47.840
+and examples.
+
+05:47.840 --> 05:49.040
+So let's go and copy it.
+
+05:49.040 --> 05:52.800
+And let's go back to SQL, paste it and let's see the results.
+
+05:52.800 --> 05:56.560
+So now if you check the output we got the first column is the cultures that is used.
+
+05:56.560 --> 05:58.960
+So we have a lot of cultures like around 17.
+
+05:58.960 --> 06:03.680
+And you can see how the numbers are formatted or the date is formatted based on this culture.
+
+06:03.680 --> 06:04.320
+So it's really fun.
+
+06:04.320 --> 06:10.400
+You can check here, for example, how the format in Japan or Korea or France and the German one, if
+
+06:10.400 --> 06:13.960
+you scroll down you can find the Arabic, the Russian and so on.
+
+06:13.960 --> 06:18.440
+So you can see the formats of each date is changing based on the culture.
+
+06:18.440 --> 06:23.120
+So I would say have fun, go and try those different cultures from us in order to format your numbers
+
+06:23.120 --> 06:23.840
+or dates.

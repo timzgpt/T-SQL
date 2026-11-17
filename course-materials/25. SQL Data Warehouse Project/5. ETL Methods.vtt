@@ -1,0 +1,388 @@
+WEBVTT
+
+00:00.480 --> 00:05.080
+I would like to show you an overview of the different techniques and methods in the Etls.
+
+00:05.080 --> 00:10.520
+We have wide range of possibilities where you have to make decisions on which one you want to apply
+
+00:10.520 --> 00:11.400
+to your projects.
+
+00:11.400 --> 00:13.400
+So let's start first with the extraction.
+
+00:13.400 --> 00:17.320
+The first thing that I want to show you is we have different methods of extraction.
+
+00:17.320 --> 00:22.560
+Either you are going to the source system and pulling the data from the source, or the source system
+
+00:22.560 --> 00:24.760
+is pushing the data to the data warehouse.
+
+00:24.760 --> 00:27.920
+So those are the two main methods on how to extract data.
+
+00:27.920 --> 00:33.560
+And then we have in the extraction two types we have a full extraction everything all the records from
+
+00:33.600 --> 00:34.120
+tables.
+
+00:34.120 --> 00:36.960
+And every day we load all the data to the data warehouse.
+
+00:36.960 --> 00:41.640
+Or we make more smarter, one where we say we're going to do an incremental extraction, where every
+
+00:41.680 --> 00:47.040
+day we're going to identify only the new changing data so we don't have to load the whole thing, only
+
+00:47.040 --> 00:47.840
+the new data.
+
+00:47.840 --> 00:50.880
+We go extract it and then load it to the data warehouse.
+
+00:50.880 --> 00:53.240
+And in that extraction we have different techniques.
+
+00:53.280 --> 00:59.120
+The first one is like manually, where someone has to access a source system and extract the data manually,
+
+00:59.120 --> 01:04.580
+or we connect ourselves to a database and we have then a query in order to extract the data, or we
+
+01:04.580 --> 01:07.420
+have a file that we have to parse it to the data warehouse.
+
+01:07.420 --> 01:13.220
+Or another technique is to connect ourselves to API and do their calls in order to extract the data,
+
+01:13.220 --> 01:18.900
+or if the data is available in streaming, like in Kafka, we can do event based streaming in order
+
+01:18.900 --> 01:19.900
+to extract the data.
+
+01:19.940 --> 01:22.940
+Another way is to use the change data capture.
+
+01:22.980 --> 01:26.100
+CDC is as well something very similar to streaming.
+
+01:26.100 --> 01:32.020
+Or another way is by using web scrapping, where you have a code that can run and extract all the informations
+
+01:32.020 --> 01:32.700
+from the web.
+
+01:32.700 --> 01:36.620
+So those are the different techniques and types that we have in the extraction.
+
+01:36.660 --> 01:42.020
+Now if you are talking on the transformation, there are wide range of different transformations that
+
+01:42.020 --> 01:43.340
+we can do on our data.
+
+01:43.380 --> 01:49.540
+Like for example doing data enrichment where we add values to our datasets, or we do data integration
+
+01:49.540 --> 01:55.300
+where we have multiple sources and we bring everything to one data model, or we derive new columns
+
+01:55.340 --> 01:57.140
+based on already existing one.
+
+01:57.180 --> 02:00.500
+Another type of data transformations we have the data normalization.
+
+02:00.500 --> 02:03.260
+So the sources has values that are like a code.
+
+02:03.260 --> 02:09.470
+And you go and map it to more friendly values for the analyzers, which is more easier to understand
+
+02:09.470 --> 02:14.310
+and to use another transformations we have the business rules and logic depend on the business.
+
+02:14.310 --> 02:18.430
+You can define different criterias in order to build like new columns.
+
+02:18.430 --> 02:21.710
+And what belongs to transformations is the data aggregation.
+
+02:21.710 --> 02:24.830
+So here we aggregate the data to a different granularity.
+
+02:24.830 --> 02:28.030
+And then we have type of transformation called data cleansing.
+
+02:28.030 --> 02:30.910
+There are many different ways on how to clean our data.
+
+02:30.910 --> 02:37.230
+For example removing the duplicates, doing data filtering, handling the missing data, handling invalid
+
+02:37.230 --> 02:44.430
+values or removing unwanted spaces, casting the data types and detecting the outliers, and many more.
+
+02:44.430 --> 02:48.670
+So we have different types of data cleansing that we can do in our data warehouse.
+
+02:48.870 --> 02:51.150
+And this is very important transformation.
+
+02:51.150 --> 02:56.270
+So as you can see, we have different types of transformations that we can do in our data warehouse.
+
+02:56.270 --> 02:58.070
+Now moving on to the load.
+
+02:58.070 --> 02:59.350
+So what do we have over here.
+
+02:59.350 --> 03:01.590
+We have different processing types.
+
+03:01.590 --> 03:05.230
+So either we are doing batch processing or stream processing.
+
+03:05.330 --> 03:11.770
+Batch processing means we are loading the data warehouse in one big batch of data that can run and load
+
+03:11.770 --> 03:17.050
+the data warehouse, so it is only one time job in order to refresh the content of the data warehouse
+
+03:17.050 --> 03:18.250
+and as well the reports.
+
+03:18.250 --> 03:23.530
+So that means we are scheduling the data warehouse in order to load it in the day once or twice.
+
+03:23.530 --> 03:25.770
+And the other time we have the stream processing.
+
+03:25.770 --> 03:30.770
+So this means if there is like a change in the source system, we are going to process this change as
+
+03:30.770 --> 03:31.690
+soon as possible.
+
+03:31.690 --> 03:36.410
+So we are going to process it through all the layers of the data warehouse once something changes from
+
+03:36.410 --> 03:37.170
+the source system.
+
+03:37.170 --> 03:43.090
+So we are streaming the data in order to have real time data warehouse, which is very challenging thing
+
+03:43.090 --> 03:43.930
+to do in that area.
+
+03:43.930 --> 03:44.290
+Housing.
+
+03:44.290 --> 03:47.570
+And if you are talking about the loads, we have two methods.
+
+03:47.610 --> 03:50.570
+Either we are doing a full load or incremental load.
+
+03:50.570 --> 03:52.450
+It's the same thing as extraction, right?
+
+03:52.450 --> 03:56.170
+So for the full load in databases, there are like different methods on how to do it.
+
+03:56.170 --> 03:58.810
+Like for example we truncate and then inserts.
+
+03:58.810 --> 04:04.290
+That means we make the table completely empty and then we insert everything from the scratch or another
+
+04:04.290 --> 04:04.450
+one.
+
+04:04.450 --> 04:06.250
+You are doing an update insert.
+
+04:06.250 --> 04:11.340
+We call it Upsert so we can go and update all the records and then insert the new one.
+
+04:11.340 --> 04:14.180
+And another way is to drop, create and insert.
+
+04:14.180 --> 04:19.180
+So that means we drop the whole table and then we create it from scratch and then we insert the data.
+
+04:19.220 --> 04:20.900
+It is very similar to the truncate.
+
+04:20.900 --> 04:24.380
+But here we are as well removing and dropping the whole table.
+
+04:24.380 --> 04:26.700
+So those are the different methods of full loads.
+
+04:26.700 --> 04:29.260
+The incremental load we can use as well the upserts.
+
+04:29.260 --> 04:30.580
+So update and insert.
+
+04:30.580 --> 04:34.060
+So we're going to do an update or insert statements to our tables.
+
+04:34.060 --> 04:37.820
+Or if the source is something like a log we can do only inserts.
+
+04:37.820 --> 04:42.620
+So we can go and append the data always to the table without having to update anything.
+
+04:42.660 --> 04:45.020
+Another way to do incremental load is to do a merge.
+
+04:45.020 --> 04:48.660
+And here it is very similar to the Upsert but as well with a delete.
+
+04:48.660 --> 04:50.660
+So update insert delete.
+
+04:50.660 --> 04:53.980
+So those are the different methods on how to load the data to your tables.
+
+04:53.980 --> 04:54.780
+And one more thing.
+
+04:54.780 --> 04:58.620
+In data warehousing we have something called slowly changing dimensions.
+
+04:58.620 --> 05:01.580
+So here it's all about the historization of your table.
+
+05:01.580 --> 05:06.100
+And there are many different ways on how to handle the historization in your table.
+
+05:06.100 --> 05:07.940
+The first type is Sd0.
+
+05:07.940 --> 05:08.000
+Zero.
+
+05:08.040 --> 05:11.680
+We say there is no sterilisations and nothing should be changed at all.
+
+05:11.680 --> 05:14.040
+So that means you are not going to update anything.
+
+05:14.080 --> 05:16.080
+The second one, which is more famous?
+
+05:16.120 --> 05:17.720
+It is the STD one.
+
+05:17.760 --> 05:22.920
+You are doing an override, so that means you are updating the records with the new information from
+
+05:22.920 --> 05:25.600
+the source system by overwriting the old value.
+
+05:25.600 --> 05:27.640
+So we are doing something like the Upsert.
+
+05:27.640 --> 05:31.000
+So update and inserts, but you are losing of course history.
+
+05:31.000 --> 05:32.640
+Another one we have the Psd2.
+
+05:32.680 --> 05:35.320
+And here you want to add history to your table.
+
+05:35.320 --> 05:36.240
+So what we do.
+
+05:36.240 --> 05:41.880
+So what we do each change that we get from the source system, that means we are inserting a new records,
+
+05:41.880 --> 05:47.120
+and we are not going to overwrite or delete the old data, we are just going to make it inactive.
+
+05:47.120 --> 05:49.400
+And the new record is going to be active one.
+
+05:49.400 --> 05:54.880
+So there are different methods on how to do his authorizations as well while you are loading the data
+
+05:54.880 --> 05:56.000
+to the data warehouse.
+
+05:56.000 --> 05:56.440
+All right.
+
+05:56.440 --> 06:01.280
+So those are the different types and techniques that you might encounter in data management projects.
+
+06:01.280 --> 06:05.280
+So now what I'm going to show you quickly which of those types we will be using in our projects.
+
+06:05.280 --> 06:10.250
+So now if you are talking about the extraction over here, we will be doing a pull full extraction and
+
+06:10.250 --> 06:13.730
+about the full or incremental, it's going to be a full extraction.
+
+06:13.730 --> 06:18.650
+And about the technique, we are going to be parsing files to the data warehouse.
+
+06:18.690 --> 06:20.970
+And now about the data transformations.
+
+06:20.970 --> 06:26.650
+Well, this one we will cover everything, all those types of transformations that I'm showing you now.
+
+06:26.690 --> 06:31.330
+It's going to be part of the projects because I believe in each data project you will be facing those
+
+06:31.330 --> 06:32.210
+transformations.
+
+06:32.250 --> 06:37.210
+Now if you have a look to the loads, our project is going to be batch processing and about the load
+
+06:37.210 --> 06:37.770
+methods.
+
+06:37.770 --> 06:43.770
+We will be doing a full load since we have full extraction and it's going to be truncate and inserts.
+
+06:43.810 --> 06:48.050
+And now about the Historization we will be doing the Scd1.
+
+06:48.050 --> 06:51.530
+So that means we will be updating the content of the data warehouse.
+
+06:51.530 --> 06:57.330
+So those are the different techniques and types that we will be using in our ETL process for this project.
+
+06:57.330 --> 06:57.690
+All right.
+
+06:57.690 --> 07:00.810
+So with that we have now clear understanding what is a data warehouse.
+
+07:00.810 --> 07:02.890
+And we are done with the theory part.
+
+07:02.930 --> 07:05.610
+So now the next step we are going to start with the projects.
+
+07:05.610 --> 07:10.410
+The first thing that we have to do is to prepare our environment to develop the projects.
+
+07:10.450 --> 07:11.810
+So let's start with that.

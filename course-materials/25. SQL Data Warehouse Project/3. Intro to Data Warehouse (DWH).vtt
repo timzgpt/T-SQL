@@ -1,0 +1,334 @@
+WEBVTT
+
+00:00.080 --> 00:00.880
+All right, my friends.
+
+00:00.880 --> 00:05.920
+So now, before we deep dive into the tools and the cool stuff we have, first to have a good understanding
+
+00:05.920 --> 00:08.400
+about what is exactly data warehouse.
+
+00:08.440 --> 00:11.920
+Why the companies try to build such a data management system.
+
+00:11.960 --> 00:14.040
+So now the question is what is a data warehouse?
+
+00:14.080 --> 00:17.840
+I will just use the definition of the father of the data warehouse.
+
+00:17.880 --> 00:18.680
+Bill Inmon.
+
+00:18.720 --> 00:25.200
+A data warehouse is a subject oriented, integrated, time variance and non-volatile collection of data
+
+00:25.240 --> 00:28.480
+designed to support the management's decision making process.
+
+00:28.520 --> 00:30.520
+Okay, I know that might be confusing.
+
+00:30.520 --> 00:31.440
+Subject oriented.
+
+00:31.440 --> 00:37.320
+It means data warehouse is always focused on a business area like the sales, customers, finance and
+
+00:37.320 --> 00:37.720
+so on.
+
+00:37.760 --> 00:41.160
+Integrated because it goes and integrates multiple source systems.
+
+00:41.160 --> 00:45.520
+Usually you build a warehouse not only for one source, but for multiple sources.
+
+00:45.560 --> 00:46.240
+Time variance.
+
+00:46.240 --> 00:51.000
+It means you can keep historical data inside the data warehouse non-volatile.
+
+00:51.000 --> 00:55.760
+It means once the data enter the data warehouse, it is not deleted or modified.
+
+00:55.760 --> 00:58.880
+So this is how Bill Inmon defined data warehouse okay.
+
+00:58.880 --> 01:03.280
+So now I'm going to show you the scenario where your company don't have a real data management.
+
+01:03.280 --> 01:08.160
+So now let's say that you have one system and you have like one data analyst has to go to the system
+
+01:08.160 --> 01:14.450
+and start collecting and extracting the data, and then he can spend days and sometimes weeks transforming
+
+01:14.450 --> 01:16.770
+the raw data into something meaningful.
+
+01:16.770 --> 01:19.770
+Then once they have their report, they're going to go and share it.
+
+01:19.770 --> 01:23.050
+And this data analyst is sharing the report using an Excel.
+
+01:23.050 --> 01:27.610
+And then you have like another source of data and you have another data analyst that she is doing.
+
+01:27.610 --> 01:32.890
+Maybe the same steps collecting the data, spending a lot of time transforming the data and then share
+
+01:32.930 --> 01:34.490
+at the end like a report.
+
+01:34.490 --> 01:39.250
+And this time she is sharing the data using PowerPoint and a third system and the same story.
+
+01:39.250 --> 01:42.770
+But this time he is sharing the data using maybe power BI.
+
+01:42.810 --> 01:46.170
+So now if the company works like this then there is a lot of issues.
+
+01:46.210 --> 01:48.970
+First, this process would take too way long.
+
+01:49.010 --> 01:54.690
+I saw a lot of scenarios where sometimes it takes weeks and even months until the employee manually
+
+01:54.690 --> 01:56.170
+generating those reports.
+
+01:56.170 --> 01:58.090
+And of course what's going to happen for the users.
+
+01:58.130 --> 02:02.450
+They are consuming multiple reports with multiple state of the data.
+
+02:02.450 --> 02:07.690
+One report is 40 days old, another 110 days, and a third one is like five days.
+
+02:07.690 --> 02:11.610
+So it's going to be really hard to make a real decision based on this structure.
+
+02:11.650 --> 02:17.070
+A manual process is always slow and stressful, and the more employees you involved in the process.
+
+02:17.070 --> 02:23.070
+The more you open the door for human errors and errors, of course, and reports leads to bad decisions.
+
+02:23.070 --> 02:26.270
+And another issue, of course, is handling the big data.
+
+02:26.270 --> 02:31.790
+If one of your sources generating like massive amounts of data, then the data analysts can struggle
+
+02:31.830 --> 02:32.870
+collecting the data.
+
+02:32.870 --> 02:36.990
+And maybe in some scenarios it will not be any more possible to get the data.
+
+02:36.990 --> 02:42.550
+So the whole process can breaks and you cannot generate any more fresh data for specific reports.
+
+02:42.550 --> 02:48.830
+And one last very big issue with that, if one of your stakeholders asks for an integrated report from
+
+02:48.830 --> 02:55.030
+multiple sources, well, good luck with that, because merging all those data manually is very chaotic,
+
+02:55.070 --> 02:56.910
+time consuming and full of risk.
+
+02:56.910 --> 02:58.510
+So this is just a picture.
+
+02:58.510 --> 03:04.270
+If a company is working without a proper data management, without a data lake, data warehouse, data
+
+03:04.310 --> 03:05.190
+lake houses.
+
+03:05.190 --> 03:09.710
+So in order to make real and good decisions, you need data management.
+
+03:09.710 --> 03:12.390
+So now let's talk about the scenario of a data warehouse.
+
+03:12.390 --> 03:17.790
+So the first thing that's going to happen is that you will not have your data team collecting manually
+
+03:17.790 --> 03:18.430
+the data.
+
+03:18.470 --> 03:22.030
+You're going to have a very important component called ETL.
+
+03:22.190 --> 03:25.280
+ETL stands for extract, transform and Load.
+
+03:25.320 --> 03:30.200
+It is a process that you do in order to extract the data from the sources, and then apply multiple
+
+03:30.200 --> 03:35.160
+transformations on those sources, and at the end it loads the data to the data warehouse.
+
+03:35.160 --> 03:39.520
+And this one can be the single point of truth for analysis and reporting.
+
+03:39.520 --> 03:41.760
+And it is called data warehouse.
+
+03:41.760 --> 03:43.000
+So now what can happen?
+
+03:43.000 --> 03:47.160
+All your reports can be consuming this single point of truth.
+
+03:47.160 --> 03:49.600
+So with that you create your multiple reports.
+
+03:49.600 --> 03:55.800
+And as well you can create integrated reports from multiple sources, not only from one single source.
+
+03:55.800 --> 03:58.960
+So now by looking to the right side it looks already organized.
+
+03:58.960 --> 03:59.360
+Right.
+
+03:59.360 --> 04:02.080
+And the whole process is completely automated.
+
+04:02.080 --> 04:06.720
+There is no more manual steps, which of course it reduces the human error.
+
+04:06.720 --> 04:08.520
+And as well it is pretty fast.
+
+04:08.520 --> 04:14.640
+So usually you can load the data from the sources until the reports in a matter of hours or sometimes
+
+04:14.640 --> 04:15.440
+in minutes.
+
+04:15.440 --> 04:20.440
+So there is no need to wait like weeks and months in order to refresh anything.
+
+04:20.440 --> 04:25.560
+And of course, the big advantage is that the data warehouse itself, it is completely integrated.
+
+04:25.560 --> 04:31.300
+So that means it goes and bring all those sources together in one place, which makes it really easier
+
+04:31.300 --> 04:33.500
+for reporting and not only integrated.
+
+04:33.500 --> 04:35.660
+You can build in the data warehouse as well.
+
+04:35.700 --> 04:36.140
+History.
+
+04:36.140 --> 04:39.420
+So we have now the possibility to access historical data.
+
+04:39.420 --> 04:44.700
+And what is also amazing is that all those reports having the same data status.
+
+04:44.700 --> 04:49.140
+So all those reports can have the same status, maybe sometimes one day old or something.
+
+04:49.180 --> 04:54.460
+And of course, if you have a modern data warehouse in cloud platforms, you can really easily handle
+
+04:54.500 --> 04:56.100
+any big data sources.
+
+04:56.100 --> 05:00.780
+So no need to panic if one of your sources is delivering massive amount of data.
+
+05:00.820 --> 05:05.180
+And of course, in order to build the data warehouse, you need different types of developers.
+
+05:05.180 --> 05:11.300
+So usually the one that builds the ETL component and the data warehouse is the data engineer.
+
+05:11.340 --> 05:16.980
+So they are the one that is accessing the sources, scripting the atls and building the database for
+
+05:16.980 --> 05:17.900
+the data warehouse.
+
+05:17.940 --> 05:19.380
+And now for the other parts.
+
+05:19.540 --> 05:22.500
+The one that is responsible for that is the data analyst.
+
+05:22.500 --> 05:28.300
+They are the one that is consuming the data warehouse, building different data models and reports,
+
+05:28.300 --> 05:30.460
+and sharing it with the stakeholders.
+
+05:30.460 --> 05:35.500
+So they are usually contacting the stakeholders, understanding the requirements and building multiple
+
+05:35.500 --> 05:37.780
+reports based on that data warehouse.
+
+05:37.780 --> 05:43.030
+So now if you have a look to those two scenarios, this is exactly why we need data management.
+
+05:43.070 --> 05:47.670
+Your data team is not wasting time and fighting with the data.
+
+05:47.710 --> 05:51.790
+They are now more organized and more focused and with like a data warehouse.
+
+05:51.790 --> 05:58.390
+And you are delivering professional and fresh reports that your company can count on in order to make
+
+05:58.430 --> 06:00.230
+good and fast decisions.
+
+06:00.350 --> 06:03.670
+So this is why you need a data management like a data warehouse.
+
+06:03.710 --> 06:06.390
+Think about data warehouse as a busy restaurant.
+
+06:06.430 --> 06:12.110
+Every day different suppliers bring in fresh ingredients vegetables, spices, meat, you name it.
+
+06:12.150 --> 06:15.590
+They don't just use it immediately and throw everything in one pot, right?
+
+06:15.630 --> 06:21.630
+They clean it, shop it, and organize everything and store each ingredients in the right place.
+
+06:21.630 --> 06:22.910
+Fridge or freezer.
+
+06:22.950 --> 06:24.710
+So this is the preparing phase.
+
+06:24.710 --> 06:30.830
+And when the order comes in, they quickly grab the prepared ingredients and create a perfect dish and
+
+06:30.830 --> 06:33.030
+then serve it to the customers of the restaurant.
+
+06:33.030 --> 06:36.070
+And this process is exactly like the data warehouse process.
+
+06:36.070 --> 06:41.750
+It is like the kitchen where the raw ingredients, your data are cleaned, sorted and stored.
+
+06:41.750 --> 06:47.070
+And when you need a report or analysis, it is ready to serve up exactly like what you need.

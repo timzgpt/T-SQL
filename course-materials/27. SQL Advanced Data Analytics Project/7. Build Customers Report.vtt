@@ -1,0 +1,1102 @@
+WEBVTT
+
+00:03.920 --> 00:04.720
+All right, my friends.
+
+00:04.720 --> 00:10.240
+So with that, we have covered the five different types of data analytics that we can do using SQL.
+
+00:10.280 --> 00:15.160
+Now, what I usually do as the last step in my project is that I try to collect all the different types
+
+00:15.160 --> 00:20.520
+of explorations and analyses that I have done in my data sets, so that I can put everything in one,
+
+00:20.520 --> 00:24.160
+for example, view or table, and then offer it to other users.
+
+00:24.160 --> 00:29.720
+And with that, it can help the other users or stakeholders to make quick analyses for decision making.
+
+00:29.720 --> 00:33.160
+So now what we're going to do, we're going to have like some kind of requirements where we're going
+
+00:33.160 --> 00:38.840
+to bring a lot of different analyses in one big script in order to have insights about one objects,
+
+00:38.840 --> 00:40.360
+like, for example, the customers.
+
+00:40.400 --> 00:44.480
+So now I'm going to show you the requirement of these reports, and we're going to analyze it and start
+
+00:44.480 --> 00:45.520
+writing the scripts.
+
+00:45.520 --> 00:46.480
+So let's go.
+
+00:46.520 --> 00:47.120
+Okay friends.
+
+00:47.120 --> 00:49.200
+So now let's create a customer report.
+
+00:49.200 --> 00:51.720
+And here are the requirements for the reports.
+
+00:51.720 --> 00:53.600
+So now we have like a general statements.
+
+00:53.600 --> 00:58.480
+It says this report should consolidate key customer metrics and behaviors.
+
+00:58.480 --> 01:04.250
+So it says first we have to gather all the details about the customers like names, age, transaction
+
+01:04.250 --> 01:10.050
+details and then we have to segment the customers into categories VIP, regular and new and as well
+
+01:10.090 --> 01:11.290
+by the age groups.
+
+01:11.290 --> 01:17.330
+And we have to provide as well aggregations like the total order, total sales quantity, products and
+
+01:17.330 --> 01:17.770
+so on.
+
+01:17.770 --> 01:24.730
+And we have to generate important KPIs like the recency, the average order value, the average monthly
+
+01:24.730 --> 01:25.250
+spends.
+
+01:25.250 --> 01:26.450
+So we have a lot of things.
+
+01:26.450 --> 01:28.090
+And we're going to do it step by step.
+
+01:28.130 --> 01:28.370
+All right.
+
+01:28.410 --> 01:33.850
+Now I'm going to take you step by step in the process of building a complex query that I usually use
+
+01:33.850 --> 01:35.330
+in order to build a report.
+
+01:35.370 --> 01:39.850
+Now the first thing that I usually do is I start selecting the data from the database.
+
+01:39.850 --> 01:41.970
+And I usually start with the fact table.
+
+01:41.970 --> 01:43.530
+So this is my starting point.
+
+01:43.530 --> 01:45.970
+And then usually I join it with the dimensions.
+
+01:45.970 --> 01:47.650
+And here I use left join.
+
+01:47.650 --> 01:50.610
+And after that I think about how to filter the data.
+
+01:50.650 --> 01:54.370
+Because usually we don't need all the data that is available in the database.
+
+01:54.370 --> 01:57.690
+And of course in the result I will not be selecting all the columns.
+
+01:57.690 --> 02:02.340
+I'm going to be selecting only the relevant columns that I need for my reports.
+
+02:02.340 --> 02:06.860
+So since we have like complex query, we will be dividing the process into multiple steps.
+
+02:06.860 --> 02:09.500
+And I usually call this step the base data.
+
+02:09.500 --> 02:12.740
+And this is going to be the foundation the scope for the next steps.
+
+02:12.740 --> 02:16.220
+And since we have like multiple steps I'm going to put this in a CTE.
+
+02:16.260 --> 02:18.580
+So we have this as an intermediate results.
+
+02:18.580 --> 02:20.420
+And what we're going to do in this step as well.
+
+02:20.420 --> 02:26.020
+We're going to do few transformations like maybe calculating and deriving new columns, maybe formatting
+
+02:26.020 --> 02:26.460
+the data.
+
+02:26.460 --> 02:27.980
+So some basic transformations.
+
+02:27.980 --> 02:30.740
+So now let's go and build this results for our report.
+
+02:30.740 --> 02:34.660
+So the first step is retrieving the core columns from the tables.
+
+02:34.660 --> 02:36.460
+So let's go and do it together.
+
+02:36.460 --> 02:38.820
+So we need of course our fact table.
+
+02:39.420 --> 02:40.460
+Fact tables.
+
+02:40.460 --> 02:43.940
+And we need our dimension gold customer.
+
+02:43.980 --> 02:45.940
+And as usual we're going to go and connect them.
+
+02:46.260 --> 02:47.140
+All right okay.
+
+02:47.180 --> 02:49.180
+So this is the basic.
+
+02:49.220 --> 02:49.900
+And now what we can do.
+
+02:49.900 --> 02:53.660
+We're going to go and retrieve all the columns that we need for our reports.
+
+02:53.660 --> 02:55.380
+So let's start picking stuff.
+
+02:55.380 --> 03:04.000
+So order number let's get the product key the order date sales amount Quantity.
+
+03:04.280 --> 03:06.760
+And I think that's all from the facts.
+
+03:06.800 --> 03:09.760
+Let's go and get informations from the customers.
+
+03:09.760 --> 03:11.880
+So let's get the customer key.
+
+03:12.560 --> 03:14.320
+The customer number.
+
+03:14.360 --> 03:17.040
+The first name and as well the last name.
+
+03:17.080 --> 03:17.960
+And what else.
+
+03:17.960 --> 03:22.160
+We can go and get the birth dates because we have to create the age groups.
+
+03:22.160 --> 03:23.800
+So birth dates.
+
+03:23.840 --> 03:25.600
+Let's go and query.
+
+03:25.600 --> 03:30.280
+So I think those are all the columns that we need in order to do the next steps.
+
+03:30.320 --> 03:35.080
+And now before we go and proceed with the aggregations, what we can do, we can think about filtering
+
+03:35.080 --> 03:35.640
+the data.
+
+03:35.680 --> 03:39.520
+As I recall we have some orders where the order date is null.
+
+03:39.520 --> 03:42.160
+So I'm going to go and remove those stuff.
+
+03:42.160 --> 03:44.560
+So order date is not null.
+
+03:44.680 --> 03:49.840
+So that means in the first query the base query, not only I'm selecting the columns that I need for
+
+03:49.880 --> 03:50.720
+the reports.
+
+03:50.760 --> 03:56.000
+Also I'm defining the scope of the datasets by filtering the data so you can as well make the scope
+
+03:56.000 --> 03:57.680
+here only one year or something.
+
+03:57.720 --> 04:03.610
+Now, what else we can do is to think about all those columns, and whether we can do any type of transformations
+
+04:03.610 --> 04:05.570
+in order to prepare them for the aggregations.
+
+04:05.570 --> 04:09.290
+Like, for example, I'm going to go and say, you know what, instead of first and last name, I'm
+
+04:09.290 --> 04:11.090
+going to put them together in one.
+
+04:11.090 --> 04:12.610
+So it's going to be the customer name.
+
+04:12.610 --> 04:14.490
+It's better than having like two columns.
+
+04:14.490 --> 04:15.690
+So let's go and do it.
+
+04:15.690 --> 04:17.370
+So we're going to say concat.
+
+04:17.930 --> 04:19.650
+And then we're going to start with the first name.
+
+04:20.290 --> 04:22.490
+And we're going to have a separator between them.
+
+04:22.490 --> 04:25.930
+You can have like a minus or a white space like this.
+
+04:26.090 --> 04:28.130
+And after that the last name.
+
+04:28.490 --> 04:30.610
+So let's call it customer name.
+
+04:30.770 --> 04:33.290
+And we can go and get rid of those two columns.
+
+04:33.290 --> 04:34.770
+So let's go and execute.
+
+04:34.770 --> 04:36.610
+And with that you have everything in one column.
+
+04:36.610 --> 04:41.050
+Now another thing that we can prepare that we don't need the birth dates.
+
+04:41.050 --> 04:44.330
+We actually need for our reports that age groups.
+
+04:44.330 --> 04:46.370
+So that means we have to go and calculate the age.
+
+04:46.370 --> 04:48.330
+So let's go and transform it.
+
+04:48.330 --> 04:49.330
+So date diff.
+
+04:49.370 --> 04:54.290
+We want it in years the birth date and the current date from system.
+
+04:54.290 --> 04:55.650
+And we're going to call it age.
+
+04:55.690 --> 04:57.650
+So let's execute again.
+
+04:57.690 --> 04:58.170
+Perfect.
+
+04:58.170 --> 05:01.490
+So with that we have all the data that we need for our reports.
+
+05:01.530 --> 05:03.740
+Let's go and put everything in one city.
+
+05:04.100 --> 05:09.180
+So I'm going to call it with base query us and put everything in this city.
+
+05:09.180 --> 05:13.580
+And I'm going to go and put this comment over here inside the city.
+
+05:13.620 --> 05:14.180
+Perfect.
+
+05:14.220 --> 05:20.420
+And now we're going to go and write a query from the scratch based on our intermediate results.
+
+05:20.460 --> 05:23.020
+So base query gets executes.
+
+05:23.020 --> 05:23.300
+All right.
+
+05:23.300 --> 05:27.500
+So now by looking to our report with that we have the important columns right.
+
+05:27.500 --> 05:32.020
+So now in the next step we're going to do aggregations on top of these intermediate results.
+
+05:32.020 --> 05:35.500
+So here we're going to do all the aggregations that is needed for the reports.
+
+05:35.500 --> 05:41.620
+And we're going to put everything again in CTE as an intermediate result which makes everything a modular
+
+05:41.620 --> 05:42.860
+and easy to read.
+
+05:42.860 --> 05:47.980
+So now let's go and do the necessary aggregations on the result that we have previously prepared.
+
+05:47.980 --> 05:54.380
+So that's why this is very important as a second step in our reports always tend to make a separated
+
+05:54.380 --> 05:56.540
+CTE only for aggregations.
+
+05:56.540 --> 05:58.180
+So let's go and do that.
+
+05:58.180 --> 06:03.580
+I'm going to go and select again all the customer informations like the customer key number age.
+
+06:03.620 --> 06:06.710
+So I'm just going to copy and paste and put it over here.
+
+06:06.710 --> 06:09.750
+And we just need the column names.
+
+06:10.990 --> 06:13.390
+So the key number name and age.
+
+06:13.430 --> 06:16.230
+Now after that we're going to start doing aggregations.
+
+06:16.230 --> 06:19.630
+So what do we want to aggregate is first for example the total number of orders.
+
+06:19.630 --> 06:26.830
+So we're going to go and count distinct order number as total orders.
+
+06:27.270 --> 06:28.910
+So this is one aggregation.
+
+06:28.910 --> 06:37.710
+We can go and summarize all those sales amounts as total sales and the quantities as well.
+
+06:37.710 --> 06:41.710
+So some quantity as total quantity.
+
+06:42.110 --> 06:46.990
+And as well we can go and count how many products did our customer order.
+
+06:46.990 --> 06:51.230
+So the products key as total products.
+
+06:52.350 --> 06:57.510
+So what I'm doing now I'm just looking to our intermediate results and try to figure out what we can
+
+06:57.510 --> 06:58.150
+aggregate.
+
+06:58.150 --> 07:01.830
+For example it makes no sense to aggregate for example the ages right.
+
+07:01.830 --> 07:04.150
+So from the order number we have total orders.
+
+07:04.190 --> 07:09.200
+Total product sales amount, quantity and from the right side we cannot aggregate anything and thus
+
+07:09.200 --> 07:11.560
+because they are the details of their customers.
+
+07:11.560 --> 07:14.240
+But from the fact table we can do a lot of aggregations.
+
+07:14.240 --> 07:19.880
+So now what we can do with the orderdate over here, we can, for example, find the last order dates
+
+07:19.880 --> 07:22.560
+from our customer, which is really nice information.
+
+07:22.560 --> 07:27.400
+So we can say max order dates as last order.
+
+07:27.400 --> 07:32.280
+And of course we can go and calculate the lifespan and that we're going to need it, as you remember,
+
+07:32.280 --> 07:34.760
+in order to categorize our customer.
+
+07:34.760 --> 07:38.080
+So I will just copy and paste it from the previous query.
+
+07:38.120 --> 07:44.400
+Is that date diff month between the first order from the customer and the last order of the customer.
+
+07:44.400 --> 07:46.600
+So and we call this lifespan okay.
+
+07:46.640 --> 07:50.760
+So we derived two measures or aggregations from the order dates.
+
+07:50.800 --> 07:53.920
+Now I think we have done everything possible.
+
+07:53.920 --> 07:59.440
+And what is missing of course is to have a groupby because we are doing aggregations and we are grouping
+
+07:59.440 --> 08:01.320
+by the customer details.
+
+08:01.320 --> 08:05.860
+So it's going to be customer key, customer number, name and age.
+
+08:05.860 --> 08:08.980
+So I think we have everything for our aggregations.
+
+08:09.260 --> 08:11.180
+Let's go and execute it.
+
+08:11.220 --> 08:14.940
+A list of all customers and we have few details about the customers.
+
+08:14.980 --> 08:16.820
+And now we have a lot of measures.
+
+08:16.820 --> 08:17.820
+So the total order.
+
+08:17.820 --> 08:18.500
+Total sales.
+
+08:18.500 --> 08:20.420
+Total quantity products.
+
+08:20.660 --> 08:22.820
+The last order and the lifespan.
+
+08:22.820 --> 08:28.820
+And with that we have covered this part over here where we have provided aggregations on the customer
+
+08:28.820 --> 08:29.220
+level.
+
+08:29.220 --> 08:32.060
+So we have the details and we have the aggregations.
+
+08:32.100 --> 08:32.420
+All right.
+
+08:32.420 --> 08:38.300
+So with that we have now all the preparations that is required to build the final results.
+
+08:38.300 --> 08:40.260
+So you really depend on the scenario.
+
+08:40.260 --> 08:45.100
+If it's possible we can take all the data from one city or if it's needed we can get it from multiple
+
+08:45.140 --> 08:45.740
+cities.
+
+08:45.740 --> 08:49.660
+But in our scenario, we're going to take it from the second city, the aggregations, and we're going
+
+08:49.660 --> 08:51.620
+to prepare the final results.
+
+08:51.620 --> 08:53.460
+So here we're going to bring everything together.
+
+08:53.460 --> 08:58.180
+And we might introduce final transformations that is needed for the reports.
+
+08:58.180 --> 09:01.100
+So let's go and write the query for the final results.
+
+09:01.140 --> 09:06.390
+Now we can go and start segmenting our customer and as well creating the their KPIs.
+
+09:06.430 --> 09:08.630
+So let's go to the third step.
+
+09:08.630 --> 09:10.510
+I'm going to go and put this in a CTE.
+
+09:10.550 --> 09:13.550
+So let's call it customer aggregation.
+
+09:14.910 --> 09:18.990
+And now based on this results we will write the final query.
+
+09:19.030 --> 09:22.030
+So I like always to put a comment about the steps.
+
+09:22.030 --> 09:26.630
+So the first city is the base query where we just join the data and prepared it.
+
+09:26.630 --> 09:29.190
+And then the second query is for the aggregations.
+
+09:29.190 --> 09:31.790
+And the final one is for the final results.
+
+09:31.830 --> 09:34.590
+So let's go and start writing our final query.
+
+09:34.630 --> 09:35.990
+We will start with select.
+
+09:35.990 --> 09:39.070
+And I'm going to go and list again all the customer informations.
+
+09:39.070 --> 09:41.670
+So I'm going to go and get again same things.
+
+09:42.270 --> 09:45.710
+We have the customer key customer number name age and so on.
+
+09:45.710 --> 09:49.150
+And now after that we need to create the age categories.
+
+09:49.190 --> 09:53.910
+And now after that I'm going to go and get all those measures as well from our query.
+
+09:53.910 --> 09:58.510
+But of course without the calculations I just need the names of it.
+
+10:01.590 --> 10:05.270
+So with that we have everything from our previous CTE.
+
+10:05.470 --> 10:07.440
+So the customer aggregation.
+
+10:07.480 --> 10:07.920
+Okay.
+
+10:07.960 --> 10:09.480
+So let's just test it.
+
+10:09.520 --> 10:10.720
+Now everything is working.
+
+10:10.720 --> 10:15.800
+So now what we have to do we have to create a few categories age category and as well the segments of
+
+10:15.800 --> 10:16.360
+the customers.
+
+10:16.360 --> 10:17.920
+Right for segmenting the customers.
+
+10:17.920 --> 10:19.200
+We have already done the query.
+
+10:19.200 --> 10:22.480
+So I will just copy and paste it from the previous analysis.
+
+10:22.480 --> 10:23.480
+It looks like this.
+
+10:23.520 --> 10:29.760
+If the lifespan is at least like 12 months and the sales above 5000, then a VIP, if it's less or equal
+
+10:29.760 --> 10:32.800
+5000 then regular, otherwise it is a new customer.
+
+10:32.800 --> 10:36.680
+So this is our first segment, but the second segment about the ages.
+
+10:36.680 --> 10:38.400
+We're going to go and build it now and again.
+
+10:38.440 --> 10:39.240
+How are we going to do it?
+
+10:39.280 --> 10:39.960
+Casewhen.
+
+10:40.240 --> 10:45.600
+So if the age for example less than 20, then the customer is under 20.
+
+10:45.960 --> 10:56.560
+Let's make another range where we say if the customer age is between 20 and let's say 29, then we have
+
+10:56.560 --> 11:00.720
+the second range and we can keep repeating the same thing for the second one.
+
+11:00.760 --> 11:03.640
+It really depends how many categories you want to build.
+
+11:03.640 --> 11:06.280
+So 30 and 39.
+
+11:06.320 --> 11:08.010
+I belong to this group.
+
+11:08.370 --> 11:09.570
+Now the next one.
+
+11:09.610 --> 11:10.970
+Let's have the 40s as well.
+
+11:11.010 --> 11:11.410
+Right.
+
+11:11.410 --> 11:13.850
+So 4049.
+
+11:13.890 --> 11:14.930
+Same thing over here.
+
+11:14.970 --> 11:18.370
+And now else, let's say 50 and above.
+
+11:18.410 --> 11:20.410
+Right and above.
+
+11:20.690 --> 11:24.210
+So let's go and end it as age group.
+
+11:24.250 --> 11:27.050
+We just want to sort it a little bit like this.
+
+11:27.130 --> 11:27.490
+Okay.
+
+11:27.530 --> 11:28.490
+Now it looks nice.
+
+11:28.490 --> 11:32.050
+So with that again we have turned a measure into a dimension.
+
+11:32.050 --> 11:34.330
+And let's go and execute it now.
+
+11:34.330 --> 11:37.690
+So now by checking the results we have the details of the customers.
+
+11:37.730 --> 11:39.890
+And now we have a new category.
+
+11:39.890 --> 11:41.370
+So as you can see it is working.
+
+11:41.410 --> 11:43.570
+54 it is above 50.
+
+11:43.610 --> 11:46.770
+This is in the range between 40 and 49.
+
+11:46.810 --> 11:53.050
+We have here 67 above 50 I believe we don't have any customer that is below 20 right.
+
+11:53.050 --> 11:54.850
+Or even between 20 and 30.
+
+11:54.890 --> 11:55.130
+Okay.
+
+11:55.170 --> 11:58.690
+So with that we have created our two categories.
+
+11:58.690 --> 12:04.850
+And by looking to the reports you see we can segment the customers now into categories that vibe regular
+
+12:04.850 --> 12:06.130
+new and the age group.
+
+12:06.130 --> 12:11.030
+And with that we have covered all those three requirements and we come now to the last requirements.
+
+12:11.030 --> 12:12.950
+We have to calculate the following KPIs.
+
+12:12.990 --> 12:14.910
+Now the first one, it is an easy one.
+
+12:14.910 --> 12:16.030
+It is the recency.
+
+12:16.070 --> 12:19.790
+How many months since the last order we have calculated over here?
+
+12:19.790 --> 12:22.630
+The last order for the customer is this one.
+
+12:22.630 --> 12:25.150
+And now in order to find the recency it is very simple.
+
+12:25.150 --> 12:27.310
+So all we have to do is to take this over here.
+
+12:27.350 --> 12:32.990
+I will just put it maybe after the segmentation and all what you have to do is to use the Datediff as
+
+12:32.990 --> 12:33.470
+usual.
+
+12:33.470 --> 12:37.870
+So month is the last order date and the get date.
+
+12:38.230 --> 12:42.070
+So as you can see we are using this setup like in many analysis right?
+
+12:42.110 --> 12:47.350
+We always find the differences between a date from our datasets and the current date and time.
+
+12:47.350 --> 12:50.070
+And with that we will get the recency.
+
+12:50.350 --> 12:52.470
+So let's go and execute it.
+
+12:52.470 --> 12:56.470
+Now you can see how many months since the last order of the customer.
+
+12:56.470 --> 12:59.390
+And of course you can go and test it using the last order dates.
+
+12:59.390 --> 13:04.270
+And this is really important in order to understand whether the customer is still active or inactive.
+
+13:04.310 --> 13:04.630
+Okay.
+
+13:04.670 --> 13:06.310
+So this is for the first easy.
+
+13:06.870 --> 13:08.600
+Now let's go to the second one.
+
+13:08.600 --> 13:11.640
+It says calculate the average order value.
+
+13:11.640 --> 13:13.320
+So how are we going to do this.
+
+13:13.320 --> 13:14.480
+Let's go back over here.
+
+13:14.520 --> 13:21.000
+Now in order to compute the average order value we have to divide the total sales by the total orders.
+
+13:21.000 --> 13:23.640
+So how many revenue did the customer generate.
+
+13:23.640 --> 13:26.520
+And we divided by the total number of orders.
+
+13:26.520 --> 13:28.360
+And after that we have to find the average.
+
+13:28.360 --> 13:29.560
+So it is very simple.
+
+13:29.560 --> 13:30.880
+Let's go and write that.
+
+13:30.880 --> 13:33.680
+We're going to go to the end of our table where we're going to put our KPI.
+
+13:33.800 --> 13:37.920
+And I'm going to say here compute average order value.
+
+13:38.120 --> 13:40.160
+So as a shortcut AVO.
+
+13:40.160 --> 13:44.560
+So we say total sales divided by total orders.
+
+13:44.720 --> 13:47.960
+And let's call it average order value.
+
+13:47.960 --> 13:49.760
+So let's go and execute it.
+
+13:49.760 --> 13:54.720
+And if you go to the last over here you can see the average order value of our customers.
+
+13:54.720 --> 13:59.200
+But now if you are dividing numbers together you have to be careful that you are not dividing by zero.
+
+13:59.240 --> 14:00.520
+Otherwise you will get an error.
+
+14:00.560 --> 14:04.400
+So imagine that a customer has zero didn't order anything.
+
+14:04.400 --> 14:05.560
+You might get an error.
+
+14:05.600 --> 14:10.410
+In our scenario we don't have that because we are starting from the order table or the fact table.
+
+14:10.450 --> 14:15.410
+But still, I like to make sure this never happens, and for that I usually go and use the casewhen
+
+14:15.410 --> 14:15.930
+statements.
+
+14:15.970 --> 14:16.890
+A very simple one.
+
+14:16.890 --> 14:20.850
+If the total orders is equal to zero, then make it zero.
+
+14:20.890 --> 14:24.450
+Otherwise do the calculation that we talked about.
+
+14:24.530 --> 14:25.650
+So like this.
+
+14:25.650 --> 14:28.170
+And at the end we will add an end.
+
+14:28.210 --> 14:29.450
+So that's it.
+
+14:29.490 --> 14:32.570
+And with that I make sure we will never divide by zero.
+
+14:32.610 --> 14:33.530
+So that's it.
+
+14:33.570 --> 14:34.890
+It was simple right.
+
+14:34.930 --> 14:39.090
+Let's go to the last KPI the average monthly spend.
+
+14:39.130 --> 14:41.090
+So how we will calculate that.
+
+14:41.530 --> 14:45.890
+Compute average monthly spend.
+
+14:45.930 --> 14:51.050
+So now since we are speaking about the spending that means we need the total sales right.
+
+14:51.090 --> 14:53.930
+So how much sales did the customer generate.
+
+14:53.970 --> 14:54.610
+Totally.
+
+14:54.770 --> 14:57.810
+And then we divide it by the number of months.
+
+14:57.810 --> 15:00.490
+And with that we will get the average monthly spend.
+
+15:00.490 --> 15:00.810
+Right.
+
+15:00.850 --> 15:04.890
+So that means we can divide the total sales by the lifespan.
+
+15:04.890 --> 15:10.460
+As we calculated, it is the period where the customer has been active from the start until the end.
+
+15:10.500 --> 15:12.220
+Okay, so now let's do it step by step.
+
+15:12.260 --> 15:15.740
+First, we have to be careful that we are not dividing by zero.
+
+15:15.740 --> 15:18.060
+And I believe in the life span we have zeros.
+
+15:18.060 --> 15:24.380
+So what we're going to say as usual case when life span is equal to zero, then this time we will not
+
+15:24.380 --> 15:25.180
+make it zero.
+
+15:25.220 --> 15:27.300
+The customer exists only for one month.
+
+15:27.300 --> 15:31.820
+So what we can do, we can get the total sales of the customer, and we don't have to divide it by the
+
+15:31.820 --> 15:36.780
+month in order to find the average, because the average is equal to the current total sales.
+
+15:37.820 --> 15:40.300
+So with that, we make sure we are not dividing by zero.
+
+15:40.340 --> 15:42.900
+Otherwise we can have our calculation.
+
+15:42.900 --> 15:46.420
+So total sales divided by life span.
+
+15:46.460 --> 15:48.900
+So the total sales divided by the months.
+
+15:48.900 --> 15:51.780
+And with that we will get the average monthly spend.
+
+15:51.780 --> 15:57.620
+So and and as and we're going to call it average monthly spend.
+
+15:57.660 --> 15:58.460
+Perfect.
+
+15:58.460 --> 16:00.220
+So let's go and try that out.
+
+16:00.260 --> 16:01.620
+Let's go to the right side.
+
+16:01.620 --> 16:03.700
+And with that we have our third KPI.
+
+16:03.740 --> 16:06.300
+And we have the average monthly spends.
+
+16:06.300 --> 16:12.830
+And with that guys we have now four reports about the customers and we have covered all the requirements.
+
+16:12.870 --> 16:13.230
+All right.
+
+16:13.230 --> 16:16.790
+So with that we have the final results and we have fulfilled the requirements.
+
+16:16.790 --> 16:21.590
+So what we're going to do we're going to take the whole query and put it in the database as a view.
+
+16:21.590 --> 16:25.870
+And once we have the view the report in the database we can share it with the others.
+
+16:25.910 --> 16:30.950
+Now the other data analyst in the team can go and maybe create a dashboard in order to visualize the
+
+16:30.950 --> 16:34.030
+data using a pie tool like Tableau or Power BI.
+
+16:34.070 --> 16:39.990
+But in this scenario, the user can go and connect your view the last prepared data to the dashboard.
+
+16:39.990 --> 16:45.670
+And with that, the user can quickly generate insights without doing a lot of steps in order to prepare
+
+16:45.670 --> 16:47.310
+the data for the visualizations.
+
+16:47.350 --> 16:50.830
+And of course, the data analyst can go and connect the dimensions and facts.
+
+16:50.830 --> 16:55.110
+But having this one solid view is going to be like way easier to consume.
+
+16:55.150 --> 17:00.150
+And of course, the data analyst can as well write a query on top of your view in order to generate
+
+17:00.150 --> 17:01.110
+a quick insights.
+
+17:01.110 --> 17:06.990
+So as you can see, using only SQL, you are covering a lot of complex steps in order to make the data
+
+17:06.990 --> 17:09.510
+ready for reporting and analyses.
+
+17:09.510 --> 17:12.250
+And this is what usually happened in real projects.
+
+17:12.250 --> 17:17.050
+We're going to go and put the query in the database so that the others can use it.
+
+17:17.050 --> 17:20.050
+So what we're going to do very simple create view.
+
+17:20.050 --> 17:21.610
+And we're going to put it in a gold layer.
+
+17:21.650 --> 17:24.930
+And we're going to call it report underscore customers.
+
+17:25.050 --> 17:26.170
+Then just like this.
+
+17:26.170 --> 17:27.930
+And let's go and execute it.
+
+17:27.970 --> 17:28.890
+It is successful.
+
+17:28.930 --> 17:34.850
+Now if we go to our database and check the views you will find a new view called Gold Report customers.
+
+17:34.890 --> 17:42.010
+Now all what you have to do is to go and have a simple select so called reports customers.
+
+17:42.010 --> 17:45.930
+And you will get an amazing report about the customers.
+
+17:45.930 --> 17:47.050
+This kind of reporting.
+
+17:47.090 --> 17:53.010
+It is very important because you are giving a full picture 360 degree view of all your customers.
+
+17:53.010 --> 17:57.930
+So you have detailed categories, measures, everything in one go and it's going to make life easier.
+
+17:57.970 --> 18:03.970
+Now for any user of this view to quickly understand the data and generate maybe insights based on this
+
+18:03.970 --> 18:06.410
+one view that can help of course your customers.
+
+18:06.410 --> 18:10.660
+So I just want to show you now what this means if a user using your Reports.
+
+18:10.660 --> 18:14.620
+So either in SQL or maybe they're going to go and connect it to a power BI or Tableau.
+
+18:14.660 --> 18:16.620
+They can generate immediately insights.
+
+18:16.620 --> 18:24.380
+So for example if they go and say count customer number so as total customers and then they're going
+
+18:24.380 --> 18:27.820
+to go and take any dimension for example the age group.
+
+18:27.820 --> 18:34.540
+So something like this and then group by the age group or just put it here first.
+
+18:34.580 --> 18:39.340
+And then they're going to go and add another measure for example the total sales.
+
+18:41.820 --> 18:43.860
+And another measure that you have in this view.
+
+18:43.860 --> 18:50.340
+And then execute and quickly they can do analysis on top of your view without having them to go to their
+
+18:50.500 --> 18:51.820
+fact and dimensions.
+
+18:51.820 --> 18:55.860
+So this is like one extra prepared layer, the data model that you have built.
+
+18:55.860 --> 19:01.300
+And if you don't want to group it by the ages, you can go and have the customer segments and it will
+
+19:01.300 --> 19:07.900
+be working so quickly they can analyze the new derived informations that you have prepared in your reports.
+
+19:07.900 --> 19:11.980
+So guys, this is amazing reports about the customers.

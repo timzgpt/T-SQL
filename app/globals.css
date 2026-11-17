@@ -1,26 +1,79 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* UI/UX Pro Max design system — "Education teal + course amber" (design-system/sql-academy/MASTER.md) */
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-accent: #d97706;
+  --ease-ui: cubic-bezier(0.23, 1, 0.32, 1);
+  --animate-fade-up: fade-up 280ms var(--ease-ui) both;
+  --animate-shake: shake 280ms ease-out;
+  --animate-pop: pop 260ms ease-out;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes shake {
+  20% { transform: translateX(-5px); }
+  45% { transform: translateX(4px); }
+  70% { transform: translateX(-2px); }
+}
+@keyframes pop {
+  40% { transform: scale(1.15); }
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-slate-50 text-slate-900 antialiased dark:bg-[#0b1215] dark:text-slate-100;
+}
+
+.interactive-card {
+  transition: border-color 180ms var(--ease-ui), transform 180ms var(--ease-ui);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+html { scroll-padding-top: 4.5rem; } /* keep focus visible below the sticky header */
+button, [role="button"], a { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--color-brand-600); outline-offset: 2px; }
+.dark :focus-visible { outline-color: var(--color-brand-400); }
+h1, h2, h3 { text-wrap: balance; }
+
+/* Flashcard 3D flip */
+.flip { perspective: 1400px; }
+.flip-inner { transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); transform-style: preserve-3d; }
+.flip.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
+
+@media print {
+  header, .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .interactive-card:hover { transform: none; }
 }

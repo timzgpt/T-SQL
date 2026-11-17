@@ -1,0 +1,79 @@
+WEBVTT
+
+00:03.960 --> 00:06.880
+So now let's have a quick comparison between tables and views.
+
+00:06.920 --> 00:10.400
+Tables stores the actual data physically at a database.
+
+00:10.400 --> 00:14.560
+So the tables where the data is persisted with in the other hand the views.
+
+00:14.600 --> 00:16.000
+They are virtual tables.
+
+00:16.000 --> 00:22.080
+And they do not store any data inside the database, but they present the data from the underlying tables.
+
+00:22.080 --> 00:25.600
+So that means views don't persist any data physically.
+
+00:25.600 --> 00:29.200
+Now the tables are hard to maintain and as well hard to change.
+
+00:29.200 --> 00:33.280
+So it needs a lot of efforts in order to do any change, like adding columns.
+
+00:33.280 --> 00:38.640
+And moving columns always requires a lot of efforts for the migration, especially if you have large
+
+00:38.640 --> 00:39.200
+tables.
+
+00:39.200 --> 00:44.880
+But in the other hand, the views are way easier to maintain and very flexible to change.
+
+00:44.880 --> 00:48.200
+All that you have to do is only to change the query of the view.
+
+00:48.200 --> 00:52.480
+So that means you can very quickly change stuff in the views compared to the tables.
+
+00:52.480 --> 00:56.480
+But if you are talking about performance, tables are faster than views.
+
+00:56.480 --> 01:01.400
+For example, if you go and do a simple select on the table, you will get the data back as soon as
+
+01:01.440 --> 01:03.040
+the database fetches the data.
+
+01:03.040 --> 01:08.600
+But if you are selecting something from the view, it is actually two queries the query that comes from
+
+01:08.600 --> 01:12.600
+the user and as well the second query is the view query.
+
+01:12.600 --> 01:18.160
+And the query of the view could be very complicated in order to extract the data from the underlying
+
+01:18.200 --> 01:18.760
+table.
+
+01:18.760 --> 01:23.680
+So selecting something from the view is always slower than selecting something from a table.
+
+01:23.720 --> 01:26.040
+Now, if you have a table you can read from a table.
+
+01:26.040 --> 01:28.080
+And as well you can write to a table.
+
+01:28.120 --> 01:32.080
+But the views are read only as the name says, it is only a view.
+
+01:32.120 --> 01:35.160
+You cannot go and write something to the database using the view.
+
+01:35.200 --> 01:39.320
+Okay, so those are the big differences between views and tables.

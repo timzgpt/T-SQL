@@ -1,0 +1,409 @@
+WEBVTT
+
+00:00.080 --> 00:00.720
+Okay, friends.
+
+00:00.720 --> 00:03.080
+So now let's go and build the second object.
+
+00:03.080 --> 00:04.480
+We have the products.
+
+00:04.480 --> 00:08.480
+So as you can see product information is available in both source systems.
+
+00:08.520 --> 00:10.800
+As usual we're going to start with the CRM information.
+
+00:11.080 --> 00:16.080
+And then we're going to go and join it with the other table in order to get the category information.
+
+00:16.080 --> 00:18.800
+So those are the columns that we want from this table.
+
+00:18.840 --> 00:22.040
+Now we come here to a big decision about this objects.
+
+00:22.040 --> 00:24.520
+This object contains historical information.
+
+00:24.520 --> 00:28.920
+And as well the current informations now of course depend on the requirements whether you have to do
+
+00:28.960 --> 00:31.040
+analysis on the historical informations.
+
+00:31.040 --> 00:36.320
+But if you don't have such a requirements we can go and stay with only the current informations of the
+
+00:36.320 --> 00:36.840
+products.
+
+00:36.840 --> 00:39.560
+So we don't have to include all the history in the objects.
+
+00:39.560 --> 00:45.000
+And it is anyway, as we learned from the model over here, we are not using the primary key, we are
+
+00:45.000 --> 00:46.600
+using the product key.
+
+00:46.600 --> 00:52.280
+So now what we have to do is to filter out the historical data and to stay only with the current data.
+
+00:52.280 --> 00:54.400
+So we're going to have here a where condition.
+
+00:54.400 --> 00:59.080
+And now in order to select the current data what we're going to do, we're going to go and target the
+
+00:59.120 --> 00:59.760
+end dates.
+
+00:59.760 --> 01:03.190
+If the end date is null that means it is a current data.
+
+01:03.190 --> 01:04.870
+Let's take this example over here.
+
+01:04.870 --> 01:08.390
+So you can see here we have three records for the same product key.
+
+01:08.390 --> 01:13.830
+And for the first two records we have here an information in the end dates because it is historical
+
+01:13.830 --> 01:14.630
+informations.
+
+01:14.630 --> 01:17.790
+But the last record over here we have it as a null.
+
+01:17.790 --> 01:20.550
+And that's because this is the current information.
+
+01:20.550 --> 01:22.990
+It is open and it's not closed yet.
+
+01:22.990 --> 01:26.390
+So in order to select only the current informations it is very simple.
+
+01:26.390 --> 01:29.870
+We're going to say bird and date is null.
+
+01:30.150 --> 01:34.390
+So if we go now and execute it you will get only the current products.
+
+01:34.390 --> 01:35.910
+You will not have any history.
+
+01:35.950 --> 01:41.870
+And of course we can go and add comment to it, filter out all historical data.
+
+01:41.870 --> 01:47.110
+And this means of course we don't need the end date in our selection of course, because it is always
+
+01:47.150 --> 01:47.590
+a null.
+
+01:47.590 --> 01:50.110
+So with that we have only the current data.
+
+01:50.150 --> 01:56.070
+Now the next step that we have to go and join it with the product categories from the ERP.
+
+01:56.110 --> 01:57.950
+And we're going to use here the ID.
+
+01:57.950 --> 02:03.650
+So as usual the master information is the CRM and everything else is going to be secondary.
+
+02:03.650 --> 02:07.970
+That's why I use the left join just to make sure I'm not losing.
+
+02:07.970 --> 02:12.050
+I'm not filtering any data because if there is no match then we lose data.
+
+02:12.050 --> 02:16.090
+So left join silver ERP and that category.
+
+02:16.090 --> 02:17.890
+So let's call it PC.
+
+02:18.090 --> 02:21.570
+And now what we're going to do we're going to go and join it using the key.
+
+02:21.570 --> 02:27.250
+So from the CRM we have the category ID equal to PC id.
+
+02:27.290 --> 02:30.490
+And now we have to go and pick columns from the second table.
+
+02:30.890 --> 02:32.130
+So it's going to be the PC.
+
+02:32.170 --> 02:35.130
+We have the category very important PC.
+
+02:35.330 --> 02:39.930
+We have the subcategory and we can go and get the maintenance.
+
+02:39.930 --> 02:43.290
+So something like this let's go and query.
+
+02:43.290 --> 02:47.130
+And with that we have all those columns comes from the first table.
+
+02:47.130 --> 02:49.450
+And those three comes from the second.
+
+02:49.450 --> 02:54.290
+So with that we have collected all the product informations from the two source systems.
+
+02:54.330 --> 02:58.690
+Now the next step is we have to go and check the quality of these results.
+
+02:58.690 --> 03:02.250
+And of course what is very important is to check the uniqueness.
+
+03:02.250 --> 03:05.560
+So what we're going to do, we're going to go and have the following query.
+
+03:06.080 --> 03:12.720
+I want to make sure that the product key is unique, because we're going to use it later in order to
+
+03:12.760 --> 03:14.120
+join the table with the sales.
+
+03:14.520 --> 03:19.720
+So from and then we have to have group by product key.
+
+03:19.720 --> 03:24.520
+And we're going to say having counts higher than one.
+
+03:24.520 --> 03:25.840
+So let's go and check.
+
+03:25.880 --> 03:26.520
+Perfect.
+
+03:26.520 --> 03:28.080
+We don't have any duplicates.
+
+03:28.080 --> 03:31.560
+The second table didn't cause any duplicates for our join.
+
+03:31.560 --> 03:34.640
+And as well this means we don't have historical data.
+
+03:34.640 --> 03:39.000
+And each product is only one records and we don't have any duplicates.
+
+03:39.000 --> 03:41.040
+So I'm really happy about that.
+
+03:41.320 --> 03:42.640
+So let's go and query again.
+
+03:42.680 --> 03:44.000
+Now of course the next step.
+
+03:44.040 --> 03:46.280
+Do we have anything to integrate together.
+
+03:46.320 --> 03:48.400
+Do we have the same information twice.
+
+03:48.440 --> 03:50.160
+Well we don't have that.
+
+03:50.160 --> 03:54.840
+The next step that we're going to go and group up the relevant information together.
+
+03:54.840 --> 04:01.000
+So I'm going to say the product ID then the product key and the product name are together.
+
+04:01.000 --> 04:03.320
+So all those three informations are together.
+
+04:03.320 --> 04:08.950
+And after that we can put all the category information together so we can have the category ID, the
+
+04:08.990 --> 04:11.550
+category itself, the subcategory.
+
+04:11.630 --> 04:13.790
+Let me just query and see the results.
+
+04:13.790 --> 04:16.190
+So we have the product ID key name.
+
+04:16.230 --> 04:19.750
+And then we have the category ID name and the subcategory.
+
+04:19.750 --> 04:24.870
+And then maybe as well to put the maintenance after the subcategory like this.
+
+04:24.870 --> 04:29.030
+And I think the product cost and the line can start could stay at the end.
+
+04:29.070 --> 04:30.350
+So let me just check.
+
+04:30.350 --> 04:33.350
+So those three four informations about the category.
+
+04:33.350 --> 04:35.910
+And then we have the cost line and the start date.
+
+04:35.910 --> 04:37.230
+I'm really happy with that.
+
+04:37.230 --> 04:41.750
+The next step we're going to go and give nice names friendly names for those columns.
+
+04:41.750 --> 04:43.310
+So let's start with the first one.
+
+04:43.350 --> 04:48.630
+This is the product ID the next one going to be the products number.
+
+04:48.870 --> 04:51.110
+We need the key for the surrogate key later.
+
+04:51.630 --> 04:54.470
+And then we have the products name.
+
+04:54.470 --> 04:59.590
+And after that we have the category ID and the category.
+
+04:59.590 --> 05:02.590
+And this is the subcategory.
+
+05:02.590 --> 05:06.140
+And then the next one can stay as it is I don't have to rename it.
+
+05:06.140 --> 05:13.300
+The next one going to be the cost and the product line, and the last one going to be the start date.
+
+05:13.300 --> 05:15.100
+So let's go and execute it.
+
+05:15.140 --> 05:20.020
+Now we can see very nicely in the output all those friendly names for the columns.
+
+05:20.020 --> 05:22.500
+And it looks way nicer than before.
+
+05:22.540 --> 05:24.740
+I don't have even to describe those informations.
+
+05:24.740 --> 05:26.020
+The name describe it.
+
+05:26.020 --> 05:26.780
+So perfect.
+
+05:26.820 --> 05:29.540
+Now the next big decision is what do we have here?
+
+05:29.580 --> 05:31.260
+Do we have a fact or dimension.
+
+05:31.260 --> 05:31.940
+What do you think?
+
+05:32.020 --> 05:36.500
+Well, as you can see here again we have a lot of descriptions about the products.
+
+05:36.500 --> 05:41.340
+So all those informations are describing the business objects products.
+
+05:41.340 --> 05:46.380
+We don't have luckier transactions events a lot of different keys and ideas.
+
+05:46.380 --> 05:48.020
+So we don't have really here a facts.
+
+05:48.020 --> 05:49.380
+We have a dimension.
+
+05:49.420 --> 05:54.020
+Each row is exactly describing one objects describing one products.
+
+05:54.020 --> 05:56.100
+That's why this is a dimension.
+
+05:56.140 --> 05:56.420
+Okay.
+
+05:56.460 --> 06:00.740
+So now since this is a dimension, we have to go and create a primary key for it.
+
+06:00.780 --> 06:02.420
+Well actually the surrogate key.
+
+06:02.460 --> 06:07.000
+And as we have done it for the customers, we're going to go and use the window function row number.
+
+06:07.040 --> 06:09.440
+In order to generate it over.
+
+06:09.600 --> 06:11.080
+And then we have to store the data.
+
+06:11.120 --> 06:13.040
+I will go with the start date.
+
+06:13.040 --> 06:17.720
+So let's go with the start dates and as well the product key.
+
+06:18.520 --> 06:22.720
+And we're going to give it a name products like this.
+
+06:22.720 --> 06:24.680
+So let's go and execute it.
+
+06:24.720 --> 06:29.360
+With that we have now generated a primary key for each product.
+
+06:29.360 --> 06:32.720
+And we're going to be using it in order to connect our data model.
+
+06:32.760 --> 06:33.160
+All right.
+
+06:33.200 --> 06:36.000
+Now the next step that we're going to go and build the view.
+
+06:36.000 --> 06:38.240
+So we're going to say create view.
+
+06:38.280 --> 06:42.160
+We're going to say gold and dimension products.
+
+06:42.280 --> 06:43.080
+And then us.
+
+06:43.120 --> 06:45.480
+So let's go and create our objects.
+
+06:45.480 --> 06:50.800
+And now if you go and refresh the views you will see our second objects the second dimension.
+
+06:50.800 --> 06:53.840
+So we have here in the gold layer the dimension products.
+
+06:53.840 --> 06:59.800
+And as usual we're going to go and have a look to this view just to make sure that everything is fine.
+
+06:59.800 --> 07:01.920
+So them products.
+
+07:01.960 --> 07:03.320
+So let's execute it.
+
+07:03.320 --> 07:06.440
+And by looking to the data everything looks nice.
+
+07:06.440 --> 07:08.800
+So with that we have now two dimensions.

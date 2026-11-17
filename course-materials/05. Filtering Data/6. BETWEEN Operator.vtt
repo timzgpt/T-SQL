@@ -1,0 +1,250 @@
+WEBVTT
+
+00:03.880 --> 00:05.480
+Okay, so what is between?
+
+00:05.520 --> 00:09.680
+It's going to go and check if a value falls within a specific range.
+
+00:09.680 --> 00:14.400
+So you have a range and you are checking whether your value is in the range or outside the range.
+
+00:14.400 --> 00:16.600
+So let's understand exactly what this means okay.
+
+00:16.640 --> 00:19.920
+So now in order to build a range you need two things.
+
+00:19.920 --> 00:22.560
+You need the lower boundary for the range.
+
+00:22.560 --> 00:24.920
+And you need as well the upper boundary.
+
+00:24.920 --> 00:27.840
+Once you have two boundaries then you have a range.
+
+00:27.840 --> 00:33.960
+And everything between those two boundaries is going to be true, and everything outside those boundaries
+
+00:33.960 --> 00:35.000
+is going to be false.
+
+00:35.000 --> 00:40.160
+So now, for example, let's say that we have the lower boundary 100 and the upper boundary 500.
+
+00:40.200 --> 00:44.720
+And there is one thing that you have to understand about the between the boundaries are inclusive.
+
+00:44.720 --> 00:51.360
+So that means if a value is exactly 100 or exactly 500, then it's going to be considered as a true.
+
+00:51.360 --> 00:54.000
+So it is considered to be inside the range.
+
+00:54.000 --> 01:00.720
+Now, if you apply this filter to our data, where we say the score must be between 100 and 500 scale,
+
+01:00.760 --> 01:02.000
+going to go and do the following.
+
+01:02.040 --> 01:07.680
+So for the first customer, Mariam is going to go and check whether her score is inside the boundaries.
+
+01:07.730 --> 01:10.890
+So as you can see, 300 is between 100 and 500.
+
+01:10.890 --> 01:12.650
+So she is in the green area.
+
+01:12.650 --> 01:16.450
+And that's why it's going to be happy about it and leave the customer in the outputs.
+
+01:16.490 --> 01:17.490
+Now moving on to John.
+
+01:17.490 --> 01:18.850
+John has 900.
+
+01:18.890 --> 01:21.610
+As you can see 900 is greater than 500.
+
+01:21.610 --> 01:25.330
+So this value is going to be outside the boundaries on the right side.
+
+01:25.330 --> 01:28.210
+And this means the score of John is not in the range.
+
+01:28.210 --> 01:33.930
+That's why he is not fulfilling the condition and is going to go and remove this customer from the results.
+
+01:33.970 --> 01:36.130
+Now moving on to George 750.
+
+01:36.170 --> 01:41.730
+The same thing outside the range scale will not accept it and remove the customer from the final results.
+
+01:41.770 --> 01:43.050
+Now moving on to Martin.
+
+01:43.050 --> 01:47.090
+His score is 500 and this is exactly at the boundary.
+
+01:47.090 --> 01:49.810
+So if it's like 501 it's going to be outside.
+
+01:49.810 --> 01:53.770
+So since between is inclusive then SQL is going to accept it.
+
+01:53.770 --> 01:57.370
+And Martin considered to be in the range and fulfilling the condition.
+
+01:57.370 --> 01:59.370
+So it's going to keep him in the final results.
+
+01:59.410 --> 02:01.010
+Now we are speaking about bitter.
+
+02:01.170 --> 02:04.290
+He has zero score and this is less than 100.
+
+02:04.290 --> 02:06.410
+So in the left side not in the range.
+
+02:06.410 --> 02:09.410
+So not fulfilling the condition and SQL going to go and remove him.
+
+02:09.410 --> 02:11.970
+This is exactly how between works in SQL.
+
+02:11.970 --> 02:12.770
+It's very simple.
+
+02:12.810 --> 02:13.010
+Okay.
+
+02:13.050 --> 02:14.330
+So now we have the following task.
+
+02:14.410 --> 02:20.730
+and it says retrieve all customers whose score falls in range between 100 and 500.
+
+02:20.770 --> 02:26.330
+So let's start as usual by selecting all data from customers and execute it.
+
+02:26.370 --> 02:27.970
+Now the task says everything.
+
+02:27.970 --> 02:32.810
+We need all customers in a range, so we have a lower value and a higher value.
+
+02:32.810 --> 02:35.610
+So in order to do that, as usual we can use the where.
+
+02:35.610 --> 02:38.530
+And then we're going to specify the column that we want to filter on.
+
+02:38.530 --> 02:39.690
+So it's going to be the score.
+
+02:39.690 --> 02:44.570
+And since we have like two boundaries we can go and use the function between and we start with the first
+
+02:44.570 --> 02:46.250
+boundary, the lowest boundary.
+
+02:46.250 --> 02:52.210
+So it is the 105 hundred the high boundary, the upper boundary.
+
+02:52.210 --> 02:54.970
+So between 100 and 500.
+
+02:54.970 --> 02:56.730
+So now let's go and execute it.
+
+02:56.730 --> 03:01.890
+And with that we get only those two customers because they are between this window.
+
+03:01.890 --> 03:04.210
+Now there is another way in how to solve this task.
+
+03:04.210 --> 03:09.890
+By not using between, we can go and use the comparison operator together with a logical operator.
+
+03:09.890 --> 03:12.090
+And so let me show you how we can do that.
+
+03:12.090 --> 03:13.730
+I'm going to go and copy the whole thing.
+
+03:13.770 --> 03:15.650
+And now we're going to write two conditions.
+
+03:15.650 --> 03:22.700
+So first the score should be higher or equal to 100 because the boundaries is inclusive and the other
+
+03:22.700 --> 03:26.540
+one the score is less or equal to 500.
+
+03:26.540 --> 03:28.140
+So this is the upper boundary.
+
+03:28.140 --> 03:29.780
+So with that we have the two conditions.
+
+03:29.780 --> 03:33.100
+And we can go and connect them using the and operator.
+
+03:33.100 --> 03:38.020
+So it's like very similar to the between we have an and between the upper and the lower boundaries.
+
+03:38.020 --> 03:40.580
+But we are using the comparison operators.
+
+03:40.580 --> 03:45.060
+So it is higher or equal to 100 and lower or equal to 500.
+
+03:45.100 --> 03:48.620
+If you go and run this query you will get exactly same results.
+
+03:48.660 --> 03:53.380
+Now if you ask me which method is my favorite, I'm going to go with this method and I will skip the
+
+03:53.380 --> 03:58.140
+between because each time, to be honest, for me, I forget about the between whether the boundaries
+
+03:58.140 --> 04:03.300
+are inclusive or exclusive, but if I read the script, I'm gonna see exactly that.
+
+04:03.300 --> 04:06.540
+Those boundaries are inclusive because we have here the equals.
+
+04:06.540 --> 04:11.220
+So I really prefer using the comparison operator together with the and then using between.
+
+04:11.220 --> 04:12.180
+So it's up to you.
+
+04:12.180 --> 04:14.220
+If you memorize it then go with the between.
+
+04:14.220 --> 04:17.580
+But for me I'm gonna go with the comparison operators okay my friends.
+
+04:17.580 --> 04:19.900
+So that's all about the between and the range operator.
+
+04:19.940 --> 04:21.460
+Now let's move to another group.
+
+04:21.460 --> 04:23.140
+We have the membership operator.
+
+04:23.140 --> 04:24.140
+So here we have like two.
+
+04:24.180 --> 04:26.380
+We have the in and the not in.
+
+04:26.380 --> 04:28.620
+So let's understand what this exactly means.

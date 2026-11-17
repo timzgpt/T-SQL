@@ -1,0 +1,286 @@
+WEBVTT
+
+00:03.920 --> 00:07.760
+So now we come to the part where we ask the question, why do we need those parts?
+
+00:07.760 --> 00:11.480
+Why do we need to extract the date parts from a date?
+
+00:11.480 --> 00:13.440
+So let's have the following use cases.
+
+00:13.440 --> 00:19.040
+The first use case of extracting the part is doing data aggregations and reporting.
+
+00:19.040 --> 00:23.320
+Sometimes you are building like reports based on our data, and sometimes you have to aggregate our
+
+00:23.320 --> 00:25.640
+data by specific time unit.
+
+00:25.680 --> 00:30.200
+Like for example, we are building a reports in order to show the sales by year.
+
+00:30.200 --> 00:34.440
+So we have different years and we are aggregating the data based on the year.
+
+00:34.440 --> 00:39.240
+Or you want to drill down to more details where you want to aggregate the data by that quarter.
+
+00:39.240 --> 00:44.080
+So in this report we are showing the sales by quarter Q1 234.
+
+00:44.120 --> 00:49.640
+Or you decide to go in more details where you show the report says sales by month, and then you start
+
+00:49.680 --> 00:51.760
+aggregating your data by the month.
+
+00:51.760 --> 00:54.080
+So you have January, February, March and so on.
+
+00:54.080 --> 00:59.400
+So as you can see, we can use those different parts in order to aggregate the data based on it.
+
+00:59.400 --> 01:04.110
+And these different parts can offer us different analyses with different details.
+
+01:04.110 --> 01:05.430
+So now we have the following task.
+
+01:05.430 --> 01:08.910
+And it says how many orders were placed each year.
+
+01:08.910 --> 01:11.670
+So that means we have to group up our data by the year.
+
+01:11.670 --> 01:13.510
+And we have to count the number of orders.
+
+01:13.550 --> 01:14.830
+Let's go and solve it.
+
+01:14.830 --> 01:16.510
+So let's go with the select.
+
+01:16.510 --> 01:17.310
+And now what do we need.
+
+01:17.350 --> 01:19.830
+We need the order date.
+
+01:19.830 --> 01:22.350
+This is going to indicate when the order is placed.
+
+01:22.350 --> 01:25.750
+So and we have to go and count the star.
+
+01:25.790 --> 01:28.390
+So this is going to be number of orders.
+
+01:28.750 --> 01:32.790
+And from our table sales orders.
+
+01:32.790 --> 01:35.830
+And we have to group up by the order dates.
+
+01:36.110 --> 01:37.110
+So that's it.
+
+01:37.110 --> 01:38.270
+Let's go and execute it.
+
+01:38.270 --> 01:43.470
+So now in the output we are getting the number of orders but by the order date.
+
+01:43.470 --> 01:44.750
+So we are still not there.
+
+01:44.750 --> 01:46.830
+We have to have it as a year.
+
+01:46.830 --> 01:49.070
+So we don't need the whole date information.
+
+01:49.070 --> 01:51.470
+We need only the year information.
+
+01:51.470 --> 01:55.830
+So that means we have to go and extract the part year in order to do that.
+
+01:55.830 --> 01:57.030
+We can do it like this.
+
+01:57.030 --> 02:01.980
+So we can go with the year and we have it as well in the group by.
+
+02:02.020 --> 02:02.900
+So that's it.
+
+02:02.900 --> 02:04.300
+Let's go and execute it.
+
+02:04.300 --> 02:07.500
+And with that as you can see, we got the number of orders for each year.
+
+02:07.500 --> 02:12.260
+And since in our data we have only 2025, we will get only one row so that the task is solved.
+
+02:12.260 --> 02:15.660
+We are now aggregating the data on the level of the year.
+
+02:15.700 --> 02:19.100
+Now let's have another task which is the same but only different parts.
+
+02:19.100 --> 02:21.580
+How many orders were placed each month?
+
+02:21.700 --> 02:24.300
+So we have to go and change it to a month.
+
+02:24.860 --> 02:25.740
+It's very simple.
+
+02:25.740 --> 02:29.500
+We're going to use the function month and as well in the groupby.
+
+02:29.540 --> 02:31.540
+So let's go and execute it.
+
+02:31.580 --> 02:33.820
+And now as you can see in the output we don't have one row.
+
+02:33.820 --> 02:34.860
+Now we have three rows.
+
+02:34.900 --> 02:37.700
+And that's because we have three months inside our data.
+
+02:37.700 --> 02:40.940
+And for each month we will get the total number of orders.
+
+02:40.940 --> 02:46.260
+So for the January we have for February we have four and March we have two orders.
+
+02:46.300 --> 02:49.100
+Now you might say, you know what, I don't want the months as numbers.
+
+02:49.100 --> 02:51.260
+I would like to have the full name of the month.
+
+02:51.260 --> 02:54.860
+So in order to do that we're going to go and use the function date name.
+
+02:54.860 --> 02:56.900
+So let's go and use date name.
+
+02:57.380 --> 02:59.500
+And then we have to specify the date part.
+
+02:59.500 --> 03:04.680
+It's going to be the month and the value going to be the order date, and we have to have the same thing
+
+03:04.720 --> 03:06.120
+as well in the group by.
+
+03:06.240 --> 03:08.040
+So let's go and execute it.
+
+03:08.080 --> 03:12.800
+Now you can see in the output we are getting the full name of the month which is easier to read.
+
+03:12.880 --> 03:18.640
+So this is one of the use cases why we need to extract parts from a date in order to aggregate the data
+
+03:18.640 --> 03:20.000
+on a specific level.
+
+03:23.920 --> 03:25.200
+So now let's have the following task.
+
+03:25.240 --> 03:30.360
+And it says show all orders that were placed during the month of February.
+
+03:30.360 --> 03:31.880
+So that means we don't need all the orders.
+
+03:31.880 --> 03:35.720
+We need only a subset of the orders based on the order dates.
+
+03:35.760 --> 03:37.000
+Now let's go and check the data.
+
+03:37.000 --> 03:43.720
+So select star first from sales orders and let's go and execute it.
+
+03:43.720 --> 03:45.400
+So now with that we have our ten orders.
+
+03:45.440 --> 03:50.800
+Now if you check the order date over here you can see that we have orders in January, February and
+
+03:50.800 --> 03:51.280
+March.
+
+03:51.320 --> 03:55.240
+Now we are interested only on the orders that were placed in February.
+
+03:55.240 --> 03:56.560
+So only these subsets.
+
+03:56.560 --> 04:00.680
+So that means we have now to filter the data based on the month information.
+
+04:00.840 --> 04:05.270
+So what we're going to do we're going to have a Where clause and now we don't need the whole order date.
+
+04:05.270 --> 04:07.150
+We need only the part month.
+
+04:07.310 --> 04:11.430
+So we're going to go with the month and order date.
+
+04:11.630 --> 04:16.310
+And this is going to be equal to two since the output is going to be in number.
+
+04:16.310 --> 04:18.270
+So let's go and execute it.
+
+04:18.310 --> 04:18.470
+Now.
+
+04:18.470 --> 04:20.510
+As you can see SQL did filter the data.
+
+04:20.510 --> 04:25.390
+And in the output we have only the orders were placed in the month of February.
+
+04:25.390 --> 04:27.670
+So this is as well a very common use case.
+
+04:27.670 --> 04:29.350
+Why do we need the parts.
+
+04:29.350 --> 04:34.830
+We use it in order to filter the data based on specific part of the dates.
+
+04:34.830 --> 04:36.950
+So as you can see, it's very quick and easy.
+
+04:36.990 --> 04:41.270
+And here my recommendation is that if you are filtering the data, always use the numbers.
+
+04:41.270 --> 04:47.190
+So always use a date function that gives you a number because it's always faster to search for integers
+
+04:47.190 --> 04:50.790
+instead of searching for a character or for string.
+
+04:50.790 --> 04:54.790
+So don't use the date name function in order to search or filter for the data.
+
+04:54.790 --> 04:59.950
+It's better to use the date, part or month, year, and day since you can work with numbers and numbers
+
+04:59.950 --> 05:03.670
+are always faster to retrieve data and to filter your informations.

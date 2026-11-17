@@ -1,0 +1,1075 @@
+WEBVTT
+
+00:03.840 --> 00:05.320
+Okay, so what is the count function?
+
+00:05.320 --> 00:06.280
+It's really simple.
+
+00:06.280 --> 00:09.440
+It can return the number of rows within each window.
+
+00:09.440 --> 00:14.200
+So it can help you to understand how many rows do you have within each subset of data.
+
+00:14.200 --> 00:17.480
+So now let's go and understand how SQL works with this function.
+
+00:17.480 --> 00:18.040
+All right guys.
+
+00:18.040 --> 00:22.240
+So now we have again this very simple example where the orders and we have the following informations.
+
+00:22.240 --> 00:23.880
+We have the products and sales.
+
+00:24.200 --> 00:26.440
+And now we want to solve very simple task.
+
+00:26.440 --> 00:29.360
+How many orders do we have within each products.
+
+00:29.520 --> 00:33.080
+So in order to solve it we can use the function count like the following.
+
+00:33.200 --> 00:38.440
+So we can say count and then we pass for it an argument or expression the star.
+
+00:38.440 --> 00:40.880
+So with that we are telling SQL go and count.
+
+00:40.920 --> 00:43.160
+How many rows do we have in our table.
+
+00:43.160 --> 00:47.520
+But we have a window definition like this over partition by products.
+
+00:47.520 --> 00:48.560
+So now what is SQL going to do?
+
+00:48.560 --> 00:51.720
+I'm going to go and divide the data sets into two partitions.
+
+00:51.720 --> 00:56.000
+We're going to have one partition for the caps and another one for the gloves.
+
+00:56.000 --> 00:58.480
+So with that SQL prepared our data into windows.
+
+00:58.480 --> 01:00.350
+And we are ready to do aggregations.
+
+01:00.350 --> 01:02.310
+So how many rows do we have within each window?
+
+01:02.350 --> 01:03.230
+It's going to be three.
+
+01:03.230 --> 01:05.510
+So for this window it's going to be three rows.
+
+01:05.990 --> 01:08.910
+And as well for the next window we have as well three rows.
+
+01:08.950 --> 01:11.350
+So we can have three three and three.
+
+01:11.390 --> 01:12.790
+It's very simple right guys.
+
+01:12.790 --> 01:15.870
+We are just finding the number of rows within each window.
+
+01:15.870 --> 01:21.870
+But now with the aggregate functions we have to be very careful with the null values for the count star.
+
+01:21.870 --> 01:25.350
+As you can see over here, we are not specifying anything about the sales.
+
+01:25.350 --> 01:27.590
+So we are just saying find me the number of rows.
+
+01:27.590 --> 01:31.270
+So that means SQL will just count the nulls as one row.
+
+01:31.270 --> 01:36.390
+So that means if we are using the star as an argument for the function counts, the null will not affect
+
+01:36.390 --> 01:36.870
+anything.
+
+01:36.870 --> 01:42.030
+So whether we have nulls or not, we are just counting how many rows do we have inside our data.
+
+01:42.030 --> 01:45.950
+But in some scenarios we should be ignoring the nulls in our count.
+
+01:45.990 --> 01:51.150
+For example, let's say that I would like to count how many sales do we have within each product.
+
+01:51.310 --> 01:54.510
+That means if we have nulls, it should not be counted.
+
+01:54.750 --> 01:59.670
+So now in order to achieve this task, what we're going to do, we're going to use instead of star.
+
+01:59.710 --> 02:02.350
+Over here we're going to have the field sales.
+
+02:02.350 --> 02:05.670
+So now with this we are telling SQL don't just count blindly.
+
+02:05.670 --> 02:07.550
+How many rows do we have within each window?
+
+02:07.870 --> 02:09.950
+You should be very careful with the values.
+
+02:10.150 --> 02:13.390
+Find how many sales do we have within each window.
+
+02:13.550 --> 02:16.270
+So now let's see what's going to happen for the first window.
+
+02:16.310 --> 02:17.470
+We have three sales.
+
+02:17.470 --> 02:18.910
+So we have three values.
+
+02:18.910 --> 02:20.670
+So the number of rows is correct.
+
+02:20.670 --> 02:23.030
+But for the next one how many sales do we have.
+
+02:23.070 --> 02:24.230
+We have two.
+
+02:24.390 --> 02:26.910
+So we have this sale and then the 70.
+
+02:26.950 --> 02:28.190
+But the last one is null.
+
+02:28.190 --> 02:29.870
+So it will not be counted.
+
+02:29.990 --> 02:31.070
+It will be ignored.
+
+02:31.310 --> 02:34.270
+That's why we're going to get in the output the value two.
+
+02:34.310 --> 02:35.470
+We have two sales.
+
+02:35.470 --> 02:37.550
+So as you can see the result did change.
+
+02:37.550 --> 02:40.270
+And we are now more sensitive to the null values.
+
+02:40.270 --> 02:42.870
+So be careful what you are specifying for the count.
+
+02:42.870 --> 02:46.270
+If you are using a column name like this, it will ignore the nulls.
+
+02:46.470 --> 02:51.790
+But if you have a star, it's just going to go and find how many rows do we have within each partition.
+
+02:51.830 --> 02:56.470
+Okay, so now if you go and compare the results side by side, you can see that if you specify a column
+
+02:56.630 --> 02:58.220
+within the count function.
+
+02:58.220 --> 03:02.860
+It's going to be sensitive with the nulls, so it's going to ignore it and will not use it within the
+
+03:02.860 --> 03:03.500
+aggregations.
+
+03:03.500 --> 03:05.580
+That's why we have here only two rows.
+
+03:05.820 --> 03:09.820
+But if you go and use the star within the count function, what's going to happen?
+
+03:09.860 --> 03:11.580
+SQL is just going to go and count it.
+
+03:11.580 --> 03:15.060
+So we're going to find the number of rows that we have inside our table.
+
+03:15.060 --> 03:19.860
+And there is one more way in order to do the same thing here on the left side you can use instead of
+
+03:19.860 --> 03:21.540
+star, you can use a one.
+
+03:21.740 --> 03:24.140
+So you might find it somewhere that people are using.
+
+03:24.180 --> 03:27.060
+Count one and then the same with the function.
+
+03:27.060 --> 03:29.060
+And we will get exactly the same result.
+
+03:29.060 --> 03:32.060
+So the nulls will be counted and will not be ignored.
+
+03:32.060 --> 03:35.060
+So now you might ask me which one should I use the one or the star?
+
+03:35.100 --> 03:37.260
+Well I would say it doesn't matter, right?
+
+03:37.260 --> 03:42.180
+We are getting the same results and if you are thinking about the performance, I hardly find any differences
+
+03:42.180 --> 03:42.940
+between them.
+
+03:42.940 --> 03:48.420
+So you can go and try both of them and stick with the one that is giving you like more better performance.
+
+03:48.420 --> 03:52.420
+Now we have special case for the count function compared to all other aggregate functions.
+
+03:52.660 --> 03:54.420
+It allows any data type.
+
+03:54.420 --> 03:56.140
+So that means we can use numbers.
+
+03:56.140 --> 03:58.330
+We can use characters, dates and so on.
+
+03:58.330 --> 04:02.410
+So that means we can go and specify something like the products for the count instead of sales.
+
+04:02.410 --> 04:05.490
+So we can go over here and say products, and it's going to go and count.
+
+04:05.490 --> 04:07.570
+How many rows do we have for the products.
+
+04:07.570 --> 04:09.210
+So it's going to be three over here.
+
+04:09.210 --> 04:12.490
+And since here we don't have any nulls, it's going to go and count it like this.
+
+04:12.490 --> 04:13.650
+So we have three rows.
+
+04:13.690 --> 04:14.490
+And be careful here.
+
+04:14.490 --> 04:16.690
+We are not counting the unique rows.
+
+04:16.690 --> 04:20.050
+We are just counting the rows that we have inside our data.
+
+04:20.050 --> 04:21.850
+So this will not be counted as one.
+
+04:21.850 --> 04:23.810
+And this as well will not be one.
+
+04:23.810 --> 04:25.450
+So we have three times the caps.
+
+04:25.450 --> 04:27.050
+That's why we have here three okay.
+
+04:27.090 --> 04:28.770
+So now we have this very simple example.
+
+04:28.970 --> 04:31.210
+Find the total number of orders.
+
+04:31.210 --> 04:32.530
+This is a very simple task.
+
+04:32.530 --> 04:36.930
+In order to find how many rows how many records do we have inside the table.
+
+04:36.970 --> 04:37.610
+Orders.
+
+04:37.810 --> 04:39.650
+So let's go and solve it.
+
+04:39.650 --> 04:45.490
+So let's start by selecting just star from the table orders without anything like this.
+
+04:45.490 --> 04:47.090
+So as you can see we have ten orders.
+
+04:47.090 --> 04:48.090
+It's very simple.
+
+04:48.090 --> 04:49.370
+It's very easy as well.
+
+04:49.410 --> 04:52.050
+But now let's say that you have thousands or millions of rows.
+
+04:52.090 --> 04:53.130
+You cannot do it like this.
+
+04:53.130 --> 04:54.770
+By just checking the rows.
+
+04:54.770 --> 04:55.480
+What you're going to do, to do?
+
+04:55.480 --> 05:00.200
+You're going to go and use the function count so we can go over here and say counts star.
+
+05:00.320 --> 05:01.840
+And then let's give it a name.
+
+05:01.880 --> 05:03.200
+Total orders.
+
+05:03.680 --> 05:05.560
+So let's go and execute it.
+
+05:05.600 --> 05:08.280
+So now as you can see we got only one record one value.
+
+05:08.320 --> 05:10.160
+We don't see any other details.
+
+05:10.360 --> 05:11.840
+We got the ten orders.
+
+05:11.840 --> 05:13.960
+So this is the total number of orders.
+
+05:13.960 --> 05:17.280
+This is very helpful in order to understand the content of your data.
+
+05:17.280 --> 05:22.880
+So this we call it overall analysis or let's say having the big numbers about your business.
+
+05:22.880 --> 05:28.120
+For example how many orders do we have, how many customers products employees and so on.
+
+05:28.120 --> 05:33.880
+So having those big numbers can help us to track our business, to understand how well we are doing
+
+05:33.880 --> 05:36.280
+with the orders and with the customers and so on.
+
+05:36.280 --> 05:38.760
+So this is the basics of reporting.
+
+05:38.800 --> 05:45.280
+Now let's go and extend our task by saying provide details such as the order ID and the order dates.
+
+05:45.280 --> 05:46.520
+So let's go and do that.
+
+05:46.520 --> 05:49.560
+So select order ID order date.
+
+05:49.600 --> 05:51.560
+And now of course we cannot do it like this.
+
+05:51.560 --> 05:52.960
+So let me just execute it.
+
+05:53.000 --> 05:57.320
+We will get an error because here we have different level of details in our select.
+
+05:57.320 --> 06:02.440
+So in order to solve this what we're going to do we're going to use the over clause.
+
+06:02.480 --> 06:05.520
+And with that we are telling SQL this is a window function.
+
+06:05.520 --> 06:07.480
+So now let's go and execute it.
+
+06:07.480 --> 06:09.520
+So with that you can see that we have solved the task.
+
+06:09.520 --> 06:10.400
+We have details.
+
+06:10.400 --> 06:12.080
+We have the order ID or the dates.
+
+06:12.240 --> 06:17.600
+So this is the highest level of details since we have the order ID and as well we have the highest level
+
+06:17.600 --> 06:18.680
+of aggregations.
+
+06:18.680 --> 06:23.040
+We have the total number of orders in the entire table orders.
+
+06:23.040 --> 06:25.720
+So now let's keep going and add more stuff to our task.
+
+06:25.760 --> 06:31.000
+Let's say that we want to find the total number of orders but for each customers.
+
+06:31.000 --> 06:35.360
+So that means this time we have to go and divide our data by the customers.
+
+06:35.360 --> 06:36.760
+So let's go and do that.
+
+06:36.800 --> 06:38.880
+We're going to use as well a window function.
+
+06:38.880 --> 06:41.120
+So count star over.
+
+06:41.160 --> 06:43.280
+We have to divide the data using partition by.
+
+06:43.640 --> 06:46.560
+And we're going to use the field customer ID.
+
+06:46.560 --> 06:50.120
+So let's call it orders by customers.
+
+06:50.240 --> 06:52.960
+And I would like to see as well the customer informations in the query.
+
+06:53.110 --> 06:54.750
+That's why I'm going to go and add it.
+
+06:54.790 --> 06:55.310
+All right.
+
+06:55.310 --> 06:56.150
+So that's all.
+
+06:56.190 --> 06:57.310
+Let's go and execute it.
+
+06:57.310 --> 07:00.230
+Now as we learned before that SQL is going to go and divide the data.
+
+07:00.230 --> 07:02.350
+So that means we have four customers.
+
+07:02.350 --> 07:03.990
+We're going to get four windows.
+
+07:04.150 --> 07:06.870
+The first window is going to be for the customer ID number one.
+
+07:07.030 --> 07:08.590
+And as you can see we have three rows.
+
+07:08.590 --> 07:11.030
+That's why we have here three orders.
+
+07:11.030 --> 07:14.190
+And the same thing for the customer two we have three orders.
+
+07:14.350 --> 07:16.110
+Customer three three orders.
+
+07:16.350 --> 07:18.430
+But only the last customer the customer order.
+
+07:18.590 --> 07:18.990
+Number four.
+
+07:18.990 --> 07:20.950
+We have only one row and one order.
+
+07:20.950 --> 07:25.190
+So now if you go and look to the total orders and the orders by customers, you can see now we are not
+
+07:25.190 --> 07:27.470
+doing the overall analysis.
+
+07:27.470 --> 07:30.670
+We are doing like comparison between different categories.
+
+07:30.670 --> 07:33.550
+And of course in this example the category is the customers.
+
+07:33.550 --> 07:37.350
+And with that we can understand as well the behavior of our customers.
+
+07:37.350 --> 07:42.950
+So you can see that we have three customers that has exactly the same amount of orders.
+
+07:42.950 --> 07:44.390
+So they are very similar.
+
+07:44.390 --> 07:47.870
+But we have one extreme which is the customer ID number four.
+
+07:47.910 --> 07:49.870
+This customer has only one order.
+
+07:49.870 --> 07:54.860
+So this is the only customer that has different behavior than all other customers.
+
+07:54.860 --> 08:00.340
+So you see with very simple query, we are able now to analyze our business and understand the behavior
+
+08:00.340 --> 08:01.620
+of our customers.
+
+08:01.620 --> 08:08.020
+So if you divide the data by partition, by and using count you can go and now compare stuff together.
+
+08:08.060 --> 08:08.380
+All right.
+
+08:08.380 --> 08:09.300
+So now let's keep moving.
+
+08:09.300 --> 08:13.540
+Next we can understand the special cases that we have with the function count.
+
+08:13.540 --> 08:15.180
+So now we have this very simple task.
+
+08:15.220 --> 08:18.020
+It says find the total number of customers.
+
+08:18.020 --> 08:21.340
+And additionally we have to provide all customers details.
+
+08:21.340 --> 08:23.420
+So I think it's very easy to solve what we're going to do.
+
+08:23.460 --> 08:29.540
+We're going to go and select star since we need all details from customers from sales customers.
+
+08:29.780 --> 08:31.180
+So let's just have a look.
+
+08:31.180 --> 08:36.260
+So we have five customers and the function is count star over.
+
+08:36.300 --> 08:40.660
+And we don't have to divide the data since we have to find the total number of customers for the entire
+
+08:40.660 --> 08:41.180
+table.
+
+08:41.340 --> 08:43.220
+And it's going to be total customers.
+
+08:43.220 --> 08:44.500
+So nothing new.
+
+08:44.620 --> 08:45.180
+That's it.
+
+08:45.220 --> 08:46.620
+We have five customers.
+
+08:46.660 --> 08:51.380
+And now, as we learned before, if you are passing the star to the count function, what you are trying
+
+08:51.380 --> 08:53.580
+to scale is that just go and count.
+
+08:53.580 --> 08:55.700
+How many rows do we have inside the table?
+
+08:55.740 --> 08:56.620
+Customers.
+
+08:56.620 --> 08:58.580
+So SQL is just going to go and start counting.
+
+08:58.580 --> 09:01.940
+And it's going to say we have five customers five rows.
+
+09:01.940 --> 09:06.820
+So it doesn't matter whether we have nulls inside our data like in the last name or the score, it's
+
+09:06.820 --> 09:08.300
+just going to count the number of rows.
+
+09:08.300 --> 09:10.380
+So now let's say that we have the following task.
+
+09:10.580 --> 09:14.700
+It's going to say find the total number of scores for customers.
+
+09:14.700 --> 09:18.460
+So what do we need with this task is to find out how many scores inside our data.
+
+09:18.460 --> 09:21.180
+So as you can see we have around four scores.
+
+09:21.340 --> 09:23.700
+But the last customer doesn't have any score.
+
+09:23.700 --> 09:24.940
+So we have it as a null.
+
+09:25.100 --> 09:26.500
+So the result should be four.
+
+09:26.500 --> 09:30.180
+We cannot go now and use the star for it because we're going to get five.
+
+09:30.220 --> 09:32.180
+We have to go and count the scores.
+
+09:32.180 --> 09:34.020
+So let's see how we can do that.
+
+09:34.060 --> 09:35.220
+We're going to count as well.
+
+09:35.260 --> 09:39.660
+But this time the score and the definition of the window are going to be empty.
+
+09:39.660 --> 09:43.420
+So total scores and let's go and execute this.
+
+09:43.420 --> 09:48.420
+So now we can see in the results we got four scores which is very correct because SQL did ignore the
+
+09:48.460 --> 09:55.170
+NULL and SQL now focusing only on one column, so focusing on those values, the nulls will not be counted.
+
+09:55.170 --> 09:58.290
+This is really great in order to check the quality of your data.
+
+09:58.290 --> 10:01.610
+So let's say that you are not expecting any nulls inside your data.
+
+10:01.610 --> 10:06.850
+So instead of going manually through the whole records, what you can do, you can go and find the total
+
+10:06.850 --> 10:08.330
+number of customers like this.
+
+10:08.410 --> 10:11.850
+And then you can go and count the total number of scores.
+
+10:11.890 --> 10:13.570
+And you can see there is a difference.
+
+10:13.570 --> 10:16.490
+So by just checking the data I can say, you know what?
+
+10:16.490 --> 10:20.970
+We have one null without checking every record in our data.
+
+10:20.970 --> 10:26.410
+So with that we can check the quality of our data and understand very quickly how many nulls do we have
+
+10:26.410 --> 10:27.010
+in the field.
+
+10:27.010 --> 10:27.450
+Score.
+
+10:27.490 --> 10:28.650
+And you can do the same stuff.
+
+10:28.650 --> 10:31.330
+For example, for the first name, show it to you.
+
+10:31.330 --> 10:36.530
+So I'm just going to go and copy this and let's say first name let's say country actually.
+
+10:36.530 --> 10:38.210
+So I will go with the country.
+
+10:38.210 --> 10:39.650
+So let's go with the country.
+
+10:39.690 --> 10:41.290
+Total countries.
+
+10:41.890 --> 10:43.890
+So let's go and execute this.
+
+10:43.890 --> 10:47.570
+So now if you check the result you can see we have five rows with the country.
+
+10:47.570 --> 10:51.560
+So SQL can go and focus on the countries and it will not find any nulls.
+
+10:51.560 --> 10:53.080
+So we have here complete data.
+
+10:53.080 --> 10:58.640
+We don't have any nulls because the total number of customers is equal to the total number of values
+
+10:58.640 --> 10:59.760
+within the country.
+
+10:59.760 --> 11:04.160
+And I can immediately find, okay, the data quality of the country is very good.
+
+11:04.200 --> 11:04.520
+All right.
+
+11:04.520 --> 11:07.200
+So now one more thing about the count function that we have learned before.
+
+11:07.200 --> 11:11.560
+We can use either star or one in order to count how many rows do we have.
+
+11:11.600 --> 11:12.600
+So let's just try it.
+
+11:12.600 --> 11:14.280
+I'm just going to go and duplicate it.
+
+11:14.520 --> 11:17.480
+And instead of having a star, let's have one.
+
+11:17.720 --> 11:18.840
+Just going to give it a name here.
+
+11:18.840 --> 11:19.760
+It's going to be one.
+
+11:19.760 --> 11:21.560
+And you are star.
+
+11:21.680 --> 11:23.200
+So let's go and execute it.
+
+11:23.200 --> 11:26.920
+So now if you check the output we get exactly identical results.
+
+11:26.920 --> 11:30.040
+So there is no difference between those two queries.
+
+11:30.320 --> 11:30.920
+It's up to you.
+
+11:30.920 --> 11:32.880
+You can try it and check the performance.
+
+11:32.880 --> 11:35.400
+I usually go with the star instead of one okay.
+
+11:35.400 --> 11:39.880
+So now we're going to talk about a very important use case for the SQL window function count that I
+
+11:39.920 --> 11:41.960
+frequently use in my real projects.
+
+11:42.320 --> 11:46.720
+The data that we use for data analysis has usually bad data quality.
+
+11:46.880 --> 11:52.440
+And if we don't find those data quality issues and we don't clean it before doing the analyses, what's
+
+11:52.440 --> 11:52.960
+going to happen?
+
+11:52.960 --> 11:54.840
+We're going to deliver bad results.
+
+11:54.880 --> 11:58.240
+Bad analysis, which can lead to bad decisions.
+
+11:58.240 --> 12:03.240
+And one very common data quality issue that you might encounter in your project or in your data is that
+
+12:03.480 --> 12:04.600
+having duplicates?
+
+12:04.640 --> 12:07.480
+Duplicates are really bad for doing data analysis.
+
+12:07.720 --> 12:13.760
+So now in order to discover or let's say identify the duplicates in our data, we can go and use the
+
+12:13.760 --> 12:15.400
+SQL window function count.
+
+12:15.440 --> 12:17.120
+So now let's go and have some examples.
+
+12:17.160 --> 12:17.320
+Okay.
+
+12:17.360 --> 12:22.200
+So now the task says check whether the table orders contains any duplicate rows.
+
+12:22.480 --> 12:23.680
+So how are we going to do that.
+
+12:23.680 --> 12:24.320
+By checking.
+
+12:24.320 --> 12:25.400
+Now the table orders.
+
+12:25.400 --> 12:28.120
+Over here we can see that there are many orders.
+
+12:28.120 --> 12:30.040
+But how to find out the duplicates.
+
+12:30.240 --> 12:35.120
+Well the first step is to understand what is the primary key of the table orders.
+
+12:35.400 --> 12:39.120
+So what we usually do we go and check the data model if there is one.
+
+12:39.280 --> 12:41.800
+So for example for this course we have the following data model.
+
+12:41.800 --> 12:46.870
+And we can see that it is defined that the order ID is the primary key for the orders.
+
+12:46.870 --> 12:49.470
+The product ID is primary key for the products.
+
+12:49.470 --> 12:53.870
+So that means for our table the orders, we have the order ID as the primary key.
+
+12:53.870 --> 12:54.990
+And it should be unique.
+
+12:54.990 --> 12:57.150
+It should not contain any duplicates.
+
+12:57.150 --> 13:00.670
+So now let's go to our data and check the order ID.
+
+13:00.710 --> 13:04.750
+By just looking at the data you can see that we don't have any duplicates right.
+
+13:04.870 --> 13:05.830
+All of them are unique.
+
+13:05.830 --> 13:07.670
+So we have one, two, three, four and so on.
+
+13:07.670 --> 13:10.710
+But of course in real projects you cannot do it like this.
+
+13:10.710 --> 13:15.590
+You have to go and build a query in order to find out whether the primary key is unique.
+
+13:15.590 --> 13:21.030
+But now you might say the primary keys are usually unique because we can define it in the DDL, in the
+
+13:21.030 --> 13:23.030
+rules of building the table.
+
+13:23.030 --> 13:24.270
+Well, that's true.
+
+13:24.270 --> 13:27.830
+If you have it like this, then you don't have to find any duplicates.
+
+13:27.830 --> 13:33.510
+But usually in that analysis we export a lot of files and a lot of data inside an extra database, and
+
+13:33.510 --> 13:35.150
+we don't build such rules.
+
+13:35.150 --> 13:39.870
+So now in order to check the quality of the primary keys that you get from the source, we can use the
+
+13:39.870 --> 13:40.630
+count function.
+
+13:40.630 --> 13:41.790
+So let's go and build it.
+
+13:41.790 --> 13:44.790
+I'm just going to select the order ID first as a detail.
+
+13:44.790 --> 13:46.340
+And now we're going to do the following.
+
+13:46.540 --> 13:51.460
+So count and then star and let's go and define the window.
+
+13:51.460 --> 13:52.980
+So it's going to be partition by.
+
+13:52.980 --> 13:55.300
+And here the field is going to be the primary key.
+
+13:55.300 --> 14:00.180
+So the order ID I'm checking now the quality of this field.
+
+14:00.180 --> 14:02.380
+This should not contain any duplicates.
+
+14:02.420 --> 14:05.460
+And now we're going to go and give it a name check primary key.
+
+14:05.620 --> 14:10.260
+So now my expectation is that the result of this should be at maximum one.
+
+14:10.260 --> 14:12.620
+That means we have one row for each primary key.
+
+14:12.660 --> 14:14.660
+And that means as well it is unique.
+
+14:14.660 --> 14:18.300
+So if we've got anything more than one then it means we have duplicates.
+
+14:18.460 --> 14:19.940
+Let's go and run the query.
+
+14:19.940 --> 14:23.780
+And as you can see in the results we get for each primary key one.
+
+14:23.780 --> 14:24.620
+So that's great.
+
+14:24.620 --> 14:27.620
+That means we don't have any duplicates inside our data.
+
+14:27.820 --> 14:29.780
+And the primary key is unique.
+
+14:29.780 --> 14:34.420
+So that means the table orders is clean and we don't have any duplicates inside it.
+
+14:34.420 --> 14:36.260
+Now let's check our database.
+
+14:36.260 --> 14:39.500
+We have here another table called Orders Archive.
+
+14:39.860 --> 14:41.100
+Let's go and check the table.
+
+14:41.100 --> 14:43.740
+So first I'm just going to go and select the data.
+
+14:43.740 --> 14:45.890
+So select from orders archive.
+
+14:45.930 --> 14:49.250
+So sales dot orders archive.
+
+14:49.450 --> 14:51.450
+Let's check the results.
+
+14:51.450 --> 14:55.890
+And here we can see that we have exactly the same structure as the table orders.
+
+14:55.890 --> 14:59.170
+So now let's go and check whether the data quality is real clean.
+
+14:59.170 --> 14:59.930
+So now what we're going to do.
+
+14:59.930 --> 15:02.530
+We're going to use exactly the same query as before.
+
+15:02.690 --> 15:06.490
+But instead of using the table orders we're going to take the orders archive.
+
+15:06.650 --> 15:07.850
+So that's it.
+
+15:07.850 --> 15:09.770
+Let's go and execute it.
+
+15:09.770 --> 15:13.530
+So now by checking the data you can see that we don't have everywhere one.
+
+15:13.570 --> 15:17.570
+Sometimes we have two rows for the same primary key which is really bad.
+
+15:17.570 --> 15:24.490
+So we have here for the order ID four we have two orders with the same order ID and as well for this
+
+15:24.490 --> 15:27.090
+order ID six we have three orders.
+
+15:27.090 --> 15:31.290
+That means those stuff are duplicates and they are against our data model.
+
+15:31.290 --> 15:32.610
+So now what else we can do with that.
+
+15:32.610 --> 15:37.130
+To generate a list specifically for the data quality issue where we have duplicates.
+
+15:37.290 --> 15:40.810
+So anything that has one, we are not interested in it.
+
+15:40.850 --> 15:43.890
+In order to do that we're going to use the subquery.
+
+15:43.890 --> 15:46.690
+So let's say select star from.
+
+15:46.690 --> 15:49.570
+And then we can use the first query as a subquery.
+
+15:49.970 --> 15:55.050
+And we're going to say in our filter where the check primary key is higher than one.
+
+15:55.050 --> 15:58.490
+So that means I need only the order IDs where we have duplicates.
+
+15:58.490 --> 16:00.370
+So let's go and execute this.
+
+16:00.370 --> 16:03.730
+Now I have a list with the primary keys where we have duplicates.
+
+16:03.730 --> 16:06.770
+So we have the order ID four and as well the order ID six.
+
+16:06.770 --> 16:09.930
+So guys as you can see the window count function is wonderful.
+
+16:09.930 --> 16:13.530
+In order to find data quality issues like the duplicates.
+
+16:13.530 --> 16:14.090
+All right guys.
+
+16:14.090 --> 16:18.650
+So those are the four most important use cases in the SQL window function count.
+
+16:18.650 --> 16:22.250
+So the first one we can use it in order to do overall analyses.
+
+16:22.250 --> 16:27.930
+Or we can use it in order to do category analysis like we have done the analysis on the customer behavior
+
+16:28.250 --> 16:29.090
+or another use case.
+
+16:29.090 --> 16:32.570
+We can use it in order to check the nulls inside our data.
+
+16:32.770 --> 16:38.490
+And the last use case, we can use it in order to identify or discover the data quality issue duplicates
+
+16:38.490 --> 16:39.490
+in our data.
+
+16:39.490 --> 16:41.450
+So now let's go and check the next function.
+
+16:41.450 --> 16:42.730
+We have the sum.

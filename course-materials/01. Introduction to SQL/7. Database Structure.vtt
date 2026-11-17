@@ -1,0 +1,206 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.639
+Now, the databases are very structured and organized.
+
+2
+00:00:06.639 --> 00:00:08.279
+It has the following hierarchy.
+
+3
+00:00:08.279 --> 00:00:10.060
+The starting point is the server.
+
+4
+00:00:10.060 --> 00:00:13.760
+As we learned, it is a powerful PC, and it is where the database lives.
+
+5
+00:00:13.760 --> 00:00:16.879
+And inside it, we can have multiple databases.
+
+6
+00:00:16.879 --> 00:00:21.200
+So maybe you have a database for the sales, and another one for the HR.
+
+7
+00:00:21.200 --> 00:00:23.680
+So the server can host multiple databases.
+
+8
+00:00:23.680 --> 00:00:26.639
+And as we learned, a database is a container of your data.
+
+9
+00:00:26.639 --> 00:00:30.840
+Now, moving on to the next level, in each database, we can have multiple schemas.
+
+10
+00:00:30.840 --> 00:00:35.240
+A schema, it is like a category, or you can call it a logical container, that we can use
+
+11
+00:00:35.240 --> 00:00:37.840
+it in order to group up related objects.
+
+12
+00:00:37.840 --> 00:00:41.880
+Like let's say you have hundreds of tables, so you can split all the tables that has to
+
+13
+00:00:41.880 --> 00:00:48.080
+do with the orders in one schema, and then another group of tables with the schema customers, and so on.
+
+14
+00:00:48.080 --> 00:00:51.840
+So it helps you to organize your tables and your objects in the database.
+
+15
+00:00:51.840 --> 00:00:55.759
+And now if you go inside the schema, you can have multiple objects like tables.
+
+16
+00:00:55.880 --> 00:00:58.040
+So now, of course, the question is, what is a table?
+
+17
+00:00:58.040 --> 00:00:59.560
+It is like a spreadsheet.
+
+18
+00:00:59.560 --> 00:01:01.639
+It organizes your data into columns.
+
+19
+00:01:01.639 --> 00:01:04.639
+The columns define the data that you store inside it.
+
+20
+00:01:04.639 --> 00:01:10.639
+So you have one column about the customer ID, another column about the names, the scores, the birthday.
+
+21
+00:01:10.639 --> 00:01:12.680
+So each column is about one type of data.
+
+22
+00:01:12.680 --> 00:01:15.000
+And sometimes we call the columns as fields.
+
+23
+00:01:15.000 --> 00:01:19.519
+Now the other thing that you have in tables is the rows, or sometimes we call it records.
+
+24
+00:01:19.519 --> 00:01:21.760
+It is where actually the data is stored.
+
+25
+00:01:21.760 --> 00:01:26.080
+Now in this example, each record represents one customer, one person.
+
+26
+00:01:26.080 --> 00:01:29.199
+So we have one record for Maria, Joan, and Peter.
+
+27
+00:01:29.199 --> 00:01:30.559
+Those we call them rows.
+
+28
+00:01:30.559 --> 00:01:35.120
+Now in each table, there is like one very important column called the primary key.
+
+29
+00:01:35.120 --> 00:01:41.720
+It is always very important to have like one unique identifier for each customer, for each row.
+
+30
+00:01:41.720 --> 00:01:45.239
+And we use it for different purposes in order to combine it with another table, in order
+
+31
+00:01:45.239 --> 00:01:47.500
+to identify quickly one customer.
+
+32
+00:01:47.500 --> 00:01:48.500
+So it is unique.
+
+33
+00:01:48.500 --> 00:01:52.459
+It's like fingerprint, and there is no two customers having the same ID.
+
+34
+00:01:52.459 --> 00:01:56.959
+Now the overlapping between the columns and the rows, we have a single value, a cell.
+
+35
+00:01:56.959 --> 00:02:00.500
+And each value, each column, stores a specific data type.
+
+36
+00:02:00.500 --> 00:02:06.260
+A data type, it is like what kind of data we are storing, like an integer, 1, 2, 30,
+
+37
+00:02:06.260 --> 00:02:09.619
+or a decimal, where you have a decimal point, 3.14.
+
+38
+00:02:09.619 --> 00:02:12.940
+Now if you want to store characters, we have different data types for that.
+
+39
+00:02:12.940 --> 00:02:15.919
+Like you want to store the name or the description.
+
+40
+00:02:15.919 --> 00:02:18.860
+So here we can use the char or the varchar.
+
+41
+00:02:18.860 --> 00:02:21.720
+So you store inside them like the first name, Maria, or something.
+
+42
+00:02:21.720 --> 00:02:24.199
+Now you might ask, what is a char or varchar?
+
+43
+00:02:24.199 --> 00:02:26.119
+So the char always a fixed one.
+
+44
+00:02:26.119 --> 00:02:31.440
+So if you define it like five characters, always it's going to go and reserve five characters from the space.
+
+45
+00:02:31.440 --> 00:02:34.440
+But if you want things more dynamic, then you go with the varchar.
+
+46
+00:02:34.440 --> 00:02:38.119
+And now moving on, we have another data types called the date and time.
+
+47
+00:02:38.119 --> 00:02:42.720
+So if you want to store a date, like the birth dates, and if you want to store the time information,
+
+48
+00:02:42.720 --> 00:02:44.360
+you can use the time data type.
+
+49
+00:02:44.360 --> 00:02:47.759
+So we call those stuff int, decimal, char, date, time.
+
+50
+00:02:47.759 --> 00:02:49.160
+They are data types.
+
+51
+00:02:49.160 --> 00:02:53.240
+So my friends, as you can see, SQL databases are very organized and structured.
+

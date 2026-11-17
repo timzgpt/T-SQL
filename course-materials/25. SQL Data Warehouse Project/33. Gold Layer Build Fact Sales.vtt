@@ -1,0 +1,340 @@
+WEBVTT
+
+00:00.080 --> 00:00.800
+All right friends.
+
+00:00.800 --> 00:02.680
+So with that, we have covered a lot of stuff.
+
+00:02.840 --> 00:05.080
+So we have covered the customers and the products.
+
+00:05.080 --> 00:09.960
+And we are left with only one table where we have the transactions, the sales.
+
+00:09.960 --> 00:13.000
+And for the sales information we have only data from the CRM.
+
+00:13.000 --> 00:14.720
+We don't have anything from the ERP.
+
+00:14.720 --> 00:16.320
+So let's go and build it okay.
+
+00:16.360 --> 00:18.400
+So now I have all those informations.
+
+00:18.400 --> 00:19.920
+And now of course we have only one table.
+
+00:19.920 --> 00:22.480
+We don't have to do any integrations and so on.
+
+00:22.480 --> 00:24.160
+And now we have to answer the big question.
+
+00:24.200 --> 00:26.440
+Do we have here a dimension or facts.
+
+00:26.440 --> 00:29.880
+Well by looking to those details we can see transactions.
+
+00:29.880 --> 00:31.000
+We can see events.
+
+00:31.000 --> 00:35.760
+We have a lot of dates, informations we have as well a lot of measures and metrics.
+
+00:35.800 --> 00:37.800
+And as well we have a lot of IDs.
+
+00:37.800 --> 00:40.360
+So it is connecting multiple dimensions.
+
+00:40.360 --> 00:43.640
+And this is exactly a perfect setup for effects.
+
+00:43.640 --> 00:46.840
+So we're going to go and use those informations as effects.
+
+00:46.840 --> 00:50.480
+And of course as we learned the fact is connecting multiple dimensions.
+
+00:50.720 --> 00:55.720
+We have to present in these facts the surrogate keys that comes from the dimensions.
+
+00:55.720 --> 01:01.530
+So those two informations the product key and the customer ID those informations comes from the source
+
+01:01.530 --> 01:02.050
+system.
+
+01:02.050 --> 01:05.930
+And as we learned, we want to connect our data model using the surrogate keys.
+
+01:05.970 --> 01:10.290
+So what we're going to do, we're going to replace those two informations with the surrogate keys that
+
+01:10.290 --> 01:11.250
+we have generated.
+
+01:11.250 --> 01:18.010
+And in order to do that we have to go and join now the two dimensions in order to get the surrogate
+
+01:18.050 --> 01:18.370
+key.
+
+01:18.410 --> 01:21.130
+And we call this process of course data lookup.
+
+01:21.130 --> 01:24.730
+So we are joining the tables in order only to get one information.
+
+01:24.730 --> 01:25.810
+So let's go and do that.
+
+01:25.850 --> 01:30.090
+We will go with the left join of course not to lose any transaction.
+
+01:30.090 --> 01:32.410
+So first we're going to go and join it with the product key.
+
+01:32.450 --> 01:36.210
+Now of course in the silver layer we don't have any surrogate keys.
+
+01:36.410 --> 01:37.890
+We have it in the gold layer.
+
+01:37.890 --> 01:43.730
+So that means for the fact table we're going to be joining the silver layer together with the gold layer.
+
+01:43.730 --> 01:47.410
+So gold dots and then the dimension products.
+
+01:47.450 --> 01:49.210
+And I'm going to just call it PR.
+
+01:49.330 --> 01:58.290
+And we're going to join the SD using the product key together with the product number from the dimension.
+
+01:58.290 --> 02:03.830
+And now the only information that we need from the dimension is the key the surrogate key.
+
+02:03.830 --> 02:07.470
+So we're going to go over here and say product key.
+
+02:07.510 --> 02:11.910
+And what I'm going to do I'm going to go and remove this information from here because we don't need
+
+02:11.910 --> 02:12.110
+it.
+
+02:12.150 --> 02:14.910
+We don't need the original product key from the source system.
+
+02:14.910 --> 02:19.030
+We need the surrogate key that we have generated in our own in this data warehouse.
+
+02:19.030 --> 02:21.710
+So the same thing can happen as well for the customer.
+
+02:22.270 --> 02:25.830
+So goals dimension customer.
+
+02:25.870 --> 02:30.790
+Again we are doing here a lookup in order to get the information on SD.
+
+02:30.950 --> 02:40.110
+So we are joining using this ID over here equal to the customer ID because this is a customer ID and
+
+02:40.110 --> 02:42.150
+what we're going to do the same thing.
+
+02:42.150 --> 02:45.590
+We need the surrogate key the customer key.
+
+02:45.630 --> 02:48.150
+And we're going to delete the ID because we don't need it.
+
+02:48.150 --> 02:49.350
+Now we have the surrogate key.
+
+02:49.350 --> 02:51.510
+So now let's go and execute it.
+
+02:51.510 --> 02:55.990
+And now with that we have in our fact table the two keys from the dimensions.
+
+02:55.990 --> 03:01.120
+And now this can help us to connect the data model to connect the facts with the dimensions.
+
+03:01.120 --> 03:02.480
+So this is very necessary.
+
+03:02.480 --> 03:04.360
+Step building the fact table.
+
+03:04.360 --> 03:07.680
+You have to put the surrogate keys from the dimensions in the facts.
+
+03:07.680 --> 03:09.760
+So that was actually the hardest part.
+
+03:09.800 --> 03:11.040
+Building the facts.
+
+03:11.080 --> 03:14.520
+Now the next step all what you have to do is to go and give friendly names.
+
+03:14.520 --> 03:17.840
+So we're going to go over here and say order number.
+
+03:18.320 --> 03:20.440
+Then the surrogate keys are already friendly.
+
+03:20.440 --> 03:23.960
+So we're going to go over here and say this is the order date.
+
+03:23.960 --> 03:27.040
+And the next one is going to be shipping date.
+
+03:28.000 --> 03:30.800
+And then the next one due date.
+
+03:30.920 --> 03:37.040
+And the sales is going to be I'm going to say sales amount the quantity.
+
+03:37.960 --> 03:40.600
+And the final one is the price.
+
+03:40.600 --> 03:43.640
+So now let's go and execute it and look to the results.
+
+03:43.800 --> 03:46.480
+So now as you can see the columns looks very friendly.
+
+03:46.480 --> 03:50.240
+And now about the order of the columns we use the following schema.
+
+03:50.240 --> 03:54.160
+So first in the fact table we have all the surrogate keys from the dimensions.
+
+03:54.280 --> 03:56.960
+Then second we have all the dates.
+
+03:56.960 --> 04:01.770
+And at the end you group up all the measures and the metrics at the end of the facts.
+
+04:01.810 --> 04:03.770
+So that's it for the query, for the facts.
+
+04:03.810 --> 04:05.730
+Now we can go and build it.
+
+04:05.730 --> 04:10.530
+So we're going to say create a view gold in the gold layer.
+
+04:10.610 --> 04:13.530
+And this time we're going to use the facts underscore.
+
+04:13.570 --> 04:15.290
+And we're going to go and call it sales.
+
+04:15.330 --> 04:16.930
+And then don't forget about the --.
+
+04:16.930 --> 04:17.930
+So that's it.
+
+04:17.930 --> 04:19.490
+Let's go and create it.
+
+04:19.530 --> 04:20.050
+Perfect.
+
+04:20.090 --> 04:21.410
+Now we can see the facts.
+
+04:21.410 --> 04:24.610
+So with that we have three objects in the gold layer.
+
+04:24.610 --> 04:26.610
+We have two dimensions and one facts.
+
+04:26.650 --> 04:31.090
+And now of course the next step is that we're going to go and check the quality of the view.
+
+04:31.610 --> 04:36.090
+So let's have a simple select fact sales.
+
+04:36.330 --> 04:38.890
+So let's execute it now by checking the results.
+
+04:38.890 --> 04:42.570
+You can see it is exactly like the result from the query.
+
+04:42.570 --> 04:44.130
+And everything looks nice.
+
+04:44.170 --> 04:44.410
+Okay.
+
+04:44.450 --> 04:49.650
+So now one more trick that I usually do after building a fact is try to connect the whole data model
+
+04:49.650 --> 04:51.170
+in order to find any issues.
+
+04:51.170 --> 04:52.130
+So let's go and do that.
+
+04:52.130 --> 04:55.730
+We will do just simple left join with the dimensions.
+
+04:55.730 --> 05:03.110
+So gold dimension customers see and we will use the keys.
+
+05:04.710 --> 05:08.190
+And then we're going to say where customer key is null.
+
+05:08.190 --> 05:09.630
+So there is no matching.
+
+05:10.030 --> 05:12.070
+So let's go and execute it.
+
+05:12.070 --> 05:14.830
+And with that, as you can see in the results we are not getting anything.
+
+05:14.830 --> 05:21.030
+That means everything is matching perfectly and we can do as well the same thing with the products.
+
+05:21.030 --> 05:32.030
+So left join called them products P on product key and then we connect it with the fact product key.
+
+05:32.070 --> 05:36.670
+And then we can go and check the product key from the dimension like this.
+
+05:36.670 --> 05:41.230
+So we are checking whether we can connect the facts together with the dimension products.
+
+05:41.230 --> 05:41.990
+Let's go and check.
+
+05:42.030 --> 05:44.430
+And as you can see as well we are not getting anything.
+
+05:44.430 --> 05:45.470
+And this is all right.
+
+05:45.470 --> 05:51.270
+So with that we have now SQL codes that is tested and as well creating the gold layer.
+
+05:51.310 --> 05:56.110
+Now in the next step, as you know in our requirements we have to make clear documentations for the
+
+05:56.110 --> 05:58.670
+end users in order to use our data model.
+
+05:58.670 --> 06:01.470
+So let's go and draw a data model of the star schema.

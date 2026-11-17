@@ -1,0 +1,121 @@
+WEBVTT
+
+00:03.920 --> 00:05.960
+Now the links function is very simple.
+
+00:05.960 --> 00:11.480
+It's going to go and count how many characters you have in one value, so you are calculating the length
+
+00:11.480 --> 00:12.280
+of a value.
+
+00:12.320 --> 00:14.120
+Let's have a very simple example to understand it.
+
+00:14.160 --> 00:16.320
+Okay, so now let's say that we have the value Maria.
+
+00:16.320 --> 00:20.680
+If you apply the links function for that, what can happen is you're going to go and start counting
+
+00:20.680 --> 00:23.120
+how many characters we have inside this value.
+
+00:23.120 --> 00:26.200
+So the M is one a, 2345.
+
+00:26.240 --> 00:28.600
+In the output you will get the number five.
+
+00:28.640 --> 00:32.480
+So five is the length or the total number of characters in this value.
+
+00:32.480 --> 00:35.000
+Now let's say that you have a number like 350.
+
+00:35.040 --> 00:38.200
+If you go and apply the links function, still it's going to go and count.
+
+00:38.240 --> 00:39.720
+How many digits do we have.
+
+00:39.760 --> 00:41.840
+The three is one, five, two, three.
+
+00:41.840 --> 00:43.920
+So the total links for that is going to be three.
+
+00:43.920 --> 00:45.680
+So you can apply it even for numbers.
+
+00:45.680 --> 00:48.520
+And not only that you can go and apply it on a date value.
+
+00:48.520 --> 00:52.400
+So let's say that you have the following date 2026 first 23.
+
+00:52.440 --> 00:57.760
+So it's going to go and count each digit, each character, even the underscores not only the numbers
+
+00:57.800 --> 00:59.560
+underscore is as well a digit.
+
+00:59.560 --> 00:59.880
+Right.
+
+00:59.880 --> 01:02.560
+So the total length of this date is going to be ten.
+
+01:02.560 --> 01:05.160
+So you can apply any data type to the links function.
+
+01:05.160 --> 01:07.720
+And in the output you will get always a number.
+
+01:07.720 --> 01:08.200
+That's it.
+
+01:08.200 --> 01:11.440
+This is how you can count the number of characters in any value.
+
+01:11.440 --> 01:13.880
+Let's go back to SQL in order to practice that okay.
+
+01:13.920 --> 01:17.960
+So now we have the task calculate the length of each customer's first name.
+
+01:18.000 --> 01:19.680
+So it is very simple.
+
+01:19.680 --> 01:24.680
+We're going to go and apply the function links Len to the column first name.
+
+01:24.720 --> 01:27.240
+And we're going to call it length name.
+
+01:27.240 --> 01:29.080
+So let's go and execute it.
+
+01:29.080 --> 01:32.120
+And with that as you can see we are getting the output numbers.
+
+01:32.120 --> 01:37.040
+And these numbers are the number of characters of each name of our customers.
+
+01:37.040 --> 01:38.760
+So this is how we calculate the length.
+
+01:38.760 --> 01:40.200
+And that's it for this group.
+
+01:40.200 --> 01:41.320
+Now moving on to the next one.
+
+01:41.320 --> 01:42.560
+It's going to be very interesting.
+
+01:42.560 --> 01:46.160
+Now we're going to talk about how to extract something from a string value.
+
+01:46.160 --> 01:49.280
+And here we're going to cover now two functions the left and the right.

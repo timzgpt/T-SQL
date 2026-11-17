@@ -1,0 +1,1177 @@
+WEBVTT
+
+00:00.040 --> 00:04.640
+All right, moving on to the second table in the bronze layer from the CRM, we have the product info.
+
+00:04.680 --> 00:09.680
+And of course, as usual, before we start writing any transformations, we have to search for data
+
+00:09.680 --> 00:10.560
+quality issues.
+
+00:10.560 --> 00:11.760
+And we start with the first one.
+
+00:11.760 --> 00:13.360
+We have to check the primary key.
+
+00:13.360 --> 00:17.360
+So we have to check whether we have duplicates or nulls inside this key.
+
+00:17.400 --> 00:22.240
+So what we have to do, we have to group up the data by the primary key or check whether we have nulls.
+
+00:22.240 --> 00:23.560
+So let's go and execute it.
+
+00:23.560 --> 00:25.200
+So as you can see everything is safe.
+
+00:25.200 --> 00:27.480
+We don't have duplicates or nulls in the primary key.
+
+00:27.520 --> 00:29.120
+Now moving on to the next one.
+
+00:29.120 --> 00:30.680
+We have the product key here.
+
+00:30.680 --> 00:33.040
+We have in this column a lot of informations.
+
+00:33.040 --> 00:37.240
+So now what we have to do is to go and split this string into two informations.
+
+00:37.240 --> 00:39.600
+So we are deriving new two columns.
+
+00:39.600 --> 00:44.160
+So now let's start with the first one is the category ID the first five characters.
+
+00:44.160 --> 00:48.640
+They are actually the category ID and we can go and use the substring function.
+
+00:48.640 --> 00:52.840
+In order to extract part of a string, it needs three arguments.
+
+00:52.840 --> 00:58.400
+The first one is going to be the column that we want to extract from, and then we have to define the
+
+00:58.400 --> 01:00.250
+position where to extract.
+
+01:00.290 --> 01:04.330
+And since the first part is on the left side, we're going to start from the first position.
+
+01:04.330 --> 01:06.170
+And then we have to specify the length.
+
+01:06.170 --> 01:09.690
+So how many characters we want to extract we need five characters.
+
+01:09.690 --> 01:11.570
+So 12345.
+
+01:11.730 --> 01:17.250
+So that's it for the category ID category ID let's go and execute it.
+
+01:17.290 --> 01:17.410
+Now.
+
+01:17.410 --> 01:23.010
+As you can see we have a new column called the category ID and it contains the first part of the string.
+
+01:23.010 --> 01:27.690
+And in our database from the other source system we have as well the category ID.
+
+01:27.730 --> 01:32.610
+Now we can go and double check just in order to make sure that we can join data together.
+
+01:32.610 --> 01:37.410
+So we can go and check the ID from the bronze table ERP.
+
+01:37.690 --> 01:39.930
+And this is going to be from that category.
+
+01:39.930 --> 01:42.970
+So in this table we have the category IDs.
+
+01:42.970 --> 01:46.650
+And you can see over here those are the IDs of the category.
+
+01:46.650 --> 01:49.890
+And in the gold layer we have to go and join those two tables.
+
+01:49.890 --> 01:51.330
+But here we still have an issue.
+
+01:51.370 --> 01:55.810
+We have here an underscore between the category and the subcategory.
+
+01:55.810 --> 01:59.220
+But in our table we have actually a Actually minus.
+
+01:59.220 --> 02:04.180
+So we have to replace that with an underscore in order to have matching information between those two
+
+02:04.220 --> 02:04.660
+tables.
+
+02:04.700 --> 02:06.860
+Otherwise we will not be able to join the tables.
+
+02:06.860 --> 02:09.180
+So we're going to use the function replace.
+
+02:09.940 --> 02:11.300
+And what we are replacing.
+
+02:11.300 --> 02:16.620
+We are replacing the minus with an underscore something like this.
+
+02:16.660 --> 02:21.900
+And if you go now and execute it we will get an underscore exactly like the other table.
+
+02:21.900 --> 02:26.940
+And of course we can go and check whether everything is matching by having very simple query where we
+
+02:26.940 --> 02:31.060
+say this new information not in.
+
+02:31.100 --> 02:33.740
+And then we have this nice subquery.
+
+02:33.740 --> 02:39.340
+So we are trying to find any category ID that is not available in the second table.
+
+02:39.340 --> 02:40.660
+So let's go and execute it.
+
+02:40.700 --> 02:43.900
+Now as you can see we have only one category that is not matching.
+
+02:43.940 --> 02:47.500
+We are not finding it in this table which is maybe correct.
+
+02:47.500 --> 02:50.980
+So if you go over here you will not find this category.
+
+02:51.020 --> 02:52.460
+I just make it a little bit bigger.
+
+02:52.460 --> 02:56.340
+So we are not finding this one category from this table which is fine.
+
+02:56.340 --> 02:57.960
+So our check is okay.
+
+02:58.000 --> 02:58.280
+Okay.
+
+02:58.320 --> 02:59.800
+So with that we have the first part.
+
+02:59.840 --> 03:02.120
+Now we have to go and extract the second part.
+
+03:02.120 --> 03:03.240
+And we're going to do the same thing.
+
+03:03.240 --> 03:07.480
+So we're going to use the substring and the three argument the product key.
+
+03:07.520 --> 03:10.480
+But this time we will not start cutting from the first position.
+
+03:10.480 --> 03:11.600
+We have to be in the middle.
+
+03:11.600 --> 03:15.240
+So 1234567.
+
+03:15.240 --> 03:18.240
+So we start from the position number seven.
+
+03:18.240 --> 03:22.080
+And now we have to define the length how many characters to be extracted.
+
+03:22.080 --> 03:27.080
+But if you look over here you can see that we have different links of the product keys.
+
+03:27.120 --> 03:30.480
+It is not fixed like the category ID, so we cannot go.
+
+03:30.480 --> 03:31.760
+And here specify number.
+
+03:31.760 --> 03:33.320
+We have to make something dynamic.
+
+03:33.320 --> 03:37.960
+And there is trick in order to do that we're going to go and use the length of the whole column.
+
+03:37.960 --> 03:43.480
+With that, we make sure that we are always getting enough characters to be extracted and we will not
+
+03:43.480 --> 03:45.000
+be losing any informations.
+
+03:45.000 --> 03:47.240
+So we will make it dynamic like this.
+
+03:47.280 --> 03:49.560
+We will not have it as a fixed length.
+
+03:49.600 --> 03:52.160
+And with that we have that products key.
+
+03:52.200 --> 03:54.080
+So let's go and execute it.
+
+03:54.080 --> 03:59.490
+As you can see we are now extracting Constructing the second part from this string.
+
+03:59.530 --> 04:00.890
+Now, why we need the product key.
+
+04:00.930 --> 04:05.530
+We need it in order to join it with another table called sales details.
+
+04:05.530 --> 04:08.210
+So let's go and check the sales details.
+
+04:08.210 --> 04:10.530
+So let me just check the column name.
+
+04:10.690 --> 04:13.410
+It is sales product key.
+
+04:13.570 --> 04:20.810
+So from bronze CRM sales let's go and check the data over here.
+
+04:20.810 --> 04:22.770
+And it looks wonderful.
+
+04:22.970 --> 04:26.090
+So actually we can go and join those informations together.
+
+04:26.090 --> 04:27.530
+But of course we can go and check that.
+
+04:27.530 --> 04:33.050
+So we're going to say where and we're going to take our new column and we're going to say not in the
+
+04:33.090 --> 04:36.490
+subquery just to make sure that we are not missing anything.
+
+04:36.490 --> 04:37.770
+So let's go and execute.
+
+04:37.770 --> 04:43.210
+So it looks like we have a lot of products that don't have any orders.
+
+04:43.210 --> 04:45.570
+Well I don't have a nice feelings about it.
+
+04:45.570 --> 04:48.570
+Let's go and try something like this one here.
+
+04:48.930 --> 04:54.890
+And we say where sales are key like this value over here.
+
+04:54.890 --> 04:59.740
+So I'll will just cut the last three just to search inside this table.
+
+04:59.980 --> 05:02.260
+So we really don't have such a keys.
+
+05:02.300 --> 05:04.260
+Let me just cut the second one.
+
+05:04.460 --> 05:07.060
+So let's go and search for it.
+
+05:07.100 --> 05:08.340
+We don't have it as well.
+
+05:08.340 --> 05:10.580
+So anything that starts with the F key.
+
+05:10.620 --> 05:14.660
+We don't have any order with the product where it starts with the F key.
+
+05:14.780 --> 05:16.620
+So let's go and remove it.
+
+05:16.660 --> 05:18.900
+But still we are able to join the tables.
+
+05:18.900 --> 05:19.220
+Right.
+
+05:19.220 --> 05:22.820
+So if I go and say in instead of not in.
+
+05:22.820 --> 05:25.700
+So with that you are able to match all those products.
+
+05:25.700 --> 05:27.500
+So that means everything is fine.
+
+05:27.540 --> 05:30.900
+Actually it's just products that don't have any orders.
+
+05:30.900 --> 05:34.180
+So with that I'm happy with this transformation.
+
+05:34.220 --> 05:38.420
+Now moving on to the next one we have here the name of the product.
+
+05:38.420 --> 05:41.780
+We can go and check whether there is unwanted spaces.
+
+05:41.780 --> 05:43.700
+So let's go to our quality checks.
+
+05:43.700 --> 05:46.100
+Make sure to use the same table.
+
+05:46.100 --> 05:52.100
+And we're going to use the product name and check whether we find any unmatching after trimming.
+
+05:52.100 --> 05:53.260
+So let's go and do it.
+
+05:53.300 --> 05:56.630
+Well it looks really fine so we don't have to trim anything.
+
+05:56.750 --> 05:57.990
+This column is safe.
+
+05:58.030 --> 05:59.550
+Now moving on to the next one.
+
+05:59.550 --> 06:00.630
+We have the costs.
+
+06:00.630 --> 06:04.510
+So here we have numbers and we have to check the quality of the numbers.
+
+06:04.510 --> 06:08.510
+So what we can do we can check whether we have nulls or negative numbers.
+
+06:08.510 --> 06:14.110
+So negative costs or negative prices which is not realistic depending on the business of course.
+
+06:14.110 --> 06:17.750
+So let's say in our business we don't have any negative costs.
+
+06:18.350 --> 06:19.790
+So it's going to be like this.
+
+06:19.830 --> 06:27.670
+Let's go and check whether it's something less than zero or whether we have costs that is null.
+
+06:27.710 --> 06:30.510
+So let's go and check those informations.
+
+06:30.510 --> 06:32.590
+Well as you can see we don't have any negative values.
+
+06:32.590 --> 06:33.830
+What we have nulls.
+
+06:34.030 --> 06:37.950
+So we can go and handle that by replacing the null with a zero.
+
+06:38.030 --> 06:40.110
+Of course if the business allows us.
+
+06:40.110 --> 06:46.550
+So in SQL server in order to replace the null with a zero we have a very nice function called is null.
+
+06:46.870 --> 06:52.030
+So we are saying if it is null, then replace this value with a zero.
+
+06:52.190 --> 06:56.240
+It is very simple like this and we give it a name, of course.
+
+06:56.240 --> 06:57.880
+So let's go and execute it.
+
+06:57.880 --> 07:00.080
+And as you can see, we don't have any more nulls.
+
+07:00.080 --> 07:01.080
+We have zero.
+
+07:01.120 --> 07:02.720
+Which is better for the calculations.
+
+07:02.720 --> 07:06.520
+If you are later doing any aggregate functions like the average.
+
+07:06.560 --> 07:09.560
+Now moving on to the next one, we have the product line.
+
+07:09.560 --> 07:13.320
+This is again an abbreviation of something and the cardinality is low.
+
+07:13.320 --> 07:16.920
+So let's go and check all possible values inside this column.
+
+07:16.920 --> 07:18.800
+So we're just going to use the distinct.
+
+07:18.800 --> 07:21.000
+It's going to be per line.
+
+07:21.000 --> 07:22.800
+So let's go and execute it.
+
+07:22.800 --> 07:25.080
+And as you can see the possible values are null.
+
+07:26.440 --> 07:28.320
+And again those are abbreviations.
+
+07:28.320 --> 07:32.400
+But in our data warehouse we have decided to give full nice names.
+
+07:32.400 --> 07:37.600
+So we have to go and replace those codes, those abbreviations with a friendly value.
+
+07:37.600 --> 07:43.000
+And of course in order to get those informations I usually go and ask the expert from the source system
+
+07:43.000 --> 07:44.880
+or an expert from the process.
+
+07:45.160 --> 07:51.480
+So let's start building our case win and then let's use the upper and as well the trim just to make
+
+07:51.520 --> 07:54.220
+sure that we are having all the cases.
+
+07:54.220 --> 07:58.420
+So the bird line is equal to.
+
+07:58.780 --> 08:00.780
+So let's start with the first value the m.
+
+08:01.340 --> 08:04.180
+Then we will get that friendly value.
+
+08:04.220 --> 08:07.580
+It's going to be mountain then to the next one.
+
+08:07.580 --> 08:09.660
+So I will just copy and paste here.
+
+08:09.940 --> 08:13.140
+If it is an R then it is road.
+
+08:13.140 --> 08:14.860
+And another one for.
+
+08:15.900 --> 08:16.700
+Let me check.
+
+08:16.740 --> 08:17.940
+What do we have here.
+
+08:17.940 --> 08:19.020
+We have Mr..
+
+08:19.260 --> 08:25.020
+And then S the S stands for other cells and we have the T.
+
+08:25.060 --> 08:26.500
+So let's go and get the T.
+
+08:27.340 --> 08:29.500
+So the T stands for touring.
+
+08:30.460 --> 08:34.340
+We have at the end an else for unknown not available.
+
+08:34.340 --> 08:35.980
+So we don't need any nulls.
+
+08:35.980 --> 08:36.780
+So that's it.
+
+08:36.780 --> 08:38.460
+And we're going to name it as before.
+
+08:38.620 --> 08:40.020
+So product line.
+
+08:40.020 --> 08:43.820
+So let's remove the old one and let's execute it.
+
+08:43.820 --> 08:49.860
+And as you can see we don't have here anymore those shortcuts and the abbreviations we have now full
+
+08:49.860 --> 08:51.100
+friendly value.
+
+08:51.140 --> 08:53.390
+But I will go and have here like capital.
+
+08:53.430 --> 08:54.990
+Oh, it looks nicer.
+
+08:54.990 --> 08:56.910
+So with that we have nice friendly value.
+
+08:56.910 --> 09:01.830
+Now by looking to this case, when as you can see, it is always like we are mapping one value to another
+
+09:01.830 --> 09:05.830
+value and we are repeating all time, upper time, upper time and so on.
+
+09:05.870 --> 09:10.270
+We have here a quick form in the case when if it is just a simple mapping.
+
+09:10.270 --> 09:11.790
+So the syntax is very simple.
+
+09:11.790 --> 09:15.030
+We say case and then we have the column.
+
+09:15.030 --> 09:17.910
+So we are evaluating this value over here.
+
+09:17.910 --> 09:20.790
+And then we just say when without the equal.
+
+09:20.790 --> 09:25.710
+So if it is an m then make it mountain the same thing for the next one.
+
+09:25.950 --> 09:29.470
+And so so with that we have the functions only once.
+
+09:29.470 --> 09:32.750
+And we don't have to go and keep repeating the same function over and over.
+
+09:32.790 --> 09:34.910
+And this one only if you are mapping values.
+
+09:34.910 --> 09:37.990
+But if you have complex conditions you cannot do it like this.
+
+09:37.990 --> 09:42.390
+But for now, I'm gonna stay with the quick form of the case when it looks nicer and shorter.
+
+09:42.390 --> 09:43.710
+So let's go and execute it.
+
+09:43.790 --> 09:45.230
+We will get the same results.
+
+09:45.270 --> 09:46.470
+Okay, so now back to our table.
+
+09:46.470 --> 09:47.950
+Let's go to the last two columns.
+
+09:47.950 --> 09:50.070
+We have the start and end dates.
+
+09:50.070 --> 09:52.120
+So it's like defining an interval.
+
+09:52.120 --> 09:53.400
+We have start and end.
+
+09:53.440 --> 09:56.000
+So let's go and check the quality of the start and end dates.
+
+09:56.000 --> 10:00.880
+We can go and say select star from our bronze table.
+
+10:00.920 --> 10:03.240
+And now we're going to go and search it like this.
+
+10:03.280 --> 10:08.760
+We are searching for the end date that is smaller than the start.
+
+10:09.120 --> 10:11.320
+So PRG start dates.
+
+10:11.320 --> 10:13.440
+So let's go and query this.
+
+10:13.440 --> 10:18.680
+So you can see the start is always like after the end which makes no sense at all.
+
+10:18.680 --> 10:20.960
+So we have here data issue with those two dates.
+
+10:20.960 --> 10:26.400
+So now for this kind of data transformations what I usually do is I go and grab few examples and put
+
+10:26.400 --> 10:29.400
+it in Excel and try to think about how I'm going to go and fix it.
+
+10:29.400 --> 10:33.080
+So here I took like two products, this one and this one over here.
+
+10:33.080 --> 10:35.520
+And for that we have like three rows for each one of them.
+
+10:35.520 --> 10:37.560
+And we have this situation over here.
+
+10:37.560 --> 10:39.760
+So the question now how are we going to go and fix it?
+
+10:39.760 --> 10:44.360
+I will go and make like a copy of one solution where we're going to say it's very simple, let's go
+
+10:44.360 --> 10:46.560
+and switch the start date with the end date.
+
+10:46.560 --> 10:51.450
+So if I go and grab the end date dates and put it at the start.
+
+10:51.490 --> 10:53.370
+Things can look way nicer, right?
+
+10:53.410 --> 10:56.250
+So we have the start is always younger than the end.
+
+10:56.250 --> 11:03.450
+But my friends, the data now makes no sense because we say it starts from 2007 and ends by 2011.
+
+11:03.490 --> 11:10.690
+The price was 12, but between 2008 and 2012 we have 14, which is not really good, because if you
+
+11:10.690 --> 11:16.930
+take, for example, the year 2010, for 2010 it was 12 and at the same time 14.
+
+11:16.930 --> 11:20.930
+So it is really bad to have an overlapping between those two dates.
+
+11:20.930 --> 11:27.850
+It should start from 2007 and end with 11, and then start Phoebe from 12 and end with something else.
+
+11:27.850 --> 11:33.330
+There should be no overlapping between years, so it's not enough to say the start should be always
+
+11:33.330 --> 11:40.370
+smaller than the end, but as will the end of the first, history should be younger than the start of
+
+11:40.370 --> 11:41.530
+the next records.
+
+11:41.530 --> 11:45.010
+This is as well a rule in order to have no overlapping.
+
+11:45.010 --> 11:51.140
+This one has no start, but has already an end, which is not really okay because we have always to
+
+11:51.180 --> 11:52.380
+have starts.
+
+11:52.420 --> 11:55.980
+Each new record in Historization has to have a start.
+
+11:55.980 --> 11:58.820
+So for this record over here, this is as well wrong.
+
+11:58.860 --> 12:02.420
+And of course it is okay to have the start without an end.
+
+12:02.420 --> 12:08.660
+So in this scenario it's fine because this indicates this is the current informations about the costs.
+
+12:08.660 --> 12:11.500
+So again this solution is not working at all.
+
+12:11.500 --> 12:13.540
+So now for the solution to what we can say.
+
+12:13.540 --> 12:16.500
+Let's go and ignore completely the end date.
+
+12:16.500 --> 12:18.460
+And we take only the start dates.
+
+12:18.460 --> 12:20.060
+So let's go and paste it over here.
+
+12:20.060 --> 12:25.980
+But now we go and rebuild the end date completely from the start dates following the rules that we have
+
+12:25.980 --> 12:26.620
+defined.
+
+12:26.620 --> 12:33.700
+So the rule says the end of date of the current records comes from the start date from the next record.
+
+12:33.700 --> 12:38.500
+So here this end date comes from this value over here from the next record.
+
+12:38.500 --> 12:43.900
+So that means we take the next start date and put it at the end date for the previous records.
+
+12:43.900 --> 12:45.620
+So with that as you can see it is working.
+
+12:45.780 --> 12:52.390
+The end date is higher than the start date, and as well we are making sure this date is not overlapping
+
+12:52.390 --> 12:58.190
+with the next records, but as well, in order to make it way nicer, we can subtract it with one so
+
+12:58.190 --> 13:00.550
+we can take the previous day like this.
+
+13:00.550 --> 13:05.670
+So with that, we are making sure the end date is smaller than the next starts.
+
+13:05.710 --> 13:08.710
+And now for the next record, this one over here.
+
+13:08.830 --> 13:11.510
+The end date is going to come from the next start date.
+
+13:11.510 --> 13:17.190
+So we will take this one over here and put it as an end date and subtract it with one.
+
+13:17.190 --> 13:18.990
+So we will get the previous day.
+
+13:19.030 --> 13:23.110
+So now if you compare those two you can see it's still higher than the start.
+
+13:23.110 --> 13:28.510
+And if you compare it with the next records, this one over here, it is still smaller than the next
+
+13:28.510 --> 13:28.790
+one.
+
+13:28.790 --> 13:30.110
+So there is no overlapping.
+
+13:30.150 --> 13:35.590
+And now for the last record, since we don't have here any informations, it will be a null, which
+
+13:35.590 --> 13:36.630
+is totally fine.
+
+13:36.630 --> 13:39.430
+So as you can see I'm really happy with this scenario over here.
+
+13:39.470 --> 13:43.070
+Of course you can go and validate this with an expert from the source system.
+
+13:43.110 --> 13:45.230
+Let's say I have done that and they approved it.
+
+13:45.230 --> 13:48.810
+And now I can go and clean up the data using this new logic.
+
+13:48.810 --> 13:51.890
+So this is how I usually brainstorm about fixing an issues.
+
+13:51.890 --> 13:57.610
+If I have like a complex stuff, I go and use Excel and then discuss it with the expert using this example.
+
+13:57.610 --> 14:00.810
+It's way better than showing a database queries and so on.
+
+14:00.850 --> 14:04.450
+It just makes things easier to explain and as well to discuss.
+
+14:04.450 --> 14:09.970
+So now how I usually do it, I usually go and make a focus on only the columns that I need, and take
+
+14:09.970 --> 14:12.690
+only 1 or 2 scenarios while I'm building the logic.
+
+14:12.690 --> 14:16.290
+And once everything is ready, I go and integrate it in the query.
+
+14:16.330 --> 14:19.970
+So now I'm focusing only on these columns and only for these products.
+
+14:19.970 --> 14:22.290
+So now let's go and build our logic.
+
+14:22.290 --> 14:28.250
+Now in SQL, if you are at specific record and you want to access another information from another record,
+
+14:28.250 --> 14:30.970
+and for that we have two amazing window functions.
+
+14:30.970 --> 14:32.570
+We have the lead and lag.
+
+14:32.610 --> 14:33.370
+In this scenario.
+
+14:33.410 --> 14:35.610
+We want to access the next records.
+
+14:35.610 --> 14:37.690
+That's why we have to go with the function leads.
+
+14:37.690 --> 14:39.530
+So let's go and build it lead.
+
+14:39.530 --> 14:40.690
+And then what do we need.
+
+14:40.730 --> 14:44.410
+We need the lead of the start dates.
+
+14:44.410 --> 14:50.860
+So we want the start date of the next records, and then we say over and we have to partition the data.
+
+14:51.180 --> 14:56.820
+So the window is going to be focusing on only one product, which is the product key and not the product
+
+14:56.820 --> 14:57.260
+ID.
+
+14:57.260 --> 15:00.060
+So we are dividing the data by product key.
+
+15:00.100 --> 15:01.940
+And of course we have to go and sort the data.
+
+15:01.940 --> 15:07.780
+So order by and we are sorting the data by the start dates and ascending.
+
+15:07.780 --> 15:09.660
+So from the lowest to the highest.
+
+15:09.660 --> 15:11.980
+And let's go and give it another name.
+
+15:11.980 --> 15:15.940
+So as and let's say test for example just to test the data.
+
+15:15.940 --> 15:17.380
+So let's go and execute.
+
+15:17.380 --> 15:18.860
+And I think I missed something.
+
+15:18.860 --> 15:20.380
+Here it is partition by.
+
+15:20.580 --> 15:21.980
+So let's go and execute again.
+
+15:21.980 --> 15:25.420
+And now let's go and check the results for the first partition over here.
+
+15:25.420 --> 15:29.140
+So the start is 2011 and the end is 2012.
+
+15:29.180 --> 15:32.180
+And this information came from the next record.
+
+15:32.180 --> 15:35.740
+So this data is moved to the previous record over here.
+
+15:35.740 --> 15:37.620
+And the same thing for this record.
+
+15:37.620 --> 15:40.740
+So the end date comes from the next record.
+
+15:40.740 --> 15:42.380
+So our logic is working.
+
+15:42.380 --> 15:47.710
+And the last record over here is null because we are at the end of the window and there is no next data.
+
+15:47.750 --> 15:48.830
+That's why we will get null.
+
+15:48.830 --> 15:50.230
+And this is perfect of course.
+
+15:50.230 --> 15:51.950
+So it looks really awesome.
+
+15:51.950 --> 15:57.990
+But what is missing is we have to go and get the previous day and we can do that very simply using minus
+
+15:57.990 --> 15:58.270
+one.
+
+15:58.270 --> 15:59.950
+We are just subtracting one day.
+
+15:59.990 --> 16:04.750
+So we have no overlapping between those two dates and the same thing for those two dates.
+
+16:04.750 --> 16:09.710
+So as you can see, we have just built a perfect end date, which is way better than the original data
+
+16:09.710 --> 16:11.710
+that we got from the source system.
+
+16:11.750 --> 16:15.630
+Now let's take this one over here and put it inside our query.
+
+16:15.630 --> 16:17.670
+So we don't need the end date.
+
+16:17.750 --> 16:19.750
+We need our new end date.
+
+16:19.790 --> 16:22.190
+We'll just remove that test and execute.
+
+16:22.230 --> 16:23.830
+Now it looks perfect.
+
+16:23.830 --> 16:24.230
+All right.
+
+16:24.270 --> 16:26.990
+Now we are not done yet with those two dates.
+
+16:27.030 --> 16:32.750
+Actually we are seeing all time dates because we don't have here any informations about the time always
+
+16:32.750 --> 16:33.150
+zero.
+
+16:33.150 --> 16:36.830
+So it makes no sense to have these informations inside our data.
+
+16:36.830 --> 16:43.390
+So what we can do, we can do a very simple cast and we make this column as a date instead of date time.
+
+16:43.390 --> 16:43.480
+daytime.
+
+16:43.720 --> 16:48.400
+So this is for the first one and as well for the next one as dates.
+
+16:48.440 --> 16:49.720
+So let's try that out.
+
+16:49.720 --> 16:51.640
+And as you can see it is nicer.
+
+16:51.640 --> 16:53.600
+We don't have the time informations.
+
+16:53.640 --> 16:56.520
+Of course we can tilt the source systems about all those issues.
+
+16:56.520 --> 17:00.200
+But since they don't provide the time it makes no sense to have date and time.
+
+17:00.240 --> 17:07.040
+Okay, so it was a long run but we have now a cleaned product informations and this is way nicer than
+
+17:07.040 --> 17:10.360
+the original product information that we got from the source CRM.
+
+17:10.360 --> 17:15.120
+So if you grab the DDL of the server table you can see that we don't have a category ID.
+
+17:15.160 --> 17:17.000
+So we have product ID and product key.
+
+17:17.040 --> 17:20.000
+And as well those two columns we just change the data type.
+
+17:20.000 --> 17:21.480
+So it's date time here.
+
+17:21.480 --> 17:23.320
+But we have changed this to a date.
+
+17:23.320 --> 17:26.880
+So that means we have to go and do a few modifications to the DDL.
+
+17:26.920 --> 17:30.080
+So what we're going to do we're going to go over here and say category ID.
+
+17:30.080 --> 17:32.360
+And I will be using the same data type.
+
+17:32.360 --> 17:36.160
+And for the start and the end this time it's going to be date and not date and time.
+
+17:36.160 --> 17:37.440
+So that's it for now.
+
+17:37.480 --> 17:40.920
+Let's go and execute it in order to repair the DDL.
+
+17:40.920 --> 17:42.850
+And this is what happened in the silver layer.
+
+17:42.890 --> 17:45.330
+Sometimes we have to adjust the metadata.
+
+17:45.330 --> 17:50.890
+If the quality of the data types and so on is not good, or we are building new derived informations
+
+17:50.890 --> 17:52.890
+in order later to integrate the data.
+
+17:52.890 --> 17:57.370
+So it will be like very close to the bronze layer but with few modifications.
+
+17:57.370 --> 18:00.290
+So make sure to update your DDL scripts.
+
+18:00.330 --> 18:04.050
+And now the next step that we're going to go and insert the data into this table.
+
+18:04.090 --> 18:09.210
+And now the next step we're going to go and insert the result of this query that is cleaning up the
+
+18:09.210 --> 18:11.490
+bronze table into the silver table.
+
+18:11.490 --> 18:15.970
+So as we've done it before insert into silver the product info.
+
+18:15.970 --> 18:18.290
+And then we have to go and list all the columns.
+
+18:18.290 --> 18:19.970
+I've just prepared those columns.
+
+18:19.970 --> 18:25.010
+So with that we can go and now run our query in order to answer the data.
+
+18:25.050 --> 18:27.370
+So now as you can see, the SQL did insert the data.
+
+18:27.370 --> 18:31.610
+And the very important step is now to check the quality of the silver table.
+
+18:31.610 --> 18:35.930
+So we go back to our data quality checks and we go switch to the silver.
+
+18:35.930 --> 18:37.850
+So let's check the primary key.
+
+18:37.890 --> 18:39.050
+There is no issues.
+
+18:39.050 --> 18:43.710
+And we can go and check for example here the trims there is as well no issue.
+
+18:43.750 --> 18:46.150
+And now let's go and check the costs.
+
+18:46.390 --> 18:49.670
+It should not be negative or null which is perfect.
+
+18:49.710 --> 18:52.150
+Let's go and check the data Standardizations.
+
+18:52.190 --> 18:55.270
+As you can see, they are friendly and we don't have any nulls.
+
+18:55.310 --> 18:56.790
+And now very interesting.
+
+18:56.830 --> 18:58.110
+The order of the dates.
+
+18:58.150 --> 18:59.550
+So let's go and check that.
+
+18:59.590 --> 19:01.870
+As you can see, we don't have any issues.
+
+19:01.910 --> 19:07.030
+And finally what I do I go and have a final look to the silver table.
+
+19:07.150 --> 19:11.910
+And as you can see, everything is inserted correctly in the correct columns.
+
+19:11.950 --> 19:14.510
+So all those columns comes from the source system.
+
+19:14.710 --> 19:19.990
+And the last one is automatically generated from the DDL indicate when we loaded this table.
+
+19:20.030 --> 19:22.150
+Now let's sit back and have a look to our script.
+
+19:22.150 --> 19:25.110
+What are the different types of data transformations that we have done?
+
+19:25.150 --> 19:28.670
+Here is for example over here the category ID and the product key.
+
+19:28.710 --> 19:30.750
+We have derived new columns.
+
+19:30.870 --> 19:36.910
+So it is when we create a new column based on calculations or transformations of an existing one.
+
+19:36.910 --> 19:39.510
+So sometimes we need columns only for analytics.
+
+19:39.670 --> 19:43.280
+And we cannot each time go to the source system and ask them to create it.
+
+19:43.280 --> 19:48.000
+So instead of that, we derive our own columns that we need for the analytics.
+
+19:48.040 --> 19:51.000
+Another transformation we have is the Isnull over here.
+
+19:51.000 --> 19:53.600
+So we are handling here missing information.
+
+19:53.600 --> 19:55.520
+Instead of null we can have a zero.
+
+19:55.520 --> 20:01.280
+And one more transformation we have over here for the product line we have done here data normalization.
+
+20:01.280 --> 20:04.600
+Instead of having a code value we have a friendly value.
+
+20:04.600 --> 20:07.080
+And as well we have handled the missing data.
+
+20:07.080 --> 20:10.800
+For example, over here instead of having a null we can have not available.
+
+20:10.840 --> 20:13.280
+All right moving on to another data transformation.
+
+20:13.280 --> 20:15.200
+We have done data typecasting.
+
+20:15.200 --> 20:18.600
+So we are converting the data type from one to another.
+
+20:18.600 --> 20:21.160
+And this considered as well to be a data transformation.
+
+20:21.200 --> 20:24.600
+And now moving on to the last one we are doing as well data typecasting.
+
+20:24.600 --> 20:28.080
+But what's more important we are doing data enrichment.
+
+20:28.080 --> 20:31.960
+This type of transformation is all about adding value to your data.
+
+20:31.960 --> 20:35.720
+So we are adding a new relevant data to our data sets.
+
+20:35.760 --> 20:40.320
+So those are the different types of data transformations that we have done for this table.

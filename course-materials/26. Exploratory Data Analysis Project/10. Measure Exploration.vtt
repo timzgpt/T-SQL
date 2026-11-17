@@ -1,0 +1,463 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.280 --> 00:06.760
+So now what is exactly exploring the measures?
+
+00:06.760 --> 00:12.600
+What we're going to do is to calculate and find out the key metrics of our business, the big numbers,
+
+00:12.840 --> 00:15.640
+the highest level of aggregations of our data.
+
+00:15.640 --> 00:17.520
+And the formula for that is very simple.
+
+00:17.520 --> 00:23.840
+We're going to go and use the aggregate functions in SQL, like the sum average count for any measure
+
+00:23.840 --> 00:25.040
+inside our datasets.
+
+00:25.080 --> 00:30.560
+So for example we're going to find the total sales by summarizing the sales value, finding the average
+
+00:30.560 --> 00:36.360
+price, finding the sum of quantity in order to have a big number about all sold items.
+
+00:36.360 --> 00:39.000
+So always an aggregate function together with a measure.
+
+00:39.000 --> 00:43.360
+So for example, if you have a column where you have a lot of values and you go and summarize all those
+
+00:43.360 --> 00:46.080
+values, you will get for example 240.
+
+00:46.120 --> 00:47.760
+So this is a key metric.
+
+00:47.800 --> 00:50.120
+This is the highest level of aggregations.
+
+00:50.120 --> 00:52.320
+And the value is not splitted at all.
+
+00:52.320 --> 00:55.880
+So for example we say this is the total revenue of our business.
+
+00:55.880 --> 00:58.840
+And this is exactly what we mean by exploring the measures.
+
+00:58.840 --> 01:00.400
+We will get those big numbers.
+
+01:00.400 --> 01:05.060
+So now let's go and apply those aggregate functions to the measures that we have inside our data sets.
+
+01:05.100 --> 01:05.420
+Okay.
+
+01:05.420 --> 01:10.540
+So now we're going to go and spotlight on the big numbers that matters the most of our business.
+
+01:10.580 --> 01:15.100
+So now based on those three tables I have collected here the following questions.
+
+01:15.100 --> 01:16.980
+So let's go and solve them one by one.
+
+01:17.020 --> 01:19.500
+The first one is find the total sales.
+
+01:19.500 --> 01:28.260
+So we're going to go and summarize by using the sum function for the sales amount as total sales from
+
+01:28.300 --> 01:30.220
+our table fact sales.
+
+01:30.420 --> 01:32.620
+So let's go and execute it.
+
+01:32.620 --> 01:35.740
+So this is the total amount of sales in our business.
+
+01:35.740 --> 01:38.020
+It is around 29 million.
+
+01:38.020 --> 01:40.620
+So this is the business total revenue.
+
+01:40.660 --> 01:42.740
+Now we can go to the second one.
+
+01:42.740 --> 01:45.340
+It says show how many items are sold.
+
+01:45.340 --> 01:50.180
+So this time we need another column but from the same table from the fact sales.
+
+01:50.180 --> 01:52.300
+So the question is how many items.
+
+01:52.460 --> 01:56.540
+That means we want the quantity and we're going to stay with the same function.
+
+01:56.540 --> 02:02.300
+So we are summarizing all the values of the quantity and we can call it total quantity.
+
+02:02.340 --> 02:04.420
+Let's go and explore that.
+
+02:04.420 --> 02:10.930
+So we can see our business did sold around 60,000 Thousand items, and these 60,000 items did generate
+
+02:10.930 --> 02:12.250
+around 30 million.
+
+02:12.290 --> 02:13.410
+So let's keep going.
+
+02:13.450 --> 02:16.530
+The next question find the average selling price.
+
+02:16.530 --> 02:18.450
+So that means you are targeting the same table.
+
+02:18.490 --> 02:20.530
+And here we have the price information.
+
+02:20.530 --> 02:22.330
+So we're going to say the price.
+
+02:22.330 --> 02:24.570
+This time the aggregate function is going to be the average.
+
+02:24.610 --> 02:27.090
+And we're going to call it average price.
+
+02:27.090 --> 02:28.890
+So let's go and execute it.
+
+02:28.890 --> 02:32.370
+So the average price in our business is 486.
+
+02:32.370 --> 02:36.010
+So that means our business is selling like expensive items.
+
+02:36.050 --> 02:37.690
+Now let's go to the next question.
+
+02:37.690 --> 02:40.610
+It says find the total number of orders.
+
+02:40.650 --> 02:43.690
+And for that we're going to go and use the function count.
+
+02:43.690 --> 02:46.290
+And we can count the order numbers.
+
+02:46.290 --> 02:50.210
+So order number total orders.
+
+02:50.250 --> 02:52.010
+Let's go and execute it.
+
+02:52.010 --> 02:54.730
+So it says we have 60,000 orders.
+
+02:54.730 --> 03:00.770
+And now as you are working with the count function, what I usually do I try to count the same thing
+
+03:00.970 --> 03:02.570
+but using a distinct.
+
+03:02.610 --> 03:04.770
+So distinct order number.
+
+03:04.770 --> 03:10.810
+So what I'm trying to do here is first eliminate any duplicates in the order number and then count it.
+
+03:10.810 --> 03:17.830
+I don't want to count the same order twice inside our sales, so let's go and execute that.
+
+03:17.870 --> 03:23.190
+Now, as you can see, we have only 27,000 orders out of 60,000.
+
+03:23.230 --> 03:27.310
+So that means the same order is repeating in our database.
+
+03:27.350 --> 03:28.750
+Let's have actually a look.
+
+03:28.750 --> 03:33.630
+So select star from our table and let's go and have a look.
+
+03:33.670 --> 03:39.110
+Now as you can see from the first order over here you can see the same order is repeated three times.
+
+03:39.110 --> 03:44.150
+And that's because this customer did order three things in the same order.
+
+03:44.150 --> 03:46.750
+So now of course what is the definition of order?
+
+03:46.790 --> 03:48.750
+Usually the whole thing is one order.
+
+03:48.750 --> 03:54.590
+That's why in order to get an accurate number of orders, you have to go and use a distinct in order
+
+03:54.590 --> 03:58.950
+to eliminate first all duplicates and then count how many orders we have.
+
+03:58.950 --> 04:04.270
+So in this scenario, I'm going to say in our business we have around 27,000 orders.
+
+04:04.270 --> 04:07.070
+So that's why it is a little bit tricky using the count function.
+
+04:07.070 --> 04:10.990
+Always try to compare the numbers before and after using Distincts.
+
+04:10.990 --> 04:13.150
+So let's keep going to the next one.
+
+04:13.150 --> 04:15.590
+It says find the total number of products.
+
+04:15.620 --> 04:16.740
+So it is very simple.
+
+04:16.740 --> 04:19.460
+We can say select count and we can say.
+
+04:19.500 --> 04:26.140
+Product key as total products from the table goes products.
+
+04:26.140 --> 04:28.220
+So let's go and execute it.
+
+04:28.220 --> 04:30.780
+So as you can see we have 295.
+
+04:30.780 --> 04:36.540
+And if you go and make a distinct just to check you will get the same number.
+
+04:36.540 --> 04:38.180
+So that means there is no duplicates.
+
+04:38.180 --> 04:41.140
+And of course you can go and count the product name instead.
+
+04:41.140 --> 04:42.700
+The names of the product is unique.
+
+04:42.700 --> 04:45.940
+So that's why we are as well getting the same numbers.
+
+04:45.940 --> 04:46.900
+So that's it.
+
+04:46.940 --> 04:50.300
+Let's continue find the total number of customers.
+
+04:50.460 --> 04:51.660
+So the same thing.
+
+04:51.700 --> 04:58.500
+Select count and you can go with the customer key for example from Gold Dimension customers.
+
+04:58.540 --> 05:02.100
+And I'm going to call it as total customers.
+
+05:02.100 --> 05:03.460
+So let's go and execute it.
+
+05:03.460 --> 05:07.620
+So we can see in our system we have 18,000 registered customers.
+
+05:07.660 --> 05:12.900
+Now the next one it says find the total number of customers that has placed an order.
+
+05:12.900 --> 05:18.660
+So that means having a customer inside our database doesn't mean that this customer did already placed
+
+05:18.660 --> 05:19.140
+an order.
+
+05:19.240 --> 05:23.000
+Maybe we have a customer that just registered and didn't order anything.
+
+05:23.000 --> 05:27.600
+So what we're going to do, we're going to take the same query, but instead of targeting the customers
+
+05:27.600 --> 05:31.000
+table, we're going to target our fact the sales.
+
+05:31.040 --> 05:32.640
+So let's go and execute it.
+
+05:32.640 --> 05:34.960
+So now as you can see we are getting 16,000.
+
+05:35.000 --> 05:39.520
+Which makes no sense because one customer might order multiple stuff.
+
+05:39.520 --> 05:43.800
+So what we're going to do we're going to say distinct and let's query it again.
+
+05:43.800 --> 05:44.920
+So now it is more correct.
+
+05:44.920 --> 05:47.680
+We are getting around 18,000 customers.
+
+05:47.720 --> 05:50.120
+Now we can go and compare them one by one.
+
+05:50.120 --> 05:52.280
+So as you can see we are getting the same numbers.
+
+05:52.280 --> 05:58.400
+So that means all our registered customers did already place an order because their numbers are matching.
+
+05:58.400 --> 05:59.360
+So it is very simple.
+
+05:59.360 --> 06:01.480
+We are just using an aggregate functions.
+
+06:01.480 --> 06:03.920
+And with that we are getting those key values.
+
+06:03.920 --> 06:09.680
+But what I usually do is that I collect all those measures in one query in order to have an overview
+
+06:09.680 --> 06:12.120
+of all key numbers in our business.
+
+06:12.120 --> 06:17.000
+So instead of me querying each one of them individually, I combine them in one go.
+
+06:17.040 --> 06:22.000
+So now what we're going to do, we're going to generate a report that shows all key metrics of our business.
+
+06:22.000 --> 06:23.110
+So how I usually do it.
+
+06:23.110 --> 06:26.830
+I'm going to go and get the first query for the total sales and put it over here.
+
+06:26.830 --> 06:28.990
+And now I'm going to build only two columns.
+
+06:28.990 --> 06:33.710
+The first one is the name of the measure, and the second one is the value of the measure.
+
+06:33.710 --> 06:35.150
+So let me show you what I mean.
+
+06:35.150 --> 06:38.150
+Now this one over here, I will not call it total sales.
+
+06:38.150 --> 06:39.790
+I'm going to make it like generic.
+
+06:39.790 --> 06:42.070
+So I'm going to say measure value.
+
+06:42.230 --> 06:48.630
+And before it we're going to make another column from static string value is the total sales.
+
+06:48.630 --> 06:51.710
+And we're going to call it measure name like this.
+
+06:51.710 --> 06:54.390
+So let's go and just execute this one over here.
+
+06:54.390 --> 06:56.670
+So the measure is total sales.
+
+06:56.670 --> 06:59.190
+So it is not anymore like the column name.
+
+06:59.190 --> 07:00.990
+It is now a value in the output.
+
+07:01.030 --> 07:03.950
+And the measure value is like around 30 millions.
+
+07:03.990 --> 07:07.870
+Now what I'm going to do I'm going to go and add another measure as a second row.
+
+07:07.870 --> 07:13.550
+And in order to do that we're going to use the union all and then copy the whole thing over here and
+
+07:13.550 --> 07:15.390
+say total quantity.
+
+07:15.430 --> 07:18.470
+And we can change the measure to quantity.
+
+07:18.470 --> 07:21.350
+So now let's select both of them and query.
+
+07:21.390 --> 07:25.030
+And now as you can see we have now the two big numbers in one query.
+
+07:25.030 --> 07:27.490
+So the total sales and the total quantity.
+
+07:27.490 --> 07:33.250
+So now what we can do, we can go and collect all those big numbers and measures and put it in one query
+
+07:33.250 --> 07:37.050
+so that we have the average price, the total number of orders, product, customers.
+
+07:37.050 --> 07:43.450
+And as well you can go and target different tables because SQL cares here only about the number of columns.
+
+07:43.450 --> 07:45.650
+And the data type of columns must be matching.
+
+07:45.650 --> 07:48.570
+So now let's go and query this.
+
+07:48.570 --> 07:54.490
+And now in single query we can see the big numbers the key metrics of our business.
+
+07:54.490 --> 07:57.890
+We can see the total sales total quantity average price and so on.
+
+07:57.930 --> 08:03.530
+This is a super report where you can generate it for any business where you have in one go the full
+
+08:03.570 --> 08:05.210
+big picture about the business.
+
+08:05.210 --> 08:06.810
+So this is how I generally do.
+
+08:06.810 --> 08:12.890
+If I'm exploring a new database, I put all those big numbers and measures in one query to have better
+
+08:12.890 --> 08:14.850
+understanding about the business.
+
+08:14.890 --> 08:15.610
+All right, my friends.
+
+08:15.610 --> 08:21.210
+So with that, we have now a clear understanding about the dimensions and as well the measures of our
+
+08:21.210 --> 08:21.970
+data sets.
+
+08:22.010 --> 08:26.410
+Now in the next step we're going to go and start combining stuff together in order to generate insights.
+
+08:26.410 --> 08:31.170
+And we can focus now in a very basic analysis it is the magnitude analysis.

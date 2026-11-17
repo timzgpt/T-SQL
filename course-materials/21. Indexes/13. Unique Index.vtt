@@ -1,0 +1,283 @@
+WEBVTT
+
+00:03.960 --> 00:04.440
+All right.
+
+00:04.440 --> 00:05.960
+So now what is a unique index.
+
+00:06.120 --> 00:12.440
+Unique index is a special type of indexes that can make sure no duplicates in your data.
+
+00:12.440 --> 00:16.520
+And there are a couple of reasons why is it important to have a unique index.
+
+00:16.560 --> 00:20.800
+The first one and the most obvious reason is to have data integrity.
+
+00:20.800 --> 00:24.840
+So the unique index can go and enforce uniqueness in your data.
+
+00:24.840 --> 00:26.240
+And that is very helpful.
+
+00:26.240 --> 00:32.920
+For example, if you have a column like an email address or a product ID, having duplicate in such
+
+00:32.920 --> 00:35.880
+columns can mess up your data very badly.
+
+00:35.880 --> 00:42.200
+So having a unique index on a column like an email can make sure there are no sneaky duplicates inside
+
+00:42.200 --> 00:42.960
+your data.
+
+00:42.960 --> 00:48.560
+And the second important reason why unique index is important is to improve the performance.
+
+00:48.720 --> 00:53.880
+So for example, if you are searching for a specific email, the SQL can start searching for the email
+
+00:53.880 --> 00:54.520
+value.
+
+00:54.520 --> 01:00.800
+And once the SQL find the value, the SQL will stop searching because we are sure that there is no duplicates
+
+01:00.800 --> 01:01.640
+in the data.
+
+01:01.640 --> 01:05.120
+So with that, you are improving the performance of your queries.
+
+01:05.120 --> 01:08.560
+So if you are creating an index and you know this column is unique.
+
+01:08.600 --> 01:11.360
+Then make sure to make the index as unique.
+
+01:11.360 --> 01:11.880
+Index.
+
+01:11.920 --> 01:16.320
+So now if you have a look again to our clustered index where we have the B structure.
+
+01:16.320 --> 01:22.520
+If you make this index as unique then you are giving an extra task for the SQL that's going to go.
+
+01:22.520 --> 01:28.080
+And make sure that all those IDs of the customer are going to be unique.
+
+01:28.160 --> 01:34.640
+So SQL has to guarantee that there are no duplicates at all inside your data in the database.
+
+01:35.080 --> 01:41.920
+So now since we are giving SQL an extra task to prove the uniqueness of the data, building the clustered
+
+01:41.920 --> 01:44.040
+index can be a little bit slower.
+
+01:44.040 --> 01:46.120
+So that means inserting new data.
+
+01:46.120 --> 01:50.480
+Writing data can be slower as the normal clustered index.
+
+01:50.480 --> 01:55.040
+But now if you are talking about the read performance, the performance of our query, it's going to
+
+01:55.040 --> 01:59.840
+be optimized a little bit faster than a normal clustered index.
+
+01:59.840 --> 02:07.200
+So again this trade off we are making writing data slower but we are gaining more speed on the query
+
+02:07.200 --> 02:08.080
+performance.
+
+02:08.080 --> 02:10.600
+So this is what we mean with unique index.
+
+02:10.640 --> 02:10.880
+Okay.
+
+02:10.920 --> 02:13.600
+So let's keep extending the syntax of the index.
+
+02:13.600 --> 02:18.550
+So now in order to tell whether it is unique or not, we can specify it exactly at the start.
+
+02:18.790 --> 02:23.470
+So we say create unique is just before the clustered or non-clustered.
+
+02:23.470 --> 02:24.910
+And then afterward the cluster.
+
+02:24.910 --> 02:26.630
+And nothing changed for the rest.
+
+02:26.630 --> 02:30.190
+So we can specify this keyword to tell SQL it should be unique.
+
+02:30.390 --> 02:35.630
+And if you don't write anything before the clustered index it's going to be not unique.
+
+02:35.630 --> 02:39.470
+So for example this one says create an index.
+
+02:39.470 --> 02:41.550
+So we didn't specify anything here.
+
+02:41.590 --> 02:43.830
+Duplicates are allowed in the index.
+
+02:43.830 --> 02:48.990
+But if you go and specify a unique index then the duplicates are not allowed.
+
+02:48.990 --> 02:50.390
+So it is very simple.
+
+02:50.430 --> 02:50.710
+Okay.
+
+02:50.750 --> 02:53.190
+So now let's go and create unique cluster.
+
+02:53.430 --> 02:55.510
+Now let's go and target the table products.
+
+02:55.510 --> 02:55.910
+Let's go.
+
+02:55.910 --> 02:59.270
+And first select the data from the table.
+
+02:59.270 --> 03:03.070
+So sales products and execute it.
+
+03:03.110 --> 03:07.990
+Now let's see that I'm going to go and create a unique index on the column category.
+
+03:08.030 --> 03:09.350
+Let's go and try it.
+
+03:09.350 --> 03:21.990
+So create unique non-clustered index and let's give it the name index products category On that table
+
+03:22.750 --> 03:24.550
+sales products.
+
+03:24.550 --> 03:27.910
+And we are targeting the column category.
+
+03:28.110 --> 03:30.190
+So let's go and execute it.
+
+03:30.230 --> 03:35.070
+Now we will get an error because the category has duplicates.
+
+03:35.070 --> 03:39.870
+So if you go and query again our table you can see we have here duplicate values.
+
+03:39.870 --> 03:44.190
+And the SQL cannot go and create unique index for this table.
+
+03:44.190 --> 03:46.590
+It's too late but you still can create this index.
+
+03:46.590 --> 03:47.950
+If the table is empty.
+
+03:47.950 --> 03:52.990
+And SQL will not allow you to insert any duplicates about the categories.
+
+03:52.990 --> 03:57.710
+And of course, it makes no sense to have unique index on the categories, because of course we're going
+
+03:57.710 --> 03:58.870
+to get duplicates here.
+
+03:58.870 --> 04:00.430
+But maybe you say, you know what?
+
+04:00.590 --> 04:02.110
+My products are unique.
+
+04:02.150 --> 04:07.470
+The product name should be unique and we are not allowed to have in this table two products with the
+
+04:07.470 --> 04:08.190
+same name.
+
+04:08.190 --> 04:13.590
+So if you have such a rule at your business, you can go and define a unique index for the products.
+
+04:13.590 --> 04:14.910
+So let's go and do that.
+
+04:14.910 --> 04:21.270
+Now we're going to go and replace the category with the products and the same thing over here.
+
+04:21.270 --> 04:23.670
+So we are targeting the column products.
+
+04:23.710 --> 04:25.390
+Let's go and execute it.
+
+04:25.390 --> 04:31.340
+As you can see now it is working because we don't have any duplicates inside the table products.
+
+04:31.340 --> 04:36.020
+And if you go and check the indexes over here, we can see our new index.
+
+04:36.020 --> 04:40.460
+And as you can see at the start here it says it is unique non-clustered index.
+
+04:40.500 --> 04:42.860
+Now let's go and try the data integrity.
+
+04:43.020 --> 04:46.380
+Are we allowed not to add any duplicate to this table.
+
+04:46.380 --> 04:47.660
+So let's go and try that out.
+
+04:47.660 --> 04:53.420
+Let's have an insert statement let's say insert into sales products.
+
+04:53.620 --> 04:59.700
+And I would like only to insert the product ID and the product name.
+
+05:00.580 --> 05:03.660
+And we're going to insert two values values.
+
+05:03.940 --> 05:07.060
+Let's say we're going to have a new ID 106.
+
+05:07.060 --> 05:10.900
+But we're going to go and insert duplicate for the product name.
+
+05:10.900 --> 05:12.580
+So we're going to say caps.
+
+05:12.620 --> 05:15.660
+We have already a product called Caps over here.
+
+05:15.660 --> 05:17.580
+So we are now inserting duplicates.
+
+05:17.620 --> 05:19.460
+Let's go and try it.
+
+05:19.500 --> 05:24.940
+Now you will get an error saying you cannot insert duplicates to this table because we have a unique
+
+05:24.940 --> 05:25.500
+index.
+
+05:25.500 --> 05:31.340
+So as you can see this index is now helping us and improving the quality of my table.
+
+05:31.340 --> 05:34.660
+So this is how we work with the unique index in SQL.

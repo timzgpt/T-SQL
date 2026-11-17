@@ -1,0 +1,124 @@
+WEBVTT
+
+00:03.920 --> 00:04.120
+Okay.
+
+00:04.120 --> 00:06.720
+So now let's have a quick summary about the set operators.
+
+00:06.720 --> 00:12.080
+So the set operator is going to go and combine the rows of multiple queries multiple tables into one
+
+00:12.080 --> 00:12.960
+single results.
+
+00:12.960 --> 00:15.480
+And we have four different types of the set operators.
+
+00:15.480 --> 00:20.640
+The first one is the union where it's going to go and combine all the rows, but without including any
+
+00:20.640 --> 00:21.520
+duplicates.
+
+00:21.520 --> 00:23.360
+The second one we have the Union all.
+
+00:23.400 --> 00:26.000
+It's very similar, and the third one we have the accepts.
+
+00:26.040 --> 00:31.040
+It's going to show all the rows from the first query that cannot be found in the second query.
+
+00:31.080 --> 00:35.760
+And the fourth one we have the intersect where it's going to show the common rows between two queries.
+
+00:35.800 --> 00:37.120
+And of course we have SQL rules.
+
+00:37.120 --> 00:42.360
+In order to use the set operators, both of the queries should have the same number of columns, the
+
+00:42.400 --> 00:45.120
+same data types, and the order of columns.
+
+00:45.160 --> 00:45.920
+And the last rule.
+
+00:45.920 --> 00:51.800
+Don't forget that the first query controls the aliases, the name of the columns, and the data types
+
+00:51.800 --> 00:53.240
+of the entire result.
+
+00:53.240 --> 00:58.080
+And we have found amazing use cases for the set operators, like for example using union and union,
+
+00:58.120 --> 01:02.710
+all in order to combine similar informations Formations into one big table.
+
+01:02.710 --> 01:04.990
+Or we can go and use the amazing except.
+
+01:05.030 --> 01:05.590
+Operator.
+
+01:05.750 --> 01:08.950
+In order to compare two different results in order to find.
+
+01:08.990 --> 01:14.710
+The differences between them, and I usually use it in order to do data quality checks to test the data
+
+01:14.710 --> 01:15.590
+completeness.
+
+01:15.590 --> 01:16.590
+And another use case.
+
+01:16.590 --> 01:22.310
+As a data engineer, you can go and implement the excepts in your logic in your data pipelines in order
+
+01:22.310 --> 01:26.470
+to identify what are the new data that must be inserted in your system.
+
+01:26.510 --> 01:27.190
+Okay my friends.
+
+01:27.190 --> 01:30.870
+So with that, we have learned all the set operators that we have inside SQL.
+
+01:30.870 --> 01:35.270
+And with that, you have learned how to combine your data from multiple tables using SQL.
+
+01:35.310 --> 01:36.870
+So we are done with this chapter.
+
+01:36.910 --> 01:38.790
+Now we're going to go to the right side.
+
+01:38.790 --> 01:41.790
+So now we're going to start talking about the functions in SQL.
+
+01:41.830 --> 01:43.590
+And here we have two big families.
+
+01:43.590 --> 01:47.230
+The first one is the row level or the single value functions.
+
+01:47.230 --> 01:49.990
+And the second one we have the aggregate analytical functions.
+
+01:49.990 --> 01:52.790
+So let's start with the first one the row level functions.
+
+01:52.790 --> 01:55.150
+And here we can group them into multiple categories.
+
+01:55.150 --> 01:57.350
+And we will start now with the string functions.
+
+01:57.350 --> 02:01.910
+But first let's understand what is exactly functions and why do we need them in SQL.
+
+02:01.950 --> 02:02.830
+So let's go.

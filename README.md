@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SQL Academy — T-SQL Quiz Library (Next.js)
 
-## Getting Started
+A redesign of the single-file `sql-components-quiz.html`, rebuilt with **Next.js 15 (App Router) + React 19 + TypeScript + Tailwind CSS v4**.
+The visual design follows the **UI/UX Pro Max** design system saved in `design-system/sql-academy/MASTER.md`
+(Flat Design · education teal + amber · Inter + JetBrains Mono).
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # static export → ./out (host on IIS, Nginx, GitHub Pages, Vercel…)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Area | What you get |
+|---|---|
+| **Library dashboard** | Mastery ring per lesson, per-topic meters, best score, stats (mastered, average, streak, weak spots), recent activity, query anatomy + SSMS colour legend |
+| **Quiz setup** | Question formats: **multiple choice, true/false, short answer, matching, SQL coding, and scenario decisions**. Choose a pedagogical purpose: **diagnostic, formative, consolidation/review, or summative**. Modes: Practice (instant feedback + hints), Exam (feedback after submit), and Weak spots. Filter by topic and difficulty, shuffle, and set a time limit |
+| **Quiz runner** | Format-aware answer inputs and scoring, scenario outcomes for each choice, segmented progress, question navigator with flags, countdown timer (auto-submit), bookmarks, per-question timing, full keyboard control |
+| **Results** | Score ring, delta vs previous attempt, time stats, performance by topic (weakest first), filterable review (all / missed / flagged), **retry missed only** |
+| **Study sheet** | Full-text search, topic filter, bookmarked-only, **self-test mode** (reveal one by one), print-friendly |
+| **Flashcards** | 3D flip cards, "Still learning / I knew it" ratings that feed weak-spot practice, shuffle |
+| **Progress** | Accuracy, mastery heatmap per question, score trend chart, attempt history, **export / import / reset** (JSON) |
+| **Polish** | Light/dark theme (no flash), `?` shortcuts panel, SSMS-style T-SQL highlighter with line numbers, reduced-motion support, visible focus rings, 44px touch targets |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Progress is stored in `localStorage` (key `sqlquiz:progress:v2`) — no backend needed.
 
-## Learn More
+## Keyboard
 
-To learn more about Next.js, take a look at the following resources:
+`1–4` / `A–D` answer · `H` hint · `F` flag · `← →` navigate · `Enter` next · `Space` flip card · `Esc` exit · `?` help
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding the next lesson
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Create `lib/quizzes/select.ts` exporting a `RawQuestion[]`. Questions default to multiple choice; set `format` to `true-false`, `short-answer`, `matching`, `coding`, or `scenario` for the other local formats. Typed questions can provide `acceptedAnswers`, matching questions use `matchPairs`, and scenario questions provide `context` plus a `scenarioBranches` outcome for every option. Put SQL code as plain T-SQL; highlighting is automatic. Optional `difficulty: "easy" | "medium" | "hard"`.
+2. Register it in `lib/quizzes/index.ts` (`DEFS` array).
 
-## Deploy on Vercel
+The build fails fast when answers, matching pairs, true/false options, or scenario outcomes are invalid. Video-timestamp quizzes and live competitions are not included; they need video assets or a real-time backend.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/                    routes: / · /quiz/[id] · /study/[id] · /flashcards/[id] · /progress
+components/             dashboard, quiz-app (setup/runner/results), study-sheet, flashcards, progress-view, sql-code, ui
+lib/quizzes/            question banks + registry
+lib/progress.ts         localStorage store (useSyncExternalStore), mastery & streak logic
+design-system/          UI/UX Pro Max MASTER.md
+```

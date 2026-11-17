@@ -1,0 +1,157 @@
+WEBVTT
+
+00:03.960 --> 00:07.440
+So let's say that you have joined the team and you got an access to a database.
+
+00:07.440 --> 00:12.560
+The first thing that I usually do is that I explore the structure of the database, just to have basic
+
+00:12.560 --> 00:16.800
+understandings about the database tables, the views columns.
+
+00:16.840 --> 00:20.200
+Are we talking about like tables, hundreds of tables.
+
+00:20.200 --> 00:23.680
+So it is just a few queries in order to say hello to the database.
+
+00:23.680 --> 00:27.480
+So now let's go to SQL and explore the database of our projects.
+
+00:27.480 --> 00:28.560
+So now how are we going to do it.
+
+00:28.560 --> 00:33.480
+Either you go to the left side over here and start clicking the objects of your database and explore
+
+00:33.480 --> 00:35.480
+the tables, views, columns and so on.
+
+00:35.480 --> 00:39.880
+Or a better way that I usually do is that I explore the database using a query.
+
+00:39.880 --> 00:46.720
+So what we can do, we can go and select data from the system tables, because the database stores metadata
+
+00:46.720 --> 00:49.360
+informations about our tables and objects.
+
+00:49.360 --> 00:52.160
+So we're going to target an information schema.
+
+00:52.360 --> 00:58.200
+This is an internal schema in the database where we have like multiple tables and views to explore the
+
+00:58.200 --> 01:00.600
+metadata and the structure of our database.
+
+01:00.600 --> 01:03.280
+So for example we can go with tables.
+
+01:03.280 --> 01:05.560
+So let's go and query it.
+
+01:05.560 --> 01:08.120
+And with that you have a list of tables.
+
+01:08.120 --> 01:13.760
+And with that you can see multiple informations like a catalog the schema and the table names.
+
+01:13.760 --> 01:17.440
+And you can see over here the object type whether it is a table or a view.
+
+01:17.440 --> 01:22.080
+If you done the data warehouse project with me then you will find a lot of tables.
+
+01:22.080 --> 01:27.040
+But if you are just doing the data analysis you will see only the three tables.
+
+01:27.040 --> 01:29.640
+So customers, products and sales.
+
+01:29.640 --> 01:34.840
+So with that we can see in our database there are like around 15 tables or three tables.
+
+01:34.880 --> 01:40.040
+Now in the output you can see the database name, the schema and a list of all tables.
+
+01:40.080 --> 01:44.560
+And of course don't forget that you are using the database that we created.
+
+01:44.560 --> 01:48.440
+So with that we have a nice quick list with all tables inside our database.
+
+01:48.440 --> 01:54.120
+Now the next step we can go and drill down and check what are the columns that we have inside our database.
+
+01:54.120 --> 01:57.040
+And for that we can as well target the same schema.
+
+01:57.040 --> 01:59.960
+So select star from information schema.
+
+01:59.960 --> 02:01.200
+And it is very simple.
+
+02:01.200 --> 02:03.400
+So we're going to go to the table columns.
+
+02:03.400 --> 02:05.440
+So let's go and execute it.
+
+02:05.440 --> 02:08.560
+And now we will see a lot of informations over here.
+
+02:08.560 --> 02:15.530
+So we can see in our database we have around 101 columns so that we can see all the columns available
+
+02:15.530 --> 02:16.410
+in our database.
+
+02:16.410 --> 02:22.730
+And what I usually do is that I go and select the columns only for specific table, so we can say where
+
+02:22.730 --> 02:24.450
+table name equal.
+
+02:25.970 --> 02:29.010
+Let's get for example the dimension customers.
+
+02:29.010 --> 02:31.050
+So let's query the whole thing.
+
+02:31.050 --> 02:34.610
+And with that we can see we have ten columns inside this dimension.
+
+02:34.610 --> 02:38.450
+And this is how the columns are sorted inside our table or view.
+
+02:38.450 --> 02:42.850
+And we can see all the metadata informations about each column.
+
+02:42.850 --> 02:46.730
+So now as you can see we are now exploring the structure of our database.
+
+02:46.730 --> 02:50.810
+And this is really helpful to get an overview of the database and the projects.
+
+02:50.850 --> 02:54.530
+Are we talking about like 20 tables or hundreds of tables.
+
+02:54.530 --> 02:58.410
+And we can quickly see the naming of the columns, the tables.
+
+02:58.410 --> 03:04.450
+This is really important to get a feeling about the projects and sets the foundations for exploring
+
+03:04.450 --> 03:06.450
+the data inside those tables.
+
+03:06.490 --> 03:08.490
+All right friends, so with that, we have done the first step.
+
+03:08.490 --> 03:13.370
+We have explored the database structure and now we can start diving into the actual data.
+
+03:13.410 --> 03:16.530
+The first thing that we can explore is the dimensions.

@@ -1,0 +1,532 @@
+WEBVTT
+
+00:03.840 --> 00:06.240
+Okay, friends, another use case for the case statements.
+
+00:06.240 --> 00:11.920
+We can use it in order to map values, so we can use the case statement in order to transform the data
+
+00:11.920 --> 00:17.080
+from one form to another, in order to make it more readable and more usable for analytics.
+
+00:17.080 --> 00:22.640
+One scenario of mapping values is that sometimes the database developers stores the data and values
+
+00:22.640 --> 00:25.920
+inside the database as codes and as flags.
+
+00:25.920 --> 00:31.880
+So, for example, the status of the order could be stored as one and zero instead of having inactive
+
+00:31.880 --> 00:32.560
+and active.
+
+00:32.600 --> 00:37.400
+And this is one technique in order to optimize the performance of the database for the application.
+
+00:37.400 --> 00:41.120
+Because one and zero is way faster than storing the whole string.
+
+00:41.120 --> 00:45.920
+But in that analysis, we usually generate a report to be read by human, by persons.
+
+00:46.240 --> 00:51.280
+And now instead of showing the data as zero and one, it's going to be more nicer and readable if you
+
+00:51.320 --> 00:53.800
+show the data as active and inactive.
+
+00:53.800 --> 00:59.080
+So for this scenarios we're going to go and use the case statement in order to translate those critical
+
+00:59.080 --> 01:02.030
+and technical values into readable terms.
+
+01:02.070 --> 01:04.110
+Otherwise, each one can consume your report.
+
+01:04.150 --> 01:06.910
+Going to ask you what do you mean with the zero and one?
+
+01:06.910 --> 01:12.950
+Let's have the following task and it says retrieve employee details with gender displayed as full text.
+
+01:12.990 --> 01:14.550
+Okay, so now let's go and solve it.
+
+01:14.550 --> 01:17.110
+First we're going to go and explore few informations.
+
+01:17.110 --> 01:19.350
+So let's go and show the employee ID.
+
+01:20.510 --> 01:23.910
+And let's take the first name last name.
+
+01:24.230 --> 01:26.310
+And we need the gender informations.
+
+01:26.310 --> 01:29.910
+So gender from sales employees.
+
+01:30.190 --> 01:31.390
+So that's it.
+
+01:31.390 --> 01:32.830
+Let's go and execute it.
+
+01:32.830 --> 01:35.670
+So now as you can see in the results we got our five employees.
+
+01:35.670 --> 01:40.510
+And now the gender informations are stored as only one character F and m.
+
+01:40.550 --> 01:44.350
+And of course it's easy to understand that the f is female and M is male.
+
+01:44.630 --> 01:47.750
+But we would like to show it in the report as a full text.
+
+01:47.750 --> 01:51.590
+So female and male instead of those abbreviations.
+
+01:51.590 --> 01:56.430
+So in order to do that we're going to go and use the case statement in order to do the mapping between
+
+01:56.430 --> 01:58.430
+the old value and the new value.
+
+01:58.460 --> 02:01.460
+So let's go and create a new column using the case.
+
+02:01.460 --> 02:04.180
+So we're going to have here two conditions because we have two values.
+
+02:04.180 --> 02:05.460
+Let's start with the first one.
+
+02:05.460 --> 02:06.860
+So we're going to have a new line.
+
+02:06.860 --> 02:07.580
+And when.
+
+02:07.940 --> 02:13.740
+So when the gender equals to f ladies first then female.
+
+02:14.140 --> 02:16.900
+And now for the second value it's going to be exactly the same.
+
+02:16.900 --> 02:22.980
+When gender equal to m then we're going to have male.
+
+02:23.340 --> 02:25.940
+Be careful for the case sensitivity of the values.
+
+02:25.940 --> 02:28.500
+So now of course we will not end this without an else.
+
+02:28.500 --> 02:29.300
+So else.
+
+02:29.620 --> 02:31.140
+Then we can have the default value.
+
+02:31.140 --> 02:33.620
+We're going to have the default value not available.
+
+02:33.780 --> 02:35.300
+It's better than having nulls.
+
+02:35.460 --> 02:38.340
+So what we are missing is the end.
+
+02:38.820 --> 02:40.420
+So we're going to have an end over here.
+
+02:40.420 --> 02:44.020
+And we're going to call you gender full text.
+
+02:44.220 --> 02:45.300
+So that's it.
+
+02:45.300 --> 02:46.820
+Let's go and execute it.
+
+02:46.820 --> 02:51.460
+Now if you check the results, we have now done the mapping between the old format of the value with
+
+02:51.460 --> 02:52.340
+the new format.
+
+02:52.340 --> 02:54.940
+So instead of M we have males and females.
+
+02:54.980 --> 02:56.940
+And of course we don't have here any nulls.
+
+02:56.940 --> 02:59.490
+That's why we don't have a not available in the data.
+
+02:59.490 --> 03:04.650
+But if you have huge data, of course you're going to have somewhere a null and then you will get this
+
+03:04.650 --> 03:05.370
+default value.
+
+03:05.370 --> 03:10.010
+So this is how you can do mapping between values very easily using the case statements.
+
+03:10.050 --> 03:10.330
+Okay.
+
+03:10.330 --> 03:12.530
+Let's have another task for the mapping use case.
+
+03:12.530 --> 03:17.250
+And the task says retrieve employee details with abbreviated country code.
+
+03:17.290 --> 03:22.530
+Sometimes as we are generating reports, maybe using power BI or Tableau, we don't have enough spaces
+
+03:22.530 --> 03:25.610
+in order to use the full name of values.
+
+03:25.610 --> 03:26.330
+So what do we need?
+
+03:26.370 --> 03:27.490
+We need abbreviations.
+
+03:27.490 --> 03:29.810
+We need short form of the values.
+
+03:29.810 --> 03:36.570
+And we can go and use in SQL the case statement in order to map the full value to an abbreviated value.
+
+03:36.570 --> 03:39.090
+So it's like the previous example but the way around.
+
+03:39.130 --> 03:39.450
+All right.
+
+03:39.450 --> 03:40.530
+So now let's go and solve it.
+
+03:40.570 --> 03:43.930
+We're going to go and select few details like the customer ID.
+
+03:44.330 --> 03:46.410
+Let's take the first name last name.
+
+03:46.810 --> 03:47.730
+And what do we need.
+
+03:47.730 --> 03:52.010
+We need the country information from sales customers.
+
+03:52.010 --> 03:53.210
+So that's it.
+
+03:53.250 --> 03:54.970
+Let's go and execute it.
+
+03:55.010 --> 03:59.480
+And as you can see we got our five customers and we have the counter formations as a full name.
+
+03:59.480 --> 04:02.840
+Now of course for the reports we need abbreviated values from this.
+
+04:02.840 --> 04:07.200
+So we're going to go and map those full names of the countries to a short form.
+
+04:07.200 --> 04:11.480
+But in real projects you might get big tables where you have thousands and millions of records.
+
+04:11.480 --> 04:13.360
+So you cannot just check it like this.
+
+04:13.360 --> 04:18.520
+So how I usually do it, I go and retrieve a distinct list of all values from one column.
+
+04:18.520 --> 04:21.280
+So I usually go and have a separate query for that.
+
+04:21.280 --> 04:28.280
+So we're going to have select distinct country from the table sales customers.
+
+04:28.280 --> 04:31.360
+It's just for me to see all the possible values inside the database.
+
+04:31.360 --> 04:35.360
+So now you see the second result over here we have only two values Germany and USA.
+
+04:35.400 --> 04:37.960
+And then I can go and map the data correctly.
+
+04:37.960 --> 04:43.000
+So always if you are mapping data using the case, when you have to understand all the possible values
+
+04:43.000 --> 04:44.520
+that you have inside a table.
+
+04:44.520 --> 04:47.160
+So let's go and generate this new informations.
+
+04:47.200 --> 04:49.680
+Let's start with case and then new line.
+
+04:49.680 --> 04:54.160
+When country equal to the first value it's going to be Germany.
+
+04:54.480 --> 04:56.990
+Make sure you write it exactly like in the database.
+
+04:57.230 --> 05:00.510
+The first character is capital and the rest is small.
+
+05:00.750 --> 05:01.950
+So what happened?
+
+05:02.230 --> 05:04.110
+We're going to have the abbreviation of Germany.
+
+05:04.110 --> 05:05.150
+It's going to be D.
+
+05:05.190 --> 05:05.590
+All right.
+
+05:05.590 --> 05:07.270
+So this is for the first value.
+
+05:07.270 --> 05:09.070
+And then let's move to the second one.
+
+05:09.110 --> 05:12.790
+It's going to be country equal to USA.
+
+05:12.830 --> 05:14.110
+It's already abbreviated.
+
+05:14.110 --> 05:16.550
+But maybe we can get only two characters.
+
+05:17.030 --> 05:19.110
+So us like this.
+
+05:19.150 --> 05:20.630
+And now let's go and add an else.
+
+05:20.630 --> 05:21.350
+It's optional.
+
+05:21.350 --> 05:24.790
+But in case that we have nulls in the data or we get a new value.
+
+05:24.950 --> 05:27.150
+So else it's not available.
+
+05:27.150 --> 05:27.950
+So na.
+
+05:28.230 --> 05:28.950
+So that's it.
+
+05:28.950 --> 05:31.110
+And never forget about the end.
+
+05:31.390 --> 05:35.310
+So end and the name going to be country abbreviation.
+
+05:35.670 --> 05:36.670
+So that's it.
+
+05:36.670 --> 05:39.470
+Let me just get rid of the other query.
+
+05:39.470 --> 05:40.950
+So the mapping is correct.
+
+05:40.950 --> 05:42.230
+Let's go and execute it.
+
+05:42.270 --> 05:46.270
+And now if you check the results we got a new column called Country abbreviation.
+
+05:46.270 --> 05:51.030
+And as you can see now the mapping is working here we have Germany and we have here the E.
+
+05:51.070 --> 05:52.950
+And for the USA we have us.
+
+05:53.070 --> 05:57.700
+So with that we have solved the task, and we've done the mapping correctly between the old value and
+
+05:57.700 --> 05:58.500
+the new value.
+
+06:02.340 --> 06:06.180
+All right, friends, now there is a special case for the syntax of the case statements.
+
+06:06.380 --> 06:08.660
+If you are using it for mapping values.
+
+06:08.660 --> 06:09.700
+So now let's go and check it.
+
+06:09.700 --> 06:13.380
+So now let's say that we have a lot of different distinct values inside their country.
+
+06:13.420 --> 06:14.140
+Not only two values.
+
+06:14.140 --> 06:15.260
+We have a lot of values.
+
+06:15.660 --> 06:19.980
+And if you are mapping the values using the case, when you're going to end up always writing the same
+
+06:19.980 --> 06:25.140
+thing country equal, Germany, country equal, India, country equal United States, and so on.
+
+06:25.140 --> 06:27.660
+So we are always using the column country.
+
+06:27.660 --> 06:33.420
+So the conditions over here using always one column and it's always the operator is equal.
+
+06:33.420 --> 06:37.700
+So now only for this scenario we have another syntax for the case statements.
+
+06:37.700 --> 06:38.980
+And it looks like this.
+
+06:39.500 --> 06:40.940
+We start with a keyword case.
+
+06:40.940 --> 06:45.380
+But after that immediately we're going to use the column that we want to evaluate.
+
+06:45.380 --> 06:47.500
+And here you can use only one column.
+
+06:47.500 --> 06:49.460
+You cannot use multiple columns.
+
+06:49.460 --> 06:53.490
+So now we are telling SQL we are now evaluating one column with their country.
+
+06:53.650 --> 06:56.210
+And then for each condition, we have the following stuff.
+
+06:56.210 --> 06:57.930
+We say when Germany.
+
+06:57.930 --> 07:01.650
+That means when country is equal to Germany, then D.
+
+07:01.690 --> 07:04.490
+So as you can see here, we don't have here the whole condition.
+
+07:04.490 --> 07:08.770
+We have only a possible value that you can see inside the country.
+
+07:08.770 --> 07:11.090
+So we are saying is the value country.
+
+07:11.370 --> 07:13.810
+If it's true then show the E the next one.
+
+07:13.810 --> 07:17.290
+Is it India then in United States US and so on.
+
+07:17.290 --> 07:20.650
+So we call this syntax a quick form of the case statement.
+
+07:20.650 --> 07:24.170
+And on the left side we call it full form of the case statements.
+
+07:24.170 --> 07:30.210
+And of course the restriction and limitation using the quick format is that you can use only one column
+
+07:30.210 --> 07:32.930
+and it's only for the equal operator.
+
+07:32.930 --> 07:36.690
+So that means only for these scenarios you can go and use the quick format.
+
+07:36.850 --> 07:41.690
+If things get a little bit complicated, where you have to mix and make complex logic, you cannot use
+
+07:41.690 --> 07:42.570
+the quick formats.
+
+07:42.570 --> 07:47.090
+So I would say if you are sure that the logic will not get complicated and you can stay always with
+
+07:47.090 --> 07:51.760
+the same column, you can go with the quick format, but I would recommend always to go with the full
+
+07:51.760 --> 07:52.280
+format.
+
+07:52.280 --> 07:57.800
+Because for one simple reason, if you add one small logic, you have to go and rewrite the whole case
+
+07:57.800 --> 08:01.840
+statements back to the full format in order to add any small logic.
+
+08:01.840 --> 08:06.560
+But of course there is nothing wrong using the quick form in order to do the case statements.
+
+08:06.560 --> 08:11.960
+If the logic can stay static and you are sure we are using only one column and we are just doing mapping,
+
+08:11.960 --> 08:13.320
+there is no any extra logic.
+
+08:13.360 --> 08:17.480
+Okay, so now let's try this quick format for the case statements for the previous example.
+
+08:17.640 --> 08:20.720
+So I will just go and copy everything to a new column.
+
+08:21.120 --> 08:22.960
+So I'm just going to rename it to two.
+
+08:23.080 --> 08:24.400
+And now how are we going to do it.
+
+08:24.400 --> 08:26.440
+So it's going to be case.
+
+08:26.440 --> 08:29.000
+But this time we're going to write country.
+
+08:29.480 --> 08:33.040
+And then inside the wind we will have only the values.
+
+08:33.040 --> 08:34.640
+So no need for the condition.
+
+08:35.120 --> 08:36.760
+So it's going to be like this.
+
+08:36.800 --> 08:37.920
+Let me scroll up.
+
+08:37.920 --> 08:38.440
+So that's it.
+
+08:38.440 --> 08:43.120
+As you can see it's smaller and quicker than writing the whole condition each time.
+
+08:43.120 --> 08:45.120
+So now let's go and execute this.
+
+08:45.160 --> 08:48.360
+And as you can see in the result we're going to get identical values.
+
+08:48.360 --> 08:51.000
+So now you know one more trick in that case statement.

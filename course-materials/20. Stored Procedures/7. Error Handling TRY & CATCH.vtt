@@ -1,0 +1,313 @@
+WEBVTT
+
+00:03.960 --> 00:04.240
+Okay.
+
+00:04.240 --> 00:07.360
+So now we're going to talk about the error handling in stored procedure.
+
+00:07.720 --> 00:08.440
+Error handling.
+
+00:08.440 --> 00:14.440
+It is like essential things to do while programming because it gives you the control on what can happen
+
+00:14.440 --> 00:15.600
+once you have an error.
+
+00:15.600 --> 00:20.920
+And there is a lot of things that you can do, like maybe deleting data, printing a very structured
+
+00:20.960 --> 00:23.920
+like message or maybe doing some logging and so on.
+
+00:23.920 --> 00:27.720
+So you have a full control on what to do if there is an error.
+
+00:27.720 --> 00:30.120
+And of course we can do that in the stored procedure.
+
+00:30.120 --> 00:31.240
+So now let's check the quickly.
+
+00:31.240 --> 00:33.800
+The syntax it is usually has two parts.
+
+00:33.840 --> 00:36.160
+The first part is the try parts.
+
+00:36.200 --> 00:37.440
+So the syntax is like this.
+
+00:37.440 --> 00:39.280
+Begin try and try.
+
+00:39.320 --> 00:42.040
+So you are defining the boundaries of the try.
+
+00:42.120 --> 00:45.880
+And in between you can have all your SQL statements and your codes.
+
+00:45.880 --> 00:48.280
+And the second part is going to be the catch parts.
+
+00:48.440 --> 00:51.200
+So you say begin catch and end catch.
+
+00:51.200 --> 00:52.760
+So you are defining the boundaries.
+
+00:52.760 --> 00:56.360
+And then in between you can tell SQL what to do if there is like an error.
+
+00:56.400 --> 00:59.720
+So what is try and catch like the word it says try.
+
+00:59.720 --> 01:02.800
+It's like you are attempt to do something that might fail.
+
+01:02.800 --> 01:09.560
+So you are telling SQL Will try to execute this code so the SQL can go and try to execute your code.
+
+01:09.560 --> 01:15.520
+And if any error happens while executing your code, the SQL is going to jump to the second block and
+
+01:15.520 --> 01:18.400
+start doing whatever you have defined in the catch.
+
+01:18.400 --> 01:22.760
+But if there is no errors at all, this part will not be executed.
+
+01:22.760 --> 01:24.920
+So the catch is like your backup plan.
+
+01:24.920 --> 01:28.840
+If something goes wrong here, then go to the plan B and do something.
+
+01:28.840 --> 01:30.840
+So let's see the workflow of the try catch.
+
+01:31.040 --> 01:34.200
+So first the SQL can go and execute the try.
+
+01:34.240 --> 01:35.320
+And then it's going to check.
+
+01:35.360 --> 01:36.400
+Is there any error.
+
+01:36.440 --> 01:40.000
+If we don't have any error then everything ends and that's it.
+
+01:40.000 --> 01:43.800
+But while execution if the SQL fails any error what's going to happen.
+
+01:43.800 --> 01:46.120
+It's going to go and execute the catch.
+
+01:46.160 --> 01:48.120
+So as you can see the workflow is very simple.
+
+01:48.120 --> 01:50.680
+And this is what we mean with try and catch.
+
+01:50.680 --> 01:52.880
+So let's go back to SQL to have some example.
+
+01:52.920 --> 01:53.240
+All right.
+
+01:53.240 --> 01:54.920
+So now back to our stored procedure.
+
+01:55.080 --> 01:57.920
+Let's go and introduce an error inside our code.
+
+01:57.920 --> 01:58.960
+So let's go over here.
+
+01:58.960 --> 02:05.040
+And maybe in our query we're going to go and divide by zero which is of course a problem.
+
+02:05.040 --> 02:06.880
+So we have this error over here.
+
+02:06.880 --> 02:11.640
+And let's go and update the logic of our stored procedure.
+
+02:11.680 --> 02:14.040
+And now if you go and execute it.
+
+02:14.040 --> 02:15.280
+So let's go and do that.
+
+02:15.320 --> 02:18.720
+We will get an error saying yeah you cannot divide by zero.
+
+02:18.720 --> 02:22.960
+But now what I would like to do, I would like to have something else where we have customized message
+
+02:22.960 --> 02:24.160
+when error happens.
+
+02:24.160 --> 02:28.400
+So I would like to have the control on which information should be displayed if there is an issue.
+
+02:28.400 --> 02:31.600
+And in order to do that we have to use the try and catch.
+
+02:31.600 --> 02:32.880
+So it's going to be very simple.
+
+02:33.000 --> 02:34.800
+Now this is my whole code.
+
+02:34.800 --> 02:39.520
+So the whole thing from preparing to generate the report, the whole thing is my code.
+
+02:39.520 --> 02:42.080
+And we have to put the whole thing in a try.
+
+02:42.120 --> 02:43.960
+So how to do that exactly.
+
+02:43.960 --> 02:47.640
+After the first begin we're going to have another begin.
+
+02:47.640 --> 02:48.720
+But for the try.
+
+02:48.760 --> 02:54.520
+And now what we're going to do, we're going to go to the last end over here and have an end try.
+
+02:54.560 --> 02:57.720
+So with that, we put now the whole code inside the try.
+
+02:57.760 --> 03:00.080
+And after that we can introduce the catch.
+
+03:00.280 --> 03:04.240
+So begin catch and end catch.
+
+03:04.280 --> 03:09.160
+And now in between we have to tell SQL what can happen if we encounter any error.
+
+03:09.160 --> 03:10.320
+And here we can do many stuff.
+
+03:10.320 --> 03:13.890
+But I would like now to focus on customizing the error message.
+
+03:13.890 --> 03:14.970
+Let's start with the first one.
+
+03:14.970 --> 03:16.410
+So I'm going to say print.
+
+03:17.210 --> 03:19.850
+Let's say an error occurred.
+
+03:21.130 --> 03:22.370
+This is the first thing.
+
+03:22.370 --> 03:25.930
+Then on the next line I'm going to print more informations.
+
+03:25.930 --> 03:27.610
+And now we're going to say the error message.
+
+03:27.610 --> 03:31.970
+So error message double point space.
+
+03:31.970 --> 03:37.850
+And now we can go and use some predefined functions from SQL like for example the error message.
+
+03:38.930 --> 03:43.010
+This function can return the description of the error like the one we have here.
+
+03:43.050 --> 03:50.450
+Divide by zero error encountered and we can go and keep adding stuff the way that we need, like maybe
+
+03:50.450 --> 03:54.170
+the error number so we can have it like this.
+
+03:54.210 --> 03:57.210
+And for that we have as well a function called error number.
+
+03:57.650 --> 04:00.570
+And I think we have to cast this one because it is a number.
+
+04:00.570 --> 04:03.970
+And in the messages we have to have only a varchar.
+
+04:04.010 --> 04:07.570
+So this is going to be as an Varchar like this.
+
+04:07.610 --> 04:10.770
+And we can keep adding stuff to our message.
+
+04:11.010 --> 04:13.210
+Like for example let's take the error line.
+
+04:13.490 --> 04:15.090
+And for that we have as well a function.
+
+04:15.090 --> 04:19.570
+So it's going to be the error line like this.
+
+04:19.570 --> 04:23.730
+And we have to cast it because it is as well a number.
+
+04:24.810 --> 04:30.090
+And as well what is really important is the name of the stored procedure.
+
+04:30.090 --> 04:32.450
+So error procedure.
+
+04:32.930 --> 04:38.210
+And we have a function for that error procedure like this.
+
+04:38.250 --> 04:39.130
+It's going to be a string.
+
+04:39.130 --> 04:40.850
+So that's why I don't have to cast it.
+
+04:40.850 --> 04:45.890
+So now with that we have defined for SQL what to do if there is like an error in our code.
+
+04:45.890 --> 04:48.210
+So let's go and execute the whole thing.
+
+04:49.090 --> 04:51.850
+And now let's go and execute our stored procedure.
+
+04:52.010 --> 04:53.330
+So let's go and do that.
+
+04:53.330 --> 04:56.450
+So now as you can see in the output we are not getting any results.
+
+04:56.450 --> 04:58.010
+And it is not giving an error.
+
+04:58.010 --> 05:01.370
+But if you go to the messages you will see a very nice message.
+
+05:01.370 --> 05:03.250
+So it says an error is occurred.
+
+05:03.250 --> 05:05.970
+The error message is divided by zero.
+
+05:05.970 --> 05:10.690
+And we have the error number in which line and as well the stored procedure name.
+
+05:10.690 --> 05:12.130
+So as you can see it's amazing.
+
+05:12.130 --> 05:17.810
+This is how we use the try and catch in order to have more options on to control what can happen if
+
+05:17.810 --> 05:18.690
+there is an error.

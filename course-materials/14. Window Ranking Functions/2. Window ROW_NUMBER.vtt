@@ -1,0 +1,277 @@
+WEBVTT
+
+00:03.920 --> 00:05.920
+Alright, so what is a row number?
+
+00:05.960 --> 00:11.320
+In SQL, the row number function going to go and assign for each row a unique number as a rank, and
+
+00:11.320 --> 00:13.800
+it doesn't care at all about the ties.
+
+00:14.000 --> 00:19.600
+That means if you have two rows sharing the same value, they will not share the same rank.
+
+00:19.720 --> 00:21.280
+Okay, so now we have very simple example.
+
+00:21.280 --> 00:25.160
+We have a list of all sales and we have the following query.
+
+00:25.440 --> 00:28.320
+So it's going to start with the ranking function or row number.
+
+00:28.360 --> 00:30.760
+It doesn't accept any argument inside it.
+
+00:30.760 --> 00:32.920
+And the definition of the window is going to be like this.
+
+00:33.200 --> 00:35.440
+Order by sales desc.
+
+00:35.440 --> 00:40.640
+So that means we're going to go and sort the data descending from the highest to the lowest.
+
+00:40.640 --> 00:42.600
+So SQL is going to go and do the following.
+
+00:42.800 --> 00:45.000
+The high is going to be the 100.
+
+00:45.040 --> 00:47.200
+The lowest is going to be the 20.
+
+00:47.440 --> 00:49.400
+And here we have twice the 80.
+
+00:49.440 --> 00:52.760
+So now once SQL done sorting the data what's going to happen.
+
+00:52.760 --> 00:54.560
+It's going to start assigning a rank.
+
+00:54.720 --> 00:58.920
+So the row number is going to go and assign a unique number for each row.
+
+00:59.040 --> 01:01.000
+So that means it's going to start with the first one.
+
+01:01.040 --> 01:03.280
+The 100 is going to be the rank number one.
+
+01:03.320 --> 01:05.680
+The next one is going to be ranked number two.
+
+01:05.720 --> 01:11.210
+The 80 is going to be ranked number three and the 54, and then the last one going to be five.
+
+01:11.250 --> 01:14.690
+And now if you check the output, you can see that all those numbers are unique.
+
+01:14.690 --> 01:16.490
+We don't have any repetitions.
+
+01:16.490 --> 01:19.050
+So 12345 there is no repetitions.
+
+01:19.050 --> 01:20.930
+They are unique distinct value.
+
+01:21.170 --> 01:24.250
+And as well there are no skipping of ranking.
+
+01:24.250 --> 01:26.170
+So that means we have here 123.
+
+01:26.210 --> 01:28.610
+There is no jumping to 6 or 7 or something.
+
+01:28.650 --> 01:32.890
+There are clear sequence of distinct value and there are no gaps.
+
+01:32.890 --> 01:35.050
+But still there is something special in our data.
+
+01:35.050 --> 01:38.730
+We can see that in the sales we have the same value twice.
+
+01:38.730 --> 01:41.250
+So we have two rows with the same sales.
+
+01:41.410 --> 01:48.010
+As you can see in the row number, they will get distinct value, so they will not share the same ranking.
+
+01:48.010 --> 01:51.490
+So that means row number does not handle the ties.
+
+01:51.610 --> 01:56.850
+If you have multiple rows sharing the same values, they will not share the same rank.
+
+01:56.890 --> 01:59.850
+They're going to have a distinct rank different ranks.
+
+01:59.850 --> 02:01.850
+So this is how the row number works in SQL.
+
+02:01.890 --> 02:04.130
+It generates unique ranks for each row.
+
+02:04.490 --> 02:08.610
+It does not handle the ties and as well it doesn't leave any gaps.
+
+02:08.610 --> 02:10.410
+So there is no skipping of ranking.
+
+02:10.410 --> 02:13.870
+So now let's go to SQL in order to have few examples and use cases.
+
+02:13.870 --> 02:14.190
+All right.
+
+02:14.190 --> 02:15.350
+So now we have the following task.
+
+02:15.350 --> 02:16.150
+It's very simple.
+
+02:16.310 --> 02:20.150
+Rank the orders based on their sales from the highest to the lowest.
+
+02:20.150 --> 02:21.390
+So now this is very easy.
+
+02:21.430 --> 02:23.670
+We're going to go and select first the data.
+
+02:23.950 --> 02:26.110
+So order ID product id.
+
+02:26.150 --> 02:29.190
+Let's take the sales as well and select the table.
+
+02:29.190 --> 02:31.230
+So it's going to be sales orders.
+
+02:31.430 --> 02:33.030
+Let's go and execute it.
+
+02:33.030 --> 02:34.950
+So thus we got all our orders.
+
+02:34.950 --> 02:38.110
+What we're going to do now is to assign for each row a rank.
+
+02:38.110 --> 02:42.430
+So that means we need a column here that contains the rank for each row.
+
+02:42.550 --> 02:46.510
+So in order to do that we're going to go and use the window function row number.
+
+02:46.550 --> 02:49.950
+It doesn't accept any argument inside it so it should be empty.
+
+02:49.950 --> 02:51.830
+And then we have to define the window.
+
+02:51.830 --> 02:54.950
+So as we learned the ranking functions we cannot leave it empty.
+
+02:54.990 --> 02:57.230
+We have to sort the data using order by.
+
+02:57.270 --> 02:59.110
+So order by is a must.
+
+02:59.150 --> 03:00.950
+We don't have to use any partition by.
+
+03:00.990 --> 03:03.830
+So we're going to rank all the data that we have inside the table.
+
+03:03.830 --> 03:04.990
+So how to sort the data.
+
+03:04.990 --> 03:08.270
+It says it should be based on their sales from highest to lowest.
+
+03:08.310 --> 03:13.470
+That means we order by sales since from highest to lowest we have to use the descending.
+
+03:13.510 --> 03:17.950
+And now we're going to go and give it a name sales rank and let's say row.
+
+03:17.950 --> 03:20.040
+Since we are using the row number.
+
+03:20.040 --> 03:21.160
+So that's it.
+
+03:21.160 --> 03:21.880
+It's very simple.
+
+03:21.880 --> 03:23.200
+Let's go and execute it.
+
+03:23.200 --> 03:25.080
+So now let's have a look to the results.
+
+03:25.080 --> 03:30.280
+Before SQL did sort the data by the order ID since we didn't define anything, but since now we are
+
+03:30.320 --> 03:36.760
+ordered by sale descending SQL went and sorted the data by the sales from the highest to the lowest
+
+03:36.760 --> 03:41.720
+and start assigning a rank or let's say an integer unique integer for each row.
+
+03:41.720 --> 03:44.040
+So now the highest order is going to be the order number eight.
+
+03:44.080 --> 03:45.440
+We have the sales of 90.
+
+03:45.480 --> 03:46.640
+This is the highest one.
+
+03:46.640 --> 03:49.960
+So as you can see we have one, two, three, four, five until ten.
+
+03:49.960 --> 03:54.200
+So now by checking the result you can see that the ranking here is unique.
+
+03:54.200 --> 03:56.240
+So there is no duplicates over here.
+
+03:56.360 --> 03:58.760
+And as well there is no skipping or gaps.
+
+03:58.760 --> 04:01.000
+So we have everything between 1 and 10.
+
+04:01.040 --> 04:05.080
+Even though that we have in our data a couple of sales that sharing the same value.
+
+04:05.120 --> 04:07.240
+So for example we have those two orders.
+
+04:07.240 --> 04:12.040
+You can see both of them has the 60 at the sales, but they don't share the same ranking.
+
+04:12.080 --> 04:12.480
+Right.
+
+04:12.560 --> 04:14.600
+So we have here as well the nine and three.
+
+04:14.640 --> 04:18.720
+They share the same value 20 but they don't share the same ranking.
+
+04:18.720 --> 04:20.240
+So with that we have solved the task.
+
+04:20.240 --> 04:21.080
+It's very simple.
+
+04:21.080 --> 04:24.840
+We have now a rank based on the sales from highest to the lowest.

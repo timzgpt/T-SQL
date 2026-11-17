@@ -1,0 +1,463 @@
+WEBVTT
+
+00:03.920 --> 00:05.560
+So what is standalone CTE?
+
+00:05.840 --> 00:10.920
+It is a city query that is defined and used independently in the query.
+
+00:11.120 --> 00:14.840
+So this means it is self-contained and it doesn't depend on anything.
+
+00:14.840 --> 00:18.520
+It doesn't depend on any other CTE or queries.
+
+00:18.560 --> 00:24.240
+So that means we can run the standalone query independently from anything inside our query.
+
+00:24.280 --> 00:25.840
+So let's understand what this means.
+
+00:25.880 --> 00:26.840
+We have our CTE.
+
+00:26.920 --> 00:29.920
+It's going to go and query the database tables.
+
+00:29.920 --> 00:32.600
+And in the output we will get an intermediate results.
+
+00:32.600 --> 00:35.640
+And then the output can be used from the main query.
+
+00:35.680 --> 00:40.600
+So the main query and query the intermediate results and present in the output the final results.
+
+00:40.640 --> 00:44.920
+So now if you check our CTE it is completely independent from anything else.
+
+00:45.040 --> 00:47.040
+So it's simply query the database.
+
+00:47.040 --> 00:48.840
+And it has one output.
+
+00:48.880 --> 00:54.600
+So since this CTE is independent from anything else we call it a standalone CTE.
+
+00:54.640 --> 00:59.520
+Now if you compare this city with the main query, you can see that the main query cannot be executed
+
+00:59.520 --> 01:00.160
+alone.
+
+01:00.160 --> 01:03.680
+And that's because it needs the result from the first query.
+
+01:03.800 --> 01:08.660
+So we cannot say the main query is independent, cannot be executed alone.
+
+01:08.660 --> 01:11.340
+It always depends on the city query.
+
+01:11.340 --> 01:14.220
+So this means that he first need to be executed.
+
+01:14.260 --> 01:16.420
+Then the main query can be executed.
+
+01:16.420 --> 01:19.180
+So this is what we mean with the standalone city.
+
+01:19.460 --> 01:21.740
+It doesn't depend on anything else.
+
+01:21.780 --> 01:24.060
+So now we can understand the syntax of the city.
+
+01:24.100 --> 01:27.180
+So we have a very simple query select from where.
+
+01:27.220 --> 01:29.860
+So it is a very simple Select statements.
+
+01:29.900 --> 01:35.220
+Now in order to put it inside a CTE we can go and use the With clause.
+
+01:35.220 --> 01:39.140
+So it starts with the keyword with then the CTE name.
+
+01:39.140 --> 01:40.540
+It's like a table name.
+
+01:40.540 --> 01:46.420
+And then we have the keyword as in in order to say this CTE is defined like the following.
+
+01:46.540 --> 01:48.780
+So this is the definition of the CTE.
+
+01:48.820 --> 01:52.060
+And it has two parenthesis the starting and the ending.
+
+01:52.060 --> 01:57.020
+So with this you are telling SQL okay now we are talking about CTE and it has a name.
+
+01:57.020 --> 02:01.700
+So if you are using a query inside a With clause we call this a CTE query.
+
+02:01.860 --> 02:04.180
+It is where you define the CTE.
+
+02:04.460 --> 02:06.740
+Now of course we don't want only to define a CTE.
+
+02:06.780 --> 02:07.860
+We want to use it.
+
+02:07.860 --> 02:11.630
+So outside of this definition we can go and use it like this.
+
+02:11.630 --> 02:15.470
+So we are saying select from the city name.
+
+02:15.470 --> 02:19.110
+So that means we want to select the data from the result of the CTE.
+
+02:19.190 --> 02:24.710
+And here it's very important to use exactly the same name as you define it in the With clause.
+
+02:24.710 --> 02:28.550
+So if you leave it like this we can call this the main query.
+
+02:28.590 --> 02:31.510
+It is the place where we use the CTE.
+
+02:31.750 --> 02:35.990
+So this is the syntax of a very simple CTE in SQL okay.
+
+02:36.030 --> 02:40.470
+So now what we're going to do we're going to have like a task that's going to keep progressing through
+
+02:40.470 --> 02:41.230
+this section.
+
+02:41.230 --> 02:42.710
+So we're going to start with the first tab.
+
+02:42.710 --> 02:45.910
+And we will keep adding steps as we progress in the CTE.
+
+02:45.950 --> 02:51.030
+So now the first step in this task says find the total sales per customer.
+
+02:51.070 --> 02:54.870
+And now of course since we have only one step, it makes no sense to use the CTE.
+
+02:55.070 --> 02:59.510
+But we will use it since we know that there will be different steps later.
+
+02:59.510 --> 03:01.110
+So let's start doing that now.
+
+03:01.110 --> 03:04.870
+Before I use any CTE, I would like just to write our query first.
+
+03:04.870 --> 03:08.230
+So we need the total sales for each customers is very simple.
+
+03:08.230 --> 03:09.790
+So we're going to go and select.
+
+03:09.790 --> 03:10.670
+And what do we need.
+
+03:10.670 --> 03:16.650
+Let's go and get the customer ID and we need to do aggregations on their sales.
+
+03:16.650 --> 03:18.930
+So summarize the sales.
+
+03:18.930 --> 03:23.570
+And we're going to call it total sales from the table.
+
+03:23.610 --> 03:28.090
+And now since this is our first query, we have to get the data from our database.
+
+03:28.090 --> 03:29.490
+So we don't have any other option.
+
+03:29.530 --> 03:31.930
+Our data are going to be in the sales orders.
+
+03:31.930 --> 03:33.810
+So let's go and get it.
+
+03:33.810 --> 03:36.690
+And don't forget to group by for the aggregation.
+
+03:36.690 --> 03:38.850
+We are grouping by the customer ID.
+
+03:39.050 --> 03:39.730
+That's it.
+
+03:39.770 --> 03:41.450
+Let's go and execute it.
+
+03:41.450 --> 03:43.570
+And as you can see in the output, nothing is fancy.
+
+03:43.570 --> 03:46.170
+We are just aggregating the sales by the customers.
+
+03:46.170 --> 03:47.890
+So with that we have solved the task.
+
+03:47.890 --> 03:50.810
+But now I would like to put my query in a CTE.
+
+03:51.130 --> 03:53.410
+And that's because later we're going to add more steps.
+
+03:53.410 --> 03:56.210
+So let's put our query in CTE.
+
+03:56.330 --> 04:00.290
+And in order to do that we're going to start with the with keyword.
+
+04:00.330 --> 04:02.770
+And now we have to define the name of the CTE.
+
+04:02.770 --> 04:07.610
+So I'm going to call it city underscore total sales like this.
+
+04:07.610 --> 04:13.010
+And then afterwards we're going to say as and then we have to go and add the parentheses at the start.
+
+04:13.010 --> 04:14.850
+And as well at the end.
+
+04:14.850 --> 04:19.010
+And with that we are telling SQL this query is a CTE query.
+
+04:19.010 --> 04:26.660
+So this means the SQL should store the result of this query in a cache in memory to be used later in
+
+04:26.660 --> 04:27.620
+the main query.
+
+04:27.660 --> 04:33.500
+Our CTE and of course what is missing is the main query, and you have to do it exactly after the definition
+
+04:33.500 --> 04:34.260
+of the CTE.
+
+04:34.380 --> 04:37.700
+I will just make here a small comment about the main query.
+
+04:37.740 --> 04:40.580
+And let me just make this smaller like this.
+
+04:40.620 --> 04:45.340
+And now we have to go and have a very simple select statements from.
+
+04:45.380 --> 04:48.460
+And now I would like to get more details from the customers table.
+
+04:48.460 --> 04:51.180
+So I will just go now to the customers.
+
+04:53.380 --> 04:55.900
+So now we are not querying the CTE right.
+
+04:55.900 --> 04:58.700
+We are just querying the database table that we have.
+
+04:58.740 --> 05:06.820
+And I would like to get from the customer, the customer ID and the first name and let's go and get
+
+05:06.820 --> 05:08.420
+as well the last name.
+
+05:09.580 --> 05:13.220
+So now if we go and query this, what happens in the output?
+
+05:13.220 --> 05:18.860
+We are getting the data actually completely from the database table, the customers.
+
+05:18.860 --> 05:24.180
+And of course we are not using at all the CTE inside our main query because we can do that, but it's
+
+05:24.180 --> 05:29.880
+just waste of space in the memory because SQL did execute this and stored it in the.
+
+05:29.920 --> 05:30.800
+Database memory.
+
+05:30.800 --> 05:33.960
+And of course we would like to use the CTE in our main query.
+
+05:33.960 --> 05:35.280
+So let's go and do that.
+
+05:35.640 --> 05:37.320
+So let's go and do a join.
+
+05:37.880 --> 05:41.040
+But this time we're going to join the data from the CTE.
+
+05:41.440 --> 05:43.160
+So let's go and get the name.
+
+05:43.560 --> 05:45.880
+And I will just call it CTS.
+
+05:46.000 --> 05:51.960
+So what we are doing now we are joining the physical table, the customers with the virtual table that
+
+05:51.960 --> 05:56.640
+you have created with the CTE that exist only in our query.
+
+05:56.680 --> 06:01.760
+And of course, not only we are joining the tables, we would like to get the informations from the
+
+06:01.760 --> 06:02.200
+CTE.
+
+06:02.240 --> 06:05.760
+So CTS and we need only that total sales.
+
+06:05.760 --> 06:07.880
+So total sales.
+
+06:08.560 --> 06:13.200
+So that means those three columns comes from our database table customers.
+
+06:13.200 --> 06:14.360
+And only this column.
+
+06:14.360 --> 06:16.520
+The total sales comes from our CTE.
+
+06:16.560 --> 06:18.560
+So let's go and execute the whole thing.
+
+06:18.680 --> 06:21.000
+Now as you can see in the output everything is working.
+
+06:21.160 --> 06:24.160
+We have the three columns from the table customers.
+
+06:24.160 --> 06:26.880
+And we have the total sales for each customer.
+
+06:26.880 --> 06:29.200
+And this total sales comes from our CTE.
+
+06:29.280 --> 06:32.900
+Now as you can see the last customer has a null over here.
+
+06:32.900 --> 06:36.860
+And that's because in the table orders we don't have the customer five.
+
+06:36.900 --> 06:40.980
+And now you might say, you know what, I would like to see the intermediate result from the CTE.
+
+06:41.140 --> 06:46.140
+Because what you are seeing now in the output is the final result from the main query.
+
+06:46.260 --> 06:52.300
+So now what we can do in order to see the result of the CTE, we're going to mark the query in the CTE
+
+06:52.500 --> 06:56.980
+course without any parentheses or the with so just the query and execute it.
+
+06:56.980 --> 07:02.540
+And with that you can see in the output the intermediate results that we are passing to the main query.
+
+07:02.900 --> 07:05.540
+And as you can see we don't have here customer number five.
+
+07:05.660 --> 07:09.060
+That's why in the final results we are getting null.
+
+07:09.060 --> 07:11.900
+And that's of course because we are using the left join.
+
+07:11.900 --> 07:16.660
+So if I execute the whole thing you can see we are getting the customer five over here with the null.
+
+07:16.660 --> 07:18.340
+So as you can see CTE is very simple.
+
+07:18.340 --> 07:21.300
+We just treat it as any normal database table.
+
+07:21.300 --> 07:26.380
+But this table is created from our query that we have defined in the CTE over here.
+
+07:26.420 --> 07:33.220
+Now of course in the CTE you can use any kind of clauses like select from join group by having everything
+
+07:33.220 --> 07:38.950
+that you want window functions all aggregate functions, but there is only one restriction.
+
+07:38.950 --> 07:44.910
+You cannot go and use the order by clause, so you cannot sort the data in the CTE.
+
+07:44.950 --> 07:46.710
+So let's go and try it out.
+
+07:47.030 --> 07:49.110
+Let's go and say order by.
+
+07:49.270 --> 07:52.510
+And let's say I want to sort by the order ID for example.
+
+07:52.670 --> 07:54.430
+So let's go and execute it.
+
+07:54.430 --> 08:00.830
+You can see here SQL is saying okay I cannot do it for you because order by is not allowed in many things.
+
+08:00.830 --> 08:05.470
+So you cannot use it in views in subqueries in common table expressions.
+
+08:05.470 --> 08:06.830
+The CTE over here.
+
+08:06.990 --> 08:08.190
+So it is not allowed.
+
+08:08.190 --> 08:10.510
+You cannot use order by in the CTE.
+
+08:10.550 --> 08:14.430
+But of course you can go and sort the data in the main query.
+
+08:14.430 --> 08:23.190
+So if you go over here and say order by customer ID, so if we execute it it's going to be working.
+
+08:23.190 --> 08:25.390
+So in the main query you can use order by.
+
+08:25.390 --> 08:29.710
+But in the CTE this is the only thing that you cannot use inside the city.
+
+08:29.750 --> 08:30.590
+So that's it.
+
+08:30.590 --> 08:33.350
+This is our first CTE in this section.
+
+08:33.390 --> 08:33.790
+All right.
+
+08:33.790 --> 08:37.270
+So this is the simplest form of the CTE the standalone.
+
+08:37.550 --> 08:39.430
+Now we can have not only one CTE.
+
+08:39.470 --> 08:41.990
+We can have multiple cities.

@@ -1,0 +1,835 @@
+WEBVTT
+
+00:00.080 --> 00:00.320
+All right.
+
+00:00.320 --> 00:05.680
+So now in this layer, before we start writing any data transformations and cleansing, we have first
+
+00:05.720 --> 00:08.240
+to detect the quality issues in the prawns.
+
+00:08.240 --> 00:10.640
+Without knowing the issues we cannot find a solution.
+
+00:10.640 --> 00:11.040
+Right.
+
+00:11.040 --> 00:16.760
+We will explore first the quality issues only then we start writing the transformation scripts.
+
+00:16.760 --> 00:17.680
+So let's go.
+
+00:24.600 --> 00:28.640
+Okay, so now what we're gonna do, we're gonna go through all the tables over the bronze layer, clean
+
+00:28.640 --> 00:31.920
+up the data and then insert it to the server layer.
+
+00:31.920 --> 00:36.120
+So let's start with the first table, the first prawns table from the source CRM.
+
+00:36.120 --> 00:39.800
+So we're going to go to the bronze CRM customer info.
+
+00:40.320 --> 00:42.360
+So let's go and query the data over here.
+
+00:42.400 --> 00:48.760
+Now of course before writing any data transformations we have to go and detect and identify the quality
+
+00:48.760 --> 00:50.120
+issues of this table.
+
+00:50.120 --> 00:54.560
+So usually I start with the first check where we go and check the primary key.
+
+00:54.560 --> 00:59.600
+So we have to go and check whether there are nulls inside the primary key and whether there are duplicates.
+
+00:59.600 --> 01:02.640
+So now in order to detect the duplicates in the primary key.
+
+01:02.680 --> 01:05.920
+What we have to do is to go and aggregate the primary key.
+
+01:05.960 --> 01:11.520
+If we find any value in the primary key that exists more than once, that means it is not unique and
+
+01:11.520 --> 01:13.000
+we have duplicates in the table.
+
+01:13.120 --> 01:15.320
+So let's go and write a query for that.
+
+01:15.360 --> 01:18.040
+So what we're going to do we're going to go with the customer ID.
+
+01:18.120 --> 01:19.880
+And then we're going to go and count.
+
+01:19.880 --> 01:21.880
+And then we have to group up the data.
+
+01:22.000 --> 01:24.440
+So group by based on that primary key.
+
+01:24.560 --> 01:26.320
+And of course we don't need all the results.
+
+01:26.320 --> 01:28.200
+We need only where we have an issue.
+
+01:28.200 --> 01:33.240
+So we're going to say having counts higher than one.
+
+01:33.240 --> 01:37.200
+So we are interested in the values where the count is higher than one.
+
+01:37.200 --> 01:39.160
+So let's go and execute it.
+
+01:39.200 --> 01:41.360
+Now as you can see we have issue in this table.
+
+01:41.360 --> 01:47.560
+We have duplicates because all those IDs exist more than one in the table, which is completely wrong.
+
+01:47.560 --> 01:49.240
+We should have the primary key unique.
+
+01:49.240 --> 01:54.560
+And you can see as well we have three records where the primary key is empty, which is as well a bad
+
+01:54.560 --> 01:54.960
+thing.
+
+01:55.000 --> 01:56.280
+Now there is an issue here.
+
+01:56.280 --> 02:00.040
+If we have only one null, it will not be here at the result.
+
+02:00.040 --> 02:04.960
+So what I'm going to do, I'm going to go over here and say, or the primary key is null.
+
+02:05.400 --> 02:07.840
+Just in case, if we have only one null.
+
+02:07.880 --> 02:10.080
+I'm still interested to see the results.
+
+02:10.080 --> 02:12.920
+So if I go and run it again we will get the same results.
+
+02:12.920 --> 02:15.560
+So this is equality check that you can do on the table.
+
+02:15.560 --> 02:18.280
+And as you can see it is not meeting the expectation.
+
+02:18.280 --> 02:20.760
+So that means we have to do something about it.
+
+02:20.760 --> 02:23.120
+So let's go and create a new query.
+
+02:23.120 --> 02:23.960
+So here what we're going to do.
+
+02:23.960 --> 02:29.040
+We can start writing the query that is doing the data transformation and the data cleansing.
+
+02:29.040 --> 02:31.480
+So let's start again by selecting the data.
+
+02:35.960 --> 02:37.240
+And execute it again.
+
+02:37.240 --> 02:40.160
+So now what I usually do I go and focus on the issue.
+
+02:40.160 --> 02:43.200
+So for example let's go and take one of those values.
+
+02:43.200 --> 02:46.080
+And I focus on it before I start writing the transformation.
+
+02:46.080 --> 02:50.440
+So we're going to say where customer ID equal to this value.
+
+02:50.480 --> 02:50.880
+All right.
+
+02:50.880 --> 02:54.920
+So now as you can see we have here the issue where the ID exists three times.
+
+02:54.920 --> 02:57.800
+But actually we are interested only on one of them.
+
+02:57.800 --> 03:00.240
+So the question is how to pick one of those.
+
+03:00.280 --> 03:03.800
+Usually we search for a timestamp or a date value to help us.
+
+03:03.800 --> 03:09.480
+So if you check the creation date over here, we can understand that this record, this one over here
+
+03:09.480 --> 03:13.200
+is the newest one and the previous two are older than it.
+
+03:13.200 --> 03:18.880
+So that means if you have to go and pick one of those values, I would like to get the latest one because
+
+03:18.880 --> 03:21.360
+it holds the most fresh information.
+
+03:21.360 --> 03:28.360
+So what we have to do is we have to go and rank all those values based on the create date and only pick
+
+03:28.400 --> 03:29.680
+the highest one.
+
+03:29.680 --> 03:31.880
+So that means we need a ranking function.
+
+03:31.880 --> 03:35.240
+And for that in scale we have the amazing window functions.
+
+03:35.240 --> 03:36.880
+So let's go and do that.
+
+03:36.920 --> 03:43.080
+We will use the function row number over and then partition by.
+
+03:43.640 --> 03:46.920
+And here we have to divide the table by the customer ID.
+
+03:46.920 --> 03:49.680
+So we're going to divide it by the customer ID.
+
+03:49.680 --> 03:53.880
+And in order now to rank those rows we have to sort the data by something.
+
+03:53.880 --> 03:54.960
+So order by.
+
+03:55.000 --> 03:58.720
+And as we discussed we want to sort the data by the creation date.
+
+03:58.720 --> 04:05.480
+So create date and we're going to sort it descending so the highest first, then the lowest.
+
+04:05.480 --> 04:06.760
+So let's go and do that.
+
+04:06.800 --> 04:10.000
+And now we're going to go and give it a name flag last.
+
+04:10.000 --> 04:11.880
+So now let's go and execute it.
+
+04:11.920 --> 04:14.080
+Now the data is sorted by the creation date.
+
+04:14.080 --> 04:18.120
+And you can see over here that this record is the number one.
+
+04:18.120 --> 04:21.560
+Then the one that is older is two and the oldest one is three.
+
+04:21.640 --> 04:24.600
+Of course we are interested in the rank number one.
+
+04:24.600 --> 04:27.560
+Now let's go and remove the filter and check everything.
+
+04:27.600 --> 04:33.080
+So now if you have a look to the table you can see that on the flag we have everywhere like one.
+
+04:33.200 --> 04:36.200
+And that's because those primary keys exist only one.
+
+04:36.200 --> 04:39.120
+But sometimes we will not have one, we will have two, three and so on.
+
+04:39.160 --> 04:42.040
+If there is like duplicates, we can go of course, and do a double check.
+
+04:42.040 --> 04:44.840
+So let's go over here and say select star.
+
+04:46.000 --> 04:51.280
+From this query we're going to say where flag last is equal to one.
+
+04:51.280 --> 04:52.720
+So let's go and query it.
+
+04:52.720 --> 04:57.400
+And now you can see all the data that we don't need because they are causing duplicates in the primary
+
+04:57.400 --> 04:57.720
+key.
+
+04:57.720 --> 04:59.760
+And they have like an old status.
+
+04:59.760 --> 05:02.480
+So what we're going to do we're going to say equal to one.
+
+05:02.480 --> 05:07.320
+And with that we guarantee that our primary key is unique and each value exists only once.
+
+05:07.320 --> 05:12.680
+So if I go and query it like this, you will see we will not find any duplicates inside our table.
+
+05:12.680 --> 05:14.160
+And we can go and check that of course.
+
+05:14.160 --> 05:20.440
+So let's go and check this primary key I'm going to say and customer ID equal to this value.
+
+05:20.440 --> 05:22.720
+And you can see it exists now only once.
+
+05:22.720 --> 05:26.000
+And we are getting the freshest data from this primary key.
+
+05:26.000 --> 05:31.000
+So with that we have defined like transformation in order to remove any duplicates okay.
+
+05:31.040 --> 05:32.680
+So now moving on to the next one.
+
+05:32.720 --> 05:38.280
+As you can see in our table we have a lot of values where they are like string values.
+
+05:38.320 --> 05:42.240
+Now for these string values we have to check the unwanted spaces.
+
+05:42.240 --> 05:46.360
+So now let's go and write the query that's going to detect those unwanted spaces.
+
+05:46.360 --> 05:54.920
+So we're going to say select this column the first name from our table bronze customer information.
+
+05:54.920 --> 06:00.240
+So let's go and query it now by just looking to the data it's going to be really hard to find those
+
+06:00.240 --> 06:03.800
+unwanted spaces, especially if they are at the end of the world.
+
+06:03.800 --> 06:07.320
+But there is a very easy way in order to detect those issues.
+
+06:07.320 --> 06:09.120
+So what we're going to do, we're going to do a filter.
+
+06:09.120 --> 06:15.720
+So now we're going to say the first name is not equal to the first name after trimming the values.
+
+06:15.720 --> 06:17.920
+So if you use the function trim what it's going to do.
+
+06:17.920 --> 06:21.800
+It's going to go and remove all the leading and trailing spaces.
+
+06:22.240 --> 06:23.400
+So the first name.
+
+06:23.400 --> 06:29.320
+So if this value is not equal to the first name after trimming it then we have an issue.
+
+06:29.320 --> 06:30.560
+So it is very simple.
+
+06:30.560 --> 06:32.080
+Let's go and execute it.
+
+06:32.080 --> 06:38.200
+So now in the result we will get a list of all first names where we have spaces either at the start
+
+06:38.200 --> 06:39.240
+or at the end.
+
+06:39.280 --> 06:44.040
+So again the expectation here is no results.
+
+06:44.280 --> 06:44.920
+And the same thing.
+
+06:44.920 --> 06:48.240
+We can go and check something else like for example the last name.
+
+06:48.520 --> 06:51.720
+So let's go and do that over here and here.
+
+06:51.720 --> 06:53.000
+Let's go and execute it.
+
+06:53.040 --> 06:59.480
+We see in the results we have as well 17 customers where they have like space in their last name, which
+
+06:59.480 --> 07:00.840
+is naturally good.
+
+07:00.880 --> 07:05.120
+And we can go and keep checking all the string values that we have inside the table.
+
+07:05.160 --> 07:06.480
+So for example the gender.
+
+07:06.480 --> 07:10.760
+So let's go and check that and execute.
+
+07:10.800 --> 07:12.760
+Now as you can see we don't have any results.
+
+07:12.760 --> 07:17.880
+That means the quality of the gender is better and we don't have any unwanted spaces.
+
+07:17.880 --> 07:22.280
+So now we have to go and write transformation in order to clean up those two columns.
+
+07:22.320 --> 07:27.320
+Now what I'm going to do, I'm just going to go and list all the columns in the query instead of the
+
+07:27.360 --> 07:27.800
+star.
+
+07:27.840 --> 07:28.160
+All right.
+
+07:28.160 --> 07:30.600
+So now I have a list of all the columns that I need.
+
+07:30.640 --> 07:35.520
+And now what we have to do is to go to those two columns and start removing the unwanted spaces.
+
+07:35.840 --> 07:37.440
+So we will just use the trim.
+
+07:37.440 --> 07:38.320
+It's very simple.
+
+07:39.840 --> 07:42.200
+And give it a name of course the same name.
+
+07:42.320 --> 07:45.320
+And we will trim as well the last name.
+
+07:45.600 --> 07:47.160
+So let's go and query this.
+
+07:47.160 --> 07:51.040
+And with that we have cleaned up those two columns from any unwanted spaces.
+
+07:51.080 --> 07:51.240
+Okay.
+
+07:51.280 --> 07:52.200
+So now moving on.
+
+07:52.200 --> 07:53.800
+We have those two informations.
+
+07:53.800 --> 07:56.520
+We have the maritalstatus and as well the gender.
+
+07:56.520 --> 08:01.680
+If you check the values inside those two columns as you can see we have here low cardinality.
+
+08:01.680 --> 08:06.930
+So we have limited numbers of possible values that is used inside those two columns.
+
+08:06.930 --> 08:11.890
+So what you usually do is to go and check the data consistency inside those two columns.
+
+08:11.890 --> 08:14.050
+So it's very simple what we're going to do.
+
+08:14.090 --> 08:15.090
+We can do the following.
+
+08:15.130 --> 08:16.810
+We're going to say distinct.
+
+08:18.210 --> 08:19.970
+And we're going to check the values.
+
+08:20.010 --> 08:21.610
+Let's go and do that.
+
+08:21.610 --> 08:26.970
+And now as you can see we have only three possible values either null f or m which is okay.
+
+08:27.010 --> 08:31.930
+We can stay like this of course, but we can make a rule in our project where we can say we will not
+
+08:31.930 --> 08:34.050
+be working with data abbreviations.
+
+08:34.050 --> 08:37.450
+We will go and use only friendly full names.
+
+08:37.450 --> 08:41.090
+So instead of having an F, we're going to have like a full word female.
+
+08:41.090 --> 08:43.650
+And instead of M we're going to have like male.
+
+08:43.650 --> 08:45.730
+And we make it as a rule for the whole project.
+
+08:45.730 --> 08:50.410
+So each time we find the gender informations we try to give the full name of it.
+
+08:50.410 --> 08:53.610
+So let's go and map those two values to a friendly one.
+
+08:53.610 --> 08:57.290
+So we're going to go to the gender over here and say casewhen.
+
+08:57.330 --> 09:00.330
+And we're going to say the gender is equal to f.
+
+09:01.170 --> 09:03.250
+Then make it a female.
+
+09:04.130 --> 09:12.210
+And when it is equal to M, then map it to male.
+
+09:12.850 --> 09:15.490
+And now we have to make decision about the nulls.
+
+09:15.490 --> 09:16.930
+As you can see over here we have nulls.
+
+09:16.930 --> 09:22.370
+So do we want to leave it as a null or we want to use always the value unknown.
+
+09:22.370 --> 09:27.050
+So with that we are replacing the missing values with standard default value.
+
+09:27.050 --> 09:28.650
+Or you can leave it as null.
+
+09:28.690 --> 09:33.370
+But let's say in our project that we are replacing all the missing value with a default value.
+
+09:33.370 --> 09:34.970
+So let's go and do that.
+
+09:35.010 --> 09:41.850
+We can say else I'm going to go with the Na not available or you can go with the unknown of course.
+
+09:41.850 --> 09:45.290
+So that's for the gender information like this.
+
+09:45.290 --> 09:47.250
+And we can go and remove the old one.
+
+09:47.290 --> 09:51.770
+And now there is one thing that I usually do in this case where sometimes what happens currently we
+
+09:51.810 --> 09:56.890
+are getting the capital F and the capital M, but maybe in the time something changed and you will get
+
+09:56.890 --> 09:58.650
+like lower M and lower F.
+
+09:58.690 --> 10:04.210
+So just to make sure in those cases we still are able to map those values to the correct value.
+
+10:04.210 --> 10:09.370
+What we're going to do, we're going to just use the function upper just to make sure that if we get
+
+10:09.370 --> 10:13.090
+any lowercase values, we are able to catch it.
+
+10:13.250 --> 10:15.530
+So the same thing over here as well.
+
+10:16.330 --> 10:18.130
+And now one more thing that you can add as well.
+
+10:18.170 --> 10:23.450
+Of course, if you are not trusting the data because we saw some unwanted spaces in the first name and
+
+10:23.450 --> 10:27.330
+the last name, you might not trust that in the future you will get here as well.
+
+10:27.370 --> 10:35.610
+Unwanted spaces you can go and make sure to trim everything just to make sure that you are catching
+
+10:35.610 --> 10:36.610
+all those cases.
+
+10:36.650 --> 10:37.970
+So that's it for now.
+
+10:37.970 --> 10:39.530
+Let's go and execute.
+
+10:39.570 --> 10:41.930
+Now, as you can see, we don't have an M and an F.
+
+10:41.970 --> 10:44.810
+We have a full word male and female.
+
+10:44.930 --> 10:47.210
+And if we don't have a value we don't have a null.
+
+10:47.210 --> 10:48.370
+We are getting here.
+
+10:48.410 --> 10:49.450
+Not available.
+
+10:49.490 --> 10:52.650
+Now we can go and do the same stuff for the marital status.
+
+10:52.690 --> 10:56.850
+You can see as well we have only three possibilities the s and null and an M.
+
+10:56.890 --> 10:58.930
+We can go and do the same stuff.
+
+10:58.930 --> 11:01.370
+So I will just go and copy everything from here.
+
+11:01.370 --> 11:06.930
+And I will go and use the marital status and just remove this one from here.
+
+11:06.930 --> 11:08.530
+And now what are the possible values?
+
+11:08.530 --> 11:11.610
+We have the s, so it's going to be single.
+
+11:11.810 --> 11:15.850
+We have an M for married and we have as well a null.
+
+11:15.850 --> 11:18.370
+And with that we are getting the not available.
+
+11:18.370 --> 11:22.730
+So with that we are making as well data standardizations for this column.
+
+11:22.850 --> 11:24.770
+So let's go and execute it.
+
+11:24.770 --> 11:24.930
+Now.
+
+11:24.930 --> 11:27.370
+As you can see we don't have those short values.
+
+11:27.370 --> 11:31.930
+We have a full friendly value for the status and as well for the gender.
+
+11:31.930 --> 11:35.930
+And at the same time we are handling the nulls inside those two columns.
+
+11:35.930 --> 11:37.810
+So with that we are done with those two columns.
+
+11:37.850 --> 11:40.210
+And now we can go to the last one that create dates.
+
+11:40.210 --> 11:46.050
+For this type of informations, we make sure that this column is a real date and not as a string or
+
+11:46.090 --> 11:46.730
+varchar.
+
+11:46.770 --> 11:50.770
+And as we defined it in the data type, it is a date which is completely correct.
+
+11:50.770 --> 11:52.970
+So nothing to do with this column.
+
+11:53.010 --> 11:56.690
+And now the next step is that we're going to go and write the Insert statement.
+
+11:56.690 --> 11:57.450
+So how are we going to do it.
+
+11:57.450 --> 12:05.250
+We're going to go to the start over here and say insert into silver dot customer info.
+
+12:05.290 --> 12:09.050
+Now we have to go and specify all the columns that should be inserted.
+
+12:09.050 --> 12:10.970
+So we're going to go and type it.
+
+12:10.970 --> 12:12.210
+So something like this.
+
+12:12.210 --> 12:14.170
+And then we have the query over here.
+
+12:14.370 --> 12:15.890
+Let's go and execute it.
+
+12:15.890 --> 12:17.250
+So let's do that.
+
+12:17.250 --> 12:21.370
+So with that we have inserted clean data inside the silver table.
+
+12:21.370 --> 12:22.130
+So now what we're going to do.
+
+12:22.130 --> 12:27.330
+We're going to go and take all the queries that we have used in order to check the quality of the bronze.
+
+12:27.370 --> 12:29.730
+And let's go and take it to another query.
+
+12:29.730 --> 12:32.450
+And instead of having bronze we're going to say silver.
+
+12:32.450 --> 12:34.730
+So this is about the primary key.
+
+12:34.770 --> 12:36.210
+Let's go and execute it.
+
+12:36.210 --> 12:36.850
+Perfect.
+
+12:36.850 --> 12:39.890
+We don't have any results so we don't have any duplicates.
+
+12:39.890 --> 12:41.770
+The same thing for the next one.
+
+12:42.610 --> 12:46.570
+So the silver and it was for the first name.
+
+12:46.570 --> 12:49.930
+So let's go and check the first name and run it.
+
+12:49.930 --> 12:51.850
+As you can see there is no results.
+
+12:51.850 --> 12:52.650
+It is perfect.
+
+12:52.650 --> 12:54.010
+We don't have any issues.
+
+12:54.170 --> 12:59.730
+You can of course go and check the last name and run it again.
+
+12:59.730 --> 13:01.650
+We don't have any result over here.
+
+13:01.690 --> 13:08.130
+And now we can go and check those low cardinality columns like for example, the gender.
+
+13:08.170 --> 13:09.530
+Let's go and execute it.
+
+13:09.530 --> 13:13.770
+So as you can see, we have that not available or the unknown male and female.
+
+13:13.770 --> 13:14.490
+So perfect.
+
+13:14.490 --> 13:19.290
+And you can go and have a final look to the table to the silver customer info.
+
+13:19.330 --> 13:20.290
+Let's go and check that.
+
+13:20.290 --> 13:22.570
+So now we can have a look to all those columns.
+
+13:22.570 --> 13:24.490
+As you can see everything looks perfect.
+
+13:24.490 --> 13:30.250
+And you can see it is working this metadata information that we have added to that table definition.
+
+13:30.250 --> 13:36.170
+Now it says when we have inserted all those records to the table, which is really amazing information
+
+13:36.170 --> 13:37.810
+to have it track and audit.
+
+13:37.850 --> 13:38.050
+Okay.
+
+13:38.090 --> 13:42.410
+So now by looking to the script we have done different types of data transformations.
+
+13:42.410 --> 13:44.930
+The first one is with the first name and last name.
+
+13:45.130 --> 13:48.690
+Here we have done trimming removing unwanted spaces.
+
+13:48.690 --> 13:50.730
+This is one of the types of data cleansing.
+
+13:50.730 --> 13:56.730
+So we remove unnecessary spaces or unwanted characters to ensure data consistency.
+
+13:56.770 --> 14:00.010
+Now moving on to the next transformation, we have this case win.
+
+14:00.010 --> 14:05.570
+So what we have done here is data normalization or we call it sometimes data standardization.
+
+14:05.570 --> 14:12.290
+So this transformation is type of data cleansing where we can map coded values to meaningful user friendly
+
+14:12.290 --> 14:13.090
+description.
+
+14:13.090 --> 14:16.450
+And we have done the same transformation as well to the gender.
+
+14:16.490 --> 14:19.090
+Another type of transformation that we have done as well.
+
+14:19.090 --> 14:23.330
+In the same case when is that we have handled the missing values.
+
+14:23.330 --> 14:26.530
+So instead of nulls we can have not available.
+
+14:26.530 --> 14:31.970
+So handling missing data is as well type of data cleansing where we are filling the blanks by adding
+
+14:31.970 --> 14:33.890
+for example a default value.
+
+14:33.890 --> 14:39.050
+So instead of having an empty string or a null, we're going to have a default value like the not available
+
+14:39.050 --> 14:39.850
+or unknown.
+
+14:39.890 --> 14:45.010
+Another type of data and transformations that we have done in this script is we have removed the duplicates.
+
+14:45.010 --> 14:46.770
+So removing duplicates is as well.
+
+14:46.810 --> 14:54.450
+Type of data cleansing, where we ensure only one record for each primary key, by identifying and retaining
+
+14:54.490 --> 14:59.290
+only the most relevant role to ensure there is no duplicates inside our data.
+
+14:59.290 --> 15:03.410
+And as we are removing the duplicates, of course we are doing data filtering.
+
+15:03.410 --> 15:07.890
+So those are the different types of data transformations that we have done in this script.

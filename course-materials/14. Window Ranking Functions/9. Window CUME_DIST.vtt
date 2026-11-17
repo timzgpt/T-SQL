@@ -1,0 +1,298 @@
+WEBVTT
+
+00:03.960 --> 00:04.600
+Okay everyone.
+
+00:04.600 --> 00:08.520
+So with that, we have covered everything about the integer based ranking functions.
+
+00:08.560 --> 00:10.600
+Now we're going to talk about the second methods.
+
+00:10.600 --> 00:13.320
+We have the percentage based ranking functions.
+
+00:13.600 --> 00:17.840
+And here we have two functions the cube dist and as well the percentile.
+
+00:17.960 --> 00:19.440
+So now let's have a quick recap.
+
+00:19.520 --> 00:25.840
+So with the percentage based ranking scale going to go and calculate a relative position as a percentage
+
+00:25.960 --> 00:27.400
+and assign it for each row.
+
+00:27.640 --> 00:32.720
+So the output is going to be a continuous normalized scale from 0 to 1.
+
+00:32.720 --> 00:36.480
+And this is really amazing in order to do distribution analysis.
+
+00:36.600 --> 00:42.720
+So those functions can consider in their calculation the overall total the whole size of the data sets
+
+00:42.920 --> 00:48.320
+which can help us in order to find out the contribution of each value to the overall total.
+
+00:48.360 --> 00:53.640
+And now in SQL, in order to generate the percentage, we have two different formulas.
+
+00:53.640 --> 00:58.520
+So in one hand we have the function cube and in the other hand we have the percent rank.
+
+00:58.520 --> 01:04.120
+So that means we have two different functions with different formulas in order to generate and calculate
+
+01:04.120 --> 01:05.000
+the percentage.
+
+01:05.040 --> 01:07.720
+So now let's start with the first function the dist.
+
+01:11.560 --> 01:12.200
+All right everyone.
+
+01:12.200 --> 01:13.760
+So now let's start with the first function.
+
+01:13.760 --> 01:18.320
+We have the dist and it stands for cumulative distribution.
+
+01:18.360 --> 01:23.200
+It's going to go and focus or calculate the distribution of your data points within a window.
+
+01:23.200 --> 01:28.400
+So what this means in order to understand it we're going to go and have a very simple example to understand
+
+01:28.400 --> 01:30.240
+how SQL works with this function.
+
+01:30.240 --> 01:30.840
+So let's go.
+
+01:30.880 --> 01:31.160
+All right.
+
+01:31.200 --> 01:34.040
+Again we have our very simple example of the sales.
+
+01:34.040 --> 01:35.560
+And we have the following query.
+
+01:35.760 --> 01:39.040
+So cume dist then we don't give any argument inside it.
+
+01:39.040 --> 01:40.040
+So it's going to be empty.
+
+01:40.240 --> 01:45.360
+And then we're going to be like usual order by sales descending from the highest to the lowest.
+
+01:45.360 --> 01:46.840
+And the order by is must.
+
+01:46.840 --> 01:49.120
+So the first step is we're going to go and sort the data.
+
+01:49.120 --> 01:52.120
+We have it already sorted from the highest to the lowest.
+
+01:52.120 --> 01:56.720
+So now the next step is that SQL can go and start calculating the percentage for each row.
+
+01:56.960 --> 01:58.760
+And we have a very simple formula.
+
+01:58.800 --> 02:05.520
+It says the shrewdest equals to the position number of the value divided by the number of rows.
+
+02:05.560 --> 02:09.760
+So now the next step is going to go and start calculate the percentage for each row.
+
+02:09.920 --> 02:11.800
+And we have this very simple formula.
+
+02:11.960 --> 02:18.640
+It says the oldest equals to the position number of the value divided by the number of rows.
+
+02:18.840 --> 02:19.480
+It's very simple.
+
+02:19.480 --> 02:20.800
+Let's do it step by step.
+
+02:20.920 --> 02:24.000
+So SQL is going to start with the first value in our list.
+
+02:24.000 --> 02:26.030
+So it's going to be calculated like this.
+
+02:26.030 --> 02:28.870
+So what is the position number of the first value.
+
+02:29.150 --> 02:30.310
+It's going to be one right.
+
+02:30.310 --> 02:32.710
+So this is the first value in our list.
+
+02:32.950 --> 02:34.750
+And what is the total number of rows.
+
+02:34.750 --> 02:36.190
+We have five rows right.
+
+02:36.190 --> 02:37.710
+So 12345.
+
+02:38.070 --> 02:40.190
+So we're going to divide one by five.
+
+02:40.350 --> 02:42.750
+And the result is going to be 0.2.
+
+02:42.910 --> 02:45.870
+So this is going to be the first value for the first row okay.
+
+02:45.910 --> 02:47.950
+So now scale is going to go to the next row.
+
+02:47.950 --> 02:50.030
+And this time we're going to get a special case.
+
+02:50.030 --> 02:52.070
+As you can see we have the 80 twice.
+
+02:52.310 --> 02:53.550
+So we have here a tie.
+
+02:53.590 --> 02:55.790
+So now first we need the position number.
+
+02:56.150 --> 02:58.830
+As you can see we are at the position number two right.
+
+02:58.870 --> 03:05.830
+But since we have the at multiple times SQL going to go and take the last position that we see the value
+
+03:05.870 --> 03:06.270
+80.
+
+03:06.550 --> 03:09.750
+And the last position is going to be the record number three.
+
+03:09.910 --> 03:15.910
+So that's why it's going to say for this record it's going to be the position number three and not two.
+
+03:16.110 --> 03:18.230
+And then it's going to go and divide it by five.
+
+03:18.230 --> 03:21.390
+And we will get the value of 0.6.
+
+03:21.390 --> 03:23.830
+So this is the most confusing thing with this function.
+
+03:23.830 --> 03:28.750
+So if SQL finds a tie it will completely ignore the current position number.
+
+03:28.750 --> 03:29.830
+So we don't have two.
+
+03:30.110 --> 03:34.310
+It's going to go and take the last position number for the same value.
+
+03:34.310 --> 03:37.910
+And the last in our list is going to be the record number three.
+
+03:37.910 --> 03:39.790
+So that's why we have three over here.
+
+03:39.830 --> 03:40.030
+Okay.
+
+03:40.070 --> 03:41.150
+So now let's keep moving.
+
+03:41.190 --> 03:42.470
+Let's go to the third row.
+
+03:42.470 --> 03:44.750
+And as you can see we are again in the tie.
+
+03:44.870 --> 03:47.630
+But this time this is the last time we see 80.
+
+03:47.670 --> 03:49.190
+So next we don't have 80.
+
+03:49.510 --> 03:50.350
+So what's going to happen.
+
+03:50.350 --> 03:51.910
+We're going to have the exact same results.
+
+03:51.910 --> 03:54.070
+So it's going to be three divided by five.
+
+03:54.590 --> 03:59.110
+So as you can see if we have a tie they're going to share the same percentage.
+
+03:59.110 --> 04:04.510
+So that means with the oldest if you have same values they're going to share the same rank.
+
+04:04.790 --> 04:07.270
+So let's keep moving to the fourth one.
+
+04:07.270 --> 04:09.350
+So now what is the position number of the 50.
+
+04:09.390 --> 04:11.070
+We are at the record four.
+
+04:11.310 --> 04:16.750
+So position number four divided by five we will get zero comma eight okay.
+
+04:16.790 --> 04:18.630
+So now let's move to the last one.
+
+04:18.630 --> 04:19.990
+And it is the easiest one.
+
+04:19.990 --> 04:21.910
+So which position do we have over here.
+
+04:21.910 --> 04:23.910
+It is the position number five.
+
+04:23.950 --> 04:25.030
+It's the last one.
+
+04:25.030 --> 04:26.590
+And the number of rows is five.
+
+04:26.750 --> 04:28.310
+That's why we will get one.
+
+04:28.310 --> 04:29.310
+So guys that's it.
+
+04:29.310 --> 04:31.630
+This is how the cumulative distribution works.
+
+04:31.630 --> 04:36.310
+Once you understand the formula it's going to be very easy in order to understand the output.
+
+04:36.310 --> 04:41.350
+So as you can see calculating the percentage always depends on the total size of our datasets.
+
+04:41.390 --> 04:43.150
+You can see here the number of rows.
+
+04:43.150 --> 04:47.790
+So with this we're going to get an output that helps us in order to understand the distribution of our
+
+04:47.790 --> 04:49.870
+data points within the datasets.

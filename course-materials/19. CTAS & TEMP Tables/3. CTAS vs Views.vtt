@@ -1,0 +1,211 @@
+WEBVTT
+
+00:03.920 --> 00:05.800
+Okay, so now you might ask, you know what?
+
+00:06.040 --> 00:08.480
+The CTAs are very similar to the views.
+
+00:08.480 --> 00:12.920
+We have a query and the output of this query is going to be like an object in the database.
+
+00:12.920 --> 00:14.920
+So what are the differences between them.
+
+00:15.200 --> 00:16.160
+Let's check this.
+
+00:16.160 --> 00:20.480
+Now let's say that in our database we have a table that has three columns A, B, c.
+
+00:20.520 --> 00:24.360
+And now what we can do we can go and create a view based on a query.
+
+00:24.360 --> 00:28.200
+So you create the DDL statement in order to create the view in the database.
+
+00:28.200 --> 00:31.160
+And of course the database is going to go and store the query in the database.
+
+00:31.360 --> 00:32.840
+And it's going to be empty.
+
+00:32.840 --> 00:36.200
+So there will be no data because views does not store any data.
+
+00:36.200 --> 00:39.560
+And the query of the view will not be yet executed.
+
+00:39.560 --> 00:43.280
+But now in the other hand, if you go and create a table using CTAs.
+
+00:43.440 --> 00:46.960
+So here again we have a query attached to the object to the table.
+
+00:46.960 --> 00:48.280
+So here what happens.
+
+00:48.280 --> 00:53.000
+The database has to execute the query in order to understand the structure.
+
+00:53.240 --> 00:56.960
+And as well the data that should be inserted inside the table.
+
+00:56.960 --> 00:59.720
+So our SQL query is going to be executed.
+
+00:59.720 --> 01:03.520
+And the result of the query is going to be inserted inside the table.
+
+01:03.520 --> 01:08.320
+So that means this new table is storing already the result of the query.
+
+01:08.320 --> 01:11.360
+So now this is the first differences between the table and view.
+
+01:11.400 --> 01:17.690
+As you create view the query will not be executed, and we don't have anything about the result of the
+
+01:17.690 --> 01:18.130
+query.
+
+01:18.170 --> 01:24.410
+Where in the cities we have already result of the query stored inside the table and everything is prepared.
+
+01:24.410 --> 01:28.290
+So now let's see what's going to happen once the user selects something from the view.
+
+01:28.410 --> 01:35.130
+So now the database is going to go for the first time executing the query of the view in order to fetch
+
+01:35.130 --> 01:39.810
+the data from the original table and then present it as a result for the user.
+
+01:39.810 --> 01:45.090
+But now in the other hand, if the user go and query the table that is created from the cities.
+
+01:45.250 --> 01:46.370
+So now what can happen?
+
+01:46.410 --> 01:53.010
+SQL will not execute again the query of the cities because the database already done that and prepared
+
+01:53.010 --> 01:53.770
+everything.
+
+01:53.770 --> 01:57.250
+So that means we are not querying anything from the original table.
+
+01:57.250 --> 02:02.770
+And the data can be directly fetched from the new table so the users can get immediately the results
+
+02:02.770 --> 02:05.530
+from our table that is created from the cities.
+
+02:05.730 --> 02:08.970
+So here comes the second difference between the tables and views.
+
+02:09.130 --> 02:15.490
+The views are slower than Chtis and that's because the database has here an extra task.
+
+02:15.530 --> 02:19.410
+It must execute the query of the view in order to get the data.
+
+02:19.410 --> 02:24.650
+But in the cities, the query is going to be faster than the view, because we have already executed
+
+02:24.650 --> 02:26.780
+everything and prepared it for the user.
+
+02:26.780 --> 02:30.580
+So that's why tables from CTAs are way faster than views.
+
+02:30.580 --> 02:35.940
+And now there is another difference and perspective about this, which is from my point of view, is
+
+02:35.940 --> 02:37.580
+more important than the performance.
+
+02:37.580 --> 02:43.340
+So now let's say that in the next day we are doing data updates on the original table, like we are
+
+02:43.340 --> 02:46.340
+doing updates on the column C and as well in the column B.
+
+02:46.380 --> 02:49.860
+So now let's see what this means for the user if they are using views.
+
+02:49.860 --> 02:53.100
+So the user in the next day is executing again the same query.
+
+02:53.100 --> 02:58.260
+And again here the database has to execute the query of the view in order to fetch the data from the
+
+02:58.260 --> 02:59.300
+original table.
+
+02:59.300 --> 03:05.060
+So that means today in the views we are getting different data than yesterday because we have a new
+
+03:05.060 --> 03:11.380
+data and new updates, and the user in the result can see as well the new updates and the fresh data.
+
+03:11.380 --> 03:16.700
+So the user is seeing exactly the status of the data in the original tables.
+
+03:16.700 --> 03:21.740
+But now let's see what's going to happen if the user go and query the table from the CTAs.
+
+03:21.940 --> 03:26.660
+So in the table of the CTAs, we are still having the data from yesterday.
+
+03:26.700 --> 03:31.380
+All those new updates from the original data will not be reflected in this new table.
+
+03:31.420 --> 03:36.980
+Because once the user selects something from this table, the database will not go and query or fetch
+
+03:36.980 --> 03:42.140
+the new changes from the original table, because we have already prepared the data from yesterday.
+
+03:42.140 --> 03:49.740
+So that means our user now is getting all data from the CTAs table, and the only way to get new, fresh
+
+03:49.740 --> 03:54.580
+data from the CTAs is to re-execute the CTS query.
+
+03:54.580 --> 04:00.340
+And of course, this is another step and it is harder to maintain the table from the CTS.
+
+04:00.580 --> 04:05.620
+And this is a big difference for the users between the views and the tables from the CTAs.
+
+04:05.660 --> 04:06.900
+Now think about views.
+
+04:06.900 --> 04:12.380
+You are ordering a pizza at restaurants, so every time you are querying the view, you are placing
+
+04:12.420 --> 04:13.180
+an order.
+
+04:13.220 --> 04:18.020
+The chef can go and make a pizza from scratch using the freshest ingredients.
+
+04:18.020 --> 04:21.340
+So that means you are always getting a fresh hot pizza.
+
+04:21.380 --> 04:26.220
+And think about that CTAs as like a frozen pizza from a grocery store.
+
+04:26.340 --> 04:30.900
+The pizza was prepared earlier and stored in the freezer, and if you want to eat it, you have to go
+
+04:30.900 --> 04:32.300
+and heat it up in the oven.
+
+04:32.300 --> 04:37.260
+But it's still not like a fresh pizza that is made on the spot and from the scratch.
+
+04:37.260 --> 04:41.820
+Now, I made myself hungry because I love pizza, so I think I'm gonna go for a quick break.

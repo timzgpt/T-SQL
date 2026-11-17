@@ -1,0 +1,334 @@
+WEBVTT
+
+00:03.920 --> 00:04.320
+All right.
+
+00:04.320 --> 00:05.600
+So what is that part?
+
+00:05.640 --> 00:10.400
+That part can go and return specific part of the date as a number.
+
+00:10.440 --> 00:10.760
+All right.
+
+00:10.760 --> 00:11.800
+So now back to our example.
+
+00:11.800 --> 00:14.800
+We have learned how to extract the day month and year.
+
+00:14.800 --> 00:19.320
+But of course now in a day we have more informations that we could extract.
+
+00:19.360 --> 00:23.200
+Not only the three we could extract for example the week right.
+
+00:23.240 --> 00:24.240
+The quarter.
+
+00:24.280 --> 00:27.720
+So all those informations are as well stored in this date.
+
+00:27.720 --> 00:30.080
+We cannot see it like as a value.
+
+00:30.080 --> 00:33.720
+But inside the SQL you can extract the week and quarter.
+
+00:33.720 --> 00:39.880
+But we don't have a function dedicated for those stuff because they are not commonly used like the year
+
+00:39.880 --> 00:40.800
+and month and day.
+
+00:40.800 --> 00:45.000
+But still we can extract those information using the date parts.
+
+00:45.040 --> 00:49.960
+For example, we can say date part and we can specify the part as a week.
+
+00:49.960 --> 00:55.960
+And with that SQL can return for this example 34 and maybe another situation you are interested in the
+
+00:55.960 --> 00:56.920
+quarter, right?
+
+00:56.920 --> 01:00.130
+So you can specify it like this date part quarter.
+
+01:00.130 --> 01:04.730
+So we are interested in the part of quarter and in the output you will get three.
+
+01:04.730 --> 01:07.010
+So this is exactly the power of the date part.
+
+01:07.050 --> 01:12.170
+You can go and extract way more parts that is available in these dates.
+
+01:12.170 --> 01:16.010
+And one more thing to notice about the date part, year, month and day.
+
+01:16.330 --> 01:20.890
+All of them are always generating the output and integer in number.
+
+01:20.890 --> 01:26.810
+So we have the for the quarter, three for the week, 30 for the day 20, 20, 25, and so on.
+
+01:26.810 --> 01:29.410
+So all of those informations are integer.
+
+01:29.410 --> 01:33.850
+So integer is the data type of the output of these functions okay.
+
+01:33.890 --> 01:35.730
+So let's have a look to the syntax of the date part.
+
+01:35.770 --> 01:40.290
+Let's start with the function name date parts and it accepts two parameters.
+
+01:40.330 --> 01:43.370
+The first one is the part that we want to extract.
+
+01:43.370 --> 01:45.010
+So we want to define what do you want.
+
+01:45.010 --> 01:47.650
+We want the month, the day, the year and so on.
+
+01:47.650 --> 01:50.370
+And the second parameter is the date itself.
+
+01:50.370 --> 01:51.370
+So let's have an example.
+
+01:51.370 --> 01:52.810
+We can say date parts.
+
+01:52.810 --> 01:56.330
+And we would like to extract the month from the order dates.
+
+01:56.330 --> 02:01.070
+So the part is the month and the order date is the date that we want to extract from.
+
+02:01.070 --> 02:03.710
+So with that, we are specifying the part as a month.
+
+02:03.710 --> 02:09.630
+Now in SQL, there is another way on how to specify the parts we can go and use, like an abbreviation
+
+02:09.630 --> 02:10.630
+of the month.
+
+02:10.630 --> 02:14.430
+So if you specify instead of month, instead of writing the whole thing you write.
+
+02:14.470 --> 02:14.950
+Mhm.
+
+02:14.990 --> 02:16.510
+You will get the same results.
+
+02:16.510 --> 02:19.910
+So it's like abbreviation and shortcut in order to write scripts.
+
+02:19.910 --> 02:22.110
+But I rarely see that in the implementations.
+
+02:22.110 --> 02:27.190
+I always tend to write completely like this month because it's more like standards if you are switching
+
+02:27.190 --> 02:28.550
+between different databases.
+
+02:28.550 --> 02:29.710
+So as you can see, it's very simple.
+
+02:29.710 --> 02:35.070
+You have to give SQL to things which part you want to extract and the date that you want to extract
+
+02:35.070 --> 02:35.470
+from.
+
+02:35.510 --> 02:35.670
+Okay.
+
+02:35.710 --> 02:40.150
+So now we're going to go and extract different parts from the creation time using the date part.
+
+02:40.190 --> 02:43.150
+Let's start for example by extracting the year again.
+
+02:43.390 --> 02:46.670
+So let's go and do that date parts.
+
+02:46.870 --> 02:49.630
+And then we have to specify which part we need.
+
+02:49.630 --> 02:51.750
+So we're going to write year like this.
+
+02:51.790 --> 02:54.430
+And then the next one going to be the value.
+
+02:54.430 --> 02:57.280
+So it's going to be the creation Time.
+
+02:58.080 --> 03:01.960
+So let's call it year and let's say date parts.
+
+03:02.000 --> 03:03.320
+Let's go and execute it.
+
+03:03.320 --> 03:08.720
+So now at the output you can see we got as well again the years that is extracted from the creation
+
+03:08.720 --> 03:09.080
+time.
+
+03:09.080 --> 03:11.840
+So it's going to be identical to the year function.
+
+03:11.840 --> 03:13.640
+So there is no differences between them.
+
+03:13.640 --> 03:17.240
+Both of them are integer and it holds the year informations.
+
+03:17.280 --> 03:18.880
+Now we can go and try different parts.
+
+03:18.880 --> 03:24.600
+For example let's copy the whole thing and let's extract for example the month.
+
+03:24.600 --> 03:29.720
+So you can go over here and change it to month and let's rename it executes.
+
+03:30.800 --> 03:32.840
+So at the output you see we get as well.
+
+03:32.840 --> 03:37.680
+The masses is identical as well to the function month and the same thing for the day.
+
+03:38.440 --> 03:40.840
+So we are just changing the parts.
+
+03:41.640 --> 03:44.120
+And in the output we are getting the parts.
+
+03:44.160 --> 03:47.440
+So here we have as well the days it is identical to the day function.
+
+03:47.440 --> 03:52.560
+So so far we don't have something new from the date part because we have it already from the other functions.
+
+03:52.560 --> 03:57.940
+But now we're going to go and extract other parts that are not year, month and day.
+
+03:58.180 --> 04:00.700
+So for example, let's go and get the hours.
+
+04:01.460 --> 04:03.260
+So we have the date part.
+
+04:03.260 --> 04:08.980
+And here as a part you say hour and let's call it here as well hour.
+
+04:09.340 --> 04:10.540
+Let's go and execute it.
+
+04:10.580 --> 04:16.140
+Now you can see in the output we have a new dedicated column that shows only the information from the
+
+04:16.140 --> 04:16.380
+hour.
+
+04:16.420 --> 04:19.140
+So we have here 1223 and so on.
+
+04:19.140 --> 04:21.500
+And those informations comes from the time.
+
+04:21.500 --> 04:24.620
+And the same thing you can define minutes seconds and so on.
+
+04:24.620 --> 04:27.780
+But now let's go and get something interesting like the quarter.
+
+04:28.060 --> 04:31.620
+So let's go and duplicate it.
+
+04:31.660 --> 04:33.980
+And instead of hour let's get quarter.
+
+04:34.300 --> 04:39.980
+So this information is not displayed in the creation time but SQL can go and extract it.
+
+04:40.140 --> 04:44.340
+So let's call it quarter and let's go and execute it.
+
+04:44.380 --> 04:47.940
+Now as you can see in the output we have one new field called quarter.
+
+04:47.940 --> 04:53.700
+And inside it everywhere we have a one because all those dates are in the range of the quarter one.
+
+04:53.700 --> 04:55.200
+So as you can see, this is amazing.
+
+04:55.240 --> 04:57.440
+Of course for reporting and analysis.
+
+04:57.480 --> 05:01.240
+Let's go and have something else like the weekday.
+
+05:01.600 --> 05:08.640
+So we are over here quarter and let's call it weekday and rename as well this to weekday.
+
+05:09.400 --> 05:11.240
+So let's go and execute it.
+
+05:11.240 --> 05:11.520
+All right.
+
+05:11.520 --> 05:15.160
+So now let's go and get something else like for example the week.
+
+05:15.160 --> 05:18.520
+So I just duplicate it over here instead of quarter.
+
+05:18.560 --> 05:19.760
+Let's write week.
+
+05:19.760 --> 05:22.080
+So I would like to get the week number.
+
+05:22.520 --> 05:24.200
+So let's go and execute it.
+
+05:24.200 --> 05:29.600
+So now in the output as you can see we got a dedicated field that show us the week number from the creation
+
+05:29.600 --> 05:29.960
+time.
+
+05:29.960 --> 05:33.160
+So we can see this date come from the week number one.
+
+05:33.480 --> 05:36.400
+Those two come from week number two and so on.
+
+05:36.400 --> 05:37.160
+So that's it.
+
+05:37.160 --> 05:42.040
+As you can see guys all those informations that you are getting from the date part are numbers.
+
+05:42.040 --> 05:46.680
+And now we can extract way more informations than only the year, month and day.
+
+05:46.680 --> 05:52.800
+And even if those informations are not displayed directly in the field itself like the quarter weeks
+
+05:52.800 --> 05:53.360
+and so on.

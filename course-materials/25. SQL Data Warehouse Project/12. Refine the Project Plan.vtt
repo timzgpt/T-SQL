@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00.080 --> 00:01.040
+All right, my friends.
+
+00:01.040 --> 00:05.000
+So now it's clear for us that we have three layers and we have to go and build them.
+
+00:05.000 --> 00:08.320
+So that means our big epic's going to be after the layers.
+
+00:08.320 --> 00:10.760
+So here I have added three more epics.
+
+00:10.760 --> 00:14.800
+So we have build bronze layer, build silver layer and gold layer.
+
+00:14.800 --> 00:21.240
+And after that I went and start defining all the different tasks that we have to follow in the projects.
+
+00:21.240 --> 00:26.200
+So at the start we will be analyzing, then coding, and after that we're going to go and do testing.
+
+00:26.200 --> 00:29.040
+And once everything is ready, we're going to go and document stuff.
+
+00:29.040 --> 00:32.800
+And at the end we have to commit our work in the git repo.
+
+00:32.800 --> 00:36.520
+All those epics are following the same like pattern in the tasks.
+
+00:36.520 --> 00:40.160
+So as you can see now we have a very detailed project structure.
+
+00:40.160 --> 00:44.120
+And now things are more clear for us how we're going to build the data warehouse.
+
+00:44.120 --> 00:46.720
+So with that, we are done from this task.
+
+00:46.760 --> 00:51.600
+And now the next task, we have to go and define the naming convention of the projects.

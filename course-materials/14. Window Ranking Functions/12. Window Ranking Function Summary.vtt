@@ -1,0 +1,139 @@
+WEBVTT
+
+00:03.880 --> 00:04.600
+All right, friends.
+
+00:04.600 --> 00:07.480
+So now let's have a quick recap for the window ranking functions.
+
+00:07.600 --> 00:08.400
+So what are they going to do.
+
+00:08.440 --> 00:11.840
+They're going to go and assign a rank for each row within a window.
+
+00:11.840 --> 00:13.920
+And we have two types of ranking right.
+
+00:13.960 --> 00:16.280
+The first one is the integer based ranking.
+
+00:16.280 --> 00:19.480
+It's going to go and assign a number an integer for each row.
+
+00:19.480 --> 00:21.240
+And here we have four functions.
+
+00:21.360 --> 00:24.520
+Row number rank, dense rank and n tile.
+
+00:24.520 --> 00:27.760
+And the second type of ranking we have the percentage based ranking.
+
+00:27.920 --> 00:32.000
+So SQL is going to go and calculate a rank and then assign it for each row.
+
+00:32.040 --> 00:35.240
+And here we have two types of formulas or functions.
+
+00:35.240 --> 00:38.160
+So we have the oldest the cumulative distribution.
+
+00:38.160 --> 00:40.400
+And the second one we have the percent rank.
+
+00:40.440 --> 00:43.760
+And now the the next point if you are talking about the rules of the syntax.
+
+00:43.760 --> 00:45.400
+So the expression should be empty.
+
+00:45.400 --> 00:48.040
+We should not pass any argument to the functions.
+
+00:48.040 --> 00:50.920
+We must use order by in order to sort our data.
+
+00:50.920 --> 00:52.240
+So it is required.
+
+00:52.400 --> 00:54.800
+And the From clause are not allowed to use.
+
+00:54.800 --> 00:58.880
+So you cannot go and customize a frame within their window function.
+
+00:58.880 --> 01:02.200
+And as we learned, there are many use cases for the ranking functions.
+
+01:02.200 --> 01:08.620
+For example we have the top n analysis the button and analyzes in order to identify our top performers
+
+01:08.620 --> 01:11.140
+or the worst performers in our business.
+
+01:11.180 --> 01:12.020
+Another use case.
+
+01:12.020 --> 01:18.140
+Using the row number, we can identify and remove duplicates in our data so we can use it in order to
+
+01:18.220 --> 01:21.900
+find data quality issues and as well to improve the quality.
+
+01:21.940 --> 01:22.940
+And another use case.
+
+01:22.940 --> 01:28.660
+If our table don't have a clean primary key, we can go and generate a unique IDs using the row number
+
+01:28.700 --> 01:29.620
+in order to do as well.
+
+01:29.660 --> 01:30.260
+Paginating.
+
+01:30.340 --> 01:31.060
+One more use case.
+
+01:31.060 --> 01:32.900
+It was that data segmentations.
+
+01:32.900 --> 01:37.740
+You can use the Intel in order to segment your customers, your products, employees, and so on.
+
+01:37.780 --> 01:38.740
+And another use case.
+
+01:38.740 --> 01:41.060
+We can do data distribution analysis.
+
+01:41.060 --> 01:41.540
+As we learned.
+
+01:41.540 --> 01:47.620
+We can use the list in order to understand the data distributions of our data points compared to the
+
+01:47.660 --> 01:48.420
+overall.
+
+01:48.460 --> 01:50.460
+And the last use case is more for data engineering.
+
+01:50.460 --> 01:55.580
+We can use the internal function in order to equalize the loading process of our etls.
+
+01:55.580 --> 01:58.660
+So as you can see, there are many use cases for the ranking functions.
+
+01:58.700 --> 02:02.380
+Okay, so that's all about how to rank your data using the window functions.
+
+02:02.380 --> 02:04.260
+And now we're going to cover the last group.
+
+02:04.260 --> 02:08.820
+We will learn about the value window functions how to access another records.
+
+02:08.820 --> 02:09.540
+So let's go.

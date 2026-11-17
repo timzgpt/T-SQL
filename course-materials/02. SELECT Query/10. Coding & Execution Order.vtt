@@ -1,0 +1,229 @@
+WEBVTT
+
+00:03.880 --> 00:04.120
+Okay.
+
+00:04.120 --> 00:10.160
+So now I'm going to show you the coding order of a query compared to the execution order that happens
+
+00:10.160 --> 00:11.000
+in the database.
+
+00:11.000 --> 00:14.280
+So the coding order of a query starts always with a select.
+
+00:14.280 --> 00:16.840
+And then exactly after that you can put a distinct.
+
+00:16.840 --> 00:19.120
+And then after the distinct you can put a top.
+
+00:19.120 --> 00:21.360
+So this is the order of all those keywords.
+
+00:21.360 --> 00:23.680
+And then you can go and select like few columns.
+
+00:23.680 --> 00:29.200
+And after you specify the columns separated with a comma, you tell SQL from which table your data come
+
+00:29.200 --> 00:30.880
+from using the From clause.
+
+00:30.920 --> 00:35.920
+Now after that, if you want to filter the data before the aggregation, you can use the Where clause.
+
+00:35.920 --> 00:38.600
+And this always comes directly after the from.
+
+00:38.600 --> 00:43.280
+And if you want to group the data, then you have to do it after the where clause using the groupby
+
+00:43.320 --> 00:46.040
+and after the groupby comes the having.
+
+00:46.040 --> 00:47.320
+If you want to filter the data.
+
+00:47.320 --> 00:52.080
+And the last thing that you can specify in a query, it is always the order by.
+
+00:52.080 --> 00:55.000
+So this is the order of all those components of the query.
+
+00:55.000 --> 00:58.520
+And if you don't follow this order, you will get an error from the database.
+
+00:58.520 --> 01:03.210
+Now if you look to this query there are a lot of things that's going to filter your data, so let's
+
+01:03.210 --> 01:04.170
+check them one by one.
+
+01:04.210 --> 01:06.650
+The first thing that you can do is to filter the columns.
+
+01:06.650 --> 01:11.370
+If you don't want to see all the columns, you want to see only specific columns, you use the selects.
+
+01:11.370 --> 01:12.730
+And of course you must use it.
+
+01:12.730 --> 01:15.850
+So the columns that you specify will be shown in the results.
+
+01:15.850 --> 01:17.450
+So it's like filtering the columns.
+
+01:17.490 --> 01:22.570
+Now there is another type of filter where you filter out the duplicates if you want to see unique results.
+
+01:22.570 --> 01:24.290
+And that's using the Distincts.
+
+01:24.290 --> 01:25.970
+So this is another type of filter.
+
+01:25.970 --> 01:30.290
+Moving on, we can filter the result based on the row numbers.
+
+01:30.290 --> 01:32.490
+So we can limit the result using the top.
+
+01:32.490 --> 01:35.250
+But this type of filter doesn't need any conditions.
+
+01:35.250 --> 01:38.210
+It's purely based on the row number in the results.
+
+01:38.250 --> 01:38.810
+Now moving on.
+
+01:38.810 --> 01:44.130
+If you want to filter your data based on conditions based on your data, you can filter the rows before
+
+01:44.130 --> 01:48.690
+the aggregation using the Where clause and the last type of filtering.
+
+01:48.690 --> 01:52.330
+You can filter your rows after the aggregation using the having.
+
+01:52.330 --> 01:57.610
+So as you can see, we have like five different types on how to filter the results in SQL.
+
+01:57.650 --> 02:02.530
+So now let's see the execution order as we learned, the first thing that's going to happen is that
+
+02:02.530 --> 02:05.250
+SQL can execute the From clause.
+
+02:05.250 --> 02:10.370
+So SQL is going to go and find your data in the database where all the next steps can be based on this
+
+02:10.370 --> 02:10.690
+data.
+
+02:10.730 --> 02:15.850
+Now the next step that it's going to do is that it's going to go and filter the data using the Where
+
+02:15.890 --> 02:16.450
+clause.
+
+02:16.450 --> 02:18.530
+This has to be happen before anything else.
+
+02:18.530 --> 02:22.050
+So before any aggregations and so on we have to make scope of the data.
+
+02:22.050 --> 02:25.850
+So once SQL apply it maybe some of the rows is going to be removed.
+
+02:25.850 --> 02:30.570
+And once the data is filtered the third step is SQL can execute the groupby.
+
+02:30.610 --> 02:36.730
+So SQL is going to take the results and start combining the similar values in one row, and start aggregating
+
+02:36.730 --> 02:39.650
+the data based on the aggregate function that you have specified.
+
+02:39.650 --> 02:43.490
+So now after the groupby, after aggregating the data, what is SQL gonna do?
+
+02:43.490 --> 02:46.690
+Now we're going to go and apply the second type of filter the having.
+
+02:46.690 --> 02:51.810
+So based on the condition the SQL is going to go and start removing few aggregated data away and keep
+
+02:51.810 --> 02:52.490
+the rest.
+
+02:52.530 --> 02:54.370
+Now moving on to the step number five.
+
+02:54.410 --> 02:58.210
+Finally it's going to go and execute the select distinct.
+
+02:58.210 --> 03:02.900
+So SQL is going to go and start selecting the columns that we need to see in the results and remove
+
+03:02.900 --> 03:03.660
+the other stuff.
+
+03:03.660 --> 03:08.300
+And once the columns are selected, SQL is going to go and execute the order by.
+
+03:08.340 --> 03:13.300
+So it's going to start sorting the data based on the column that you have specified and the mechanism
+
+03:13.300 --> 03:13.780
+as well.
+
+03:13.780 --> 03:15.660
+So the data will be sorted differently.
+
+03:15.660 --> 03:21.860
+And my friends, the last tip that's going to happen in your query will be always the top statements.
+
+03:21.860 --> 03:26.180
+So based on the final final results SQL can go and execute the top.
+
+03:26.180 --> 03:27.580
+So here we are saying top two.
+
+03:27.620 --> 03:31.660
+That means we want to keep only the first two rows without any conditions.
+
+03:31.660 --> 03:32.940
+So SQL going to count okay.
+
+03:32.980 --> 03:34.220
+Row number one two.
+
+03:34.260 --> 03:37.700
+And after that it's going to make cuts and remove anything after that.
+
+03:37.700 --> 03:40.300
+So this is the last filter that's going to happen.
+
+03:40.300 --> 03:41.540
+And as well the last step.
+
+03:41.540 --> 03:46.460
+So now if you sit back and look at this the coding order is completely different than the execution
+
+03:46.460 --> 03:46.900
+order.
+
+03:46.900 --> 03:49.500
+In the coding we have first to specify the selects.
+
+03:49.540 --> 03:53.180
+Actually the select can be executed just almost at the end.
+
+03:53.180 --> 03:54.660
+So at the step number five.
+
+03:54.660 --> 04:00.460
+And once you understand how SQL execute your query you can understand how to build correct queries.

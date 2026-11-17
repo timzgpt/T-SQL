@@ -1,0 +1,610 @@
+WEBVTT
+
+00:04.000 --> 00:04.360
+All right.
+
+00:04.360 --> 00:08.480
+So now we're going to learn how to define a window inside the over clause.
+
+00:08.520 --> 00:11.480
+The first part that we can define is the partition p.
+
+00:11.520 --> 00:14.120
+So for example here we have partition p category.
+
+00:14.120 --> 00:15.720
+We have to define the dimension.
+
+00:15.720 --> 00:18.320
+It's very similar to the groupby and other wording.
+
+00:18.640 --> 00:21.120
+So the first part is going to be the partition clause.
+
+00:21.160 --> 00:26.320
+What it's going to do it's going to divide the entire data sets into groups.
+
+00:26.320 --> 00:29.000
+Or you can call it windows partitions.
+
+00:29.160 --> 00:32.400
+So here we tell SQL how to divide our data.
+
+00:32.560 --> 00:33.720
+And here we have two options.
+
+00:33.720 --> 00:34.720
+Let me just show you.
+
+00:34.920 --> 00:38.080
+So if we don't use anything so we have it empty.
+
+00:38.120 --> 00:41.400
+You see over and partition by is not used.
+
+00:41.440 --> 00:42.240
+What can happen.
+
+00:42.280 --> 00:46.960
+SQL gonna use the entire data in order to do the calculations.
+
+00:47.080 --> 00:51.600
+So the whole data, the entire data can be counted as one window.
+
+00:51.600 --> 00:54.080
+So we are telling SQL don't divide anything.
+
+00:54.120 --> 00:55.280
+Leave it as it is.
+
+00:55.560 --> 00:59.040
+The second option that we have is to divide the data by partition p.
+
+00:59.080 --> 01:03.450
+So we define the window like this partition partitioned by products for example.
+
+01:03.450 --> 01:09.250
+So SQL going to go and divide the entire data into different windows for example here to windows and
+
+01:09.250 --> 01:14.330
+here this time the calculation the sum of sales will not apply on the entire data set.
+
+01:14.370 --> 01:18.570
+This time it's going to be applied on the different windows individually.
+
+01:18.570 --> 01:24.410
+So we're going to find the sum of sales for window one separately from the total sales of window two.
+
+01:24.570 --> 01:24.810
+All right.
+
+01:24.810 --> 01:26.530
+So now we have this very simple example.
+
+01:26.530 --> 01:29.770
+We have here three fields the month product sales.
+
+01:29.810 --> 01:31.450
+They are really easy informations.
+
+01:31.450 --> 01:34.290
+And now we have the following SQL window function.
+
+01:34.290 --> 01:36.450
+So we have sum of sales.
+
+01:36.650 --> 01:40.210
+And inside the over clause we are not using anything.
+
+01:40.210 --> 01:42.410
+So we are not using partition by.
+
+01:42.610 --> 01:44.490
+So how is SQL going to define the window.
+
+01:44.490 --> 01:47.890
+Now SQL is going to say okay I don't have to divide anything.
+
+01:48.130 --> 01:51.050
+The entire data set is one window.
+
+01:51.050 --> 01:55.170
+So SQL is going to go over here and say the whole thing is one window.
+
+01:55.170 --> 01:57.770
+So there is no partitions, there is nothing.
+
+01:57.770 --> 01:59.650
+We have only one window.
+
+01:59.650 --> 02:01.890
+So the entire data can be aggregated.
+
+02:01.890 --> 02:03.060
+So this is what happened.
+
+02:03.060 --> 02:08.660
+If you don't use partition B and you leave the other clause empty, the entire data is one window.
+
+02:08.700 --> 02:08.980
+All right.
+
+02:08.980 --> 02:10.660
+So now let's move to the next example.
+
+02:10.660 --> 02:12.260
+We don't want to have only one window.
+
+02:12.260 --> 02:14.140
+We would like to have multiple windows.
+
+02:14.140 --> 02:16.500
+So we have to divide the data by something.
+
+02:16.500 --> 02:21.980
+So in the over clause we're going to define the window like the following partition by month.
+
+02:21.980 --> 02:23.100
+So it's not empty.
+
+02:23.420 --> 02:26.780
+We are now dividing the data by the filled month.
+
+02:26.940 --> 02:31.340
+So the values inside this column are going to divide the data sets.
+
+02:31.340 --> 02:34.660
+So here we have two months January and February.
+
+02:34.660 --> 02:38.940
+So what's going to do SQL going to go and divide the data into two sets.
+
+02:38.980 --> 02:41.740
+The first window going to be this one of January.
+
+02:41.740 --> 02:47.460
+So we have the first window going to make it smaller and the second window going to be the February.
+
+02:47.460 --> 02:50.700
+So it's going to be two windows inside our data.
+
+02:50.700 --> 02:54.580
+And the calculation is going to be happening on each window separately.
+
+02:54.580 --> 03:01.140
+So here as you can see we are using the month in order to divide our data sets into two windows one
+
+03:01.140 --> 03:04.870
+window for January and another window for that February.
+
+03:04.870 --> 03:08.910
+So now let's have a quick overview about the options that we have with the partition by the first option.
+
+03:08.910 --> 03:11.110
+As we learned we can just skip it.
+
+03:11.110 --> 03:14.990
+So without partition by for example here total sales across all rows.
+
+03:15.030 --> 03:18.070
+And here we don't find anything inside the SQL.
+
+03:18.110 --> 03:23.550
+The second option we can use one field one column for example partition by products.
+
+03:23.550 --> 03:25.710
+So we are using one dimension.
+
+03:25.710 --> 03:27.150
+But we can go and mix stuff.
+
+03:27.150 --> 03:32.750
+We can use multiple columns or multiple dimensions in the partition by for example here partition by
+
+03:32.790 --> 03:34.470
+product and order status.
+
+03:34.470 --> 03:39.630
+So here with the partition by, we can define a list of dimensions that could be used in order to divide
+
+03:39.630 --> 03:40.390
+our data.
+
+03:40.390 --> 03:47.150
+So in this example we are saying find the total sales for each combination of products and order status.
+
+03:47.150 --> 03:50.350
+So those are the different options on how to work with the partition by.
+
+03:50.510 --> 03:53.550
+So now let's have this overview again for all functions.
+
+03:53.830 --> 03:57.310
+The partition by for all those functions is optional.
+
+03:57.310 --> 04:01.830
+So if you don't use the partition by in all those functions you will not get any errors.
+
+04:01.830 --> 04:05.800
+So now let's go back to SQL in order to start practicing with this clause.
+
+04:05.840 --> 04:07.360
+Okay, so now we have the following task.
+
+04:07.400 --> 04:09.800
+Find the total sales across all orders.
+
+04:09.800 --> 04:14.240
+And we have to provide additional informations like the order ID and the order date.
+
+04:14.560 --> 04:16.680
+So let's go and solve it step by step.
+
+04:16.880 --> 04:18.840
+First I would like to provide the details.
+
+04:18.840 --> 04:25.480
+So I'm going to select the order ID and the order dates from the table sales orders.
+
+04:25.760 --> 04:27.480
+And next we're going to work with the aggregations.
+
+04:27.480 --> 04:30.560
+So we need to find the total sales across all orders.
+
+04:30.600 --> 04:35.600
+Again since we have here details and aggregations, we cannot use groupby we have to use the window
+
+04:35.600 --> 04:36.360
+function.
+
+04:36.360 --> 04:40.040
+So we're going to go use the function sum for sales.
+
+04:40.040 --> 04:44.040
+And now we have to tell SQL we are working with window functions.
+
+04:44.040 --> 04:46.000
+That's why we're going to use the over clause.
+
+04:46.040 --> 04:49.200
+And now the next step we have to think about defining the window.
+
+04:49.440 --> 04:50.560
+So let's check the task.
+
+04:50.600 --> 04:53.320
+It says total sales across all orders.
+
+04:53.600 --> 04:59.560
+So that means we don't have to partition or divide the data sets into like chunks or partitions.
+
+04:59.560 --> 05:03.400
+We have to leave it as it is, like the whole data is going to be one window.
+
+05:03.440 --> 05:05.660
+And that's why we don't use partition p pi.
+
+05:05.700 --> 05:07.900
+Inside the definition, we're going to leave it empty.
+
+05:07.940 --> 05:09.180
+Let's go now and give it a name.
+
+05:09.180 --> 05:11.060
+It's going to be the total sales.
+
+05:11.180 --> 05:12.540
+Let's go and execute this.
+
+05:12.540 --> 05:13.580
+And now add the results.
+
+05:13.580 --> 05:16.580
+As you can see we have all the orders, all the details.
+
+05:16.580 --> 05:20.380
+And as well we have the total sales across all orders.
+
+05:20.380 --> 05:21.900
+So with that we have solved the tasks.
+
+05:21.900 --> 05:25.260
+We have the total sales and as well some details about the order.
+
+05:25.300 --> 05:25.620
+All right.
+
+05:25.620 --> 05:27.100
+So now let's move to the next task.
+
+05:27.140 --> 05:28.580
+It's going to be very similar.
+
+05:28.580 --> 05:31.900
+So it says find the total sales for each product.
+
+05:31.900 --> 05:35.660
+And we have to provide additional information like the order ID and the order dates.
+
+05:35.660 --> 05:37.580
+So it's going to be very similar task.
+
+05:37.580 --> 05:42.860
+But this time we have to divide the entire data into windows.
+
+05:43.020 --> 05:47.460
+And that's going to be by the products since we are saying total sales for each product.
+
+05:47.620 --> 05:50.500
+So this time we have to go and divide the data.
+
+05:50.500 --> 05:53.380
+So we're going to define the window like this partition by.
+
+05:53.700 --> 05:56.620
+And we can use the dimension products ID.
+
+05:56.660 --> 05:58.700
+Let's go and execute this.
+
+05:58.700 --> 06:03.340
+So now you can see in the total sales we don't have anymore the total sales of the whole data.
+
+06:03.340 --> 06:04.660
+But they are divided.
+
+06:04.660 --> 06:10.070
+But in order to understand the results let's go and include the product ID in the results.
+
+06:10.070 --> 06:12.190
+So product ID and execute.
+
+06:12.190 --> 06:17.030
+So now by looking to the results you can see that the data is divided into four windows.
+
+06:17.190 --> 06:17.870
+Let's see them.
+
+06:17.870 --> 06:19.510
+It's going to be by the product ID.
+
+06:19.750 --> 06:22.550
+So this dimension going to be controlling the partition.
+
+06:22.550 --> 06:25.670
+So the first window going to be the product ID 101.
+
+06:25.670 --> 06:28.750
+So we have the total sales for this product 140.
+
+06:28.790 --> 06:31.230
+And the next window going to be 102.
+
+06:31.270 --> 06:32.830
+The third one 104.
+
+06:32.950 --> 06:38.350
+And the last window, it's going to be only one row the 105 and the total sales with 60.
+
+06:38.350 --> 06:39.830
+So with that we have solved the task.
+
+06:39.830 --> 06:42.430
+We have the total sales for each product.
+
+06:42.430 --> 06:43.910
+And as well we have some details.
+
+06:43.990 --> 06:47.390
+Now I would like to show you the dynamic of the window function.
+
+06:47.390 --> 06:50.910
+We can add multiple aggregations on multiple levels.
+
+06:50.910 --> 06:51.830
+Let me show you what I mean.
+
+06:51.830 --> 06:57.230
+Let's say we stay with the same example, but we're going to find the total sales across all orders
+
+06:57.230 --> 07:00.670
+and as well the total sales for each products.
+
+07:00.670 --> 07:06.510
+So what we can do, we can do the window functions on different levels by for example here removing
+
+07:06.510 --> 07:07.430
+the whole definition.
+
+07:07.430 --> 07:12.400
+So here we have the total sales for the entire data for the first task, and the next one going to be
+
+07:12.400 --> 07:15.160
+the total sales but divided by the product ID.
+
+07:15.200 --> 07:17.680
+Let's rename it by products.
+
+07:18.600 --> 07:20.560
+Let's go and execute this.
+
+07:20.600 --> 07:21.360
+And now you know what.
+
+07:21.360 --> 07:26.080
+I'm going to go and add the sales as well just to explain the flexibility of the window function.
+
+07:26.080 --> 07:28.920
+So let's go add the sales and execute it again.
+
+07:28.960 --> 07:34.560
+And now by looking to the results you can see we have the sales informations three times but with different
+
+07:34.560 --> 07:39.160
+granularities the first sales, the sales itself without any aggregations.
+
+07:39.440 --> 07:42.200
+It is the highest level of details of the sales.
+
+07:42.200 --> 07:47.160
+And we're going to have the sales for each order, the next one, the total sales with the window function.
+
+07:47.200 --> 07:49.320
+Here we have the highest level of aggregations.
+
+07:49.320 --> 07:52.200
+So we have the total sales of all orders.
+
+07:52.200 --> 07:54.080
+And the last one the total sales by product.
+
+07:54.080 --> 07:57.520
+It's something like in the middle we are aggregating on a window.
+
+07:57.720 --> 07:59.640
+And the window is going to be the product ID.
+
+07:59.640 --> 08:03.080
+So as you can see we have different granularities of the aggregations.
+
+08:03.080 --> 08:06.760
+And this is exactly the flexibility that we have with the window function.
+
+08:06.760 --> 08:09.170
+We can do all those stuff in one query.
+
+08:09.210 --> 08:11.930
+Okay, so now let's keep moving and adding stuff to our task.
+
+08:11.970 --> 08:17.490
+It's going to say find the total sales for each combination of the products and the order status.
+
+08:17.690 --> 08:23.770
+So this time we have to divide the data not only by the product but as well with another dimension the
+
+08:23.770 --> 08:24.650
+order status.
+
+08:24.850 --> 08:26.410
+So now let's see how we can do that.
+
+08:26.410 --> 08:29.730
+I'm going to just show the dimension order status in the results.
+
+08:30.570 --> 08:33.250
+And we're going to add the following thing.
+
+08:33.610 --> 08:37.930
+So some sales over since it's a window function.
+
+08:37.930 --> 08:41.050
+And let's go now and define the window partition by.
+
+08:41.090 --> 08:46.930
+So we have again the product ID but not only this dimension as well the order status.
+
+08:47.170 --> 08:52.170
+And let's go and call it sales by products and status.
+
+08:52.210 --> 08:53.890
+Let me just rename those stuff.
+
+08:53.930 --> 08:54.490
+Okay.
+
+08:54.690 --> 08:56.490
+So let's go and execute.
+
+08:56.530 --> 08:56.810
+All right.
+
+08:56.810 --> 08:58.130
+So now let's check the results.
+
+08:58.130 --> 08:59.930
+It is the last aggregation over here.
+
+08:59.930 --> 09:04.770
+And as you can see here the aggregation has different granularities as the previous one.
+
+09:04.770 --> 09:06.290
+And we have more details.
+
+09:06.530 --> 09:09.490
+This time we are splitting the data by two dimensions.
+
+09:09.490 --> 09:13.180
+So the first window is going to be the product ID with the order status.
+
+09:13.220 --> 09:15.060
+It's going to be only those two rows.
+
+09:15.260 --> 09:19.260
+So we have the order ID 101 and the order status delivered.
+
+09:19.260 --> 09:22.380
+So the total sales of this going to be ten plus 20.
+
+09:22.420 --> 09:23.900
+And we're going to have 30.
+
+09:24.100 --> 09:28.380
+The next window going to be the same product but with different status.
+
+09:28.380 --> 09:30.820
+So it's going to be the 101 shipped.
+
+09:30.820 --> 09:33.020
+And we're going to go and summarize those two values.
+
+09:33.020 --> 09:34.660
+And we're going to have 110.
+
+09:34.700 --> 09:38.100
+The next product and order status is going to be the 102.
+
+09:38.100 --> 09:39.100
+And we have it only once.
+
+09:39.100 --> 09:40.620
+So 102 delivered.
+
+09:40.620 --> 09:41.620
+It's only once.
+
+09:41.620 --> 09:43.180
+So it's going to be the same value.
+
+09:43.500 --> 09:45.060
+The next partition or window.
+
+09:45.060 --> 09:47.420
+It's going to be two rows 102.
+
+09:47.460 --> 09:48.420
+With the shipped.
+
+09:48.460 --> 09:51.900
+It's going to be those two things 60 plus 15.
+
+09:51.940 --> 09:53.780
+We're going to get 75.
+
+09:53.780 --> 09:56.940
+So as you can see here, the product ID and the order status.
+
+09:57.220 --> 09:59.740
+They are controlling how many windows we're going to get.
+
+09:59.740 --> 10:01.820
+So we get here around like six windows.
+
+10:02.020 --> 10:04.420
+With the product ID we got only four windows.
+
+10:04.580 --> 10:09.700
+And without using anything inside the over clause we will get only one window.
+
+10:09.700 --> 10:11.620
+So this is how the partition P works.

@@ -1,0 +1,103 @@
+WEBVTT
+
+00:03.920 --> 00:06.520
+Okay, so moving on to the next use case for the views.
+
+00:06.520 --> 00:11.120
+We can use it in order to have more dynamic and flexibility in our projects.
+
+00:11.120 --> 00:12.800
+So let's understand what this means.
+
+00:12.800 --> 00:17.440
+If you have a table and you have multiple users accessing this table, now, what can happen?
+
+00:17.440 --> 00:22.400
+You might change your mind about the design and the data model of your database, where you can say,
+
+00:22.400 --> 00:27.200
+you know what, instead of having one table, I'm going to go and split it into two tables, or maybe
+
+00:27.200 --> 00:27.960
+another decision.
+
+00:27.960 --> 00:32.120
+You say, you know what, I'm going to go and rename it table or in another day you decide, you know
+
+00:32.120 --> 00:36.040
+what, let's go and rename few columns or maybe add a column remove column.
+
+00:36.040 --> 00:40.600
+So you are doing changes to your physical data model and you are changing stuff in the tables.
+
+00:40.600 --> 00:41.920
+You know what's going to happen.
+
+00:42.160 --> 00:48.240
+All those users that are accessing the tables are gonna scream, because all of them having a complex
+
+00:48.240 --> 00:54.280
+SQL queries and your small changes at the tables are breaking everything in their queries.
+
+00:54.280 --> 00:55.360
+And what this means.
+
+00:55.360 --> 01:01.840
+This means escalations and you don't have anymore the freedom to change anything in your database without
+
+01:01.920 --> 01:04.880
+talking before to a hundred people before doing any change.
+
+01:04.880 --> 01:06.040
+So we don't do that.
+
+01:06.040 --> 01:08.210
+Instead of that we use views.
+
+01:08.210 --> 01:09.130
+So what's going to happen?
+
+01:09.130 --> 01:14.210
+You create a view and you tell the users, okay, take this view and consume it and leave me alone.
+
+01:14.210 --> 01:17.930
+And now you have again your freedom to do any changes you want.
+
+01:17.970 --> 01:22.810
+So you go to your tables and do splitting, renaming and changing everything you want.
+
+01:23.050 --> 01:29.610
+As long as you are updating the query between the table and the view to make sure that the users are
+
+01:29.610 --> 01:31.010
+not noticing any change.
+
+01:31.010 --> 01:35.450
+So for example, if you go and split the table into two tables, then you have to put in the view a
+
+01:35.490 --> 01:41.490
+join or a union in order to reconstruct the same structure that the users are used to.
+
+01:41.530 --> 01:46.210
+And if you would like to rename something on your database like instead of ID, you are now calling
+
+01:46.210 --> 01:46.890
+it a key.
+
+01:46.930 --> 01:53.250
+Only what you have to do now is to go to the query of the view and rename it back from a key to an ID,
+
+01:53.250 --> 01:57.570
+so no one can notice that you are doing changes to the physical tables.
+
+01:57.570 --> 02:01.810
+So using views and offering it to users is a game changer for you.
+
+02:01.810 --> 02:08.290
+Because giving the users views gives you more freedom, dynamic and flexibility to change anything in
+
+02:08.290 --> 02:11.770
+your data model and tables without getting any headache.
+
+02:11.770 --> 02:13.850
+So this is amazing use case for the views.

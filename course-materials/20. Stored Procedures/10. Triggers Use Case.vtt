@@ -1,0 +1,487 @@
+WEBVTT
+
+00:03.960 --> 00:07.200
+And now the use case is about maintaining an audit logs.
+
+00:07.400 --> 00:08.640
+So what do we mean with that?
+
+00:08.680 --> 00:10.840
+Let's have for example the table employees.
+
+00:11.080 --> 00:16.880
+The employee data are usually very sensitive informations because there we can see which employees are
+
+00:16.920 --> 00:17.480
+added.
+
+00:17.480 --> 00:20.440
+The salary updates the employee terminations.
+
+00:20.560 --> 00:26.280
+And this makes the table very important because we would like to track all those changes that is happening
+
+00:26.320 --> 00:27.160
+to this table.
+
+00:27.160 --> 00:32.840
+So each time we are inserting, updating deleting we would like to maintain a log about all those changes.
+
+00:32.960 --> 00:34.760
+In order to analyze it later.
+
+00:34.760 --> 00:39.400
+It is of course very important, such as logs for the compliance and the auditors.
+
+00:39.520 --> 00:45.480
+And in case there is like a problem, we can go to the logs to understand when this happened, who made
+
+00:45.480 --> 00:47.640
+the changes and what exactly changed.
+
+00:47.680 --> 00:51.800
+And now in order to maintain logs, we can use the power of triggers.
+
+00:51.960 --> 00:57.200
+So what we're going to do, we're going to go and attach like a trigger on the table employees.
+
+00:57.240 --> 01:02.880
+And each time we insert a new data to the employees we are triggering another events.
+
+01:03.000 --> 01:09.380
+So what's going to happen This new employee can be inserted in the audit logs in order to have a record
+
+01:09.380 --> 01:11.140
+about this activity in the logs.
+
+01:11.180 --> 01:17.500
+So that means each time you are inserting data to the table employees, you are automatically inserting
+
+01:17.500 --> 01:18.980
+data inside the logs.
+
+01:19.020 --> 01:21.180
+And this is really amazing use case for the triggers.
+
+01:21.180 --> 01:22.780
+So let's go and implement it.
+
+01:22.820 --> 01:23.020
+Okay.
+
+01:23.060 --> 01:25.460
+So now let's check quickly the syntax of that triggers.
+
+01:25.460 --> 01:28.860
+So we start with the usual create trigger then the trigger name.
+
+01:28.860 --> 01:33.140
+And then we have to specify on which table this trigger can be built in.
+
+01:33.140 --> 01:36.780
+So now we are attaching like a trigger on top of one table.
+
+01:36.780 --> 01:41.420
+And after that we have to define for the SQL when this trigger is going to happen.
+
+01:41.420 --> 01:43.860
+So what is actually triggering the trigger.
+
+01:43.900 --> 01:49.180
+And here you can define after or instead then you have to define the operator.
+
+01:49.180 --> 01:52.140
+So first you have to define like after or instead of.
+
+01:52.180 --> 01:54.540
+And then we have to define the operation.
+
+01:54.540 --> 01:56.980
+So insert update delete or one of them.
+
+01:56.980 --> 02:00.180
+And with that you are telling SQL when exactly this should happen.
+
+02:00.180 --> 02:05.380
+And now after that we have to tell SQL what can happen if the trigger is triggered.
+
+02:05.380 --> 02:10.930
+So here we have like begin and end and then we have like several SQL statements that's going to describe
+
+02:10.930 --> 02:12.970
+what can happen once we have that trigger.
+
+02:13.010 --> 02:13.970
+So that's it.
+
+02:13.970 --> 02:16.210
+As you can see the syntax is very simple.
+
+02:16.250 --> 02:16.450
+Okay.
+
+02:16.490 --> 02:18.050
+So now let's do it step by step.
+
+02:18.090 --> 02:22.330
+First I would like to create a table where we can store the logs information.
+
+02:22.330 --> 02:23.650
+So it's going to be very simple table.
+
+02:23.650 --> 02:25.290
+We're going to say create table.
+
+02:25.290 --> 02:29.370
+Then we're going to call it sales employee logs.
+
+02:29.570 --> 02:31.730
+And we're going to have the following columns inside it.
+
+02:32.250 --> 02:33.570
+So let's start with the primary key.
+
+02:33.570 --> 02:36.330
+It's going to be the log ID and the data type int.
+
+02:36.330 --> 02:37.890
+And then we're going to have like a sequence.
+
+02:37.890 --> 02:39.370
+So we're going to have identity.
+
+02:39.410 --> 02:41.650
+And this is the primary key.
+
+02:42.170 --> 02:43.090
+Let's go to the next one.
+
+02:43.090 --> 02:46.650
+It's going to be the employee ID and the data type going to be int.
+
+02:46.690 --> 02:49.090
+The next one is going to be the log message.
+
+02:49.330 --> 02:50.850
+So let's have it as a varchar.
+
+02:51.290 --> 02:54.130
+And I'm going to have it like 255.
+
+02:54.170 --> 02:56.930
+And then to the next one we're going to have the log dates.
+
+02:56.970 --> 02:59.850
+And then we're going to have like let's say a date or a date time.
+
+02:59.850 --> 03:00.770
+So that's it.
+
+03:00.770 --> 03:02.370
+Let's go and execute it.
+
+03:02.370 --> 03:05.010
+And with that we have a new table inside our database.
+
+03:05.010 --> 03:08.330
+Now the next step is that we're going to go and create our trigger.
+
+03:08.330 --> 03:10.610
+So we're going to say create trigger.
+
+03:10.910 --> 03:12.950
+and I'm going to call it like this DRG.
+
+03:13.110 --> 03:19.710
+It is just a prefix to indicate this is a trigger, and I'm just going to kill it after insert employee.
+
+03:20.590 --> 03:25.070
+And now we have to define the table so it can be on sales employee.
+
+03:25.950 --> 03:29.790
+So now with that we are saying we have now a trigger on the table employees.
+
+03:29.830 --> 03:31.310
+And now we have to define the logic.
+
+03:31.310 --> 03:33.670
+So we're going to use after insert.
+
+03:34.030 --> 03:39.790
+So that means after we insert any record to the table employees the following things should happen.
+
+03:39.790 --> 03:43.350
+So we're going to say as and then begin and end.
+
+03:43.710 --> 03:45.790
+And in between we can have our logic.
+
+03:45.790 --> 03:49.550
+So what can happen after a new record is inserted to the employees.
+
+03:49.550 --> 03:53.150
+We're going to go and insert a new record to the employee logs.
+
+03:53.150 --> 03:57.430
+So we're going to have insert into sales employee logs.
+
+03:58.670 --> 04:07.150
+And we're going to have here the three columns employee ID, the log message and the log dates.
+
+04:07.150 --> 04:08.790
+So now which value is going to be inserted.
+
+04:08.790 --> 04:10.550
+It's going to be like from a query.
+
+04:10.550 --> 04:11.870
+So we're going to say select.
+
+04:11.870 --> 04:18.370
+And we're going to say as well employee ID and for the log message we can have customized one like let's
+
+04:18.370 --> 04:25.010
+say a new employee added and it's going to be equal to the employee ID.
+
+04:25.010 --> 04:28.210
+So in order to have the employee ID it's going to be like this.
+
+04:29.450 --> 04:30.490
+So that's it.
+
+04:30.810 --> 04:31.690
+Now to the next one.
+
+04:31.690 --> 04:33.330
+We need the log date.
+
+04:33.370 --> 04:34.850
+It's going to be get date.
+
+04:35.730 --> 04:39.450
+And now you might say okay but where this employee ID is coming from.
+
+04:39.690 --> 04:43.210
+Well it's going to come from the table from inserted.
+
+04:43.530 --> 04:45.130
+So what is actually inserted.
+
+04:45.130 --> 04:51.530
+It is like special virtual table that holds all the new inserted data to our table employees.
+
+04:51.530 --> 04:56.610
+So anything we are inserting inside the employees will be available inside this table.
+
+04:56.650 --> 05:01.370
+And of course this is only available during the execution of this trigger.
+
+05:01.370 --> 05:06.490
+So you cannot go now outside of this query and start querying the table inserted because you will not
+
+05:06.490 --> 05:07.330
+find anything.
+
+05:07.330 --> 05:13.250
+This is only like a virtual table that contains anything that you are doing to the table employees.
+
+05:13.250 --> 05:17.250
+And you find a lot of informations like the salary, the age and so on.
+
+05:17.290 --> 05:19.270
+So that's it for the inserted.
+
+05:19.310 --> 05:24.830
+Now we have to make sure that in our message we have everything as a string because the employee ID
+
+05:24.830 --> 05:25.710
+is an integer.
+
+05:25.710 --> 05:26.950
+So we have to cast it.
+
+05:26.950 --> 05:27.750
+So cast.
+
+05:27.790 --> 05:32.870
+And then we're going to say as var char like this.
+
+05:32.910 --> 05:34.270
+Otherwise we'll get an error.
+
+05:34.310 --> 05:36.270
+So I think we have our trigger ready.
+
+05:36.310 --> 05:39.110
+We have a new trigger on the table employees.
+
+05:39.150 --> 05:42.430
+And now the first question is when this trigger is going to happen.
+
+05:42.550 --> 05:46.670
+Well it can happen after inserting data to the employees.
+
+05:46.710 --> 05:49.230
+And then the second question what's going to happen?
+
+05:49.310 --> 05:55.030
+Well, once we have this event, the whole thing here is going to be executed where we are saying insert
+
+05:55.030 --> 06:00.550
+to the logs, the employee ID, the message, and as well the date when this happens.
+
+06:00.550 --> 06:04.950
+And we can get all those informations from the table, the virtual table inserted.
+
+06:04.990 --> 06:06.110
+So I think we are ready.
+
+06:06.110 --> 06:07.750
+Let's go and execute it.
+
+06:07.790 --> 06:13.750
+And now if you go to the Object explorer to our database let's go to our table employees and then to
+
+06:13.790 --> 06:14.510
+the triggers.
+
+06:14.510 --> 06:19.430
+So if you refresh over here you can see our new trigger that we just created.
+
+06:19.510 --> 06:22.340
+So with that we have defined our trigger and we are ready.
+
+06:22.380 --> 06:26.020
+Now the next step is that we're going to go and trigger our trigger.
+
+06:26.020 --> 06:27.140
+So let's go and do that.
+
+06:27.140 --> 06:28.340
+Let's have a new query.
+
+06:28.540 --> 06:31.140
+But first I'm going to have a look to our logs.
+
+06:32.420 --> 06:35.860
+So sales employee logs.
+
+06:36.060 --> 06:37.300
+So let's query this one.
+
+06:37.300 --> 06:42.380
+And as you can see our logs is empty because we didn't insert anything to the table employees.
+
+06:42.420 --> 06:43.460
+Let's go and do that.
+
+06:43.500 --> 06:44.740
+Let's trigger our trigger.
+
+06:44.740 --> 06:49.460
+So what we can do we're going to say insert into sales employees.
+
+06:49.460 --> 06:51.420
+And we're going to have the following values.
+
+06:51.420 --> 06:53.940
+So we are at the counter I think six.
+
+06:54.020 --> 06:58.340
+Let's have the first name Maria the last name.
+
+06:58.620 --> 07:00.780
+And then we're going to have the position.
+
+07:00.780 --> 07:04.340
+It's going to be the HR for example the birth dates.
+
+07:04.580 --> 07:07.020
+Let's pick something I don't know.
+
+07:07.060 --> 07:11.100
+We have a female here and the salary.
+
+07:11.100 --> 07:13.460
+Let's go and get this salary.
+
+07:13.460 --> 07:15.780
+And the hierarchy is going to be for example three.
+
+07:15.780 --> 07:17.820
+So let's go and execute it.
+
+07:17.820 --> 07:21.180
+And with that as you can see we have inserted a new data to the employees.
+
+07:21.380 --> 07:22.780
+Let's check now the logs.
+
+07:22.980 --> 07:24.920
+So All, let's query it.
+
+07:24.960 --> 07:27.760
+So we have here a nice log about the employee number six.
+
+07:28.080 --> 07:29.680
+And we have a nice message.
+
+07:29.680 --> 07:36.400
+And when this did happen of course you can go and insert another employee let's say seven for the same
+
+07:36.400 --> 07:36.960
+data.
+
+07:36.960 --> 07:39.040
+So let's do that and check the logs.
+
+07:39.360 --> 07:42.640
+And with that we have another log for the new employee.
+
+07:42.640 --> 07:44.160
+So this is really amazing use case.
+
+07:44.160 --> 07:46.560
+In order to maintain a log to your data.
+
+07:46.560 --> 07:51.160
+And you can go and make like some analysis on how many inserts did happens.
+
+07:51.320 --> 07:52.920
+And of course not only on the inserts.
+
+07:52.920 --> 07:55.040
+You can have it on the update delete.
+
+07:55.240 --> 07:56.760
+So as you can see it is very simple.
+
+07:56.760 --> 07:58.800
+This is how you create a triggers in SQL.
+
+07:58.840 --> 07:59.600
+All right my friends.
+
+07:59.600 --> 08:03.360
+So that's all about the triggers with that with with that we have covered.
+
+08:03.360 --> 08:08.760
+Now with that we have covered now all the concepts and topics that you have to learn about SQL.
+
+08:08.840 --> 08:11.560
+Now in the next chapter it's going to be about the performance.
+
+08:11.560 --> 08:17.120
+So as you start writing queries and so on you will start noticing some queries are really slow.
+
+08:17.160 --> 08:21.240
+Now what we're going to do in this chapter, we're going to learn different techniques on how to optimize
+
+08:21.240 --> 08:22.120
+the performance.
+
+08:22.120 --> 08:26.880
+And the first and the very famous one is to go and build indexes in databases.
+
+08:26.880 --> 08:28.280
+So let's understand what this means.

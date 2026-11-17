@@ -1,0 +1,466 @@
+WEBVTT
+
+00:03.920 --> 00:08.760
+All right, so now before we go to school and start practicing, I would like to show you the syntax
+
+00:08.760 --> 00:10.080
+of the index.
+
+00:10.080 --> 00:11.440
+So it's very very simple.
+
+00:11.440 --> 00:13.360
+It starts with create.
+
+00:13.400 --> 00:17.400
+And then we can define whether it is clustered or non-clustered.
+
+00:17.400 --> 00:19.240
+And then the keyword index.
+
+00:19.240 --> 00:21.280
+But this section is optional.
+
+00:21.280 --> 00:25.520
+So if you don't define anything the default can be the non-clustered.
+
+00:25.520 --> 00:31.080
+So if you say create index the SQL server going to go and create non-clustered index.
+
+00:31.080 --> 00:34.440
+Then after that we have to go and define the name of the index.
+
+00:34.440 --> 00:40.000
+And then we have to tell SQL which table we have to create the index in on table name.
+
+00:40.000 --> 00:45.240
+And then we can go and define one column or multiple columns for the index.
+
+00:45.240 --> 00:49.400
+And we call an index with multiple columns as composite index.
+
+00:49.400 --> 00:53.680
+So for example we can go and create a clustered index using this command.
+
+00:53.720 --> 00:56.280
+Create clustered index the index name.
+
+00:56.280 --> 00:59.700
+And then we specify the table and the ID.
+
+00:59.700 --> 01:03.020
+So we are saying create clustered index based on this column.
+
+01:03.060 --> 01:04.940
+The ID from the table customers.
+
+01:04.940 --> 01:07.820
+And if you want to create a non-clustered index you say.
+
+01:07.860 --> 01:09.700
+Create non-clustered index.
+
+01:09.860 --> 01:10.860
+And the same thing.
+
+01:10.860 --> 01:12.780
+So so far we are using one column in the.
+
+01:12.820 --> 01:13.180
+Index.
+
+01:13.180 --> 01:17.580
+But we can go and create a composite index with multiple columns like the following.
+
+01:17.620 --> 01:18.140
+Example.
+
+01:18.140 --> 01:19.780
+So we can say create an index.
+
+01:19.780 --> 01:22.820
+And as you can see we skipped here defining the type.
+
+01:22.860 --> 01:26.740
+And that's because the default is going to be non-clustered index.
+
+01:26.740 --> 01:28.140
+And now here we are specifying.
+
+01:28.180 --> 01:30.860
+Two columns the last name and the first name.
+
+01:30.860 --> 01:33.220
+And as you can see we are specifying as well for.
+
+01:33.260 --> 01:35.500
+SQL how to sort the data.
+
+01:35.500 --> 01:40.500
+So we are saying LastName should be sorted inside the database ascending.
+
+01:40.540 --> 01:41.820
+Lowest to the highest.
+
+01:41.820 --> 01:46.020
+But the first name should be the way around from the highest to the lowest.
+
+01:46.100 --> 01:50.540
+So you can control how the data are going to be sorted physically in the data page.
+
+01:50.540 --> 01:51.980
+So as you can see it is very simple.
+
+01:51.980 --> 01:55.180
+This is the syntax for creating index in SQL.
+
+01:55.220 --> 01:56.580
+All right so back to SQL.
+
+01:56.580 --> 02:00.640
+And the first question is where do we find indexes in the database?
+
+02:00.720 --> 02:02.200
+Well, you can go and explore it.
+
+02:02.200 --> 02:06.840
+If you go to the Object Explorer over here and check any tables from our sales DB, for example, the
+
+02:06.840 --> 02:07.600
+customers.
+
+02:07.600 --> 02:09.840
+And here you have a folder called indexes.
+
+02:09.840 --> 02:13.360
+So if you expand it you will find here an index.
+
+02:13.360 --> 02:18.960
+I didn't create any of those indexes in the database, but in SQL server, if you define any of the
+
+02:18.960 --> 02:26.000
+columns as a primary key, the SQL server is going to go by default, creating a clustered index for
+
+02:26.000 --> 02:30.880
+the primary key, because it makes always sense to create a clustered index on the primary key.
+
+02:30.880 --> 02:32.840
+So this one is created as a default.
+
+02:32.840 --> 02:36.280
+And as you can see at the start we have like a key primary key customer.
+
+02:36.280 --> 02:38.080
+And then it is clustered.
+
+02:38.120 --> 02:39.640
+Now I would like to start from the scratch.
+
+02:39.640 --> 02:43.800
+That's why I would like to go and create a new table without any indexes.
+
+02:43.800 --> 02:48.440
+So what we're going to do, we're going to go and load the table customers into a new table.
+
+02:48.440 --> 02:49.520
+So how we can do that.
+
+02:49.520 --> 02:54.840
+We're going to go and say select star from sales customers.
+
+02:54.840 --> 02:54.980
+Worse.
+
+02:55.660 --> 02:59.580
+And before the from we're going to say into a new table.
+
+02:59.580 --> 03:02.220
+So it's going to be TB customers.
+
+03:02.740 --> 03:04.780
+So like this let's go and execute it.
+
+03:04.780 --> 03:10.300
+So now if we go to the left side and refresh the tables, you can find we have now a new table called
+
+03:10.500 --> 03:11.580
+DB customers.
+
+03:11.620 --> 03:14.500
+Now let's go and check whether we have any indexes inside it.
+
+03:14.500 --> 03:17.180
+So indexes it is empty.
+
+03:17.180 --> 03:20.340
+So we don't have anything no clustered index or anything else.
+
+03:20.340 --> 03:24.500
+And this table has the structure of heap structure.
+
+03:24.500 --> 03:26.900
+So the data are inserted there randomly.
+
+03:26.900 --> 03:28.180
+It is not sorted.
+
+03:28.180 --> 03:36.260
+And if I go over here and for example let's say I'm going to select from this new table where customer
+
+03:36.260 --> 03:39.980
+ID equal one and I execute it.
+
+03:39.980 --> 03:45.100
+The SQL server did a full scan on the table in order to find this customer ID.
+
+03:45.100 --> 03:49.380
+So our new table db customers is a heap cluster.
+
+03:49.380 --> 03:50.980
+But let's go and change that.
+
+03:50.980 --> 03:51.580
+What we're going to do.
+
+03:51.580 --> 03:54.480
+We're going to go and create a new clustered index.
+
+03:54.640 --> 03:59.440
+So we're going to say create clustered index.
+
+03:59.440 --> 04:02.200
+And then we're going to go and give it a name for the index.
+
+04:02.200 --> 04:03.920
+We usually follow the following index.
+
+04:03.920 --> 04:06.120
+So we have index as prefix.
+
+04:06.120 --> 04:08.400
+And then after that we specify the table name.
+
+04:08.400 --> 04:13.040
+So db customers and then the key for the index.
+
+04:13.040 --> 04:16.440
+So the column that you are using in order to index the table.
+
+04:16.440 --> 04:20.200
+This is important to stick with the same naming convention for the index name.
+
+04:20.200 --> 04:24.440
+Because later as you are monitoring your indexes, it's going to be really easy to understand.
+
+04:24.480 --> 04:30.720
+Okay, this index is for the table DB customers and we are using the customer ID to index.
+
+04:30.720 --> 04:34.520
+So now after that we're going to go specify on which table we are doing the index.
+
+04:34.520 --> 04:38.280
+So on sales DB customers.
+
+04:39.040 --> 04:42.400
+And then we're going to specify that column name.
+
+04:42.400 --> 04:46.920
+So we are saying build for me clustered index based on the customer ID.
+
+04:46.920 --> 04:48.760
+So now let's go and execute it.
+
+04:48.760 --> 04:54.050
+So as you can see it's very fast because we have only five rows, so the database just switched all
+
+04:54.090 --> 04:55.770
+the data pages very fast.
+
+04:55.810 --> 04:57.930
+Now let's go and check our new index.
+
+04:57.930 --> 05:00.490
+So let's go and refresh and let's go inside it.
+
+05:00.490 --> 05:05.370
+And now we can see that we have our new index clustered index based on the customer ID.
+
+05:05.410 --> 05:08.530
+Now as we learned we cannot create multiple clustered index.
+
+05:08.530 --> 05:10.090
+But let's go and test that.
+
+05:10.090 --> 05:12.130
+So I will just take the whole thing.
+
+05:12.450 --> 05:19.050
+And let's say I would like to create a clustered index based on the first name as well here.
+
+05:21.130 --> 05:23.730
+So let's go and execute it.
+
+05:23.730 --> 05:29.330
+So as you can see SQL saying you cannot create more than one clustered index on this table.
+
+05:29.330 --> 05:32.010
+That means we can create only one clustered index.
+
+05:32.250 --> 05:37.890
+And let's say that after you created the index you choose the wrong column and you would like to change
+
+05:37.890 --> 05:39.330
+it to the first name.
+
+05:39.530 --> 05:43.250
+So what we're going to do, we have to go and drop the index.
+
+05:43.250 --> 05:45.810
+So we say drop index.
+
+05:45.810 --> 05:48.010
+And then you need the index name.
+
+05:48.010 --> 05:49.450
+It was this one.
+
+05:49.450 --> 05:51.990
+And then you have to specify which table.
+
+05:52.150 --> 05:57.590
+So it's going to be sales DB customers like this.
+
+05:57.750 --> 06:04.350
+So if I do it like this and let's go and refresh again you can see that we don't have any indexes anymore.
+
+06:04.350 --> 06:06.590
+And the table is backed as a heap structure.
+
+06:06.630 --> 06:11.430
+And now you can go and create the correct clustered index for this table.
+
+06:11.470 --> 06:13.910
+But to be honest I'm going to stick with the customer ID.
+
+06:13.910 --> 06:18.790
+So I will not create a clustered index on the first name, because the first name of course is not unique.
+
+06:18.790 --> 06:22.310
+You can have like maybe multiple customers having the same name.
+
+06:22.310 --> 06:26.910
+And as well updates could happen on the first name and that's going to be very expensive.
+
+06:26.950 --> 06:30.510
+So that means I'm going to stick with my index on the customer ID.
+
+06:30.550 --> 06:31.790
+Let's go and execute it.
+
+06:31.830 --> 06:36.030
+And now I have again my index on my table.
+
+06:36.070 --> 06:41.190
+Now let's say that that I have the following select statement from our tables.
+
+06:41.510 --> 06:50.690
+So customers and I'm searching for the last name Well, let's say we are searching for Brown, so let's
+
+06:50.690 --> 06:51.570
+go and execute it.
+
+06:51.570 --> 06:55.530
+So let's say that we are getting more and more customers and our table is getting bigger.
+
+06:55.850 --> 06:58.250
+And I frequently use this query.
+
+06:58.250 --> 07:01.850
+So I'm searching for specific customers using the last name.
+
+07:01.850 --> 07:07.690
+So what we can do we can go and create a non-clustered index for the last name in order to improve the
+
+07:07.690 --> 07:09.250
+performance of this query.
+
+07:09.250 --> 07:10.490
+So let's go and create that.
+
+07:10.490 --> 07:14.810
+So we're going to say create non-clustered index.
+
+07:14.850 --> 07:17.610
+And now we're going to give it the name using the naming convention.
+
+07:17.610 --> 07:19.850
+So DB customers.
+
+07:19.850 --> 07:22.610
+And we're going to use the last name for this index.
+
+07:22.930 --> 07:31.290
+So on sales DB customers and we will use the column last name for the index.
+
+07:31.290 --> 07:33.690
+So let's go and execute it.
+
+07:33.730 --> 07:39.570
+And now if you go to our indexes and refresh we will find our new index over here.
+
+07:39.730 --> 07:44.330
+And as you can see it says it is non-clustered and as well non-unique.
+
+07:44.330 --> 07:46.390
+We will talk about the uniqueness later.
+
+07:46.390 --> 07:47.510
+So as you can see, it's very easy.
+
+07:47.550 --> 07:50.750
+We have just created a non-clustered index on the last name.
+
+07:50.790 --> 07:55.830
+And now as we learned, we can go and create multiple non-clustered index on the same table.
+
+07:56.150 --> 07:59.110
+Let's say for example, now our query looks like this.
+
+07:59.110 --> 08:03.830
+We are searching for the first name using for example the value Anna.
+
+08:03.870 --> 08:06.390
+And now this query happens a lot and may be slow.
+
+08:06.390 --> 08:10.310
+So we can go and create a new non-clustered index.
+
+08:10.310 --> 08:12.430
+So let me just have it like this.
+
+08:12.430 --> 08:17.950
+And for the non-clustered index you don't have to specify always like non-clustered index as default.
+
+08:17.950 --> 08:19.110
+It's going to be non-clustered.
+
+08:19.110 --> 08:20.670
+So we can skip that.
+
+08:20.710 --> 08:23.470
+And here let's call it first name.
+
+08:24.030 --> 08:28.030
+And the column that we are using is the first name.
+
+08:28.550 --> 08:31.590
+So let's go and create this index.
+
+08:31.630 --> 08:33.990
+And now let's go and refresh our indexes.
+
+08:34.030 --> 08:39.270
+And as you can see SQL did create a non-clustered index for the first name.
+
+08:39.270 --> 08:44.750
+So if you don't specify the type of the index it's going to be as a default non-clustered index.

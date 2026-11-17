@@ -1,0 +1,367 @@
+WEBVTT
+
+00:03.920 --> 00:08.680
+All right, everyone, now we're going to talk about how to control the flow in your stored procedure.
+
+00:08.680 --> 00:11.880
+And we're going to learn how to do that using the if else statement.
+
+00:11.920 --> 00:13.560
+So now let's have the following scenario.
+
+00:13.760 --> 00:17.280
+Now if you check our query over here we are doing the average of score.
+
+00:17.480 --> 00:21.600
+And if you check the data you can see that in the scores we have nulls.
+
+00:21.640 --> 00:24.000
+And nulls are really bad for aggregations.
+
+00:24.000 --> 00:28.480
+So we usually have to clean up our data before doing any aggregations.
+
+00:28.480 --> 00:33.240
+And in this scenario we can understand null as a zero and how we're going to clean up and handle the
+
+00:33.240 --> 00:33.760
+data.
+
+00:33.920 --> 00:39.520
+We're going to go and make an update on our table where we say if there is a NULL, then make it as
+
+00:39.520 --> 00:40.160
+a zero.
+
+00:40.160 --> 00:44.040
+And we will do this as a pre step inside our stored procedure.
+
+00:44.040 --> 00:46.760
+So that means first we have to clean up the data.
+
+00:46.760 --> 00:49.560
+And then afterwards we're going to generate the reports.
+
+00:49.560 --> 00:52.680
+And this is what we usually do inside SQL projects.
+
+00:52.680 --> 00:54.480
+So the logic can be very simple.
+
+00:54.480 --> 00:55.520
+We have to check first.
+
+00:55.560 --> 00:57.480
+Do we have nulls inside the score.
+
+00:57.520 --> 01:01.840
+If the answer is yes, then we have to go and update the null values to zero.
+
+01:02.080 --> 01:06.080
+But if the answer is no, we don't have any values, then we can skip everything.
+
+01:06.080 --> 01:11.340
+So now we're going to go and build this logic inside our stored procedure in order to clean up and prepare
+
+01:11.340 --> 01:11.900
+the data.
+
+01:11.940 --> 01:12.740
+So let's go.
+
+01:12.780 --> 01:13.180
+Okay.
+
+01:13.220 --> 01:18.260
+So now this part we're going to call it generating reports.
+
+01:19.260 --> 01:25.060
+And we're going to have another part called prepare and clean up data.
+
+01:25.100 --> 01:28.660
+So now let's prepare first the structure of the if else statements.
+
+01:28.660 --> 01:30.220
+So the syntax is going to look like this.
+
+01:30.220 --> 01:32.900
+So if and then begin and end.
+
+01:33.540 --> 01:37.460
+So this is the block of the if and we're going to do the same thing for the else.
+
+01:37.460 --> 01:40.580
+So we have else and we have begin and end.
+
+01:40.620 --> 01:41.940
+Let me just separate them.
+
+01:41.940 --> 01:44.780
+So now how this works we have to create a condition.
+
+01:45.060 --> 01:48.820
+If the condition is met then the if statement can be executed.
+
+01:48.820 --> 01:54.300
+But if the condition is not fulfilled and we have false, then the else statement is going to be executed.
+
+01:54.300 --> 01:55.340
+So what is the condition?
+
+01:55.340 --> 01:58.700
+We have to check whether there is null inside the scores.
+
+01:58.740 --> 02:00.420
+So let's write a very simple query.
+
+02:00.460 --> 02:09.300
+It's going to say select one from sales customers where score is null.
+
+02:09.780 --> 02:12.000
+And always we have to check the country 93.
+
+02:12.560 --> 02:14.360
+Equal to let's say USA.
+
+02:14.520 --> 02:16.920
+So let's go and execute this one over here.
+
+02:17.120 --> 02:19.200
+So now we are getting the output results.
+
+02:19.200 --> 02:23.040
+If you are getting a results that means somewhere there are nulls.
+
+02:23.040 --> 02:29.200
+But if you go for example and say here Germany and execute the semi query in the output, you see that
+
+02:29.200 --> 02:30.320
+we don't have any results.
+
+02:30.320 --> 02:35.240
+That means for the German customers, we don't have any nulls in their scores.
+
+02:35.400 --> 02:38.200
+So if this query returns something, we have nulls.
+
+02:38.200 --> 02:41.240
+If it didn't return anything then there is no nulls.
+
+02:41.280 --> 02:44.360
+And we can use exactly this query as a condition.
+
+02:44.560 --> 02:50.000
+So we're going to take our check and say if exists and then two parentheses.
+
+02:50.000 --> 02:51.480
+And then we put our query.
+
+02:51.480 --> 02:57.720
+So what we are saying if exists if this query return anything then go and execute the next block.
+
+02:57.720 --> 03:01.240
+And if it is not exist that means it is not returning anything.
+
+03:01.240 --> 03:03.480
+Then go and execute the second block.
+
+03:03.480 --> 03:04.400
+So it's a logic, right?
+
+03:04.400 --> 03:05.240
+It's very simple.
+
+03:05.280 --> 03:08.960
+Now of course, instead of having a static value over here we can use our parameter.
+
+03:08.960 --> 03:10.800
+So add country.
+
+03:10.840 --> 03:14.520
+And now we have to tell SQL what to do if it exists.
+
+03:14.520 --> 03:17.240
+So in between we can have like an update statement.
+
+03:17.240 --> 03:23.730
+So updates sales customers and we're going to set the score equal to zero.
+
+03:23.770 --> 03:26.890
+But very important we have to go and use where condition.
+
+03:26.890 --> 03:29.250
+Otherwise it's going to go and update everything.
+
+03:29.450 --> 03:36.450
+The score is null and the country equal to our parameter country.
+
+03:37.250 --> 03:40.850
+So with that we are updating exactly the nulls for specific country.
+
+03:40.890 --> 03:43.090
+And let's have a semicolon at the end.
+
+03:43.250 --> 03:47.770
+And at the start maybe I'm going to say just to have a nice message in the output print.
+
+03:47.770 --> 03:55.690
+And we can have a message updating null scores to zero and as well a semicolon at the end.
+
+03:55.690 --> 04:01.090
+So if there is any nulls then execute the whole thing, print the message and update the table.
+
+04:01.130 --> 04:05.330
+So now the next step is that we're going to go and tell SQL what can happen if the condition is not
+
+04:05.330 --> 04:05.970
+fulfilled.
+
+04:06.170 --> 04:08.050
+That means we don't have any nulls.
+
+04:08.050 --> 04:12.250
+Well we don't have to update the table at all because we don't have to clean up anything.
+
+04:12.250 --> 04:14.890
+But I'm going to go and make prints over here.
+
+04:14.890 --> 04:20.850
+So prints and we're going to give the message no null scores found.
+
+04:21.130 --> 04:24.830
+And at the last end I'm going to go and put a semicolon.
+
+04:24.830 --> 04:25.710
+So that's it.
+
+04:25.710 --> 04:26.710
+This is our logic.
+
+04:26.710 --> 04:29.750
+We are checking our condition and then we execute.
+
+04:29.750 --> 04:33.830
+If the condition is met where we update the table with zero instead of null.
+
+04:33.830 --> 04:36.390
+And if the condition is not met then don't do anything.
+
+04:36.390 --> 04:37.630
+Just print a message.
+
+04:37.630 --> 04:38.750
+Now you might say, you know what?
+
+04:38.790 --> 04:39.670
+Why you are doing this.
+
+04:39.710 --> 04:44.070
+We just can use this update statement and we don't need the whole if else statements.
+
+04:44.070 --> 04:45.670
+So why we are checking in the first place.
+
+04:45.670 --> 04:50.950
+I can like each time I run this stored procedure, I go and update all the nulls if they exist to a
+
+04:50.950 --> 04:51.390
+zero.
+
+04:51.590 --> 04:55.550
+Well, this is not really professional because you are wasting resources.
+
+04:55.550 --> 04:58.270
+So each time you run an update statement like this.
+
+04:58.470 --> 05:03.590
+So imagine that you have a big table and each time you run your stored procedure, SQL have to go and
+
+05:03.590 --> 05:06.110
+check whether there is any nulls and so on.
+
+05:06.110 --> 05:08.350
+And this is of course consume resources.
+
+05:08.350 --> 05:12.030
+It's way better if you go and check first whether it's really needed.
+
+05:12.030 --> 05:13.750
+So that's why we are doing this logic.
+
+05:13.750 --> 05:14.110
+Now.
+
+05:14.110 --> 05:17.350
+As you can see our stored procedure is getting bigger and bigger.
+
+05:17.750 --> 05:19.110
+So we have like two parts.
+
+05:19.150 --> 05:22.630
+The first part is preparing and cleaning up the data.
+
+05:22.630 --> 05:25.230
+And the second part we are generating reports.
+
+05:25.270 --> 05:28.590
+Let's go and update the whole thing and execute it.
+
+05:28.590 --> 05:30.290
+And now we have to do it step by step.
+
+05:30.290 --> 05:32.250
+So let's check our query over here.
+
+05:32.250 --> 05:35.410
+And you can see we have here a null for USA customers.
+
+05:35.410 --> 05:38.850
+So let's go first execute it for the USA as a default.
+
+05:38.850 --> 05:40.850
+And now let's go and check the messages.
+
+05:40.850 --> 05:43.890
+It's saying updating null scores to zero.
+
+05:43.930 --> 05:50.330
+That means the first block is executed because SQL did find a customer with a null.
+
+05:50.330 --> 05:54.570
+And with that the average of scores can be different than previously.
+
+05:54.570 --> 05:58.490
+So we have now more accurate average in our reports.
+
+05:58.490 --> 06:02.810
+So if you go and check our query again you can see now we have a zero instead of null.
+
+06:03.090 --> 06:05.930
+Let's go and execute it for Germany like this.
+
+06:05.970 --> 06:07.610
+And let's go and check the messages.
+
+06:07.610 --> 06:09.890
+It says no null scores found.
+
+06:09.890 --> 06:13.970
+And that is correct because for Germany we don't have any nulls.
+
+06:14.010 --> 06:18.130
+So with that we have created a control flow using the flow statements.
+
+06:18.130 --> 06:21.290
+And as you can see, we are not doing any more like simple queries.
+
+06:21.330 --> 06:23.730
+We are creating like a mini program.
+
+06:23.730 --> 06:29.410
+And now it's like an ETL where first we prepare the data and second, we generate the reports and you
+
+06:29.410 --> 06:33.730
+can imagine real projects, how big those stored procedures are going to get, where you have a lot
+
+06:33.770 --> 06:35.810
+of tables and a lot of things to do.

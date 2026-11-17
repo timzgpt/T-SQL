@@ -1,0 +1,73 @@
+WEBVTT
+
+00:03.960 --> 00:09.320
+So now let's understand how the database server executes the subqueries behind the scenes.
+
+00:09.320 --> 00:09.800
+Let's go.
+
+00:09.800 --> 00:14.400
+So now let's say that you are a data analyst and you are writing a query at the client side where you
+
+00:14.400 --> 00:16.680
+have a subquery inside the main query.
+
+00:16.680 --> 00:18.960
+So once you go and execute it, what's going to happen.
+
+00:18.960 --> 00:23.040
+The database engine is going to go and identify the subquery.
+
+00:23.040 --> 00:26.880
+And in this situation the database is going to execute first the subquery.
+
+00:26.880 --> 00:31.320
+So here the subquery is like selecting and retrieving data from the table orders.
+
+00:31.320 --> 00:37.360
+So that means the database has to retrieve the data from the disk storage from the user data.
+
+00:37.360 --> 00:43.480
+So now once the subquery is executed the result the intermediate result is going to be stored in the
+
+00:43.480 --> 00:44.040
+cache.
+
+00:44.040 --> 00:49.640
+So this means the result of the subquery is temporary and as well very fast to retrieve.
+
+00:49.680 --> 00:54.680
+And now once the database engine is done with the subquery it's going to go and start executing the
+
+00:54.680 --> 00:55.560
+main query.
+
+00:55.560 --> 01:00.040
+So let's see in this scenario it's completely depending on the result of the subquery.
+
+01:00.040 --> 01:04.440
+So that means the main query is going to go and interact with the cache storage.
+
+01:04.440 --> 01:09.160
+So this means now the data can be retrieved very fast from the result of the subquery.
+
+01:09.200 --> 01:12.760
+Once it's done it's going to forward the result to the database engine.
+
+01:12.760 --> 01:16.320
+And the database engine can forward the results to the client side.
+
+01:16.320 --> 01:19.080
+And at your side you will find the final result.
+
+01:19.080 --> 01:24.440
+And of course, once everything is executed, the database engine is going to go and clean up the cache
+
+01:24.440 --> 01:29.720
+so the subquery results can be destroyed and removed completely from the cache in order to have a free
+
+01:29.720 --> 01:31.560
+space for other queries.
+
+01:31.560 --> 01:35.800
+So this is how the database server executes the subqueries behind the scenes.

@@ -1,0 +1,73 @@
+WEBVTT
+
+00:03.880 --> 00:08.760
+Okay, so now one more thing before we jump to the next use case that there is one rule to follow if
+
+00:08.760 --> 00:14.200
+you are using case statements, and that is that data types of the results must be matching.
+
+00:14.200 --> 00:19.440
+So what this means if we check again our example over here, we can see that the result of each condition
+
+00:19.440 --> 00:20.520
+is a string.
+
+00:20.520 --> 00:22.880
+So as you can see we have here high medium and low.
+
+00:22.880 --> 00:25.920
+And all of those informations are following the same data type.
+
+00:25.920 --> 00:26.960
+So it is correct.
+
+00:26.960 --> 00:32.640
+So now if I go and break this rule for example after this then let's have the value two.
+
+00:32.680 --> 00:35.400
+So now we have a number and we have characters.
+
+00:35.400 --> 00:36.920
+So let's go and execute it.
+
+00:36.920 --> 00:38.240
+And now of course we're going to get an error.
+
+00:38.240 --> 00:43.920
+Because now SQL is trying to convert the value low to an integer which is incorrect.
+
+00:43.920 --> 00:47.320
+So the data types of the output of the result must be matching.
+
+00:47.320 --> 00:54.280
+And that's not only include the value after the then, but also the value after the else, because this
+
+00:54.280 --> 00:56.280
+value is as well part of the output.
+
+00:56.280 --> 00:57.920
+So let's have here again medium.
+
+00:58.280 --> 01:01.640
+And now let's go and change this to let's say one.
+
+01:01.800 --> 01:07.000
+So let's go and execute it again SQL going to throw an error because this is an integer number.
+
+01:07.000 --> 01:09.120
+And the others are string characters.
+
+01:09.120 --> 01:11.280
+So this is the rule of using the case statement.
+
+01:11.280 --> 01:15.080
+The data types after then and after else must be matching.
+
+01:15.120 --> 01:19.920
+And if you ask me whether there is restriction about where you can use the case statement in which clauses,
+
+01:20.120 --> 01:26.680
+you can use it everywhere and select enjoins from where groupby order by everywhere.
+
+01:26.680 --> 01:29.880
+So there are no restrictions and we have only this one rule.

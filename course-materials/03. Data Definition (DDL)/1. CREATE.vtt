@@ -1,0 +1,418 @@
+WEBVTT
+
+00:00.080 --> 00:00.840
+All right, my friends.
+
+00:00.840 --> 00:06.920
+So now we can learn how to modify the structure of our database by using commands of the data definition
+
+00:06.920 --> 00:08.040
+language DDL.
+
+00:08.280 --> 00:12.840
+So we're going to learn how to create a new table, update the content of a table and as well how to
+
+00:12.880 --> 00:13.800
+drop a table.
+
+00:13.840 --> 00:14.760
+So let's go.
+
+00:18.760 --> 00:19.080
+Okay.
+
+00:19.120 --> 00:24.000
+So usually if you have like an empty database, what you want to do is to go and define the structure
+
+00:24.000 --> 00:24.800
+of your data.
+
+00:24.800 --> 00:29.120
+So one of the first things that we usually do is we go and create new tables.
+
+00:29.120 --> 00:31.320
+So here we have a command called create.
+
+00:31.320 --> 00:36.320
+And if you use it you can create a new object inside the database like for example a table.
+
+00:36.320 --> 00:39.040
+So once you execute it you're going to get the brand new table.
+
+00:39.080 --> 00:42.000
+And usually the table is going to be empty without any data.
+
+00:42.000 --> 00:43.200
+So it is very simple.
+
+00:43.200 --> 00:45.280
+This is what the create command does.
+
+00:45.320 --> 00:48.200
+And now let's go to SQL in order to create a new table.
+
+00:48.200 --> 00:49.960
+So my friends we have the following task.
+
+00:49.960 --> 00:56.400
+Create a new table called persons with columns ID, person, name, birth date and phone.
+
+00:56.440 --> 00:59.000
+Okay, so this time we will not start by select.
+
+00:59.000 --> 01:01.800
+We will start with the command create table.
+
+01:02.200 --> 01:07.070
+So we are telling SQL to create a table, and after that we have to define the name of the table.
+
+01:07.070 --> 01:09.190
+So in this task we have to call it persons.
+
+01:09.230 --> 01:11.910
+Now we have to go and open two parentheses like this.
+
+01:11.910 --> 01:14.870
+And in between we have to define the columns.
+
+01:14.870 --> 01:15.590
+So what do we need.
+
+01:15.630 --> 01:16.990
+First we need an ID.
+
+01:17.030 --> 01:18.630
+So this is the first column name.
+
+01:18.630 --> 01:21.390
+And next we have to define which data type for this column.
+
+01:21.390 --> 01:22.790
+It's going to be an int.
+
+01:22.790 --> 01:25.310
+So it is a number does not contain any characters.
+
+01:25.350 --> 01:27.470
+And now next we can define some constraints.
+
+01:27.470 --> 01:29.350
+And we cannot have a person without an ID.
+
+01:29.350 --> 01:31.070
+So it should not be null.
+
+01:31.070 --> 01:31.710
+So not null.
+
+01:31.710 --> 01:32.910
+This is the first column.
+
+01:32.910 --> 01:36.950
+So we have defined the name of the column the data type and the constraint okay.
+
+01:36.990 --> 01:38.230
+So let's go to the second column.
+
+01:38.230 --> 01:39.350
+And here we're going to have a comma.
+
+01:39.350 --> 01:43.310
+And the next one name going to be person name.
+
+01:43.310 --> 01:44.590
+So this is the column name.
+
+01:44.630 --> 01:45.910
+And the person name we can have.
+
+01:45.950 --> 01:50.950
+And now the data type for this column is going to be a varchar because the person name contains characters.
+
+01:50.950 --> 01:52.270
+So varchar.
+
+01:52.310 --> 01:53.950
+And now we have to define the length.
+
+01:53.950 --> 01:56.230
+So I'm going to go with 50 characters.
+
+01:56.270 --> 01:57.990
+And now I would say this is a must.
+
+01:57.990 --> 01:59.750
+So each person should have a name.
+
+01:59.750 --> 02:01.790
+So I'm going to say not null as well.
+
+02:01.790 --> 02:05.110
+So that we have the name the type and the constraint.
+
+02:05.150 --> 02:08.770
+Now let's move to the third column is going to be birth dates.
+
+02:08.810 --> 02:12.450
+Now which type of informations we have inside the birth dates.
+
+02:12.450 --> 02:15.330
+So it's going to be a date, not a number not characters.
+
+02:15.330 --> 02:16.850
+So we're going to go with the data type date.
+
+02:16.890 --> 02:18.250
+And now about the constraint.
+
+02:18.250 --> 02:24.050
+Well depends I would say in our application it is an optional because this is very personal information.
+
+02:24.050 --> 02:26.890
+And maybe some persons will not provide their birth dates.
+
+02:26.890 --> 02:29.970
+So this is an optional and I will not say it is not null.
+
+02:29.970 --> 02:31.210
+So nulls are allowed.
+
+02:31.250 --> 02:32.490
+Now let's move on to the next one.
+
+02:32.490 --> 02:33.970
+It's going to be the phone.
+
+02:33.970 --> 02:35.890
+So now what is the data type of a phone.
+
+02:35.890 --> 02:37.770
+Well we have some types numbers.
+
+02:37.770 --> 02:40.050
+We have characters special characters.
+
+02:40.050 --> 02:41.330
+So we could have anything.
+
+02:41.330 --> 02:43.170
+So that's why I'm going to go with the Varchar.
+
+02:43.210 --> 02:46.930
+And here you can specify the length that you think it's okay I'm going to go with 15.
+
+02:46.970 --> 02:49.490
+Now of course depend on the system that you are building.
+
+02:49.490 --> 02:55.130
+I would say the fonts are very important in order to validate whether this is a real person.
+
+02:55.130 --> 02:57.250
+So we're going to say not null.
+
+02:57.290 --> 02:59.930
+So we are not allowing nulls in this field.
+
+02:59.970 --> 03:00.410
+Perfect.
+
+03:00.410 --> 03:03.250
+So with that we have covered all the columns that are required.
+
+03:03.250 --> 03:06.250
+We have defined the data types and as well the constraints.
+
+03:06.290 --> 03:11.680
+Now the last thing in each database table we should Richard has a primary key in order to make sure
+
+03:11.680 --> 03:15.800
+this table has an integrity and maybe as well connectable to other tables.
+
+03:15.840 --> 03:20.760
+So now what we're going to do, we're going to go and add the primary key constraint for the last column.
+
+03:20.760 --> 03:22.400
+And then we're going to say constraints.
+
+03:22.440 --> 03:24.640
+Now we have to give a primary key name.
+
+03:24.680 --> 03:27.000
+This is only going to be visible for the database.
+
+03:27.000 --> 03:29.400
+So I'm going to call it PK for primary key.
+
+03:29.480 --> 03:30.880
+And here persons.
+
+03:30.880 --> 03:33.960
+And then after that we're going to say primary key.
+
+03:34.000 --> 03:37.960
+And between two parentheses we're going to go and pick which one is the primary key.
+
+03:38.000 --> 03:39.960
+And of course it's going to be the ID.
+
+03:39.960 --> 03:41.800
+So we can go over here and say ID.
+
+03:41.800 --> 03:44.080
+So again we are saying there is a new constraint.
+
+03:44.080 --> 03:45.600
+This is the name of it.
+
+03:45.640 --> 03:47.240
+It's only internal for the database.
+
+03:47.240 --> 03:51.200
+And then we are saying this one is a primary key on the field ID.
+
+03:51.200 --> 03:52.080
+So that's it.
+
+03:52.120 --> 03:54.520
+With that we have defined a primary key for our table.
+
+03:54.560 --> 03:56.280
+Let's go and execute it.
+
+03:56.280 --> 03:57.840
+So as you can see it is successful.
+
+03:57.840 --> 04:00.360
+Let's go and check our database for our new table.
+
+04:00.360 --> 04:04.880
+So if you don't see it already you have to right click on the database and then go and refresh.
+
+04:04.880 --> 04:06.160
+So let's go to the tables.
+
+04:06.200 --> 04:09.080
+And now we have a brand new table called persons.
+
+04:09.080 --> 04:11.280
+So with that we have created our new table.
+
+04:11.320 --> 04:15.430
+Now of course for the DDL commands you will not get results or data.
+
+04:15.470 --> 04:20.830
+All what you are getting is a message from the database and the message says here the command completed
+
+04:20.830 --> 04:23.550
+successfully and then we have a date when this is completed.
+
+04:23.550 --> 04:26.790
+So that means that DDL commands will never return data.
+
+04:26.830 --> 04:29.790
+It is changing the structure of your database.
+
+04:29.830 --> 04:32.350
+It's not about retrieving any data and so on.
+
+04:32.350 --> 04:35.270
+So this command did change something in our database.
+
+04:35.270 --> 04:37.510
+And in this scenario it created a new table.
+
+04:37.510 --> 04:43.630
+And that's why we call this data definition language DDL because we are defining the database.
+
+04:43.670 --> 04:48.630
+Now of course if you go and say select star from our new table persons.
+
+04:48.630 --> 04:51.550
+So let's go and highlight it and then execute it.
+
+04:51.550 --> 04:54.190
+You will see we are getting of course the columns.
+
+04:54.190 --> 04:57.230
+So the ID, the person name birth date, the phone.
+
+04:57.230 --> 04:58.670
+But we don't have any rows.
+
+04:58.710 --> 05:00.790
+That means our table is empty.
+
+05:00.830 --> 05:06.910
+Now what is very important is that you go and save those informations in an SQL script, because maybe
+
+05:06.910 --> 05:09.070
+later you have to redefine this table.
+
+05:09.070 --> 05:12.710
+But let's say that you have created different queries and you have lost the scripts.
+
+05:12.750 --> 05:16.650
+And now I would like to see again the create statements for this table.
+
+05:16.650 --> 05:18.010
+Well, there is trick for that.
+
+05:18.010 --> 05:22.010
+If you go to the left side you see the persons right here, right click on it.
+
+05:22.010 --> 05:24.570
+And then you have here script table as.
+
+05:24.610 --> 05:27.810
+And now we have here different options that you can run on the table.
+
+05:27.810 --> 05:30.210
+And the first one says create two.
+
+05:30.250 --> 05:32.690
+Then let's go to New Query editor.
+
+05:33.730 --> 05:34.530
+So now what happened.
+
+05:34.530 --> 05:40.530
+The database did read the metadata information about the person and created your DDL query with many
+
+05:40.530 --> 05:41.930
+extra stuff that we haven't done.
+
+05:41.970 --> 05:44.610
+But this is the template that the database uses.
+
+05:44.610 --> 05:46.050
+So now we can see a lot of stuff.
+
+05:46.050 --> 05:48.930
+But what is interesting is this create table.
+
+05:48.930 --> 05:52.810
+So we can see create table the schema dbo the default one.
+
+05:52.810 --> 05:53.770
+Then the persons.
+
+05:53.810 --> 05:58.250
+And then we have our columns the data type and as well the constraints.
+
+05:58.250 --> 06:03.250
+So with that you got back your DDL statements and many other stuff about the table which is now not
+
+06:03.250 --> 06:03.930
+interesting.
+
+06:03.930 --> 06:08.210
+But now what I really need is to see the create statements about this table.
+
+06:08.210 --> 06:10.370
+So this is how you can get back your DDL command.
+
+06:10.370 --> 06:15.810
+But of course what I recommend you is always put your code inside a git repository and always keep it
+
+06:15.810 --> 06:19.130
+up to date so that always you can check your work and extend it.

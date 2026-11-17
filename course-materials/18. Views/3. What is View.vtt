@@ -1,0 +1,103 @@
+WEBVTT
+
+00:03.920 --> 00:07.920
+Okay, so with that, we have enough fundamentals in order to start talking about the views.
+
+00:07.920 --> 00:10.280
+So the question is what are views?
+
+00:10.320 --> 00:17.800
+A view is a virtual table in SQL that is based on the result of a query without actually storing the
+
+00:17.800 --> 00:19.200
+data in the database.
+
+00:19.360 --> 00:24.000
+So in short, this means views are stored or persisted.
+
+00:24.360 --> 00:26.280
+SQL query in the database.
+
+00:26.400 --> 00:28.520
+So let's understand what this exactly means.
+
+00:28.560 --> 00:32.360
+Now so far what you have learned we have like a database table and all what you have done.
+
+00:32.360 --> 00:36.600
+We create a Select query in order to retrieve the data from this table.
+
+00:36.600 --> 00:39.640
+So once we execute our query, we will get the result back.
+
+00:39.640 --> 00:45.560
+Now if we are talking about views they have as well like the structure of the table but without any
+
+00:45.560 --> 00:46.560
+data inside it.
+
+00:46.560 --> 00:50.520
+And for each view there is like a query attached to it.
+
+00:50.520 --> 00:53.280
+So there is no data, but we have like a query.
+
+00:53.320 --> 00:59.080
+In order to get data, we call the normal table as a physical table and the view we call it a virtual
+
+00:59.120 --> 00:59.680
+table.
+
+00:59.680 --> 01:01.920
+So now how exactly we are going to get the data.
+
+01:01.920 --> 01:07.720
+So now if you go and write query by selecting data from the view not from the table from the view,
+
+01:07.760 --> 01:08.800
+what can happen?
+
+01:08.840 --> 01:13.240
+Is SQL going to go and trigger the queue that is attached to the view.
+
+01:13.280 --> 01:17.560
+And this query is responsible to query the physical table.
+
+01:17.560 --> 01:20.440
+And then the result is going to fill the structure of the view.
+
+01:20.440 --> 01:22.640
+And we will get back of course the results.
+
+01:22.640 --> 01:24.920
+So we are directly querying a view.
+
+01:24.920 --> 01:28.880
+But actually we are indirectly querying a physical table.
+
+01:28.880 --> 01:31.640
+So the view is like between us and the data.
+
+01:31.640 --> 01:35.400
+So that means my real data is stored inside the database tables.
+
+01:35.400 --> 01:40.360
+And the views are like an abstraction layer between me and my real data.
+
+01:40.360 --> 01:43.440
+And of course the data will not be stored inside the view.
+
+01:43.720 --> 01:46.920
+Each time I'm querying the view, what's going to happen?
+
+01:46.960 --> 01:50.160
+The SQL query behind the view is going to be executed again.
+
+01:50.160 --> 01:53.000
+So it's going to go and retrieve the data and get it back to the view.
+
+01:53.000 --> 01:54.720
+And then I will see it in the output.
+
+01:54.720 --> 01:57.520
+So this is what we mean with SQL view.

@@ -1,0 +1,343 @@
+WEBVTT
+
+00:03.960 --> 00:04.280
+Okay.
+
+00:04.280 --> 00:08.160
+So now we're going to focus on how to use the subquery in the Where clause.
+
+00:08.200 --> 00:14.400
+So now in SQL as we learned we can go and filter the tables using the Where clause by using like static
+
+00:14.400 --> 00:15.040
+values.
+
+00:15.040 --> 00:20.400
+But now in real data projects we're going to go and filter the data based on like complex logic.
+
+00:20.520 --> 00:27.480
+So now in order to prepare this complex logic, we go and use the subqueries in order to make like dynamic
+
+00:27.480 --> 00:29.760
+filtering for our main tables.
+
+00:29.800 --> 00:34.520
+And now in order to filter data using the Where clause, we have to go and use operators and we can
+
+00:34.520 --> 00:36.040
+split it into two groups.
+
+00:36.040 --> 00:38.920
+We have the comparison operators and another set.
+
+00:38.920 --> 00:43.600
+We can call it logical operators or sometimes we call it subqueries operators.
+
+00:43.640 --> 00:46.480
+So now first we're going to talk about the comparison operators.
+
+00:46.480 --> 00:52.040
+So the are operators that we can use in order to compare two values in order to help us filtering the
+
+00:52.040 --> 00:54.240
+data based on specific condition.
+
+00:54.280 --> 00:59.160
+And now in SQL basics we have learned that we have different comparison operators and they are very
+
+00:59.160 --> 00:59.480
+simple.
+
+00:59.520 --> 01:05.320
+So in order to compare two values we have operator like the equal we have as well not equal the opposite.
+
+01:05.320 --> 01:11.070
+So we have greater than less than and as well we have greater than or equal to.
+
+01:11.310 --> 01:14.190
+And the last one we have less than or equal to.
+
+01:14.230 --> 01:15.390
+So they are very simple.
+
+01:15.390 --> 01:21.190
+Now instead of comparing two values, we're going to go and compare a value with the result of a subquery
+
+01:21.230 --> 01:23.030
+using the comparison operators.
+
+01:23.070 --> 01:23.390
+All right.
+
+01:23.390 --> 01:28.830
+Let's check the syntax of the subquery inside the Where clause using the comparison operators.
+
+01:28.830 --> 01:33.670
+So we start with the standard stuff where we say select few columns that you want to retrieve.
+
+01:33.710 --> 01:37.710
+And we want to get the data directly from specific table in our database.
+
+01:37.750 --> 01:41.230
+And now we come to the where condition where we want to filter the table.
+
+01:41.230 --> 01:42.350
+So we say where.
+
+01:42.390 --> 01:45.790
+And then we select specific column from the table one.
+
+01:45.790 --> 01:50.430
+Now since we are talking about the comparison operators, we can go with the operator for example equal.
+
+01:50.470 --> 01:55.390
+And usually we go and specify here like static value like a number or string.
+
+01:55.390 --> 02:01.670
+But instead of having a static value what we can do, we can get the value from another Select statement,
+
+02:01.670 --> 02:07.150
+another query like here we're saying select a column from table two and with the filter.
+
+02:07.150 --> 02:13.310
+So now whatever comes from this subquery is going to be used in order to filter the table number one.
+
+02:13.310 --> 02:18.820
+And of course we are telling SQL this is a subquery by defining the parenthesis at the start and at
+
+02:18.820 --> 02:21.620
+the ends, and the outer query is going to be the main query.
+
+02:21.620 --> 02:26.740
+So as you can see, we are using the subquery in order to filter the main query.
+
+02:26.740 --> 02:30.980
+And here in SQL, if you are using subquery with the comparison operators, we have a rule.
+
+02:30.980 --> 02:33.980
+The subquery must be a scalar subquery.
+
+02:33.980 --> 02:35.460
+So only one single value.
+
+02:35.460 --> 02:41.380
+So that's all about how to use the subquery in the Where clause using the comparison operators.
+
+02:41.420 --> 02:41.700
+All right.
+
+02:41.700 --> 02:43.380
+So now we have again the same task.
+
+02:43.380 --> 02:50.020
+And it says find the products that have a price higher than the average price of oil products.
+
+02:50.020 --> 02:54.140
+We have solved this task already using the subquery inside the From clause.
+
+02:54.140 --> 02:57.540
+But now we're going to go and solve it again using the subquery.
+
+02:57.540 --> 02:59.740
+But this time inside the Where clause.
+
+02:59.740 --> 03:01.540
+So let's do it step by step.
+
+03:01.540 --> 03:03.980
+Let's go and get the information that we need.
+
+03:03.980 --> 03:11.260
+So we need the product ID we need the price from the table sales products.
+
+03:11.260 --> 03:12.660
+So let's go and execute it.
+
+03:12.660 --> 03:14.980
+So now we got the list of all products.
+
+03:14.980 --> 03:20.020
+But we have to go and filter those informations using the column price.
+
+03:20.020 --> 03:21.060
+So that's in the results.
+
+03:21.060 --> 03:24.040
+We got all the products, but we don't need all the products.
+
+03:24.040 --> 03:28.040
+We need only the products where the price is higher than the average.
+
+03:28.200 --> 03:32.760
+That means we have to go and filter the table based on the values of the price.
+
+03:32.760 --> 03:36.600
+So now in order to do that, what we're going to do, we're going to use the Where clause.
+
+03:36.600 --> 03:39.720
+And we have to go and filter the data based on the price.
+
+03:39.720 --> 03:43.840
+And since we need higher than we're going to go and use the operator higher than.
+
+03:43.840 --> 03:47.200
+And now next we need the value average price.
+
+03:47.200 --> 03:48.080
+So how are we going to do it.
+
+03:48.120 --> 03:52.320
+We don't have the average price like out of the box in the table products.
+
+03:52.320 --> 03:54.120
+We have to go and calculate it.
+
+03:54.120 --> 04:00.840
+That's why we're going to go and write another query where we're going to go and find the average price
+
+04:01.800 --> 04:06.280
+from the table sales products like this.
+
+04:06.280 --> 04:09.400
+So now let's go and highlight it and then execute it.
+
+04:09.400 --> 04:12.760
+And with that we got now the average price of all products.
+
+04:12.760 --> 04:16.200
+And as you can see in the output we have only one single value.
+
+04:16.200 --> 04:18.560
+So this is a scalar query.
+
+04:18.560 --> 04:24.560
+So now what we need we need this value in order to be used in order to filter the first query.
+
+04:24.560 --> 04:29.160
+So that's why the first query is the main query bigger.
+
+04:29.400 --> 04:35.830
+The second one is the subquery that's going to support the main query in order to filter the data.
+
+04:35.830 --> 04:40.910
+So now what we're going to do we're going to take the subquery and use it in the Where clause.
+
+04:40.950 --> 04:43.470
+And now of course we have to tell SQL this is a subquery.
+
+04:43.470 --> 04:46.550
+That's why we have to put it inside two parentheses.
+
+04:46.550 --> 04:52.150
+So with that we have the subquery inside the Where clause in order to filter the main query.
+
+04:52.150 --> 04:54.190
+So let's go and execute it.
+
+04:54.190 --> 04:59.790
+And now as you can see in the output we have now only two products where the price is higher than the
+
+04:59.830 --> 05:00.870
+average price.
+
+05:00.870 --> 05:02.270
+So with that we have solved the task.
+
+05:02.270 --> 05:07.350
+But this time using the subquery in the Where clause in order to filter the main query.
+
+05:07.390 --> 05:12.950
+And of course, in order to see this value in our selects, since it is scalar subquery, we can as
+
+05:12.950 --> 05:17.230
+well go over here and put it in our select just in order to see the value.
+
+05:17.270 --> 05:19.150
+So average price.
+
+05:19.310 --> 05:20.790
+So let's go and execute it.
+
+05:20.790 --> 05:24.150
+And with that we can see as well in our results the average price.
+
+05:24.150 --> 05:29.070
+So this is how we use the subquery in the Where clause using the comparison operator okay.
+
+05:29.110 --> 05:32.230
+So let's see quickly how SQL execute our query step by step.
+
+05:32.230 --> 05:35.630
+So as usual first SQL is going to go and identify the subquery.
+
+05:35.750 --> 05:38.620
+It's going to be our select average price and so on.
+
+05:38.660 --> 05:42.140
+And now the next step is going to go and execute our subquery.
+
+05:42.140 --> 05:43.660
+So it is based on the products.
+
+05:43.660 --> 05:49.140
+And since we are doing aggregations without groupby at the output we will get only one value.
+
+05:49.380 --> 05:50.980
+So the average is going to be 20.
+
+05:51.020 --> 05:53.620
+This value is stored intermediately in the memory.
+
+05:53.620 --> 05:55.420
+So we will not see it in the output.
+
+05:55.540 --> 05:59.100
+SQL can go and pass this value to the main query.
+
+05:59.100 --> 06:01.020
+So the main query is going to look like this.
+
+06:01.060 --> 06:03.900
+We are selecting few columns from the table.
+
+06:03.900 --> 06:10.220
+And we are filtering the database on the price that is higher than the value 20 that we got it from
+
+06:10.220 --> 06:11.020
+the subquery.
+
+06:11.020 --> 06:15.580
+So now once SQL have everything for the main query SQL can go and execute it.
+
+06:15.580 --> 06:21.340
+So SQL going to go to the products and only select the products where the price is higher than 20.
+
+06:21.340 --> 06:22.900
+So it's only those two rows.
+
+06:22.940 --> 06:27.300
+And in the outputs we will get the final results the two products as well.
+
+06:27.340 --> 06:29.060
+So product ID and product price.
+
+06:29.060 --> 06:29.660
+So that's it.
+
+06:29.660 --> 06:30.420
+It's very simple.
+
+06:30.420 --> 06:32.260
+This is how SQL executed our query.
+
+06:32.260 --> 06:37.860
+So as usual first starting with the subquery, passing the value to the main query and other ends,
+
+06:37.860 --> 06:41.740
+the main query can be executed with the information from the subquery.
+
+06:41.740 --> 06:43.780
+And we will get at the end the final results.
+
+06:43.780 --> 06:44.780
+So that's it.

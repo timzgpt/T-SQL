@@ -1,0 +1,601 @@
+WEBVTT
+
+00:03.960 --> 00:10.880
+Okay, so we typically use the subqueries in the From clause in order to create temporary results sets
+
+00:10.880 --> 00:14.560
+that act as a table for the main query.
+
+00:14.560 --> 00:19.240
+So it's like in some scenarios we cannot use the tables directly from the database.
+
+00:19.240 --> 00:23.440
+We have to prepare it somehow before we do our actual query.
+
+00:23.480 --> 00:23.720
+Okay.
+
+00:23.760 --> 00:27.720
+So let's check the syntax of the subquery inside the From clause.
+
+00:27.720 --> 00:33.000
+So we start with the usual stuff where we go and say select and few columns that we want to retrieve.
+
+00:33.040 --> 00:34.920
+And then we say okay from.
+
+00:34.960 --> 00:39.800
+Usually after the from comes the table name from our database that we want to query.
+
+00:39.800 --> 00:45.280
+But this time instead of writing the table name, we're going to have another SQL query.
+
+00:45.280 --> 00:47.680
+So that means we don't define the table name.
+
+00:47.680 --> 00:51.120
+We define another Select statements where we have as well.
+
+00:51.160 --> 00:54.480
+Again select a column from specific table.
+
+00:54.480 --> 00:56.040
+And then maybe we have a filter.
+
+00:56.040 --> 01:02.550
+And in order now to tell SQL this is a subquery we have to use the parentheses so we can have the parentheses
+
+01:02.550 --> 01:04.190
+at the start and at the ends.
+
+01:04.230 --> 01:05.430
+This is a subquery.
+
+01:05.430 --> 01:07.310
+This is not the main query.
+
+01:07.310 --> 01:12.790
+And after the parentheses we can go and define the alias for the results that we're going to get from
+
+01:12.790 --> 01:13.790
+this subquery.
+
+01:13.790 --> 01:16.590
+In many databases this alias is an optional.
+
+01:16.590 --> 01:19.950
+But for the SQL server we have to go and specify an alias.
+
+01:19.950 --> 01:22.190
+So it is a must in SQL server.
+
+01:22.190 --> 01:24.670
+So again we call this a subquery.
+
+01:24.910 --> 01:28.270
+And the outer query we call it a main query.
+
+01:28.270 --> 01:31.710
+So this is the syntax of the subquery in the From clause okay.
+
+01:31.750 --> 01:32.910
+So now we have the following task.
+
+01:32.910 --> 01:39.590
+And it says find the products that have a price higher than the average price of all products.
+
+01:39.590 --> 01:41.070
+So we're going to do it step by step.
+
+01:41.070 --> 01:42.590
+And here we have two steps.
+
+01:42.590 --> 01:46.910
+The first one is that we have to go and calculate the average price of all products.
+
+01:46.910 --> 01:52.150
+And the second step we're going to use this value in order to filter the table products in order to
+
+01:52.190 --> 01:56.310
+find the prices that is higher than this average price.
+
+01:56.310 --> 02:00.890
+So let's start with the first step where we're going to find the average price, I'm going to select
+
+02:00.890 --> 02:02.130
+the following information.
+
+02:02.130 --> 02:09.450
+So product ID price from the table sales products.
+
+02:10.010 --> 02:11.730
+So let's go and execute it.
+
+02:11.730 --> 02:14.490
+So now we have the products and as well the prices.
+
+02:14.490 --> 02:19.010
+And we need this price here in order to compare it with the average price.
+
+02:19.010 --> 02:20.890
+So that means we need this price.
+
+02:20.890 --> 02:24.370
+And as well side by side we need the average price.
+
+02:24.370 --> 02:26.570
+So that means we need aggregations and details.
+
+02:26.570 --> 02:29.730
+And that's why we're going to go with the window function average.
+
+02:29.730 --> 02:30.970
+So let's go and do this.
+
+02:31.010 --> 02:32.210
+This is very simple.
+
+02:32.530 --> 02:34.890
+So it's going to be the average price.
+
+02:35.730 --> 02:37.850
+And we don't want to partition the data.
+
+02:37.850 --> 02:39.850
+So it's going to be an over empty.
+
+02:39.850 --> 02:42.850
+And this is going to be the average price like this.
+
+02:42.850 --> 02:44.410
+So let's go and execute it.
+
+02:44.410 --> 02:46.890
+And with that we have calculated the average price.
+
+02:46.890 --> 02:48.610
+So now we have all the informations.
+
+02:48.610 --> 02:50.850
+In the first step we have the average price.
+
+02:50.850 --> 02:53.130
+We have the price and as well the products.
+
+02:53.130 --> 02:59.240
+So now the next step is that we have to go and filter the data to find out all the products where the
+
+02:59.240 --> 03:01.480
+price is higher than the average.
+
+03:01.680 --> 03:06.200
+That means we will do this step based on those informations that we have now.
+
+03:06.200 --> 03:10.440
+So that means we have to go and use the logic of subquery and main query.
+
+03:10.520 --> 03:15.920
+Since this is the first step to prepare the data, we are going to use this as a subquery.
+
+03:15.920 --> 03:20.160
+So we're going to call this a subquery like this.
+
+03:20.640 --> 03:23.440
+And we have to go and use it in the main query.
+
+03:23.440 --> 03:24.640
+So how are we going to do that.
+
+03:24.640 --> 03:27.240
+We have to go and write the main query.
+
+03:27.240 --> 03:30.720
+So it's going to be I'm going to start over here select.
+
+03:30.720 --> 03:34.000
+And then I will take all the columns from.
+
+03:34.160 --> 03:37.120
+So this is the main query.
+
+03:37.160 --> 03:39.600
+Let me just make this a little bit smaller.
+
+03:39.760 --> 03:41.440
+And what we're going to do now.
+
+03:41.440 --> 03:44.800
+So now the main query is going to get the data from the subquery.
+
+03:44.960 --> 03:49.080
+So the whole thing is going to be used inside the From clause.
+
+03:49.080 --> 03:54.600
+So now in order to put the subquery inside the main query we have to go and use the parenthesis.
+
+03:54.600 --> 03:57.560
+So we're going to have it at the start and as well at the end.
+
+03:57.670 --> 04:04.070
+And what we usually do, we go and add like a tab in order to understand okay, this is the subquery.
+
+04:04.310 --> 04:06.230
+And then this is the main query.
+
+04:06.230 --> 04:10.870
+So now one more thing that we have to add for the whole subquery in the SQL server.
+
+04:10.910 --> 04:12.670
+Thus we have to give it an alias.
+
+04:12.670 --> 04:14.950
+So you can go and give it any name that you would like.
+
+04:14.990 --> 04:18.790
+I usually go with only one character with the T it stands for table.
+
+04:18.790 --> 04:20.270
+So you can use anything that you want.
+
+04:20.310 --> 04:24.790
+But we have in SQL server to give an alias for the subquery.
+
+04:24.790 --> 04:28.590
+So now what we are saying we are saying select everything from the subquery.
+
+04:28.590 --> 04:32.510
+If you go over here and execute it you will get the exact same results.
+
+04:32.510 --> 04:34.670
+Because the main query is doing nothing.
+
+04:34.670 --> 04:37.630
+It's saying just select everything from the subquery.
+
+04:37.630 --> 04:40.910
+But now in order to solve the task, we are not interested with all products.
+
+04:40.910 --> 04:44.590
+We are interested only the products where the price is higher than the average.
+
+04:44.830 --> 04:48.030
+That's why we have to go and use the Where clause.
+
+04:48.510 --> 04:54.910
+So we're going to say where the price is higher than the average price.
+
+04:55.070 --> 04:58.130
+So this filtering is done in the main query.
+
+04:58.130 --> 05:00.450
+It's not inside the subquery.
+
+05:00.450 --> 05:03.090
+So now that means in the main query we are doing something.
+
+05:03.130 --> 05:04.730
+Let's go and execute it.
+
+05:04.730 --> 05:10.170
+And with that we solve the task we are getting now two products where the price is higher than the average
+
+05:10.170 --> 05:10.770
+price.
+
+05:10.770 --> 05:12.010
+So as you can see it's very simple.
+
+05:12.010 --> 05:18.130
+If the task has multiple steps then we can do that using multiple sub queries until we have the main
+
+05:18.130 --> 05:18.610
+query.
+
+05:18.610 --> 05:19.890
+And we can learn from this.
+
+05:19.890 --> 05:24.450
+That the subquery is here is only to support the main query.
+
+05:24.450 --> 05:29.610
+So we are preparing here that all the data that we need in order to have the final result for the main
+
+05:29.610 --> 05:30.130
+query.
+
+05:30.130 --> 05:35.170
+So for this task we cannot go immediately calculating the results we have first.
+
+05:35.170 --> 05:39.930
+So for this kind of task we cannot immediately like put everything in one select query.
+
+05:39.970 --> 05:45.890
+We have first to prepare the data in one sub query and then pass the values for the main query.
+
+05:45.890 --> 05:49.250
+And this is what we mean with the table sub query.
+
+05:49.250 --> 05:53.690
+And here one quick tip for you if you would like to see the intermediate results that we are getting
+
+05:53.690 --> 05:59.520
+from the subquery, you can go and highlight the subquery itself without the parenthesis.
+
+05:59.520 --> 06:02.320
+So we are just highlighting the subquery.
+
+06:02.360 --> 06:04.320
+You can go now and execute it.
+
+06:04.320 --> 06:07.440
+And with that SQL will not go and execute everything.
+
+06:07.720 --> 06:10.320
+SQL can execute only what you are highlighting.
+
+06:10.320 --> 06:14.480
+So this is a really nice way in order to see the results of the subquery.
+
+06:14.480 --> 06:19.480
+As you are like debugging or searching for errors, you can go and see the intermediate results that
+
+06:19.480 --> 06:21.400
+is used from the main query.
+
+06:21.440 --> 06:27.600
+And of course if you deselect and not highlight anything and execute SQL, you can go and execute everything,
+
+06:27.600 --> 06:28.600
+the whole query.
+
+06:28.600 --> 06:33.480
+So this is how we use the table subquery inside the From clause.
+
+06:33.520 --> 06:33.840
+All right.
+
+06:33.840 --> 06:34.920
+So let's have another task.
+
+06:34.960 --> 06:39.920
+And it says rank the customers based on their total amount of sales.
+
+06:40.040 --> 06:42.680
+So again if you check here we have like two steps.
+
+06:42.680 --> 06:45.720
+First we have to find the total amount of sales.
+
+06:45.960 --> 06:49.880
+And then after that we have to go and rank the customers.
+
+06:49.880 --> 06:51.320
+So again we have like two steps.
+
+06:51.320 --> 06:53.960
+And we can use the subqueries in order to solve it.
+
+06:53.960 --> 06:57.820
+So let's start with the first step where we're going to find the total amount of sales.
+
+06:58.020 --> 07:06.460
+So let's go and select the customer ID and as well the sales from the table sales orders.
+
+07:08.740 --> 07:10.020
+Let's go and execute it.
+
+07:10.020 --> 07:14.900
+So now in the output we have like multiple customers and their sales we have to go and now find the
+
+07:14.900 --> 07:17.260
+total amount of sales for each customer.
+
+07:17.300 --> 07:19.620
+That means we have to go and use the groupby.
+
+07:19.900 --> 07:23.220
+So we're going to go and summarize the sales.
+
+07:24.340 --> 07:30.220
+So total sales and then group up the data by the customer ID.
+
+07:31.140 --> 07:32.460
+So like this.
+
+07:32.460 --> 07:33.860
+Let's go and execute it.
+
+07:33.900 --> 07:36.260
+Now as you can see in the output we have four customers.
+
+07:36.260 --> 07:38.580
+And we have the total sales for each customer.
+
+07:38.580 --> 07:40.860
+And with that we have solved the first step.
+
+07:40.860 --> 07:43.180
+We have the total amount of sales for each customer.
+
+07:43.380 --> 07:49.060
+And we have now prepared the data for the next query in order to rank the customers.
+
+07:49.100 --> 07:55.290
+So now I think you're already getting how important are the subqueries in order to do step by step analyses.
+
+07:55.290 --> 07:57.610
+So this is our subquery.
+
+07:57.930 --> 07:59.610
+Now we need the min query.
+
+07:59.610 --> 08:01.770
+So I will start preparing it.
+
+08:01.770 --> 08:03.570
+So min query like this.
+
+08:03.610 --> 08:06.370
+And let's go first and select everything.
+
+08:06.370 --> 08:08.730
+So select star from.
+
+08:08.770 --> 08:12.170
+Let me just make this a little bit bigger like this.
+
+08:12.210 --> 08:15.210
+And now we have to go and convert this query to a subquery.
+
+08:15.210 --> 08:16.730
+So we need the parenthesis.
+
+08:16.890 --> 08:19.370
+So the starting and the ending.
+
+08:19.610 --> 08:22.050
+And for the SQL server I'm going to give it an alias.
+
+08:22.050 --> 08:24.850
+And I would like to push everything to the right side.
+
+08:24.850 --> 08:26.850
+So let's go and execute it.
+
+08:26.890 --> 08:27.370
+Perfect.
+
+08:27.370 --> 08:29.210
+So it is working with that.
+
+08:29.210 --> 08:33.850
+The subquery is passing the data in the from clause to the main query.
+
+08:33.890 --> 08:35.970
+Now of course the main query is now is useless.
+
+08:36.010 --> 08:37.810
+It's just like selecting the data.
+
+08:37.810 --> 08:40.010
+We have to go and calculate the rank.
+
+08:40.050 --> 08:43.090
+And for that we have a very nice window function.
+
+08:43.090 --> 08:45.170
+So we're going to go and use the rank.
+
+08:45.170 --> 08:47.770
+So it doesn't need any parameters over.
+
+08:47.810 --> 08:50.490
+We have to sort the data order by.
+
+08:50.530 --> 08:56.040
+So we have to go and sort the data by the total sales descending from the highest to the lowest.
+
+08:56.040 --> 08:59.680
+So we're going to go with the total sales and descending.
+
+08:59.680 --> 09:05.200
+So now as you can see, we are using the total sales that we have already prepared in the subquery.
+
+09:05.200 --> 09:10.560
+So without preparing first the data we will not be able to rank the customers in the main query.
+
+09:10.560 --> 09:11.680
+So that's it.
+
+09:11.680 --> 09:13.080
+Let's go and execute it.
+
+09:13.120 --> 09:15.040
+And with that SQL sorted our data.
+
+09:15.040 --> 09:20.400
+And we have a nice ranking based on the data that we had from the subquery.
+
+09:20.400 --> 09:25.400
+So this is the highest customer with the sales and then the customer number one and so on.
+
+09:25.400 --> 09:27.640
+So again in this task we have like multiple steps.
+
+09:27.640 --> 09:32.080
+And we use the power of the subqueries in order to do it step by step.
+
+09:32.080 --> 09:36.160
+So that's all on how to use the subquery inside the From clause okay.
+
+09:36.200 --> 09:39.040
+So now let's see quickly how SQL executed our query.
+
+09:39.040 --> 09:42.240
+So we have here our query and we are querying the table orders.
+
+09:42.240 --> 09:46.040
+So the first step does SQL going to go and identify the subquery.
+
+09:46.280 --> 09:48.320
+And then it's going to go and execute it.
+
+09:48.320 --> 09:53.700
+So SQL is going to go and execute the subquery parts where we are aggregating the data based on the
+
+09:53.700 --> 09:54.580
+customer ID.
+
+09:54.580 --> 10:00.340
+So once the subquery is executed, the next step is that the result is going to be introduced as an
+
+10:00.380 --> 10:01.740
+intermediate results.
+
+10:01.820 --> 10:04.500
+So these results we will not see it in the output.
+
+10:04.540 --> 10:07.620
+It's going to be like temporarily saved in the memory.
+
+10:07.620 --> 10:11.180
+So now the next step is that SQL is going to go to the main query.
+
+10:11.180 --> 10:14.540
+And it's going to execute it based on the intermediate results.
+
+10:14.540 --> 10:18.700
+So that means the main query will not go back to the original table.
+
+10:18.740 --> 10:21.380
+It's going to go and query the intermediate results.
+
+10:21.380 --> 10:22.660
+So here what SQL is going to do.
+
+10:22.700 --> 10:27.900
+I'm going to go and rank the intermediate results by introducing a new column where we see the ranks
+
+10:27.900 --> 10:28.940
+123, four.
+
+10:28.980 --> 10:31.980
+And the output of the main query is going to be the final results.
+
+10:31.980 --> 10:33.140
+So as you can see it's very simple.
+
+10:33.180 --> 10:35.700
+First SQL is executing the subquery.
+
+10:35.900 --> 10:39.340
+And the result of the subquery is going to be used in the main query.
+
+10:39.340 --> 10:43.420
+And once the main query is executed we will get the final results.
+
+10:43.420 --> 10:46.980
+So the subquery here is only supporting the main query.
+
+10:46.980 --> 10:52.500
+So those are the steps that SQL uses in order to execute the subqueries.

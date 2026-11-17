@@ -1,0 +1,274 @@
+WEBVTT
+
+00:04.000 --> 00:04.360
+All right.
+
+00:04.400 --> 00:09.000
+Next we're going to talk about how to use the subquery in the Join clause.
+
+00:09.040 --> 00:14.680
+All right so now as we are joining tables in SQL sometimes we have to go and prepare the data before
+
+00:14.720 --> 00:20.040
+doing the join to dynamically create a result sets for joining with another table.
+
+00:20.040 --> 00:23.000
+So again here we cannot join tables directly.
+
+00:23.000 --> 00:26.480
+We have to do a preparation step before doing the joins okay.
+
+00:26.520 --> 00:27.560
+Let's have the following task.
+
+00:27.600 --> 00:33.480
+And it says show all customer details and find the total orders of each customer.
+
+00:33.520 --> 00:36.120
+Now of course in SQL you don't have only one solution.
+
+00:36.120 --> 00:37.640
+You have multiple solutions.
+
+00:37.640 --> 00:40.680
+But I would like to solve this task using the subquery.
+
+00:40.680 --> 00:43.120
+So now if you check the task we have like two parts.
+
+00:43.120 --> 00:45.880
+The first part we have to show all the customer details.
+
+00:45.880 --> 00:48.440
+And the second part we have like here an aggregation.
+
+00:48.600 --> 00:51.040
+Find the total orders of each customer.
+
+00:51.040 --> 00:54.440
+So now let's solve those different parts using two different queries.
+
+00:54.480 --> 00:55.960
+Let's start with the easiest one.
+
+00:56.000 --> 00:57.360
+Show all customer details.
+
+00:57.360 --> 00:59.240
+So I think this is very simple.
+
+00:59.440 --> 01:04.270
+So select It starts from sales customers.
+
+01:04.550 --> 01:06.350
+So let's go and execute it.
+
+01:06.430 --> 01:09.150
+So in the output we have all the details about the customers.
+
+01:09.150 --> 01:11.110
+And we have solved the first part.
+
+01:11.150 --> 01:11.910
+Very simple.
+
+01:11.950 --> 01:14.230
+Now let's go and solve the second part.
+
+01:14.270 --> 01:18.270
+We have to find the total number of orders of each customer.
+
+01:18.310 --> 01:21.150
+That means let me just have a semicolon over here.
+
+01:21.630 --> 01:23.990
+We have to go to the table orders.
+
+01:23.990 --> 01:32.270
+So let's go and select first the order ID customer ID from the table sales orders like this.
+
+01:32.590 --> 01:35.750
+So I will just highlight the second query and execute it.
+
+01:35.790 --> 01:39.510
+Now in the output we have ten orders and we have the different customers.
+
+01:39.550 --> 01:43.950
+Now in order to find the total orders for each customer, we have to go and use the groupby in order
+
+01:43.950 --> 01:44.550
+to do that.
+
+01:44.550 --> 01:45.630
+It's very simple.
+
+01:45.630 --> 01:48.630
+We're going to go over here and say, so count.
+
+01:48.990 --> 01:50.190
+Let's go with the star.
+
+01:50.350 --> 01:58.110
+And then we're going to go and group up the data by the customer ID I will go and call this total orders.
+
+01:58.430 --> 02:01.110
+So let's go and execute only this part.
+
+02:01.110 --> 02:01.180
+parts.
+
+02:01.180 --> 02:05.420
+And with that we have for customers and we have the total number of orders.
+
+02:05.420 --> 02:09.100
+So with that, we have solved the second part of the task.
+
+02:09.100 --> 02:13.700
+So now what I'm going to do, I'm going to go and execute both of those queries using the semicolon
+
+02:13.700 --> 02:17.860
+separately like this I will just make this a little bit bigger.
+
+02:17.860 --> 02:19.300
+So let's go and execute it.
+
+02:19.340 --> 02:24.820
+Now in the output we have the two results, all details about the customers and the total number of
+
+02:24.820 --> 02:26.420
+orders for each customer.
+
+02:26.460 --> 02:30.740
+So now what we want to do is to go and combine those two results in one.
+
+02:30.740 --> 02:33.860
+And in order to do that we can use the joins.
+
+02:33.860 --> 02:36.500
+So now we have to think about what is the first query.
+
+02:36.500 --> 02:37.900
+What is the second query.
+
+02:38.220 --> 02:43.340
+Since the first query returns all the customers that we have in the database, I would like to have
+
+02:43.340 --> 02:44.820
+this as the left table.
+
+02:44.820 --> 02:50.620
+And since in the second query we have only four customers, I would like to have it then as the right
+
+02:50.660 --> 02:56.580
+table and I will go with the left join so that I don't miss any customer, because if I do the inner
+
+02:56.580 --> 02:58.700
+join I will lose the customer number five.
+
+02:58.700 --> 03:00.020
+So let's go and do that.
+
+03:00.020 --> 03:03.360
+So this is the first query in the main query.
+
+03:03.360 --> 03:06.480
+So I'm going to call this main query.
+
+03:07.520 --> 03:10.920
+And now I'm going to give this as well an alias like the C.
+
+03:10.960 --> 03:16.360
+And now we're going to go and join this table from the database together with the results.
+
+03:16.400 --> 03:18.680
+The output of this query.
+
+03:18.680 --> 03:22.160
+So that means we're going to do it like this left join.
+
+03:22.160 --> 03:24.800
+And now we're going to join with a sub query.
+
+03:24.800 --> 03:31.720
+So we will have our parentheses I will just put here few spaces so that it's clear it is a subquery.
+
+03:31.720 --> 03:33.360
+And we need for this an alias.
+
+03:33.360 --> 03:35.880
+So let's go and say for example the oh.
+
+03:36.080 --> 03:40.800
+So with that we are joining a table with the results of a subquery.
+
+03:40.840 --> 03:44.360
+And now of course what is missing is joining the tables using a key.
+
+03:44.400 --> 03:49.280
+Now if you took the two results you can see in both queries we have the customer ID.
+
+03:49.480 --> 03:53.440
+That's why we're going to join with the customer ID so on.
+
+03:54.120 --> 04:02.550
+Then the customer ID with the customer ID from the subquery Like this.
+
+04:02.550 --> 04:04.030
+So we have everything.
+
+04:04.070 --> 04:05.670
+Let's go and execute it.
+
+04:05.710 --> 04:09.950
+Now, as you can see in the output, we have all the details about the customer.
+
+04:09.950 --> 04:16.030
+And as well, together with the total number of orders for each customer, together with the total number
+
+04:16.030 --> 04:17.750
+of orders for each customer.
+
+04:17.750 --> 04:20.070
+And as you can see, we didn't miss any customers.
+
+04:20.070 --> 04:25.510
+So we have all the customers from the database and we can see that Anna doesn't have any orders.
+
+04:25.550 --> 04:27.350
+Now you might say, you know what we have here?
+
+04:27.350 --> 04:28.590
+The customer ID twice.
+
+04:28.590 --> 04:33.590
+So what I'm going to do, I will select all the columns from the customers.
+
+04:33.590 --> 04:38.310
+But from the subquery I'm interested only on the total orders.
+
+04:38.510 --> 04:39.630
+So like this.
+
+04:39.630 --> 04:40.830
+Let's go and execute it.
+
+04:40.830 --> 04:42.950
+Let's make this a little bit smaller.
+
+04:42.950 --> 04:44.470
+So now the results are really clean.
+
+04:44.470 --> 04:49.790
+We have all the details from the customers and as well the total orders of each customer.
+
+04:49.790 --> 04:54.430
+And of course as we learned, if you would like to check the results from only the subquery, you go
+
+04:54.430 --> 04:56.150
+and highlight it and execute it.
+
+04:56.150 --> 04:59.550
+So as you can see you can put the subqueries almost everywhere.
+
+04:59.550 --> 05:02.630
+And this is how we use subqueries inside joins.

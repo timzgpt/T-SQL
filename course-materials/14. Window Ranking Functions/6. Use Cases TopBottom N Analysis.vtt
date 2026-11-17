@@ -1,0 +1,445 @@
+WEBVTT
+
+00:03.880 --> 00:04.760
+All right guys.
+
+00:04.760 --> 00:06.840
+So now I had to look to those three functions.
+
+00:06.840 --> 00:09.240
+And I checked my projects, real projects.
+
+00:09.240 --> 00:16.160
+And I found out that there are many use cases for the function row number compared to the other functions
+
+00:16.200 --> 00:17.520
+dense rank and rank.
+
+00:17.520 --> 00:22.040
+So now what we're going to do I'm going to show you a few use cases for the rank number that I usually
+
+00:22.040 --> 00:23.520
+use in my real projects.
+
+00:23.520 --> 00:27.600
+In order for you to understand how important is the row number function.
+
+00:27.600 --> 00:28.680
+So let's go to SQL.
+
+00:28.720 --> 00:29.000
+All right.
+
+00:29.000 --> 00:30.480
+So now let's start with the first use case.
+
+00:30.480 --> 00:34.440
+And we have the task of find the top highest sales for each product.
+
+00:34.600 --> 00:41.200
+So this is very classic in reporting or data analysis we call this top end analysis.
+
+00:41.200 --> 00:46.920
+So here the managers or decision makers they would like to have the best performers or the best success
+
+00:46.920 --> 00:47.880
+in our data.
+
+00:47.880 --> 00:54.360
+So for example the top highest five customers or the top five products or categories and so on.
+
+00:54.360 --> 01:01.160
+So this is very important analysis in order to focus on the best products or to the most important customers
+
+01:01.160 --> 01:01.920
+and so on.
+
+01:01.920 --> 01:07.140
+And this is, as I said, very classic and very important in order to make decisions in the business.
+
+01:07.140 --> 01:08.740
+So now let's see how we can solve this.
+
+01:08.740 --> 01:10.340
+So we're going to start with the usual stuff.
+
+01:10.340 --> 01:11.700
+Let's first select the data.
+
+01:11.700 --> 01:19.420
+So select order ID let's take as well the product ID and the sales from sales orders.
+
+01:19.420 --> 01:20.980
+So let's go and execute this.
+
+01:20.980 --> 01:25.380
+And now as we know that for each product we have multiple orders and we have multiple sales.
+
+01:25.380 --> 01:28.660
+But we are interested only in the highest sales for each products.
+
+01:28.660 --> 01:30.620
+So we have to go and create a rank.
+
+01:30.820 --> 01:36.580
+In order to do that, we can use the row function row number and we have to define the window now.
+
+01:36.580 --> 01:39.420
+So do we need partition by check the query.
+
+01:39.420 --> 01:41.540
+So it says for each product.
+
+01:41.540 --> 01:44.780
+That means we have to divide the data by the product ID.
+
+01:44.900 --> 01:49.020
+So let's go and use the partition by products ID.
+
+01:49.220 --> 01:51.300
+And now we must use the order by.
+
+01:51.340 --> 01:52.220
+So order by.
+
+01:52.900 --> 01:55.340
+And now how to sort the data by the sales.
+
+01:55.340 --> 01:55.740
+Right.
+
+01:55.780 --> 01:57.940
+And it is from the highest to the lowest.
+
+01:57.940 --> 01:59.740
+So let's go sales.
+
+02:00.140 --> 02:01.740
+And we have here descending.
+
+02:01.740 --> 02:04.420
+So from highest to lowest let's go and give it a name.
+
+02:04.420 --> 02:06.960
+So you're going to be ranked by products.
+
+02:07.560 --> 02:09.880
+So let's go and execute this.
+
+02:10.080 --> 02:14.800
+And now by looking to the results you can see that SQL did divide the data by the product ID.
+
+02:14.800 --> 02:17.360
+So we have here like around four windows.
+
+02:17.400 --> 02:20.480
+The first one over here you can see that the rank starts from one.
+
+02:20.520 --> 02:21.600
+It's with four.
+
+02:21.840 --> 02:26.160
+So the highest rank can be the order number eight with the sales of 90.
+
+02:26.640 --> 02:28.520
+And then it goes to the four.
+
+02:28.880 --> 02:32.040
+Now as you can see that the second window we have a new ranking.
+
+02:32.040 --> 02:33.080
+So it resets.
+
+02:33.160 --> 02:36.280
+The first going to be the order number ten.
+
+02:36.280 --> 02:38.200
+And the last one going to be order number two.
+
+02:38.240 --> 02:41.360
+So as you can see each window has its own ranking.
+
+02:41.640 --> 02:44.720
+And as well the last one we have it only as one row.
+
+02:44.720 --> 02:47.400
+So now of course in the task we have to return the highest.
+
+02:47.400 --> 02:49.520
+So we are not interested in the others.
+
+02:49.520 --> 02:52.320
+We have to return this row, this row as well.
+
+02:52.520 --> 02:53.920
+And this one and this one.
+
+02:53.920 --> 02:57.720
+So as you can see, we have to return everything that has the rank one.
+
+02:57.720 --> 03:00.520
+We are not interested in the rank two, three, four and so on.
+
+03:00.520 --> 03:02.440
+So we would like to have the highest.
+
+03:02.440 --> 03:07.740
+So now in order to filter the data what we're going to do, we're going to go and use subqueries.
+
+03:07.740 --> 03:10.180
+So select star from.
+
+03:10.540 --> 03:12.620
+And then we're going to have the following condition.
+
+03:12.620 --> 03:18.380
+So where and we're going to say rank by products equals to one.
+
+03:18.380 --> 03:20.980
+So we are interested only on the rank number one.
+
+03:21.220 --> 03:22.580
+So let's go and execute it.
+
+03:22.580 --> 03:26.700
+And with that since we have four products in our data we're going to have only four rows.
+
+03:26.940 --> 03:28.540
+And we have the highest sales.
+
+03:28.540 --> 03:30.980
+So as you can see we have only number one over here.
+
+03:30.980 --> 03:33.860
+And those sales are the highest for each product.
+
+03:33.860 --> 03:38.820
+And with that we have solved the tasks by finding the top N analyzers.
+
+03:42.740 --> 03:43.060
+Okay.
+
+03:43.060 --> 03:45.180
+Moving on to the next use case we have the following task.
+
+03:45.180 --> 03:50.060
+And it says find the lowest two customers based on their total sales.
+
+03:50.060 --> 03:52.620
+So now we have the exact opposite use case.
+
+03:52.620 --> 03:55.260
+We call it button in analysis.
+
+03:55.540 --> 04:00.940
+So now in this example in the business the decision makers want to optimize the costs, want to cut
+
+04:00.940 --> 04:01.580
+costs.
+
+04:01.940 --> 04:07.700
+And with that they have to analyze the lowest performers in the products or the lowest performance in
+
+04:07.740 --> 04:10.470
+the Their employees in order to cut costs.
+
+04:10.470 --> 04:14.990
+So now with this analysis, the decision makers are not focusing on the best successful stuff.
+
+04:14.990 --> 04:18.550
+We are focusing on the lowest stuff, the lowest performers.
+
+04:18.590 --> 04:20.110
+So now let's solve these tasks.
+
+04:20.150 --> 04:22.870
+So now if you check the question we have multiple stuff, right?
+
+04:22.870 --> 04:24.630
+We have the total sales.
+
+04:24.630 --> 04:27.350
+And as well we have to find the lowest true customers.
+
+04:27.550 --> 04:29.670
+So we have ranking and as well aggregations.
+
+04:29.670 --> 04:32.950
+Remember we can do stuff together with a group by.
+
+04:32.990 --> 04:34.350
+So now let's do it step by step.
+
+04:34.390 --> 04:35.910
+First let's select the data right.
+
+04:35.950 --> 04:36.670
+So what do we need.
+
+04:36.710 --> 04:38.750
+Order ID customer ID.
+
+04:39.270 --> 04:43.190
+And we need the sales from sales orders.
+
+04:43.510 --> 04:45.310
+So let's go and execute this.
+
+04:45.350 --> 04:51.030
+So now if you check the customers over here we have around four customers and they have multiple sales.
+
+04:51.070 --> 04:56.390
+Now we would like to have the total sales for each customers in order to find the lowest two.
+
+04:56.430 --> 04:58.310
+So let's start first with the aggregations.
+
+04:58.310 --> 05:01.630
+So what we're going to do we're going to go and aggregate the sales.
+
+05:01.630 --> 05:05.110
+So the sum of sales let's call it total sales.
+
+05:05.150 --> 05:09.110
+And now in order to do the groupby we have to have only the customer.
+
+05:09.310 --> 05:13.970
+So group Grew by and we have the customer ID, so it is very simple.
+
+05:14.010 --> 05:15.170
+Group by statements.
+
+05:15.210 --> 05:16.570
+Let's go and execute this.
+
+05:16.570 --> 05:19.770
+So now by checking the result we can see that SQL did aggregate the data.
+
+05:19.770 --> 05:20.930
+We have four rows.
+
+05:21.170 --> 05:24.330
+And that's because we have four customers and we have their total sales.
+
+05:24.330 --> 05:27.090
+So we have solved the first part of the task.
+
+05:27.250 --> 05:29.290
+We have the total sales for each customers.
+
+05:29.330 --> 05:31.170
+Now let's move to the second part.
+
+05:31.210 --> 05:33.570
+It says lowest two customers.
+
+05:33.570 --> 05:38.290
+That means we have to use the ranking functions in order to rank those customers.
+
+05:38.290 --> 05:40.210
+So we are not interested in all customers.
+
+05:40.210 --> 05:42.610
+We are interested only in the lowest two.
+
+05:42.810 --> 05:47.450
+So in order to do that now we're going to go and use the window function row number.
+
+05:47.890 --> 05:49.490
+So and then over.
+
+05:50.050 --> 05:52.050
+Now do we have to partition the data.
+
+05:52.250 --> 05:54.010
+Well no we don't have to do that.
+
+05:54.050 --> 05:55.730
+We have now to sort the data.
+
+05:55.730 --> 05:56.690
+So order by.
+
+05:57.290 --> 06:00.650
+So this time we're going to go and use the aggregations in the order by.
+
+06:00.690 --> 06:02.370
+So the sum of sales.
+
+06:02.370 --> 06:05.770
+And we want to have it sorted from the lowest to the highest.
+
+06:05.930 --> 06:08.170
+So I'm just going to go and use the defaults.
+
+06:08.170 --> 06:09.650
+So it is ascending.
+
+06:09.810 --> 06:12.210
+Now let's call it rank customers.
+
+06:12.950 --> 06:13.830
+So that's it.
+
+06:13.870 --> 06:19.270
+Again here, the rule is that if you are using a window function together with a group by function,
+
+06:19.270 --> 06:22.430
+you have to use only columns that is used in the group by.
+
+06:22.470 --> 06:23.710
+So this should be working.
+
+06:23.710 --> 06:25.230
+Let's go and execute it.
+
+06:25.230 --> 06:28.550
+So now as you can see in the results we got an extra column for the rank.
+
+06:28.830 --> 06:31.870
+So now the lowest customer is going to be the customer number two.
+
+06:32.070 --> 06:33.470
+The second one is going to be four.
+
+06:33.510 --> 06:35.150
+With the 90 total sales.
+
+06:35.390 --> 06:40.670
+And the highest customer with the sales is going to be the last one, the 125 customer number three.
+
+06:40.670 --> 06:45.390
+So now we have almost everything, but the list should contain only the last two.
+
+06:45.710 --> 06:49.590
+So in order to do that, to filter the data we're going to go and use subquery.
+
+06:49.590 --> 06:51.750
+So select star from.
+
+06:53.030 --> 06:59.590
+And then we have to define the condition where rank customers it should be smaller or equal to two.
+
+06:59.630 --> 07:00.150
+Right.
+
+07:00.150 --> 07:01.870
+So with that we will get the first two.
+
+07:01.910 --> 07:03.870
+So let's go and execute this.
+
+07:03.870 --> 07:08.190
+And with that we got the lowest two customers based on their total sales.
+
+07:08.190 --> 07:10.830
+So customer number ID two and the four.
+
+07:10.830 --> 07:11.350
+So that's it.
+
+07:11.390 --> 07:12.350
+We have solved the task.
+
+07:12.350 --> 07:15.150
+And now we have done button and analysis.

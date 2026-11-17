@@ -1,0 +1,166 @@
+WEBVTT
+
+00:03.920 --> 00:07.720
+Now the next step, what I'm going to do, we have to go and organize our stored procedure.
+
+00:07.720 --> 00:09.520
+As you can see, everything is getting bigger.
+
+00:09.520 --> 00:14.160
+So now what we usually do we use tab in order to make spaces between each section.
+
+00:14.160 --> 00:18.720
+So now the first section is between the first begin and the last end.
+
+00:18.760 --> 00:22.720
+So we have to go and mark everything and hit once a tab.
+
+00:22.720 --> 00:24.560
+So now it is easier to read.
+
+00:24.600 --> 00:26.800
+Now the whole thing is our code.
+
+00:26.800 --> 00:29.360
+So now the next level is the block of the try.
+
+00:29.480 --> 00:32.680
+So the whole thing over here is the try.
+
+00:32.720 --> 00:34.280
+So let's go and do that.
+
+00:34.320 --> 00:39.000
+I'm just going to mark everything until here and then hit Tab.
+
+00:39.000 --> 00:40.200
+So now we can see it better.
+
+00:40.200 --> 00:40.720
+Right.
+
+00:40.880 --> 00:43.600
+And the same thing for the catch I think I have already done that.
+
+00:43.600 --> 00:44.760
+So it's already pushed.
+
+00:44.800 --> 00:46.040
+Now we go to the next level.
+
+00:46.040 --> 00:48.920
+So between this begin and end everything is pushed.
+
+00:48.920 --> 00:50.240
+So this looks nice.
+
+00:50.280 --> 00:51.600
+The same thing over here.
+
+00:51.800 --> 00:52.840
+It's pushed as well.
+
+00:52.880 --> 00:55.240
+And then we don't have here any begin and end.
+
+00:55.280 --> 00:56.520
+So it looks okay.
+
+00:56.560 --> 00:58.240
+And the same thing over here.
+
+00:58.240 --> 01:01.600
+So all our begin and end is now sorted correctly.
+
+01:01.600 --> 01:06.480
+Now the next step is that we can go and improve the comments a little bit so we can split our code into
+
+01:06.480 --> 01:07.720
+multiple sections.
+
+01:07.720 --> 01:11.160
+So what we're going to do we're going to go over here and say this is step one.
+
+01:11.520 --> 01:17.320
+And what I'd like to do is to go and add separation using the equals or any special character that you
+
+01:17.320 --> 01:17.760
+like.
+
+01:18.040 --> 01:19.320
+And as well here.
+
+01:19.600 --> 01:21.880
+So with that we have the first step.
+
+01:21.880 --> 01:23.200
+We are preparing the data.
+
+01:23.200 --> 01:25.390
+And then let's go and copy the whole thing.
+
+01:25.710 --> 01:28.390
+Go over here and say, this is the step two.
+
+01:28.430 --> 01:36.350
+And we're going to say this is generating summary reports and something like this.
+
+01:36.430 --> 01:39.870
+And of course below that we can see what is this report about.
+
+01:40.190 --> 01:49.710
+So calculate total customers and average score for specific country.
+
+01:49.990 --> 01:53.190
+And as well we can go over here and add as well a comments.
+
+01:53.390 --> 02:03.550
+Calculate total number of orders and total sales for specific country.
+
+02:04.110 --> 02:06.950
+And of course we have to go and remove this error over here.
+
+02:06.950 --> 02:08.390
+Otherwise we will get an error.
+
+02:08.430 --> 02:12.110
+And we can go and add something about the catch where we can say like this.
+
+02:12.350 --> 02:13.670
+Again a few comments.
+
+02:14.670 --> 02:17.270
+We can say error handling.
+
+02:19.030 --> 02:24.190
+So let's go and execute it again in order to make sure we have the newest version.
+
+02:24.190 --> 02:25.110
+And with that we are done.
+
+02:25.110 --> 02:28.430
+We have a really nice stored procedure with multiple steps.
+
+02:28.430 --> 02:33.550
+And we have it professional where we have error handling inside it and everything looks well organized
+
+02:33.550 --> 02:34.590
+and easy to read.
+
+02:34.630 --> 02:36.750
+So this is how we build stored procedures.
+
+02:36.790 --> 02:37.550
+All right my friends.
+
+02:37.550 --> 02:39.510
+So that's all about that stored procedures.
+
+02:39.510 --> 02:44.070
+That was an amazing feature in SQL to add programmability in SQL.
+
+02:44.190 --> 02:47.750
+Now in the next step we're going to cover quickly the topic of the triggers.
+
+02:47.750 --> 02:48.590
+So let's go.

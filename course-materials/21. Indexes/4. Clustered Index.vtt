@@ -1,0 +1,256 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.320 --> 00:08.480
+So now let's understand what can happen if you create clustered index in your table.
+
+00:08.480 --> 00:12.960
+So say you created clustered index on the ID column of the customers.
+
+00:12.960 --> 00:18.720
+So the first thing that's going to happen is SQL going to physically sort all the data based on the
+
+00:18.720 --> 00:19.600
+column ID.
+
+00:19.680 --> 00:25.520
+So the rows can rearranged in each data page from the lowest to the highest.
+
+00:25.520 --> 00:32.200
+So in the first page we're going to have the first customer ID number one, then 2345 until we reach
+
+00:32.240 --> 00:35.040
+in the last page the last customer number 20.
+
+00:35.080 --> 00:41.120
+So as you can see the first page has the lowest value and the last page has the highest value.
+
+00:41.120 --> 00:42.560
+So that's not all.
+
+00:42.760 --> 00:49.000
+The next tip is that SQL is going to go and start structuring and building the B-tree.
+
+00:49.200 --> 00:50.800
+So what is a B-tree?
+
+00:50.960 --> 00:53.160
+A B-tree is short for balanced tree.
+
+00:53.280 --> 00:58.560
+It is hierarchical structure that store the data as a tree upside down.
+
+01:05.540 --> 01:11.940
+It starts with the root, the root node, and then it keeps branching out until we reach eventually
+
+01:11.940 --> 01:12.780
+the leaves.
+
+01:12.820 --> 01:17.980
+Between the leaf nodes and the root node we call this section the intermediate nodes.
+
+01:18.020 --> 01:22.420
+So it could be like one level or multiple levels between the root and the leaves.
+
+01:22.500 --> 01:28.300
+And once SQL construct the B-tree, it's going to be very easy for SQL to navigate through the B-tree
+
+01:28.300 --> 01:30.940
+in order to find specific information.
+
+01:31.020 --> 01:35.260
+So let's see how SQL is building the B-tree for the clustered index.
+
+01:35.260 --> 01:40.900
+Now, very important to understand that the leaves, the leaf nodes at the B-tree for the clustered
+
+01:40.900 --> 01:45.500
+index contain the actual data, the data pages.
+
+01:45.500 --> 01:50.420
+So all your nice sorted data pages and your data is stored at the leaf level.
+
+01:50.420 --> 01:54.220
+Then after that, SQL can start building the intermediate nodes.
+
+01:54.220 --> 01:58.100
+And here the database can use different types of pages.
+
+01:58.100 --> 02:00.020
+We have the index page.
+
+02:00.020 --> 02:06.880
+So in the index page we cannot find the actual data the entire rose, but instead the index page stores
+
+02:07.160 --> 02:12.520
+a key value that contains a pointer to another index page or to a data page.
+
+02:12.600 --> 02:18.280
+So, for example, we have here the value one the key, and then the value going to be the ID of the
+
+02:18.280 --> 02:19.080
+data page.
+
+02:19.200 --> 02:25.280
+So here we don't have like the whole row about the data we have here only a pointer to another data
+
+02:25.320 --> 02:25.800
+page.
+
+02:25.920 --> 02:32.680
+So here we are telling SQL if you are searching for IDs between 1 and 5 you can locate it at the data
+
+02:32.720 --> 02:35.440
+page ID one double point 100.
+
+02:35.480 --> 02:39.880
+And then we can store in this index page another pointer where we can tell SQL.
+
+02:39.880 --> 02:45.480
+If you are searching between 6 and 10 then you can locate it at the second data page.
+
+02:45.560 --> 02:47.720
+So this is the structure of the index page.
+
+02:47.720 --> 02:50.840
+It contains only pointers to another page.
+
+02:50.960 --> 02:56.200
+And the same thing for the second two pages the SQL can create another index page where it's going to
+
+02:56.240 --> 03:02.680
+say if you are searching for IDs between 11 and 15, you can find it at the third page, one double
+
+03:02.720 --> 03:03.880
+point 102.
+
+03:04.000 --> 03:06.260
+And for the last group between 16 and 20.
+
+03:06.300 --> 03:11.780
+We have another pointer to the last page to the page number one double point 103.
+
+03:11.780 --> 03:18.980
+So as you can see inside those index pages, we have like a pointer for each group of IDs for each cluster.
+
+03:18.980 --> 03:22.700
+So for the group of customers between 1 and 5 we have one pointer.
+
+03:22.860 --> 03:26.380
+And for the second group between 6 and 10 we have another pointer.
+
+03:26.380 --> 03:30.380
+So that means we don't have here a pointer for each row.
+
+03:30.500 --> 03:33.820
+We have a pointer for each group for each cluster.
+
+03:33.980 --> 03:36.740
+And that's why we call it clustered index.
+
+03:36.740 --> 03:42.100
+And now once SQL is done building the intermediate nodes is going to go and build the last node, the
+
+03:42.100 --> 03:49.660
+root node where it says if you are searching for customers between 1 and 10, then go to the index page
+
+03:49.780 --> 03:52.140
+with the ID 100.20.
+
+03:52.180 --> 03:58.740
+So that means the root node here is pointing to another index page, not directly to the data page.
+
+03:58.740 --> 03:59.420
+And the same thing.
+
+03:59.420 --> 04:02.700
+We need another pointer for the second index page.
+
+04:02.700 --> 04:09.430
+So the customers between 11 and 20 go to the index page with the ID one double point 201.
+
+04:09.430 --> 04:14.870
+And this is exactly what can happen if you create a clustered index in SQL.
+
+04:14.990 --> 04:20.110
+First it's going to go and physically sort all your data in the databases.
+
+04:20.110 --> 04:26.430
+So if it's from the first time sorted randomly, SQL has to arrange everything and sort the data from
+
+04:26.430 --> 04:27.190
+the scratch.
+
+04:27.190 --> 04:32.350
+And then it's going to go and build this structure where you have in the root node, an index page in
+
+04:32.350 --> 04:35.110
+the intermediate nodes, the index pages.
+
+04:35.110 --> 04:40.550
+But at the leaf level at the leaves we have the actual data, the data pages.
+
+04:40.550 --> 04:46.470
+So now let's see what can happen if you query the table where you search for the ID number 14.
+
+04:46.470 --> 04:48.550
+So it's going to check which pointer to use.
+
+04:48.590 --> 04:54.870
+Since 14 is in the group between 11 and 20 it's going to go and use the second pointer to the index
+
+04:54.870 --> 04:57.430
+page with the ID one double point 201.
+
+04:57.470 --> 05:01.550
+And here the SQL going to open this index page and check the pointers.
+
+05:01.550 --> 05:09.050
+So since 14 is between 11 and 15 it's going to go and use the pointer to the data page One double point
+
+05:09.090 --> 05:10.210
+102.
+
+05:10.250 --> 05:13.890
+And with that, SQL located the correct data page.
+
+05:14.010 --> 05:15.010
+The third page.
+
+05:15.050 --> 05:20.370
+And now SQL can open this data page and find the customer ID number 14.
+
+05:20.370 --> 05:26.210
+So as you can see it was very fast for SQL to locate the correct data page with only three jumps from
+
+05:26.210 --> 05:31.570
+the root node to the intermediate node, the SQL were able to find fast the correct data page, and
+
+05:31.570 --> 05:38.530
+here SQL needs only to read one data page instead of reading as we saw in the heap structure for different
+
+05:38.530 --> 05:39.330
+data pages.
+
+05:39.330 --> 05:42.930
+And of course you might say, but still here we are reading like three pages.
+
+05:43.250 --> 05:48.930
+While reading an index page is very fast compared to the data page, because reading a data page is
+
+05:48.930 --> 05:51.410
+always slower than reading an index page.
+
+05:51.410 --> 05:57.650
+So as you can see, this B-tree structure, the clustered index structure did help the SQL and the database
+
+05:57.770 --> 06:05.130
+to locate the right data in the right data page, without having unnecessary read operations on different
+
+06:05.130 --> 06:06.050
+databases.
+
+06:06.050 --> 06:10.610
+And this is exactly how the clustered index works in the SQL database.

@@ -1,0 +1,529 @@
+WEBVTT
+
+00:03.800 --> 00:06.400
+All right, moving on to the next use case for the case statements.
+
+00:06.400 --> 00:08.480
+We can use it in order to handle nulls.
+
+00:08.480 --> 00:11.600
+Handling nulls means replace a null with a value.
+
+00:11.600 --> 00:17.280
+And as we learned before with the window aggregate functions, sometimes nulls leads to incorrect calculations
+
+00:17.320 --> 00:20.360
+and results, which leads to wrong decision making.
+
+00:20.360 --> 00:24.560
+We're going to have later a dedicated chapter on how to handle nulls in SQL, but now we're going to
+
+00:24.560 --> 00:27.440
+learn how to handle nulls using case statements.
+
+00:27.440 --> 00:28.680
+So now let's have the following task.
+
+00:28.680 --> 00:35.320
+And it says find the average scores of customers and treat nulls as zero and additionally provide details
+
+00:35.320 --> 00:37.400
+such as customer ID and the last name.
+
+00:37.440 --> 00:39.240
+Okay, so now let's solve it step by step.
+
+00:39.400 --> 00:41.080
+And again we have here details.
+
+00:41.080 --> 00:42.520
+And as well we have to do aggregations.
+
+00:42.520 --> 00:45.200
+That means we have to go and use the window functions.
+
+00:45.200 --> 00:47.480
+And we don't have to forget that we have to treat the nulls.
+
+00:47.480 --> 00:48.600
+So we have to handle it.
+
+00:48.800 --> 00:51.760
+So now let's go and start with very simple select.
+
+00:51.760 --> 00:57.000
+So select customer ID we need the last name.
+
+00:57.440 --> 00:59.120
+And as well we need the scores.
+
+00:59.600 --> 01:04.680
+So from sales customers let's go and execute it.
+
+01:04.730 --> 01:07.130
+So as usual, we have our five customers and the scores.
+
+01:07.170 --> 01:08.210
+And here we have a null.
+
+01:08.250 --> 01:12.490
+Now we're going to go and write the window function but without handling the nulls just in order to
+
+01:12.490 --> 01:13.530
+see the differences.
+
+01:13.530 --> 01:15.810
+So we need the average function.
+
+01:16.010 --> 01:16.610
+For what.
+
+01:16.650 --> 01:20.050
+For the scores do we have to now partition the data.
+
+01:20.250 --> 01:20.850
+Well no.
+
+01:20.850 --> 01:22.170
+So we're going to leave it as empty.
+
+01:22.210 --> 01:24.850
+We need the average score of all customers.
+
+01:24.850 --> 01:25.650
+So that's it.
+
+01:25.690 --> 01:29.010
+Let's go and give it a name and then execute it.
+
+01:29.010 --> 01:30.170
+I think I have here a mistake.
+
+01:30.170 --> 01:31.930
+So it is a score not scores.
+
+01:31.930 --> 01:35.530
+So and now as you can see we have the average of 625.
+
+01:35.570 --> 01:40.570
+And as we learned before SQL can go and summarize all those four values and divide it by four.
+
+01:40.610 --> 01:45.050
+But our business understands that nulls as zero not as missing information.
+
+01:45.050 --> 01:47.050
+So we have to go and handle the null.
+
+01:47.170 --> 01:50.690
+Let's go and create a new column for the scores.
+
+01:51.010 --> 01:54.010
+But this time we're going to go and use the case statements.
+
+01:54.010 --> 01:55.090
+It's going to be very simple.
+
+01:55.090 --> 01:59.890
+So we're going to say when the score is null.
+
+02:00.130 --> 02:03.850
+So in SQL we don't write equal null we say is null.
+
+02:03.850 --> 02:07.050
+So with that we are replacing the nulls with zero right.
+
+02:07.410 --> 02:09.830
+So now otherwise what can happen?
+
+02:09.830 --> 02:10.990
+So if it's not null.
+
+02:10.990 --> 02:14.150
+So we need the score as it is, we should not manipulate anything.
+
+02:14.390 --> 02:17.230
+So the default value is the score itself.
+
+02:17.230 --> 02:18.590
+If the score is not null.
+
+02:18.830 --> 02:23.790
+So now let's go and end it and let's call it score clean.
+
+02:24.190 --> 02:26.390
+So let's go and execute it.
+
+02:26.390 --> 02:30.270
+Now if you check the result over here it's like almost identical as the score.
+
+02:30.430 --> 02:32.830
+So we don't have any new values for the scores.
+
+02:32.830 --> 02:35.110
+But only the nulls now are zero.
+
+02:35.110 --> 02:37.510
+And all other values they are not affected.
+
+02:37.510 --> 02:38.470
+So we didn't touch it.
+
+02:38.510 --> 02:39.990
+We didn't transform it at all.
+
+02:39.990 --> 02:44.310
+So this is what do we mean with handling nulls replacing nulls with another value.
+
+02:44.310 --> 02:49.550
+So now in order to finish the task, we have to do the average for the score clean and not for the original
+
+02:49.550 --> 02:49.990
+score.
+
+02:49.990 --> 02:50.790
+So how are we going to do it?
+
+02:50.790 --> 02:53.190
+Let's go and copy the whole case statements.
+
+02:53.190 --> 02:55.470
+I'm just going to do it in another column.
+
+02:55.470 --> 02:57.110
+So let's have an average.
+
+02:57.350 --> 03:00.510
+And inside it we have the case statements like this.
+
+03:00.870 --> 03:03.670
+Let me just sort it like this.
+
+03:03.670 --> 03:07.590
+And now what is missing is the over and it's going to be empty.
+
+03:07.990 --> 03:11.310
+So average customer let's call it clean.
+
+03:11.430 --> 03:13.000
+So this is the logic.
+
+03:13.400 --> 03:15.240
+Let me just make everything smaller.
+
+03:15.680 --> 03:18.200
+So as you can see, it's exactly like the previous one.
+
+03:18.200 --> 03:23.880
+But instead of using the original score, now we are using the column that we have created.
+
+03:23.880 --> 03:26.120
+But of course we don't need the alias over here.
+
+03:26.320 --> 03:27.480
+So we have to remove it.
+
+03:27.480 --> 03:29.480
+So it starts with case and end.
+
+03:29.520 --> 03:31.280
+So let's go and execute it.
+
+03:31.280 --> 03:35.400
+And now you can see in the output we got a new value for the average.
+
+03:35.400 --> 03:37.640
+And it is more accurate for the business.
+
+03:37.640 --> 03:38.760
+So now we have 500.
+
+03:38.800 --> 03:41.240
+Previously we had 625.
+
+03:41.240 --> 03:46.240
+So as you can see you have to understand what the nulls means in your business and handle it correctly.
+
+03:46.240 --> 03:48.080
+Otherwise you will get wrong results.
+
+03:48.120 --> 03:48.760
+So that's it.
+
+03:48.800 --> 03:52.400
+We use case statements in order to handle the nulls inside our data.
+
+03:56.280 --> 04:02.080
+Conditional aggregations means we can go and apply an aggregate function in SQL like sum average count,
+
+04:02.120 --> 04:07.600
+but this time only on a subset of data that meet specific conditions.
+
+04:07.600 --> 04:13.520
+This technique is amazing in order to do deep dive analysis or target analysis on a specific subset
+
+04:13.560 --> 04:14.200
+of the data.
+
+04:14.240 --> 04:19.250
+So now let's have the following SQL task in order to understand this use case, the task says count
+
+04:19.290 --> 04:23.890
+how many times each customer has made an order with sales greater than 30.
+
+04:23.930 --> 04:26.250
+All right, so as usual, we can do it step by step.
+
+04:26.530 --> 04:27.490
+So what do we need?
+
+04:27.490 --> 04:28.490
+We need the orders.
+
+04:28.490 --> 04:30.170
+So let's get the order ID.
+
+04:30.410 --> 04:34.410
+And as well let's get the customer ID like this.
+
+04:34.450 --> 04:38.690
+And the sales from sales orders.
+
+04:38.730 --> 04:40.210
+Let's go and execute it.
+
+04:40.210 --> 04:45.250
+So now what else I'm going to do is I'm going to go and order the data by customer ID.
+
+04:45.250 --> 04:47.490
+So let's execute it again okay.
+
+04:47.530 --> 04:50.370
+So now the task sounds easy but it's a little bit tricky.
+
+04:50.410 --> 04:55.370
+We have to count the number of orders for each customer where the sales is higher than 30.
+
+04:55.610 --> 04:58.290
+Let's have an example for example this customer number one.
+
+04:58.290 --> 05:01.170
+So the total number of orders is three orders right.
+
+05:01.170 --> 05:04.770
+But we have to count only the orders where the sales is higher than 30.
+
+05:04.810 --> 05:09.210
+And in this example we have only one order where the sales is higher than 30.
+
+05:09.210 --> 05:10.970
+So it's only the order number four.
+
+05:10.970 --> 05:14.130
+So the count for the customer ID number one should be one.
+
+05:14.130 --> 05:16.610
+Now let's check another customer for example that two.
+
+05:16.970 --> 05:22.150
+And as you can see we have three orders but none of them have the sales higher than 30.
+
+05:22.150 --> 05:24.310
+So the count should be zero here.
+
+05:24.310 --> 05:25.550
+So how are we going to do that?
+
+05:25.590 --> 05:30.350
+We have to go and flag each row whether it's higher than 30 or not.
+
+05:30.350 --> 05:33.830
+So if it's higher than 30 it gets the flag of one.
+
+05:33.870 --> 05:37.430
+If it's less than 30 or equal to 30 it's going to get zero.
+
+05:37.470 --> 05:41.910
+And then we're going to go and summarize all those flags in order to get the count.
+
+05:41.910 --> 05:43.150
+So let's do it step by step.
+
+05:43.150 --> 05:44.710
+Let's first create the flag.
+
+05:45.230 --> 05:46.990
+So we're going to go and use case.
+
+05:46.990 --> 05:48.830
+And then our condition is very easy.
+
+05:48.830 --> 05:49.990
+We're going to say when.
+
+05:49.990 --> 05:52.670
+So what is the condition sales greater than 30.
+
+05:52.710 --> 05:55.830
+So sales is higher than 30.
+
+05:55.910 --> 05:56.990
+Then what can happen.
+
+05:56.990 --> 06:00.830
+We're going to flag it with the one because later we're going to go and summarize the one.
+
+06:00.870 --> 06:05.070
+And now else if it's not higher than 30 equal to 30 or less.
+
+06:05.070 --> 06:06.430
+So it's going to get zero.
+
+06:06.470 --> 06:06.870
+All right.
+
+06:06.870 --> 06:08.830
+So now let's go and end it.
+
+06:08.830 --> 06:12.070
+So end let's say sales flag.
+
+06:12.110 --> 06:14.030
+Now let's go and execute it and check the results.
+
+06:14.030 --> 06:14.310
+All right.
+
+06:14.310 --> 06:20.030
+So now if you check the results we got now a very nice flag in order to see which orders has sales higher
+
+06:20.030 --> 06:20.670
+than 30.
+
+06:20.710 --> 06:23.350
+So now for example let's take the customer ID number one.
+
+06:23.390 --> 06:29.120
+As you can see, only the order number four has a sales higher than 30, and it's flagged with one and
+
+06:29.120 --> 06:30.320
+all others are zero.
+
+06:30.360 --> 06:32.680
+Now let's take that customer ID number three.
+
+06:32.840 --> 06:37.400
+And as you can see we have now two orders where the sales is higher than 30.
+
+06:37.440 --> 06:39.480
+And as you can see we have the one twice.
+
+06:39.520 --> 06:42.240
+And now we can use this flag in order to do the aggregation.
+
+06:42.360 --> 06:47.640
+So now if we go and summarize the flag for the customer ID number three, we will get to.
+
+06:47.680 --> 06:51.360
+And this is the count of orders where the sales is higher than 30.
+
+06:51.400 --> 06:51.720
+Right.
+
+06:51.720 --> 06:52.920
+And let's take another example.
+
+06:52.920 --> 06:55.480
+The customer ID number two we have everywhere zero.
+
+06:55.480 --> 07:00.600
+And if we summarize those values we will get zero which is the count of orders where the sales is higher
+
+07:00.600 --> 07:01.880
+than 30 which is correct.
+
+07:01.920 --> 07:06.680
+So now as you can see, first we have built an extra column in order to help us doing the aggregation.
+
+07:06.680 --> 07:10.080
+And now in the next step we're going to go and aggregate this column.
+
+07:10.080 --> 07:11.120
+So let's go and do that.
+
+07:11.160 --> 07:13.200
+We don't need all those informations.
+
+07:13.400 --> 07:18.760
+The order ID we need the customer ID because it is the granularity for the aggregation.
+
+07:18.760 --> 07:21.120
+And let's remove the order by.
+
+07:21.160 --> 07:25.520
+And now let's go and group up the data by customer ID.
+
+07:26.080 --> 07:28.580
+But of course we need the aggregate function.
+
+07:28.580 --> 07:29.380
+So how are we going to do it.
+
+07:29.420 --> 07:32.060
+We're going to go and summarize the whole flag.
+
+07:32.220 --> 07:37.260
+So now of course we're going to go and rename this since now it is an aggregated column.
+
+07:37.260 --> 07:39.580
+So we're going to call it total orders.
+
+07:39.980 --> 07:42.140
+So now let's go and execute it.
+
+07:42.180 --> 07:43.420
+So now let's go and check the result.
+
+07:43.420 --> 07:45.460
+As you can see now we have our four customers.
+
+07:45.660 --> 07:49.580
+And for the customer ID number one we got only one order higher than 30.
+
+07:49.620 --> 07:52.740
+The second one has no orders higher than 30.
+
+07:52.980 --> 07:54.900
+The third we have two and one.
+
+07:54.900 --> 07:56.780
+And with that we have solved the task.
+
+07:56.820 --> 08:01.420
+Now I would like to add one more thing to our query in order to see the normal aggregations, not the
+
+08:01.420 --> 08:02.780
+conditional aggregations.
+
+08:02.780 --> 08:09.460
+So usually we go and count for example the star in order to get the total orders.
+
+08:09.460 --> 08:12.460
+And let's rename the previous one to high sales.
+
+08:13.220 --> 08:14.940
+So let's go and execute it.
+
+08:14.940 --> 08:18.340
+So we are just now doing aggregations without any conditions.
+
+08:18.340 --> 08:21.220
+And now we can see how many orders did each customer.
+
+08:21.220 --> 08:26.460
+So we can see that the customer ID number one did order three times but only one order higher than 30.
+
+08:26.500 --> 08:28.220
+So this is a normal aggregation.
+
+08:28.220 --> 08:32.380
+And this is a conditional aggregations using the case statements.

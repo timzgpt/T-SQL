@@ -1,0 +1,133 @@
+WEBVTT
+
+00:03.960 --> 00:04.840
+All right, my friends.
+
+00:04.840 --> 00:08.120
+So now let's have a little break in order to have a real talk about the CTE.
+
+00:08.240 --> 00:09.560
+But first, some coffee.
+
+00:11.160 --> 00:16.280
+And now I can see that I'm working with SQL since really long, long time ago, over 15 years.
+
+00:16.320 --> 00:20.560
+And I can say as well, I have met a lot of SQL developers in different projects.
+
+00:20.560 --> 00:25.440
+And if there is one thing that all those SQL developers love is the CTE.
+
+00:25.720 --> 00:27.520
+They love using it everywhere.
+
+00:27.520 --> 00:31.640
+Like each time they write a query, they gonna be writing SQL, CTE.
+
+00:31.880 --> 00:32.760
+And of course it's fine.
+
+00:32.760 --> 00:33.960
+It's not a bad thing.
+
+00:33.960 --> 00:36.400
+But the problem with that, they overuse it.
+
+00:36.440 --> 00:41.520
+Of course not all of them, but a lot of SQL developers overuse using the CTE.
+
+00:41.720 --> 00:46.680
+Of course, the CTE is very powerful, but with power comes great responsibility.
+
+00:47.160 --> 00:51.800
+Remember, with great power comes great responsibility.
+
+00:52.440 --> 00:58.960
+So my advice for you, especially if you are new to the CTE, that's try to not add a new CTE each time
+
+00:58.960 --> 01:00.280
+you are doing something new.
+
+01:00.280 --> 01:05.880
+And I saw it a lot like for each new calculation, for each new column, they jump immediately and create
+
+01:05.880 --> 01:06.720
+a new city.
+
+01:06.760 --> 01:08.040
+And what happens at the end?
+
+01:08.080 --> 01:13.560
+We can have like massive number of cities inside one query, and the developer thinks now everything
+
+01:13.560 --> 01:15.680
+is organized and easy to read.
+
+01:15.680 --> 01:18.360
+But believe me, it's exactly the opposite.
+
+01:18.360 --> 01:24.560
+If you open any code and you have a lot of kids, and especially if they are necessities, it is impossible
+
+01:24.560 --> 01:26.240
+to understand what is going on.
+
+01:26.280 --> 01:31.440
+Even if the developer liked describe each CTE and the task of the CTE, it's going to be really hard
+
+01:31.440 --> 01:33.280
+to understand and as well to read.
+
+01:33.440 --> 01:38.720
+If everything is like nested and you have like, I don't know, 20 seats in one query, so it's going
+
+01:38.720 --> 01:40.840
+to be impossible to read and to understand.
+
+01:40.840 --> 01:45.480
+And as well, you're going to be using a lot of memory and you might get bad performance.
+
+01:45.480 --> 01:50.000
+So my advice for you try always as you are creating new cities to think about.
+
+01:50.000 --> 01:52.640
+How about to merge two cities in one?
+
+01:52.640 --> 01:58.920
+So it is really always important to rethink and refactor your CTE in order to merge it into one and
+
+01:58.920 --> 02:00.680
+to reduce the number of seats.
+
+02:00.720 --> 02:06.120
+But now, if you ask me how many seats are okay in one query, well, I don't have a magic number for
+
+02:06.160 --> 02:10.240
+that, but normally I tend to say between 3 and 5 seats.
+
+02:10.280 --> 02:11.200
+It's fine.
+
+02:11.200 --> 02:14.520
+So it's going to be easy to understand and to read and so on.
+
+02:14.520 --> 02:19.320
+But once you get more than five seats, then you have to rethink your code.
+
+02:19.360 --> 02:24.360
+Maybe you have to create another complete query so you don't have to put everything in one query.
+
+02:24.360 --> 02:25.720
+So this is my advice for you.
+
+02:25.720 --> 02:29.720
+Try to not overuse the seats in your projects, not for each step.
+
+02:29.880 --> 02:36.400
+Always refactor the seats, consolidate them, and try to not have more than five cities in one query.
+
+02:36.400 --> 02:37.800
+So that's my advice for you.
+
+02:37.840 --> 02:41.520
+Be responsible using the seats and let's go back to our course.

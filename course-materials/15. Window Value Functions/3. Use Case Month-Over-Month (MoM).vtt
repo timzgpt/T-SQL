@@ -1,0 +1,451 @@
+WEBVTT
+
+00:03.880 --> 00:04.120
+Okay.
+
+00:04.120 --> 00:05.200
+So now we have the following task.
+
+00:05.200 --> 00:11.680
+And it says analyze the month over month performance by finding the percentage change in sales between
+
+00:11.680 --> 00:13.320
+the current and the previous month.
+
+00:13.320 --> 00:16.600
+So that means we have to go and compare the current month with the previous month.
+
+00:16.840 --> 00:21.520
+So the main use case for the lead and lag is to do comparison analysis.
+
+00:21.520 --> 00:23.200
+And we have a very common use case.
+
+00:23.200 --> 00:25.880
+It's called time series analysis.
+
+00:25.880 --> 00:33.240
+So it is the method of analyzing our business, our data in order to understand the patterns and trends
+
+00:33.240 --> 00:34.240
+over the time.
+
+00:34.240 --> 00:38.720
+And one of the most important and classical question that you're going to get from the decision makers
+
+00:38.720 --> 00:44.560
+or businesses to do year over year analysis or month over month analysis.
+
+00:44.560 --> 00:50.160
+So the year over year analysis is going to help us in order to understand the overall growth or decline
+
+00:50.160 --> 00:53.920
+in the performance of our business over the years, over the time.
+
+00:53.920 --> 00:59.780
+But in the other hand, we have month over month analysis in order to do short term trends analyses
+
+00:59.780 --> 01:02.420
+and as will discover the patterns in the seasonality.
+
+01:02.420 --> 01:07.020
+So the main focus is to understand the performance of our business over the time.
+
+01:07.020 --> 01:09.580
+So now let's go back to SQL in order to solve the task.
+
+01:09.620 --> 01:10.060
+Okay guys.
+
+01:10.060 --> 01:11.860
+So now let's go and do it step by step.
+
+01:12.020 --> 01:15.300
+Now what is the first step before we go and compare things together.
+
+01:15.300 --> 01:16.580
+We have to collect the data.
+
+01:16.580 --> 01:18.380
+We have to do the calculations first.
+
+01:18.380 --> 01:23.900
+So we have to find out first the total sales for the current month and then the total sales for the
+
+01:23.900 --> 01:24.700
+previous month.
+
+01:24.740 --> 01:26.580
+And after that we can go and compare them.
+
+01:26.580 --> 01:28.100
+So now let's start with the easy stuff.
+
+01:28.100 --> 01:31.900
+We have to find out the current sales for the current month.
+
+01:31.900 --> 01:34.900
+So in order to do that let's just do very simple select.
+
+01:34.900 --> 01:35.660
+So what do we need.
+
+01:35.700 --> 01:39.460
+We need let's take the order ID let's take the order date.
+
+01:39.980 --> 01:41.860
+Because inside it we have the month.
+
+01:42.020 --> 01:43.780
+And let's go and collect the sales.
+
+01:43.980 --> 01:48.460
+So that's it for now from sales orders.
+
+01:48.620 --> 01:50.580
+So let's go and execute this.
+
+01:50.580 --> 01:52.340
+So now the result we got the usual stuff.
+
+01:52.340 --> 01:55.380
+We have ten orders sales and order dates.
+
+01:55.380 --> 02:00.520
+But the order date is on the level of the days and we are not interested on the whole date.
+
+02:00.560 --> 02:04.760
+We would like to get only the month in order to calculate the total sales for the month.
+
+02:04.800 --> 02:08.440
+Now we're going to go and use a function in order to extract the month from a date.
+
+02:08.480 --> 02:09.160
+Don't worry about it.
+
+02:09.160 --> 02:14.280
+We're going to have a dedicated chapter in order to show you how to deal with the dates format in SQL.
+
+02:14.480 --> 02:21.000
+So now what we're going to do, we will use a very simple function called month and order dates.
+
+02:21.040 --> 02:23.160
+And let's call it order month.
+
+02:23.360 --> 02:24.240
+So that's it.
+
+02:24.240 --> 02:25.680
+Let's go and execute it.
+
+02:25.720 --> 02:29.440
+Now as you can see, we got the new field where we have only the month of formations.
+
+02:29.440 --> 02:31.480
+So here we have January, February and March.
+
+02:31.480 --> 02:35.880
+So now the next step is that we want to find the total sales for each month.
+
+02:35.960 --> 02:38.320
+So what we're going to do we're going to go and use groupby.
+
+02:38.720 --> 02:39.960
+So let's do that.
+
+02:40.000 --> 02:43.520
+We're going to go and say we want the sum of sales.
+
+02:43.880 --> 02:47.800
+I'm just going to call it current month sales.
+
+02:48.280 --> 02:51.240
+And let's go and get rid of all those informations.
+
+02:51.400 --> 02:54.320
+We're going to go and group by the month right.
+
+02:54.400 --> 02:55.460
+So group by Goodbye.
+
+02:55.660 --> 02:56.660
+Let's have the month.
+
+02:56.820 --> 02:57.980
+So that's it.
+
+02:58.020 --> 02:59.780
+Let's go and execute it.
+
+02:59.780 --> 03:00.980
+So it's very simple, right?
+
+03:00.980 --> 03:04.860
+We got now the three months and the total sales of the current month.
+
+03:04.860 --> 03:09.220
+So now with that we got the first information that we need in order to do the comparison we have for
+
+03:09.220 --> 03:12.260
+each row the total sales for the current month.
+
+03:12.260 --> 03:17.420
+So now the next thing that we're going to do is to find out the total sales for the previous month,
+
+03:17.420 --> 03:19.180
+like side by side in the same row.
+
+03:19.180 --> 03:23.180
+And in order to do that, we have learned we can go and use the lag function.
+
+03:23.180 --> 03:27.460
+So we're going to go and integrate the lag window function in the same group by.
+
+03:27.540 --> 03:28.940
+So we can do it like this.
+
+03:29.180 --> 03:32.980
+So lag we are now interested in the previous month.
+
+03:32.980 --> 03:37.660
+So that's why we're going to go and get the sum of sales as an expression inside it.
+
+03:37.660 --> 03:39.540
+And after that we're going to define the window.
+
+03:39.540 --> 03:42.860
+It's going to be like this over and order by is a must.
+
+03:42.860 --> 03:45.700
+So we're going to go and sort the data by the month.
+
+03:45.700 --> 03:46.180
+Right.
+
+03:46.220 --> 03:47.500
+So let's go and do it.
+
+03:47.500 --> 03:51.220
+And with that we have defined the previous month sales.
+
+03:51.220 --> 03:55.000
+So you are the previous Month sales.
+
+03:55.200 --> 03:57.640
+So now let's go and execute it in order to see the results.
+
+03:57.640 --> 03:57.960
+All right.
+
+03:57.960 --> 03:59.240
+So now let's check the results.
+
+03:59.240 --> 04:00.000
+The first row.
+
+04:00.040 --> 04:01.880
+What is the previous month.
+
+04:01.880 --> 04:02.920
+There is no previous month.
+
+04:02.920 --> 04:05.160
+We are at the first record and the first month.
+
+04:05.160 --> 04:06.280
+That's why we have null.
+
+04:06.480 --> 04:08.080
+Now let's go to February.
+
+04:08.120 --> 04:10.480
+What is the sales of the previous month?
+
+04:10.480 --> 04:12.720
+From January it is 105.
+
+04:12.760 --> 04:14.000
+So this is correct.
+
+04:14.040 --> 04:16.320
+And now to the last value to the march.
+
+04:16.360 --> 04:19.520
+What is the sales of February the previous month?
+
+04:19.520 --> 04:21.440
+It is 195.
+
+04:21.440 --> 04:23.680
+So that we got the two informations.
+
+04:23.680 --> 04:26.720
+We have the current month and as well the previous month.
+
+04:26.720 --> 04:28.600
+So guys as you can see it's magic right.
+
+04:28.640 --> 04:29.480
+It's very simple.
+
+04:29.640 --> 04:36.200
+We can go and use the lead and lag functions in order to access other values from another rows without
+
+04:36.200 --> 04:38.400
+doing any complicated joins and so on.
+
+04:38.440 --> 04:38.720
+Okay.
+
+04:38.760 --> 04:39.880
+So now what is the next step.
+
+04:39.880 --> 04:44.440
+We're going to go and subtract the total sales from the current month with the previous month.
+
+04:44.640 --> 04:48.440
+So in order to do that we're going to go and use a subquery like this.
+
+04:48.880 --> 04:52.700
+So select star from words.
+
+04:52.980 --> 04:55.100
+We can have it like this as subquery.
+
+04:55.140 --> 04:57.180
+And now the calculation is very simple.
+
+04:57.460 --> 04:59.540
+Let me just move this a little bit down.
+
+04:59.820 --> 05:04.180
+So it is the current month subtracted from the previous month.
+
+05:05.020 --> 05:08.980
+Let's go and call it month over month change.
+
+05:09.380 --> 05:10.260
+So that's it.
+
+05:10.260 --> 05:11.980
+Let's go and execute this.
+
+05:11.980 --> 05:13.460
+So now let's go and check the results.
+
+05:13.460 --> 05:16.500
+For the first month you can see that we don't have any value.
+
+05:16.500 --> 05:19.540
+And that is correct because the previous month is empty.
+
+05:19.540 --> 05:20.900
+So there is no change.
+
+05:20.940 --> 05:25.140
+And now moving on to the February you can see over here we got plus 90.
+
+05:25.180 --> 05:29.140
+That means we have here improvement in the performance of our sales.
+
+05:29.460 --> 05:30.900
+Now moving on to the last one.
+
+05:30.900 --> 05:31.980
+It's really bad.
+
+05:32.020 --> 05:33.980
+We have decline in our performance.
+
+05:33.980 --> 05:36.540
+We can see that we have -115.
+
+05:36.540 --> 05:40.700
+So that means the current month is doing really bad compared to the previous month.
+
+05:40.700 --> 05:42.580
+So the march is really bad month.
+
+05:42.620 --> 05:42.820
+Okay.
+
+05:42.860 --> 05:45.460
+So now as you can see in the output we got the absolute numbers.
+
+05:45.460 --> 05:48.460
+But the task says find the percentage change.
+
+05:48.460 --> 05:51.960
+So we have to convert this to a percentage and we can do it like this.
+
+05:52.000 --> 05:52.800
+It's very simple.
+
+05:53.000 --> 05:54.680
+Let's do it in a new column.
+
+05:54.720 --> 05:56.240
+Just going to zoom out a little bit.
+
+05:56.440 --> 06:02.920
+So it's going to be the change the differences divided by the previous month's sales.
+
+06:02.920 --> 06:07.160
+And then let's go and multiply it with 100 in order to get the percentage.
+
+06:07.160 --> 06:08.280
+So like this.
+
+06:08.280 --> 06:10.000
+And as you can see we got zeros.
+
+06:10.000 --> 06:12.720
+And that's because those numbers are integer.
+
+06:12.880 --> 06:15.240
+So we have to go and cast one of those values.
+
+06:15.280 --> 06:16.680
+Just going to do it for the first.
+
+06:16.680 --> 06:19.520
+So cast and you are float.
+
+06:19.920 --> 06:20.880
+So that's it.
+
+06:20.880 --> 06:22.720
+Let's go and execute it again.
+
+06:22.880 --> 06:24.080
+Now the result looks better.
+
+06:24.080 --> 06:26.560
+We have the percentages but we have a lot of decimals.
+
+06:26.800 --> 06:30.760
+So let's go around the number to let's say one decimal.
+
+06:30.920 --> 06:32.360
+So only one.
+
+06:32.360 --> 06:33.520
+And let's give it a name.
+
+06:33.520 --> 06:36.280
+So you are month over month percentage.
+
+06:36.720 --> 06:38.280
+So let's execute.
+
+06:38.320 --> 06:40.000
+So now you can see things get better.
+
+06:40.000 --> 06:45.800
+And with that we have calculated the percentage change in sales between the current and the previous
+
+06:45.800 --> 06:46.360
+months.
+
+06:46.360 --> 06:49.400
+And this is how we do month over month analysis.

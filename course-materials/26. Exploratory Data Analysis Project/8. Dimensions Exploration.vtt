@@ -1,0 +1,205 @@
+WEBVTT
+
+00:03.920 --> 00:04.160
+Okay.
+
+00:04.160 --> 00:08.320
+So what we're going to do with the dimension exploration, all that we have to do is to go and identify
+
+00:08.560 --> 00:12.600
+the unique values of each dimension that we have inside our database.
+
+00:12.600 --> 00:17.600
+This can help us to understand what are the categories, which countries, what are the product types
+
+00:17.600 --> 00:19.120
+that we have inside our database.
+
+00:19.120 --> 00:21.200
+And we have a very simple formula for that.
+
+00:21.200 --> 00:27.040
+So all what you need is the SQL keyword distinct together with any dimension in your data set like distinct
+
+00:27.040 --> 00:29.080
+country distinct category.
+
+00:29.080 --> 00:33.160
+So for example, if you are checking any column that is dimension, you can see a lot of values and
+
+00:33.160 --> 00:34.000
+repeating stuff.
+
+00:34.000 --> 00:36.760
+But now once you say distinct column, what's going to happen?
+
+00:36.760 --> 00:39.200
+You will get a list of all unique values.
+
+00:39.200 --> 00:42.400
+And with that, you can understand quickly how I have three different types.
+
+00:42.400 --> 00:47.520
+So I have A, B, C, and this is all going to help you to understand the granularity of your dimension.
+
+00:47.520 --> 00:50.880
+Does the dimension has like three values or 100 value.
+
+00:50.880 --> 00:51.760
+So it is very simple.
+
+00:51.760 --> 00:53.960
+Let's go and analyze our dimensions okay.
+
+00:54.000 --> 00:57.520
+So now let's explore the dimension values inside our database.
+
+00:57.520 --> 00:59.680
+So let's start with the first table that customers.
+
+00:59.680 --> 01:04.360
+And if you check those columns we have to find an interesting dimension like for example the country.
+
+01:04.360 --> 01:09.480
+So now what we can do we can go and explore all the countries our customers come from.
+
+01:09.480 --> 01:10.680
+So let's go and do that.
+
+01:10.680 --> 01:12.560
+It is very simple select distinct.
+
+01:12.560 --> 01:17.330
+And then we have our column the Dimension Country from our table customers.
+
+01:17.690 --> 01:19.450
+So let's go and execute it.
+
+01:19.450 --> 01:22.170
+And with that we can see in the result we have six countries.
+
+01:22.170 --> 01:25.650
+This is really nice in order to understand the geographical spread.
+
+01:25.650 --> 01:31.010
+So we have customers for our business that comes from six different countries Germany, United States,
+
+01:31.010 --> 01:32.250
+France, Canada and so on.
+
+01:32.250 --> 01:35.810
+So now with that, we have like the first little insights about our business.
+
+01:35.810 --> 01:37.810
+Now let's jump to another table.
+
+01:37.810 --> 01:38.650
+The products.
+
+01:38.650 --> 01:44.090
+So what you have to do is to explore all the categories inside our business, the major divisions.
+
+01:44.250 --> 01:49.210
+So we're going to say select distinct category from our table products.
+
+01:49.210 --> 01:51.210
+So let's go and execute it.
+
+01:51.250 --> 01:53.410
+Now in the output you can see we have four categories.
+
+01:53.410 --> 01:56.770
+We have the accessories bikes clothing and components.
+
+01:56.770 --> 01:59.970
+This is like giving us an overview of the product range.
+
+01:59.970 --> 02:03.250
+What are the major divisions inside our business now?
+
+02:03.250 --> 02:06.130
+The next one I'm digging deeper in this information.
+
+02:06.130 --> 02:10.730
+So not only I want to see the categories I would like as well to see the subcategories.
+
+02:11.250 --> 02:15.650
+I'm not starting a new query because there is of course a relationship between the category and the
+
+02:15.650 --> 02:16.410
+subcategory.
+
+02:16.410 --> 02:17.930
+Let's go now and execute it.
+
+02:17.970 --> 02:23.490
+Now you can see in the output our categories are now splitted into more specific groups.
+
+02:23.490 --> 02:28.210
+So for example the bikes over here we have mountain bikes, road bikes and so on.
+
+02:28.210 --> 02:33.470
+So as you can see the subcategories has more details about the products than their category.
+
+02:33.510 --> 02:38.510
+And now, in order to get the full picture, we're gonna bring now the product name.
+
+02:39.350 --> 02:42.390
+So with that, we're going to get a big picture in one shot.
+
+02:42.430 --> 02:46.270
+So now you can see the whole hierarchy of our products.
+
+02:46.270 --> 02:50.910
+And of course it is more interesting if you go and sort the data by those three informations.
+
+02:51.030 --> 02:52.870
+So let me just execute it again.
+
+02:52.910 --> 02:57.030
+So now if you go and explore our data for example we have here the category accessories.
+
+02:57.030 --> 03:00.030
+And we have a subcategory inside it called lights.
+
+03:00.030 --> 03:02.950
+And in this subcategory we have three different products.
+
+03:02.950 --> 03:09.310
+And if you scroll to the end of our table, you can see that we have around 295 products.
+
+03:09.310 --> 03:14.270
+So you can see the granularity of the product name is different than the category and the subcategory.
+
+03:14.270 --> 03:17.470
+And also three informations are related to each others.
+
+03:17.510 --> 03:23.350
+So now as you can see, after exploring those dimensions, we have now better understanding on how the
+
+03:23.350 --> 03:24.510
+data is organized.
+
+03:24.510 --> 03:26.390
+And this can help us by the analysis.
+
+03:26.390 --> 03:30.390
+If you are aggregating by the category, you will get only four rows.
+
+03:30.430 --> 03:33.950
+If you are aggregating by the products, you will get hundreds of rows.
+
+03:33.950 --> 03:37.710
+So this is how we explore the dimensions of our database.
+
+03:37.750 --> 03:41.670
+Okay, so now with that we have a clear picture about the dimensions inside our data sets.
+
+03:41.710 --> 03:45.590
+And now in the next step we are going to deep dive into one special type of dimensions.
+
+03:45.590 --> 03:46.430
+We have the dates.
+
+03:46.430 --> 03:48.710
+So we're going to explore the date columns.

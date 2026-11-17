@@ -1,0 +1,142 @@
+WEBVTT
+
+00:03.920 --> 00:04.360
+Nice.
+
+00:04.360 --> 00:07.320
+Now we have a clear understanding what is date and time in SQL.
+
+00:07.480 --> 00:12.600
+The next question is how to manipulate those informations using SQL functions.
+
+00:12.640 --> 00:16.080
+Okay, now we have our date August 20th, 2025.
+
+00:16.120 --> 00:21.320
+One of the things that we can do with the dates is we can go and extract different parts of the date.
+
+00:21.360 --> 00:26.040
+For example, we are interested only on the year so we can go and extract only the year part.
+
+00:26.080 --> 00:29.920
+Or if we are interested in the month, you can go and extract the month and you will go to August.
+
+00:29.920 --> 00:33.320
+And of course we can go and extract the day and we will get that 20.
+
+00:33.360 --> 00:34.960
+So this is the first thing that we can do.
+
+00:34.960 --> 00:37.120
+We can extract the parts of the dates.
+
+00:37.160 --> 00:41.400
+Now another thing that we can do is we can go and change the date format.
+
+00:41.440 --> 00:47.680
+So instead of having like a small minus between those date parts, we can go and split them using slash.
+
+00:47.680 --> 00:52.760
+We can even start first with the month August, then 20 that day, and then the year.
+
+00:52.760 --> 00:55.400
+But having only the short form of the year 25.
+
+00:55.440 --> 00:59.720
+Or we can go and change the format where we say we don't need any special character, we just leave
+
+00:59.720 --> 01:00.720
+it as a space.
+
+01:00.720 --> 01:04.240
+So as you can see, we are changing and manipulating the format of the dates.
+
+01:04.280 --> 01:05.720
+Another category or task.
+
+01:05.720 --> 01:12.080
+We can go and do date calculations, so we can go and take our date and add to it, for example three
+
+01:12.080 --> 01:12.480
+years.
+
+01:12.520 --> 01:17.560
+Or we can go and find the differences between two dates, like we are doing a subtraction or let's say
+
+01:17.600 --> 01:20.460
+a minus, and we will get for example, 30 days.
+
+01:20.460 --> 01:24.460
+So we can go and add stuff, subtract stuff, or find differences between two dates.
+
+01:24.460 --> 01:26.500
+It's like we are doing calculations on the dates.
+
+01:26.540 --> 01:32.180
+Now to the last thing that we can do with this date is we can go and test this date or validate it,
+
+01:32.220 --> 01:35.380
+whether it is a real date that SQL understands.
+
+01:35.380 --> 01:37.780
+So we can put it on the test and add the output.
+
+01:37.820 --> 01:40.500
+We're going to get true or false or zero and one.
+
+01:40.500 --> 01:45.740
+So as you can see here we have different ways or let's say categories on how to manipulate our dates
+
+01:45.740 --> 01:46.500
+in SQL.
+
+01:46.540 --> 01:51.500
+Now we're going to go and group up the different date and time functions under four categories.
+
+01:51.500 --> 01:53.500
+The first category and the most important one.
+
+01:53.500 --> 01:55.220
+We have the part extraction.
+
+01:55.220 --> 02:00.020
+And here we have around seven different functions that we can use in order to do this task.
+
+02:00.060 --> 02:02.980
+Another category we have the format and casting.
+
+02:02.980 --> 02:04.660
+And here we have three different functions.
+
+02:04.660 --> 02:08.540
+Underneath this category we have the format convert and cast.
+
+02:08.540 --> 02:11.580
+And then the third category we have the calculations of the dates.
+
+02:11.580 --> 02:14.260
+We have two functions date add and date diff.
+
+02:14.300 --> 02:18.860
+And the last category the validation we have here only one function called is dates.
+
+02:18.860 --> 02:21.140
+So as you can see we have a lot of SQL functions.
+
+02:21.140 --> 02:25.340
+We have 13 date and time functions that we're going to cover in this tutorial.
+
+02:25.340 --> 02:28.540
+And how to manipulate the date and time informations in SQL.
+
+02:28.540 --> 02:31.660
+And this is how we can group them into four different categories.
+
+02:31.700 --> 02:33.500
+Let's start now with the biggest category.
+
+02:33.500 --> 02:35.220
+We have the part extraction.
+
+02:35.220 --> 02:39.100
+We're going to cover all those seven functions in details on how to extract parts.

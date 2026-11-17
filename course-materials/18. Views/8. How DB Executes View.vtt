@@ -1,0 +1,133 @@
+WEBVTT
+
+00:03.920 --> 00:09.680
+Now back to our database architecture and let's understand how the database executes views.
+
+00:09.720 --> 00:14.000
+So now let's say that the data engineer is creating a view called top n.
+
+00:14.040 --> 00:16.560
+So the query can be sent to the database engine.
+
+00:16.560 --> 00:20.760
+And once the database engine understands this is a view this is not a table.
+
+00:20.760 --> 00:24.640
+So now the database engine is going to go to the disk storage and to the catalog.
+
+00:24.640 --> 00:32.640
+And it will stores not only the metadata about the view, also the SQL that is responsible for the view.
+
+00:32.640 --> 00:38.240
+So it's going to take the SQL statements that you have defined in the create view and place it as well
+
+00:38.240 --> 00:39.080
+in the catalog.
+
+00:39.080 --> 00:44.040
+So if you compare it to the tables we have in the tables only metadata, but in the views we have both
+
+00:44.040 --> 00:47.240
+the metadata and as well the query of the view.
+
+00:47.240 --> 00:53.280
+And as well you can see that the database engine will not create a table in the users data.
+
+00:53.280 --> 00:57.560
+So there is no where data stored inside the disk or the cache.
+
+00:57.560 --> 01:01.060
+So the actual data, the physical data will not be stored anywhere.
+
+01:01.060 --> 01:06.060
+We are storing only metadata and the query inside the system catalog.
+
+01:06.100 --> 01:08.580
+So now we tell our data analyst okay, we have a new view.
+
+01:08.580 --> 01:13.300
+And the data analyst can go and write a query in order to retrieve the data from the view.
+
+01:13.300 --> 01:16.860
+So he can say and say select from the view and execute it.
+
+01:16.860 --> 01:21.020
+The database engine can take it and understand okay now we are talking about view.
+
+01:21.020 --> 01:24.300
+So the database first has to retrieve not the data.
+
+01:24.460 --> 01:30.820
+It can retrieve the query from the catalog in order to understand what do we have now to execute.
+
+01:30.860 --> 01:34.340
+Then the database can execute the query of the view first.
+
+01:34.340 --> 01:38.580
+And the data for this query comes from a physical table called orders.
+
+01:38.580 --> 01:44.060
+So now the database engine is querying the orders to retrieve the data so that we have a data for the
+
+01:44.060 --> 01:44.700
+end user.
+
+01:44.700 --> 01:49.340
+And then it's going to be executed and the result is going to be sent back to the data analyst.
+
+01:49.340 --> 01:51.500
+So as you can see there is like two queries.
+
+01:51.540 --> 01:58.740
+The SQL engine first has to execute the query from the view, and only after that the database engine
+
+01:58.740 --> 02:01.960
+can execute the query that comes from the user.
+
+02:01.960 --> 02:04.720
+So actually the data comes always from a physical table.
+
+02:04.760 --> 02:08.320
+But we are not providing the data analyst and access to the table.
+
+02:08.320 --> 02:10.760
+We are just providing an access to the view.
+
+02:10.760 --> 02:14.760
+So this can happen each time an end user selecting data from the view.
+
+02:14.800 --> 02:20.600
+Always the database engine can grab the query from the catalog, execute it first in order to get the
+
+02:20.600 --> 02:23.560
+data, and then execute what the end user wants.
+
+02:23.600 --> 02:26.720
+And now if the data engineer says no, let's go and drop the view.
+
+02:26.840 --> 02:29.360
+So she writes a query in order to drop the view.
+
+02:29.360 --> 02:34.480
+And the database engine can go to the system catalog and delete both the metadata and the query.
+
+02:34.480 --> 02:39.120
+So as you can see, if you are dropping a view, you are not losing the actual data.
+
+02:39.120 --> 02:41.920
+So there will be no user data lost at all.
+
+02:41.920 --> 02:43.240
+So don't worry about it.
+
+02:43.280 --> 02:47.640
+What you are losing is only the query and the metadata about your view.
+
+02:47.640 --> 02:52.440
+It's only if you drop a physical table like the orders you will lose your data.
+
+02:52.440 --> 02:56.160
+So dropping views is not that bad like dropping a database table.
+
+02:56.160 --> 02:59.760
+So this is how the database works with the views behind the scenes.

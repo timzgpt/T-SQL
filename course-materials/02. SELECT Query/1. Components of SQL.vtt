@@ -1,0 +1,184 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.280 --> 00:05.400
+So now I'm going to start with this.
+
+00:05.400 --> 00:06.920
+I'm going to show you an SQL code.
+
+00:06.920 --> 00:11.760
+And then quickly I'm going to explain for you the basic elements that you can find in each SQL code.
+
+00:11.760 --> 00:13.360
+So now we have this SQL code.
+
+00:13.360 --> 00:17.080
+And we call the whole thing an SQL statements query.
+
+00:17.120 --> 00:19.560
+And that's because it starts with a Select.
+
+00:19.600 --> 00:22.360
+And now the first thing that we see here is something green.
+
+00:22.360 --> 00:23.920
+This is the comments comment.
+
+00:23.920 --> 00:25.440
+It is just a note from you.
+
+00:25.440 --> 00:28.080
+And SQL will not execute this part of the code.
+
+00:28.120 --> 00:31.040
+And now what else we can see in our code is clauses.
+
+00:31.040 --> 00:33.880
+So our query is split into three main sections.
+
+00:33.880 --> 00:35.840
+And each section we call it clause.
+
+00:35.840 --> 00:40.960
+So here we have the Select clause, the From clause and the where they are like different sections that
+
+00:40.960 --> 00:43.640
+has specific tasks like for example the selects.
+
+00:43.640 --> 00:48.800
+It's all about to select the columns and the from clause focus on from which table we want to get the
+
+00:48.800 --> 00:52.560
+data, and the Where clause has the task of filtering the data.
+
+00:52.600 --> 00:54.960
+Now the next one we have the keywords.
+
+00:54.960 --> 01:00.160
+They are SQL standard reserved words that define a command or an operator.
+
+01:00.160 --> 01:02.040
+And as you can see, all of them are blue.
+
+01:02.040 --> 01:07.520
+So once you see something blue in SQL, that means it is a keyword and it has a specific operation.
+
+01:07.520 --> 01:10.720
+And you can see in this code all of them are uppercase, right?
+
+01:10.720 --> 01:12.360
+So all of them are capitalized.
+
+01:12.360 --> 01:14.680
+And this is the best practices how to write them.
+
+01:14.680 --> 01:20.040
+If you are writing an SQL code, make sure each time you have something blue make it completely capitalized
+
+01:20.080 --> 01:20.800
+uppercase.
+
+01:20.800 --> 01:23.210
+This makes it easier to read and to and understand.
+
+01:23.210 --> 01:25.410
+So make it, as a rule through the whole course.
+
+01:25.450 --> 01:26.890
+Now moving on to the next one.
+
+01:26.890 --> 01:27.370
+This one.
+
+01:27.370 --> 01:30.650
+The lower it is special keyword and we call it function.
+
+01:30.650 --> 01:36.490
+So they are like built in functions in SQL that accept an input, then process it and has at the end
+
+01:36.490 --> 01:37.090
+an output.
+
+01:37.090 --> 01:41.530
+So this function here takes the values from the country and makes it lowercase.
+
+01:41.530 --> 01:44.250
+So those functions can take something and transform it.
+
+01:44.290 --> 01:46.330
+Now what else we can see inside our query.
+
+01:46.370 --> 01:50.850
+We see those stuff name, country, customers country, those black words.
+
+01:50.850 --> 01:52.450
+We call them identifiers.
+
+01:52.450 --> 01:54.970
+They are just names of columns or tables.
+
+01:54.970 --> 01:57.610
+So for example the country here is a column name.
+
+01:57.610 --> 01:58.170
+Customers.
+
+01:58.170 --> 01:59.610
+Here is a table name.
+
+01:59.610 --> 02:02.610
+So they are just names for something in your database.
+
+02:02.610 --> 02:04.090
+So moving on to the next one.
+
+02:04.090 --> 02:06.290
+We have here something called operator.
+
+02:06.290 --> 02:10.610
+We usually use them inside the Where clause in order to compare two values.
+
+02:10.610 --> 02:14.130
+So it's simply going to go and compare the country with the value Italy.
+
+02:14.130 --> 02:15.770
+And we call those tough operators.
+
+02:15.810 --> 02:18.450
+Now the last one you can see here the red value.
+
+02:18.490 --> 02:20.250
+We call this a static value.
+
+02:20.250 --> 02:23.290
+It is something fixed that we have written inside our query.
+
+02:23.290 --> 02:24.530
+So my friends that's all.
+
+02:24.570 --> 02:28.170
+Those are the basic components of each SQL query.
+
+02:28.170 --> 02:33.290
+And you will find those elements not only in a Select statements but as well in the other stuff like
+
+02:33.330 --> 02:35.050
+the insert, create, delete.
+
+02:35.050 --> 02:38.250
+So they are the basic elements of any SQL code.
+
+02:38.290 --> 02:38.570
+Okay.
+
+02:38.610 --> 02:41.570
+So that's all about the basic components of the SQL code.
+
+02:41.610 --> 02:45.010
+Next we're going to deep dive into the Select statement in SQL.
+
+02:45.050 --> 02:45.690
+So let's go.

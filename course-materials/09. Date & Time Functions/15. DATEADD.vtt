@@ -1,0 +1,271 @@
+WEBVTT
+
+00:03.840 --> 00:04.120
+Okay.
+
+00:04.120 --> 00:06.840
+So now we're going to start with the first function the date add.
+
+00:06.840 --> 00:14.760
+So what is date add date add can allow us to add or subtract a specific time interval to or from a date.
+
+00:14.760 --> 00:16.880
+So let's understand how the date add works.
+
+00:16.880 --> 00:20.400
+So here again we have our date August 20th, 2025.
+
+00:20.400 --> 00:24.160
+So now in some scenarios we would like to add years to our dates.
+
+00:24.160 --> 00:27.360
+So for example let's say I would like to add three years to our date.
+
+00:27.360 --> 00:29.360
+So we can do that using the date add.
+
+00:29.360 --> 00:33.800
+So if you do that in the output you will get 2028 August 20th.
+
+00:33.840 --> 00:38.120
+Only the date part is changed and where we have added three years.
+
+00:38.120 --> 00:40.800
+But in other scenarios you would like to go and add months.
+
+00:40.800 --> 00:44.120
+So for example, let's go and add two months to the August.
+
+00:44.120 --> 00:47.680
+So in the output you will get 20, 2510, 20.
+
+00:47.720 --> 00:49.520
+With that we have added two months.
+
+00:49.520 --> 00:52.800
+And of course we can go and add days to our dates.
+
+00:52.800 --> 00:56.040
+So for example we're going to go and add five days to our dates.
+
+00:56.040 --> 01:01.840
+So in the output we'll get the same year 2025, the same month August, but only the day will be changed
+
+01:01.840 --> 01:03.200
+to 25.
+
+01:03.200 --> 01:06.120
+So we have added five days to the original dates.
+
+01:06.120 --> 01:10.640
+And of course we can go and subtract dates even though that the function called date add.
+
+01:10.640 --> 01:15.390
+So for example we can go and subtract three years from our dates and we will get.
+
+01:15.390 --> 01:18.950
+So if you do that you will get 2022 August 20th.
+
+01:18.990 --> 01:24.230
+Or if you go and subtract two months from our dates so it can stay the same year 2025.
+
+01:24.270 --> 01:28.390
+But this time instead of August, we will go back to June with the same date 20.
+
+01:28.430 --> 01:32.270
+And the same thing can happen for the days if you go and subtract five days.
+
+01:32.270 --> 01:37.550
+So the same year, 2025, the same month August, but only the day is going to be instead of 20, it's
+
+01:37.550 --> 01:38.510
+going to be 15.
+
+01:38.510 --> 01:45.110
+So as you can see with the date add, you can manipulate the years, the month, and the days by subtracting
+
+01:45.110 --> 01:47.110
+or adding new intervals.
+
+01:47.110 --> 01:49.110
+So this is how the date add works.
+
+01:49.110 --> 01:49.430
+All right.
+
+01:49.430 --> 01:51.350
+So now let's check the syntax of the date add.
+
+01:51.350 --> 01:53.390
+And here things a little bit more complicated.
+
+01:53.390 --> 01:55.830
+We have to provide three informations.
+
+01:55.830 --> 01:57.230
+The first one is apart.
+
+01:57.270 --> 01:58.110
+What do you want to add.
+
+01:58.150 --> 02:01.790
+Do you want to add years or months or days and so on.
+
+02:02.030 --> 02:04.150
+Then the second one is interval.
+
+02:04.150 --> 02:07.350
+So it's like how many days, how many years how many months.
+
+02:07.390 --> 02:09.270
+And then the last one is the dates.
+
+02:09.270 --> 02:14.510
+This is the date that we're going to be manipulating by adding or subtracting intervals.
+
+02:14.550 --> 02:15.830
+Let's check the following example.
+
+02:15.830 --> 02:17.870
+We are saying here date add.
+
+02:17.870 --> 02:18.830
+So what is the part?
+
+02:18.830 --> 02:19.990
+Here is a year.
+
+02:20.030 --> 02:24.660
+That means we want to manipulate only the ear parts, then the interval here is two.
+
+02:24.700 --> 02:25.580
+So it is positive.
+
+02:25.580 --> 02:27.980
+We want to add two years.
+
+02:27.980 --> 02:32.180
+So it's going to go to each order and start adding two years for each date value.
+
+02:32.220 --> 02:33.740
+Now let's check another example.
+
+02:33.740 --> 02:35.820
+Here we are saying date add month.
+
+02:35.820 --> 02:38.300
+So here we want to manipulate the month parts.
+
+02:38.300 --> 02:40.540
+But here we are saying minus four.
+
+02:40.620 --> 02:46.580
+That means we want to go and subtract four months from each value in the order date.
+
+02:46.580 --> 02:51.020
+So as you can see the value of the interval whether it's positive or negative, we are controlling here
+
+02:51.020 --> 02:54.100
+the function whether it is subtraction or addition.
+
+02:54.100 --> 02:58.660
+So let's have a few examples about the date add using our field order dates.
+
+02:58.660 --> 03:01.860
+So for example let's go and add two years for each date.
+
+03:02.100 --> 03:04.500
+So we can do it like this date adds.
+
+03:04.500 --> 03:05.700
+So we are adding years.
+
+03:05.700 --> 03:10.060
+That's why we're going to go with the part here and how many years we are adding we are adding two years.
+
+03:10.060 --> 03:12.620
+So this is our interval and our field.
+
+03:12.820 --> 03:14.700
+Our value is the order date.
+
+03:14.700 --> 03:17.060
+So now in the output as you can see we got a date.
+
+03:17.060 --> 03:20.940
+But this date is always two years higher than the order dates.
+
+03:20.940 --> 03:23.860
+So everywhere you have see 2027.
+
+03:23.860 --> 03:27.420
+Now let's go and add maybe three months for each date.
+
+03:27.460 --> 03:30.620
+Just going to go and copy it and say a month.
+
+03:30.620 --> 03:36.930
+Let's change the interval to Three and we're going to call it three months later.
+
+03:36.930 --> 03:39.410
+So now if you check the output over here, we have a new date.
+
+03:39.410 --> 03:44.370
+But now the difference between it and the order date we have here always three months more than the
+
+03:44.370 --> 03:45.170
+order dates.
+
+03:45.170 --> 03:47.530
+So for example here we have January.
+
+03:47.530 --> 03:49.890
+But in the new one we have April.
+
+03:49.890 --> 03:52.170
+And for the next one we have February.
+
+03:52.290 --> 03:53.890
+And in the new field we have my.
+
+03:53.930 --> 03:56.490
+So as you can see we are adding months over here.
+
+03:56.490 --> 04:00.570
+So as you can see we are adding months to our original field order dates.
+
+04:00.610 --> 04:03.890
+Now let's say that I would like to go and subtract ten days.
+
+04:03.890 --> 04:05.770
+So let's go and do the same.
+
+04:05.770 --> 04:07.690
+So we're going to have the date add.
+
+04:07.730 --> 04:11.930
+Since we are talking about the days, it's going to be the day we can subtract ten days.
+
+04:11.930 --> 04:14.690
+So minus ten for the order date.
+
+04:14.690 --> 04:20.810
+So let's call it ten days before let's go and execute it.
+
+04:20.810 --> 04:22.490
+Now we got as well a new date.
+
+04:22.490 --> 04:27.010
+And this date has always ten days before the order date.
+
+04:27.010 --> 04:31.250
+So for example let's take the order number seven and the order date we have 15.
+
+04:31.290 --> 04:33.090
+But in the new column we have five.
+
+04:33.490 --> 04:37.730
+So we have subtracted ten days from the original field order dates.
+
+04:37.730 --> 04:43.770
+So as you can see it's very simple to add or subtract days year months using the date add.

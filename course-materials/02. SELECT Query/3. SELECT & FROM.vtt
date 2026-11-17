@@ -1,0 +1,505 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.280 --> 00:09.280
+So now it's really important for me that you understand how SQL works with the code with the queries.
+
+00:09.280 --> 00:14.080
+So now what I'm going to do I'm going to show you on the right side the syntax of the query in SQL.
+
+00:14.080 --> 00:19.360
+And then on the left side I'm going to show you exactly step by step how SQL is going to go and execute
+
+00:19.360 --> 00:19.960
+your query.
+
+00:20.000 --> 00:22.680
+So now we have the table customers inside our database.
+
+00:22.680 --> 00:26.680
+And we will start with the easiest form where we're going to select everything.
+
+00:26.720 --> 00:27.960
+Select the star.
+
+00:27.960 --> 00:32.760
+So the select star is going to go and retrieve all the columns from your table.
+
+00:32.760 --> 00:37.360
+So everything and the From clause is going to tell SQL where to find your data.
+
+00:37.360 --> 00:42.960
+So with the select we select the columns that we want and the from you specify the table where your
+
+00:42.960 --> 00:43.960
+data come from.
+
+00:43.960 --> 00:45.640
+So the syntax can be very simple.
+
+00:45.640 --> 00:48.360
+In each query we start always with the select.
+
+00:48.400 --> 00:51.360
+And now since we want all the columns we're going to write star.
+
+00:51.400 --> 00:54.160
+And with that SQL can understand I want to see everything.
+
+00:54.160 --> 00:56.320
+And then after that comes the keyword from.
+
+00:56.320 --> 00:58.920
+And now we want to tell SQL where the data come from.
+
+00:58.920 --> 01:01.870
+So we have to specify the table name and that's it.
+
+01:01.870 --> 01:03.030
+This is all what you need to do.
+
+01:03.030 --> 01:04.950
+So once you execute it, what can happen?
+
+01:05.030 --> 01:07.950
+SQL can go and execute first the From clause.
+
+01:07.990 --> 01:12.150
+So it can go and retrieve all the data from the database to the results.
+
+01:12.190 --> 01:15.590
+And then in the next step is going to go and check the select statements.
+
+01:15.590 --> 01:18.150
+So which columns we have to keep in the results.
+
+01:18.190 --> 01:21.990
+Since you are saying star then the SQL is going to keep everything all the columns.
+
+01:21.990 --> 01:26.310
+And with that you will see in the result everything, all the columns and all the rows.
+
+01:26.310 --> 01:27.150
+So that's it.
+
+01:27.150 --> 01:28.190
+This is how it works.
+
+01:28.230 --> 01:31.670
+Now let's go back to SQL in order to select few data from our database.
+
+01:31.710 --> 01:31.950
+Okay.
+
+01:31.990 --> 01:33.150
+So back to our studio.
+
+01:33.190 --> 01:34.990
+Let's go and start a new query.
+
+01:34.990 --> 01:39.430
+And let's go and find our database just to expand it and our tables.
+
+01:39.470 --> 01:43.430
+Now it is very important to make sure that you are connected to the correct database.
+
+01:43.430 --> 01:47.630
+So go to the top left in the menu over here and make sure to select your database.
+
+01:47.630 --> 01:49.030
+So my database like this.
+
+01:49.030 --> 01:51.750
+Or we have a command for that called use.
+
+01:51.790 --> 01:54.270
+And then just write the database name like this.
+
+01:54.270 --> 01:57.430
+So I'm telling SQL just use my database like this.
+
+01:57.430 --> 01:59.910
+And with that SQL going to switch to your database.
+
+01:59.910 --> 02:04.210
+Now if you are learning any new programming language, it is very important to understand about the
+
+02:04.210 --> 02:04.730
+comments.
+
+02:04.730 --> 02:09.370
+So comments are like notes that you add to your code in order to understand what is going on.
+
+02:09.370 --> 02:12.610
+And of course the engine, the database will not go and execute it.
+
+02:12.650 --> 02:15.010
+It's going to go and ignore everything inside it.
+
+02:15.010 --> 02:16.930
+And there is like two ways on how to do that.
+
+02:16.970 --> 02:21.850
+Either you make inline comments by typing two dashes like this and then you write anything.
+
+02:21.850 --> 02:23.570
+This is a comments.
+
+02:24.130 --> 02:27.570
+So now in SQL if you see it is green that means it is a.
+
+02:27.570 --> 02:28.050
+Comments.
+
+02:28.090 --> 02:30.930
+Now the other type you can have multiple line comments.
+
+02:30.930 --> 02:36.330
+And in order to do that what you can do, you can write slash and then star and then you can write anything.
+
+02:36.330 --> 02:39.850
+This and then start a new line is a comment.
+
+02:40.050 --> 02:44.250
+So as you can see all the lines after the slash star it is getting green.
+
+02:44.250 --> 02:45.730
+That means it is a comments.
+
+02:45.730 --> 02:47.490
+And now let's say that you are at the end.
+
+02:47.490 --> 02:50.650
+So in order to close it, you write again, star and then slash.
+
+02:50.650 --> 02:53.490
+And with that you are telling SQL I'm done with my comments.
+
+02:53.490 --> 02:56.450
+So those are the two types of writing comments in SQL.
+
+02:56.530 --> 02:57.610
+Now back to our query.
+
+02:57.610 --> 03:01.600
+Let's say that we have the following task says retrieve all customer data.
+
+03:01.600 --> 03:06.560
+So I would like to see in the results all the data of my customers, everything, all the rows and all
+
+03:06.560 --> 03:07.200
+the columns.
+
+03:07.200 --> 03:12.200
+So currently our data is stored inside a table called customer, and I need to see all the data in the
+
+03:12.200 --> 03:12.720
+output.
+
+03:12.760 --> 03:17.640
+In order to do that, we can write a query and all our queries start always with the select.
+
+03:17.640 --> 03:21.680
+And since I need everything, all the columns we write star and then a new line.
+
+03:21.680 --> 03:25.640
+Let's go and specify for SQL from where it's going to go and get the data.
+
+03:25.640 --> 03:26.840
+So it's going to be from.
+
+03:26.840 --> 03:29.440
+And then we're going to write the name of the table.
+
+03:29.440 --> 03:32.160
+It must be exactly like it is in the database.
+
+03:32.160 --> 03:33.440
+So it's called customers.
+
+03:33.440 --> 03:35.520
+And you have to have it here as a customers.
+
+03:35.520 --> 03:36.480
+So that's it.
+
+03:36.520 --> 03:38.040
+Let's go and execute it.
+
+03:38.040 --> 03:43.080
+And now if you look to the results you can see we have four columns and five rows.
+
+03:43.080 --> 03:45.520
+So with that you are seeing everything inside the table.
+
+03:45.520 --> 03:46.080
+Customers.
+
+03:46.080 --> 03:50.440
+We can see we have five customers and you can see all the columns about the customers.
+
+03:50.440 --> 03:51.760
+So this is very simple.
+
+03:51.760 --> 03:58.160
+We have ask question for the database using SQL query and the database that answer our question by returning
+
+03:58.160 --> 03:59.520
+our data in the results.
+
+03:59.520 --> 03:59.800
+All right.
+
+03:59.840 --> 04:01.310
+So now let's move to another task.
+
+04:01.310 --> 04:03.030
+I'm going to go and create a new query.
+
+04:03.030 --> 04:05.550
+And this time we're going to retrieve all the order data.
+
+04:05.550 --> 04:08.270
+So that means I would like to see all the data inside the orders.
+
+04:08.270 --> 04:10.310
+So let's go and write a very simple query.
+
+04:10.350 --> 04:12.190
+We start as usual with select.
+
+04:12.190 --> 04:17.470
+And since we want everything so it is select star from our table orders.
+
+04:17.470 --> 04:18.270
+So that's it.
+
+04:18.270 --> 04:19.350
+Let's go and execute.
+
+04:19.350 --> 04:22.750
+And with that you can see in the output we have again four columns.
+
+04:22.750 --> 04:24.670
+But this time we have only four rows.
+
+04:24.670 --> 04:27.150
+So that means in this table we have four orders.
+
+04:27.150 --> 04:29.870
+And we can see all the data inside this table.
+
+04:29.870 --> 04:34.310
+So with that we can understand we have five customers inside our database.
+
+04:34.310 --> 04:37.310
+And these customers did generate four orders.
+
+04:37.310 --> 04:39.750
+So as you can see we are now talking to our database.
+
+04:39.750 --> 04:42.990
+And this is the simplest form of query in SQL.
+
+04:46.950 --> 04:47.270
+All right.
+
+04:47.270 --> 04:51.750
+So now let's move to the next step in our query where you say you know what I don't want to see all
+
+04:51.750 --> 04:53.150
+the columns from the database.
+
+04:53.150 --> 04:54.550
+I want to be more specific.
+
+04:54.550 --> 04:58.190
+So I would like to select exactly the columns that I need.
+
+04:58.190 --> 05:03.700
+So now we want to select few columns from the database, where we select only the columns that we need
+
+05:03.700 --> 05:05.020
+instead of everything.
+
+05:05.020 --> 05:07.700
+Now about the syntax, we're going to go and change little things.
+
+05:07.700 --> 05:13.620
+So instead of using star, we're going to go and make a list of columns that we want to see in the output.
+
+05:13.620 --> 05:15.820
+So we're going to select column one column two.
+
+05:15.860 --> 05:17.940
+And we're going to separate them using a comma.
+
+05:17.940 --> 05:22.020
+So we are just writing a list of columns exactly after the select.
+
+05:22.020 --> 05:23.780
+And for the from it's going to stay as it is.
+
+05:23.780 --> 05:24.860
+So from a table.
+
+05:24.900 --> 05:26.780
+Now if you execute this what's going to happen.
+
+05:26.780 --> 05:28.940
+As usual it's going to start with the from.
+
+05:28.940 --> 05:31.300
+So it's going to go and get the data from the database.
+
+05:31.300 --> 05:33.940
+And then the next step is going to go and check the selects.
+
+05:33.940 --> 05:39.140
+So what's going to happen is we're going to go and keep only two columns like for example the name and
+
+05:39.140 --> 05:39.780
+the country.
+
+05:39.820 --> 05:44.700
+And all the columns that are not mentioned in the select statements will be excluded.
+
+05:44.700 --> 05:50.180
+So SQL going to go and remove it from the results and keeps only the columns that we mentioned in our
+
+05:50.180 --> 05:50.660
+query.
+
+05:50.660 --> 05:54.380
+So this time instead of having four columns in the output we're going to have only two.
+
+05:54.420 --> 05:59.380
+So with that you are like filtering the columns and you are selecting exactly what you need.
+
+05:59.380 --> 06:02.330
+So now let's go back to your SQL in order to practice this.
+
+06:02.370 --> 06:02.770
+All right.
+
+06:02.770 --> 06:04.210
+So now we have the following task.
+
+06:04.210 --> 06:08.410
+And it says retrieve each customer's name country and score.
+
+06:08.410 --> 06:14.250
+So that means I don't want to see everything from the table customers I need only to see the three columns.
+
+06:14.250 --> 06:15.770
+So let's see how we can do that.
+
+06:15.810 --> 06:17.490
+As usual we start with select.
+
+06:17.490 --> 06:21.930
+And I'm going to go with the star in order to see the whole table first from the table customers.
+
+06:21.930 --> 06:24.450
+So it's exactly like before let's go and execute it.
+
+06:24.490 --> 06:27.010
+And now I can see everything inside the table customers.
+
+06:27.010 --> 06:29.450
+But the task says I need only three columns.
+
+06:29.450 --> 06:33.850
+So now what we're going to do instead of the star we're going to make a list of columns.
+
+06:33.850 --> 06:37.770
+So we start a new line and then we write the name of the first column.
+
+06:37.770 --> 06:42.050
+So the first name and a new line for the second column for the country.
+
+06:42.050 --> 06:43.170
+And then again comma.
+
+06:43.170 --> 06:44.610
+And then we write a score.
+
+06:44.610 --> 06:46.930
+So with that we have the three columns.
+
+06:47.090 --> 06:51.410
+Now what I usually do I go and select them and give it a push using a tab.
+
+06:51.410 --> 06:53.330
+This just looks nicer and easier to read.
+
+06:53.330 --> 06:54.090
+So with that we have.
+
+06:54.090 --> 06:56.850
+Now between the select and from list of columns.
+
+06:56.890 --> 07:01.950
+Now there is like mistake that happens a lot where we go and type a comma after the last column.
+
+07:01.950 --> 07:07.630
+So if you do that and execute it, you will get an error because SQL can expect from you a column after
+
+07:07.630 --> 07:08.110
+the comma.
+
+07:08.150 --> 07:11.830
+And since there is no column and immediately you have a from, you will get an error.
+
+07:11.870 --> 07:14.630
+So there is no need for a comma after the last column.
+
+07:14.670 --> 07:16.390
+Now let's remove it and execute.
+
+07:16.390 --> 07:19.550
+And now that you can see in the output we don't have four columns.
+
+07:19.550 --> 07:20.630
+We have only three.
+
+07:20.670 --> 07:22.910
+The first name the country and the score.
+
+07:22.910 --> 07:27.550
+And by the way they are ordered exactly like you selected in your query.
+
+07:27.550 --> 07:31.910
+So first we have the first name and then the country and then the last one the score.
+
+07:31.910 --> 07:34.470
+So that means if I go and now change the order.
+
+07:34.870 --> 07:37.950
+So let's get the country at the end and execute.
+
+07:37.950 --> 07:40.030
+You will see the country at the end.
+
+07:40.070 --> 07:45.990
+But I'm going to go and put it back in between to match exactly like the task and remove the last comma.
+
+07:45.990 --> 07:47.150
+So execute again.
+
+07:47.150 --> 07:50.190
+And with that we have selected few columns from our table.
+
+07:50.190 --> 07:52.510
+So we are more specific to what we need okay.
+
+07:52.550 --> 07:55.550
+So with that we have covered the two select and from.
+
+07:55.550 --> 08:00.710
+Next we are going to talk about the Where clause that you can use in order to filter your data.
+
+08:00.710 --> 08:01.510
+So let's go.

@@ -1,0 +1,778 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:08.640
+OK, so now we're going to focus on how to optimize joining tables in SQL.
+
+2
+00:00:08.640 --> 00:00:14.920
+So the first tip here is to understand the speed of joins and to use inner join when it's possible.
+
+3
+00:00:14.920 --> 00:00:17.440
+Well, as we learned before, we have different types of joins.
+
+4
+00:00:17.440 --> 00:00:20.520
+We have the inner, left, right, and outer join.
+
+5
+00:00:20.520 --> 00:00:25.040
+And if you talk about the performance, the best performance you will get from that inner join.
+
+6
+00:00:25.040 --> 00:00:28.360
+And that's because SQL can work only on the matching rows.
+
+7
+00:00:28.360 --> 00:00:32.959
+That means the effort and the processing time is better than the other joins.
+
+8
+00:00:32.959 --> 00:00:36.639
+Now in the next one in ranking, we have the left and right joins.
+
+9
+00:00:36.639 --> 00:00:42.000
+They are slightly slower than the inner join because usually they process more data and
+
+10
+00:00:42.000 --> 00:00:46.959
+more rows than the inner join because SQL will work not only with the matching rows
+
+11
+00:00:46.959 --> 00:00:49.099
+as well with the unmatching rows.
+
+12
+00:00:49.099 --> 00:00:53.139
+So for right and left, SQL has to do more stuff than the inner join.
+
+13
+00:00:53.139 --> 00:00:56.959
+And now the worst type of joins, we have the outer join.
+
+14
+00:00:56.959 --> 00:01:02.720
+And that's because this type works with the biggest number of rows compared to the other types.
+
+15
+00:01:02.720 --> 00:01:06.400
+It's going to present unmatching rows from the left and from the right tables.
+
+16
+00:01:06.400 --> 00:01:11.980
+So that means SQL has a lot to do, and that's why this join has the worst performance.
+
+17
+00:01:11.980 --> 00:01:18.160
+So here my advice is always try to use the inner join if it's enough to work with the matching rows.
+
+18
+00:01:18.160 --> 00:01:22.360
+And if the matching rows is not enough, then go with the left join maybe.
+
+19
+00:01:22.360 --> 00:01:26.180
+But try your best always to bring the inner join instead of left join.
+
+20
+00:01:26.180 --> 00:01:28.540
+But don't forget inner join filters the data.
+
+21
+00:01:28.540 --> 00:01:35.139
+Okay, the next one it says, use explicit join, the ANSI join, instead of implicit join.
+
+22
+00:01:35.139 --> 00:01:37.959
+Well, it is considered as a bad practice.
+
+23
+00:01:37.959 --> 00:01:42.500
+If you join tables like this, the implicit join or the non-ANSI join, it's better to
+
+24
+00:01:42.500 --> 00:01:47.360
+use the normal modern join where you use the inner join, for example.
+
+25
+00:01:47.360 --> 00:01:50.220
+About the performance, there is like no differences between them.
+
+26
+00:01:50.220 --> 00:01:52.019
+And for this scenario, it's very simple.
+
+27
+00:01:52.019 --> 00:01:57.300
+But if you have like a complex query, then joining tables like this might be very confusing,
+
+28
+00:01:57.300 --> 00:02:00.599
+really hard to read, and as well complex to optimize.
+
+29
+00:02:00.599 --> 00:02:04.519
+That's why the best practice says, go with the normal inner join.
+
+30
+00:02:04.519 --> 00:02:08.419
+So go with the ANSI join instead of the non-ANSI join.
+
+31
+00:02:08.419 --> 00:02:13.600
+Okay, to the next tip, make sure to index the columns used in their own clause.
+
+32
+00:02:13.600 --> 00:02:18.380
+So we have to go and make sure that both of those columns has an index, because indexes
+
+33
+00:02:18.380 --> 00:02:20.919
+speed up the lookup process.
+
+34
+00:02:20.919 --> 00:02:24.820
+Without an index, the SQL might go and do a full table scan.
+
+35
+00:02:24.820 --> 00:02:29.940
+Without an index on those columns, the database might go and scan the entire tables in order
+
+36
+00:02:29.940 --> 00:02:33.820
+to find the match, and that is really slow if you have big tables.
+
+37
+00:02:33.820 --> 00:02:38.559
+So now if you go to the customers over here, and then to the indexes, we can see that we
+
+38
+00:02:38.559 --> 00:02:42.639
+have an index, a clustered index for the customer ID.
+
+39
+00:02:42.639 --> 00:02:47.320
+But if you check the customer ID in the orders, we don't have an index for that.
+
+40
+00:02:47.320 --> 00:02:49.520
+So this one doesn't have an index.
+
+41
+00:02:49.520 --> 00:02:53.720
+So in order to fix that, we're going to go and create a non-clustered index on the table
+
+42
+00:02:53.720 --> 00:02:57.479
+orders for the customers ID, since it is a foreign key.
+
+43
+00:02:57.479 --> 00:03:01.660
+So once we do that, we have now an index for both of those columns.
+
+44
+00:03:01.660 --> 00:03:04.039
+And with that, our join is going to be faster.
+
+45
+00:03:04.039 --> 00:03:09.199
+Okay, so now we come to a tip where we say, really, it depends on, there is like not one
+
+46
+00:03:09.199 --> 00:03:11.039
+clear way on how to do it.
+
+47
+00:03:11.039 --> 00:03:15.539
+But let's say if you have a big tables, it is better to filter data before joining.
+
+48
+00:03:15.539 --> 00:03:19.779
+And here we have like three different scenarios that's going to deliver the same results.
+
+49
+00:03:19.779 --> 00:03:22.820
+But of course, the question is, which one is the best for performance.
+
+50
+00:03:22.820 --> 00:03:24.300
+So now let's have a look to them.
+
+51
+00:03:24.300 --> 00:03:28.059
+What we are doing here, we are just joining two tables, and then we are filtering the
+
+52
+00:03:28.059 --> 00:03:32.179
+result based on the order status that comes from the orders.
+
+53
+00:03:32.179 --> 00:03:35.740
+So in the first query, what we are doing, we are first joining tables.
+
+54
+00:03:35.740 --> 00:03:39.240
+And at the end, we are using WHERE clause in order to filter the data.
+
+55
+00:03:39.240 --> 00:03:43.460
+So by looking to this, we are just filtering the data after joining the tables.
+
+56
+00:03:43.460 --> 00:03:45.339
+But there is another way on how to do it.
+
+57
+00:03:45.339 --> 00:03:51.100
+You can go and join the tables, but on the join condition, you can go and add this order
+
+58
+00:03:51.100 --> 00:03:53.020
+status equals to delivered.
+
+59
+00:03:53.020 --> 00:03:55.460
+So we are matching the data by the customer ID.
+
+60
+00:03:55.460 --> 00:04:01.460
+And at the same time, we are filtering the data by the order status since we are using the inner join.
+
+61
+00:04:01.460 --> 00:04:04.119
+So the filtering is happening during the join.
+
+62
+00:04:04.119 --> 00:04:07.460
+Or you can do it like this, where we have here more stuff to be added.
+
+63
+00:04:07.460 --> 00:04:12.419
+Where we don't join the table directly with the orders, we first prepare the table orders
+
+64
+00:04:12.419 --> 00:04:15.119
+before joining it with the customers.
+
+65
+00:04:15.119 --> 00:04:18.940
+And here our preparation is, we are just selecting the columns that we need.
+
+66
+00:04:18.940 --> 00:04:24.119
+And we are already filtering the data before doing the join using the subquery.
+
+67
+00:04:24.119 --> 00:04:27.700
+But if you run all those queries, you will get the exact same results.
+
+68
+00:04:27.700 --> 00:04:29.679
+And of course, there is another way on how to do it.
+
+69
+00:04:29.679 --> 00:04:32.980
+You can go and prepare the data, not in subquery.
+
+70
+00:04:32.980 --> 00:04:38.220
+You can go and use a CTE, and then join the result of the CTE with the table customers.
+
+71
+00:04:38.220 --> 00:04:43.359
+So now about the performance, if your query is like small, not that complex, and as well,
+
+72
+00:04:43.359 --> 00:04:49.760
+you don't have a big data inside your tables, all those three queries can deliver the same performance.
+
+73
+00:04:49.760 --> 00:04:54.519
+I know it might sound weird because here we are like filtering after joining, or here
+
+74
+00:04:54.519 --> 00:04:57.160
+we are filtering during the join.
+
+75
+00:04:57.160 --> 00:05:01.679
+Normally in databases, the SQL optimizers are now very smart, can understand that there
+
+76
+00:05:01.679 --> 00:05:06.480
+is a filter here, and decide on the best execution plan for you.
+
+77
+00:05:06.480 --> 00:05:11.600
+So actually, wherever you put your filter after, during, or before, the SQL is smart
+
+78
+00:05:11.600 --> 00:05:13.279
+enough to do it correctly.
+
+79
+00:05:13.279 --> 00:05:17.320
+So if you don't have a complex query, and you don't have like big tables, go with the
+
+80
+00:05:17.320 --> 00:05:18.320
+one that suits you.
+
+81
+00:05:18.320 --> 00:05:23.399
+And I really recommend you to go with the first one because it's logical and easier to understand.
+
+82
+00:05:23.399 --> 00:05:29.040
+But if you have big tables and complex queries, the best practice says, try always to prepare
+
+83
+00:05:29.040 --> 00:05:31.160
+the data before joining it.
+
+84
+00:05:31.160 --> 00:05:37.440
+So try to isolate and abstract the pre-step in a subquery or in a CTE before joining it
+
+85
+00:05:37.440 --> 00:05:39.160
+with any other tables.
+
+86
+00:05:39.160 --> 00:05:43.000
+And in many scenarios in my project where I have a big table, this did help, where the
+
+87
+00:05:43.000 --> 00:05:47.839
+execution plan was better if I isolate and prepare the data before joining it.
+
+88
+00:05:47.839 --> 00:05:52.600
+So if you have small or medium tables, go with the normal way, use the WHERE clause.
+
+89
+00:05:52.600 --> 00:05:57.519
+But if you have complex big tables, prepare the data in a subquery or a CTE, and then
+
+90
+00:05:57.519 --> 00:05:59.519
+join it with the tables.
+
+91
+00:05:59.519 --> 00:06:04.359
+Okay, now moving on to tip number 12, it is similar to the previous one, but this time
+
+92
+00:06:04.359 --> 00:06:07.899
+it says aggregate data before joining tables.
+
+93
+00:06:07.899 --> 00:06:11.820
+And again, it is a special case to improve the performance of big tables.
+
+94
+00:06:11.820 --> 00:06:16.220
+So now we have the following scenario where we are joining the orders and the customers,
+
+95
+00:06:16.220 --> 00:06:21.019
+and we are aggregating the data by the customer ID, but we are just joining the table customers
+
+96
+00:06:21.019 --> 00:06:22.880
+because we need the first name.
+
+97
+00:06:22.880 --> 00:06:27.359
+So as a result, we have the customer ID, the first name and the order count.
+
+98
+00:06:27.359 --> 00:06:32.880
+So the standard way is to join the tables and then do a group by in order to summarize the data.
+
+99
+00:06:32.880 --> 00:06:37.799
+Now, if you look to this query, we actually don't need the join in order to do the aggregations.
+
+100
+00:06:37.799 --> 00:06:43.579
+We can do first the aggregation, like preparing the orders with the aggregated data, and then
+
+101
+00:06:43.579 --> 00:06:48.160
+join the result with the customers in order to get the first name.
+
+102
+00:06:48.160 --> 00:06:51.500
+So again, we prepare first, and then we do the join.
+
+103
+00:06:51.500 --> 00:06:55.700
+And we can do that using either the subqueries or using the CTE.
+
+104
+00:06:55.700 --> 00:06:59.619
+So in this scenario, first we are doing the group by, we are aggregating the data.
+
+105
+00:06:59.619 --> 00:07:04.700
+And the result of this is joined with the customers tables in order to get the first name.
+
+106
+00:07:04.700 --> 00:07:08.660
+Now, there are like many ways on how to do it, like for example, as well using the correlated
+
+107
+00:07:08.660 --> 00:07:13.739
+queries, where we can go and use the subquery in the select statements, and then use the
+
+108
+00:07:13.739 --> 00:07:16.779
+where condition over here to make the correlated query.
+
+109
+00:07:16.779 --> 00:07:21.980
+Now, although three can deliver the same results, but the question here again, which one has
+
+110
+00:07:21.980 --> 00:07:22.980
+the best performance?
+
+111
+00:07:22.980 --> 00:07:28.980
+Well, I can go immediately and tell you that correlated subqueries are the worst one.
+
+112
+00:07:28.980 --> 00:07:33.619
+Always avoid using correlated subqueries, they have really bad performance.
+
+113
+00:07:33.619 --> 00:07:39.619
+And that's because SQL is going to go and do the aggregations for each customer individually.
+
+114
+00:07:39.619 --> 00:07:44.299
+So it's going to go like for each row and doing aggregation, then to the next row and so on.
+
+115
+00:07:44.299 --> 00:07:45.299
+So it takes a long time.
+
+116
+00:07:45.299 --> 00:07:48.339
+So this is bad practices, don't use it.
+
+117
+00:07:48.339 --> 00:07:51.959
+Now we are left again with the first option and the second option.
+
+118
+00:07:51.959 --> 00:07:55.820
+And here my tip going to be like the previous one, I'm going to say if you have small to
+
+119
+00:07:55.820 --> 00:08:02.019
+medium size of tables, then go with this one because it is easier to read and understand.
+
+120
+00:08:02.019 --> 00:08:05.940
+And then you will gain exactly the same performance as this subquery.
+
+121
+00:08:05.940 --> 00:08:11.299
+But if your tables are big, the best practices is to prepare first the data to go above the
+
+122
+00:08:11.299 --> 00:08:17.739
+data to filter the data and to isolate it in a subquery or a CTE before joining it with
+
+123
+00:08:17.739 --> 00:08:19.880
+the final table in the final query.
+
+124
+00:08:19.880 --> 00:08:24.820
+But again, here only for big tables and always test, check the execution plan, whether you
+
+125
+00:08:24.820 --> 00:08:26.739
+are really getting any benefits from it.
+
+126
+00:08:26.739 --> 00:08:32.299
+All right, so if you have big tables, try to prepare the data first in CTE subquery and then join.
+
+127
+00:08:32.299 --> 00:08:38.380
+Okay, moving on to the next tip, it says use union instead of OR operator in joins.
+
+128
+00:08:38.380 --> 00:08:43.380
+So what this means, sometimes let's say that you are joining two tables, the customers and the orders.
+
+129
+00:08:43.380 --> 00:08:48.299
+And now about the join key, you can see over here, it says the customer ID should be equal
+
+130
+00:08:48.299 --> 00:08:54.500
+to the customer ID from the orders or the customer ID should be equal to the salesperson's ID.
+
+131
+00:08:54.500 --> 00:08:58.200
+If one of these two conditions is fulfilled, then we have a match.
+
+132
+00:08:58.200 --> 00:09:02.380
+And I can tell you the OR operator over here is a performance killer.
+
+133
+00:09:02.380 --> 00:09:05.239
+It has really bad performance, so try to avoid it.
+
+134
+00:09:05.239 --> 00:09:07.559
+Don't use OR in the joins.
+
+135
+00:09:07.559 --> 00:09:13.320
+It has a lot of problems like it avoid indexes, it create like loop joins, and so on.
+
+136
+00:09:13.320 --> 00:09:16.380
+That's why we consider it as a bad practice.
+
+137
+00:09:16.380 --> 00:09:21.099
+And now in order to get the same results, we can go and split the joins.
+
+138
+00:09:21.099 --> 00:09:22.900
+So we can go and have two queries.
+
+139
+00:09:22.900 --> 00:09:28.140
+The first query is joining the data based on the customer ID and the second query based
+
+140
+00:09:28.140 --> 00:09:29.900
+on the salesperson.
+
+141
+00:09:29.900 --> 00:09:33.239
+And then we go and merge those two results using the union.
+
+142
+00:09:33.239 --> 00:09:39.099
+It sounds like bigger and too much for the SQL, but with this, you will get better performance
+
+143
+00:09:39.099 --> 00:09:42.299
+than using this simple OR operator.
+
+144
+00:09:42.299 --> 00:09:47.900
+So again, if you have big tables, try to avoid using OR and instead of that, go and use union.
+
+145
+00:09:47.900 --> 00:09:52.780
+Okay, the next tip says, check for nested loops and use SQL hints.
+
+146
+00:09:52.859 --> 00:09:56.479
+Now imagine that we have like big tables and we are joining tables.
+
+147
+00:09:56.479 --> 00:10:01.539
+So now if you are checking the execution plan, you have to check always the join type.
+
+148
+00:10:01.539 --> 00:10:05.900
+So for example, here it is using the nested loops, which is of course, it's okay because
+
+149
+00:10:05.900 --> 00:10:07.419
+we have small tables.
+
+150
+00:10:07.419 --> 00:10:12.659
+But if you have big tables and still SQL is using for some reason, the nested loops, then
+
+151
+00:10:12.659 --> 00:10:14.200
+this is alerting.
+
+152
+00:10:14.200 --> 00:10:18.619
+So in order to change this, what we can do, we can go and use the SQL hints in order to
+
+153
+00:10:18.619 --> 00:10:21.260
+force SQL to use the hash join.
+
+154
+00:10:21.260 --> 00:10:25.659
+Hash join is really good if you have a big table, like for example, the orders that is
+
+155
+00:10:25.659 --> 00:10:28.460
+joins with a small table like the customers.
+
+156
+00:10:28.460 --> 00:10:32.599
+So now what we can do at the end, we can write over here, option hash join.
+
+157
+00:10:32.599 --> 00:10:36.320
+So let's go and execute it and let's check the execution plan.
+
+158
+00:10:36.320 --> 00:10:40.580
+And with that, we have forced SQL to use the hash join or hash match.
+
+159
+00:10:40.580 --> 00:10:43.580
+Again, you have here ready to evaluate your tables.
+
+160
+00:10:43.580 --> 00:10:48.099
+If you have like small tables, don't bother with that, but if you have big tables and
+
+161
+00:10:48.099 --> 00:10:52.619
+SQL is still doing the nested loops, nested loops are usually very slow because you have
+
+162
+00:10:52.619 --> 00:10:54.659
+a lot of iterations and so on.
+
+163
+00:10:54.659 --> 00:10:58.580
+And with the hash join, that small table is going to be stored in the memory.
+
+164
+00:10:58.580 --> 00:11:02.219
+And then you have really a quick matching between the two tables.
+
+165
+00:11:02.219 --> 00:11:06.900
+So those are all the best practice and tips on how to optimize joining tables in SQL.
+
+166
+00:11:06.900 --> 00:11:10.419
+All right, so now we're going to talk about union and here is the best practices.
+
+167
+00:11:10.419 --> 00:11:16.119
+It says use union all instead of using union if duplicates are acceptable.
+
+168
+00:11:16.119 --> 00:11:17.119
+So it's very simple.
+
+169
+00:11:17.119 --> 00:11:21.880
+If the duplicates are acceptable, or let's say that there is no duplicates, then don't
+
+170
+00:11:21.880 --> 00:11:25.520
+go with the union because it needs more time to be executed.
+
+171
+00:11:25.520 --> 00:11:29.840
+SQL has to go and check row by row whether we have duplicates or not.
+
+172
+00:11:29.840 --> 00:11:33.780
+And this usually takes longer time than using the union all.
+
+173
+00:11:33.780 --> 00:11:39.039
+So if duplicates are acceptable or you don't have any duplicates in your data, go with the union all.
+
+174
+00:11:39.039 --> 00:11:43.359
+SQL just have to go and merge all the data without checking anything and the performance
+
+175
+00:11:43.359 --> 00:11:44.359
+is going to be faster.
+
+176
+00:11:44.479 --> 00:11:46.919
+All right, the next one is a little bit tricky.
+
+177
+00:11:46.919 --> 00:11:53.000
+So it says use union all together with the distinct instead of using union if the duplicates
+
+178
+00:11:53.000 --> 00:11:54.099
+are not acceptable.
+
+179
+00:11:54.099 --> 00:11:56.080
+So you want to remove the duplicates.
+
+180
+00:11:56.080 --> 00:11:59.479
+So we have learned that in order to do that, we're going to go and use the union, it's
+
+181
+00:11:59.479 --> 00:12:03.719
+going to go and merge the data and as well remove the duplicates, which is really okay
+
+182
+00:12:03.719 --> 00:12:07.080
+to use it if you have like smaller data or medium.
+
+183
+00:12:07.080 --> 00:12:10.719
+But let's say that you have like millions of rows, which is really okay if you have
+
+184
+00:12:10.719 --> 00:12:12.760
+like medium and small tables.
+
+185
+00:12:12.760 --> 00:12:17.119
+But again, here, if you have huge tables, big tables, hundreds of millions, the best
+
+186
+00:12:17.119 --> 00:12:23.080
+practice says go with the union all and afterwards use a distinct.
+
+187
+00:12:23.080 --> 00:12:27.460
+So in the sub query, we are using union all, but in order to remove the duplicates, we
+
+188
+00:12:27.460 --> 00:12:28.960
+use the distinct.
+
+189
+00:12:28.960 --> 00:12:32.239
+But again, here you have to test it to check the execution plan.
+
+190
+00:12:32.239 --> 00:12:35.280
+If you are getting benefit, then go with this version.
+
+191
+00:12:35.280 --> 00:12:38.260
+But if your data is not really big, you have hundreds of thousands.
+
+192
+00:12:38.260 --> 00:12:42.679
+So go with just with the normal union, the code is smaller and you will get the same
+
+193
+00:12:42.799 --> 00:12:46.799
+effects, but only for large tables, you can go with this best practice.
+
+194
+00:12:46.799 --> 00:12:48.960
+So that's all what I have for you for the union.
+

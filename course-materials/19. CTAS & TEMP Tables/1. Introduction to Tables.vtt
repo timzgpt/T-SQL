@@ -1,0 +1,175 @@
+WEBVTT
+
+00:00.080 --> 00:00.240
+Okay.
+
+00:00.240 --> 00:03.200
+So now first let's have a look again to the database structure.
+
+00:03.200 --> 00:07.000
+We have learned that in each SQL server there are multiple databases.
+
+00:07.000 --> 00:09.600
+And in each database there are multiple schemas.
+
+00:09.640 --> 00:15.720
+And now inside each schema we can define multiple objects like we can define tables and views.
+
+00:15.720 --> 00:18.560
+And now we will be focusing on the object table.
+
+00:18.560 --> 00:23.960
+And we have learned as well we can use the language DDL Data Definition language, which is a set of
+
+00:23.960 --> 00:27.240
+SQL commands in order to define this database structure.
+
+00:27.240 --> 00:33.960
+So we can use the SQL command create in order to define a new table or altar, in order to update the
+
+00:33.960 --> 00:37.120
+structure or drop in order to drop the whole table.
+
+00:37.120 --> 00:40.400
+So a table is an object in the database structure.
+
+00:40.400 --> 00:41.480
+And we have learned as well.
+
+00:41.480 --> 00:44.160
+There is three levels of the database architecture.
+
+00:44.160 --> 00:50.480
+And we have understood that at the logical level, the middle one, the conceptual level, we deal as
+
+00:50.520 --> 00:54.160
+application developer or data engineer with the tables.
+
+00:54.160 --> 00:57.000
+So we define tables and relationship between them.
+
+00:57.000 --> 01:02.160
+So if you are an end user or a business analyst it's going to be little bit more hard to work with the
+
+01:02.160 --> 01:02.760
+tables.
+
+01:02.760 --> 01:05.200
+You have to be a developer or a data engineer.
+
+01:05.400 --> 01:11.760
+But working with tables is way easier than working with the complexity of the database at the physical
+
+01:11.760 --> 01:12.160
+level.
+
+01:12.160 --> 01:16.960
+So you don't have to be a database expert or administrator to work with tables.
+
+01:16.960 --> 01:22.400
+So the difficulty here is like in the middle, the abstraction is not that low, but as well not that
+
+01:22.440 --> 01:22.800
+high.
+
+01:22.840 --> 01:25.520
+So now let's answer the question what are tables?
+
+01:25.560 --> 01:28.520
+A database table is a structured collection of data.
+
+01:28.520 --> 01:32.160
+It's like a simple grid or spreadsheet that you might find in Excel.
+
+01:32.160 --> 01:38.080
+So it has different columns like each column represents a field like the ID name country.
+
+01:38.080 --> 01:40.600
+And the table has as well multiple rows.
+
+01:40.640 --> 01:44.320
+And each row represents a record or an entry of the data.
+
+01:44.320 --> 01:50.640
+So for example, if this table is about the employees then each record each row is one employee.
+
+01:50.680 --> 01:54.640
+Now the intersect between the rows and columns we call it a cell.
+
+01:54.680 --> 01:57.320
+And a cell is a single piece of data.
+
+01:57.360 --> 02:02.720
+Now the whole table can be stored physically in the database as database files.
+
+02:02.720 --> 02:08.520
+So they are in the database like multiple files that are holding the information about the table.
+
+02:08.520 --> 02:13.280
+And those files are stored physically in that disk storage of the database.
+
+02:13.280 --> 02:18.950
+So that means your data inside the tables are not stored like a spreadsheet like an Excel, but they
+
+02:18.990 --> 02:25.550
+are stored in special database files that usual developers and end users don't have access to those
+
+02:25.550 --> 02:26.110
+files.
+
+02:26.110 --> 02:31.870
+So tables again, it's like an abstraction and representation for the actual data that are in the files.
+
+02:31.870 --> 02:36.790
+So actually each time you are querying the database table, the database has to go to those files and
+
+02:36.790 --> 02:38.070
+fetch the data for you.
+
+02:38.070 --> 02:38.470
+All right.
+
+02:38.470 --> 02:40.990
+So this is what we mean with database tables.
+
+02:44.990 --> 02:45.310
+Okay.
+
+02:45.350 --> 02:48.150
+So now we have like different types of tables in SQL.
+
+02:48.310 --> 02:50.430
+We have tables that stays forever.
+
+02:50.470 --> 02:52.670
+We call it permanent tables.
+
+02:52.670 --> 02:55.350
+So they stay as long as you don't drop them.
+
+02:55.350 --> 02:59.390
+And you have another type of tables they called the temporary tables.
+
+02:59.390 --> 03:03.550
+And those tables can be deleted and dropped once the session ends.
+
+03:03.550 --> 03:06.510
+So now we're going to focus first on the first type that permanent tables.
+
+03:06.670 --> 03:09.310
+And there are two ways on how to create them.
+
+03:09.310 --> 03:15.070
+The first way is the classical way where you create a table from the scratch, and then you go and insert
+
+03:15.070 --> 03:15.870
+your data.
+
+03:15.870 --> 03:21.070
+So we call it create, insert, and the other way called create Table.
+
+03:21.110 --> 03:25.990
+As select it can create as well a table but based on SQL query.
+
+03:25.990 --> 03:28.070
+So let's understand the differences between them.

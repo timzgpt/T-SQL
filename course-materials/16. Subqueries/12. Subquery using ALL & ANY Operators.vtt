@@ -1,0 +1,343 @@
+WEBVTT
+
+00:03.920 --> 00:04.160
+Okay.
+
+00:04.200 --> 00:10.320
+So now moving on to the any operator so we can go and use the any operator in order to compare a value
+
+00:10.320 --> 00:13.400
+if it matches any value from a list.
+
+00:13.400 --> 00:18.920
+So that means we can go and use it in order to check whether a condition is true for at least one of
+
+00:18.920 --> 00:20.520
+the values in a list.
+
+00:20.560 --> 00:25.280
+Okay, so now let's check quickly the syntax of the subquery using the any and all operators.
+
+00:25.280 --> 00:30.600
+So as we learned before we can go and use a subquery inside the Where clause in order to filter the
+
+00:30.600 --> 00:37.000
+main query using like the comparison operators like here less than now, the syntax of the any operator
+
+00:37.040 --> 00:40.600
+is that you're going to go and use the comparison operator.
+
+00:40.600 --> 00:44.080
+And after that immediately you use the keyword any.
+
+00:44.120 --> 00:48.640
+And for the all operator it's going to be exactly the same where you're going to go and put after the
+
+00:48.640 --> 00:50.920
+comparison operator the keyword all.
+
+00:50.960 --> 00:52.720
+So the syntax is very simple.
+
+00:52.720 --> 00:54.560
+We just add those keywords.
+
+00:54.560 --> 00:56.640
+So let's practice using the following task.
+
+00:56.680 --> 01:03.790
+Find female employees whose salaries are greater than the salaries of any male employee.
+
+01:03.790 --> 01:07.510
+So that means we want to go and compare the salaries between the male and female.
+
+01:07.510 --> 01:13.910
+And specifically, we are searching for female employees whose salary is greater than at least one male
+
+01:13.910 --> 01:14.470
+employee.
+
+01:14.470 --> 01:16.150
+So let's solve it step by step.
+
+01:16.190 --> 01:25.750
+Let's go and start selecting few informations, like for example the employee ID and first name gender
+
+01:26.110 --> 01:30.470
+salary from the table sales employees.
+
+01:30.470 --> 01:32.030
+So let's go and execute it.
+
+01:32.030 --> 01:33.950
+So now we have like five employees.
+
+01:33.990 --> 01:36.470
+Three of them are male and two are female.
+
+01:36.470 --> 01:41.990
+So now since we want to compare the data between male and female, let's go and create two queries.
+
+01:41.990 --> 01:45.070
+The first one is filtering the database on the gender.
+
+01:45.830 --> 01:48.110
+So the first one is for the female.
+
+01:48.110 --> 01:51.150
+So and we can go and remove this information over here.
+
+01:51.190 --> 01:54.670
+Let me just make this a little bit smaller and zoom out.
+
+01:54.670 --> 01:58.790
+And the second query is going to be the exact opposite.
+
+01:58.790 --> 02:02.590
+Let's go and get employee informations for the male.
+
+02:02.990 --> 02:04.670
+So let's go and execute it.
+
+02:04.670 --> 02:04.690
+Skillsets.
+
+02:04.730 --> 02:08.450
+Now the first results are the female employees and the second one are.
+
+02:08.490 --> 02:11.370
+So now for the first result is for the female employees.
+
+02:11.370 --> 02:14.130
+And the second one is for the male employees.
+
+02:14.130 --> 02:15.810
+So now what do we need in the output.
+
+02:15.810 --> 02:17.530
+We need the female employees.
+
+02:17.530 --> 02:21.610
+That means this is going to be our main query.
+
+02:22.010 --> 02:24.810
+So we are focusing on the female employees.
+
+02:24.810 --> 02:28.170
+And we are using the male employees only as a filter.
+
+02:28.370 --> 02:31.530
+And what we need, we need only the salary informations.
+
+02:31.530 --> 02:33.650
+That's why we can prepare it like this.
+
+02:34.410 --> 02:38.330
+I will just put everything in one line to make it clear.
+
+02:38.490 --> 02:40.850
+So this is going to be our sub query.
+
+02:40.850 --> 02:45.810
+So now we're going to go and work with the main query where we're going to add one more filter where
+
+02:45.810 --> 02:48.290
+we're going to filter the data based on the salary.
+
+02:48.290 --> 02:48.610
+Right.
+
+02:48.610 --> 02:52.450
+So we're going to say if the salary is greater than.
+
+02:52.490 --> 02:55.490
+And now we need the values from the subquery.
+
+02:55.490 --> 02:55.810
+Right.
+
+02:55.810 --> 02:57.290
+So this is our sub query.
+
+02:57.570 --> 02:58.650
+We're going to put it like this.
+
+02:58.650 --> 03:02.090
+And don't forget about the parenthesis at the start and at the end.
+
+03:02.130 --> 03:05.610
+And I would like still to have those two queries.
+
+03:06.290 --> 03:08.160
+So let's go and execute it.
+
+03:08.160 --> 03:09.440
+And now we will get an error.
+
+03:09.440 --> 03:13.840
+And that's because our subquery is returning multiple rows.
+
+03:13.880 --> 03:15.360
+And this is not acceptable.
+
+03:15.360 --> 03:17.160
+We are using the comparison operator.
+
+03:17.160 --> 03:22.000
+And SQL expects from the subquery to have scalar subquery.
+
+03:22.000 --> 03:23.760
+So only one single value.
+
+03:23.760 --> 03:29.520
+But now in order to solve this issue we can go and use the logical operators either all or any.
+
+03:29.520 --> 03:34.840
+So now since we are saying it's enough for the salary of the female employee to be higher than at least
+
+03:34.880 --> 03:38.520
+one male employee, we will go with the operator any.
+
+03:38.560 --> 03:43.080
+So let's go after the comparison operator and have the keyword any.
+
+03:43.120 --> 03:45.160
+And let's go and execute it again.
+
+03:45.200 --> 03:50.960
+And now as you can see in the output, we got only one female employee where her salary is higher to
+
+03:51.000 --> 03:52.960
+one of those male employees.
+
+03:52.960 --> 03:59.680
+So let me just go and get the first name as well from the second query just to have it like this.
+
+03:59.680 --> 04:05.440
+So now if you go and compare the salary of Mari, it is not higher than Michael, but it is higher than
+
+04:05.480 --> 04:06.800
+Frank and Kevin.
+
+04:06.800 --> 04:08.980
+And since we are using the any operator.
+
+04:08.980 --> 04:13.060
+It's enough for Mary to have salary higher to one of those values.
+
+04:13.060 --> 04:17.260
+In this case, it's higher than both Frank and Kevin, and the condition is fulfilled.
+
+04:17.260 --> 04:19.940
+That's why we are getting the Mary and the other female.
+
+04:19.940 --> 04:21.020
+Let me just check.
+
+04:21.580 --> 04:22.500
+Do we have else?
+
+04:22.500 --> 04:23.540
+So we have Carol.
+
+04:23.580 --> 04:27.540
+His salary is less than all the salaries of the male employees.
+
+04:27.540 --> 04:31.300
+So it must be at least higher than one of the male employees.
+
+04:31.300 --> 04:33.340
+So with us, we have solved the task, right.
+
+04:33.380 --> 04:33.660
+All right.
+
+04:33.660 --> 04:36.060
+So now we have another operator that is similar.
+
+04:36.060 --> 04:38.140
+We call it the all operator.
+
+04:38.140 --> 04:44.140
+We can go and use it in order to compare a value if it matches all values in a list.
+
+04:44.140 --> 04:45.580
+So that means we can go and use it.
+
+04:45.580 --> 04:48.820
+If we need to check whether a condition is true.
+
+04:48.860 --> 04:50.660
+Every value in a list.
+
+04:50.660 --> 04:53.500
+I know that might sound a little bit complicated, but don't worry about it.
+
+04:53.500 --> 04:54.580
+We can have examples.
+
+04:54.620 --> 05:01.380
+Now let's say that our task says find female employees whose salary are greater than the salaries of
+
+05:01.380 --> 05:03.780
+all male employees.
+
+05:03.780 --> 05:06.540
+So that means now the condition is more restrictive.
+
+05:06.780 --> 05:13.090
+Mary should now has a salary higher than every male employee, so it should be higher.
+
+05:13.290 --> 05:16.450
+To all those values that we have from the male employees.
+
+05:16.450 --> 05:20.610
+And of course, in this scenario, it's not because we have Michael.
+
+05:20.650 --> 05:23.250
+Mary has less salaries than Michael.
+
+05:23.250 --> 05:28.010
+And this is a problem because Mary should has higher salary than everyone.
+
+05:28.010 --> 05:29.170
+So let's go and try it.
+
+05:29.170 --> 05:35.530
+If I go and write here all and let's go and execute it, you will see we will not find any results that
+
+05:35.530 --> 05:36.970
+fulfill this requirement.
+
+05:36.970 --> 05:42.530
+So we don't have any female employee or her salary is higher than all male employees.
+
+05:42.530 --> 05:44.610
+And that's because we have a very small data sets.
+
+05:44.650 --> 05:49.570
+So this is how we use all and any operators in our subqueries in SQL.
+
+05:49.610 --> 05:49.970
+All right.
+
+05:49.970 --> 05:55.530
+So with that we have covered almost everything about how to use the subqueries in different locations
+
+05:55.530 --> 05:56.410
+and clauses.
+
+05:56.410 --> 05:58.930
+But we didn't talk about the exist operator.
+
+05:58.930 --> 06:03.610
+And that's because I would like you to understand a very important concept in the subqueries, where
+
+06:03.610 --> 06:09.970
+we have two different types of the subqueries based on the dependencies, the non-correlated and correlated
+
+06:09.970 --> 06:10.890
+subqueries.
+
+06:10.890 --> 06:13.570
+And after that we're going to go back to the exist operator.

@@ -1,0 +1,121 @@
+WEBVTT
+
+00:03.760 --> 00:07.160
+Okay guys, let's say that in our data we have the following informations.
+
+00:07.160 --> 00:09.280
+We have the months and the sales.
+
+00:09.520 --> 00:13.320
+Now if you apply any aggregate functions in SQL what can happen.
+
+00:13.360 --> 00:18.720
+SQL can go through all rows of the window or the entire data and start aggregating the data.
+
+00:18.840 --> 00:24.920
+So that means in the result in the output, SQL is going to give you one single aggregated value.
+
+00:25.000 --> 00:27.600
+SQL is going to go and summarize all those values.
+
+00:27.600 --> 00:32.960
+And in the output you're going to find for example here the total sales is going to be 175.
+
+00:33.000 --> 00:35.720
+Or you can use the average or count the data and so on.
+
+00:35.840 --> 00:41.840
+So the aggregate functions are going to deliver at the end one aggregated value for a window or for
+
+00:41.840 --> 00:42.960
+the entire data.
+
+00:43.000 --> 00:43.200
+Okay.
+
+00:43.240 --> 00:46.920
+So now let's have a quick overview of the syntax of all aggregate functions.
+
+00:46.920 --> 00:48.920
+Most of them follow the same rule.
+
+00:48.920 --> 00:51.560
+So first as usual we have to define the function name.
+
+00:51.560 --> 00:53.240
+And in this example we have the average.
+
+00:53.240 --> 00:59.200
+Then to the next part we have to define inside it as well the expression we cannot leave it empty.
+
+00:59.200 --> 01:05.070
+So here we are using the sales and the second rule for all functions beside the count, the data type
+
+01:05.070 --> 01:07.030
+of this field should be a number.
+
+01:07.030 --> 01:08.350
+And this of course makes sense, right?
+
+01:08.390 --> 01:12.670
+So we cannot find the average of the first name of customers or something like that.
+
+01:12.670 --> 01:14.150
+So we have to define a number.
+
+01:14.150 --> 01:16.270
+Then next we have to define the frame.
+
+01:16.270 --> 01:18.990
+So we have the partition pi and it is optional.
+
+01:18.990 --> 01:20.310
+So you could use it or leave.
+
+01:20.310 --> 01:21.070
+It depends.
+
+01:21.070 --> 01:24.030
+And then the next one we have the order by it is as well optional.
+
+01:24.030 --> 01:25.870
+It is not a must or required.
+
+01:25.870 --> 01:27.510
+So you could use it or leave it.
+
+01:27.510 --> 01:32.230
+That's been the whole definition of the window could be empty for the aggregate functions.
+
+01:32.230 --> 01:33.710
+Let's have a look to all functions.
+
+01:33.710 --> 01:36.670
+So we have the count sum average min max.
+
+01:36.830 --> 01:41.870
+And as you can see, only the count accepts all data types as an expression or arguments.
+
+01:41.910 --> 01:45.270
+All others require you to have a number as a data type.
+
+01:45.270 --> 01:47.990
+And for all functions the partition by is optional.
+
+01:48.030 --> 01:49.670
+The same for order by and frame.
+
+01:49.670 --> 01:51.910
+So everything is optional over here.
+
+01:51.910 --> 01:55.630
+So now what we're going to do is that we're going to go and deep dive into each of those functions in
+
+01:55.630 --> 01:59.110
+order to understand how they work, what are the use cases.
+
+01:59.150 --> 02:00.950
+And of course we're going to practice in SQL.
+
+02:00.950 --> 02:03.710
+So we're going to start with the first one with the function count.

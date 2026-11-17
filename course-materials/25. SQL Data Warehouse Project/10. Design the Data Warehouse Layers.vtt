@@ -1,0 +1,382 @@
+WEBVTT
+
+00:00.080 --> 00:04.920
+Now that is like not 100% standard way and rules for each layer.
+
+00:04.960 --> 00:10.880
+What you have to do as a data architect, you have to define exactly what is the purpose of each layer.
+
+00:10.920 --> 00:15.400
+So now what we're going to do, we're going to make it clear what is the main purpose of each layer.
+
+00:15.440 --> 00:20.440
+So we say it can store raw and unprocessed data as it is from the sources.
+
+00:20.440 --> 00:21.800
+And why we are doing that.
+
+00:21.800 --> 00:24.120
+It is for traceability and debugging.
+
+00:24.120 --> 00:28.680
+If you have a layer where you are keeping the raw data, it is very important to have the data as it
+
+00:28.680 --> 00:34.000
+is from the sources, because we can go always back to the bronze layer and investigate the data of
+
+00:34.000 --> 00:36.480
+specific source if something goes wrong.
+
+00:36.600 --> 00:43.520
+So the main objective is to have raw, untouched data that can help you as a data engineer by analyzing
+
+00:43.520 --> 00:44.760
+the root cause of issues.
+
+00:44.800 --> 00:46.440
+Now moving on to the silver layer.
+
+00:46.480 --> 00:50.400
+It is the layer where we are going to store clean and standardized data.
+
+00:50.400 --> 00:55.360
+And this is the place where we are going to do basic transformations in order to prepare the data for
+
+00:55.360 --> 00:56.440
+the final layer.
+
+00:56.480 --> 00:57.720
+Now for the gold layer.
+
+00:57.720 --> 00:59.910
+It can contain business ready data.
+
+00:59.950 --> 01:05.710
+So the main goal here is to provide data that could be consumed by business users and analysts in order
+
+01:05.710 --> 01:07.550
+to build reporting and analytics.
+
+01:07.590 --> 01:10.710
+So with that, we have defined the main goal for each layer.
+
+01:10.750 --> 01:14.270
+Now next, what I would like to do is to define the object types.
+
+01:14.310 --> 01:19.350
+And since we are talking about a data warehouse and database, we have here generally two types either
+
+01:19.390 --> 01:20.550
+a table or a view.
+
+01:20.590 --> 01:23.870
+So we are going for the bronze layer and the silver layer with tables.
+
+01:23.870 --> 01:26.350
+But for the gold layer we are going with the views.
+
+01:26.470 --> 01:31.990
+So the best practice says for the last layer in your data warehouse make it virtual using views.
+
+01:31.990 --> 01:37.030
+It gives you a lot of dynamic and of course speed in order to build it, since we don't have to make
+
+01:37.070 --> 01:38.110
+a load process for it.
+
+01:38.150 --> 01:41.270
+And now the next step is that we're going to go and define the load methods.
+
+01:41.270 --> 01:46.390
+So in this project I have decided to go with the full load using the method of truncating and inserting.
+
+01:46.390 --> 01:48.110
+It is just faster and way easier.
+
+01:48.110 --> 01:50.830
+So we're going to say for the bronze layer we're going to go with the full load.
+
+01:50.830 --> 01:53.510
+And you have to specify as well for the silver layer as well.
+
+01:53.510 --> 01:54.710
+We're going to go with the full load.
+
+01:54.710 --> 01:57.910
+And of course for the views we don't need any load process.
+
+01:57.910 --> 02:02.790
+So each time you decide to go with tables, you have to define the load methods, whether full load,
+
+02:02.790 --> 02:04.070
+incremental loads and so on.
+
+02:04.110 --> 02:07.310
+Now we come to the very interesting part the data transformations.
+
+02:07.350 --> 02:08.390
+Now for the bronze layer.
+
+02:08.390 --> 02:10.310
+It is the easiest one about this topic.
+
+02:10.310 --> 02:16.470
+Because we don't have any transformations, we have to commit ourselves to not touch the data, do not
+
+02:16.470 --> 02:18.310
+manipulate it, don't change anything.
+
+02:18.310 --> 02:19.950
+So it's gonna stay as it is.
+
+02:19.950 --> 02:22.590
+If it comes apart, it's gonna stay bad in the bronze layer.
+
+02:22.630 --> 02:25.350
+And now we come to the silver layer where we have the heavy lifting.
+
+02:25.390 --> 02:29.830
+As we committed in the objective, we have to make clean and standardized data.
+
+02:29.830 --> 02:32.470
+And for that we have different types of transformations.
+
+02:32.470 --> 02:37.150
+So we have to do data cleansing, data standardizations data normalization.
+
+02:37.150 --> 02:40.510
+We have to go and derive new columns and data enrichments.
+
+02:40.670 --> 02:45.430
+So there are like a bunch of transformations that we have to do in order to prepare the data.
+
+02:45.470 --> 02:51.150
+Our focus here is to transform the data, to make it clean and following standards, and try to push
+
+02:51.150 --> 02:53.670
+all business transformations to the next layer.
+
+02:53.710 --> 02:59.420
+So that means in the gold layer we will be focusing on business transformations that is needed for the
+
+02:59.420 --> 03:00.940
+consumers for the use cases.
+
+03:00.940 --> 03:04.340
+So what we do here, we do data integrations between source system.
+
+03:04.340 --> 03:06.060
+We do that aggregations.
+
+03:06.060 --> 03:08.580
+We apply a lot of business logics and rules.
+
+03:08.580 --> 03:13.020
+And we build a data model that is ready for, for example, business intelligence.
+
+03:13.020 --> 03:15.700
+So here we do a lot of business transformations.
+
+03:15.700 --> 03:18.780
+And in the silver layer we do basic data transformations.
+
+03:18.780 --> 03:22.940
+So it is really here very important to make the fine decisions.
+
+03:22.940 --> 03:25.820
+What type of transformations to be done in each layer.
+
+03:25.820 --> 03:28.300
+And make sure that you commit to those rules.
+
+03:28.340 --> 03:30.860
+Now the next aspect is about the data modeling.
+
+03:30.860 --> 03:32.860
+In the bronze layer and the silver layer.
+
+03:32.860 --> 03:36.060
+We will not break the data model that comes from the source system.
+
+03:36.060 --> 03:39.980
+So if the source system deliver five tables, we can have here like five tables.
+
+03:39.980 --> 03:45.740
+And as well in the silver layer we will not go and denormalize or normalize or like make something new.
+
+03:45.780 --> 03:48.500
+We can leave it exactly like it comes from the source system.
+
+03:48.500 --> 03:52.260
+Because what we're going to do, we're going to build the data model in the gold layer.
+
+03:52.260 --> 03:55.100
+And here you have to define which data model you want to follow.
+
+03:55.140 --> 03:57.770
+Are you following the star schema, the snowflake?
+
+03:57.770 --> 04:00.250
+Or are you just making aggregated objects?
+
+04:00.250 --> 04:04.890
+So you have to go and make a list of all data models types that you can follow in the gold layer.
+
+04:04.890 --> 04:08.410
+And at the end, what you can specify in each layer is the target audience.
+
+04:08.410 --> 04:11.170
+And this is of course a very important decision in the bronze layer.
+
+04:11.170 --> 04:13.650
+You don't want to give access to any end user.
+
+04:13.650 --> 04:18.090
+It is really important to make sure that only data engineers access the bronze layer.
+
+04:18.130 --> 04:24.610
+It makes no sense for data analysts or data scientists to go to the bad data, because you have a better
+
+04:24.610 --> 04:26.850
+version for that in the silver layer.
+
+04:26.850 --> 04:30.890
+So in the silver layer, of course, the data engineers have to have an access to it, and as well the
+
+04:30.890 --> 04:33.290
+data analysts and the data scientists and so on.
+
+04:33.290 --> 04:39.010
+But still, you don't give it to any business user that can't deal with the raw data model from the
+
+04:39.010 --> 04:43.090
+sources, because for the business users, you're going to get a better layer for them.
+
+04:43.090 --> 04:44.650
+And that is the gold layer.
+
+04:44.650 --> 04:50.490
+So the gold layer, it is suitable for the data analyst and as well the business users, because usually
+
+04:50.490 --> 04:55.120
+the business users don't have a deep knowledge on the technicality of the silver server layer.
+
+04:55.120 --> 05:00.160
+So if you are designing multiple layers, you have to discuss all those topics and make a clear decision
+
+05:00.160 --> 05:01.280
+for each layer.
+
+05:01.480 --> 05:02.320
+All right my friends.
+
+05:02.320 --> 05:07.800
+So now before we proceed with the design, I want to tell you a secret principle concepts that each
+
+05:07.840 --> 05:09.360
+data architect must know.
+
+05:09.360 --> 05:12.200
+And that is the separation of concerns.
+
+05:12.200 --> 05:13.200
+So what is that?
+
+05:13.200 --> 05:19.000
+As you are designing an architecture, you have to make sure to break down the complex system into smaller
+
+05:19.000 --> 05:20.360
+independent parts.
+
+05:20.360 --> 05:23.720
+And each part is responsible for a specific task.
+
+05:23.760 --> 05:25.160
+And here comes the magic.
+
+05:25.360 --> 05:28.760
+The component of your architecture must not be duplicated.
+
+05:28.760 --> 05:31.760
+So you cannot have two parts are doing the same thing.
+
+05:31.760 --> 05:34.600
+So the idea here is to not mix everything.
+
+05:34.600 --> 05:38.200
+And this is one of the biggest mistakes in any big projects.
+
+05:38.200 --> 05:40.480
+And I have shown that almost everywhere.
+
+05:40.480 --> 05:44.480
+So a good data architects follow this concept, this principle.
+
+05:44.480 --> 05:48.960
+So for example, if you are looking to our data architecture, we have already done that.
+
+05:48.960 --> 05:52.400
+So we have defined a unique set of tasks for each layer.
+
+05:52.400 --> 05:54.960
+So for example we have set seeds in the silver layer.
+
+05:54.960 --> 05:59.600
+We do data cleansing, but in the gold layer we do business transformations.
+
+05:59.600 --> 06:04.120
+And with that you will not be allowed to do any business transformations in the silver layer.
+
+06:04.120 --> 06:06.120
+And the same thing goes for the gold layer.
+
+06:06.160 --> 06:08.560
+You don't do in the gold layer any data cleansing.
+
+06:08.560 --> 06:11.640
+So each layer has its own unique tasks.
+
+06:11.640 --> 06:14.360
+And the same thing goes for the bronze layer and the silver layer.
+
+06:14.400 --> 06:20.040
+You do not allow to load data from the source systems directly to the silver layer, because we have
+
+06:20.040 --> 06:21.880
+decided the landing layer.
+
+06:21.920 --> 06:23.800
+The first layer is the bronze layer.
+
+06:23.840 --> 06:28.840
+Otherwise you will have like a set of source systems that are loaded first to the bronze layer, and
+
+06:28.840 --> 06:32.040
+another set is skipping the layer and going to the silver.
+
+06:32.040 --> 06:33.720
+And with that we have overlapping.
+
+06:33.720 --> 06:36.880
+You are doing data ingestion in two different layers.
+
+06:36.880 --> 06:42.120
+So my friends, if you have this mindset separation of concerns, I promise you you're going to be a
+
+06:42.120 --> 06:43.480
+top data architect.
+
+06:43.480 --> 06:44.600
+So think about it.
+
+06:44.600 --> 06:45.400
+All right my friends.
+
+06:45.400 --> 06:48.000
+So with that we have designed the layers of the data warehouse.
+
+06:48.000 --> 06:49.560
+We can go ahead and close it.
+
+06:49.560 --> 06:53.440
+The next step we're going to go to Draw.io and start drawing the data architecture.

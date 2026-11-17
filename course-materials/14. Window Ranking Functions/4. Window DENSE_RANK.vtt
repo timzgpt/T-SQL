@@ -1,0 +1,310 @@
+WEBVTT
+
+00:03.920 --> 00:04.400
+All right.
+
+00:04.400 --> 00:06.040
+So what is a denserank.
+
+00:06.080 --> 00:07.960
+It is very similar to the ranking function.
+
+00:08.000 --> 00:10.960
+It's going to go and assign for each row a number a rank.
+
+00:11.000 --> 00:13.120
+And it as well handles the ties.
+
+00:13.120 --> 00:14.440
+So same values.
+
+00:14.440 --> 00:16.360
+They're going to share the same ranking.
+
+00:16.520 --> 00:20.560
+But this time it doesn't leave any gaps like the rank function.
+
+00:20.560 --> 00:23.480
+So that this rank it will not leave any gaps.
+
+00:23.480 --> 00:25.160
+It will not skip any ranking.
+
+00:25.160 --> 00:28.160
+So in order to understand this we're going to have a very simple example.
+
+00:28.160 --> 00:28.840
+So let's go.
+
+00:28.880 --> 00:29.200
+All right.
+
+00:29.200 --> 00:31.760
+So again the same data but with different function.
+
+00:31.760 --> 00:34.480
+We have this time the rank function dense rank.
+
+00:34.800 --> 00:39.480
+And the window is going to be the same order by sales descending from the highest to the lowest.
+
+00:39.760 --> 00:42.120
+So now the data is as well sorted already.
+
+00:42.120 --> 00:44.520
+Let's see how SQL going to go and assign the ranks.
+
+00:44.520 --> 00:45.040
+As usual.
+
+00:45.040 --> 00:48.760
+The first row going to be the rank number one, the second as well.
+
+00:48.800 --> 00:51.200
+But again here we have the same values.
+
+00:51.200 --> 00:52.720
+So we have same values.
+
+00:52.720 --> 00:56.080
+And it's like the rank it's going to go and share the same rank.
+
+00:56.080 --> 00:59.080
+So both of them are going to have the rank number two.
+
+00:59.120 --> 01:02.160
+And now you might say well this is very similar to the rank function.
+
+01:02.160 --> 01:03.880
+So why do we have dense rank.
+
+01:03.920 --> 01:05.240
+I'm going to say wait for it.
+
+01:05.280 --> 01:07.860
+We're going to have the difference in the next value.
+
+01:07.860 --> 01:09.460
+So it's going to come over here.
+
+01:09.460 --> 01:14.420
+This value is exactly after the tie and rank scale went and took the position number.
+
+01:14.420 --> 01:16.340
+So the row number it was four right.
+
+01:16.340 --> 01:17.740
+So 1234.
+
+01:17.780 --> 01:22.220
+But this time with the dense rank scale will not leave gaps in ranking.
+
+01:22.220 --> 01:23.860
+So there will be no skipping.
+
+01:24.180 --> 01:26.860
+The next rank in the sequence can be three.
+
+01:26.860 --> 01:30.740
+So that's why we're going to have the rank three for this value.
+
+01:30.740 --> 01:32.260
+So as you can see there is no gap.
+
+01:32.260 --> 01:32.860
+We have one.
+
+01:32.860 --> 01:34.380
+We have two and three.
+
+01:34.380 --> 01:35.460
+So we are not skipping.
+
+01:35.460 --> 01:36.780
+We are not leaving any gaps.
+
+01:37.020 --> 01:38.900
+And the last one is going to be four.
+
+01:39.060 --> 01:42.460
+So this is exactly the difference between the dense rank and the rank.
+
+01:42.500 --> 01:48.180
+So now by checking the output of the dense rank you can see that we don't have unique ranks.
+
+01:48.180 --> 01:50.180
+We have here shared ranks.
+
+01:50.180 --> 01:51.900
+As you can see we have here repetition.
+
+01:52.180 --> 01:53.980
+So it handles the ties.
+
+01:53.980 --> 01:56.620
+And as well it doesn't leave any gaps.
+
+01:56.660 --> 01:59.260
+It doesn't skip anything in the ranking okay.
+
+01:59.300 --> 01:59.940
+So that's it.
+
+01:59.980 --> 02:02.460
+Now let's go back to SQL to practice the dense rank.
+
+02:02.460 --> 02:02.740
+All right.
+
+02:02.740 --> 02:06.980
+So now we have the same task rank the orders based on their sales from highest to lowest.
+
+02:06.980 --> 02:08.380
+So we're going to do the same stuff.
+
+02:08.380 --> 02:11.180
+But this time using the function dense rank.
+
+02:11.380 --> 02:17.280
+So dense rank is going to be empty, and then we're going to define it like all others over order by
+
+02:17.720 --> 02:22.280
+sales desc, and then we're going to give it the name of sales rank dense.
+
+02:22.280 --> 02:23.080
+And that's it.
+
+02:23.080 --> 02:26.960
+So as you can see all of those functions having the exact syntax.
+
+02:26.960 --> 02:27.360
+Right.
+
+02:27.400 --> 02:29.640
+So let's go and execute it okay.
+
+02:29.640 --> 02:31.080
+So now let's go and check the results.
+
+02:31.080 --> 02:33.560
+We got our newest rank using the dense.
+
+02:33.560 --> 02:36.840
+And by just checking the result you can see that it handles the tie.
+
+02:36.840 --> 02:38.400
+We have two twice right.
+
+02:38.400 --> 02:40.520
+So let's check the example.
+
+02:40.520 --> 02:43.160
+Over here we have the sales 60 twice.
+
+02:43.160 --> 02:47.600
+That's why they are sharing the same ranking in the dense and as well in the normal rank.
+
+02:47.600 --> 02:51.040
+But now what is interesting is the value after the tie.
+
+02:51.080 --> 02:54.240
+So as you can see over here with the dense rank we have three.
+
+02:54.240 --> 02:56.480
+So we didn't skip any ranking.
+
+02:56.480 --> 02:59.560
+We don't have any gap one, two and then three.
+
+02:59.600 --> 03:02.920
+But with the rank it's just focus on the position number.
+
+03:02.920 --> 03:04.720
+So it is the row number four.
+
+03:04.760 --> 03:05.800
+That's why it's four.
+
+03:06.000 --> 03:06.840
+Thus we have a gap.
+
+03:06.840 --> 03:10.280
+So as you can see now we don't have any gaps in the dense rank.
+
+03:10.280 --> 03:12.200
+So we have 345.
+
+03:12.240 --> 03:15.200
+And now we have over here the same two values.
+
+03:15.200 --> 03:17.080
+So we have sales of 2020.
+
+03:17.120 --> 03:18.940
+And they share the six sixth twice.
+
+03:18.940 --> 03:21.940
+So as you can see, there is a difference now between the dense and the rank.
+
+03:22.100 --> 03:23.500
+So here we have seven seven.
+
+03:23.500 --> 03:25.460
+But here we are at the rank six six.
+
+03:25.460 --> 03:29.940
+So that's why we have differences between them because we skipped before in the rank number three.
+
+03:29.980 --> 03:32.500
+Now the other stuff you can see we have seven and eight.
+
+03:32.540 --> 03:37.900
+So now if you compare those three ranking you can see that they all start with the rank number one.
+
+03:37.900 --> 03:40.860
+But they didn't all end with the same ranking.
+
+03:40.860 --> 03:47.700
+So the row number and the rank, they really focus on the position number or the row number of the orders.
+
+03:47.700 --> 03:50.540
+So you can see over here it is the row number ten.
+
+03:50.580 --> 03:52.620
+That's why we have here ten and ten.
+
+03:52.620 --> 03:54.900
+So the scale is from 1 to 10.
+
+03:54.940 --> 03:57.980
+And that is exactly the same for the row number from 1 to 10.
+
+03:57.980 --> 04:01.580
+But with the dense over here we have it from 1 to 8.
+
+04:01.580 --> 04:04.700
+And that's because we shared the same ranking.
+
+04:04.700 --> 04:07.380
+And with that we wasted let's say few ranks.
+
+04:07.380 --> 04:09.620
+So the scale is different from the two others.
+
+04:09.620 --> 04:12.100
+And that's because we have ties twice.
+
+04:12.140 --> 04:13.380
+This is one tie.
+
+04:13.380 --> 04:15.540
+And as well we have over here one tie.
+
+04:15.580 --> 04:18.620
+That's why we are missing over here two ranks.
+
+04:18.620 --> 04:20.380
+So this is how the dense ranks works.
+
+04:20.380 --> 04:25.460
+And you can go and compare now all three together in order to understand how those ranks are working.

@@ -1,0 +1,238 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.280 --> 00:06.400
+So with that you have understood what is CTE.
+
+00:06.680 --> 00:10.000
+Now the question is why do we need CTE in the first place?
+
+00:10.120 --> 00:12.400
+What is the main purpose of the CTE?
+
+00:12.640 --> 00:14.040
+Let's go back to the sketch.
+
+00:14.080 --> 00:18.120
+Now let's say in our complex SQL task we have to do the following step.
+
+00:18.160 --> 00:23.440
+Step one we have to go and join the tables together in order to prepare all the data that we need for
+
+00:23.440 --> 00:24.200
+the next step.
+
+00:24.200 --> 00:26.960
+And now in the second step, we have to go and aggregate the data.
+
+00:27.000 --> 00:28.840
+Maybe we are doing summarizations.
+
+00:28.880 --> 00:34.280
+Now in our task we have to do as well different types of aggregations based on different data.
+
+00:34.280 --> 00:39.320
+And now what might happen is that we have to go and join again the same tables in order to prepare the
+
+00:39.320 --> 00:44.960
+data and perform different type of aggregations, like for example, the average, which can be in the
+
+00:44.960 --> 00:45.800
+last step.
+
+00:45.840 --> 00:50.680
+Now we have learned before we can go and use the subqueries in order to make this logical flow.
+
+00:50.760 --> 00:54.320
+So for step one, step two, step three, we will have subqueries.
+
+00:54.320 --> 00:57.320
+And the final step is going to be in the main query.
+
+00:57.320 --> 01:02.920
+But now if we keep doing this we're going to have a problem, and that is we are repeating the same
+
+01:02.920 --> 01:04.520
+step more than once.
+
+01:04.520 --> 01:09.920
+So we are joining the table twice in step number one and three for different purposes, which cause
+
+01:09.920 --> 01:12.760
+us to have two different subqueries.
+
+01:12.760 --> 01:14.320
+That looks exactly the same.
+
+01:14.320 --> 01:17.280
+And this is exactly the weak point of the subqueries.
+
+01:17.440 --> 01:20.080
+It might introduce redundancies.
+
+01:20.080 --> 01:25.960
+So that means the subqueries alone will not help you to eliminate all the duplicates in your code.
+
+01:26.000 --> 01:29.240
+But still we have different techniques in order to solve this issue.
+
+01:29.240 --> 01:34.000
+So what we're going to do, we're going to have only one step in order to join the tables.
+
+01:34.000 --> 01:37.960
+And then this data can be used in the step two in order to aggregate the data.
+
+01:37.960 --> 01:41.560
+And then we don't need the step three of joining again the data.
+
+01:41.560 --> 01:43.960
+We can reuse the step one.
+
+01:43.960 --> 01:49.720
+And we're going to use the same data for the step four which is aggregating the data using average.
+
+01:49.720 --> 01:53.080
+And we can do this with the help of the amazing CTE.
+
+01:53.120 --> 01:57.800
+So now if we compare the steps in the subqueries with the steps with the CTE, you can see with the
+
+01:57.800 --> 02:04.070
+CTE we are reducing the number of steps which can lead to reduce the size of the query.
+
+02:04.070 --> 02:08.510
+So now again here in subquery we think about the steps from bottom to top.
+
+02:08.510 --> 02:12.390
+But in the CTE it's the way around we think from top to bottom.
+
+02:12.390 --> 02:15.590
+So that means the first step on the top is going to be joining the tables.
+
+02:15.590 --> 02:17.950
+And then below it's going to be step two and step three.
+
+02:17.990 --> 02:21.390
+And of course since we are repeating the join we are going to put it in CTE.
+
+02:21.430 --> 02:25.750
+And then we can use it twice in different places in the main query.
+
+02:25.750 --> 02:28.270
+So as you can see there are a lot of benefits of the CTE.
+
+02:28.510 --> 02:29.710
+It's like the subqueries.
+
+02:29.710 --> 02:36.830
+We are breaking down complex queries into smaller pieces that are easier to write, manage, understand
+
+02:36.830 --> 02:41.950
+and as well we have like a logical flow from step one, two, three, but with one more benefit.
+
+02:41.990 --> 02:47.630
+Thus we reduce the redundancies of our code so we don't have to join the tables twice.
+
+02:47.630 --> 02:51.750
+Now I'm going to show you a simple example how the CTE makes our life easier.
+
+02:51.750 --> 02:54.230
+In our query, we might have to do different stuff.
+
+02:54.230 --> 02:57.790
+Like for example, we have to go and find the top customers.
+
+02:57.790 --> 03:03.430
+So we can put this in one CTE and we might need as well to calculate what are the top products.
+
+03:03.430 --> 03:06.190
+And we can put as well this in another city.
+
+03:06.230 --> 03:08.630
+So you don't have to put everything in one big city.
+
+03:08.670 --> 03:11.350
+Then you're going to have the same issue of having complex query.
+
+03:11.390 --> 03:15.430
+And let's say that we have as well to find and calculate the daily revenue.
+
+03:15.470 --> 03:17.790
+And for this as well, we have to put it in one city.
+
+03:17.830 --> 03:22.870
+Now, once we have all those parts, we can put everything together in the main query.
+
+03:22.870 --> 03:27.790
+So now if we look to this structure you can see it's really easy to understand this code.
+
+03:27.790 --> 03:28.950
+It's easy to read.
+
+03:28.950 --> 03:32.630
+So CTE improves the readability of our queries.
+
+03:32.630 --> 03:38.790
+So that means your code is divided into clear sections making it easier to understand what each part
+
+03:38.830 --> 03:39.310
+does.
+
+03:39.350 --> 03:45.270
+Now if you keep looking to this we have another advantage of the CTE introduces modularity.
+
+03:45.270 --> 03:49.870
+So that means it breaks your code into smaller manageable parts.
+
+03:49.870 --> 03:56.940
+So this means instead of writing one huge complex query, you break it down into smaller chunks using
+
+03:56.980 --> 03:57.380
+CTE.
+
+03:57.540 --> 04:03.540
+Each CTE is like self-contained and handles specific part of the problem, and then you can combine
+
+04:03.540 --> 04:05.460
+them all together in the final query.
+
+04:05.500 --> 04:09.060
+It's like we are putting together a puzzle piece by piece.
+
+04:09.100 --> 04:13.260
+And now one very important advantage of the CTE is the reusability.
+
+04:13.260 --> 04:18.420
+So that means we can have a result set that is used multiple times inside our query.
+
+04:18.420 --> 04:23.660
+So that means you write the logic the code only once and then use it in different places inside your
+
+04:23.660 --> 04:24.180
+query.
+
+04:24.180 --> 04:25.180
+This is very important.
+
+04:25.220 --> 04:30.700
+Not only you are wasting time writing the same stuff over and over, but also it reduces the errors
+
+04:30.700 --> 04:35.380
+and mistakes that you might do if you are repeating the same code, especially if later you want to
+
+04:35.380 --> 04:40.780
+go and change the logic, then you have to go and visit each time you have done this logic, and then
+
+04:40.820 --> 04:43.540
+do the changes and you might forget some places.
+
+04:43.540 --> 04:45.460
+That's why the city is amazing.
+
+04:45.460 --> 04:49.980
+You can write the logic once and then you go and reuse it in different places.
+
+04:49.980 --> 04:55.260
+So these are the advantages of using this technique, the CTE inside your queries.

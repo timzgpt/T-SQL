@@ -1,0 +1,118 @@
+WEBVTT
+
+00:03.920 --> 00:05.320
+Now I'm going to show you how it looks like.
+
+00:05.360 --> 00:06.560
+Usually in companies.
+
+00:06.560 --> 00:08.520
+So we have our data inside the database.
+
+00:08.520 --> 00:14.240
+And then you will have multiple people with multiple roles that are just writing different sqls in order
+
+00:14.240 --> 00:15.240
+to talk to the data.
+
+00:15.240 --> 00:21.160
+But now not only employees and people interact with the database, you could build a website or an application
+
+00:21.160 --> 00:24.960
+that as well interacts with the database by sending different sqls.
+
+00:24.960 --> 00:29.160
+And of course depends on how many people are interacting with the application and the websites.
+
+00:29.160 --> 00:33.880
+It might generate really massive amounts of sqls that sends to the database.
+
+00:33.880 --> 00:39.040
+And not only that, you might have as well tools in order to do data visualizations where you have like
+
+00:39.080 --> 00:45.600
+a dashboard or a report, maybe created using power BI or Tableau, and it is used by stakeholders and
+
+00:45.600 --> 00:47.400
+managers in order to make decisions.
+
+00:47.400 --> 00:52.840
+And as well, those tools will be connected to the database and creating Sqls.
+
+00:52.840 --> 00:57.800
+So now as you can see, we have a lot of interactions with the database from people, applications,
+
+00:57.800 --> 00:58.440
+tools.
+
+00:58.560 --> 01:02.840
+A lot of things are generating sqls and interacting with the database.
+
+01:02.840 --> 01:06.000
+But the database is just a container and storage, right.
+
+01:06.000 --> 01:09.830
+So we need something software that manage all those requests.
+
+01:09.830 --> 01:14.190
+And that's why we have something called Database Management System DBMs.
+
+01:14.350 --> 01:18.830
+So it is a software that can manage all those different requests to our database.
+
+01:18.830 --> 01:22.670
+And it's going to make the priority which SQL must be executed first.
+
+01:22.710 --> 01:28.230
+This software can as well manage the security whether the SQL is allowed to be executed in the first
+
+01:28.230 --> 01:28.670
+place.
+
+01:28.750 --> 01:34.750
+So my friends, the DBMs is the software that can manage the database and now we are not done yet.
+
+01:34.750 --> 01:35.790
+There is something missing.
+
+01:35.790 --> 01:36.670
+So we have our data.
+
+01:36.670 --> 01:37.630
+We have the software.
+
+01:37.630 --> 01:39.630
+What is missing here is the hardware.
+
+01:39.630 --> 01:45.990
+So in real companies we cannot run that on our PC because first our PC is weak and as well it goes offline.
+
+01:45.990 --> 01:48.230
+That's why we need a server server.
+
+01:48.230 --> 01:52.470
+It is like a very powerful PC and as well it lives 24 over seven.
+
+01:52.510 --> 01:53.910
+So it is always available.
+
+01:53.910 --> 01:58.830
+And here we can decide whether we can have a server inside the company, or we can use cloud services
+
+01:58.830 --> 02:00.990
+in order to run our database.
+
+02:00.990 --> 02:05.590
+So my friends, so far what we have learned the database, it is a container to store the data, the
+
+02:05.590 --> 02:10.950
+SQL, it is the language in order to talk to the database, the DBMs, it is the manager.
+
+02:10.950 --> 02:13.390
+It manages the database and the server.
+
+02:13.390 --> 02:16.430
+It is the physical machine where the database lives.
+
+02:16.430 --> 02:17.910
+So this is how it looks like.

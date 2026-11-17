@@ -1,0 +1,373 @@
+WEBVTT
+
+00:03.920 --> 00:10.560
+So what is exactly where we use where in order to filter our data based on a condition, and any data
+
+00:10.560 --> 00:16.640
+that fulfill the condition can stay in the output, in the result, and the data that don't meet the
+
+00:16.640 --> 00:19.000
+condition will be filtered out of the results.
+
+00:19.000 --> 00:20.400
+Condition could be anything like.
+
+00:20.400 --> 00:23.760
+For example, we say the score must be higher than 500.
+
+00:23.800 --> 00:26.720
+Or you can say the country must be equal to Germany.
+
+00:26.720 --> 00:30.560
+So any condition that you have in your question now let's see the syntax in SQL.
+
+00:30.600 --> 00:32.240
+As usual we start with a select.
+
+00:32.240 --> 00:34.000
+We select the columns that we need.
+
+00:34.040 --> 00:36.560
+Then we write from where the data come from.
+
+00:36.560 --> 00:42.120
+And then after the from we can write the where and exactly after that you specify your condition.
+
+00:42.120 --> 00:44.320
+So now let's see how SQL can execute this.
+
+00:44.320 --> 00:46.640
+First SQL starts as usual from the from.
+
+00:46.640 --> 00:49.240
+So it can go and get your data from the database.
+
+00:49.240 --> 00:53.480
+And after that SQL is going to go and execute the Where clause.
+
+00:53.480 --> 00:56.400
+So let's say that the condition should be higher than 500.
+
+00:56.440 --> 01:01.700
+And now what can happen SQL is going to check each row whether it meets this condition or not.
+
+01:01.700 --> 01:07.580
+So for example, for Maria, she doesn't fulfill the condition because her score, the 350, is not
+
+01:07.580 --> 01:14.260
+higher than 500, so she doesn't fulfill the condition and skill can go and remove completely this row,
+
+01:14.300 --> 01:16.180
+this record from the results.
+
+01:16.220 --> 01:18.060
+Now skill can go to the second record.
+
+01:18.060 --> 01:22.060
+So John is fulfilling the condition so he can stay in the result.
+
+01:22.060 --> 01:23.340
+The same thing for George.
+
+01:23.380 --> 01:25.780
+Now moving on to the fourth one Martin.
+
+01:25.780 --> 01:31.220
+So this customer is not fulfilling the condition and skill can go and remove it from the results.
+
+01:31.220 --> 01:33.140
+The same thing happens for the last customer.
+
+01:33.180 --> 01:35.460
+The score is zero and not fulfilling the condition.
+
+01:35.460 --> 01:41.300
+So that means if we apply this filter, SQL can return only two customers out of five.
+
+01:41.340 --> 01:46.380
+So with that, we are filtering the rows based on condition using the Where clause.
+
+01:46.420 --> 01:48.980
+Now, as you can see in the result, we are getting all the columns.
+
+01:48.980 --> 01:54.620
+But if you specify in the query like for example, only two columns like the name and the country,
+
+01:54.620 --> 01:58.540
+then SQL can start removing as well the columns of the results.
+
+01:58.540 --> 02:02.830
+And this means in the output we will get only two columns and two rows.
+
+02:02.830 --> 02:06.790
+So with that you are filtering the columns and the rows of your results.
+
+02:06.830 --> 02:09.550
+So now let's go back to your SQL in order to practice this.
+
+02:09.590 --> 02:09.990
+All right.
+
+02:09.990 --> 02:11.230
+So let's have the following task.
+
+02:11.230 --> 02:15.590
+And it says retrieve customers with score not equal to zero.
+
+02:15.590 --> 02:18.910
+So now if you are looking to our task you see we have like here a condition.
+
+02:18.910 --> 02:22.190
+The condition says the score must not be equal to zero.
+
+02:22.190 --> 02:24.230
+So I don't want to see all the customers.
+
+02:24.230 --> 02:27.710
+I want to see only the customers that fulfill this condition.
+
+02:27.710 --> 02:29.590
+So it's like we have to filter the data.
+
+02:29.590 --> 02:30.910
+So let's go and solve the task.
+
+02:30.910 --> 02:31.990
+Let's start as usual.
+
+02:31.990 --> 02:32.990
+Select star.
+
+02:33.030 --> 02:37.790
+There is no specifications about the columns from our table customers okay.
+
+02:37.830 --> 02:38.950
+So I'm going to start with this.
+
+02:38.990 --> 02:40.230
+Let's go and execute it.
+
+02:40.270 --> 02:45.190
+Now if you look to the result you can see like almost all the customers are fulfilling their condition.
+
+02:45.190 --> 02:47.390
+Their scores are not equal to zero.
+
+02:47.430 --> 02:48.310
+Only one.
+
+02:48.350 --> 02:50.430
+The last customer his score is zero.
+
+02:50.430 --> 02:52.830
+So this customer does not fulfill our condition.
+
+02:52.830 --> 02:54.790
+Now let's go and build a filter for that.
+
+02:54.790 --> 02:55.990
+So we're going to say where.
+
+02:56.030 --> 03:01.310
+And now there will be a section that is only focusing on how to build conditions and filtering in SQL.
+
+03:01.310 --> 03:03.890
+So don't worry a lot about the syntax of the conditions.
+
+03:03.890 --> 03:06.490
+We're going to cover that later, of course, but it is very simple.
+
+03:06.530 --> 03:08.250
+Now for the condition we need a column.
+
+03:08.250 --> 03:10.610
+So in which column is our condition based on.
+
+03:10.610 --> 03:11.730
+It's going to be on the score.
+
+03:11.730 --> 03:13.370
+So we're going to write here score.
+
+03:13.410 --> 03:18.970
+And since we are saying not equal there is like an operator in SQL called not equal, then we have to
+
+03:19.010 --> 03:20.090
+write a value after that.
+
+03:20.090 --> 03:21.010
+So it's going to be a zero.
+
+03:21.010 --> 03:22.770
+So again the condition is like this.
+
+03:22.770 --> 03:25.450
+The score must not be equal to zero.
+
+03:25.490 --> 03:26.490
+It's very simple right.
+
+03:26.490 --> 03:28.410
+And with that we have our condition.
+
+03:28.410 --> 03:31.290
+And we are using the where in order to filter the data.
+
+03:31.290 --> 03:32.890
+So let's go and execute it.
+
+03:32.890 --> 03:38.410
+And now as you can see SQL did remove the last customer because he is not fulfilling this condition.
+
+03:38.410 --> 03:42.250
+And we have now only the rows that fulfill our condition.
+
+03:42.250 --> 03:44.690
+So as you can see it is very simple how to filter the data.
+
+03:44.730 --> 03:50.010
+All what you have to do is to write where clause after the from and then write a condition after that.
+
+03:50.050 --> 03:51.210
+Now let's have another task.
+
+03:51.210 --> 03:54.690
+Like for example, it says retrieve customers from Germany.
+
+03:54.690 --> 03:57.490
+So I don't want to see all customers from different countries.
+
+03:57.490 --> 04:00.290
+I just want to see the customers that come from Germany.
+
+04:00.290 --> 04:02.340
+So that means we have a condition here.
+
+04:02.380 --> 04:05.420
+Country of the customer must be equal to Germany.
+
+04:05.420 --> 04:07.620
+So let's go and remove the current condition.
+
+04:07.620 --> 04:09.780
+It is not the one that we need and executes.
+
+04:09.780 --> 04:14.940
+If you are looking to the results, we have two customers that come from Germany and we are interested
+
+04:14.940 --> 04:16.780
+only to show those two customers.
+
+04:16.780 --> 04:19.020
+So let's go and make a filter for that.
+
+04:19.020 --> 04:23.740
+We're going to write where clause and after that we need a column, the column going to be the country.
+
+04:23.740 --> 04:25.340
+So we're going to write here country.
+
+04:25.460 --> 04:28.900
+And this time the country must be equal to Germany.
+
+04:28.900 --> 04:30.900
+So we can write an equal operator.
+
+04:30.900 --> 04:33.060
+So we're going to write Germany like this.
+
+04:33.100 --> 04:35.380
+Exactly like the value inside our data.
+
+04:35.380 --> 04:38.020
+But now as you can see, we are getting like an error here.
+
+04:38.020 --> 04:43.580
+And that's because in SQL, if you want to write a value that contains characters, then you have to
+
+04:43.620 --> 04:45.500
+put it between two single quotes.
+
+04:45.500 --> 04:48.780
+So at the start you put a single quote and as well at the end.
+
+04:48.820 --> 04:52.340
+And now as you can see, the red line is away and the value now is red.
+
+04:52.340 --> 04:54.980
+And that's because it is a string value.
+
+04:54.980 --> 04:57.140
+It is a value that contains characters.
+
+04:57.140 --> 04:58.820
+And with that you will not get an error.
+
+04:58.820 --> 05:03.960
+So if your columns contains only numbers, you can write it without single quotes, but if your values
+
+05:03.960 --> 05:07.200
+contains characters, then you have to write it between two single quotes.
+
+05:07.240 --> 05:08.880
+Okay, so now back to our condition.
+
+05:08.920 --> 05:11.080
+The country must be equal to Germany.
+
+05:11.080 --> 05:12.440
+Let's go and execute it.
+
+05:12.440 --> 05:13.480
+And it is working.
+
+05:13.480 --> 05:18.440
+So as you can see now we are seeing in the output only the customers that fulfill my condition where
+
+05:18.440 --> 05:20.320
+the country is equal to Germany.
+
+05:20.320 --> 05:24.880
+So this is exactly how we work with the Where clause in order to filter our data.
+
+05:24.880 --> 05:27.120
+So my friends, this is how you filter your rows.
+
+05:27.160 --> 05:30.760
+And now let's say that I would like to filter the rows together with the columns.
+
+05:30.760 --> 05:33.400
+So I just want to keep the first name and the country.
+
+05:33.400 --> 05:36.040
+I'm not interested to see the scores and the IDs.
+
+05:36.040 --> 05:40.840
+So in order to do that we're going to go to the select and list the columns that we want to see.
+
+05:40.840 --> 05:44.360
+So the first name and after that a comma then the country.
+
+05:44.360 --> 05:45.520
+And that's it.
+
+05:45.520 --> 05:48.240
+So let's go and give it a push and execute it.
+
+05:48.240 --> 05:50.720
+So we have two rows and two columns.
+
+05:50.720 --> 05:53.400
+So guys as you can see SQL is very simple.
+
+05:53.440 --> 05:53.800
+All right.
+
+05:53.800 --> 05:57.480
+So with that you have learned how to filter your data using the Where clause.
+
+05:57.520 --> 06:02.440
+Next we're going to talk about how to sort your data using the order by.
+
+06:02.480 --> 06:03.200
+So let's go.

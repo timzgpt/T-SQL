@@ -1,0 +1,442 @@
+WEBVTT
+
+00:03.920 --> 00:10.200
+So what is the trunk de trunk gonna go and truncate the date to specific parts.
+
+00:10.240 --> 00:11.920
+So let's understand what this means.
+
+00:11.960 --> 00:12.240
+Okay.
+
+00:12.280 --> 00:14.640
+Now let's check the syntax of the de trunk.
+
+00:14.680 --> 00:17.480
+It's going to be exactly the same like date part and date name.
+
+00:17.600 --> 00:22.680
+So you have to define the part and the date that you want to extract apart from it.
+
+00:22.720 --> 00:24.480
+So the only thing that is different here.
+
+00:24.520 --> 00:26.880
+We are giving different function name.
+
+00:26.880 --> 00:32.560
+So as you can see all the three functions like having the same structure you have to provide which part
+
+00:32.560 --> 00:36.960
+you want to extract like a month, day, week, hour, minutes and so on.
+
+00:37.160 --> 00:41.440
+And the date or date and time that you want to extract apart from it.
+
+00:41.440 --> 00:46.000
+And of course, with the date trunk we are getting the output date or date time.
+
+00:46.040 --> 00:46.240
+Okay.
+
+00:46.280 --> 00:49.240
+So now let's understand exactly how the date trunk works.
+
+00:49.240 --> 00:51.120
+We have the following date time.
+
+00:51.120 --> 00:55.440
+And as we learned we have like hierarchy where we start with the highest from the year.
+
+00:55.600 --> 00:59.440
+Then we move to the month, day, hours, minutes and seconds.
+
+00:59.440 --> 01:02.520
+And by looking to this information it is very precise.
+
+01:02.520 --> 01:05.040
+We know exact second for this information.
+
+01:05.040 --> 01:05.440
+Right.
+
+01:05.440 --> 01:07.880
+So the level of details here is very high.
+
+01:08.040 --> 01:10.320
+We know the seconds of these events.
+
+01:10.320 --> 01:16.160
+So now the data rank can allow us to change this level of details of this information by specifying
+
+01:16.160 --> 01:17.480
+the level of details.
+
+01:17.520 --> 01:20.760
+Let's take for example if we say that date rank minutes.
+
+01:20.760 --> 01:23.880
+So we are saying we are interested only at the minutes level.
+
+01:23.880 --> 01:25.880
+We are not interested with the seconds.
+
+01:26.000 --> 01:27.280
+So what can happen?
+
+01:27.280 --> 01:31.000
+Everything between the year and the minutes is going to be kept.
+
+01:31.040 --> 01:36.920
+This means all those information will not be changed, but only the seconds are going to be resetted.
+
+01:36.920 --> 01:39.120
+We are not interested anymore with the seconds.
+
+01:39.120 --> 01:40.920
+This is very detailed for us.
+
+01:40.920 --> 01:44.920
+So SQL going to go and reset the seconds to zero zero.
+
+01:44.920 --> 01:49.080
+So we are seeing the minimum level is the minutes and we are not interested.
+
+01:49.080 --> 01:54.240
+Anything like before the seconds let's say now we say you know what the minutes is very detailed.
+
+01:54.240 --> 01:56.560
+I would like to be at the hours level.
+
+01:56.560 --> 01:59.200
+So we specify for the date rank hour.
+
+01:59.240 --> 02:00.560
+So here things changed.
+
+02:00.600 --> 02:06.290
+We are going to keep the informations now between the year and the hours, and anything after that can
+
+02:06.290 --> 02:07.090
+be resetted.
+
+02:07.210 --> 02:12.610
+So now minutes and seconds are going to be in the range of their resets, and SQL is going to go and
+
+02:12.610 --> 02:15.290
+reset the 55 to 0 zero.
+
+02:15.450 --> 02:18.490
+So now the level of details is a little bit lower.
+
+02:18.530 --> 02:21.650
+Now we know only the information until the hours.
+
+02:21.690 --> 02:24.570
+And we are not interested about the minutes and the seconds.
+
+02:24.570 --> 02:25.930
+And I think you already get it.
+
+02:25.970 --> 02:32.250
+If you say date trunk day, what's going to happen is you're going to keep everything between year and
+
+02:32.290 --> 02:35.250
+day and the whole time going to be resets.
+
+02:35.290 --> 02:40.530
+So the hours, minutes and seconds, all those information are going to reset to zero zero.
+
+02:40.570 --> 02:43.810
+So now by looking to this we don't know anything about the time.
+
+02:43.810 --> 02:46.010
+We know only informations about the dates.
+
+02:46.010 --> 02:50.650
+And now we can go one more step and we say you know what, I'm not interested about the days I'm doing
+
+02:50.690 --> 02:52.570
+analysis on the month level.
+
+02:52.570 --> 02:59.570
+So what is here kept is only two informations year and month and everything below that the day and the
+
+02:59.570 --> 03:01.090
+time can be resetted.
+
+03:01.090 --> 03:06.930
+But this time SQL will not reset the date to zero zero because there is no day called zero zero.
+
+03:06.970 --> 03:11.210
+It starts always with the first date so it can reset to zero one.
+
+03:11.210 --> 03:16.650
+So the date starts and the dates can reset to zero one and the date starts in the time going to reset
+
+03:16.650 --> 03:18.090
+to zero zero.
+
+03:18.210 --> 03:20.050
+So now we are at the level of the month.
+
+03:20.050 --> 03:24.930
+Now you can go to the last step and you say you know what, I'm interested only in the years and I'm
+
+03:24.970 --> 03:27.930
+doing only analysis at this level at the highest level.
+
+03:27.930 --> 03:30.370
+So you can go and say date trunk here.
+
+03:30.410 --> 03:31.570
+And now what can happen?
+
+03:31.570 --> 03:36.610
+Is SQL going to keep only the year and everything below that can be resetted.
+
+03:36.610 --> 03:39.850
+So between month and the seconds everything can reset.
+
+03:39.850 --> 03:41.330
+So here SQL can reset as well.
+
+03:41.330 --> 03:43.410
+The August 2nd zero one.
+
+03:43.570 --> 03:47.410
+So the only value that is kept is the year and everything else is reset.
+
+03:47.730 --> 03:51.370
+So this is the 1st of January and the time is completely reset.
+
+03:51.370 --> 03:53.890
+So now we are at the lowest level of details.
+
+03:53.890 --> 03:58.090
+We know only information about the year and we don't care about any other parts.
+
+03:58.090 --> 04:01.970
+So as you can see the date trunk here is not really extracting a part here.
+
+04:01.970 --> 04:04.490
+The trunk is like resetting stuff.
+
+04:04.490 --> 04:10.340
+So we are navigating through the hierarchy of the data and time, and we are controlling at which level
+
+04:10.340 --> 04:11.620
+we are doing the analysis.
+
+04:11.660 --> 04:15.820
+So as you can see at the end, it's not very complicated once you understand how it works.
+
+04:15.820 --> 04:17.780
+And it is very useful in analyses.
+
+04:17.780 --> 04:20.460
+So this is how the date trunk works in SQL.
+
+04:20.500 --> 04:20.780
+Okay.
+
+04:20.780 --> 04:24.380
+Let's have a few examples about the trunk together with the creation time.
+
+04:24.620 --> 04:28.020
+So as you can see the creation time the level of it is the seconds.
+
+04:28.020 --> 04:30.980
+So we have seconds information with the creation time.
+
+04:31.020 --> 04:33.140
+Now I would like to move it to the minutes.
+
+04:33.140 --> 04:34.540
+So let's go and do that.
+
+04:35.060 --> 04:36.540
+Date trunk.
+
+04:36.580 --> 04:43.300
+And we're going to say let's truncate at the minutes level for the creation time.
+
+04:43.700 --> 04:46.860
+So let's call it minutes date trunk.
+
+04:47.260 --> 04:49.700
+So let's go and execute it.
+
+04:49.740 --> 04:54.220
+Now if you go and check the output over here and compare it to the creation time, you can see here
+
+04:54.220 --> 04:56.500
+we have zeros at the seconds.
+
+04:56.620 --> 05:01.300
+So as you can see we have the seconds completely resetted compared to the creation time.
+
+05:01.340 --> 05:05.820
+Now let's say that I'm not interested in the time information inside the creation time.
+
+05:05.820 --> 05:07.940
+I would like only to get the dates.
+
+05:07.940 --> 05:13.260
+So in order to do that, we can use the date trunk where we reset to the level of the day.
+
+05:13.260 --> 05:15.300
+So let's go and duplicate it.
+
+05:15.300 --> 05:19.980
+I'm going to put it over here and instead of minutes let's say we have a day.
+
+05:20.900 --> 05:22.540
+And let's go and check the output.
+
+05:22.580 --> 05:28.340
+Now if you go and check the result over here you can see all the time informations are reset to zero.
+
+05:28.380 --> 05:31.260
+And we have here only information about that date.
+
+05:31.260 --> 05:35.780
+So we have year month and day and everything else is reset to zero.
+
+05:35.820 --> 05:41.540
+Now of course we can go to the maxima where we say I just need the year so I don't need anything else.
+
+05:41.540 --> 05:42.900
+So let's try that out.
+
+05:43.140 --> 05:48.900
+We're going to take the trunk and say here year and let's call it here.
+
+05:49.260 --> 05:50.660
+So let's go and execute it.
+
+05:50.660 --> 05:55.620
+Now if you check the output over here you can see that everything is resetted beside the year.
+
+05:55.620 --> 06:01.820
+So we have only the year information, but everything else is reset to the 1st of January and the time
+
+06:01.820 --> 06:03.540
+is as well is resetted.
+
+06:03.540 --> 06:09.580
+So as you can see the output of the day trunk is always as a date time, and it helps us as well to
+
+06:09.620 --> 06:12.220
+navigate through the hierarchy of the date time.
+
+06:12.220 --> 06:14.740
+And we can truncate at the level that we want.
+
+06:14.780 --> 06:15.060
+All right.
+
+06:15.060 --> 06:19.700
+So now we're going to check why data trunk is amazing function for data analysis.
+
+06:19.700 --> 06:20.900
+So let's have this example.
+
+06:20.900 --> 06:25.540
+We are saying select creation time.
+
+06:25.700 --> 06:32.780
+And we want to count the number of orders based on the creation time from our table sales orders.
+
+06:32.780 --> 06:37.940
+And we're going to use the groupby in order to group the data by the creation time.
+
+06:37.940 --> 06:39.260
+So let's go and execute it.
+
+06:39.300 --> 06:39.420
+Now.
+
+06:39.420 --> 06:44.860
+As you can see we're going to get one everywhere because the level of details, the granularity of the
+
+06:44.860 --> 06:46.500
+creation, time is very high.
+
+06:46.500 --> 06:48.340
+And that's because here we have the seconds.
+
+06:48.340 --> 06:52.660
+And since our data is small, we will not get like two orders at the same seconds.
+
+06:52.700 --> 06:57.380
+Now, in that analytics, you would like quickly to aggregate the data at different granularity, like
+
+06:57.380 --> 06:59.420
+for example at the month level.
+
+06:59.420 --> 07:02.540
+So you can do that very quickly using the date trunk.
+
+07:03.580 --> 07:10.230
+And you say you know what, let's say at the month and let's call it Creation, and we're going to have
+
+07:10.230 --> 07:12.110
+the same thing for the groupie.
+
+07:12.150 --> 07:13.550
+So let's go and execute it.
+
+07:13.550 --> 07:16.270
+So now, as you can see at the output we have only three rows.
+
+07:16.270 --> 07:17.710
+We don't have like ten rows.
+
+07:17.750 --> 07:19.950
+And that's because we have three months.
+
+07:19.950 --> 07:23.790
+So that means we just rolled up to the month level instead of the seconds.
+
+07:23.790 --> 07:28.990
+And we can see now in the month of January we have four orders February as well, four and March we
+
+07:28.990 --> 07:29.670
+have only two.
+
+07:29.710 --> 07:33.950
+So now we are talking about different level of details in the output and granularity.
+
+07:33.990 --> 07:37.870
+And now you might say, let's go and aggregate the data at different level at the year level.
+
+07:37.870 --> 07:42.150
+So you can just change over here the year and execute it.
+
+07:42.150 --> 07:45.270
+And with that now you are at the highest level of aggregations.
+
+07:45.270 --> 07:46.790
+We are at the year level.
+
+07:46.790 --> 07:49.430
+And since in our data we have only 2025.
+
+07:49.430 --> 07:53.310
+So we will get the total number of orders inside the table and that is ten.
+
+07:53.310 --> 07:54.510
+And this is really amazing.
+
+07:54.510 --> 08:00.430
+In data analytics you can go and quickly change the granularity and the level of aggregation or details
+
+08:00.430 --> 08:03.910
+by simply defining the level inside the date.
+
+08:03.910 --> 08:05.870
+So this is why the date trunk is amazing.
+
+08:05.870 --> 08:10.550
+It allows us to do analyses and aggregations by zooming in and zooming out.

@@ -1,0 +1,376 @@
+WEBVTT
+
+00:03.920 --> 00:05.320
+Okay, so now let's keep moving.
+
+00:05.360 --> 00:09.480
+Now we can talk about the parameters inside stored procedures.
+
+00:09.480 --> 00:10.840
+So what is a parameter.
+
+00:11.000 --> 00:16.760
+It is like a placeholder where you can pass in information from you into the stored procedure while
+
+00:16.760 --> 00:17.440
+running it.
+
+00:17.440 --> 00:23.600
+And using parameters in stored procedure is going to make it flexible, reusable and dynamic.
+
+00:23.600 --> 00:25.320
+So let's understand what this means.
+
+00:25.480 --> 00:27.880
+Let's say that you got a new task.
+
+00:27.880 --> 00:33.080
+So it says for German customers find the total number of customers and the average score.
+
+00:33.120 --> 00:37.520
+So that means now you have like to generate two reports one for USA and one for Germany.
+
+00:37.520 --> 00:39.960
+And in both of them you are doing the same aggregation.
+
+00:40.000 --> 00:42.360
+And again we have to go and start writing the query.
+
+00:42.360 --> 00:45.920
+It's going to be very similar to the one that we have in the previous example.
+
+00:45.920 --> 00:48.400
+So we are doing the same stuff, same aggregations.
+
+00:48.400 --> 00:53.120
+But the only change here is that we're going to use another value to filter the data.
+
+00:53.120 --> 00:56.520
+So instead of USA we're going to go and say here Germany.
+
+00:56.520 --> 00:58.880
+So let's go and execute this one over here.
+
+00:58.880 --> 01:01.550
+And with that we can see we have total number of customers two.
+
+01:01.590 --> 01:04.990
+So this is the report that we have to provide like in weekly basis.
+
+01:04.990 --> 01:10.030
+And again in order not to go and copy paste stuff, we're going to go and create a stored procedure
+
+01:10.030 --> 01:10.830
+for that.
+
+01:10.870 --> 01:12.510
+At the end you can have an end.
+
+01:12.510 --> 01:15.030
+But now of course we cannot have like the same names.
+
+01:15.030 --> 01:17.350
+We're going to go and say here Germany.
+
+01:17.350 --> 01:19.510
+So let's go and execute it.
+
+01:19.510 --> 01:23.790
+And the next step we have to go and execute the stored procedure.
+
+01:23.790 --> 01:26.950
+So like this let's go and execute it.
+
+01:26.950 --> 01:29.870
+And the whole logic is now stored inside the database.
+
+01:29.870 --> 01:32.670
+Let's go and refresh on the explorer over here.
+
+01:32.670 --> 01:35.150
+And you can see now we have two stored procedures.
+
+01:35.150 --> 01:37.310
+But now you have to feel there is something wrong.
+
+01:37.350 --> 01:39.390
+Always in programming and coding.
+
+01:39.670 --> 01:45.910
+If you find yourself repeating the same task over and over, then there is always a smarter way on how
+
+01:45.910 --> 01:47.070
+to optimize that.
+
+01:47.110 --> 01:49.870
+Repeating stuff in coding is always a bad thing.
+
+01:49.870 --> 01:54.430
+So now clearly we are repeating the same query in two different stored procedure.
+
+01:54.470 --> 01:58.050
+And now if you compare them, you see it's because of the value.
+
+01:58.050 --> 02:01.610
+So we have here the value for the filter once Germany and one USA.
+
+02:01.650 --> 02:03.690
+And those values are static values.
+
+02:03.690 --> 02:07.010
+So it's always going to stay inside the stored procedure as USA.
+
+02:07.050 --> 02:11.730
+But instead of that we can replace those static values with a parameter.
+
+02:11.730 --> 02:17.650
+And then you decide as you are executing the stored procedure for which country you want to execute
+
+02:17.650 --> 02:18.890
+the stored procedure.
+
+02:18.890 --> 02:20.210
+So let's go and do that.
+
+02:20.210 --> 02:25.170
+I'm just going to remove everything from here and focus only on the first stored procedure.
+
+02:25.210 --> 02:32.050
+Now what we're going to do after giving it a name of our stored procedure we have to define our parameter.
+
+02:32.050 --> 02:33.610
+So it starts with ads.
+
+02:33.650 --> 02:35.010
+And with that SQL understand.
+
+02:35.050 --> 02:35.210
+Aha.
+
+02:35.330 --> 02:36.850
+Now we are talking about parameters.
+
+02:36.850 --> 02:38.930
+And we need now the name of the parameter.
+
+02:38.930 --> 02:40.690
+So it's going to be country.
+
+02:40.690 --> 02:42.250
+It could be any name that you want.
+
+02:42.290 --> 02:45.330
+And after that we have to define for SQL the data type.
+
+02:45.330 --> 02:50.450
+It's like when you are creating a table and you define columns you assign a data type for each column.
+
+02:50.450 --> 02:54.330
+The same thing here you have to assign as well a data type for each parameter.
+
+02:54.330 --> 02:56.960
+So we're going to use the data datatype in Varchar.
+
+02:57.280 --> 03:00.480
+And for the countries it's enough to have the links of 50.
+
+03:00.520 --> 03:06.120
+So with that, we are telling SQL for this stored procedure, we can pass an information to the stored
+
+03:06.120 --> 03:06.720
+procedure.
+
+03:06.720 --> 03:10.400
+And this information and value can be used inside this parameter.
+
+03:10.440 --> 03:16.720
+So now after we defined this parameter over here we can go and use it anywhere inside our query.
+
+03:16.760 --> 03:20.320
+And of course we want to go and use it instead of this static value.
+
+03:20.480 --> 03:22.800
+So now we're going to remove this static value.
+
+03:22.800 --> 03:24.840
+And instead we can have the parameter.
+
+03:24.840 --> 03:30.520
+So now we are saying you're going to filter the table based on the value that comes from the user.
+
+03:30.520 --> 03:32.440
+And not any more static with the USA.
+
+03:32.480 --> 03:37.240
+And as I said you can use this parameter everywhere like even here in the Select statements.
+
+03:37.240 --> 03:40.200
+So it is a value that could be used everywhere in your query.
+
+03:40.200 --> 03:40.800
+So that's it.
+
+03:40.840 --> 03:46.080
+We have defined our new parameter and we have used this parameter in our query.
+
+03:46.080 --> 03:48.640
+So now we have to go and update the stored procedure.
+
+03:48.640 --> 03:50.400
+We cannot leave it as create.
+
+03:50.440 --> 03:52.320
+Instead of that we're going to say alter.
+
+03:52.320 --> 03:57.980
+So we are saying alter stored procedure, and with the new information, let's go and execute it.
+
+03:57.980 --> 04:00.140
+And now we have to go and execute it.
+
+04:00.140 --> 04:03.380
+So now what we're going to do we're going to say execute get customer summary.
+
+04:03.380 --> 04:07.420
+But now our stored procedure is expecting a value from you from the input.
+
+04:07.420 --> 04:10.260
+So we're going to do it exactly like we've done in the name over here.
+
+04:10.580 --> 04:16.260
+So we're going to say the parameter country is equal to Germany.
+
+04:16.260 --> 04:20.500
+So that means the value of this parameter come from me come from the input.
+
+04:20.500 --> 04:24.380
+And this information can be passed to my query to the stored procedure.
+
+04:24.580 --> 04:26.340
+So let's go and execute it.
+
+04:26.340 --> 04:30.580
+And with that as you can see we are getting the report of customers for Germany.
+
+04:30.620 --> 04:36.900
+And now if you say okay let's go and generate the report for USA, all that you have to do is that replace
+
+04:36.900 --> 04:37.700
+the parameter.
+
+04:37.700 --> 04:40.980
+So in the value instead of Germany we're going to say USA.
+
+04:41.220 --> 04:43.180
+So let's go and execute it.
+
+04:43.220 --> 04:43.580
+Great.
+
+04:43.620 --> 04:47.100
+Now we are getting as well the report for us customers.
+
+04:47.100 --> 04:52.610
+So that means my friends for those two reports I just need one stored procedure and with the help of
+
+04:52.610 --> 04:57.170
+the parameter, I made my stored procedure now more flexible and professional.
+
+04:57.170 --> 04:59.890
+So this is exactly the power of the parameters.
+
+05:00.130 --> 05:03.450
+It makes everything reusable and dynamic.
+
+05:03.490 --> 05:07.130
+And now of course we don't need the stored procedure for Germany.
+
+05:07.130 --> 05:09.090
+So what we can do we can go and drop it.
+
+05:09.370 --> 05:11.970
+So we're going to say drop procedure.
+
+05:12.170 --> 05:15.090
+And it was like this Germany.
+
+05:15.090 --> 05:17.490
+So we don't need this stored procedure.
+
+05:17.490 --> 05:20.890
+And we're going to stay with only one dynamic stored procedure.
+
+05:20.890 --> 05:24.650
+So this is how to use parameters in stored procedure and why it's important.
+
+05:24.690 --> 05:24.970
+Okay.
+
+05:25.010 --> 05:30.210
+So now to the next step is that we can go and add default values for the parameters.
+
+05:30.290 --> 05:35.090
+So let's say that I execute very frequently this report where I say the country equal to USA.
+
+05:35.370 --> 05:39.290
+And I don't want each time to define the parameter value equal to USA.
+
+05:39.530 --> 05:45.090
+So if you are using a value very frequently, you can add it as a default inside the definition of the
+
+05:45.090 --> 05:46.010
+stored procedure.
+
+05:46.010 --> 05:47.410
+And it is very simple.
+
+05:47.410 --> 05:53.190
+So if you go to the definition again over here after the parameter and you say equal to USA.
+
+05:53.910 --> 05:58.870
+So now it's very important to understand that the country will not be always equal to USA.
+
+05:59.030 --> 06:04.830
+It is just you are saying if I don't get from the user any value, then as a default I'm going to go
+
+06:04.830 --> 06:06.150
+and use the USA.
+
+06:06.430 --> 06:11.310
+So let's go and again change the definition of our stored procedure using alter.
+
+06:11.550 --> 06:12.470
+So execute.
+
+06:12.510 --> 06:14.590
+And now we can go to our stored procedure.
+
+06:14.590 --> 06:18.190
+And I can skip the whole thing over here and execute it.
+
+06:18.230 --> 06:23.750
+So now as a default I'm getting the report of USA without passing any information to the stored procedure
+
+06:23.750 --> 06:26.070
+because I know it is as a default USA.
+
+06:26.390 --> 06:30.430
+But if you need it as a Germany, of course you have to go and define it.
+
+06:30.430 --> 06:34.350
+So you say execute the stored procedure where the country equal to Germany.
+
+06:34.510 --> 06:37.630
+So if I execute it like this SQL is still going to use your value.
+
+06:37.670 --> 06:43.390
+So the value that comes as an input from the user has more priority of course as the default.
+
+06:43.430 --> 06:45.710
+And with that we are getting the Germany reports.
+
+06:45.750 --> 06:47.230
+So as you can see it's really nice right.
+
+06:47.230 --> 06:49.230
+Using parameters in stored procedure.

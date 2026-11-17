@@ -1,0 +1,328 @@
+WEBVTT
+
+00:03.840 --> 00:04.080
+Okay.
+
+00:04.080 --> 00:07.000
+So now we're going to go and extend our data flow diagram.
+
+00:07.000 --> 00:08.960
+But this time for the gold layer.
+
+00:09.000 --> 00:14.120
+So now let's go and copy the whole thing from the silver layer and put it over here side by side.
+
+00:14.200 --> 00:17.520
+And of course we can go and change the colouring to the gold.
+
+00:17.560 --> 00:20.040
+And now we're going to go and rename stuff.
+
+00:20.160 --> 00:22.520
+So this is the gold layer.
+
+00:22.520 --> 00:25.000
+But now of course we cannot leave those tables like this.
+
+00:25.040 --> 00:27.080
+We have completely new data model.
+
+00:27.080 --> 00:27.760
+So what do we have.
+
+00:27.800 --> 00:30.720
+Over here we have the fact sales.
+
+00:30.720 --> 00:33.440
+We have dimension customers.
+
+00:33.440 --> 00:36.480
+And as well we have dimension products.
+
+00:36.840 --> 00:39.320
+So now what I'm going to do I'm going to go and remove all those stuff.
+
+00:39.320 --> 00:41.200
+We have only three tables.
+
+00:41.200 --> 00:44.240
+And let's go and put those three tables somewhere here in the center.
+
+00:44.280 --> 00:47.800
+So now what we have to do is to go and start connecting those stuff.
+
+00:47.800 --> 00:52.720
+I'm going to go with this arrow over here direct connection and start connecting stuff.
+
+00:52.800 --> 00:55.800
+So the sales details goes to the fact table.
+
+00:55.840 --> 00:57.400
+Maybe put the fact table over here.
+
+00:57.400 --> 00:59.480
+And then we have the dimension customer.
+
+00:59.840 --> 01:02.720
+This comes from the CRM customer info.
+
+01:02.720 --> 01:05.640
+And we have two tables from the ERP.
+
+01:05.760 --> 01:07.490
+It comes from this table as well.
+
+01:08.010 --> 01:10.330
+And the location from the ERP.
+
+01:10.370 --> 01:13.290
+Now the same thing goes for the products.
+
+01:13.610 --> 01:18.290
+It comes from the product info and comes from the categories from the ERP.
+
+01:18.330 --> 01:20.370
+Now as you can see here we have cross arrows.
+
+01:20.370 --> 01:25.330
+So what we can do we can go and select everything and we can say line jumps with a gap.
+
+01:25.330 --> 01:28.890
+And this makes it a little bit better in the visual for the arrows.
+
+01:28.890 --> 01:33.850
+So now for example if someone asks you where the data come from for the dimension products, you can
+
+01:33.890 --> 01:37.890
+open this diagram and tell them, okay, this comes from the server layer.
+
+01:37.890 --> 01:43.650
+We have like two tables, the product info from the CRM and as well the categories from the ERP and
+
+01:43.650 --> 01:46.130
+those server tables comes from the bronze layer.
+
+01:46.130 --> 01:51.050
+And you can see the product info comes from the CRM and the category comes from the ERP.
+
+01:51.210 --> 01:52.250
+So it is very simple.
+
+01:52.250 --> 01:57.730
+We have just created a full data lineage for our data warehouse from the sources into the different
+
+01:57.730 --> 01:59.130
+layers in our data warehouse.
+
+01:59.130 --> 02:04.130
+And data lineage is really amazing documentation that can help not only your users, but as well the
+
+02:04.130 --> 02:04.690
+developers.
+
+02:04.730 --> 02:08.370
+All right, so with that we have very nice data flow diagram and a data lineage.
+
+02:08.490 --> 02:08.930
+All right.
+
+02:08.930 --> 02:10.810
+So we have completed the data flow.
+
+02:10.850 --> 02:15.780
+It's really feel like progress, like achievements as we are clicking through all those tasks.
+
+02:15.820 --> 02:20.100
+And now we come to the last task in building the data warehouse, where we're going to go and commit
+
+02:20.100 --> 02:21.980
+our work in the GitHub repo.
+
+02:25.900 --> 02:28.140
+Okay, so now let's put our scripts in their project.
+
+02:28.140 --> 02:29.940
+So we're going to go to the scripts over here.
+
+02:29.940 --> 02:32.180
+We have here bronze silver but we don't have a gold.
+
+02:32.180 --> 02:33.860
+So let's go and create a new file.
+
+02:33.860 --> 02:35.540
+We're going to have gold slash.
+
+02:35.540 --> 02:38.660
+And then we're going to say DDL gold dot SQL.
+
+02:38.660 --> 02:41.140
+So now we're going to go and paste our views.
+
+02:41.140 --> 02:43.300
+So we have here our three views.
+
+02:43.300 --> 02:46.460
+And as usual at the start we're going to describe the purpose of the views.
+
+02:46.460 --> 02:48.540
+So we are seeing create gold views.
+
+02:48.540 --> 02:50.940
+This script can go and create views for the code layer.
+
+02:50.940 --> 02:54.580
+And the code layer represents the final dimension and fact tables.
+
+02:54.580 --> 03:00.020
+The star schema which view perform transformations and combination data from the server layer to produce
+
+03:00.020 --> 03:01.300
+business ready datasets.
+
+03:01.340 --> 03:04.140
+And those views can be used for analytics and reporting.
+
+03:04.140 --> 03:05.180
+So that's it.
+
+03:05.220 --> 03:06.780
+Let's go and commit it.
+
+03:06.780 --> 03:10.820
+Okay, so with that as you can see we have the bronze the silver.
+
+03:10.820 --> 03:14.700
+So we have all our etls and scripts in the repository.
+
+03:14.740 --> 03:19.580
+And now as well for the gold layer we're going to go and add all those quality checks that we have used
+
+03:19.580 --> 03:22.340
+in order to validate the dimensions and facts.
+
+03:22.340 --> 03:24.180
+So we're going to go to the test over here.
+
+03:24.180 --> 03:25.820
+And we're going to go and create a new file.
+
+03:25.820 --> 03:29.300
+It's going to be quality checks gold.
+
+03:29.300 --> 03:30.820
+And the file type is SQL.
+
+03:30.820 --> 03:33.220
+So now let's go and paste our quality checks.
+
+03:33.220 --> 03:36.300
+So we have the check for the fact the two dimensions.
+
+03:36.340 --> 03:38.780
+And as well an explanation about the scripts.
+
+03:38.780 --> 03:42.020
+So we are validating the integrity and the accuracy of the gold layer.
+
+03:42.020 --> 03:46.460
+And here we are checking the uniqueness of the surrogate keys and whether we are able to connect the
+
+03:46.460 --> 03:47.180
+data model.
+
+03:47.180 --> 03:50.860
+So let's put that as well in our git and commit the changes.
+
+03:50.860 --> 03:55.580
+And in case we come up with a new quality checks we're going to go and add it to our script here.
+
+03:55.580 --> 03:57.140
+So those checks are really important.
+
+03:57.140 --> 04:02.540
+If you are modifying the Etls or you want to make sure that after each ETL those scripts should run
+
+04:02.540 --> 04:07.500
+and so on, it is like a quality gate to make sure that everything is fine in the gold layer.
+
+04:07.540 --> 04:08.020
+Perfect.
+
+04:08.020 --> 04:10.820
+So now we have our code in our repository.
+
+04:10.860 --> 04:11.460
+Okay friends.
+
+04:11.460 --> 04:14.940
+So now what you have to do is to go and finalize the git repo.
+
+04:14.980 --> 04:20.220
+So for example all the documentations that we have created during the projects, we can go and upload
+
+04:20.220 --> 04:21.140
+them in the docs.
+
+04:21.140 --> 04:25.870
+So for example you can see here the data architecture, the data flow, data integration, data model
+
+04:25.870 --> 04:31.030
+and so on, so that each time you edit those pages, you can commit your work and you have like a version
+
+04:31.070 --> 04:31.470
+of that.
+
+04:31.510 --> 04:37.270
+And another thing that you can do is that you go to the readme like for example, over here I have added
+
+04:37.270 --> 04:42.750
+the project overview, some important links, and as well the data architecture and a little description
+
+04:42.750 --> 04:43.990
+of the architecture of course.
+
+04:44.030 --> 04:49.030
+And of course, don't forget to add a few words about yourself and important profiles in the different
+
+04:49.030 --> 04:49.950
+social medias.
+
+04:49.990 --> 04:50.910
+All right, my friends.
+
+04:50.910 --> 04:56.510
+So with that, we have committed our work and as well closed the last epic building the gold layer.
+
+04:56.510 --> 05:01.270
+And with that we have completed all the phases of building a data warehouse.
+
+05:01.310 --> 05:03.070
+Everything is 100%.
+
+05:03.070 --> 05:04.790
+And this feels really nice.
+
+05:04.830 --> 05:05.550
+All right, my friends.
+
+05:05.550 --> 05:09.990
+So with that, we have covered the first type of SQL projects, the data warehousing projects.
+
+05:09.990 --> 05:14.230
+This is usually a very complex project that you can get involved in a company.
+
+05:14.230 --> 05:17.630
+And this is really amazing project if you are planning to be a data engineer.
+
+05:17.670 --> 05:21.510
+But of course if you are a data analyst you might end up as well building warehouses.
+
+05:21.510 --> 05:25.150
+So now we have everything prepared for the second type of projects in SQL.
+
+05:25.190 --> 05:28.470
+We will deep dive now into the exploratory data analysis.
+
+05:28.470 --> 05:29.110
+So let's go.

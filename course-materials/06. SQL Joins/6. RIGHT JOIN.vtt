@@ -1,0 +1,256 @@
+WEBVTT
+
+00:03.920 --> 00:05.720
+Okay, so now what is exactly right?
+
+00:05.760 --> 00:06.160
+Join.
+
+00:06.160 --> 00:08.520
+This is the total opposite of the left join.
+
+00:08.520 --> 00:14.880
+So this type of returns all the rows from the right table and only the matching from the left table.
+
+00:14.880 --> 00:17.960
+So here the main table the main focus is the right table.
+
+00:17.960 --> 00:22.960
+So SQL gonna get you all the rows everything from the table B the right table.
+
+00:22.960 --> 00:26.280
+But from the left side we will get only the matching data.
+
+00:26.280 --> 00:31.720
+So that means in the left side you will get only the data that has a match on the right side.
+
+00:31.720 --> 00:36.480
+And with that the right table can be the primary, the main source of your data.
+
+00:36.480 --> 00:37.920
+So it is very important table.
+
+00:37.920 --> 00:39.960
+But the left table is not that important.
+
+00:39.960 --> 00:43.560
+You are just joining it in order to get additional data.
+
+00:43.560 --> 00:46.080
+So again about the syntax it's not that crazy.
+
+00:46.120 --> 00:48.800
+All what you have to do is to change the join type.
+
+00:48.800 --> 00:51.200
+So instead of left you say right join.
+
+00:51.200 --> 00:56.720
+And again here the order of the tables is very important because the side here makes a difference.
+
+00:56.720 --> 01:01.020
+So we start from the left table A and then right join it to the table.
+
+01:01.060 --> 01:03.340
+B so it sounds very similar to the left join.
+
+01:03.340 --> 01:04.780
+We are just switching things.
+
+01:04.820 --> 01:06.900
+Now let's go back to SQL in order to practice.
+
+01:06.940 --> 01:07.580
+Okay my friends.
+
+01:07.580 --> 01:08.780
+So now we have the following task.
+
+01:08.820 --> 01:16.260
+And it says get all customers along with their orders including orders without matching customers.
+
+01:16.300 --> 01:19.740
+So again we have the customers and the orders and we are doing the join.
+
+01:19.740 --> 01:21.460
+But here the condition is different.
+
+01:21.460 --> 01:25.860
+We want to see all the orders even if they don't have a matching customer.
+
+01:25.900 --> 01:31.340
+So that means I would like to see everything from the table orders and the customers table here is only
+
+01:31.340 --> 01:33.020
+like supporting and helping.
+
+01:33.020 --> 01:36.380
+So the main table that we are focusing on is in the orders.
+
+01:36.420 --> 01:39.820
+We want to see everything and from the customers only the matching.
+
+01:39.820 --> 01:44.900
+And if you are looking currently to the results, you can see we are seeing only three orders, right.
+
+01:44.900 --> 01:50.140
+But in the original table, if you go back over here, you can see that we have four orders.
+
+01:50.140 --> 01:54.220
+So we are currently using this query not seeing all the orders.
+
+01:54.220 --> 01:55.500
+So now how are we going to solve it.
+
+01:55.540 --> 01:58.640
+If you start from the table customers you can say you know what?
+
+01:58.680 --> 02:01.880
+Instead of left join, we're going to say right join.
+
+02:01.880 --> 02:06.240
+And with that, you're going to guarantee you will get everything from the table orders.
+
+02:06.240 --> 02:09.520
+But now the left table the customers is not that important.
+
+02:09.520 --> 02:12.680
+And you will see the data of the customers only if there is a match.
+
+02:12.680 --> 02:17.920
+So doing the right join like this guaranteed to see everything whether there is match or no match.
+
+02:17.920 --> 02:22.480
+Now if you go and execute it, you can see on the right side the order ID and the sales.
+
+02:22.480 --> 02:27.160
+And we can see now all the orders and on the left side the ID and the first name.
+
+02:27.160 --> 02:30.440
+We are seeing only the customers if they did order something.
+
+02:30.440 --> 02:34.200
+And for the orders without a known customer we are getting nulls.
+
+02:34.200 --> 02:36.800
+So with us we have solved the task using the right join.
+
+02:36.800 --> 02:41.040
+So now my friends, you have to go and solve this task to get the exact same results.
+
+02:41.040 --> 02:46.040
+But you are allowed to use only the left join, so you are not allowed to use the right join.
+
+02:46.040 --> 02:49.640
+So now go pause the video, solve the task and meet you soon.
+
+02:54.960 --> 02:59.100
+Now my friends in SQL there is always alternatives on how to solve a task.
+
+02:59.100 --> 03:03.820
+So now if you want to get all the data from B and only the matching from A, you can do it like we have
+
+03:03.820 --> 03:05.500
+done using the right join.
+
+03:05.500 --> 03:11.620
+But if you go and switch the sides and you make the table B as a left table and the table A as the right
+
+03:11.660 --> 03:15.620
+table, you can do that, of course, in SQL, but you have to switch the join type.
+
+03:15.620 --> 03:17.980
+So instead of right we have to use left.
+
+03:18.020 --> 03:20.980
+Now since the B table now on the left side.
+
+03:20.980 --> 03:22.940
+And as well you have to switch the order.
+
+03:22.940 --> 03:27.940
+So you start from the b table and then you say left join the A table.
+
+03:27.980 --> 03:29.780
+And of course the same join condition.
+
+03:29.780 --> 03:33.860
+And if you do that you will get the exact same result as the left query.
+
+03:33.860 --> 03:39.700
+So if you just switch the tables and as well switch the join type, you can get the same results.
+
+03:39.700 --> 03:42.620
+And to be honest my friends, I don't like the right join.
+
+03:42.660 --> 03:47.860
+It's just in the last ten years, I always tend to start from a table and then use a left join.
+
+03:47.860 --> 03:52.380
+And from my point of view, the left join is way more famous than the right join.
+
+03:52.380 --> 03:55.940
+And I think I never used a query where I'm using a right join.
+
+03:56.040 --> 04:00.520
+So my advice for you always try to skip the right join and stick with the left join.
+
+04:00.520 --> 04:04.600
+Just get the order of the tables in the query correct and you will get the same results.
+
+04:04.600 --> 04:07.080
+So with that you know an alternative for the right join.
+
+04:07.120 --> 04:10.440
+Now all that you have to do is to go and switch the right to left.
+
+04:10.480 --> 04:13.360
+And this is not enough because if I go and execute it.
+
+04:13.400 --> 04:17.200
+So now all what I have to do is to go and switch the tables like this.
+
+04:17.480 --> 04:22.680
+So we start from the table orders, because I want to see everything from the orders and then left,
+
+04:22.680 --> 04:24.320
+join it with the customers.
+
+04:24.360 --> 04:26.280
+And of course we don't have to change anything here.
+
+04:26.280 --> 04:29.880
+It doesn't matter the order because we have an equal operator here.
+
+04:29.880 --> 04:35.600
+What is very important here is where you start from which table and what is the table that you are joining
+
+04:35.600 --> 04:36.000
+with.
+
+04:36.000 --> 04:39.840
+So if you go and execute it, you will get the exact same results.
+
+04:39.840 --> 04:41.680
+So now I'm seeing all the orders.
+
+04:41.680 --> 04:45.120
+I'm not missing anything and only the matching customers.
+
+04:45.120 --> 04:48.920
+And I prefer this way solving this task instead of using the right join.
+
+04:48.960 --> 04:49.320
+All right.
+
+04:49.320 --> 04:50.960
+So that's all about the right join.
+
+04:51.000 --> 04:52.720
+Next we're going to combine everything.
+
+04:52.720 --> 04:54.880
+We're going to talk about the full join.
+
+04:54.880 --> 04:55.600
+So let's go.

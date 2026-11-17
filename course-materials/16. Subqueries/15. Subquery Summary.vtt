@@ -1,0 +1,64 @@
+WEBVTT
+
+00:03.880 --> 00:04.600
+All right, friends.
+
+00:04.600 --> 00:09.680
+So with that, you have covered everything about the subqueries, all the different categories and types
+
+00:09.680 --> 00:10.680
+of the subqueries.
+
+00:10.720 --> 00:13.560
+And now we're going to do a quick recap about the subqueries.
+
+00:13.560 --> 00:18.360
+So as we learned subqueries is just simply a query inside another query.
+
+00:18.360 --> 00:25.680
+And we use the subqueries in order to break down complex queries into smaller, simpler, easy to manage
+
+00:25.680 --> 00:26.360
+pieces.
+
+00:26.360 --> 00:29.760
+That makes everything easier to develop and as well to read.
+
+00:29.760 --> 00:33.920
+And as we learned, there are like many different use cases for the subqueries.
+
+00:33.920 --> 00:40.360
+So we use subqueries in order to create temporary result sets to be used later from another query.
+
+00:40.360 --> 00:46.400
+And we learned that we can use the subqueries in order to prepare the data before joining the tables.
+
+00:46.400 --> 00:52.360
+And another very important use case for the subquery is that we can use it in order to filter our data
+
+00:52.400 --> 00:56.440
+using a dynamic and as well complex filter logics.
+
+00:56.440 --> 01:01.960
+And as we learned, we can go and use the correlated subqueries using the exist operator in order to
+
+01:02.000 --> 01:06.400
+check the existence of data and rows from another tables.
+
+01:06.400 --> 01:11.560
+And as well using the correlated subqueries help us to do row by row comparison.
+
+01:11.560 --> 01:12.360
+All right, my friends.
+
+01:12.360 --> 01:16.720
+So with that, we have covered an important technique on how to nest your queries in SQL.
+
+01:16.760 --> 01:21.560
+Now in the next step we're going to talk about one of the most famous techniques on how to do multi
+
+01:21.560 --> 01:25.040
+steps in SQL, the CTE common table expression.
+
+01:25.040 --> 01:25.680
+So let's go.

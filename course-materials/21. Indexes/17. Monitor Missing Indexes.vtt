@@ -1,0 +1,166 @@
+WEBVTT
+
+00:03.920 --> 00:04.320
+All right.
+
+00:04.320 --> 00:05.840
+So now moving on to the next one.
+
+00:06.120 --> 00:10.160
+As we learned, identifying an unused index is an important task.
+
+00:10.360 --> 00:17.520
+But in the other hand identifying a missing index is as well very important to improve the performance
+
+00:17.520 --> 00:18.440
+of your queries.
+
+00:18.560 --> 00:25.160
+So in SQL server you can get recommendations from the database itself about missing indexes for your
+
+00:25.160 --> 00:25.680
+query.
+
+00:25.800 --> 00:28.240
+So let's see where we can find those recommendations.
+
+00:28.280 --> 00:28.640
+All right.
+
+00:28.640 --> 00:33.160
+So now let's say that you are doing multiple queries and you are doing analysis and so on.
+
+00:33.160 --> 00:35.280
+For example I have this query over here.
+
+00:35.280 --> 00:38.080
+It is query on the database Adventureworks DW.
+
+00:38.280 --> 00:40.280
+And I'm joining just two tables.
+
+00:40.280 --> 00:47.000
+The fact with the dimension and then filtering the data based on the colors and as well on the datekey
+
+00:47.040 --> 00:48.960
+where I have like a range over here.
+
+00:48.960 --> 00:52.080
+So once I executed I got the following informations.
+
+00:52.080 --> 00:55.840
+It could be any query that you are doing while practicing and analyzing and so on.
+
+00:55.840 --> 01:01.200
+So now if you have like slow query and so on, you can go and check the recommendations from the database
+
+01:01.200 --> 01:02.760
+about missing indexes.
+
+01:02.760 --> 01:08.990
+So in order to do that we can go and check again the metadata from the database system to see the recommendations
+
+01:08.990 --> 01:10.190
+about the missing indexes.
+
+01:10.190 --> 01:11.230
+So let's go and do that.
+
+01:11.230 --> 01:13.230
+So we're going to go and select from.
+
+01:13.270 --> 01:16.510
+And now we have to go and target the dynamic management views.
+
+01:16.550 --> 01:24.390
+And it is like this DM underscore db underscore missing index details.
+
+01:24.550 --> 01:27.630
+So let's go and explore that content over here.
+
+01:27.630 --> 01:32.230
+And don't forget that those informations are going to be inside the cache of the server.
+
+01:32.230 --> 01:36.870
+And if there's like a restart or something on the server you will lose all those informations.
+
+01:36.870 --> 01:41.350
+So now from my query there is few suggestions and recommendations from the database.
+
+01:41.350 --> 01:46.790
+Let's go and check it so we can see here there are four recommendations about missing indexes from the
+
+01:46.790 --> 01:47.550
+database.
+
+01:47.550 --> 01:49.750
+So now let's go and check the first recommendation.
+
+01:49.750 --> 01:50.510
+Over here.
+
+01:50.510 --> 01:53.230
+You can go and check the table name from the object ID.
+
+01:53.230 --> 01:55.270
+Or you can find it here in the statements.
+
+01:55.270 --> 01:59.950
+So here the database is suggesting an index for the table dimension products.
+
+01:59.950 --> 02:03.670
+And it is recommending us to make an index for the column color.
+
+02:03.670 --> 02:07.870
+And that's because if you check our query we have like here a filter the where condition where we are
+
+02:07.870 --> 02:09.670
+seeing the color equal to black.
+
+02:09.670 --> 02:15.130
+And since we don't have an index on the color scale, is just suggesting to use an index for the color.
+
+02:15.130 --> 02:18.450
+And of course, in this situation we can go and use a non-clustered index.
+
+02:18.450 --> 02:23.970
+Now after that we have three recommendations for the same table fact internet sales.
+
+02:23.970 --> 02:29.490
+So for example here it is suggesting to make an index on the order date key because we are using it
+
+02:29.490 --> 02:30.850
+in the filter over here.
+
+02:30.850 --> 02:36.490
+And as well suggesting to make an index for the product key since we are using it for the join.
+
+02:36.490 --> 02:40.730
+So this is really nice report about missing indexes in the database.
+
+02:40.730 --> 02:44.730
+And it could assist you to find out things that you didn't thought about.
+
+02:44.730 --> 02:49.170
+But here my recommendation is evaluate those informations very carefully.
+
+02:49.170 --> 02:53.370
+Don't go and create like an index for each suggestions from the database.
+
+02:53.370 --> 02:54.810
+You still have to think about it.
+
+02:54.850 --> 02:56.330
+Is it really necessary?
+
+02:56.450 --> 02:59.930
+Do we really use this query very frequently and so on.
+
+02:59.930 --> 03:04.490
+So don't go blindly creating indexes for each recommendations from the database.
+
+03:04.490 --> 03:10.130
+So this is really nice tool and assistant for you in order to make a good strategy for your indexing.
+
+03:10.130 --> 03:15.290
+So this is how you find the recommendations of missing indexes from SQL database.

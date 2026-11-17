@@ -1,0 +1,106 @@
+WEBVTT
+
+00:00.080 --> 00:00.440
+All right.
+
+00:00.440 --> 00:05.840
+So previously we have understood that we can put all our SQL statements in one stored procedure.
+
+00:05.840 --> 00:09.560
+And you have to go and manually execute the stored procedure.
+
+00:09.560 --> 00:15.160
+So that means in order to trigger the stored procedure you have manually to execute it.
+
+00:15.160 --> 00:16.720
+And this is of course a problem.
+
+00:16.720 --> 00:19.080
+How about do that automatically.
+
+00:19.080 --> 00:26.800
+So triggers in SQL they are special stored procedure that automatically runs or let's say fired in response
+
+00:26.800 --> 00:29.920
+to a specific event that happens on a table.
+
+00:29.920 --> 00:31.520
+So what this exactly means.
+
+00:31.520 --> 00:34.480
+So now let's say that we have a table in our database.
+
+00:34.520 --> 00:40.320
+And now something could happen to this table like inserting data, deleting updating data, all that
+
+00:40.440 --> 00:41.720
+stuff that is happening.
+
+00:41.720 --> 00:43.040
+We call them events.
+
+00:43.240 --> 00:47.720
+And now what we can do, we can go and attach like a trigger on top of this table.
+
+00:47.720 --> 00:53.440
+And each time an event happened like insert, update, delete, something else can be triggered, like
+
+00:53.440 --> 00:58.240
+maybe going and inserting data somewhere else in another table or doing a check.
+
+00:58.240 --> 01:03.520
+Whether we are allowed to delete the data in the first place, or maybe sending a warning message or
+
+01:03.520 --> 01:04.200
+something.
+
+01:04.200 --> 01:10.700
+So based on any changes to the table, we can trigger another event and we can do that using the SQL
+
+01:10.740 --> 01:11.420
+triggers.
+
+01:11.420 --> 01:16.380
+And for the SQL triggers we have like multiple types like the DML triggers.
+
+01:16.380 --> 01:21.540
+And this type of trigger can respond once we have like insert update delete statements.
+
+01:21.580 --> 01:27.700
+Another type of triggers we have the DDL triggers like you can make a trigger to respond to any schema
+
+01:27.700 --> 01:32.340
+changes like creating, altering or dropping a table or even view.
+
+01:32.340 --> 01:33.660
+By the way, not only tables.
+
+01:33.660 --> 01:39.300
+And the third type of triggers, we have the login trigger so the trigger can respond to a login events.
+
+01:39.340 --> 01:43.740
+Now in this tutorial we're going to focus on the DML triggers, the insert, update delete.
+
+01:43.740 --> 01:46.740
+And for the DML triggers we have two types.
+
+01:46.740 --> 01:48.460
+We have after triggers.
+
+01:48.500 --> 01:51.420
+And as well we have instead of triggers.
+
+01:51.420 --> 01:54.060
+So as the name suggests if you use after.
+
+01:54.220 --> 01:56.900
+So it's going to be executed after the event.
+
+01:56.940 --> 02:01.620
+And the other type that instead of it's something that cannot wait until everything happens.
+
+02:01.620 --> 02:06.900
+So this time the trigger can be executed during the event, not after it.
+
+02:06.940 --> 02:10.860
+So now in order to understand all of this, we're going to have really nice use case.

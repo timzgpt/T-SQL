@@ -1,0 +1,181 @@
+WEBVTT
+
+00:03.960 --> 00:05.840
+Okay, so what is intersect?
+
+00:05.880 --> 00:10.800
+Intersect can go and return only rows that are common in both queries.
+
+00:10.800 --> 00:13.280
+It's something very similar to the inner join.
+
+00:13.280 --> 00:15.600
+And as well here it's going to go and remove duplicates.
+
+00:15.600 --> 00:17.800
+So there will be no duplicates in the output.
+
+00:17.800 --> 00:18.080
+All right.
+
+00:18.080 --> 00:21.920
+Again we have this very simple example where we have five customers and five employees.
+
+00:22.080 --> 00:24.880
+And now we're going to combine them using the intersect.
+
+00:24.880 --> 00:29.680
+So what intersect does is going to go and return common rows between two tables.
+
+00:29.680 --> 00:31.120
+So how SQL can execute it.
+
+00:31.120 --> 00:35.480
+It's very simple SQL can go and search for the common values.
+
+00:35.480 --> 00:37.360
+So what are the common values.
+
+00:37.360 --> 00:38.080
+It's given.
+
+00:38.080 --> 00:41.840
+And Mary and SQL can return only those two values given.
+
+00:41.840 --> 00:45.480
+And Mary and all others are going to be excluded from their results.
+
+00:45.640 --> 00:46.520
+It's very simple, right?
+
+00:46.520 --> 00:49.000
+It's going to go and return only the common values.
+
+00:49.000 --> 00:51.560
+And this is how the intersect works in SQL.
+
+00:51.600 --> 00:51.840
+Okay.
+
+00:51.840 --> 00:52.960
+Let's have this simple task.
+
+00:52.960 --> 00:56.680
+And it says find the employees who are also customers.
+
+00:56.680 --> 00:59.360
+So we can have the same queries employees and customers.
+
+00:59.360 --> 01:05.360
+But instead of having except we're going to go and use intersect, since we are finding the common information
+
+01:05.360 --> 01:08.880
+between the employees and customers, it's very simple and straightforward.
+
+01:08.920 --> 01:10.320
+Let's go and execute it.
+
+01:10.320 --> 01:12.560
+And with that, we're going to get the Kevin and Mary.
+
+01:12.800 --> 01:17.320
+This is the two persons that are at the same time employees and customers.
+
+01:17.360 --> 01:20.400
+And of course here we don't have to pay attention to the order of the queries.
+
+01:20.400 --> 01:24.320
+It's going to be the same if we say find the customers who are also employees.
+
+01:24.320 --> 01:29.640
+So if you go and just switch, for example, the customers with employees, you will see that we will
+
+01:29.640 --> 01:31.240
+get the exact same results.
+
+01:31.400 --> 01:33.280
+So it doesn't matter which query is first.
+
+01:33.280 --> 01:36.080
+Again, pay attention to the first query that defines the names.
+
+01:36.080 --> 01:41.520
+So now let's understand how SQL execute intersects behind the scenes okay again our two tables.
+
+01:41.520 --> 01:43.240
+And now we are doing intersects.
+
+01:43.240 --> 01:47.040
+So as usual it's going to go and take the columns from the first query.
+
+01:47.080 --> 01:50.600
+And now we're going to go and find the common data between those two results.
+
+01:50.600 --> 01:52.080
+So it's going to do it row by row.
+
+01:52.080 --> 01:53.240
+So we have the employee Frank.
+
+01:53.280 --> 01:54.600
+Do we have it as a customer.
+
+01:54.640 --> 01:55.080
+No.
+
+01:55.200 --> 01:57.880
+So it will not be in the output given Brown.
+
+01:57.880 --> 02:01.160
+We have it in the employees and as well as a customer over here.
+
+02:01.160 --> 02:03.920
+So that's why we will get it in the output.
+
+02:03.920 --> 02:05.280
+The same thing for Mary.
+
+02:05.280 --> 02:07.840
+So we have Mary as employee and as well as customer.
+
+02:08.040 --> 02:11.120
+So we're going to have it in the output Michael and Carole.
+
+02:11.160 --> 02:12.200
+They are not customers.
+
+02:12.200 --> 02:13.400
+They are only employees.
+
+02:13.600 --> 02:15.720
+That's why we will not get it in the output.
+
+02:15.720 --> 02:17.280
+The same thing goes for the customers.
+
+02:17.320 --> 02:18.000
+Joseph.
+
+02:18.160 --> 02:19.000
+We don't have Mark.
+
+02:19.000 --> 02:21.760
+We don't have Anna because they are not employees.
+
+02:21.760 --> 02:26.440
+So thus we're going to get only the common information between the two tables or two queries.
+
+02:26.440 --> 02:31.080
+And it doesn't matter whether we start with customer or with employees, we will get at the end the
+
+02:31.080 --> 02:32.240
+same information.
+
+02:32.280 --> 02:32.640
+All right.
+
+02:32.640 --> 02:34.440
+So that's all it's very simple right.
+
+02:34.440 --> 02:36.840
+This is how the intersect works in SQL.

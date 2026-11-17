@@ -1,0 +1,814 @@
+WEBVTT
+
+00:03.920 --> 00:05.640
+Okay, so what is Intel?
+
+00:05.680 --> 00:07.120
+Intel in scale is very simple.
+
+00:07.120 --> 00:13.280
+It's going to go and divide your rows, your data into specific number of almost equal groups.
+
+00:13.280 --> 00:15.440
+Or sometimes we call them packets.
+
+00:15.560 --> 00:19.960
+So now in order to understand this and how SQL works with this function, we're going to have a very
+
+00:19.960 --> 00:20.840
+simple example.
+
+00:20.840 --> 00:21.400
+So let's go.
+
+00:21.440 --> 00:22.840
+Okay we have the following setup.
+
+00:22.840 --> 00:24.560
+We have four rows for sales.
+
+00:24.560 --> 00:28.880
+And we would like to divide it into two groups or into two buckets.
+
+00:28.880 --> 00:31.760
+So in order to do that we can use the entire function.
+
+00:31.960 --> 00:35.040
+It has different syntax than the other ranking functions.
+
+00:35.040 --> 00:37.080
+So it starts with in tile.
+
+00:37.280 --> 00:39.280
+Then we must define a number.
+
+00:39.280 --> 00:41.720
+So we cannot leave it empty like the other ranking.
+
+00:41.880 --> 00:43.520
+So here we have two buckets.
+
+00:43.800 --> 00:46.680
+Then over and here again we have to sort the data.
+
+00:46.680 --> 00:51.200
+So it is must order by sales descending from the highest to the lowest.
+
+00:51.200 --> 00:53.560
+So now as usual SQL is going to go and sort the data.
+
+00:53.560 --> 00:55.600
+We have it already sorted in this example.
+
+00:55.920 --> 00:59.400
+Then it's going to start assigning each of those rows into buckets.
+
+00:59.400 --> 00:59.540
+packets.
+
+00:59.780 --> 01:03.140
+But SQL first has to calculate the packet size.
+
+01:03.140 --> 01:07.220
+So how many rows we can like insert inside each packet.
+
+01:07.460 --> 01:09.100
+So the calculation is very simple.
+
+01:09.100 --> 01:15.460
+It says the packet size equals to the number of rows divided by the number of packets.
+
+01:15.660 --> 01:17.060
+So what is the number of rows.
+
+01:17.060 --> 01:18.980
+Here we have four rows right.
+
+01:19.140 --> 01:20.940
+So we have four over here.
+
+01:21.180 --> 01:24.620
+Then the number of packets we define it in the syntax of the query.
+
+01:24.780 --> 01:26.300
+So here we defined two packets.
+
+01:26.300 --> 01:27.540
+We need two groups.
+
+01:27.540 --> 01:30.540
+So that means we are dividing four by two.
+
+01:30.700 --> 01:32.620
+And the size of the bucket is going to be two.
+
+01:32.660 --> 01:36.420
+So now with this SQL is ready I'm going to start assigning each row to a packet.
+
+01:36.420 --> 01:37.700
+So it's going to start with the top.
+
+01:37.700 --> 01:40.100
+The first one is going to be in the packet number one.
+
+01:40.140 --> 01:41.460
+Then go to the next one.
+
+01:41.460 --> 01:45.180
+It's going to say okay we still have enough space in the packet right.
+
+01:45.180 --> 01:47.180
+So it's going to assign it as well to one.
+
+01:47.180 --> 01:51.700
+But with this we reach the maximum number of rows within each packets.
+
+01:51.700 --> 01:54.460
+So the next row is going to be assigned to another bucket.
+
+01:54.460 --> 01:55.580
+So it's going to be two.
+
+01:55.980 --> 01:57.820
+And the last one is going to be as well two.
+
+01:57.820 --> 01:57.840
+too.
+
+01:57.880 --> 01:59.400
+So as you can see, it's very simple.
+
+01:59.400 --> 02:03.800
+We have just assigned our sales based on the sorting of course, into two buckets.
+
+02:03.920 --> 02:06.360
+These two sales belongs to the bucket number one.
+
+02:06.360 --> 02:09.200
+And the other two belongs to the bucket number two.
+
+02:09.240 --> 02:09.800
+Very easy.
+
+02:09.800 --> 02:12.720
+So that was very straightforward because we are dividing even numbers.
+
+02:12.720 --> 02:15.000
+And we got perfectly sized buckets.
+
+02:15.000 --> 02:17.840
+But now what can happen if we have an odd number.
+
+02:17.840 --> 02:20.400
+So we have here five instead of four.
+
+02:20.720 --> 02:23.400
+So the bucket size is going to be dividing five by two.
+
+02:23.440 --> 02:24.920
+We're going to get 2.5.
+
+02:24.960 --> 02:29.080
+And now of course SQL will not go and divide like two half for each bucket.
+
+02:29.080 --> 02:31.120
+Then we are splitting this into two buckets.
+
+02:31.160 --> 02:32.920
+Of course this will not be working.
+
+02:32.960 --> 02:36.720
+We should have now a bucket with three and another bucket with two.
+
+02:36.760 --> 02:39.200
+So now the rule in SQL make it very clear.
+
+02:39.200 --> 02:43.000
+It says larger groups comes first then smaller.
+
+02:43.000 --> 02:48.280
+So that means if we have here an even number like this, the larger group going to be the first group.
+
+02:48.480 --> 02:50.480
+So that's going to look like this.
+
+02:50.520 --> 02:52.920
+It's going to like reset everything.
+
+02:53.480 --> 02:55.120
+So let's see what's going to happen.
+
+02:55.120 --> 02:56.820
+The first one going to be one.
+
+02:56.860 --> 02:58.420
+The second one as Bill one.
+
+02:58.660 --> 02:59.820
+The third one going to be.
+
+02:59.860 --> 03:00.820
+As well one.
+
+03:00.820 --> 03:04.660
+So it kind of has a larger package than the second one.
+
+03:04.980 --> 03:06.660
+Then there is going to be two.
+
+03:06.900 --> 03:10.820
+So as you can see the larger group comes first then the smaller.
+
+03:10.820 --> 03:13.700
+And this is how SQL can work if you have odd numbers.
+
+03:13.700 --> 03:20.100
+So you don't have here perfectly sized buckets, you have approximately or roughly equal sized buckets.
+
+03:20.100 --> 03:21.660
+So this is how the install works.
+
+03:21.660 --> 03:24.740
+Now let's go back to SQL in order to practice this function okay.
+
+03:24.780 --> 03:27.140
+So now let's have some fun working with this function.
+
+03:27.140 --> 03:35.020
+So we'll just going to select something like order ID sales from sales orders.
+
+03:35.460 --> 03:36.900
+So let's go and execute it.
+
+03:36.900 --> 03:38.980
+And with that we got our ten rows.
+
+03:39.020 --> 03:42.780
+Now let's say that I would like to create only one bucket from the data.
+
+03:42.780 --> 03:52.820
+So entile and only one bucket over partition let's say not partition by let's take order by sales descending.
+
+03:52.820 --> 03:56.600
+So that's it I'm going to call it one bucket.
+
+03:56.600 --> 03:58.680
+So let's go and execute it as usual.
+
+03:58.760 --> 04:01.360
+Skill can go and sort the data and then calculate the bucket.
+
+04:01.360 --> 04:04.400
+It's going to be ten rows divided by one.
+
+04:04.400 --> 04:07.080
+So the size of the bucket going to be ten.
+
+04:07.080 --> 04:12.960
+So that's why you're going to see everywhere here as one because all those rows can fit into one bucket.
+
+04:12.960 --> 04:14.000
+So this is very simple.
+
+04:14.000 --> 04:15.720
+We have only one buckets.
+
+04:15.760 --> 04:16.240
+Let's go.
+
+04:16.240 --> 04:17.720
+And now have two buckets.
+
+04:17.720 --> 04:19.920
+So I'm just going to copy and paste.
+
+04:19.920 --> 04:22.240
+And instead of one we're going to have two.
+
+04:22.400 --> 04:24.160
+And let's call it two buckets.
+
+04:24.320 --> 04:26.960
+So let's go and execute this.
+
+04:26.960 --> 04:29.320
+So now here again what is the size of the buckets.
+
+04:29.320 --> 04:31.320
+It is ten divided by two.
+
+04:31.360 --> 04:34.040
+So we will get perfectly grouped buckets.
+
+04:34.040 --> 04:36.400
+So the first bucket is going to be five rows.
+
+04:36.440 --> 04:38.880
+And the second one is going to be the next five rows.
+
+04:39.080 --> 04:40.640
+So it is very perfect.
+
+04:40.680 --> 04:42.280
+Let's go to the next one.
+
+04:42.320 --> 04:44.360
+Let's have three buckets.
+
+04:44.600 --> 04:45.720
+So three.
+
+04:46.400 --> 04:47.920
+So let's go and execute.
+
+04:47.920 --> 04:49.000
+So now what's going to happen.
+
+04:49.000 --> 04:53.980
+It's going to go and divide ten by three in order to get the size of the bucket and it's going to be
+
+04:54.020 --> 04:54.860
+3.3.
+
+04:54.860 --> 04:58.860
+So it is decimal and we will not get perfectly sized buckets.
+
+04:59.140 --> 05:02.620
+So again the larger group comes first then the smaller.
+
+05:02.620 --> 05:08.340
+So as you can see we have to fit then in the first group for in order to get the others with three.
+
+05:08.340 --> 05:11.100
+So that's why the first bucket is going to be the biggest one.
+
+05:11.100 --> 05:16.500
+So four rows into the first bucket, then the second three rows is going to be in the bucket two.
+
+05:16.700 --> 05:18.980
+And as well the last one is going to be bucket three.
+
+05:18.980 --> 05:22.500
+So as you can see the largest group is going to be the first bucket.
+
+05:22.500 --> 05:24.020
+So now let's keep playing with the data.
+
+05:24.020 --> 05:28.620
+Let's go and take now for we would like to have four buckets.
+
+05:29.020 --> 05:31.020
+Now things can get interesting.
+
+05:31.020 --> 05:33.100
+So now by checking the results it's going to be interesting.
+
+05:33.140 --> 05:35.020
+It's going to divide ten by four.
+
+05:35.060 --> 05:37.300
+And we will get something like 2.5.
+
+05:37.540 --> 05:40.180
+So again we will not get perfectly sized groups.
+
+05:40.180 --> 05:44.220
+So SQL has to fit now ten rows into four groups.
+
+05:44.420 --> 05:48.660
+So the first three rows is going to be fit in the bucket number one.
+
+05:48.660 --> 05:53.520
+And as well the second three rows like this going to be in the packet number two.
+
+05:53.720 --> 05:57.560
+And then you can see over here we have two packets with the size of two.
+
+05:57.600 --> 06:00.320
+And with that we can fit ten into four groups.
+
+06:00.320 --> 06:04.280
+And again you can see the larger groups comes first like this one.
+
+06:04.280 --> 06:07.280
+And then the second and the smaller comes later.
+
+06:07.320 --> 06:07.680
+Okay.
+
+06:07.720 --> 06:09.680
+So this is how the internet works in SQL.
+
+06:09.680 --> 06:13.320
+And now you might say, you know what, why do I need buckets in the first place.
+
+06:13.320 --> 06:14.840
+So what is the use case.
+
+06:18.880 --> 06:22.040
+There is two use cases for the entire function in my projects.
+
+06:22.280 --> 06:27.440
+In one hand, if I am that analyst, I'm going to use the Intel function in order to segment my data.
+
+06:27.440 --> 06:32.400
+In the other hand, if I'm a data engineer, I'm going to use the Intel function in order to do ETL
+
+06:32.440 --> 06:36.040
+processing and as well to do load balancing.
+
+06:36.040 --> 06:40.680
+So now let's start with the first use case as a data analyst where you want to do segmentation with
+
+06:40.680 --> 06:41.720
+the entire function.
+
+06:42.040 --> 06:45.640
+Segmentation is very nice way in order to understand your data.
+
+06:45.640 --> 06:51.620
+So you can go and segment your data into different buckets or groups like for example, doing segmentations
+
+06:51.620 --> 06:57.300
+for the customers so you can go and group up your customers depend on their behavior like the total
+
+06:57.300 --> 06:59.860
+sales or the total number of orders.
+
+07:00.020 --> 07:05.220
+So with that you can make like for example VIP section and then the medium and then the low.
+
+07:05.380 --> 07:09.100
+So now in order to understand the segmentation use case let's have the following task.
+
+07:09.140 --> 07:09.380
+Okay.
+
+07:09.420 --> 07:15.820
+The task says segment all orders into three categories high, medium and low sales.
+
+07:15.940 --> 07:19.580
+So in order to solve this let's do the basic stuff right.
+
+07:19.620 --> 07:27.460
+So select order ID let's take the sales from order table sales orders and let's go and execute it.
+
+07:27.660 --> 07:29.860
+So as usual we got our ten sales.
+
+07:29.860 --> 07:33.380
+So now if you check the task it says we need three categories.
+
+07:33.380 --> 07:35.660
+So that means we need three buckets right.
+
+07:35.700 --> 07:38.700
+And it says high medium and low sales.
+
+07:38.700 --> 07:41.700
+So that means we are dividing by the sales.
+
+07:41.900 --> 07:43.660
+So let's go and do it step by step.
+
+07:43.740 --> 07:46.980
+So we're going to use interval since we need to segment the data.
+
+07:47.380 --> 07:49.680
+Three categories means three buckets.
+
+07:49.920 --> 07:52.440
+And then let's define the window over.
+
+07:52.480 --> 07:54.840
+We don't have to divide the data by partition by.
+
+07:55.000 --> 07:57.880
+We just need to sort it first by the sales.
+
+07:57.880 --> 07:59.280
+So it's going to be by sales.
+
+07:59.280 --> 08:03.640
+And let's take discrete since we want to sort it from the highest to the lowest.
+
+08:03.880 --> 08:04.880
+So that's it.
+
+08:04.920 --> 08:07.400
+Let's say you are our buckets.
+
+08:07.560 --> 08:09.720
+So let's go and execute this.
+
+08:09.720 --> 08:14.200
+So now if you check the data you can see that they are segmented into three buckets.
+
+08:14.360 --> 08:18.120
+So the first bucket can contain all orders with the high sales.
+
+08:18.440 --> 08:21.440
+Then the second one going to be all sales with the medium.
+
+08:22.000 --> 08:25.360
+And then the last one going to be all sales with the low sales.
+
+08:25.480 --> 08:29.600
+So as you can see, we have already categorized our data into three groups.
+
+08:29.600 --> 08:31.680
+But now as you can see, we have numbers.
+
+08:32.000 --> 08:35.720
+And maybe the user is expecting to have those text high medium low.
+
+08:35.720 --> 08:39.800
+So that means what we're going to do now we're going to go and translate those numbers into text into
+
+08:39.840 --> 08:40.400
+words.
+
+08:40.520 --> 08:41.880
+And of course we cannot do that.
+
+08:41.880 --> 08:46.980
+Inside the window function we're going to use data transformation using the case when Statements.
+
+08:47.020 --> 08:47.780
+Don't worry about it.
+
+08:47.820 --> 08:51.100
+We're going to have complete dedicated section explaining the case.
+
+08:51.700 --> 08:54.900
+So for now, just follow me in order to see how this works.
+
+08:55.020 --> 08:56.900
+We're going to go and use sub query.
+
+08:56.900 --> 08:58.580
+So it's going to be select.
+
+08:58.940 --> 09:00.860
+And let's take the star for everything.
+
+09:00.860 --> 09:03.300
+And then let's have the following logic case.
+
+09:03.300 --> 09:07.620
+When buckets equal to one then it is high.
+
+09:07.780 --> 09:08.780
+The sales is high.
+
+09:09.700 --> 09:12.100
+So we are just mapping the numbers into text.
+
+09:12.100 --> 09:20.220
+So otherwise case when the bucket is equal to two then we are targeting the medium medium and then the
+
+09:20.220 --> 09:23.300
+last group buckets equal to three.
+
+09:23.700 --> 09:25.340
+Then those sales are low.
+
+09:25.940 --> 09:30.900
+So let's call it ended and let's call it sales segmentations.
+
+09:31.420 --> 09:32.260
+So that's it.
+
+09:32.300 --> 09:35.540
+Let me just make it a little bit smaller in order for you to see it.
+
+09:35.580 --> 09:41.980
+And all right so from and then we have our sub query like this.
+
+09:42.820 --> 09:46.240
+So as you can see we just mapped the numbers into text.
+
+09:46.280 --> 09:47.960
+We are just doing translations.
+
+09:48.280 --> 09:49.800
+So let's go and execute it.
+
+09:49.840 --> 09:54.040
+And now by checking the results, we got our three categories for the users.
+
+09:54.120 --> 09:56.760
+So the first category is going to be the highest sales.
+
+09:56.800 --> 09:58.720
+The second one going to be the medium sales.
+
+09:58.720 --> 10:01.000
+And the third one going to be the low sales.
+
+10:01.040 --> 10:04.760
+So guys you see Intel is very powerful in order to segment our data.
+
+10:04.760 --> 10:10.960
+So now you can go and segment stuff like the customers by their total sales or the products by prices,
+
+10:11.200 --> 10:13.600
+employees by their salaries and so on.
+
+10:17.560 --> 10:17.920
+Alright.
+
+10:17.920 --> 10:22.400
+So this is the first use case for the Intel function as a data analyst, where you go and segment your
+
+10:22.400 --> 10:24.760
+data in order to understand the behavior.
+
+10:24.800 --> 10:30.280
+Now, in the other hand, if you are a data engineer, you can use Intel function in order to do load
+
+10:30.320 --> 10:31.800
+balancing in your ETL.
+
+10:32.000 --> 10:34.360
+So now I'm just going to explain it in very simple sketch.
+
+10:34.400 --> 10:37.720
+Alright, so now we have the following scenario where we have two databases.
+
+10:37.720 --> 10:42.560
+And we would like to move one big table from the database A to database B.
+
+10:42.560 --> 10:45.060
+So in this case I'm doing something called full load.
+
+10:45.100 --> 10:48.940
+That means I'm loading all the rows from one database to another.
+
+10:49.380 --> 10:53.860
+So if you do it in one go, what could happen is that it could take a long time.
+
+10:53.860 --> 10:56.500
+So it could take hours or even sometimes days.
+
+10:56.540 --> 11:01.700
+And maybe at the end you will get maybe some network errors because you have stressed the networks between
+
+11:01.700 --> 11:05.980
+those two databases and everything can break and you're going to lose the data and you have to start
+
+11:05.980 --> 11:06.380
+again.
+
+11:06.420 --> 11:11.700
+So now instead of loading this table in one go, what we can do, we can go and split it into fractions
+
+11:11.700 --> 11:13.100
+or let's say packets.
+
+11:13.100 --> 11:19.260
+So we can split this table, for example into four small tables using the function entile.
+
+11:19.300 --> 11:24.540
+So now after we split this big table into small tables, we can go and start moving those small tables
+
+11:24.540 --> 11:25.860
+one after another.
+
+11:25.980 --> 11:29.740
+And with that we are not stressing the networks and it's going to succeed.
+
+11:29.740 --> 11:34.060
+So now after loading everything at the end in the target database, we're going to have those small
+
+11:34.060 --> 11:34.460
+tables.
+
+11:34.460 --> 11:40.540
+And of course we can go and use the union in order to merge them in order to have again the big table
+
+11:40.540 --> 11:42.840
+that we have it in the original database.
+
+11:42.840 --> 11:48.320
+So this is very common use case for the tile in order to split the load and to balance the processing
+
+11:48.320 --> 11:49.640
+of extracting data.
+
+11:49.680 --> 11:49.960
+All right.
+
+11:49.960 --> 11:51.440
+So now we have the following SQL task.
+
+11:51.480 --> 11:56.320
+It says in order to export the data divide the orders into two groups.
+
+11:56.560 --> 11:57.840
+So let's go and do that.
+
+11:57.880 --> 12:04.480
+First we're going to select everything from the table just in order to see the data sales orders.
+
+12:04.680 --> 12:06.280
+So let's go and execute it.
+
+12:06.280 --> 12:07.640
+So now we got our ten orders.
+
+12:07.640 --> 12:10.880
+And what we have to do is that to go and split it into two groups.
+
+12:11.120 --> 12:17.160
+In order to do that we can use the tile function to groups means two buckets.
+
+12:17.440 --> 12:18.960
+So let's define the window.
+
+12:18.960 --> 12:23.800
+So here we don't have to partition the data using partition by but we have to specify the order by.
+
+12:23.840 --> 12:27.560
+So now which column we're going to use in order to sort the data.
+
+12:27.600 --> 12:32.760
+Of course here there is no rule like you can go and split the data by sales or by the order status,
+
+12:32.760 --> 12:34.440
+by date, by anything you want.
+
+12:34.640 --> 12:37.360
+But we usually go and use the primary key.
+
+12:37.400 --> 12:42.620
+It's just systematic, better and more clean, especially if you have a sequence of numbers in the order
+
+12:42.620 --> 12:47.900
+ID, so you can export the first range of the orders, then you can go to the next group, and so on.
+
+12:48.140 --> 12:51.460
+So let's go with the order ID and let's give it a name.
+
+12:51.620 --> 12:52.220
+Buckets.
+
+12:52.780 --> 12:54.060
+So that's it.
+
+12:54.100 --> 12:55.540
+Let's go and hit execute.
+
+12:55.580 --> 12:57.060
+Now as you can see it's very simple.
+
+12:57.060 --> 12:58.460
+We got our two groups.
+
+12:58.460 --> 13:01.300
+So this is the first batch of of the data.
+
+13:01.300 --> 13:03.940
+And this is the second batch of data.
+
+13:03.940 --> 13:06.740
+So now we can go and select the first batch and export it.
+
+13:06.780 --> 13:08.300
+Import it in the next system.
+
+13:08.300 --> 13:10.540
+And then after that we go with the second batch.
+
+13:10.540 --> 13:15.460
+And of course if you still suffer from the size of those buckets you can go and split it to more smaller
+
+13:15.460 --> 13:16.100
+size.
+
+13:16.100 --> 13:18.820
+So you can go over here and make it four.
+
+13:19.020 --> 13:20.980
+So with that we're going to get smaller buckets.
+
+13:20.980 --> 13:23.700
+And it might be easier to export the data.
+
+13:23.700 --> 13:26.380
+So this is really great use case for the entire function.
+
+13:26.380 --> 13:27.060
+All right everyone.
+
+13:27.060 --> 13:31.380
+So with this you have learned that two use cases for the internal function that I usually follow in
+
+13:31.380 --> 13:32.380
+my projects.
+
+13:32.380 --> 13:35.460
+So as a data analyst you can use it in order to do segmentations.
+
+13:35.660 --> 13:39.740
+And as a data engineer you can use it in order to do load balancing of the ETL.

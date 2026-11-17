@@ -1,0 +1,530 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.239
+Okay, so what is isDate?
+
+2
+00:00:06.239 --> 00:00:10.699
+So the isDate is very simple, it's going to check whether a value is a date.
+
+3
+00:00:10.699 --> 00:00:18.159
+So it's going to return 1 if the string value is a valid date, or 0 if it is not a valid date.
+
+4
+00:00:18.159 --> 00:00:20.760
+Okay, so let's check quickly the syntax of the isDate.
+
+5
+00:00:20.760 --> 00:00:25.100
+It's very simple, the keyword isDate is the function name and it accepts only one value.
+
+6
+00:00:25.100 --> 00:00:29.639
+So for example, you can pass a string like this, and you can ask SQL, is it a date?
+
+7
+00:00:29.639 --> 00:00:33.840
+So isDate and the value, and of course, for this example, you will get true or 1.
+
+8
+00:00:33.840 --> 00:00:38.840
+So as you can see, we are passing here a string value and we are validating whether it is
+
+9
+00:00:38.840 --> 00:00:40.319
+good enough to be a date.
+
+10
+00:00:40.319 --> 00:00:43.959
+Or as well, you can go and specify a number like year 2025.
+
+11
+00:00:43.959 --> 00:00:45.560
+So is this value a date?
+
+12
+00:00:45.560 --> 00:00:50.119
+And of course, SQL is going to accept it and say, yeah, this is a year, so you will get as well a 1.
+
+13
+00:00:50.119 --> 00:00:52.279
+So you can pass as well a number or integer.
+
+14
+00:00:52.279 --> 00:00:56.799
+So you are just checking the values whether they are suitable enough to be a date.
+
+15
+00:00:56.799 --> 00:00:58.680
+So that's all about the syntax of the isDate.
+
+16
+00:00:58.720 --> 00:01:00.360
+Okay, so now let's have a few examples.
+
+17
+00:01:00.360 --> 00:01:05.279
+For example, let's go and select and we're going to say isDate and we will check a value.
+
+18
+00:01:05.279 --> 00:01:08.440
+So let's say this value is a string 1, 2, 3.
+
+19
+00:01:08.440 --> 00:01:12.120
+Let's go and call it dateCheck1.
+
+20
+00:01:12.120 --> 00:01:13.120
+Let's go and excuse it.
+
+21
+00:01:13.120 --> 00:01:16.440
+Now in the output, SQL is going to say, no, it is not a date.
+
+22
+00:01:16.440 --> 00:01:21.919
+And that's why we are getting the value 0, which is correct because 1, 2, 3 is not a date.
+
+23
+00:01:21.919 --> 00:01:22.919
+Let's pick another value.
+
+24
+00:01:22.919 --> 00:01:26.739
+The same thing, isDate, and now the value is going to be the following.
+
+25
+00:01:26.739 --> 00:01:30.739
+So 2025, August 20.
+
+26
+00:01:30.739 --> 00:01:35.300
+So let's call it dateCheck2, and let's go and excuse it.
+
+27
+00:01:35.300 --> 00:01:37.260
+Now in the output, we will get 1.
+
+28
+00:01:37.260 --> 00:01:41.040
+That means the value that we have provided is a date.
+
+29
+00:01:41.040 --> 00:01:45.220
+And that's why we have a 1 in the output because SQL is saying this is a date.
+
+30
+00:01:45.220 --> 00:01:47.379
+Now let's have another example.
+
+31
+00:01:47.379 --> 00:01:49.139
+We're going to take the whole thing.
+
+32
+00:01:49.139 --> 00:01:54.779
+So this is a check 3, I have to remove this from here, but I would like to go and change the format.
+
+33
+00:01:54.819 --> 00:01:58.940
+So let's say that we start with the day, then month, and then the year.
+
+34
+00:01:58.940 --> 00:01:59.940
+Let's go and check.
+
+35
+00:01:59.940 --> 00:02:04.739
+Now in the output, you can see it is 0 because SQL does not understand the formats.
+
+36
+00:02:04.739 --> 00:02:08.300
+So we are not following the standard format of the database in SQL.
+
+37
+00:02:08.300 --> 00:02:11.360
+And that's why SQL is going to say, no, this is not a date.
+
+38
+00:02:11.360 --> 00:02:13.220
+This is like a string value.
+
+39
+00:02:13.220 --> 00:02:19.020
+So that means only if the value is following the standard format, SQL can understand this is a date.
+
+40
+00:02:19.020 --> 00:02:20.339
+Now let's go and check another thing.
+
+41
+00:02:20.339 --> 00:02:24.380
+For example, let's say isDate, and let's have only the year.
+
+42
+00:02:24.380 --> 00:02:29.300
+So 2025, and let's give it the name DateCheck4.
+
+43
+00:02:29.300 --> 00:02:30.339
+Let's go and execute it.
+
+44
+00:02:30.339 --> 00:02:32.500
+Now in the output, we will get 1.
+
+45
+00:02:32.500 --> 00:02:35.940
+So that means SQL is considering this value as a date.
+
+46
+00:02:35.940 --> 00:02:40.779
+So that means SQL is smart enough to understand, okay, we have provided a year information,
+
+47
+00:02:40.779 --> 00:02:45.419
+and SQL can accept it and say, okay, maybe this is the 1st of January of 2025.
+
+48
+00:02:45.419 --> 00:02:48.779
+Now let's go and do the same thing, but for the month.
+
+49
+00:02:48.779 --> 00:02:50.500
+Let's see whether SQL can accept it.
+
+50
+00:02:50.500 --> 00:02:54.820
+So check 5, and we have the month of August.
+
+51
+00:02:54.820 --> 00:02:55.820
+Let's go and check.
+
+52
+00:02:55.820 --> 00:02:59.679
+Now SQL can say, no, I don't understand this value. This is 0.
+
+53
+00:02:59.679 --> 00:03:02.779
+So that means this value is provided is not a date.
+
+54
+00:03:02.779 --> 00:03:07.339
+So by checking those results, as you can see, SQL understands only the standard format,
+
+55
+00:03:07.339 --> 00:03:10.539
+and it allows you as well to check whether a year is a date.
+
+56
+00:03:10.539 --> 00:03:12.860
+So this is how the isDate works in SQL.
+
+57
+00:03:12.860 --> 00:03:15.339
+And now you might ask, well, when I'm going to do this?
+
+58
+00:03:15.339 --> 00:03:17.940
+When I'm going to check whether the value is a date or not?
+
+59
+00:03:17.940 --> 00:03:19.580
+Let me give you this following scenario.
+
+60
+00:03:19.660 --> 00:03:21.339
+So imagine that we have the following date.
+
+61
+00:03:21.339 --> 00:03:23.460
+So we have four values as a string.
+
+62
+00:03:23.460 --> 00:03:27.779
+And now if you check the data, you can see that we are following the standard format,
+
+63
+00:03:27.779 --> 00:03:30.259
+but only one value has an issue.
+
+64
+00:03:30.259 --> 00:03:32.100
+So we have here data quality problem.
+
+65
+00:03:32.100 --> 00:03:36.460
+So now what we want to do, we want to go and cast this string value to a date.
+
+66
+00:03:36.460 --> 00:03:38.580
+We don't want this to stay as a string value.
+
+67
+00:03:38.580 --> 00:03:42.220
+We would like to have it in the final result as a date.
+
+68
+00:03:42.220 --> 00:03:48.440
+So what we usually do is that we go and have like subquery on top of those values. So like this.
+
+69
+00:03:48.440 --> 00:03:50.000
+So now what we're going to do, we're going to go and say,
+
+70
+00:03:50.000 --> 00:03:55.119
+we would like to go and cast the orderDate as a date.
+
+71
+00:03:55.119 --> 00:04:00.119
+We don't want it as a string, and we're going to call it orderDate from these values.
+
+72
+00:04:00.119 --> 00:04:04.759
+So let me just make it like this, and let's go and execute it.
+
+73
+00:04:04.759 --> 00:04:08.559
+Now SQL is going to give you an error and say, well, I cannot convert everything to
+
+74
+00:04:08.559 --> 00:04:11.479
+a date because you have maybe corrupt data.
+
+75
+00:04:11.479 --> 00:04:13.839
+And this is, of course, because of this row.
+
+76
+00:04:13.839 --> 00:04:18.000
+So SQL is not able to convert this string to a date.
+
+77
+00:04:18.000 --> 00:04:20.839
+But of course, now the example is very simple. We know that.
+
+78
+00:04:20.839 --> 00:04:25.320
+But if you have a huge table, it's going to be really hard to identify those issues.
+
+79
+00:04:25.320 --> 00:04:28.239
+But now still, I would like to go and convert those values here.
+
+80
+00:04:28.239 --> 00:04:29.640
+I don't want to get an error.
+
+81
+00:04:29.640 --> 00:04:35.160
+And now if there is like some values like here that is corrupt and so on, this value could be null.
+
+82
+00:04:35.160 --> 00:04:42.079
+So how we can force SQL to convert the data type from string to date and not give us this error.
+
+83
+00:04:42.079 --> 00:04:45.359
+And for this, we can go and use the help of the function isDate.
+
+84
+00:04:45.359 --> 00:04:47.000
+Let me show you how I usually do it.
+
+85
+00:04:47.000 --> 00:04:51.839
+So let's go and say, let's check whether the order date is a date.
+
+86
+00:04:51.839 --> 00:04:53.359
+So let's have it like this.
+
+87
+00:04:53.359 --> 00:04:57.799
+And now before we go and execute, I'm going to make this as a comment, because if I execute
+
+88
+00:04:57.799 --> 00:04:59.720
+it like this, we will get an error.
+
+89
+00:04:59.720 --> 00:05:02.940
+And let's go and get the order date in our select.
+
+90
+00:05:02.940 --> 00:05:04.320
+So let's go and execute it.
+
+91
+00:05:04.320 --> 00:05:07.019
+Now as you can see in the output, we have our string value.
+
+92
+00:05:07.019 --> 00:05:08.679
+So they are not yet a date.
+
+93
+00:05:08.679 --> 00:05:10.459
+And we have the result of our check.
+
+94
+00:05:10.459 --> 00:05:13.200
+So as you can see, the first row, we are getting a zero.
+
+95
+00:05:13.200 --> 00:05:16.179
+So SQL is saying this value is not a date.
+
+96
+00:05:16.359 --> 00:05:18.380
+But for all other values, we are getting one.
+
+97
+00:05:18.380 --> 00:05:20.980
+So they are passing the check and they are dates.
+
+98
+00:05:20.980 --> 00:05:23.459
+So now what you're going to do, we're going to go and build a logic where we're going
+
+99
+00:05:23.459 --> 00:05:31.739
+to say, go and cast the value from string to date only if the flag or the check is equal to one.
+
+100
+00:05:31.739 --> 00:05:35.420
+So that means we can go and use the help of the case when statements, let me show you
+
+101
+00:05:35.420 --> 00:05:36.579
+how we can do that.
+
+102
+00:05:36.579 --> 00:05:41.220
+So let's do it step by step, we're going to say case when now we need the check.
+
+103
+00:05:41.220 --> 00:05:44.760
+So isDate, the order date.
+
+104
+00:05:44.760 --> 00:05:50.079
+So if the output of this check is equal to one, then you are allowed to do the casting.
+
+105
+00:05:50.079 --> 00:05:54.160
+So let's go and get the cast as a result of this condition.
+
+106
+00:05:54.160 --> 00:05:57.279
+And if it's not equal to one, then it could stay as a null.
+
+107
+00:05:57.279 --> 00:06:00.000
+So let's have it as a null if it didn't pass the test.
+
+108
+00:06:00.000 --> 00:06:03.679
+So end and we're going to call it new order dates.
+
+109
+00:06:03.679 --> 00:06:05.359
+So now let's go and execute it.
+
+110
+00:06:05.359 --> 00:06:08.000
+Now as you can see, we are not getting error from SQL.
+
+111
+00:06:08.000 --> 00:06:12.160
+So now if you check the output for the invalid dates, we are getting a null.
+
+112
+00:06:12.160 --> 00:06:13.959
+So we are not getting any SQL error.
+
+113
+00:06:13.959 --> 00:06:19.200
+And now only if these string values are valid dates, it's allowed to be casted.
+
+114
+00:06:19.200 --> 00:06:25.279
+So that you can go and cast a string value to a date, even though that you have bad data quality.
+
+115
+00:06:25.279 --> 00:06:28.779
+And this is a very important step in order to prepare the data before doing analyzers.
+
+116
+00:06:28.779 --> 00:06:32.160
+And it helps us as well to find data quality issues.
+
+117
+00:06:32.160 --> 00:06:36.760
+So for example, we can go over here and say, you know what, let's go and search for all issues.
+
+118
+00:06:36.760 --> 00:06:38.839
+So we're going to go and take the isDate.
+
+119
+00:06:38.839 --> 00:06:40.239
+So let's go and get the check.
+
+120
+00:06:40.239 --> 00:06:46.279
+And I'm going to say, let me see all string values that are invalid, that are failing the tests.
+
+121
+00:06:46.279 --> 00:06:47.279
+So let me execute it.
+
+122
+00:06:47.279 --> 00:06:48.959
+And with that, we are getting this record.
+
+123
+00:06:48.959 --> 00:06:50.600
+And now imagine we have a lot of data.
+
+124
+00:06:50.600 --> 00:06:55.359
+So it's now it's really easy to identify those issues by just using the isDate.
+
+125
+00:06:55.359 --> 00:06:59.279
+So this is as well amazing way in order to identify data quality issues.
+
+126
+00:06:59.279 --> 00:07:02.519
+Now, of course, you might say, you know what, I don't want to see here null.
+
+127
+00:07:02.519 --> 00:07:03.959
+Maybe let's get a dummy value.
+
+128
+00:07:03.959 --> 00:07:04.959
+Well, it's very easy.
+
+129
+00:07:04.959 --> 00:07:07.559
+We can go over here and say else.
+
+130
+00:07:07.959 --> 00:07:14.320
+And we can go and get, for example, very large value, something like this, that is easy to identify.
+
+131
+00:07:14.320 --> 00:07:19.359
+So now with that, instead of getting nulls inside your data, you can get such a dummy value.
+
+132
+00:07:19.359 --> 00:07:24.600
+So now you understand the use case of the isDate and why this function is amazing doing data cleanup.
+

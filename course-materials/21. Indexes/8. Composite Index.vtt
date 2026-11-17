@@ -1,0 +1,220 @@
+WEBVTT
+
+00:04.120 --> 00:04.440
+All right.
+
+00:04.480 --> 00:06.440
+So now let's talk about the composite index.
+
+00:06.440 --> 00:11.520
+It is an index that has multiple columns inside the same index.
+
+00:11.520 --> 00:14.760
+So far we have used only one column in the index.
+
+00:14.960 --> 00:17.280
+But we can go and specify multiple columns.
+
+00:17.280 --> 00:23.640
+And that's because sometimes our rare conditions are complicated and based on multiple columns.
+
+00:23.640 --> 00:29.360
+So for example let's say that we are searching for country equal to USA.
+
+00:29.640 --> 00:34.800
+And at the same time we are saying the score should be higher than 500.
+
+00:34.800 --> 00:38.040
+So that means in this condition we are using two columns.
+
+00:38.040 --> 00:40.080
+And we would like to speed up this query.
+
+00:40.080 --> 00:41.080
+So how are we going to do it.
+
+00:41.080 --> 00:47.600
+So we're going to go and create let's say an index and give it a name DB customers.
+
+00:47.760 --> 00:55.000
+And let's say country score on sales DB customers.
+
+00:55.480 --> 00:58.680
+And now it is very important to do the following thing.
+
+00:58.880 --> 01:04.600
+Now we have to go and define a list of columns that you want to be included in this index.
+
+01:04.600 --> 01:10.880
+And it is very crucial and important that you get the same order as your query.
+
+01:10.880 --> 01:14.820
+So your query starts with the country and then the score.
+
+01:14.980 --> 01:17.220
+You have to do it the same thing in the index.
+
+01:17.580 --> 01:21.580
+So the first column is going to be the country and then the score.
+
+01:21.620 --> 01:24.980
+So it must be the same order as your query.
+
+01:24.980 --> 01:28.100
+So let's go and create this index.
+
+01:28.100 --> 01:33.060
+And if you go to the indexes over here you can see that we have created our new index.
+
+01:33.060 --> 01:38.500
+So now once you create such an index and your table is going to be like always updating this index you
+
+01:38.500 --> 01:40.900
+have to be committed and responsible.
+
+01:40.900 --> 01:45.740
+So in your queries, if you want to filter the data using country and score, always start with the
+
+01:45.740 --> 01:51.340
+country, then the score in order to be able to use the index optimizer.
+
+01:51.340 --> 01:54.780
+So if you do it like this, the index is going to be working.
+
+01:54.780 --> 01:57.860
+But if you go and query the way around.
+
+01:57.860 --> 02:04.620
+So you start with the score and then the country, the SQL will not be using your index.
+
+02:04.620 --> 02:11.740
+So either you adjust your queries or you have to go and recreate the index based on this switch.
+
+02:11.740 --> 02:14.300
+So be very careful with the composite indexes.
+
+02:14.420 --> 02:16.340
+The order is very critical.
+
+02:16.700 --> 02:19.940
+So you're going to have it exactly like the query.
+
+02:19.940 --> 02:21.060
+And now you might say you know what.
+
+02:21.100 --> 02:24.060
+Now we have like a nice index for those two columns.
+
+02:24.300 --> 02:30.520
+What can happen if I go and use in my query only one of them, like for example, the country.
+
+02:30.520 --> 02:37.400
+So now the question is if I go and execute this query is the SQL is using this index even though that
+
+02:37.400 --> 02:38.640
+I don't have the score?
+
+02:38.880 --> 02:43.880
+Well, yes, because it follows the leftmost prefix rule.
+
+02:43.880 --> 02:49.920
+So what this means SQL can use the index if you are using always the left columns.
+
+02:49.920 --> 02:52.840
+So here in our index country is on the left.
+
+02:52.880 --> 02:54.920
+That's why it is working over here.
+
+02:54.920 --> 02:58.840
+But if you go and skip the left column it will not work.
+
+02:58.840 --> 03:07.080
+So if you go over here, for example, and say let's go and select only the score and it is like higher
+
+03:07.560 --> 03:14.240
+than 500, what we have done, we have skipped the country in this query, and that's why it will not
+
+03:14.240 --> 03:14.800
+be working.
+
+03:14.800 --> 03:20.880
+So as long as you are including the left columns, it will work even though it is only one column.
+
+03:20.880 --> 03:26.520
+So in this scenario the first query can use the index, the second one will not be using it.
+
+03:26.560 --> 03:30.080
+So now let me give you a very simple example in order to understand how this works.
+
+03:30.080 --> 03:34.160
+So let's say that we have an index using four columns a, b, C, d.
+
+03:34.200 --> 03:38.940
+Now in your query, if you go and target the column A, the index is going can be used.
+
+03:38.980 --> 03:42.340
+Now, the same thing can happen if you go and use A and B.
+
+03:42.500 --> 03:46.060
+So if you are using those two columns you will be using the index.
+
+03:46.180 --> 03:51.180
+So those are where the index will be used.
+
+03:51.300 --> 03:56.540
+So now let's have the scenarios where the index wants to be used.
+
+03:56.660 --> 04:02.940
+So for example if you go and just jump immediately to the column B so you are not using the left column
+
+04:02.980 --> 04:03.420
+the A.
+
+04:03.620 --> 04:05.900
+That's why you will not be using the index.
+
+04:05.900 --> 04:12.300
+And as well in your query, if you are using a and you are skipping the B, so you have a and then C,
+
+04:12.700 --> 04:14.260
+you will not be using the index.
+
+04:14.340 --> 04:17.380
+So you have always to use always the left columns.
+
+04:17.500 --> 04:22.020
+So here if you are using a b, c you will be using the index.
+
+04:22.060 --> 04:23.980
+And let's see here you are using a b.
+
+04:24.020 --> 04:26.220
+And then you jump and skip to the d.
+
+04:26.260 --> 04:27.740
+You will not be using the index.
+
+04:27.740 --> 04:30.580
+So this is what we mean with the leftmost prefix rule.
+
+04:30.980 --> 04:33.020
+By using the composite index.
+
+04:33.140 --> 04:38.180
+So if you are using multiple columns inside one index, be careful with the order of the columns that
+
+04:38.180 --> 04:39.220
+you are defining.
+
+04:39.340 --> 04:39.740
+All right.
+
+04:39.740 --> 04:43.420
+So that's all for this category clustered and non-clustered index.
+
+04:43.540 --> 04:49.140
+Now we're going to move to the second category where we talk about the indexes by the storage the row
+
+04:49.180 --> 04:50.940
+store and the column store.

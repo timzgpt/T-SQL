@@ -1,0 +1,974 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.480
+Okay, guys, so with that, you have covered the second part of the window definition.
+
+2
+00:00:07.480 --> 00:00:11.399
+Now we're going to go to the last part to the most advanced part of window.
+
+3
+00:00:11.399 --> 00:00:12.680
+And we have the following stuff.
+
+4
+00:00:12.680 --> 00:00:16.120
+So we have rows unbounded proceeding.
+
+5
+00:00:16.120 --> 00:00:19.079
+We call this a frame close or window frame.
+
+6
+00:00:19.079 --> 00:00:23.940
+So what we are doing over here that we are defining a subset of rows within each window
+
+7
+00:00:23.940 --> 00:00:28.620
+that is relevant for the calculation totally understand if this is confusing at the start
+
+8
+00:00:28.620 --> 00:00:30.979
+or complex, it was for me as well.
+
+9
+00:00:30.979 --> 00:00:35.360
+So what we're gonna do, we're gonna deep dive into the concept in order to understand how this works.
+
+10
+00:00:35.360 --> 00:00:36.819
+And we're gonna do it step by step.
+
+11
+00:00:36.819 --> 00:00:37.819
+So don't worry about it.
+
+12
+00:00:37.819 --> 00:00:42.180
+Alright, so now let's understand what is going on with the frame close from the basics.
+
+13
+00:00:42.180 --> 00:00:46.240
+So now if you do aggregations, and you don't use window function, you're going to consider
+
+14
+00:00:46.240 --> 00:00:49.459
+the entire data or rows inside the table.
+
+15
+00:00:49.459 --> 00:00:54.060
+But what we can do, we can go and divide the data using partition by to a window.
+
+16
+00:00:54.060 --> 00:00:57.139
+So for example, here we have window one and window two.
+
+17
+00:00:57.139 --> 00:01:01.180
+Now if you go and do aggregations, all the rows in the window one going to be aggregated
+
+18
+00:01:01.180 --> 00:01:05.019
+and then it's going to go to that window two and aggregate all the rows.
+
+19
+00:01:05.019 --> 00:01:09.620
+What we can do in a scale that we can say you know what, I don't want all rows inside
+
+20
+00:01:09.620 --> 00:01:13.419
+the window, I want a subset of rows inside the window.
+
+21
+00:01:13.419 --> 00:01:18.500
+So what we are doing over here that we have those two windows, but we specify a scope
+
+22
+00:01:18.500 --> 00:01:23.819
+or we specify a subset of data from each window to be involved in the aggregations.
+
+23
+00:01:23.819 --> 00:01:26.540
+Of course, not only aggregations, we can do ranking other stuff.
+
+24
+00:01:26.540 --> 00:01:28.040
+So I mean calculations.
+
+25
+00:01:28.040 --> 00:01:30.879
+So here like we have a window inside a window.
+
+26
+00:01:30.879 --> 00:01:36.699
+So we are defining a scope of rows, not all rows should be involved in the calculation,
+
+27
+00:01:36.699 --> 00:01:39.260
+but only a specific subset of data.
+
+28
+00:01:39.260 --> 00:01:41.720
+And we can do that using the frame close.
+
+29
+00:01:41.720 --> 00:01:46.400
+So again, the partition by you can use it in order to divide the entire data sets into
+
+30
+00:01:46.400 --> 00:01:48.059
+multiple windows.
+
+31
+00:01:48.059 --> 00:01:51.980
+And now for the frame close, if you don't want to consider all the rows within each
+
+32
+00:01:52.059 --> 00:01:57.220
+window in the calculation, you want to focus and specify only a subset of data within each
+
+33
+00:01:57.220 --> 00:02:01.459
+window, then you can go and use the frame close. All right.
+
+34
+00:02:01.459 --> 00:02:04.139
+So now let's go and understand the syntax of the frame close.
+
+35
+00:02:04.139 --> 00:02:05.220
+Let's have the following example.
+
+36
+00:02:05.220 --> 00:02:09.860
+We are saying the window function is the average of sales, and then we define the window.
+
+37
+00:02:09.860 --> 00:02:16.179
+So we have the first part partition by categories, order by order dates, and then we have the frame close.
+
+38
+00:02:16.179 --> 00:02:20.779
+It's going to be the following rows between current row and unbounded proceeding.
+
+39
+00:02:20.779 --> 00:02:23.300
+This is the frame types, and we have two types.
+
+40
+00:02:23.300 --> 00:02:25.300
+We have the rows and groups.
+
+41
+00:02:25.300 --> 00:02:27.779
+Then we have like between and the range.
+
+42
+00:02:27.779 --> 00:02:32.059
+So the first range is going to be the frame boundary, the lower value.
+
+43
+00:02:32.059 --> 00:02:37.779
+And here it accepts three types of keywords like the current row or a number of proceeding
+
+44
+00:02:37.779 --> 00:02:39.880
+or the unbounded proceeding.
+
+45
+00:02:39.880 --> 00:02:41.460
+And then we have another frame boundary.
+
+46
+00:02:41.460 --> 00:02:44.860
+It's going to be the higher values and it accepts the following stuff.
+
+47
+00:02:44.860 --> 00:02:48.899
+We can use the current row in following or unbounded following.
+
+48
+00:02:48.899 --> 00:02:53.899
+So as you can see, we are defining like boundary or a range from low value to higher value.
+
+49
+00:02:53.899 --> 00:02:55.199
+So now we have some rules.
+
+50
+00:02:55.199 --> 00:02:58.839
+We cannot use the frame close without order by.
+
+51
+00:02:58.839 --> 00:03:04.259
+So order by must be exist in the definition in order to use frame close.
+
+52
+00:03:04.259 --> 00:03:08.539
+And the second rule, it says lower boundary must be before the higher boundary.
+
+53
+00:03:08.539 --> 00:03:12.800
+So always we start with the lower boundary and we end up having the higher boundary.
+
+54
+00:03:12.800 --> 00:03:15.059
+You cannot switch that. Okay.
+
+55
+00:03:15.059 --> 00:03:16.440
+So now we have a very simple example.
+
+56
+00:03:16.440 --> 00:03:20.440
+We have the month and the sales and the following query. Some of sales.
+
+57
+00:03:20.440 --> 00:03:23.800
+This is the window function and the definition of the window going to be order by month.
+
+58
+00:03:23.800 --> 00:03:27.279
+We are not using partition by just in order to make our life easier.
+
+59
+00:03:27.279 --> 00:03:29.839
+And the frame close is going to be defined like this.
+
+60
+00:03:29.839 --> 00:03:32.919
+Rows between current row and the two following.
+
+61
+00:03:32.919 --> 00:03:35.020
+So now let's see how SQL can execute this.
+
+62
+00:03:35.020 --> 00:03:39.020
+The first definition order by month, as you can see, the methods are sorted already.
+
+63
+00:03:39.020 --> 00:03:43.460
+So now it's going to work with the frame definition, current row and the two following.
+
+64
+00:03:43.460 --> 00:03:45.919
+So it's going to process this row by row.
+
+65
+00:03:45.919 --> 00:03:51.320
+So it's going to start with the first row and it's going to be our current row as here in the SQL.
+
+66
+00:03:51.320 --> 00:03:56.320
+So this is our current row and we say the range until two rows, two following rows.
+
+67
+00:03:56.320 --> 00:03:58.399
+So it's going to be February and March.
+
+68
+00:03:58.399 --> 00:04:02.279
+So that means the pointer going to be over here for the two following.
+
+69
+00:04:02.279 --> 00:04:08.279
+So with us, we have the frame boundaries and SQL have the following scope for the first row.
+
+70
+00:04:08.279 --> 00:04:13.399
+So we have three rows and the summarization of those three rows going to be around 70.
+
+71
+00:04:13.399 --> 00:04:21.000
+So we will get for the first row 70 because the scope is not all rows, but only this subset of data. Okay.
+
+72
+00:04:21.000 --> 00:04:22.000
+So with that, SQL is done with the first row.
+
+73
+00:04:22.000 --> 00:04:23.559
+It's going to jump to the second row.
+
+74
+00:04:23.559 --> 00:04:27.959
+So the pointer going to be the current row at the February and the second two following
+
+75
+00:04:27.959 --> 00:04:29.839
+going to be at April.
+
+76
+00:04:29.839 --> 00:04:34.640
+So with that, as you can see, we are sliding down in the subset of data or in the window.
+
+77
+00:04:34.640 --> 00:04:38.200
+And with that, we have a new scope, a new subset, and the summarization of all those
+
+78
+00:04:38.200 --> 00:04:41.380
+values going to be 45. So that's it.
+
+79
+00:04:41.380 --> 00:04:42.380
+I think you get it already.
+
+80
+00:04:42.380 --> 00:04:46.000
+SQL going to go to the next one, the pointer going to be on March and the two following
+
+81
+00:04:46.000 --> 00:04:49.100
+going to be on June and it's going to slide like this.
+
+82
+00:04:49.100 --> 00:04:53.980
+We have those three rows in the scope and the summarization of that's going to be 105.
+
+83
+00:04:53.980 --> 00:04:56.359
+So now things get interesting for the next row.
+
+84
+00:04:56.359 --> 00:05:00.100
+So the pointer for the current row going to be April, but the two following going to be
+
+85
+00:05:00.100 --> 00:05:03.119
+like after the end of the table or something like that.
+
+86
+00:05:03.119 --> 00:05:07.239
+So as we slide down, as you can see, the scope now or the subset of the frame going to be
+
+87
+00:05:07.239 --> 00:05:10.820
+only two rows and the output going to be 75.
+
+88
+00:05:10.820 --> 00:05:14.920
+And finally, if you go to the last row, it's going to be the current row and we're going
+
+89
+00:05:14.920 --> 00:05:19.480
+to have only one row for this subset because the two following is just outside of the table
+
+90
+00:05:19.480 --> 00:05:22.459
+and we're going to get the same value as the summarization.
+
+91
+00:05:22.459 --> 00:05:23.459
+So as you can see, that's it.
+
+92
+00:05:23.459 --> 00:05:24.739
+It's very simple, right?
+
+93
+00:05:24.739 --> 00:05:30.239
+So the frame, we use it in order to scope which rows are involved in the calculations.
+
+94
+00:05:30.239 --> 00:05:35.359
+So what do you have to do is to define the boundaries of the frame, the lower and the upper boundary.
+
+95
+00:05:35.359 --> 00:05:37.640
+Let's see what other options do we have with the frames.
+
+96
+00:05:37.739 --> 00:05:43.019
+Okay, so here we have the same example, but we redefine the boundaries of the frame like this.
+
+97
+00:05:43.019 --> 00:05:47.500
+Rows between current row, this is the first boundary, and unbounded following.
+
+98
+00:05:47.500 --> 00:05:52.339
+This means that we are targeting always the last record in the window or in the table.
+
+99
+00:05:52.339 --> 00:05:56.420
+So unbounded following going to be always static and it's going to be in this example
+
+100
+00:05:56.420 --> 00:05:57.420
+pointing to June.
+
+101
+00:05:57.420 --> 00:06:01.420
+And now we're still going to go row by row and the current row going to be like the start
+
+102
+00:06:01.420 --> 00:06:03.260
+January and then February.
+
+103
+00:06:03.359 --> 00:06:05.079
+I'm just going to take this example.
+
+104
+00:06:05.079 --> 00:06:10.440
+The pointer is on February and the subsets or the frame going to be those four rows.
+
+105
+00:06:10.440 --> 00:06:12.380
+So it can be February, March, April, June.
+
+106
+00:06:12.380 --> 00:06:18.359
+So it's going to be four rows and the total aggregation of that's going to be 115.
+
+107
+00:06:18.359 --> 00:06:19.760
+So you can do it like this.
+
+108
+00:06:19.760 --> 00:06:22.619
+And previously it was like flexible, more flexible.
+
+109
+00:06:22.619 --> 00:06:26.459
+It was two following, but this time we have unbounded following.
+
+110
+00:06:26.459 --> 00:06:29.799
+That means always the boundary going to be the last one.
+
+111
+00:06:29.799 --> 00:06:35.059
+So as we are moving with the records over here, the boundary is going to be smaller,
+
+112
+00:06:35.059 --> 00:06:37.859
+smaller, and like this.
+
+113
+00:06:37.859 --> 00:06:41.019
+And the last one, they're going to be both in the same record.
+
+114
+00:06:41.019 --> 00:06:44.220
+So the current record is going to be as well the unbounded following.
+
+115
+00:06:44.220 --> 00:06:45.660
+Okay, let's see the next one.
+
+116
+00:06:45.660 --> 00:06:51.779
+The definition of the window going to be the following rows between one preceding and the current row.
+
+117
+00:06:51.779 --> 00:06:55.799
+So here is the way around when proceeding is lower than the current row.
+
+118
+00:06:55.799 --> 00:06:58.059
+So let's see how SQL going to execute this.
+
+119
+00:06:58.059 --> 00:07:00.640
+Let's say that we are currently at March.
+
+120
+00:07:00.640 --> 00:07:04.119
+So this is the current row and we are saying between one proceeding.
+
+121
+00:07:04.119 --> 00:07:07.440
+So that means one row before the current row.
+
+122
+00:07:07.440 --> 00:07:11.679
+So the frame can be like this and we have only two rows.
+
+123
+00:07:11.679 --> 00:07:16.119
+So the value going to be the summarization of those two rows and it's going to be 40.
+
+124
+00:07:16.119 --> 00:07:20.040
+So that means we are always targeting the rows before the current row.
+
+125
+00:07:20.040 --> 00:07:23.040
+Okay, so now let's keep going with the other options in order to understand everything
+
+126
+00:07:23.040 --> 00:07:24.079
+about the frame.
+
+127
+00:07:24.100 --> 00:07:29.019
+So we redefine it like this, rows between unbounded proceeding and the current row.
+
+128
+00:07:29.019 --> 00:07:32.720
+So unbounded proceeding going to be the first row in the table or in the window.
+
+129
+00:07:32.720 --> 00:07:34.420
+So it's going to be static like this.
+
+130
+00:07:34.420 --> 00:07:36.220
+It's going to be the first one, January.
+
+131
+00:07:36.220 --> 00:07:39.940
+And let's say that we are at this current row in March.
+
+132
+00:07:39.940 --> 00:07:44.739
+So the window or the subset going to look like this, those three rows and the total
+
+133
+00:07:44.739 --> 00:07:46.420
+of that's going to be 60.
+
+134
+00:07:46.420 --> 00:07:51.339
+So now as SQL is proceeding to the next one, it's going to fix the first boundary.
+
+135
+00:07:51.339 --> 00:07:55.040
+So it's going to be always pointing to January and the subset is going to be a little bit
+
+136
+00:07:55.040 --> 00:07:58.160
+bigger until we reach the last one.
+
+137
+00:07:58.160 --> 00:08:02.160
+And with that, we're going to have the subsets, the whole rows.
+
+138
+00:08:02.160 --> 00:08:07.079
+So with that, we get a really great flexibility on how to define the subset and how the subset
+
+139
+00:08:07.079 --> 00:08:09.160
+is shifting through the window.
+
+140
+00:08:09.160 --> 00:08:10.720
+Okay, so now we are just having fun.
+
+141
+00:08:10.720 --> 00:08:12.839
+So we're just playing around with the boundaries.
+
+142
+00:08:12.839 --> 00:08:14.959
+We don't have always to use the current row.
+
+143
+00:08:14.959 --> 00:08:20.299
+So we can use, for example, here in this definition, rows between one proceeding and one following.
+
+144
+00:08:20.299 --> 00:08:23.920
+So we don't include at all the current row in the boundaries.
+
+145
+00:08:23.920 --> 00:08:27.420
+So let's say again, our current row is going to be in March.
+
+146
+00:08:27.420 --> 00:08:31.799
+So one proceeding is going to be February and one following is going to be April.
+
+147
+00:08:31.799 --> 00:08:35.479
+So with that, our frame is going to be those three rows.
+
+148
+00:08:35.479 --> 00:08:37.599
+And let me get it like this.
+
+149
+00:08:37.599 --> 00:08:40.679
+And the aggregation of this is going to be around 45.
+
+150
+00:08:40.679 --> 00:08:44.340
+So with that, as you can see, the boundary is going to be one proceeding and one following.
+
+151
+00:08:44.340 --> 00:08:46.599
+So it should not be always the current row.
+
+152
+00:08:46.599 --> 00:08:48.039
+All right, so now I think you already get it.
+
+153
+00:08:48.039 --> 00:08:49.159
+What's going to be the last option?
+
+154
+00:08:49.299 --> 00:08:50.580
+We're going to have everything.
+
+155
+00:08:50.580 --> 00:08:56.219
+So the definition of the frame is going to be rows between unbounded proceeding and unbounded following.
+
+156
+00:08:56.219 --> 00:08:59.820
+What we're going to have over here, the unbounded proceeding is going to be January and the
+
+157
+00:08:59.820 --> 00:09:02.619
+unbounded following is going to be June.
+
+158
+00:09:02.619 --> 00:09:06.619
+And now the frame is going to be everything, all the rows.
+
+159
+00:09:06.619 --> 00:09:12.159
+And it doesn't matter where are we with the current row, it's going to be always a fixed subset.
+
+160
+00:09:12.159 --> 00:09:13.979
+So it's going to be always everything.
+
+161
+00:09:13.979 --> 00:09:19.140
+So if we are over here or February or March, we're going to be considering all rows.
+
+162
+00:09:19.140 --> 00:09:22.960
+And the total sales of that is going to be 135.
+
+163
+00:09:22.960 --> 00:09:28.359
+So we will get the exact same results for everything, for all rows.
+
+164
+00:09:28.359 --> 00:09:30.880
+So with that, I think it's not that complicated, right?
+
+165
+00:09:30.880 --> 00:09:34.640
+We just have to provide the boundaries and then the calculation is going to be depending
+
+166
+00:09:34.640 --> 00:09:36.880
+on the frame, on the subset of data.
+
+167
+00:09:36.880 --> 00:09:40.880
+Okay, guys, so now let's go back to SQL and start practicing in order to understand how
+
+168
+00:09:40.880 --> 00:09:42.140
+the frame works.
+
+169
+00:09:42.140 --> 00:09:44.979
+So let's go and define a window like this.
+
+170
+00:09:44.979 --> 00:09:50.320
+So sum of sales and the window definition like this, we're going to divide the data
+
+171
+00:09:50.320 --> 00:09:52.479
+by order status.
+
+172
+00:09:52.479 --> 00:09:57.000
+And let's say we're going to sort it by order dates.
+
+173
+00:09:57.000 --> 00:10:04.679
+And let's define a frame like this, rows between current row and to following.
+
+174
+00:10:04.679 --> 00:10:07.260
+Let's give it a name total sales.
+
+175
+00:10:07.260 --> 00:10:08.719
+So let's go and execute it.
+
+176
+00:10:08.719 --> 00:10:09.919
+So now let's look to the data.
+
+177
+00:10:09.919 --> 00:10:16.539
+You see that SQL can divide our results into two sections, two windows, delivered and shipped.
+
+178
+00:10:16.539 --> 00:10:19.719
+And you can see that the data is sorted by the order date.
+
+179
+00:10:19.719 --> 00:10:24.619
+So as you can see over here, for example, on this status delivered, we can see that
+
+180
+00:10:24.619 --> 00:10:27.260
+first of January 10, and so on.
+
+181
+00:10:27.260 --> 00:10:31.059
+And then the third part, we have defined a frame in each window.
+
+182
+00:10:31.059 --> 00:10:33.260
+So for example, let's take the first one.
+
+183
+00:10:33.260 --> 00:10:34.880
+So this is the current row.
+
+184
+00:10:34.880 --> 00:10:39.059
+So we say the frame is between the current row and the two following orders.
+
+185
+00:10:39.059 --> 00:10:42.020
+So that means the scope is going to be like this.
+
+186
+00:10:42.020 --> 00:10:45.599
+So 10 plus 20, 25, it's going to be 55.
+
+187
+00:10:45.599 --> 00:10:49.679
+And now what is interesting as well to check here is the last record of each window.
+
+188
+00:10:49.679 --> 00:10:53.979
+So now let's take this window over here and the last record is going to be number seven.
+
+189
+00:10:53.979 --> 00:10:57.840
+So this order, and let's say this is the current record.
+
+190
+00:10:57.840 --> 00:11:02.000
+So we say the frame between current record and the two following.
+
+191
+00:11:02.000 --> 00:11:07.640
+But since it is the last record of this window, it will not go and consider the next two orders
+
+192
+00:11:07.640 --> 00:11:11.239
+because those two orders are outside of the window.
+
+193
+00:11:11.239 --> 00:11:16.080
+And that's why we have here 30 and SQL didn't go and summarize all those value.
+
+194
+00:11:16.080 --> 00:11:19.919
+So we have it 30 and there is nothing after that.
+
+195
+00:11:19.919 --> 00:11:21.760
+That's why we will get 30.
+
+196
+00:11:21.760 --> 00:11:26.719
+So as you can see, the frame can be calculated within one window, so it will not consider
+
+197
+00:11:26.719 --> 00:11:29.000
+anything outside of that window.
+
+198
+00:11:29.000 --> 00:11:32.219
+So this is how the frame works within partitions.
+
+199
+00:11:32.219 --> 00:11:36.599
+So now I would like to show you as well a few stuff about the frames, we can use shortcuts,
+
+200
+00:11:36.599 --> 00:11:39.380
+but we can use them only with the preceding.
+
+201
+00:11:39.380 --> 00:11:46.000
+So for example, let's say I'm going to change the definition like this to proceedings and current row.
+
+202
+00:11:46.000 --> 00:11:49.179
+So let's go and execute it and we will get those results.
+
+203
+00:11:49.179 --> 00:11:53.719
+So now if you want to check the results quickly, let's take, for example, this order over here.
+
+204
+00:11:53.719 --> 00:11:58.000
+And we are always summarizing the values of the two previous orders.
+
+205
+00:11:58.000 --> 00:12:03.940
+So that means those three orders going to be involved in the frame and the output going to be 55.
+
+206
+00:12:03.940 --> 00:12:09.580
+So now there is a shortcut for SQL, but only for the preceding where we can remove the range.
+
+207
+00:12:09.580 --> 00:12:14.880
+So we can go and remove everything and we can leave it like this, rows to preceding.
+
+208
+00:12:14.880 --> 00:12:18.099
+And if you go and execute it, we will get exact results.
+
+209
+00:12:18.099 --> 00:12:23.299
+So this is a quick way or a shortcut on how to define a window, but it only works with the preceding.
+
+210
+00:12:23.299 --> 00:12:28.020
+So for example, if I go over here and say, for example, unbounded, it's going to work.
+
+211
+00:12:28.020 --> 00:12:33.119
+So we will get the results between the unbounded preceding and the current row.
+
+212
+00:12:33.299 --> 00:12:36.559
+But if you go over here and you say, you know what, let's have the unbounded following,
+
+213
+00:12:36.559 --> 00:12:38.559
+SQL is going to say there is an error.
+
+214
+00:12:38.559 --> 00:12:42.880
+And the same thing if you remove the unbounded, let's say, for example, one following, SQL
+
+215
+00:12:42.880 --> 00:12:43.880
+will not like it.
+
+216
+00:12:43.880 --> 00:12:47.440
+So you can use the shortcut only with the preceding.
+
+217
+00:12:47.440 --> 00:12:51.479
+And one last thing about the frames is that there is a default frame.
+
+218
+00:12:51.479 --> 00:12:58.159
+So if you don't use any frame and you use order by, what can happen, SQL can use a default frame.
+
+219
+00:12:58.159 --> 00:13:01.919
+So if you check the result, you will notice that for this window over here, those values
+
+220
+00:13:01.919 --> 00:13:04.760
+are not like the whole values of the cells.
+
+221
+00:13:04.760 --> 00:13:07.359
+There is like a frame, there is a hidden frame.
+
+222
+00:13:07.359 --> 00:13:13.479
+And the default frame in SQL is going to be like this, rows between unbounded, preceding
+
+223
+00:13:13.479 --> 00:13:14.919
+and current row.
+
+224
+00:13:14.919 --> 00:13:18.640
+So this is the default frame if you use order by.
+
+225
+00:13:18.640 --> 00:13:23.119
+So now if you go and just execute it, you will see that we will get the exact results.
+
+226
+00:13:23.119 --> 00:13:27.799
+So be careful, once you use order by with the aggregate functions, there will be a hidden
+
+227
+00:13:27.799 --> 00:13:32.520
+frame or a default frame like this between the unbounded preceding and the current row.
+
+228
+00:13:32.520 --> 00:13:36.559
+So that means there are three ways in order to do this scenario of framework between unbounded,
+
+229
+00:13:36.559 --> 00:13:42.799
+preceding and current row, either write it like this, or you can go and have a shortcut like this.
+
+230
+00:13:42.799 --> 00:13:44.039
+Let me just execute it.
+
+231
+00:13:44.039 --> 00:13:47.640
+So we'll get the same result or just remove it completely.
+
+232
+00:13:47.640 --> 00:13:49.479
+We will get as well the same results.
+
+233
+00:13:49.479 --> 00:13:53.919
+Now again, the hidden frame or the default frame is only working with the order by.
+
+234
+00:13:53.919 --> 00:13:58.400
+So if you go, for example, here and remove the order by, let's see the results, the whole
+
+235
+00:13:58.400 --> 00:14:00.000
+window will be aggregated.
+
+236
+00:14:00.000 --> 00:14:02.400
+So again, let me just select it.
+
+237
+00:14:02.400 --> 00:14:06.479
+So you can see that SQL is going to consider all the rows in the aggregations, and we will
+
+238
+00:14:06.479 --> 00:14:08.719
+get the total sales for the whole window.
+
+239
+00:14:08.719 --> 00:14:13.880
+So there will be no frame defined, only it's going to be present once you use order by.
+
+240
+00:14:13.880 --> 00:14:14.919
+All right, friends.
+
+241
+00:14:14.919 --> 00:14:19.599
+So with the frame close, we have now covered all the components on how to define a window
+
+242
+00:14:19.599 --> 00:14:21.479
+inside an overclose.
+
+243
+00:14:21.479 --> 00:14:26.400
+And with that, we have covered everything about the syntax of the window functions.
+

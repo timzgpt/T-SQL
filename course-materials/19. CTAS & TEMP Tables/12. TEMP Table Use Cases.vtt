@@ -1,0 +1,139 @@
+WEBVTT
+
+00:03.960 --> 00:07.080
+So now the question is why do we need temporary tables?
+
+00:07.120 --> 00:08.480
+Let's see the following scenario.
+
+00:08.520 --> 00:11.920
+Now let's say that in our source database we have a table called orders.
+
+00:11.960 --> 00:15.240
+And now we would like to go and load the table in our data warehouse.
+
+00:15.240 --> 00:20.280
+We have to do several transformations in order to prepare the data for the analysis in the data warehouse.
+
+00:20.320 --> 00:24.800
+So maybe you have one query to remove the duplicates and another one to handle the nulls.
+
+00:24.960 --> 00:27.440
+And maybe you are doing filtering and cleaning up.
+
+00:27.560 --> 00:29.800
+And the last step you would like to aggregate the data.
+
+00:29.840 --> 00:35.840
+And now of course those queries those transformations want to change the content of the table orders.
+
+00:35.880 --> 00:40.160
+And there is no scenario where you can do that directly on the source database.
+
+00:40.200 --> 00:41.760
+And of course this is not allowed.
+
+00:41.960 --> 00:46.360
+That's why in data warehousing we have to go and get our own copy of the data.
+
+00:46.360 --> 00:49.720
+And then on top of this data we can do our transformations.
+
+00:49.760 --> 00:52.520
+Now one way to do this using the temporary tables.
+
+00:52.520 --> 00:58.120
+So you have one script in order to extract the data from the table orders and put it in a temporary
+
+00:58.160 --> 01:00.280
+table as an intermediate result.
+
+01:00.280 --> 01:05.680
+And then you come with the transformations and all those queries, and they start manipulating and changing
+
+01:05.680 --> 01:09.240
+the data of this extra copy in that temporary table.
+
+01:09.280 --> 01:14.880
+And the last step you have the load where you can load the final version of the intermediate results
+
+01:14.880 --> 01:15.920
+in the database.
+
+01:15.960 --> 01:20.560
+This is if you would like to do the whole ETL before inserting the data to the database.
+
+01:20.640 --> 01:24.590
+So now the orders table and the final table in the data warehouse.
+
+01:24.590 --> 01:27.350
+Both of them are tables, so they are permanent.
+
+01:27.390 --> 01:27.830
+Tables.
+
+01:27.830 --> 01:30.750
+And they will stay there as long as we don't drop them.
+
+01:30.750 --> 01:31.910
+So they are very important.
+
+01:31.950 --> 01:32.510
+Tables.
+
+01:32.710 --> 01:34.750
+But now for the intermediate results.
+
+01:34.870 --> 01:36.190
+It is not that important.
+
+01:36.190 --> 01:42.390
+It is just an intermediate step that we have done in order to have our extra copy of the data, to manipulate
+
+01:42.390 --> 01:46.710
+it and so on, in order to prepare it to be inserted in the data warehouse.
+
+01:46.710 --> 01:52.190
+So after we loaded it in the data warehouse, this copy of the data is not any more important.
+
+01:52.190 --> 01:54.110
+It shouldn't stay like for a long time.
+
+01:54.310 --> 02:00.110
+That's why in this scenario, maybe we can go and use the temporary tables instead of normal tables
+
+02:00.110 --> 02:01.510
+for the intermediate results.
+
+02:01.510 --> 02:07.350
+And that's because only of one advantage that the database is going to go and do an automatic clean
+
+02:07.390 --> 02:09.750
+up after the whole session ends.
+
+02:09.750 --> 02:12.790
+So it comes out of the box automatically from the database.
+
+02:12.790 --> 02:18.110
+So that means I don't have to deal with that dropping mechanism of this table for the next load.
+
+02:18.110 --> 02:22.990
+If there is like something wrong in the data warehouse, you would like always to check the copy where
+
+02:22.990 --> 02:26.510
+the transformations are done in order to debug and find issues.
+
+02:26.510 --> 02:31.670
+So I don't normally use temporary tables in this scenarios, I use just normal tables, but for other
+
+02:31.670 --> 02:33.590
+small projects maybe this makes sense.
+
+02:33.590 --> 02:38.070
+So this is one use case on when to use the temporary tables in your projects.
+
+02:38.070 --> 02:43.630
+We use it in order to store intermediate results temporary until we are done with the session.
+
+02:43.630 --> 02:47.870
+And then once we are done, the database can go and drop that temporary table.

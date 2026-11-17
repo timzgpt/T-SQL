@@ -1,0 +1,271 @@
+WEBVTT
+
+00:03.960 --> 00:10.040
+Now, before we dive into how the indexes works in databases, let's understand first what happens to
+
+00:10.080 --> 00:11.280
+the database tables.
+
+00:11.280 --> 00:17.360
+If you don't use any index when you create a new table in your database, like for example, the customers
+
+00:17.360 --> 00:21.320
+table where you have, let's say 20 customers inside this table.
+
+00:21.320 --> 00:27.160
+What you're going to see at the client side is like spreadsheets, like a table with rows and columns.
+
+00:27.160 --> 00:30.720
+But behind the scenes, the database store it a bit differently.
+
+00:30.720 --> 00:37.600
+It can store the data in a data file on the disk, and inside this file, the data can be stored inside
+
+00:37.600 --> 00:39.600
+blocks called pages.
+
+00:39.600 --> 00:43.960
+So it's not like rows and columns that are stored inside data files.
+
+00:43.960 --> 00:46.720
+And inside the data files we have pages.
+
+00:46.720 --> 00:48.120
+So what is a page?
+
+00:48.360 --> 00:52.320
+A page is the unit of data storage in a database.
+
+00:52.320 --> 00:55.640
+And it is a fixed size of eight kilobytes.
+
+00:55.680 --> 00:59.280
+Where the SQL database can store anything inside it.
+
+00:59.320 --> 01:06.170
+It can store inside it the rows of your tables or columns, metadata indexes, and every time you are
+
+01:06.170 --> 01:11.650
+interacting with your data, the SQL is reading and writing to those pages.
+
+01:11.650 --> 01:16.930
+So as you can see, the SQL is not storing the data inside like rows and columns.
+
+01:16.930 --> 01:21.850
+So if you are running a query, the SQL is not like selecting a specific column.
+
+01:22.050 --> 01:24.090
+It always fits a database.
+
+01:24.090 --> 01:27.490
+In order to read the rows inside this page.
+
+01:27.490 --> 01:32.010
+And the main two tabs that we're going to learn is the data page and the index page.
+
+01:32.010 --> 01:35.890
+So how the database looks like it is divided into multiple sections.
+
+01:35.890 --> 01:41.330
+The first section is the page header, where the database can store key information about the metadata,
+
+01:41.370 --> 01:44.090
+like the page ID, and it has the following formats.
+
+01:44.130 --> 01:49.370
+It starts with the file ID like one, and then we have a unique number for each page.
+
+01:49.370 --> 01:51.170
+So for example 150.
+
+01:51.210 --> 01:54.650
+So the page header is a fixed size of 96 bytes.
+
+01:54.690 --> 01:57.570
+Now to the next section we can have a variable size.
+
+01:57.770 --> 02:00.450
+This is where your data row is going to be stored.
+
+02:00.450 --> 02:03.980
+So your actual data are raw is going to be stored in this section.
+
+02:03.980 --> 02:09.180
+And the SQL is going to try and fit as many rows as it can in one single page.
+
+02:09.180 --> 02:12.220
+And this of course depends on the size of each row.
+
+02:12.220 --> 02:18.780
+So if you have like a large table where the rows are really big so SQL can fit only few rows in one
+
+02:18.780 --> 02:19.580
+single page.
+
+02:19.620 --> 02:24.140
+And now moving on to the last section in the data page we have the offset array.
+
+02:24.300 --> 02:28.740
+This is like a quick index for the rows stored inside this page.
+
+02:28.740 --> 02:36.060
+It keeps track of where each rows begins, so that the SQL can easily locate a specific row without
+
+02:36.060 --> 02:39.700
+having SQL, like scanning the entire page in order to find a row.
+
+02:39.700 --> 02:42.300
+So this is the structure of the data page.
+
+02:42.460 --> 02:47.420
+And this is exactly how the SQL stores data inside the databases.
+
+02:47.420 --> 02:51.220
+So now back to our example where we have the customers table and 20 rows.
+
+02:51.220 --> 02:54.020
+So let's see how SQL is going to be creating those pages.
+
+02:54.060 --> 02:57.100
+Now if you are not using any index in this table.
+
+02:57.100 --> 03:03.480
+So now what can happen is SQL can insert the data inside those pages as you are inserting the data inside
+
+03:03.480 --> 03:04.360
+the customers.
+
+03:04.360 --> 03:10.120
+So maybe first you are inserting the customers like 12, five, 15, six, seven, and it's going to
+
+03:10.160 --> 03:12.880
+insert it to the data pages exactly like that.
+
+03:12.880 --> 03:17.480
+So that means SQL is just inserting the data as you insert it to the table.
+
+03:17.480 --> 03:21.080
+So let's say each data page is like fitting only five rows.
+
+03:21.080 --> 03:27.240
+So after we insert five customers it's going to go and create another data page for the next rows.
+
+03:27.240 --> 03:31.480
+So in the next page the SQL is going to insert the next five customers.
+
+03:31.480 --> 03:36.560
+And once it's full it's going to create another data page in order to start adding the next customer
+
+03:36.560 --> 03:41.200
+until we have like for example, four pages for that 20 customers.
+
+03:41.200 --> 03:46.560
+So now if you check the customers inside those four pages, you see that they are not sorted at all.
+
+03:46.600 --> 03:50.600
+And that's because in this scenario we are not using any index.
+
+03:50.600 --> 03:53.840
+So we call this structure as a heap structure.
+
+03:53.840 --> 03:57.960
+So a heap table is a table without a clustered index.
+
+03:57.960 --> 04:02.770
+That means the rows are stored randomly without any particular order.
+
+04:02.810 --> 04:08.890
+This is not really bad because it's going to be very quick to insert data inside this table.
+
+04:08.930 --> 04:12.410
+But of course, finding something from this table is going to be very slow.
+
+04:12.410 --> 04:14.210
+So this is the first trade off.
+
+04:14.250 --> 04:18.450
+You have a very fast rides but a very bad reads.
+
+04:18.490 --> 04:23.730
+Think about it like you are throwing all your papers in a drawer without organizing them.
+
+04:23.730 --> 04:26.530
+So you can toss things very quickly in this drawer.
+
+04:26.570 --> 04:31.930
+But if you want to search for a specific paper later, it can be a very long process until you find
+
+04:31.930 --> 04:34.090
+it because nothing's in order.
+
+04:34.210 --> 04:36.370
+So now let's see how the SQL can handle.
+
+04:36.370 --> 04:38.290
+If you read something from this table.
+
+04:38.330 --> 04:41.770
+Let's say that you are searching for the customer with the ID 14.
+
+04:41.770 --> 04:45.570
+So now SQL has totally no idea where to find this customer.
+
+04:45.570 --> 04:50.290
+So SQL can start fishing each database and start scanning each row.
+
+04:50.290 --> 04:53.290
+So it's going to start with the first data page and start scanning.
+
+04:53.410 --> 04:55.810
+Well SQL will not find 14 here.
+
+04:55.810 --> 05:02.020
+So it's going to go to the next page and start scanning as well searching for the id14 and nothing can
+
+05:02.020 --> 05:02.420
+be found.
+
+05:02.420 --> 05:04.580
+The same thing for the third page as well.
+
+05:04.620 --> 05:11.100
+SQL will not find 14, so SQL going to go to the last data page and there after scanning four rows in
+
+05:11.100 --> 05:11.820
+this data page.
+
+05:11.860 --> 05:14.860
+Finally SQL going to find the customer number 14.
+
+05:14.900 --> 05:16.900
+And it's going to return it for the clients.
+
+05:16.980 --> 05:24.100
+So as you can see in order to find one customer, SQL did read four different pages and scanned like
+
+05:24.100 --> 05:25.420
+19 rows.
+
+05:25.460 --> 05:30.620
+In order to find the customer and this process we call it full table scan.
+
+05:30.660 --> 05:37.820
+So the full table scans means SQL is scanning the entire table, page by page and row by row in order
+
+05:37.820 --> 05:39.260
+to find specific row.
+
+05:39.300 --> 05:44.060
+And of course, for this table, maybe it's not a big deal, but if you have like a big table where
+
+05:44.060 --> 05:49.300
+you have like hundreds of thousands or maybe millions of rows, searching through the heap structure
+
+05:49.340 --> 05:52.740
+can be very painful and slow in order to locate one row.
+
+05:52.780 --> 05:56.740
+And here exactly why we need indexes in SQL databases.
+
+05:56.860 --> 06:00.980
+So let's understand the first type of indexes the clustered index.

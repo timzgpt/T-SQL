@@ -1,0 +1,403 @@
+WEBVTT
+
+00:03.920 --> 00:06.480
+Okay, so now let's check the easiest syntax ever.
+
+00:06.480 --> 00:09.280
+So for the temporary table the syntax is going to look like this.
+
+00:09.640 --> 00:12.240
+You're going to have like a query select from where.
+
+00:12.240 --> 00:17.880
+And as we learned in the CTAs, if you go and say into then the table name, it's going to go and create
+
+00:17.880 --> 00:19.120
+a physical new table.
+
+00:19.120 --> 00:24.360
+But now if you want it as a temporary table, what you're going to do, you're going to just put hash
+
+00:24.360 --> 00:29.680
+before the name of the table, then SQL can understand okay, now we are talking about temporary table
+
+00:29.680 --> 00:33.000
+and the database is going to store it in that temporary storage.
+
+00:33.000 --> 00:34.320
+So it is very simple.
+
+00:34.520 --> 00:36.800
+This is the syntax of that temporary tables.
+
+00:36.800 --> 00:39.880
+So so far we have learned that we have a database called sales DB.
+
+00:39.880 --> 00:46.000
+And inside it we can find the tables that we have created, the customers employees orders and so on.
+
+00:46.080 --> 00:48.520
+Those are our tables and they are always there.
+
+00:48.560 --> 00:53.400
+Like if you go and close everything and then start it or in the next day, you're going to find always
+
+00:53.400 --> 00:57.720
+those tables with the same data so they can exist as long as you are not dropping them.
+
+00:58.400 --> 01:01.680
+Now the question is, where do we find that temporary tables?
+
+01:01.680 --> 01:07.680
+Well, as we learned, if you go over here at the system databases you will find multiple databases
+
+01:07.730 --> 01:11.450
+from the SQL server, and normally only the database administrator.
+
+01:11.610 --> 01:15.650
+Has an access to this and one of those databases called Tempdb.
+
+01:15.690 --> 01:17.050
+Temporary database.
+
+01:17.050 --> 01:18.210
+So let's go inside it.
+
+01:18.250 --> 01:19.850
+Now we can find multiple objects.
+
+01:19.850 --> 01:23.050
+And one of them we can find here the temporary tables.
+
+01:23.090 --> 01:26.770
+And now of course we don't have anything inside it because we didn't create anything.
+
+01:26.770 --> 01:28.290
+So let's go and create one.
+
+01:28.290 --> 01:31.770
+We have already an open session, an active session with the SQL server.
+
+01:31.810 --> 01:36.370
+As you can see here, we are connected to the database and we can start creating temporary tables.
+
+01:36.370 --> 01:37.610
+So now what is the plan.
+
+01:37.930 --> 01:43.490
+I would like now to do few modifications on the table orders, but I will not do it directly at the
+
+01:43.490 --> 01:44.450
+table orders.
+
+01:44.450 --> 01:49.650
+I would like to take a copy from the sales db and create from it a temporary table.
+
+01:49.650 --> 01:51.170
+So let's go and do that.
+
+01:51.210 --> 01:51.770
+What do we need?
+
+01:51.810 --> 01:53.450
+First we need a query.
+
+01:53.450 --> 01:59.610
+So I would like to select everything all the columns all the rows from the table orders.
+
+01:59.610 --> 02:02.330
+So from sales orders.
+
+02:02.610 --> 02:04.570
+So this is my query now.
+
+02:04.570 --> 02:05.810
+So far nothing is created.
+
+02:05.810 --> 02:07.610
+We have only select statements.
+
+02:07.610 --> 02:12.730
+But now in order to create a temporary table what we're going to do we're going to put a statement between
+
+02:12.730 --> 02:14.210
+the select and from.
+
+02:14.210 --> 02:20.630
+So exactly before the from go over here and say into then in order to make sure it is a temporary table,
+
+02:20.630 --> 02:22.710
+we use hash and then the table name.
+
+02:22.710 --> 02:24.790
+So we're going to call it orders.
+
+02:24.790 --> 02:25.510
+So that's it.
+
+02:25.550 --> 02:26.630
+We have our query.
+
+02:26.630 --> 02:28.710
+And in between we have the into.
+
+02:28.750 --> 02:32.390
+And make sure you are using hash in order to be a temporary table.
+
+02:32.390 --> 02:34.070
+So let's go and execute it.
+
+02:34.070 --> 02:37.350
+And now we can see that ten rows are affected and we don't have any error.
+
+02:37.390 --> 02:41.950
+And now of course we cannot see it yet because we have to go and refresh the object explorer.
+
+02:41.950 --> 02:43.190
+So let's go and do that.
+
+02:43.590 --> 02:45.310
+And now let's expand it.
+
+02:45.310 --> 02:47.630
+And now we can see our temporary tables.
+
+02:47.630 --> 02:49.830
+As you can see it is at the schema dbo.
+
+02:49.870 --> 02:51.710
+Because we haven't defined any schema.
+
+02:51.710 --> 02:54.190
+And this is the default one from the database.
+
+02:54.190 --> 02:54.870
+So nice.
+
+02:54.870 --> 02:56.030
+Now we have the table.
+
+02:56.070 --> 02:57.750
+And let's go and check a few stuff.
+
+02:57.750 --> 02:59.790
+So let's go and select the table itself.
+
+02:59.790 --> 03:05.430
+So select star from and make sure to say hash orders.
+
+03:05.470 --> 03:06.710
+Let's go and select it.
+
+03:06.750 --> 03:11.510
+And now we are getting the data from the temporary table and not from the original table.
+
+03:11.510 --> 03:14.190
+The orders in the database sales DB.
+
+03:14.190 --> 03:17.390
+So all those informations comes from the temporary table.
+
+03:17.430 --> 03:22.200
+Now of course you can do whatever you want to this temporary table because it's not that important and
+
+03:22.200 --> 03:23.840
+it's anyway going to get deleted.
+
+03:23.840 --> 03:29.920
+So let's say that I would like to delete all the orders where the order status equal to delivered.
+
+03:29.920 --> 03:31.080
+So let's go and do that.
+
+03:31.080 --> 03:36.200
+So what we're going to do delete from our hash orders.
+
+03:36.200 --> 03:38.560
+So make sure you are selecting the temporary table.
+
+03:38.600 --> 03:46.040
+And then where are we going to say the order status equal to what I say.
+
+03:46.080 --> 03:46.640
+Delivered.
+
+03:46.680 --> 03:46.920
+Yeah.
+
+03:46.960 --> 03:47.600
+Delivered.
+
+03:47.920 --> 03:49.800
+So delivered like this.
+
+03:49.800 --> 03:51.680
+Let's go and execute it okay.
+
+03:51.720 --> 03:54.240
+With that it says five rows are affected.
+
+03:54.560 --> 03:56.280
+Let's go and select it again.
+
+03:56.280 --> 04:03.120
+So select from orders and let's check that.
+
+04:03.120 --> 04:04.960
+So as you can see now we don't have all orders.
+
+04:04.960 --> 04:08.000
+We have only the orders where the status equal to shipped.
+
+04:08.000 --> 04:10.480
+So all delivered orders are removed.
+
+04:10.480 --> 04:12.440
+And now we can do whatever we want to this copy.
+
+04:12.440 --> 04:13.320
+We can analyze it.
+
+04:13.360 --> 04:14.520
+We can modify it.
+
+04:14.560 --> 04:19.440
+We can go and insert a new data so we can do whatever manipulation we want on this copy.
+
+04:19.480 --> 04:21.960
+And now if you say, you know what, I like these results.
+
+04:21.960 --> 04:26.600
+And I would like to have it not only during the session, maybe I'm going to need it for tomorrow or
+
+04:26.600 --> 04:27.320
+something.
+
+04:27.320 --> 04:29.730
+So now what we're going to do, to do, we're going to do the exact opposite.
+
+04:29.770 --> 04:35.730
+We're going to now store the result of that temporary table back to our database, so that we don't
+
+04:35.730 --> 04:37.450
+lose this intermediate result.
+
+04:37.490 --> 04:44.050
+So in order to do that we're going to say into and then make sure to specify the sales dots because
+
+04:44.050 --> 04:46.010
+we want to select the correct schema.
+
+04:46.010 --> 04:48.370
+And then let's say it is orders.
+
+04:48.490 --> 04:50.930
+And I'm going to call it test like this.
+
+04:50.930 --> 04:52.890
+So let's go and execute it.
+
+04:52.890 --> 04:55.090
+So it says five rows are affected.
+
+04:55.330 --> 04:58.290
+Now we have to see those informations in the sales DB.
+
+04:58.410 --> 05:00.050
+We still don't have this table over here.
+
+05:00.050 --> 05:03.250
+So right click on the DB and then refresh it.
+
+05:03.250 --> 05:05.050
+So let's go again to the tables.
+
+05:05.090 --> 05:08.250
+And now you can see we have our new table orders test.
+
+05:08.250 --> 05:09.890
+So it is amazing right.
+
+05:09.890 --> 05:16.130
+What we have done is we have took a copy from the original table orders to a temporary space.
+
+05:16.130 --> 05:21.010
+We have done some modifications and play with the data, and we have done some analysis.
+
+05:21.130 --> 05:28.330
+And then the end result of our temporary table, we have loaded back to another new table called orders
+
+05:28.330 --> 05:31.490
+test in order maybe in the next day to keep working on it.
+
+05:31.490 --> 05:35.790
+So it is a really nice way to do changes in place where you say you know what?
+
+05:35.830 --> 05:36.790
+It is temporary.
+
+05:36.790 --> 05:38.910
+And whatever mistakes you make, it's okay.
+
+05:38.950 --> 05:40.350
+It is like playground.
+
+05:40.350 --> 05:45.190
+So now we still have an active session with the database, and our temporary table is going to be always
+
+05:45.190 --> 05:45.550
+here.
+
+05:45.590 --> 05:48.470
+Now let's see what can happen if we end our session.
+
+05:48.470 --> 05:51.870
+So in order to do that let's go and just close everything.
+
+05:51.870 --> 05:56.350
+So I will just close and we'll not store anything.
+
+05:56.750 --> 05:59.070
+So with that we have now ended the session.
+
+05:59.070 --> 06:02.750
+Let's go and start it again and see whether we still have the temporary table.
+
+06:02.750 --> 06:06.150
+So we have now again to connect to the SQL server.
+
+06:06.150 --> 06:08.070
+And now we have another session.
+
+06:08.070 --> 06:10.790
+So that means the old session is already lost.
+
+06:10.790 --> 06:15.350
+Let's go to the databases to the system databases to the temp DB.
+
+06:15.510 --> 06:17.390
+And let's go to the temporary tables.
+
+06:17.430 --> 06:23.630
+As you can see, the database already cleaned up everything and this space is again empty for any new
+
+06:23.670 --> 06:25.310
+temporary table that I'm going to create.
+
+06:25.310 --> 06:28.950
+So as you can see, once you close the session everything going to get lost.
+
+06:28.990 --> 06:30.750
+Now let's go back to our sales DB.
+
+06:30.790 --> 06:32.390
+Over here to the tables.
+
+06:32.390 --> 06:35.790
+We can see the table that we have created orders, tests.
+
+06:35.790 --> 06:39.590
+It is still living here and still has the data that we have created.
+
+06:39.590 --> 06:42.750
+So this is how things works with the temporary tables in SQL.

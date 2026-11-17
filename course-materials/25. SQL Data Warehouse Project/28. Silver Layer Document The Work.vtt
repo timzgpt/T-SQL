@@ -1,0 +1,211 @@
+WEBVTT
+
+00:00.040 --> 00:00.280
+Okay.
+
+00:00.280 --> 00:04.680
+So now let's go and extend our data flow for the silver layer.
+
+00:04.800 --> 00:10.240
+So what I'm going to do I'm just going to go and copy the whole thing and put it side by side to the
+
+00:10.240 --> 00:10.960
+bronze layer.
+
+00:10.960 --> 00:13.760
+And let's call it silver layer.
+
+00:13.760 --> 00:18.800
+And the table name is going to stay as before because we have like 1 to 1 like the bronze layer.
+
+00:18.800 --> 00:21.040
+But what you're going to do, we're going to go and change the coloring.
+
+00:21.040 --> 00:25.360
+So I'm going to go and mark everything and make it gray like silver.
+
+00:25.360 --> 00:28.280
+And of course what is very important is to make the lineage.
+
+00:28.280 --> 00:33.920
+So I'm going to go now from the bronze and take an arrow and put it to the silver table.
+
+00:33.960 --> 00:37.040
+And now with that we have like a lineage between three layers.
+
+00:37.040 --> 00:39.240
+And you are checking this table, the customer info.
+
+00:39.520 --> 00:44.240
+You can understand how this comes from the bronze layer from the customer info.
+
+00:44.240 --> 00:47.400
+And as well this comes from the source system CRM.
+
+00:47.400 --> 00:53.120
+So now you can see the lineage between different layers and without looking to any scripts and so on.
+
+00:53.160 --> 00:55.760
+In one picture you can understand the whole project.
+
+00:55.760 --> 00:59.360
+So I don't have to explain a lot of stuff by just looking to this picture.
+
+00:59.360 --> 01:06.000
+You can understand how the data is flowing between sources bronze layer, silver layer and to the gold
+
+01:06.000 --> 01:07.080
+layer of course later.
+
+01:07.080 --> 01:09.800
+So as you can see it looks really nice and clean.
+
+01:10.160 --> 01:10.560
+All right.
+
+01:10.560 --> 01:12.910
+So with that we have updated the data flow.
+
+01:12.950 --> 01:16.110
+Next we're going to go and commit our work in the git repo.
+
+01:16.110 --> 01:16.830
+So let's go.
+
+01:16.870 --> 01:17.070
+Okay.
+
+01:17.110 --> 01:19.110
+So now let's go and commit our scripts.
+
+01:19.110 --> 01:20.830
+We're going to go to the folder scripts.
+
+01:20.830 --> 01:22.710
+And here we have a server layer.
+
+01:22.710 --> 01:24.830
+If you don't have it of course you can go and create it.
+
+01:24.830 --> 01:28.270
+So first we're going to go and put the DDL scripts for the server layer.
+
+01:28.270 --> 01:32.110
+So let's go and I will paste the code over here.
+
+01:32.110 --> 01:36.550
+And as usual we have this comment at the header explaining the purpose of this script.
+
+01:36.550 --> 01:38.990
+So let's go and commit our work.
+
+01:39.390 --> 01:44.110
+And we're going to do the same thing for the stored procedure that loads the server layer.
+
+01:44.110 --> 01:47.150
+So I'm going to go over here I have already a file for that.
+
+01:47.150 --> 01:48.750
+So let's go and paste that.
+
+01:48.750 --> 01:50.830
+So we have here our stored procedures.
+
+01:50.830 --> 01:52.990
+And as usual at the start we have as well.
+
+01:52.990 --> 01:58.430
+So this script is doing the ETL process where we load the data from bronze into silver.
+
+01:58.430 --> 02:04.070
+So the action is to truncate the table first and then insert transformed, cleansed data from bronze
+
+02:04.070 --> 02:04.750
+to silver.
+
+02:04.790 --> 02:06.670
+There are no parameters at all.
+
+02:06.670 --> 02:09.790
+And this is how you can use the stored procedure okay.
+
+02:09.830 --> 02:12.310
+So we're going to go and commit our work.
+
+02:13.190 --> 02:15.790
+And now one more thing that you want to commit in our projects.
+
+02:15.830 --> 02:19.990
+All those queries that you have built to check the quality of the server layer.
+
+02:19.990 --> 02:22.250
+So this time we will not put it in the scripts.
+
+02:22.250 --> 02:26.730
+We're going to go to the tests and here we're going to go and make a new file called Quality Checks
+
+02:26.730 --> 02:27.450
+silver.
+
+02:27.450 --> 02:31.650
+And inside it we're going to go and paste all the queries that we have built.
+
+02:31.650 --> 02:34.770
+I just here reorganized them by the tables.
+
+02:34.770 --> 02:40.410
+So here we can see all the checks that we have done during the course and at the header we have here.
+
+02:40.450 --> 02:41.330
+Nice comments.
+
+02:41.330 --> 02:45.250
+So here we are just saying that this script is going to check the quality of the server layer.
+
+02:45.250 --> 02:51.290
+And we are checking for nulls, duplicates, unwanted spaces, invalid date range and so on so that
+
+02:51.290 --> 02:55.770
+each time you come up with a new quality check, I'm going to recommend you to share it with the project
+
+02:55.770 --> 03:02.250
+and with other team in order to make it part of multiple checks that you do after running the Etls.
+
+03:02.250 --> 03:02.770
+So that's it.
+
+03:02.770 --> 03:08.330
+I'm going to go and put those checks in our repo, and in case I come up with a new check, I'm going
+
+03:08.370 --> 03:09.490
+to go and update it.
+
+03:09.530 --> 03:10.010
+Perfect.
+
+03:10.010 --> 03:12.970
+So now we have our code in our repository.
+
+03:12.970 --> 03:13.410
+All right.
+
+03:13.410 --> 03:17.210
+So with that our code is safe and we are done with the whole epic.
+
+03:17.210 --> 03:19.570
+So we have built the silver layer.
+
+03:19.730 --> 03:21.410
+Now let's go and minimize it.
+
+03:21.410 --> 03:24.690
+And now we come to my favorite layer the gold layer.
+
+03:24.690 --> 03:28.290
+So we're going to go and build it the first step as usual we have to analyze.
+
+03:28.290 --> 03:30.610
+And this time we're going to explore the business objects.
+
+03:30.610 --> 03:31.370
+So let's go.

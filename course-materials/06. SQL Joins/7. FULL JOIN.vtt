@@ -1,0 +1,265 @@
+WEBVTT
+
+00:03.880 --> 00:06.360
+Okay, so now what is exactly a full join?
+
+00:06.360 --> 00:11.000
+If you use it, SQL can returns everything all the rows from both tables.
+
+00:11.000 --> 00:15.960
+So now if you check again our circles from the left table, we want to get everything all the rows.
+
+00:15.960 --> 00:17.600
+So you will get the whole circle.
+
+00:17.600 --> 00:22.720
+And as well from the right table you want to get everything all the rows, the whole circle, so that
+
+00:22.720 --> 00:27.720
+you want to get everything the matching, the unmatching, all the data from left and right.
+
+00:27.760 --> 00:28.960
+Now let's check the syntax.
+
+00:28.960 --> 00:30.240
+It's going to be very simple.
+
+00:30.240 --> 00:33.240
+The join type here is going to be a full join and the full join.
+
+00:33.240 --> 00:35.200
+It is very similar to the inner join.
+
+00:35.200 --> 00:39.040
+You remember the order of the tables is not important at all.
+
+00:39.040 --> 00:41.840
+So there is here no main table and secondary table.
+
+00:41.880 --> 00:46.160
+Both of the tables are important and it doesn't matter in your query where you start.
+
+00:46.160 --> 00:50.840
+You can start from a full join B or you can start from B, then full join A.
+
+00:50.880 --> 00:52.640
+You will get the exact same results.
+
+00:52.640 --> 00:53.600
+It sounds simple.
+
+00:53.640 --> 00:56.200
+Let's go to SQL and practice the full join.
+
+00:56.240 --> 00:56.560
+All right.
+
+00:56.560 --> 00:57.800
+So now we have the following task.
+
+00:57.800 --> 01:02.480
+And it says get all customers and all orders even if there is no match.
+
+01:02.480 --> 01:05.400
+So now again we need the data from customers and orders.
+
+01:05.400 --> 01:07.560
+But now of course which type we're going to use.
+
+01:07.600 --> 01:09.480
+It says even if there is no match.
+
+01:09.480 --> 01:13.020
+But it didn't say no much from orders or customers.
+
+01:13.020 --> 01:17.260
+So you can understand from this task we are not focusing only on the orders or the customers.
+
+01:17.260 --> 01:20.780
+Both of them are equally important and we need all the data.
+
+01:20.780 --> 01:25.900
+So that means we need all the data from left, all the data from right, and we can go and use the full
+
+01:25.900 --> 01:26.220
+join.
+
+01:26.220 --> 01:27.980
+So now we have this query over here.
+
+01:27.980 --> 01:31.180
+We are starting from customers and then joining to orders.
+
+01:31.180 --> 01:34.620
+But now instead of having left we're going to say full join.
+
+01:34.620 --> 01:36.820
+So now let's go and just execute it.
+
+01:36.860 --> 01:41.020
+Now if you are looking to the left side you can see we are getting all the customers right.
+
+01:41.020 --> 01:42.660
+So we have our five customers.
+
+01:42.660 --> 01:46.020
+And if you are looking to the right you can see all our orders.
+
+01:46.020 --> 01:49.420
+So with that we have everything from left and everything from right.
+
+01:49.420 --> 01:52.980
+And the matching data is just side by side in the results.
+
+01:52.980 --> 01:55.140
+And if there is no match, we are getting nulls.
+
+01:55.140 --> 01:56.980
+So actually with that, we have solved the task.
+
+01:56.980 --> 02:03.020
+And again it doesn't matter how you start, you can start from the orders and then join it to the customers
+
+02:03.020 --> 02:05.340
+and you will get the exact same results.
+
+02:05.340 --> 02:07.180
+So you are getting exactly the same data.
+
+02:07.220 --> 02:10.860
+Now let's go and understand exactly how SQL executed the full join.
+
+02:10.900 --> 02:14.500
+Okay, again we have the data of the customers and the orders and our full join.
+
+02:14.500 --> 02:18.420
+So now SQL can identify those columns that we want to see in the results.
+
+02:18.420 --> 02:23.600
+So the ID and the first name, the order ID and the sales and formations to the output.
+
+02:23.640 --> 02:27.240
+Now it's going to start from the left table since it is started with the customers.
+
+02:27.280 --> 02:31.640
+It's going to take simply everything from the left table and present it in the output.
+
+02:31.680 --> 02:35.960
+Since it is fully joined, we want to see all the data from the left side and now start searching for
+
+02:36.000 --> 02:37.640
+matches from the right table.
+
+02:37.640 --> 02:43.480
+So let's start with the first customer and as usual we will get the order from the customer.
+
+02:43.480 --> 02:44.320
+Number one.
+
+02:44.320 --> 02:48.000
+And the same thing for the second customer we have as well here match.
+
+02:48.000 --> 02:49.240
+So we will get as well.
+
+02:49.240 --> 02:50.600
+It's like the left join.
+
+02:50.600 --> 02:54.720
+And for the third one we have as well a match and we're going to have it like this.
+
+02:54.760 --> 03:00.440
+And since we don't have orders for those two customers, we will get as well nulls in the outputs.
+
+03:00.440 --> 03:02.120
+So SQL going to mark it with null.
+
+03:02.160 --> 03:03.480
+The same thing over here.
+
+03:04.120 --> 03:06.120
+And as well for the last customer.
+
+03:06.120 --> 03:08.440
+So we will get nulls for those two customers.
+
+03:08.480 --> 03:10.800
+And now of course with SQL will not stop here.
+
+03:10.800 --> 03:12.880
+Otherwise we will get a left join effect.
+
+03:12.920 --> 03:18.440
+Now SQL can start looking at the right side to find any order that is not in the output.
+
+03:18.440 --> 03:23.680
+So SQL can see okay, the first order is in the output, the second one is as well in the output the
+
+03:23.680 --> 03:26.440
+third, but the fourth one is not in the results.
+
+03:26.440 --> 03:32.740
+So SQL is going to take this result and put it in the outputs, so this order has no match at all from
+
+03:32.740 --> 03:33.420
+the left side.
+
+03:33.460 --> 03:37.540
+And with that, if you are looking to the right side, you can see this girl gonna be happy because
+
+03:37.540 --> 03:40.340
+we have all the orders from the right table.
+
+03:40.380 --> 03:42.380
+And of course SQL will not leave it like this.
+
+03:42.420 --> 03:48.220
+Instead of that, SQL gonna show nulls on the left side so there is no ID and there is no first name.
+
+03:48.220 --> 03:50.540
+So this is exactly why we got this results.
+
+03:50.540 --> 03:53.980
+And this is how SQL executed the full join.
+
+03:54.020 --> 03:54.220
+Okay.
+
+03:54.260 --> 03:59.620
+So now if you are looking to the use cases I can say you can use the full join in order as well to recombine
+
+03:59.620 --> 04:01.540
+the data from multiple tables.
+
+04:01.540 --> 04:07.060
+If you don't want to miss anything from all four tables, all data, the matching and unmatching data,
+
+04:07.060 --> 04:09.580
+but I don't use it usually for data enrichment.
+
+04:09.580 --> 04:14.980
+For the second use case, and where we can use the full join is in the last use case as well, but with
+
+04:14.980 --> 04:16.820
+a little twist that we're going to learn later.
+
+04:16.820 --> 04:19.540
+So this is mainly where we can use the full join.
+
+04:19.540 --> 04:19.900
+All right.
+
+04:19.900 --> 04:25.140
+So with that we have covered the basic types of joins inner left right and full join.
+
+04:25.180 --> 04:28.660
+Those are the classical joins on how to combine two tables.
+
+04:31.860 --> 04:34.980
+Now we're going to start talking about the advanced SQL joins.
+
+04:34.980 --> 04:38.180
+And now we're going to cover the first part the lift anti join.
+
+04:38.180 --> 04:39.580
+So let's see what this means.

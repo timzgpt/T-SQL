@@ -1,0 +1,256 @@
+WEBVTT
+
+00:03.920 --> 00:05.320
+Okay, so what is it?
+
+00:05.360 --> 00:05.840
+Operator.
+
+00:05.840 --> 00:09.080
+It's gonna go and check if a value exists in a list.
+
+00:09.080 --> 00:13.960
+So you have a list of values, and you are checking whether your value is a member of your list.
+
+00:13.960 --> 00:17.080
+So let's have a very simple example in order to understand what this means okay.
+
+00:17.120 --> 00:21.920
+So now how this works exactly what you have to do is to go and make a list of values.
+
+00:21.920 --> 00:23.400
+So let's say that I have a list.
+
+00:23.400 --> 00:26.640
+And there I have specified two values Germany and USA.
+
+00:26.680 --> 00:29.560
+So those two are the members of this list.
+
+00:29.600 --> 00:34.960
+Now if you use the in operator it's going to go and check the value of countries whether it is in the
+
+00:34.960 --> 00:35.880
+list or not.
+
+00:35.880 --> 00:38.600
+So let's do it one by one for the first customer, Maria.
+
+00:38.640 --> 00:41.880
+Her country is Germany and Germany is member of the list.
+
+00:41.880 --> 00:45.520
+So it's going to be happy and gonna leave Maria in the final results.
+
+00:45.560 --> 00:46.560
+Now moving on to John.
+
+00:46.600 --> 00:48.040
+John comes from USA.
+
+00:48.080 --> 00:49.920
+USA is member of the list.
+
+00:49.920 --> 00:51.960
+So he is fulfilling as well the condition.
+
+00:51.960 --> 00:54.000
+And you're gonna see John in the final results.
+
+00:54.040 --> 00:55.160
+Now we come to George.
+
+00:55.160 --> 00:59.080
+George comes from USA and UK is not a member of our list.
+
+00:59.080 --> 01:02.920
+And SQL gonna go and remove this customer from the final results.
+
+01:02.960 --> 01:05.100
+Not fulfilling the condition Now for the last two.
+
+01:05.140 --> 01:06.100
+Martin and Peter.
+
+01:06.140 --> 01:11.340
+Their country is a member of the list and is going to go and leave those customers in the final results.
+
+01:11.340 --> 01:12.740
+So as you can see, it's very simple.
+
+01:12.780 --> 01:17.180
+Or what you have to do is to define the members of a list and use the in operator.
+
+01:17.180 --> 01:20.380
+And if the value is a member of this list, it's going to be true.
+
+01:20.420 --> 01:21.740
+Otherwise it's going to be false.
+
+01:21.780 --> 01:26.940
+Now of course, the other operator is going to be exactly the opposite, where we say not in the list.
+
+01:26.940 --> 01:30.260
+So we are searching for values that are not in this list.
+
+01:30.260 --> 01:34.140
+So as we are using nut, it's going to go and reverse completely the truth.
+
+01:34.140 --> 01:36.340
+And if you apply this you will get in the result.
+
+01:36.340 --> 01:38.660
+Only one customer you will get George.
+
+01:38.660 --> 01:44.140
+And the result because the country is UK and UK is not a member of the list.
+
+01:44.140 --> 01:48.780
+So if you use not together with the in operator, you will get exactly the opposite effects.
+
+01:48.780 --> 01:52.460
+So this is how the in and the not in operator works in SQL.
+
+01:52.500 --> 01:54.860
+Let's go back to SQL in order to practice that okay.
+
+01:54.900 --> 02:00.900
+So now we have this task and it says retrieve all customers from either Germany or USA okay.
+
+02:00.940 --> 02:02.580
+So let's try to solve this task.
+
+02:02.620 --> 02:04.220
+This is going to be a little bit tricky.
+
+02:04.220 --> 02:08.600
+So select star from customers as usual and execute it.
+
+02:08.600 --> 02:13.040
+So now we need in the results only customer that comes either from Germany or USA.
+
+02:13.080 --> 02:18.320
+So that means this customer over here should be excluded from the result because he come from UK.
+
+02:18.360 --> 02:19.440
+So how are we going to write it?
+
+02:19.480 --> 02:20.720
+It's going to be like this maybe.
+
+02:20.760 --> 02:29.000
+So the first one is going to be the country is equal to Germany or the country is equal to USA, right.
+
+02:29.040 --> 02:29.880
+Something like this.
+
+02:29.880 --> 02:32.200
+So if you go and execute it, you will get the output.
+
+02:32.240 --> 02:35.400
+Only the customers that are either from Germany or USA.
+
+02:35.440 --> 02:36.840
+And with that we have solved the task.
+
+02:36.840 --> 02:37.240
+Right.
+
+02:37.280 --> 02:42.600
+Well, there is another way in order to solve this task, which is more clear and shorter using the
+
+02:42.640 --> 02:43.480
+in operator.
+
+02:43.520 --> 02:44.680
+So now how are we going to do it.
+
+02:44.680 --> 02:47.920
+Let's go and get the whole thing in another query.
+
+02:47.960 --> 02:53.480
+And now instead of having equals and AWS and so on we can use the in operator.
+
+02:53.480 --> 02:55.440
+And then we can have like two parentheses.
+
+02:55.440 --> 02:58.080
+And then inside it we're going to have a list of values.
+
+02:58.080 --> 02:59.600
+So it's going to be the Germany.
+
+02:59.600 --> 03:02.600
+And then the second value going to be USA like this.
+
+03:02.600 --> 03:07.240
+So we are seeing country should be in this list Germany or USA.
+
+03:07.240 --> 03:11.090
+And if it is like one of those values then the condition is fulfilled.
+
+03:11.090 --> 03:15.810
+So now if you go and execute this one over here, you will get the exact same results.
+
+03:15.810 --> 03:20.610
+So my friends, if you notice that you are repeating yourself in the Where condition and you are just
+
+03:20.610 --> 03:25.250
+changing the value of the condition, it is based on the same column and you are connecting them using
+
+03:25.250 --> 03:25.770
+the Or.
+
+03:25.930 --> 03:27.770
+Then there is something wrong and all.
+
+03:27.770 --> 03:33.210
+We think on this scenario to use the in operator, because this can be really ugly once you have a lot
+
+03:33.250 --> 03:33.970
+of values.
+
+03:33.970 --> 03:37.010
+So imagine in our database we have a lot of countries.
+
+03:37.010 --> 03:39.490
+And your query is going to be like something like this.
+
+03:39.490 --> 03:43.130
+So you are keep repeating country equal or country equal and so on.
+
+03:43.170 --> 03:47.850
+Instead of that you're going to have a really nice list of countries in one go.
+
+03:47.850 --> 03:52.810
+So this is as you can see here, it is easier to extend and as well has better performance.
+
+03:52.810 --> 03:55.330
+So as you can see we are repeating the same thing.
+
+03:55.330 --> 04:00.770
+But we are just changing the value and we are connecting all those conditions using the Or in this scenario,
+
+04:00.810 --> 04:01.690
+go and use the in.
+
+04:01.730 --> 04:02.410
+Operator.
+
+04:02.450 --> 04:03.290
+All right my friends.
+
+04:03.290 --> 04:05.610
+So that's all for the membership operators.
+
+04:05.650 --> 04:08.650
+Now we're going to speak about the last one, the search operator.
+
+04:08.650 --> 04:10.450
+And here we have only one the like.
+
+04:10.490 --> 04:14.130
+And each time I'm going to say like I'm going to remind you to like this course.
+
+04:14.130 --> 04:14.770
+So let's go.

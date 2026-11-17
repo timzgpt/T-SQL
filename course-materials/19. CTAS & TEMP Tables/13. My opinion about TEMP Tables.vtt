@@ -1,0 +1,19 @@
+WEBVTT
+
+00:03.920 --> 00:06.880
+All right, guys, now a quick talk about the temporary tables.
+
+00:07.040 --> 00:09.680
+To be honest, I never used this in my projects.
+
+00:09.680 --> 00:14.760
+If I need an intermediate results in one query, I can go and use the seats.
+
+00:14.960 --> 00:20.400
+And if my intermediate results is very important, then I put it in either view or CTAs.
+
+00:20.680 --> 00:22.400
+But it is a nice technique to learn.
+
+00:22.440 --> 00:24.760
+Maybe you can utilize it in one of your projects.

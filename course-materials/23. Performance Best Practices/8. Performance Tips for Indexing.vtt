@@ -1,0 +1,82 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+Alright.
+
+00:04.320 --> 00:09.880
+The fifth best practices and the most important one is avoid overindexing, because too many indexes
+
+00:09.880 --> 00:15.080
+are going to slow down the insert update delete operations, and it's going to confuse as well the execution
+
+00:15.080 --> 00:19.800
+plan about choosing the right index and the performance of the whole system is going to go down.
+
+00:19.800 --> 00:23.240
+And another tip is to monitor the usage of the indexes.
+
+00:23.240 --> 00:29.360
+And I can tell you 90% of the indexes that is being created usually are not used at all.
+
+00:29.360 --> 00:32.680
+So they are taking a lot of space, slowing down everything.
+
+00:32.840 --> 00:36.360
+So go and drop those unused indexes in your system.
+
+00:36.360 --> 00:41.040
+The next best practice is to have a regular job, like maybe a weekly job.
+
+00:41.040 --> 00:46.840
+So first you have to update the statistics regularly as you are inserting new data and modifying data
+
+00:46.840 --> 00:51.880
+inside your database, the statistics and the metadata of your tables might get outdated.
+
+00:51.880 --> 00:56.560
+And this is really bad because you will not get an optimal execution plan for your queries, and this
+
+00:56.560 --> 00:58.040
+is going to slow down your queries.
+
+00:58.040 --> 00:58.560
+Of course.
+
+00:58.560 --> 01:04.960
+So regularly make sure that all the statistics are updated in order to have an optimal execution plan.
+
+01:04.960 --> 01:11.480
+And what else we can do in this weekly job is that we can go and rebuild and reorganize our indexes,
+
+01:11.520 --> 01:16.440
+and that is to make sure that we are preventing data fragmentations in our indexes.
+
+01:16.440 --> 01:21.520
+Data fragmentations in your indexes is really bad because there will be a lot of unused spaces.
+
+01:21.520 --> 01:24.440
+The order of your clustered index will not be correct.
+
+01:24.440 --> 01:29.640
+So make sure that at least weekly you are rebuilding and reorganizing all your indexes.
+
+01:29.640 --> 01:34.640
+So those are the best practices of improving the performance and optimizing your indexing.
+
+01:34.640 --> 01:40.560
+If you are struggling with very large tables in your projects, like having fact tables, then go and
+
+01:40.560 --> 01:48.720
+use SQL partitioning in order to divide these tables into smaller pieces, which can improve the performance.
+
+01:48.720 --> 01:52.120
+Whether you are reading data from the table or writing data.
+
+01:52.160 --> 01:59.320
+And of course, you can go and mix things where you can go and apply a columnstore index on this partition
+
+01:59.320 --> 01:59.920
+table.
+
+02:00.160 --> 02:04.360
+Then you will get the best performance if you are having large tables.

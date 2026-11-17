@@ -1,0 +1,97 @@
+WEBVTT
+
+00:03.920 --> 00:07.440
+Okay, now moving on to the last one in this group of commands.
+
+00:07.440 --> 00:11.200
+So now so far what you have done, we have created something new in the database.
+
+00:11.200 --> 00:14.680
+We have changed the definition of something inside our database.
+
+00:14.720 --> 00:18.680
+And now the last one you can go and drop something from the database.
+
+00:18.720 --> 00:21.880
+Let's say we have another table and we don't need it anymore.
+
+00:21.880 --> 00:28.000
+So we can go and use the drop command in order to remove the table completely from the database.
+
+00:28.000 --> 00:32.360
+And this means as well removing everything that table and the data inside it.
+
+00:32.360 --> 00:36.080
+So now let's go to SQL and let's drop something from our database okay.
+
+00:36.120 --> 00:40.000
+So now our task says delete the table persons from the database.
+
+00:40.000 --> 00:44.720
+This is the simplest form of command in SQL but yet the most risky one.
+
+00:44.720 --> 00:48.520
+So what we need we have to delete and drop the whole table persons.
+
+00:48.520 --> 00:49.760
+We don't need it anymore.
+
+00:49.800 --> 00:56.320
+We're going to say drop table and then all what we have to do is to give the name of the table persons.
+
+00:56.320 --> 01:01.080
+So three words we don't have to specify anything, just destroy the table persons.
+
+01:01.120 --> 01:02.560
+Let's go and execute it.
+
+01:02.600 --> 01:03.440
+It is successful.
+
+01:03.440 --> 01:05.000
+So as you can see it is very simple.
+
+01:05.040 --> 01:10.200
+Now on the left side to your database go refresh and go to the tables and you will not see the table
+
+01:10.240 --> 01:10.880
+persons.
+
+01:10.880 --> 01:11.960
+So the drop command.
+
+01:11.960 --> 01:14.440
+It is very simple but yet very risky.
+
+01:14.440 --> 01:20.400
+So if you compare now create table with a drop table, you can see destroying things is way easier than
+
+01:20.440 --> 01:21.280
+building it.
+
+01:21.280 --> 01:27.560
+Those are the commands create, alter, drop those commands we use in order to define the structure
+
+01:27.560 --> 01:30.320
+of our database, the DDL commands.
+
+01:30.360 --> 01:31.320
+That's why it's very simple.
+
+01:31.360 --> 01:31.800
+All right.
+
+01:31.800 --> 01:34.480
+So that's all about the data definition language DDL.
+
+01:34.520 --> 01:37.800
+And with that you have learned how to define new stuff in your database.
+
+01:37.800 --> 01:41.440
+Now moving on to the next one we're going to learn about the data manipulation language.
+
+01:41.440 --> 01:44.920
+And here we can learn how to manipulate our data inside the database.
+
+01:44.920 --> 01:45.480
+Let's go.

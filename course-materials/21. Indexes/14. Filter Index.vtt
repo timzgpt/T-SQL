@@ -1,0 +1,256 @@
+WEBVTT
+
+00:03.960 --> 00:04.320
+Okay.
+
+00:04.360 --> 00:06.040
+So now what is a filtered index?
+
+00:06.080 --> 00:09.960
+A filtered index is a regular index, but with a twist.
+
+00:09.960 --> 00:13.800
+It only includes rows that meet specific condition.
+
+00:13.960 --> 00:15.600
+So let's understand what this means.
+
+00:15.640 --> 00:19.640
+So again we have our non-clustered index and the B3 structure.
+
+00:19.720 --> 00:21.400
+So now add the leaf nodes.
+
+00:21.400 --> 00:26.560
+We will get only the IDs the data that fulfill a specific condition.
+
+00:26.600 --> 00:31.480
+So for example if you are saying we want only the active customers this is the condition.
+
+00:31.480 --> 00:37.200
+So that means on the leaf nodes we will have only the customer IDs that are active.
+
+00:37.200 --> 00:43.600
+And any inactive customer will not be included at all at the database and at the nodes.
+
+00:43.600 --> 00:49.280
+So that means our B structure is going to be a little bit smaller as usual, because we have less data
+
+00:49.280 --> 00:51.760
+included in the structure.
+
+00:51.760 --> 00:55.800
+So our index is going to be smaller than the regular non-clustered index.
+
+00:55.800 --> 00:59.840
+So now the question is why is it important to have a filtered index.
+
+00:59.920 --> 01:04.240
+Well the biggest benefit is we're going to have targeted optimizations.
+
+01:04.240 --> 01:12.040
+So for example if our analysis always focuses on the active users and inactive users are totally irrelevant.
+
+01:12.040 --> 01:18.960
+So that means having only relevant subset of data in their index going to make the whole index much
+
+01:18.960 --> 01:22.400
+smaller, which leads to faster performance.
+
+01:22.400 --> 01:27.440
+So it's going to be faster to query this filtered B-tree structure.
+
+01:27.440 --> 01:33.040
+So that means we are doing targeted optimizations and we are improving the query performance.
+
+01:33.240 --> 01:38.720
+Now the second benefit if you think about the storage, since the size of the structure is going to
+
+01:38.720 --> 01:44.760
+be smaller, that means we're going to need less storage space in order to store the index, which is
+
+01:44.760 --> 01:48.280
+a great thing if you have large tables in your database.
+
+01:48.280 --> 01:54.280
+So the filtered index is going to make the structure of the index smaller, which can improve the speed
+
+01:54.280 --> 01:59.160
+and the performance, and as well reduce the storage that is needed for your index.
+
+01:59.200 --> 01:59.440
+Okay.
+
+01:59.480 --> 02:02.000
+So now let's check the syntax of the filtered index.
+
+02:02.000 --> 02:02.760
+It's very simple.
+
+02:02.760 --> 02:10.160
+It's like any query you can go and add at the end of creating the index the where clause and then the
+
+02:10.160 --> 02:13.000
+condition as you are doing in any Select statement.
+
+02:13.000 --> 02:16.870
+But the SQL server is very restrictive using this type of index.
+
+02:17.110 --> 02:21.750
+So you cannot use filtered index on a clustered index.
+
+02:21.750 --> 02:26.950
+So it is only allowed for the non-clustered index because it makes no sense.
+
+02:26.950 --> 02:32.950
+If you create a clustered index, the entire table should be reorganized and ordered.
+
+02:32.950 --> 02:35.670
+So it will not work for only subset of data.
+
+02:35.710 --> 02:39.990
+And as well you cannot create a filtered index on a column store.
+
+02:40.190 --> 02:43.630
+So it is only allowed if you are using row store.
+
+02:43.670 --> 02:47.710
+But you can go and combine the unique index together with the filtered index.
+
+02:47.990 --> 02:50.590
+There is no restrictions so it can be like this.
+
+02:50.630 --> 02:56.390
+Create unique non-clustered index on the table and then you specify the where condition.
+
+02:56.390 --> 02:58.510
+So this is the syntax of the filtered index.
+
+02:58.510 --> 03:00.390
+And we have these restrictions.
+
+03:00.430 --> 03:00.830
+All right.
+
+03:00.830 --> 03:05.070
+So now let's say that we have the following query where we are selecting data from customers.
+
+03:05.070 --> 03:11.790
+But always in our program or in our report we are selecting only the customers from USA.
+
+03:11.990 --> 03:13.430
+So we have the following condition.
+
+03:13.470 --> 03:18.710
+It says where country equal to USA and execute.
+
+03:18.710 --> 03:22.430
+So this is the basics of many queries that we have in our project.
+
+03:22.430 --> 03:26.150
+And we are always filtering the customers based on their country.
+
+03:26.150 --> 03:31.950
+So in one query, we are finding maybe the top customers and the other query we are finding the average
+
+03:31.950 --> 03:33.190
+of scores and so on.
+
+03:33.190 --> 03:35.510
+But we are always filtering the data like this.
+
+03:35.550 --> 03:37.510
+Where country equal to USA.
+
+03:37.550 --> 03:42.990
+So now since we are using this column lot and our table may be getting like millions of records, we
+
+03:42.990 --> 03:46.350
+can go and create non-clustered index on this column.
+
+03:46.350 --> 03:55.710
+So the usual way we go over here and say create non-clustered index and we call it like this index customers
+
+03:56.350 --> 03:57.310
+country.
+
+03:57.510 --> 04:02.110
+And then it's going to be on the table sales customers.
+
+04:02.350 --> 04:05.630
+And we select the column country like this.
+
+04:05.630 --> 04:12.310
+So if you do it like this it's going to go and create a non-clustered index for all customers not only
+
+04:12.350 --> 04:14.790
+from USA but for everything.
+
+04:14.790 --> 04:19.830
+So even if the customers come from Germany, which is not really necessary because in our project we
+
+04:19.830 --> 04:22.550
+only focus on the customers from USA.
+
+04:22.670 --> 04:28.750
+So instead of that we can go and include the where condition inside our cluster.
+
+04:28.750 --> 04:29.950
+So it's very simple.
+
+04:29.950 --> 04:34.580
+We're going to go and say where country equal to USA.
+
+04:34.620 --> 04:36.260
+Exactly like our query.
+
+04:36.260 --> 04:38.540
+So now the index that's going to be built.
+
+04:38.540 --> 04:45.860
+It will be focused and targeted only for subset of data, only for the data that fulfill this condition.
+
+04:45.940 --> 04:49.860
+So now let's go and create our filtered index and it is working.
+
+04:49.860 --> 04:53.020
+Let's go and check our indexes on the customers.
+
+04:53.220 --> 04:56.220
+So let's go to the indexes over here and refresh.
+
+04:56.220 --> 04:57.740
+Now we can see our index over here.
+
+04:57.740 --> 05:02.060
+It says it is not unique because we didn't find anything at the start.
+
+05:02.060 --> 05:05.500
+So duplicates are allowed of course which is what we defined here.
+
+05:05.500 --> 05:07.500
+And as well it is filtered.
+
+05:07.500 --> 05:10.260
+So it doesn't contain all the rows from your table.
+
+05:10.260 --> 05:14.140
+It contains only the rows that fulfill our condition.
+
+05:14.140 --> 05:21.140
+So that means now if I go and execute this query, the index can be used because the rows of this query
+
+05:21.140 --> 05:23.140
+is included in the index.
+
+05:23.140 --> 05:29.620
+But if I go over here and say Germany and execute the query, it's going to be slower because all those
+
+05:29.620 --> 05:33.860
+rows inside the query is not part of our index.
+
+05:33.860 --> 05:37.900
+So this index will not be used at all in order to improve the query.
+
+05:37.900 --> 05:41.260
+So this is how we work with the filtered index in SQL.

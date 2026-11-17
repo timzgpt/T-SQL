@@ -1,0 +1,103 @@
+WEBVTT
+
+00:03.960 --> 00:06.880
+So with that, we have understood what are subqueries.
+
+00:06.880 --> 00:10.360
+And now you might ask me, why do we need them in the first place?
+
+00:10.400 --> 00:12.160
+Why subqueries are important.
+
+00:12.200 --> 00:13.480
+Let's have the following sketch.
+
+00:13.520 --> 00:17.680
+Now in our complex task, we might have to do several stuffs in our query.
+
+00:17.680 --> 00:21.960
+Like for example, the first step we have to go and join tables in order to prepare the data.
+
+00:21.960 --> 00:24.720
+And then the outcome of the joins should be filtered.
+
+00:24.720 --> 00:26.320
+So this is going to be our step two.
+
+00:26.360 --> 00:32.120
+And then on top of that in the step three we have to go and do transformations like maybe handling the
+
+00:32.160 --> 00:35.280
+nulls or creating new columns and many other stuff.
+
+00:35.280 --> 00:40.520
+And the last step we want to go and do that aggregations like summarizing the data or finding the average.
+
+00:40.520 --> 00:45.600
+Now if you go immediately and start writing the SQL query without having a plan, what can happen?
+
+00:45.600 --> 00:51.720
+You're going to end up having a long, complex SQL query, and it's going to be really hard to write
+
+00:51.720 --> 00:53.640
+and as well to understand and read.
+
+00:53.640 --> 00:57.840
+And now what we're going to do instead of that, we're going to go and divide our task based on those
+
+00:57.840 --> 00:58.320
+steps.
+
+00:58.320 --> 01:01.320
+So we're going to write one query section for each step.
+
+01:01.320 --> 01:05.960
+For example, for joining tables we're going to have one query for filtering, another one, transformation
+
+01:06.000 --> 01:09.280
+another one, and for the aggregation we're going to have the last query.
+
+01:09.280 --> 01:15.680
+So now since each step is like a preparation for the next step, we can go and say each of those queries
+
+01:15.720 --> 01:16.920
+is a subquery.
+
+01:16.920 --> 01:21.200
+So for step one, step two, step three we have subqueries.
+
+01:21.200 --> 01:26.560
+And they are all doing like calculations and preparations for the last step to the aggregations.
+
+01:26.560 --> 01:28.920
+And we call the last step the main query.
+
+01:28.960 --> 01:32.200
+And of course the whole thing can exist in one single query.
+
+01:32.200 --> 01:38.120
+So if you want to visualize this like you have a subquery in SQL and then this circle belongs to a bigger
+
+01:38.120 --> 01:40.120
+circle called the main query.
+
+01:40.120 --> 01:44.800
+By the way sometimes we call the main query as the outer query and the subquery.
+
+01:44.800 --> 01:46.680
+We can call it an inner query.
+
+01:46.720 --> 01:52.320
+And of course we can have many sub queries and many small circles inside each others to form something
+
+01:52.320 --> 01:54.240
+called nested queries.
+
+01:54.240 --> 01:59.240
+So this is the main purpose of using subqueries in our scripts and queries.
+
+01:59.240 --> 02:03.680
+It can help us to reduce the complexity, and it can make it easier to read.
+
+02:03.680 --> 02:07.720
+And we can have like a flow logical flow inside our queries.

@@ -1,0 +1,85 @@
+WEBVTT
+
+00:04.000 --> 00:05.480
+And now let's say that you ask me.
+
+00:05.480 --> 00:05.960
+You know what?
+
+00:05.960 --> 00:11.000
+I have this big table and I would like to speed up the queries using indexes.
+
+00:11.000 --> 00:15.000
+And my first question is going to be, what are you exactly doing with this table?
+
+00:15.040 --> 00:20.960
+Are you using this table to search for a text or are you doing like complex analysis with this table?
+
+00:21.000 --> 00:27.360
+And the reason why I'm asking this is that we have different indexes in databases for different purposes.
+
+00:27.360 --> 00:31.800
+So now let's have a quick look to the different types of indexes that we have in database.
+
+00:31.840 --> 00:35.520
+I divide the indexes in databases into three categories.
+
+00:35.560 --> 00:41.400
+The first one is by the structure, how the database is organizing and referencing the data.
+
+00:41.400 --> 00:46.520
+And here we have two types the clustered index and the non-clustered index.
+
+00:46.520 --> 00:48.520
+Those are very important to understand.
+
+00:48.680 --> 00:51.160
+Now we have another category for the indexes.
+
+00:51.160 --> 00:53.360
+We can divide them by the storage.
+
+00:53.360 --> 00:59.520
+And in this category we are talking about how the data is stored physically in the database.
+
+00:59.520 --> 01:00.800
+So we have two types.
+
+01:00.800 --> 01:05.080
+We have the row store index and the column store index.
+
+01:05.120 --> 01:07.040
+And the third type is the functions.
+
+01:07.040 --> 01:08.720
+And here we have two types.
+
+01:08.880 --> 01:11.960
+We have the unique index and the filtered index.
+
+01:11.960 --> 01:15.000
+Now each index type has its own strings.
+
+01:15.000 --> 01:17.680
+But as well there is always a trade off.
+
+01:17.720 --> 01:19.680
+Some might improve their read performance.
+
+01:19.720 --> 01:23.840
+The other one might improve the insert and update operations.
+
+01:23.840 --> 01:27.720
+So it's all about choosing the right type of index for the job.
+
+01:27.720 --> 01:31.400
+So now what we're going to do, we're going to go and deep dive into each of those types in order to
+
+01:31.440 --> 01:34.680
+understand how they work and how we can create them.
+
+01:34.680 --> 01:37.360
+And we will start with the first category, the structure.
+
+01:37.360 --> 01:40.920
+We have the clustered index and the non-clustered index.

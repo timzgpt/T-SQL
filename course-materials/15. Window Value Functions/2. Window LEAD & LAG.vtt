@@ -1,0 +1,438 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.679
+lead and lag functions the lead function can allow you to access a value from the next row
+
+2
+00:00:05.679 --> 00:00:11.279
+within a window where the lag function is exactly the opposite it can allow you to access a value
+
+3
+00:00:11.279 --> 00:00:16.799
+from a previous row within a window it sounds very easy right so let's understand how sql
+
+4
+00:00:16.799 --> 00:00:21.120
+gonna execute those functions okay so now let's have a quick overview of the syntax for both of
+
+5
+00:00:21.120 --> 00:00:26.479
+the functions lead and lag we have here very simple example for the lead function so as usual
+
+6
+00:00:26.479 --> 00:00:30.799
+we start with the function name it's going to be the lead and now after that we're going to go and
+
+7
+00:00:30.799 --> 00:00:35.759
+pass the arguments and as you can see we have here multiple stuff so let's do it step by step
+
+8
+00:00:35.759 --> 00:00:39.680
+so the first thing that we're going to go and specify an expression and the data type could
+
+9
+00:00:39.680 --> 00:00:45.200
+be any data type it could be a number like here the sales it could be character like names or
+
+10
+00:00:45.200 --> 00:00:52.159
+dates or anything so this is required we have to specify an expression we cannot leave it empty
+
+11
+00:00:52.159 --> 00:00:57.599
+and we can use any data type now moving on to the next one we have here a number so what is it
+
+12
+00:00:57.599 --> 00:01:03.040
+this is the offsets and this offset is optional so you can go and skip it so what offsets means
+
+13
+00:01:03.040 --> 00:01:09.599
+what we are doing over here we are specifying for sql the number of rows forward or backward
+
+14
+00:01:09.599 --> 00:01:14.239
+from the current row so here in this example we are specifying the offset as two using the lead
+
+15
+00:01:14.239 --> 00:01:19.120
+and with that you are telling a scale go jump to the next two rows and get me the value and if you
+
+16
+00:01:19.120 --> 00:01:24.400
+are using lag it means you are telling a scale go back two rows up and get me the value so here you
+
+17
+00:01:24.400 --> 00:01:29.680
+are telling a scale how many rows it needs to jump and if you don't specify anything like leave it
+
+18
+00:01:29.680 --> 00:01:34.959
+empty it's going to go and use a one so the default of this so the offset is going to be one if you
+
+19
+00:01:34.959 --> 00:01:39.360
+don't specify anything all right moving on to the last one and to the third one this is as well
+
+20
+00:01:39.360 --> 00:01:44.559
+optional you can go and leave it empty so here it is the default value now what happens with those
+
+21
+00:01:44.639 --> 00:01:49.760
+functions that sometimes sql jump to the next two rows or something like that and sql doesn't
+
+22
+00:01:49.760 --> 00:01:55.680
+find anything so there is no more rows available to access and with that sql gonna go and return
+
+23
+00:01:55.680 --> 00:02:01.120
+a null so that means if sql goes to the next rows or go to the previous rows and doesn't find
+
+24
+00:02:01.120 --> 00:02:07.199
+anything sql as a default gonna go and return a null so if you don't specify anything over here
+
+25
+00:02:07.199 --> 00:02:12.320
+in those scenarios you will have a null values as a return from the whole function but in some
+
+26
+00:02:12.320 --> 00:02:17.360
+scenarios you don't want to have a null you would like to have a value so here you are defining the
+
+27
+00:02:17.360 --> 00:02:23.360
+default value so it should not be a null it should be a 10 so a scale if you don't find anything
+
+28
+00:02:23.360 --> 00:02:28.559
+return a 10 don't return a null so again guys the default values the offsets all those
+
+29
+00:02:28.559 --> 00:02:32.559
+informations are optional for you in order to configure it but you should know the default
+
+30
+00:02:32.559 --> 00:02:37.759
+if you don't use anything for the offset is going to be one for the default value going to be null
+
+31
+00:02:37.759 --> 00:02:42.880
+but you must specify an expression so here you cannot leave it empty all right so that's all
+
+32
+00:02:42.880 --> 00:02:48.000
+about the arguments that you can pass to the lead or lag functions then the next stuff are the
+
+33
+00:02:48.000 --> 00:02:53.520
+standard stuff so we have the over clause then we have the partition by as usual partition by is
+
+34
+00:02:53.520 --> 00:02:59.360
+optional and then to the order by those functions it's like the rank functions it requires you to
+
+35
+00:02:59.360 --> 00:03:04.800
+sort the data so it is a must to sort the data otherwise sql will not know what is the next row
+
+36
+00:03:04.800 --> 00:03:10.399
+what are the previous rows so we have to sort the data it is required you cannot skip this so it is
+
+37
+00:03:10.399 --> 00:03:15.279
+not optional all right so the syntax is not crazy right we have the usual stuff but only we can go
+
+38
+00:03:15.279 --> 00:03:19.839
+and configure the default value and the offsets okay guys now we have very simple example we
+
+39
+00:03:19.839 --> 00:03:24.720
+have months and sales and we're gonna go and understand how the sql works for both of the
+
+40
+00:03:24.720 --> 00:03:30.479
+functions lead and lag side by side so now in the first example we are interested in the sales of
+
+41
+00:03:30.479 --> 00:03:36.160
+the next month so in order to do that we're going to use the lead function so lead and then we're
+
+42
+00:03:36.160 --> 00:03:41.279
+going to specify the argument it is the sales we want the value of sales and then we define the
+
+43
+00:03:41.279 --> 00:03:46.240
+window like this order by month so it's going to be ascending and now in the right side we're
+
+44
+00:03:46.240 --> 00:03:50.800
+going to be interested in the sales of the previous months so in order to do that we're
+
+45
+00:03:50.800 --> 00:03:55.520
+going to use the lag function so it's going to be very similar to the lead we have lag and then
+
+46
+00:03:55.520 --> 00:03:59.360
+the sales since we are interested in the sales and we're going to sort the data by the month
+
+47
+00:03:59.360 --> 00:04:04.160
+so now let's see how it's going to do it step by step and side by side so it's going to start
+
+48
+00:04:04.160 --> 00:04:08.720
+with the first so now let's see how it's going to process those informations side by side and
+
+49
+00:04:08.720 --> 00:04:15.520
+row by row so it's going to start with the first row over here what is the next month of january
+
+50
+00:04:15.520 --> 00:04:22.399
+it is february and we are interested in the sales of this row so it's going to take the value from
+
+51
+00:04:22.399 --> 00:04:27.600
+the next row and we're going to have the value of 10 so now by looking to the january we can see the
+
+52
+00:04:27.600 --> 00:04:32.720
+sales of the next month of february in the same row so now let's check the right side over here
+
+53
+00:04:32.720 --> 00:04:38.079
+now we are interested in the previous month so what is the previous month of the first row
+
+54
+00:04:38.079 --> 00:04:43.839
+it will be nothing right so we cannot point it with anything that's why it's going to say this
+
+55
+00:04:43.839 --> 00:04:49.279
+is null there is no previous month for the current row and we're going to have it as a null okay so
+
+56
+00:04:49.279 --> 00:04:53.839
+now it's going to go to the next row we are at february what is the next month it's going to be
+
+57
+00:04:53.839 --> 00:05:00.559
+march and it's going to point to it so we will get the 30 as the sales of the next month of
+
+58
+00:05:00.559 --> 00:05:07.279
+march and on the right side what is the previous month of february it's going to be january right
+
+59
+00:05:07.279 --> 00:05:13.040
+so it's going to get the value the sales of the previous month and here we will get 20 so as you
+
+60
+00:05:13.040 --> 00:05:18.000
+can see it's very simple on the lead we are always checking the next values on the lag we are always
+
+61
+00:05:18.000 --> 00:05:23.760
+checking the previous value so let's keep going we are currently at march what is the next month
+
+62
+00:05:23.760 --> 00:05:30.559
+it's going to be april so it's going to go and point to it like this and we will get the sales
+
+63
+00:05:30.559 --> 00:05:36.480
+of the next month april for the march on the right side what is the previous month it is february
+
+64
+00:05:36.480 --> 00:05:42.320
+right so it's going to go and point to february so we will get the sales of 10 and now interesting
+
+65
+00:05:42.320 --> 00:05:49.119
+to the last row over here you can see that we are at april what is the next month of april there is
+
+66
+00:05:49.119 --> 00:05:54.799
+nothing because we are at the end of our table right so since there is no month after that we
+
+67
+00:05:54.799 --> 00:06:00.399
+will get a null in the output but for the lag we still have a previous month for april so what is
+
+68
+00:06:00.399 --> 00:06:06.959
+the previous month it is march and we will get the sales of the march so it's going to be 30
+
+69
+00:06:06.959 --> 00:06:11.440
+so that's it guys it's really simple right it's just like they are doing the opposite things
+
+70
+00:06:11.440 --> 00:06:16.559
+so now if you check those values side by side you can see that with the lead we will always get a
+
+71
+00:06:16.559 --> 00:06:22.799
+value for the first row but for the last row it can be always empty because there is no next value
+
+72
+00:06:22.799 --> 00:06:28.320
+we are at the end of the table but if you check the lag for the first value we will always get
+
+73
+00:06:28.320 --> 00:06:33.920
+a null because there is no previous value or previous record from the first row and for the
+
+74
+00:06:33.920 --> 00:06:38.799
+last record as you can see we're always going to get a value because we will have a previous value
+
+75
+00:06:38.799 --> 00:06:43.040
+okay let's move on in order to understand how sql this time works with the offsets and the default
+
+76
+00:06:43.040 --> 00:06:47.359
+value so now we have the same data but we have different task so now on the left side we would
+
+77
+00:06:47.359 --> 00:06:53.200
+like to get the sales of two months ahead so it's not the next month it's going to be two months
+
+78
+00:06:53.200 --> 00:06:58.559
+and we would like to tell sql if you don't find any value don't return null return for us is zero
+
+79
+00:06:58.559 --> 00:07:03.119
+so this is going to be our default now if you check the syntax it's going to be exact like before
+
+80
+00:07:03.119 --> 00:07:09.200
+but we are adding now an offset of two because we are interested in two months ahead and we are
+
+81
+00:07:09.200 --> 00:07:14.399
+specifying here a default value zero so if you don't find anything put zero don't put null now
+
+82
+00:07:14.399 --> 00:07:20.320
+on the right side we have the exact opposite we are interested in the sales of two months ago so
+
+83
+00:07:20.320 --> 00:07:25.760
+we are not interested in the direct previous month we need the sales of two months ago and here the
+
+84
+00:07:25.760 --> 00:07:30.160
+same thing if you don't find anything don't return null give us a zero so as you can see we have the
+
+85
+00:07:30.160 --> 00:07:34.320
+same syntax but using the function lag so now let's understand how sql can execute this step
+
+86
+00:07:34.320 --> 00:07:39.119
+by step and side by side so it's going to start with the first month january so now it's going to
+
+87
+00:07:39.119 --> 00:07:45.279
+ask what is the sales of two months ahead so we are at january it will not be february it's going
+
+88
+00:07:45.279 --> 00:07:51.200
+to be the month of march so it's going to go and point it like this and we will get the value of
+
+89
+00:07:51.200 --> 00:07:57.279
+30 so 30 is the sales of two months ahead and now on the right side we are as well at january
+
+90
+00:07:57.279 --> 00:08:02.399
+it's going to ask the question what is the sales of two months ago so we don't have any previous
+
+91
+00:08:02.399 --> 00:08:08.399
+data right so we will not get anything it's going to return null but it's going to check do we have
+
+92
+00:08:08.399 --> 00:08:14.239
+a default value well yes so this time hql will not return null it can return the default value
+
+93
+00:08:14.239 --> 00:08:18.480
+and this time it's going to be zero all right so now let's go to the next value we are currently
+
+94
+00:08:18.480 --> 00:08:24.880
+at february what is the sales of two months ahead so it will not be march it's going to be april
+
+95
+00:08:24.880 --> 00:08:29.679
+so it's going to go and point it like this and we will get the value of five so now on the right
+
+96
+00:08:29.679 --> 00:08:34.960
+side we are currently at february now the question is what is the sales of two months ago we have
+
+97
+00:08:34.960 --> 00:08:40.479
+history we have the previous month but we don't have two months in the history that's why we will
+
+98
+00:08:40.479 --> 00:08:45.520
+still get zero at the output with the default value okay so now let's keep going to the next
+
+99
+00:08:45.520 --> 00:08:51.119
+value we are currently at march school can ask what is the sales of the two months ahead we have
+
+100
+00:08:51.119 --> 00:08:55.919
+only one month after that but we don't have two months that's why it's cool we'll not find anything
+
+101
+00:08:55.919 --> 00:09:00.159
+and it's going to return null but it's going to go and use the default so here we're going to go
+
+102
+00:09:00.159 --> 00:09:05.440
+and get the value of zero there is no more data available in the table but now on the right side
+
+103
+00:09:05.440 --> 00:09:10.640
+we are currently at march and we are asking what is the sales of two months ago so now we have
+
+104
+00:09:10.640 --> 00:09:16.400
+enough history in the past and it's going to get the value of 20 all right so now let's go to the
+
+105
+00:09:16.400 --> 00:09:21.919
+last month over here in our table april what is the sales of two months ahead we don't have any
+
+106
+00:09:21.919 --> 00:09:27.200
+data so it's going to be zero as well but now on the right side we are currently at april what is
+
+107
+00:09:27.200 --> 00:09:32.640
+sales of two months ago we have enough history that's why it's going to get and point it like
+
+108
+00:09:32.640 --> 00:09:38.640
+this so we will get the february going to be 10 so that's it this is how sql works with the lead
+
+109
+00:09:38.640 --> 00:09:44.719
+and lag using offsets and as well default value let's go back in sql in order to practice those two functions
+

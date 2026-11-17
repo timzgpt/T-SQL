@@ -1,0 +1,643 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.280 --> 00:09.200
+So now we're going to talk about a very interesting operator function in SQL that exists.
+
+00:09.200 --> 00:14.040
+So now in some scenarios as you are querying the data from one table, you would need to go and check
+
+00:14.040 --> 00:17.760
+whether the rows of this table exist in another table.
+
+00:17.760 --> 00:22.680
+So that means you are checking like the existence of your rows in different table.
+
+00:22.680 --> 00:28.160
+And exactly in this scenario we go and use subqueries together with the operator exists.
+
+00:28.160 --> 00:30.600
+So the exist operator is very simple.
+
+00:30.600 --> 00:35.360
+It's just simply check whether the subquery returns any results any rows.
+
+00:35.400 --> 00:35.680
+All right.
+
+00:35.720 --> 00:41.120
+So now let's understand the syntax of the correlated subqueries using the exist operator.
+
+00:41.160 --> 00:44.080
+This can be a little bit complicated but we're going to do it step by step.
+
+00:44.080 --> 00:45.240
+Don't worry about it.
+
+00:45.240 --> 00:47.200
+So let's start with the easy stuff.
+
+00:47.200 --> 00:47.960
+And the main query.
+
+00:48.000 --> 00:49.920
+We're going to go and write a simple select.
+
+00:49.920 --> 00:52.960
+We are selecting few columns from the table two.
+
+00:53.080 --> 00:55.400
+And now we don't need all the data from table two.
+
+00:55.440 --> 00:58.240
+We want to filter the table using the Where clause.
+
+00:58.280 --> 01:01.360
+Now what we're going to do after the Where clause we're going to write immediately.
+
+01:01.360 --> 01:03.560
+Another keyword called exists.
+
+01:03.560 --> 01:08.440
+So we don't here specify any column before the exist like we have done in the comparison operator or
+
+01:08.480 --> 01:09.480
+the in operator.
+
+01:09.480 --> 01:12.400
+We don't need that because we are not filtering based on a value.
+
+01:12.440 --> 01:14.400
+We are filtering based on a logic.
+
+01:14.400 --> 01:17.160
+That's why we have the word exist immediately.
+
+01:17.200 --> 01:21.400
+And now directly after the exist we're going to go and define the subquery like this.
+
+01:21.400 --> 01:24.680
+So we're going to start saying select one from the table.
+
+01:24.680 --> 01:25.320
+Number one.
+
+01:25.320 --> 01:27.600
+Well it is not like a must or something.
+
+01:27.600 --> 01:30.920
+But it is very commonly used to specify here a one.
+
+01:30.920 --> 01:35.120
+We are not using the subquery in order to retrieve information from the table.
+
+01:35.120 --> 01:41.200
+One we are just testing whether the subquery is going to return a value or not, and we don't care about
+
+01:41.200 --> 01:42.080
+the returned value.
+
+01:42.120 --> 01:42.960
+It could be one.
+
+01:42.960 --> 01:44.040
+It could be column.
+
+01:44.040 --> 01:45.320
+It could be anything.
+
+01:45.320 --> 01:48.640
+So we don't care about the data that is retrieved.
+
+01:48.680 --> 01:51.960
+We are just care whether the subquery is returning anything.
+
+01:51.960 --> 01:55.120
+So that's why we go and write any value like here a one.
+
+01:55.120 --> 01:56.600
+So now we are not done yet.
+
+01:56.720 --> 02:00.360
+This subquery is not yet connected to the main query.
+
+02:00.400 --> 02:02.720
+We have somehow to go and connect them together.
+
+02:02.720 --> 02:08.840
+And we can do that using the Where clause, where we go and connect the ID from the table, one from
+
+02:08.840 --> 02:13.600
+the subquery with the ID from the outer query from the main query.
+
+02:13.600 --> 02:19.520
+And with that, we are building like a relationship between the subquery and the main query.
+
+02:19.640 --> 02:24.800
+So with that the subquery is now depending on the values from the main query.
+
+02:24.800 --> 02:26.760
+Because here we have the table two id.
+
+02:26.800 --> 02:31.760
+So the IDs from the main query gonna filter the subquery.
+
+02:31.760 --> 02:38.560
+So this is the syntax of correlated subqueries using the exists where we are making the subquery depending
+
+02:38.600 --> 02:40.560
+totally on the main query.
+
+02:40.560 --> 02:42.800
+So let's understand how exist works.
+
+02:42.800 --> 02:49.120
+So now for each row that we have from the main query it's gonna trigger and cause an execution of the
+
+02:49.160 --> 02:50.040
+subquery.
+
+02:50.080 --> 02:52.960
+This subquery can help us to evaluate this row.
+
+02:52.960 --> 02:54.240
+So we are testing this row.
+
+02:54.280 --> 02:58.400
+Now if the subquery doesn't return anything so there is no results.
+
+02:58.400 --> 02:59.360
+What can happen.
+
+02:59.360 --> 03:05.410
+The row that we are evaluating from the main query will be excluded from the final results.
+
+03:05.410 --> 03:11.450
+But now, in the other hand, if the subquery is returning a value so we have like some kind of results,
+
+03:11.450 --> 03:16.610
+then this row that we are evaluating is going to be included in the final results.
+
+03:16.610 --> 03:19.690
+So the subquery is used in order to do a test.
+
+03:19.730 --> 03:21.570
+Do we have a results or we don't.
+
+03:21.610 --> 03:26.810
+And based on this SQL either gonna include or exclude the row from the final results.
+
+03:26.810 --> 03:30.090
+So this is the logic behind the exists in SQL.
+
+03:30.130 --> 03:30.410
+All right.
+
+03:30.410 --> 03:33.530
+So now we're going to go and solve the same task using the exists.
+
+03:33.730 --> 03:38.810
+So the task says show the details of orders made by the customers in Germany.
+
+03:38.810 --> 03:42.650
+So we have already solved this task using the in operator and the subquery.
+
+03:42.690 --> 03:45.170
+Now we're going to go and solve it using the exists.
+
+03:45.170 --> 03:48.410
+So again we're going to have the same logical steps that we have done before.
+
+03:48.730 --> 03:54.170
+So first we're going to go and select all the details from the table sales orders.
+
+03:54.330 --> 03:55.690
+So let's execute it.
+
+03:55.690 --> 03:58.770
+And with that we have all the orders and all the details.
+
+03:58.970 --> 04:01.130
+But of course we don't need all those informations.
+
+04:01.130 --> 04:05.090
+We need only the orders that are made by customers from Germany.
+
+04:05.090 --> 04:06.530
+So that is the first query.
+
+04:06.530 --> 04:08.930
+Let's go and construct the second query.
+
+04:08.970 --> 04:14.370
+We're going to say select star from sales customers.
+
+04:14.370 --> 04:15.690
+But we don't need all the customers.
+
+04:15.690 --> 04:21.650
+We need only the customers from country equal to the value Germany.
+
+04:21.850 --> 04:24.370
+So let's go and execute it.
+
+04:25.690 --> 04:28.570
+So now we have all customers that come from Germany.
+
+04:28.610 --> 04:33.650
+Now we have to go and put those two queries together in order to get the final results.
+
+04:33.690 --> 04:37.290
+So as we learned before the second query is going to be our subquery.
+
+04:37.290 --> 04:41.170
+So it's going to be supporting the first query in order to filter the data.
+
+04:41.250 --> 04:45.130
+So the first query is going to be our main query.
+
+04:45.170 --> 04:48.530
+Let me just make this smaller and the text as well.
+
+04:48.570 --> 04:50.890
+Now we don't need all the orders right.
+
+04:50.890 --> 04:54.210
+We need only the orders where the customer come from Germany.
+
+04:54.210 --> 04:55.890
+So we need the Where clause.
+
+04:55.930 --> 04:58.250
+So now we can have the filter logic like this.
+
+04:58.290 --> 05:04.090
+Show the order details only if the customer ID exists from the subquery.
+
+05:04.130 --> 05:06.650
+And now we have to go and put our subquery.
+
+05:06.650 --> 05:10.050
+So our subquery is going to be this one over here?
+
+05:10.810 --> 05:13.410
+So let's just move it to the right side.
+
+05:13.410 --> 05:17.290
+And in order to have it as a subquery, we have to close that parenthesis.
+
+05:17.330 --> 05:21.690
+And now since exist is correlated subquery we cannot have it like this.
+
+05:21.730 --> 05:25.890
+We have to go and connect the subquery together with the main query.
+
+05:25.890 --> 05:31.490
+So now the subquery is currently independent from the main query because we want to check each order
+
+05:31.490 --> 05:33.610
+information from the order table.
+
+05:33.650 --> 05:39.730
+To check whether the customer exists in the subquery, we're going to go and add the condition like
+
+05:39.730 --> 05:40.450
+the following.
+
+05:40.490 --> 05:42.370
+And now it's like the joins.
+
+05:42.370 --> 05:45.050
+We have to go and connect the customer IDs together.
+
+05:45.250 --> 05:47.770
+So we're going to go over here and give it like an alias.
+
+05:47.770 --> 05:49.570
+And as well for the subquery.
+
+05:49.610 --> 05:59.370
+And now we're going to say customer ID from the orders should be equal to the customer ID from the subquery.
+
+05:59.370 --> 06:01.210
+The table customers like this.
+
+06:01.210 --> 06:04.610
+So again this customer ID come from the subquery.
+
+06:04.610 --> 06:08.090
+And this customer ID comes from the main query.
+
+06:08.090 --> 06:14.050
+So now since we are using the subquery only in order to test the existence of the customer.
+
+06:14.050 --> 06:19.890
+So if the subquery returns anything or not, it doesn't matter what you are selecting in the subquery.
+
+06:19.890 --> 06:23.970
+So so you can go with the star or a column or any static value.
+
+06:23.970 --> 06:28.450
+But for some reason all the SQL developers decided to go with the static value one.
+
+06:28.450 --> 06:34.530
+And of course you can go and add like a column like the customer ID, but it's like unnecessary step
+
+06:34.530 --> 06:39.850
+for the SQL in order to retrieve the information from the customer ID, so it can be way faster for
+
+06:39.850 --> 06:40.250
+SQL.
+
+06:40.290 --> 06:41.810
+If you say, okay, select one.
+
+06:41.810 --> 06:43.930
+So let's stick with the best practices.
+
+06:43.930 --> 06:47.610
+Use the one value if you are working with exist.
+
+06:47.610 --> 06:51.930
+So this is our subquery and I think we have everything.
+
+06:51.930 --> 06:53.410
+Let's go and execute it.
+
+06:53.450 --> 06:58.810
+Now as you can see in the output we got all the orders where the customers come from Germany.
+
+06:58.850 --> 07:04.610
+Now of course if you want to go and try another value and execute you will get exactly the same results.
+
+07:04.610 --> 07:06.890
+So it doesn't matter which value you are using.
+
+07:06.890 --> 07:09.930
+So with that, we have solved the task this time using the exists.
+
+07:09.970 --> 07:15.540
+Now if the task says is, show the details of orders made by customers that don't come from Germany.
+
+07:15.580 --> 07:16.780
+It's going to be very simple.
+
+07:16.780 --> 07:20.580
+We're going to go and use the operator, not before they exist.
+
+07:20.580 --> 07:22.860
+So where not exists.
+
+07:22.860 --> 07:28.700
+So now we are flipping the whole logic and we are saying there should be no matching with the subquery.
+
+07:28.700 --> 07:35.380
+So now if you go and execute it you will get all the orders where the customers don't come from Germany
+
+07:35.380 --> 07:37.700
+by simply using the not logic.
+
+07:37.740 --> 07:41.060
+And there is one more thing that is annoying about that correlated subqueries.
+
+07:41.060 --> 07:44.380
+If you compare it to the non correlated subqueries, as we learned before.
+
+07:44.420 --> 07:46.780
+Let me go back to the n operator.
+
+07:46.820 --> 07:49.180
+Now this is a non correlated subquery.
+
+07:49.180 --> 07:54.260
+And if I go and select only the subquery I can go and execute it independently.
+
+07:54.740 --> 07:58.740
+So I can go and check the intermediate results and like validate my query.
+
+07:58.740 --> 08:04.660
+But the problem with the correlated subquery I cannot go and highlight the subquery and then go and
+
+08:04.660 --> 08:05.380
+execute it.
+
+08:05.380 --> 08:11.700
+And that's because in the syntax of the subquery we are adding a column that is outside our subquery
+
+08:11.700 --> 08:13.140
+that come from the main query.
+
+08:13.140 --> 08:17.540
+So this piece of information currently for the SQL is unknown.
+
+08:17.540 --> 08:18.940
+And that's why we are getting this error.
+
+08:18.940 --> 08:22.180
+Because SQL saying okay I don't know where this column come from.
+
+08:22.180 --> 08:23.620
+So this is a little bit annoying.
+
+08:23.620 --> 08:27.580
+Using the correlated subqueries you cannot go and test the intermediate results.
+
+08:27.580 --> 08:32.180
+But how I usually do it, I go and test like an intermediate result for only one row.
+
+08:32.180 --> 08:36.620
+So for example I'm going to go and pick like a customer here for example two.
+
+08:36.820 --> 08:41.620
+So I'm going to go and say okay the customer ID should be equal to two.
+
+08:41.660 --> 08:43.620
+So let me just remove this from here.
+
+08:43.620 --> 08:46.300
+I got this value from the main query.
+
+08:46.700 --> 08:49.940
+So if I go now and execute it I can see here okay.
+
+08:49.980 --> 08:54.260
+The subquery is not returning anything because there is no such a value.
+
+08:54.260 --> 08:56.860
+So with that I'm just testing like one row.
+
+08:56.900 --> 09:03.420
+And of course in order to make this working I have to go and add as well the column from the main query.
+
+09:03.420 --> 09:09.220
+So this is why correlated subqueries are a little bit more hard to understand compared to the non-correlated,
+
+09:09.220 --> 09:13.220
+because we cannot go and test the intermediate results like we can do there.
+
+09:13.220 --> 09:15.580
+So this is another way on how to solve this task.
+
+09:15.620 --> 09:19.540
+Using a correlated subqueries with the operator exists.
+
+09:19.580 --> 09:19.820
+Okay.
+
+09:19.860 --> 09:25.940
+So now let's see step by step how SQL executed the correlated subqueries using the exists operator.
+
+09:25.980 --> 09:29.220
+So now this time SQL will not start with the subquery.
+
+09:29.260 --> 09:32.900
+It's going to go and start immediately with the main query SQL.
+
+09:32.940 --> 09:35.220
+First going to identify the main query.
+
+09:35.220 --> 09:36.820
+And it's going to go and execute it.
+
+09:36.820 --> 09:38.740
+But it's going to execute it row by row.
+
+09:38.740 --> 09:41.940
+So the first row is going to be the first customer.
+
+09:41.940 --> 09:45.660
+So now SQL can go and put the first customer under the test.
+
+09:45.660 --> 09:51.940
+So now the next step is that is going to go and pass the value of the customer ID from the main query
+
+09:51.940 --> 09:53.140
+to the subquery.
+
+09:53.140 --> 09:55.300
+So we are doing now exactly the opposite.
+
+09:55.300 --> 09:59.860
+So now what can happen is we're going to prepare the subquery with the following information.
+
+09:59.860 --> 10:02.700
+So we are saying the customer ID equal to one.
+
+10:02.700 --> 10:05.300
+And then SQL going to go and execute it.
+
+10:05.300 --> 10:09.180
+So now once the SQL executed this query we will get the result of one.
+
+10:09.180 --> 10:14.380
+And that's because we have here multiple times where the customer ID is equal to one.
+
+10:14.380 --> 10:18.900
+So there is rose in the order table where the customer ID equal to one.
+
+10:18.900 --> 10:20.260
+So now what can happen.
+
+10:20.300 --> 10:23.380
+The row from the main query gonna pass the test.
+
+10:23.380 --> 10:26.860
+And this customer can be included in the final results.
+
+10:26.860 --> 10:31.380
+So now the next step that is going to go and start testing the second customer.
+
+10:31.380 --> 10:34.340
+So we're going to put this customer under the test.
+
+10:34.380 --> 10:37.180
+Now it's going to go and pass the value to the subquery.
+
+10:37.180 --> 10:38.900
+So here we're going to have the value of two.
+
+10:39.020 --> 10:41.260
+And then SQL going to go and execute this query.
+
+10:41.260 --> 10:45.940
+And of course we will get a result because we have here multiple times where the customer ID equal to
+
+10:45.980 --> 10:46.300
+two.
+
+10:46.540 --> 10:50.140
+So that's why in the output of this subquery we will get one.
+
+10:50.140 --> 10:53.460
+So now it's going to say great we have a value from the subquery.
+
+10:53.660 --> 10:57.580
+That's why it is safe to show this customer in the outputs.
+
+10:57.620 --> 11:00.660
+And now it's going to go to the next row and so on.
+
+11:00.660 --> 11:04.380
+So for the next two customers the same thing's going to happen.
+
+11:04.380 --> 11:07.780
+All of those customers will have a value from the subquery.
+
+11:07.780 --> 11:11.300
+And that's why they are all like passing the test.
+
+11:11.300 --> 11:13.020
+So we will have it in the outputs.
+
+11:13.060 --> 11:16.620
+Now it's going to go to the last row from the table customers.
+
+11:16.620 --> 11:20.350
+So we have the Anna and we're going to put Anna to the test.
+
+11:20.350 --> 11:24.950
+So now what's going to happen is we're going to go and pass the value five to the subquery.
+
+11:24.990 --> 11:28.470
+And it's going to go and execute this query to the table orders.
+
+11:28.510 --> 11:32.590
+Now once SQL execute this query there will be nothing returned.
+
+11:32.590 --> 11:38.110
+And that's because we don't have here in the table orders a customer ID equal to five.
+
+11:38.190 --> 11:42.110
+And now SQL going to say, well we are not getting any results from the subquery.
+
+11:42.350 --> 11:44.870
+That's why this customer is going to fail.
+
+11:45.070 --> 11:48.150
+And SQL will not show it at the output.
+
+11:48.150 --> 11:50.230
+So it will be completely removed.
+
+11:50.230 --> 11:54.870
+So the customer Anna is excluded because the subquery is not returning anything.
+
+11:54.910 --> 11:59.630
+Customer ID number five Anna does not exist in the table orders.
+
+11:59.630 --> 12:00.790
+So it can fail the test.
+
+12:00.790 --> 12:04.710
+And we will have in the final results only four customers.
+
+12:04.710 --> 12:06.910
+So this is exactly the purpose of the exist.
+
+12:06.950 --> 12:13.470
+We are checking and testing the existence of our rows from another table from another query.
+
+12:13.470 --> 12:19.190
+So this is how SQL executes the correlated subqueries using the operator exists.

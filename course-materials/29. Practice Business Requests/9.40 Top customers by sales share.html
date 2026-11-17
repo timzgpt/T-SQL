@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Assignment</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial,
+          sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p,
+      ul,
+      ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: bold;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      .code-snippet {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .code-block {
+        background-color: #fff;
+        color: #b4690e;
+        font-size: 90%;
+      }
+      .black-block {
+        color: #000000;
+      }
+      .italic-text {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <h1 id="coding-title"></h1>
+    <div>
+      <h2>Instructions</h2>
+      <div id="coding-instructions"></div>
+    </div>
+    <div>
+      <h2>Test(s)</h2>
+      <div id="coding-tests"></div>
+    </div>
+    <div>
+      <h2>Solution(s)</h2>
+      <div id="coding-solutions"></div>
+    </div>
+
+    <script>
+      const quizData = {"title":"Top customers by sales share","hasInstructions":false,"hasTests":true,"hasSolutions":true,"instructions":"<p><strong>Friday.</strong> The sales director wants the customers who bring in 80 percent of all sales, so the account managers call them first next quarter.</p><p><strong>Tables you can use:</strong></p><ul><li><p>Sales.Orders: OrderID, CustomerID, Sales</p></li><li><p>Sales.Customers: CustomerID, FirstName</p></li></ul><p><strong>Your task:</strong></p><ul><li><p>Return four columns: CustomerID, FirstName, TotalSales, RunningSharePercent.</p></li><li><p>TotalSales: the sum of Sales of the customer's orders.</p></li><li><p>RunningSharePercent: line the customers up by TotalSales, highest first. It is the share of all sales that the customer and everyone above them bring in, in percent, rounded to 2 decimals.</p></li><li><p>Keep customers from the top until the running share reaches 80 percent. The customer who takes it past 80 percent stays, and everyone after is left out.</p></li><li><p>Sort by TotalSales, highest first.</p></li></ul>","tests":[],"solutions":[{"file_name":"query.sql","content":"WITH CTE_Customer_Sales AS\n(\n    SELECT\n        c.CustomerID,\n        c.FirstName,\n        SUM(o.Sales) AS TotalSales\n    FROM Sales.Orders AS o\n    INNER JOIN Sales.Customers AS c\n        ON c.CustomerID = o.CustomerID\n    GROUP BY\n        c.CustomerID,\n        c.FirstName\n)\n, CTE_Running_Sales AS\n(\n    SELECT\n        *,\n        SUM(TotalSales) OVER (ORDER BY TotalSales DESC) AS RunningSales,\n        SUM(TotalSales) OVER ()                        AS AllSales\n    FROM CTE_Customer_Sales\n)\nSELECT\n    CustomerID,\n    FirstName,\n    TotalSales,\n    ROUND(CAST(RunningSales AS FLOAT) / AllSales * 100, 2) AS RunningSharePercent\nFROM CTE_Running_Sales\nWHERE RunningSales - TotalSales < AllSales * 0.8\nORDER BY TotalSales DESC;"}]};
+      const escapeHTML = s =>
+        s.replace(
+          /[&<>"]/g,
+          c =>
+            ({
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+            }[c])
+        );
+
+      function renderCodeList(rootElement, codeList, className, titlePrefix) {
+        for (var i = 0; i < codeList.length; i++) {
+          var elem = codeList[i];
+          var jsElem = document.createElement('div');
+          jsElem.className = className;
+          var jsElemTitle = document.createElement('h3');
+          jsElemTitle.innerHTML = titlePrefix + ' ' + (i + 1);
+          var jsElemBody = document.createElement('code');
+          jsElemBody.className = 'code-block black-block';
+          jsElemBody.innerHTML = '<pre>' + escapeHTML(elem.content) + '</pre>';
+          jsElem.appendChild(jsElemTitle);
+          jsElem.appendChild(jsElemBody);
+          rootElement.appendChild(jsElem);
+        }
+      }
+
+      function main() {
+        // display the assignment
+        var codingTitle = document.getElementById('coding-title');
+        codingTitle.innerHTML = quizData.title;
+
+        var codingInstructions = document.getElementById('coding-instructions');
+        if (quizData.hasInstructions) {
+          codingInstructions.innerHTML = quizData.instructions;
+        } else {
+          codingInstructions.innerHTML = '<span class="italic-text">' + quizData.instructions + '</span>';
+        }
+
+        // display the test(s)
+        var codingTests = document.getElementById('coding-tests');
+        if (!quizData.hasTests) {
+          codingTests.innerHTML = '<span class="italic-text">' + quizData.tests + '</span>';
+        } else {
+          renderCodeList(codingTests, quizData.tests, 'coding-test', 'Test');
+        }
+
+        // display the solution(s)
+        var codingSolutions = document.getElementById('coding-solutions');
+        if (!quizData.hasSolutions) {
+          codingSolutions.innerHTML = '<span class="italic-text">' + quizData.solutions + '</span>';
+        } else {
+          renderCodeList(codingSolutions, quizData.solutions, 'coding-solution', 'Solution');
+        }
+      }
+    </script>
+  </body>
+</html>

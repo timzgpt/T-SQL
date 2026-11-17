@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00.080 --> 00:01.080
+All right, my friends.
+
+00:01.080 --> 00:05.080
+So now, as we learned before, in order to combine two tables, we have two methods.
+
+00:05.080 --> 00:08.160
+If you want to combine the columns, we use the joins.
+
+00:08.160 --> 00:12.160
+And we have learned all those different types on how to combine data using join.
+
+00:12.160 --> 00:13.640
+So we have covered this section.
+
+00:13.640 --> 00:18.600
+But now if we want to combine the rows of two tables we can use the set operators.
+
+00:18.640 --> 00:20.360
+And here we have four different types.
+
+00:20.360 --> 00:23.800
+We have union union all except and intersects.
+
+00:23.800 --> 00:28.800
+So now we're going to go and deep dive into this word on how to combine the rows of tables using the
+
+00:28.800 --> 00:29.840
+set operators.
+
+00:29.880 --> 00:32.160
+And now of course in this course we're going to cover everything.
+
+00:32.280 --> 00:33.200
+So let's go.

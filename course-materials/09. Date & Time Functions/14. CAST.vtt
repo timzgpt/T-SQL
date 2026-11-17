@@ -1,0 +1,316 @@
+WEBVTT
+
+00:03.840 --> 00:05.560
+So what is the cast function?
+
+00:05.560 --> 00:09.200
+It's going to go and convert a value to a different data type.
+
+00:09.200 --> 00:11.840
+So it turns one data type to another.
+
+00:11.880 --> 00:12.200
+All right.
+
+00:12.200 --> 00:14.880
+So now let's check the syntax of the cast I really like this one.
+
+00:14.880 --> 00:18.520
+It is not typical like format or syntax in SQL.
+
+00:18.520 --> 00:21.280
+So it says the cast is the function.
+
+00:21.280 --> 00:23.480
+And then inside it we need two things.
+
+00:23.480 --> 00:27.560
+But it's not separated like with the comma as we learned before with all other functions.
+
+00:27.560 --> 00:30.000
+But this time it's separated with the keyword s.
+
+00:30.040 --> 00:35.160
+So it's like the natural English you are saying cast the value as a data type.
+
+00:35.160 --> 00:38.240
+So you are casting the value to a new data type.
+
+00:38.240 --> 00:44.280
+So let's have this very simple example we have here cast the value 123 as integer.
+
+00:44.280 --> 00:47.640
+So previously it is string and it's going to be converted to integer.
+
+00:47.640 --> 00:48.960
+So as you can see it's very simple.
+
+00:48.960 --> 00:53.720
+Now in this example we are saying cast this value this string value as a date.
+
+00:53.720 --> 00:55.800
+So convert it from string to dates.
+
+00:55.800 --> 01:00.960
+So as you can see with the cast, we don't have here any option of formatting or styling the values.
+
+01:00.960 --> 01:05.850
+So it's only dedicated for casting the value from one data type to another one.
+
+01:05.850 --> 01:07.570
+So this is the syntax of the cast.
+
+01:07.570 --> 01:10.250
+It is very straightforward and really nice function.
+
+01:10.290 --> 01:10.490
+Okay.
+
+01:10.530 --> 01:13.010
+So now let's have a few examples about the cast.
+
+01:13.010 --> 01:16.650
+So let's go and convert a value from a string to integer.
+
+01:16.650 --> 01:17.370
+So it's very simple.
+
+01:17.370 --> 01:18.890
+We're going to say cast.
+
+01:18.890 --> 01:20.090
+So now we need the value.
+
+01:20.090 --> 01:22.050
+So let's go with the 123.
+
+01:22.050 --> 01:23.290
+So we have here a string.
+
+01:23.290 --> 01:24.930
+And then we're going to say as.
+
+01:24.970 --> 01:26.930
+And then we have to define the data type.
+
+01:27.090 --> 01:28.970
+So the data type going to be integer.
+
+01:28.970 --> 01:29.770
+So that's it.
+
+01:29.770 --> 01:33.650
+Let's give it the name like this string to integer.
+
+01:33.810 --> 01:35.090
+Let's go and execute it.
+
+01:35.130 --> 01:36.570
+Now you can see we got the value.
+
+01:36.570 --> 01:39.450
+But with the data type integer from string to integer.
+
+01:39.490 --> 01:40.930
+Now let's do the way round.
+
+01:40.930 --> 01:42.690
+We cast from integer to string.
+
+01:42.690 --> 01:47.610
+So we're going to say cast 123 as var char.
+
+01:47.730 --> 01:52.010
+And we're going to give it a name int to string.
+
+01:52.210 --> 01:54.050
+So let's go and execute it.
+
+01:54.050 --> 01:56.210
+Now in the output we have 123.
+
+01:56.210 --> 01:59.090
+But this time it has the data type varchar.
+
+01:59.130 --> 02:00.850
+Now let's go and work with the data.
+
+02:00.850 --> 02:03.580
+So we're going to go and convert a value.
+
+02:03.980 --> 02:06.020
+String value to date.
+
+02:06.020 --> 02:09.380
+So our value is going to be the usual one.
+
+02:09.380 --> 02:11.420
+And we want it from string to date.
+
+02:11.420 --> 02:13.700
+So we're going to have the data type as date.
+
+02:14.020 --> 02:17.980
+So let's give it a name string to date.
+
+02:18.020 --> 02:19.660
+Let's go and execute it.
+
+02:19.700 --> 02:22.460
+Now we're going to have this value with the data type date.
+
+02:22.460 --> 02:23.460
+So that's it.
+
+02:23.500 --> 02:27.340
+Now let's say that I would like to have this value but as date time.
+
+02:27.580 --> 02:34.060
+So I will just copy the whole thing and go to a new line and say date time to.
+
+02:34.180 --> 02:37.380
+So the name of this is going to be string to date time.
+
+02:37.380 --> 02:39.460
+Let's go and execute it now in the output.
+
+02:39.460 --> 02:43.940
+As you can see, we are getting not only the date but as well we are getting the time information.
+
+02:43.940 --> 02:49.420
+But now since we didn't provide SQL with any time information, it's going to go and show it as zeros.
+
+02:49.460 --> 02:53.780
+Now let's do one more casting where we change the data type from date time to date.
+
+02:53.780 --> 02:55.740
+So now we need our creation time.
+
+02:56.900 --> 02:58.460
+But we have to get it from the tables.
+
+02:58.460 --> 03:02.500
+So from sales orders let's go and execute it.
+
+03:02.500 --> 03:05.070
+So now in the output you can see the creation time is at a date time.
+
+03:05.070 --> 03:08.510
+We have the time information, but we are not interested about that time information.
+
+03:08.510 --> 03:10.630
+I would like to have this field as a date.
+
+03:10.630 --> 03:11.590
+So it's very simple.
+
+03:11.590 --> 03:13.670
+What we're going to do, we're going to say cast.
+
+03:14.350 --> 03:20.270
+Now the value is creation time and then the keyword as and we need it as a date.
+
+03:20.270 --> 03:24.230
+So we're going to give it a name date time to date.
+
+03:24.430 --> 03:26.070
+So let's go and execute it.
+
+03:26.070 --> 03:30.790
+Now as you can see in the output we got the creation time but only with the date information.
+
+03:30.790 --> 03:35.670
+We don't have anything about the time, so we get it as a date instead of date time.
+
+03:35.670 --> 03:36.350
+So that's it.
+
+03:36.350 --> 03:38.790
+This is amazing function in SQL and it's very simple.
+
+03:38.790 --> 03:40.750
+And we can use it only for casting.
+
+03:40.750 --> 03:43.990
+So only to change the data type from one to another.
+
+03:43.990 --> 03:47.390
+And we cannot use this function in order to change the format.
+
+03:47.390 --> 03:51.430
+So if you are casting you will get always the standard format from SQL.
+
+03:55.510 --> 03:57.990
+So now let's go and compare our functions side by side.
+
+03:57.990 --> 04:01.230
+So we have our three functions cast, convert and format.
+
+04:01.230 --> 04:04.950
+And we can do two things either casting or formatting.
+
+04:04.950 --> 04:10.160
+So by the casting for the first function cast, we can change any type to any other type, so there
+
+04:10.160 --> 04:11.320
+is no restriction at all.
+
+04:11.360 --> 04:13.720
+The same thing for the converts, the same thing.
+
+04:13.720 --> 04:15.560
+We can convert anything to anything.
+
+04:15.560 --> 04:18.800
+But for the format we can change only to string.
+
+04:18.800 --> 04:24.960
+So any data type like date or number to string value, because the main thing for the format is not
+
+04:24.960 --> 04:26.080
+changing the data type.
+
+04:26.120 --> 04:30.920
+Now, if you are talking about changing the format of the values, you cannot use the cast function
+
+04:30.920 --> 04:32.520
+in order to change the format.
+
+04:32.520 --> 04:34.480
+So the cast function is only for casting.
+
+04:34.480 --> 04:35.200
+It makes sense.
+
+04:35.200 --> 04:36.280
+Now about the convert.
+
+04:36.280 --> 04:41.720
+We can use it in order to change the format of the date and time, but we cannot use it in order to
+
+04:41.720 --> 04:43.360
+change the number formats.
+
+04:43.400 --> 04:48.320
+And for that we have a dedicated function called formats, so we can use it to change the format of
+
+04:48.320 --> 04:50.840
+the date and time and as well the numbers.
+
+04:50.840 --> 04:53.480
+So those are the main differences between those three functions.
+
+04:53.520 --> 04:53.880
+All right.
+
+04:53.880 --> 04:59.440
+So with those three functions we have learned how to do formatting and casting on date informations.
+
+04:59.480 --> 05:02.640
+Now moving on to the third group we have the date calculations.
+
+05:02.640 --> 05:04.080
+And here we have two functions.
+
+05:04.120 --> 05:07.960
+And how to do date calculations or mathematical operations on the dates if.

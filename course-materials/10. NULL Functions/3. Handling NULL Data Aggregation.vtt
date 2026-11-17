@@ -1,0 +1,234 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:09.079
+Now, the use cases of the call is and the is null are very similar, and we mainly use
+
+2
+00:00:09.079 --> 00:00:13.960
+them in order to handle the null before doing any SQL task.
+
+3
+00:00:13.960 --> 00:00:19.280
+For example, we can use them in order to handle the null before doing data aggregations.
+
+4
+00:00:19.280 --> 00:00:21.280
+So let's understand what this means.
+
+5
+00:00:21.280 --> 00:00:25.200
+Imagine that we have three sales, we have 15, 25, and a null.
+
+6
+00:00:25.200 --> 00:00:29.399
+Now if you go and use an aggregate functions like the average, what can happen is SQL gonna
+
+7
+00:00:29.399 --> 00:00:35.520
+calculate it like this, 15 plus 25 divided by 2, and the average is gonna be 20.
+
+8
+00:00:35.520 --> 00:00:43.720
+So as you can see here, SQL is including only the two values, 15 and 25, and ignores totally the null value.
+
+9
+00:00:43.720 --> 00:00:48.439
+So in the calculations, the null will not be included because if SQL does that, the
+
+10
+00:00:48.439 --> 00:00:50.040
+output is gonna be as well null.
+
+11
+00:00:50.040 --> 00:00:51.959
+So the nulls are totally ignored.
+
+12
+00:00:51.959 --> 00:00:56.119
+Now the same thing can happen with the other aggregate functions like the sum, count, if
+
+13
+00:00:56.119 --> 00:00:58.759
+you are counting the sales, min, and max.
+
+14
+00:00:58.759 --> 00:01:03.759
+There is only one exception about the aggregate function count if you are using it with the star.
+
+15
+00:01:03.759 --> 00:01:07.959
+SQL here is considering not the values, SQL gonna consider the rows.
+
+16
+00:01:07.959 --> 00:01:12.720
+That's why SQL gonna go and include all those rows and find the output gonna be 3.
+
+17
+00:01:12.720 --> 00:01:17.760
+Now in some scenarios, if your business understand the null as 0, then you can have a problem
+
+18
+00:01:17.760 --> 00:01:21.080
+with the result of your analysis if you don't handle the nulls.
+
+19
+00:01:21.080 --> 00:01:22.080
+So what do we have to do?
+
+20
+00:01:22.080 --> 00:01:24.760
+We have to handle the null before doing the aggregations.
+
+21
+00:01:24.760 --> 00:01:29.879
+So we have to go and replace a null with 0 using either the ISNAR or the KAWALIS.
+
+22
+00:01:29.879 --> 00:01:33.400
+So once you do that, the calculation gonna be changed for the average.
+
+23
+00:01:33.400 --> 00:01:40.819
+So it's gonna be 15 plus 25 plus 0 divided by 3, and the output this time gonna be 13.3.
+
+24
+00:01:40.819 --> 00:01:45.559
+So with that, you're gonna get more accurate results for the business if they understand nulls as 0.
+
+25
+00:01:45.559 --> 00:01:50.199
+All right, so now we have the following example, it says find the average scores for the customers.
+
+26
+00:01:50.199 --> 00:01:51.639
+So let's go and solve it.
+
+27
+00:01:51.639 --> 00:01:59.319
+We're gonna go and select the customer ID, the score from table customers.
+
+28
+00:01:59.319 --> 00:02:00.839
+So let's go and execute it.
+
+29
+00:02:00.839 --> 00:02:05.559
+So as you can see, we have four customers with a score and the last one doesn't have any score.
+
+30
+00:02:05.559 --> 00:02:06.559
+So we have it as a null.
+
+31
+00:02:06.559 --> 00:02:10.559
+Let's go and calculate the average for the score.
+
+32
+00:02:10.559 --> 00:02:14.960
+And I would like to have the window function in order to see the details as well.
+
+33
+00:02:14.960 --> 00:02:17.880
+So this is average scores.
+
+34
+00:02:17.880 --> 00:02:19.559
+So let's go and execute it.
+
+35
+00:02:19.559 --> 00:02:21.440
+Now of course, what is going on here?
+
+36
+00:02:22.240 --> 00:02:26.720
+The four values gonna be added to each other's and divided by four and the null is totally ignored.
+
+37
+00:02:26.720 --> 00:02:30.199
+Now of course, the question is what the business understand with the null.
+
+38
+00:02:30.199 --> 00:02:33.639
+If it is zero, then we have inaccurate results.
+
+39
+00:02:33.639 --> 00:02:35.419
+So let's go and fix it.
+
+40
+00:02:35.419 --> 00:02:39.520
+Now this time we're gonna say, okay, we're gonna have the average, but instead of score,
+
+41
+00:02:39.520 --> 00:02:41.279
+we're gonna handle the nulls first.
+
+42
+00:02:41.279 --> 00:02:44.080
+So we have to replace any nulls with zero.
+
+43
+00:02:44.080 --> 00:02:46.720
+We can go and use the coalesce or the is null.
+
+44
+00:02:46.720 --> 00:02:52.039
+So I will go with the coalesce like this and score.
+
+45
+00:02:52.039 --> 00:02:55.600
+If you find any null, make it zero. So that's it.
+
+46
+00:02:55.600 --> 00:02:58.660
+And as well, I will go with the window function.
+
+47
+00:02:58.660 --> 00:03:01.720
+So average scores, let's call it two.
+
+48
+00:03:01.720 --> 00:03:03.500
+Now let's go and execute it.
+
+49
+00:03:03.500 --> 00:03:08.960
+Now as you can see in the output, we got 500 and this is different than the previous average.
+
+50
+00:03:08.960 --> 00:03:12.160
+And that's because we have replaced the null with zero.
+
+51
+00:03:12.160 --> 00:03:14.559
+Let's just go and display it in order to understand it.
+
+52
+00:03:14.559 --> 00:03:16.919
+So I will copy it and put it here.
+
+53
+00:03:16.919 --> 00:03:20.279
+So let's call it score two and execute it.
+
+54
+00:03:20.279 --> 00:03:25.000
+So now iscale is going to summarize all those values and divide it by five.
+
+55
+00:03:25.000 --> 00:03:27.360
+And that's why we are getting the 500.
+
+56
+00:03:27.360 --> 00:03:32.720
+So if our business understand the null as a zero, this average gonna be more accurate
+
+57
+00:03:32.720 --> 00:03:34.320
+after we handle the null.
+
+58
+00:03:34.320 --> 00:03:39.600
+As you can see, in some scenarios, we have to handle the nulls before doing any data aggregations.
+

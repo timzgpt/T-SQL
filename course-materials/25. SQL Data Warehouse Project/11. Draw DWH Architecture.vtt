@@ -1,0 +1,520 @@
+WEBVTT
+
+00:00.080 --> 00:03.680
+So there is like no one standard on how to build a data architecture.
+
+00:03.680 --> 00:06.120
+You can add your style and the way that you want.
+
+00:06.160 --> 00:10.960
+So now the first thing that we have to show in that architecture is the different layers that we have.
+
+00:11.000 --> 00:13.160
+The first layer is the source system layer.
+
+00:13.160 --> 00:16.960
+So let's go and take a box like this and make it a little bit bigger.
+
+00:16.960 --> 00:18.800
+And I'm just going to go and make the design.
+
+00:18.800 --> 00:22.160
+So I'm going to remove the fill and make the line dotted one.
+
+00:22.160 --> 00:26.200
+And after that I'm going to go and change maybe the color to something like this gray.
+
+00:26.320 --> 00:28.960
+So now we have like a container for the first layer.
+
+00:28.960 --> 00:31.480
+And then we have to go and add like a text on top of it.
+
+00:31.480 --> 00:33.720
+So what I'm going to do I'm going to take another box.
+
+00:33.760 --> 00:35.560
+Let's go and type inside it sources.
+
+00:35.600 --> 00:36.920
+And I'm going to go and style it.
+
+00:36.920 --> 00:40.040
+So I'm going to go to the text and make it maybe 24.
+
+00:40.440 --> 00:46.000
+And then remove the lines like this, make it a little bit smaller and put it on top.
+
+00:46.000 --> 00:47.320
+So this is the first layer.
+
+00:47.320 --> 00:49.000
+This is where the data come from.
+
+00:49.000 --> 00:51.800
+And then the data can go inside a data warehouse.
+
+00:51.800 --> 00:54.200
+So I'm just going to go and duplicate this one.
+
+00:54.200 --> 00:56.320
+This one is the data warehouse.
+
+00:59.800 --> 01:00.240
+All right.
+
+01:00.240 --> 01:06.030
+So now the third layer what is going to be it's going to be that consumers who will be consuming this
+
+01:06.030 --> 01:06.990
+data warehouse.
+
+01:06.990 --> 01:11.830
+So I'm going to put another box and say this is the consume layer.
+
+01:11.870 --> 01:12.150
+Okay.
+
+01:12.190 --> 01:13.910
+So those are the three containers.
+
+01:13.950 --> 01:18.550
+Now inside the data warehouse we have decided to build it using the Madelia architecture.
+
+01:18.550 --> 01:21.710
+So we're going to have three layers inside the warehouse.
+
+01:21.710 --> 01:25.790
+So I'm going to take again another box I'm going to call this one.
+
+01:25.790 --> 01:27.950
+This is the bronze layer.
+
+01:27.950 --> 01:29.870
+And now we have to go and put a design for it.
+
+01:29.870 --> 01:31.790
+So I'm going to go with this color over here.
+
+01:31.790 --> 01:34.750
+And then the text and maybe something like 20.
+
+01:34.910 --> 01:38.430
+And then make it a little bit smaller and just put it here.
+
+01:38.430 --> 01:41.430
+And beneath that we're going to have that component.
+
+01:41.430 --> 01:43.670
+So this is just a title of a container.
+
+01:43.670 --> 01:45.030
+So I'm going to have it like this.
+
+01:45.030 --> 01:49.430
+Remove the text from inside it and remove the filling.
+
+01:49.430 --> 01:51.910
+So this container is for the bronze layer.
+
+01:51.950 --> 01:54.670
+Let's go and duplicate it for the next one.
+
+01:54.670 --> 01:57.190
+So this one going to be the silver layer.
+
+01:58.270 --> 02:02.310
+And of course we can go and change the coloring to gray because it is silver.
+
+02:02.310 --> 02:04.950
+And as well the lines and remove the filling.
+
+02:05.020 --> 02:05.500
+Great.
+
+02:05.500 --> 02:08.740
+And now maybe I'm going to make the font as bold.
+
+02:08.780 --> 02:09.380
+All right.
+
+02:09.420 --> 02:12.340
+Now the third layer going to be the gold layer.
+
+02:13.380 --> 02:15.460
+And we have to go and pick a color for that.
+
+02:15.700 --> 02:16.980
+So style.
+
+02:17.020 --> 02:20.420
+And here we have like something like yellow the same thing for the container.
+
+02:20.460 --> 02:21.740
+I remove the filling.
+
+02:21.740 --> 02:25.620
+So with that we are showing now the different layers inside our data warehouse.
+
+02:25.620 --> 02:26.980
+Now those containers are empty.
+
+02:26.980 --> 02:30.420
+What we're going to do, we're going to go inside each one of them and start adding contents.
+
+02:30.420 --> 02:35.940
+So now in the sources it is very important to make it clear what are the different types of source system
+
+02:35.940 --> 02:37.980
+that you are connecting to the data warehouse.
+
+02:37.980 --> 02:40.260
+Because in real projects there are like multiple types.
+
+02:40.260 --> 02:43.500
+You might have a database, API, files, Kafka.
+
+02:43.500 --> 02:45.820
+And here it's important to show those different types.
+
+02:45.820 --> 02:49.860
+In our projects we have folders, and inside those folders we have CSV files.
+
+02:49.860 --> 02:55.020
+So now what you have to do, we have to make it clear in this layer that the input for our project is
+
+02:55.060 --> 02:55.900
+CSV file.
+
+02:55.900 --> 02:58.140
+So it really depends how you want to show that.
+
+02:58.140 --> 03:00.460
+I'm going to go over here and say maybe folder.
+
+03:00.500 --> 03:03.580
+And then I'm going to go and take the folder and put it here inside.
+
+03:03.580 --> 03:08.370
+And then maybe search for file more results and go pick one of those icons.
+
+03:08.370 --> 03:08.810
+For example.
+
+03:08.810 --> 03:10.370
+I'm going to go with this one over here.
+
+03:10.370 --> 03:13.650
+So I'm going to make it smaller and add it on top of the folder.
+
+03:13.650 --> 03:19.850
+So with that we make it clear for everyone seeing the architecture that the sources is not a database,
+
+03:19.890 --> 03:20.970
+it's not an API.
+
+03:21.010 --> 03:22.810
+It is a file inside a folder.
+
+03:22.810 --> 03:25.690
+So now very important here to show is the source systems.
+
+03:25.690 --> 03:28.330
+What are the sources that is involved in the project.
+
+03:28.330 --> 03:29.090
+So here what we're going to do.
+
+03:29.090 --> 03:30.090
+We're going to go and give it a name.
+
+03:30.090 --> 03:33.450
+For example we have one source called CRM built like this.
+
+03:33.450 --> 03:35.290
+And maybe make the icon.
+
+03:35.290 --> 03:37.250
+And we have another source called ERP.
+
+03:37.370 --> 03:41.690
+So we're going to go and duplicate it, put it over here and then rename it ERP.
+
+03:41.890 --> 03:43.050
+So now it is for everyone.
+
+03:43.050 --> 03:43.330
+Clear.
+
+03:43.330 --> 03:45.010
+We have two sources for this project.
+
+03:45.010 --> 03:47.410
+And the technology is used is simply a file.
+
+03:47.410 --> 03:48.530
+So now what we can do as well.
+
+03:48.530 --> 03:52.370
+We can go and add some descriptions inside this box to make it more clear.
+
+03:52.370 --> 03:57.210
+So what I'm going to do I'm going to take a line because I want to split the description from the icon,
+
+03:57.210 --> 03:59.330
+something like this and make it gray.
+
+03:59.370 --> 04:01.690
+And then below it we're going to go and add some text.
+
+04:01.690 --> 04:04.810
+And we're going to say is CSV file.
+
+04:04.810 --> 04:10.840
+And the next point and we can say the interface is simply files in folder.
+
+04:11.080 --> 04:15.840
+And of course you can go and add any specifications and explanation about the sources.
+
+04:15.840 --> 04:19.040
+If it is a database, you can see the type of the database and so on.
+
+04:19.040 --> 04:21.520
+So that we made it in the data architecture clear.
+
+04:21.520 --> 04:23.480
+What are the sources of our data warehouse.
+
+04:23.520 --> 04:24.880
+And now the next step what we're going to do.
+
+04:24.880 --> 04:28.640
+We're going to go and design the content of the bronze silver and gold.
+
+04:28.640 --> 04:31.880
+So I'm going to start by adding like an icon in each container.
+
+04:32.080 --> 04:34.680
+It is to show about that we are talking about database.
+
+04:34.680 --> 04:38.080
+So what we're going to do we're going to go and search for database.
+
+04:38.120 --> 04:43.040
+And then more result more results I'm going to go with this icon over here.
+
+04:43.040 --> 04:45.520
+So let's go and make it bigger.
+
+04:45.560 --> 04:46.400
+Something like this.
+
+04:46.400 --> 04:50.160
+Maybe change the color of that so we can have the bronze.
+
+04:50.280 --> 04:53.080
+And as well here the silver and the gold.
+
+04:53.120 --> 04:56.520
+So now what we can do we're going to go and add some arrows between those layers.
+
+04:56.520 --> 05:01.280
+So we're going to go over here so we can go and search for arrow and maybe go and pick one of those.
+
+05:01.560 --> 05:02.600
+Let's go and put it here.
+
+05:02.600 --> 05:07.600
+And we can go and pick a color for that, maybe something like this and adjust it.
+
+05:07.600 --> 05:13.350
+So now we can have this nice arrow between all the layers just to explain the direction of our architecture.
+
+05:13.390 --> 05:13.710
+Right.
+
+05:13.750 --> 05:19.190
+So we can read it from left to right and as well between the gold layer and the consume.
+
+05:19.230 --> 05:19.510
+Okay.
+
+05:19.550 --> 05:23.830
+So now what I'm going to do next, we're going to go and add one statement about each layer.
+
+05:23.870 --> 05:24.910
+The main objective.
+
+05:24.910 --> 05:28.510
+So let's go and grab a text and put it beneath the database.
+
+05:28.510 --> 05:32.070
+And we're going to say for example for the bronze layer it's going to be the raw data.
+
+05:32.110 --> 05:34.190
+Maybe make the text bigger.
+
+05:34.190 --> 05:35.710
+So you are the raw data.
+
+05:35.710 --> 05:42.110
+And then the next one in the silver you are cleaned standard data.
+
+05:42.110 --> 05:47.910
+And then the last one for the gold we can say business ready data.
+
+05:48.030 --> 05:50.830
+So with that we make the objective clear for each layer.
+
+05:50.870 --> 05:52.670
+Now below all those icons what we're going to do.
+
+05:52.670 --> 05:55.430
+We're going to have a separator again like this.
+
+05:55.470 --> 05:56.710
+Make it like colored.
+
+05:56.710 --> 06:00.830
+And beneath it we're going to add the most important specifications of this layer.
+
+06:00.830 --> 06:03.830
+So let's go and add those separators in each layer.
+
+06:04.550 --> 06:04.990
+Okay.
+
+06:05.030 --> 06:06.790
+So now we need a text below it.
+
+06:06.830 --> 06:08.070
+Let's take this one here.
+
+06:08.070 --> 06:11.230
+So what is the object type of the bronze layer.
+
+06:11.230 --> 06:12.470
+It's going to be a table.
+
+06:12.590 --> 06:15.420
+And we can go and add the load methods.
+
+06:15.420 --> 06:17.940
+We say this is batch processing.
+
+06:18.580 --> 06:22.140
+Since we are not doing streaming, we can say it is a full load.
+
+06:22.180 --> 06:23.980
+We are not doing incremental load.
+
+06:24.100 --> 06:31.860
+So we can say here trunk and insert and then we add one more section maybe about the transformations.
+
+06:31.860 --> 06:34.180
+So we can say no transformations.
+
+06:35.020 --> 06:36.980
+And one more about the data model.
+
+06:36.980 --> 06:39.220
+We're going to say none as is.
+
+06:40.140 --> 06:43.580
+And now what I'm going to do I'm going to go and add those specifications as well for the silver and
+
+06:43.580 --> 06:43.900
+gold.
+
+06:43.900 --> 06:49.260
+So here what we have discussed the object type, the load process, the transformations and whether
+
+06:49.260 --> 06:51.460
+we are breaking the data model or not.
+
+06:51.500 --> 06:53.100
+The same thing for the gold layer.
+
+06:53.100 --> 06:56.940
+So I can say with that we have really nice layering of the data warehouse.
+
+06:56.940 --> 07:02.540
+And what we are left is with the consumers over here you can go and add a different use cases and tools
+
+07:02.540 --> 07:07.500
+that can access your data warehouse, like for example, I'm adding here business intelligence and reporting,
+
+07:07.500 --> 07:09.660
+maybe using power BI or Tableau.
+
+07:09.700 --> 07:15.060
+Or you can say you can access my data warehouse in order to do ad hoc analysis using the SQL queries.
+
+07:15.130 --> 07:19.290
+And this is what we're going to focus on the projects after we build the data warehouse.
+
+07:19.290 --> 07:22.050
+And as well you can offer it for machine learning purposes.
+
+07:22.050 --> 07:25.010
+And of course, it is really nice to add some icons in your architecture.
+
+07:25.010 --> 07:27.890
+And usually I use this nice websites called Flaticon.
+
+07:27.890 --> 07:31.730
+It has really amazing icons that you can go and use it in your architecture.
+
+07:31.770 --> 07:36.810
+Now of course we can go and keep adding icons and stuff to explain the data architecture and as well
+
+07:36.810 --> 07:37.370
+the system.
+
+07:37.370 --> 07:41.890
+Like for example, it is very important here to say which tools you are using in order to build this
+
+07:41.890 --> 07:42.610
+data warehouse.
+
+07:42.650 --> 07:43.650
+Is it in the cloud?
+
+07:43.690 --> 07:46.970
+Are you using Azure Databricks or maybe snowflake?
+
+07:46.970 --> 07:51.450
+So we're going to go and add for our projects the icon of SQL server.
+
+07:51.490 --> 07:54.610
+Since we are building this data warehouse completely in the SQL server.
+
+07:54.610 --> 07:55.970
+So for now I'm really happy about it.
+
+07:55.970 --> 07:58.090
+As you can see we have now a plan right.
+
+07:58.130 --> 07:58.850
+All right guys.
+
+07:58.850 --> 08:02.290
+So with that we have designed the data architecture using the Draw.io.
+
+08:02.290 --> 08:04.970
+And with that we have done the last step in this epic.
+
+08:05.010 --> 08:07.890
+And now with that we have a design for the data architecture.
+
+08:07.890 --> 08:10.170
+And we can say we have closed this epic.
+
+08:10.170 --> 08:11.770
+Now let's go to the next one.
+
+08:11.770 --> 08:14.570
+We will start doing the first step to prepare our projects.
+
+08:14.570 --> 08:18.170
+And the first task here is to create a detailed project plan.

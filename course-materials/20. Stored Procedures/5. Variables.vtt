@@ -1,0 +1,472 @@
+WEBVTT
+
+00:03.920 --> 00:04.680
+All right everyone.
+
+00:04.680 --> 00:06.600
+So now we're going to talk about the variables.
+
+00:06.600 --> 00:07.840
+So what is a variable.
+
+00:07.840 --> 00:13.600
+It is like a placeholder where you store inside it a value in order to use it later inside your stored
+
+00:13.600 --> 00:14.360
+procedure.
+
+00:14.360 --> 00:18.040
+So that means variable holds like a value inside the memory.
+
+00:18.040 --> 00:21.560
+And you can reuse it everywhere you want inside your stored procedure.
+
+00:21.560 --> 00:23.280
+But it's not like the parameters.
+
+00:23.280 --> 00:26.400
+Parameters are something like outside the stored procedure.
+
+00:26.400 --> 00:31.600
+It's an input from the one that is executing the stored procedure, and the stored procedure has to
+
+00:31.600 --> 00:33.520
+adapt with the parameter.
+
+00:33.520 --> 00:38.560
+But a variable is something that lives inside the stored procedure, and we use it as a developers in
+
+00:38.560 --> 00:42.640
+order to make our code dynamic and to move a value from one place to another.
+
+00:42.640 --> 00:44.200
+So let's have a very simple example.
+
+00:44.240 --> 00:49.040
+Now, let's say that we don't want our report here about the total customers as a query.
+
+00:49.040 --> 00:51.560
+So I don't want it as a result in the output.
+
+00:51.600 --> 00:54.040
+Let's say I'm generating a report always like this.
+
+00:54.040 --> 00:58.800
+We are saying the total customers from Germany equal to two, and the average score from Germany is
+
+00:58.800 --> 01:00.600
+equal to 425.
+
+01:00.640 --> 01:03.320
+So I need it as a text, not as a table like here.
+
+01:03.320 --> 01:09.450
+So in order to do that we can use the T-sql SQL prints in order to give a message after executing the
+
+01:09.450 --> 01:10.370
+stored procedure.
+
+01:10.370 --> 01:12.330
+So the syntax of print is very simple.
+
+01:12.330 --> 01:15.090
+So we can go over here and say print.
+
+01:15.130 --> 01:17.050
+And then we have single quotes.
+
+01:17.090 --> 01:22.850
+And let's go and get the whole message from here without the comments and then the semicolon.
+
+01:22.850 --> 01:26.090
+And we can repeat that for the second message.
+
+01:26.810 --> 01:30.970
+So for the average score and we put it over here as well.
+
+01:31.050 --> 01:31.810
+Semicolon.
+
+01:32.770 --> 01:35.970
+Now if you do it like this this message can be always static.
+
+01:35.970 --> 01:39.810
+So we will have always like two for the total customers.
+
+01:39.850 --> 01:44.010
+And the average score can always be like this, even though that the data is changing.
+
+01:44.010 --> 01:46.010
+So we cannot have it static like this.
+
+01:46.050 --> 01:50.330
+We have to make it dynamic, and especially if we are calling this function for USA.
+
+01:50.450 --> 01:52.250
+So we cannot have it here as a Germany.
+
+01:52.250 --> 01:54.250
+So let's see how we can make this dynamic.
+
+01:54.250 --> 01:55.850
+Now let's start with the easy stuff.
+
+01:55.970 --> 01:59.690
+Instead of the Germany over here we can go and put our parameter right.
+
+01:59.890 --> 02:01.330
+So instead of this.
+
+02:01.330 --> 02:03.850
+So we're going to say ads country.
+
+02:04.010 --> 02:06.970
+But now the problem is it is part of the whole string.
+
+02:06.970 --> 02:07.850
+We cannot do that.
+
+02:07.850 --> 02:09.690
+So we're going to stop the text.
+
+02:09.730 --> 02:14.700
+And now we can see the coloring is changing and then have a plus in order to have concatenations.
+
+02:14.700 --> 02:20.620
+So this text comes first, then the value from the country, and then we can have as well the double
+
+02:20.620 --> 02:23.940
+point as static text and again a concatenation.
+
+02:23.940 --> 02:26.020
+And then we have the two we can talk about later.
+
+02:26.020 --> 02:28.060
+So let's do the same stuff over here.
+
+02:28.060 --> 02:33.140
+So we're going to say plus art country coloring is not changing because of this code.
+
+02:33.140 --> 02:34.460
+So let me just remove it.
+
+02:34.460 --> 02:40.540
+And then afterward a plus make it static again plus and remove the final quotes.
+
+02:40.540 --> 02:45.940
+So with that in the message we have now dynamic where we get the value of the country from the parameter.
+
+02:45.940 --> 02:47.700
+And now we come to the interesting part.
+
+02:47.740 --> 02:48.780
+We have here an issue.
+
+02:49.060 --> 02:52.100
+Those two values, they come from this query.
+
+02:52.100 --> 02:54.260
+And of course we cannot use a parameter for that.
+
+02:54.300 --> 02:56.420
+We have to use now the variables.
+
+02:56.460 --> 02:59.300
+Now in order to make the variables we have three steps.
+
+02:59.300 --> 03:03.180
+The first step is that we have to tell SQL about our new variable.
+
+03:03.180 --> 03:07.020
+So SQL can prepare and make like placeholder for it in the memory.
+
+03:07.020 --> 03:10.460
+So we have to tell SQL and prepare it with our new variables.
+
+03:10.500 --> 03:16.180
+Now usually we do all the declarations of our variables at the start of the stored procedure immediately
+
+03:16.180 --> 03:17.150
+after begin.
+
+03:17.150 --> 03:20.310
+So that means we're going to go over here and say declare.
+
+03:21.030 --> 03:23.070
+And now after that it's like the parameters.
+
+03:23.070 --> 03:23.710
+It's very simple.
+
+03:23.710 --> 03:26.350
+So add total customers.
+
+03:26.350 --> 03:28.070
+So this is the name of the variable.
+
+03:28.070 --> 03:30.190
+And after that we have to define the data type.
+
+03:30.230 --> 03:33.030
+Of course you have to understand the data type from the query.
+
+03:33.070 --> 03:37.070
+Since we are saying count star then the output can be an integer.
+
+03:37.070 --> 03:38.710
+That's why we're going to write it like this.
+
+03:38.710 --> 03:39.430
+So integer.
+
+03:39.430 --> 03:42.230
+And now we need another one for the average.
+
+03:42.230 --> 03:44.190
+So what we're going to do we can make a comma.
+
+03:44.230 --> 03:46.470
+Now we are declaring another variable.
+
+03:46.470 --> 03:48.710
+So add average score.
+
+03:48.830 --> 03:52.550
+And the data type of this one is going to be float because we have an average.
+
+03:52.750 --> 03:53.390
+So that's it.
+
+03:53.390 --> 03:58.350
+For the first step we are telling SQL we have two variables and SQL going to go and create an empty
+
+03:58.350 --> 03:59.150
+placeholder.
+
+03:59.190 --> 04:03.430
+So now in the second step we have to give our variables a value.
+
+04:03.430 --> 04:04.750
+So where are we going to get the values.
+
+04:04.750 --> 04:06.470
+We're going to get it from the query.
+
+04:06.470 --> 04:07.590
+So let's do that.
+
+04:07.630 --> 04:08.830
+Now let's start with the first column.
+
+04:08.830 --> 04:10.790
+As you can see we have here the count star.
+
+04:10.790 --> 04:15.350
+And as we learned anything that we write on the right side, it's going to be like an alias for the
+
+04:15.350 --> 04:15.830
+column.
+
+04:15.830 --> 04:21.270
+But in SQL if you go and write something before it, it's going to be the variable.
+
+04:21.270 --> 04:26.320
+So we can do it like this at total customers and then equal.
+
+04:26.320 --> 04:32.120
+So now we are saying whatever value this query returns, it should be stored inside my new variable
+
+04:32.120 --> 04:35.240
+so that I'm assigning values to my variable.
+
+04:35.280 --> 04:41.200
+But here there is one thing that we cannot have any more aliases because our query will not return any
+
+04:41.200 --> 04:41.760
+results.
+
+04:41.800 --> 04:45.840
+Our query have now only one task to assign values to my variables.
+
+04:45.840 --> 04:47.480
+So that's why we cannot have it like this.
+
+04:47.480 --> 04:49.440
+We have to remove the alias and the same thing.
+
+04:49.440 --> 04:51.440
+We're going to do it for the average.
+
+04:51.440 --> 04:55.680
+So add average score equal to the average score.
+
+04:55.680 --> 04:57.200
+And we have to remove the alias.
+
+04:57.200 --> 04:58.000
+So that's it.
+
+04:58.040 --> 05:00.280
+Now our query having different purpose.
+
+05:00.480 --> 05:02.280
+It is not for returning result.
+
+05:02.280 --> 05:05.680
+It is to assign values to our variables.
+
+05:05.680 --> 05:06.760
+So now we have values.
+
+05:06.760 --> 05:08.720
+In the next step we have to go and use it.
+
+05:08.720 --> 05:12.240
+And we can use our variables everywhere inside our stored procedure.
+
+05:12.240 --> 05:13.360
+So it could be in the print.
+
+05:13.360 --> 05:15.000
+It could be in the next query.
+
+05:15.000 --> 05:20.600
+So in any Select statement in any place, sometimes we use variables in order to pass an information
+
+05:20.600 --> 05:22.680
+from one query to another one.
+
+05:22.680 --> 05:26.520
+But in this example we want to use our variables inside the prints.
+
+05:26.520 --> 05:27.520
+So it is very simple.
+
+05:27.770 --> 05:30.690
+Now we're going to go and replace the static number.
+
+05:30.690 --> 05:34.850
+And it's like the parameter we're going to say at total customers.
+
+05:34.970 --> 05:39.690
+And the same thing for the average at average score.
+
+05:39.810 --> 05:40.570
+So that's it.
+
+05:40.570 --> 05:41.330
+It's very simple.
+
+05:41.450 --> 05:45.170
+So again the step one we have to declare them to define it for SQL.
+
+05:45.170 --> 05:47.130
+And with that we're going to get an empty variable.
+
+05:47.250 --> 05:50.770
+The second step we have to add values to those variables.
+
+05:50.770 --> 05:53.570
+And the last step we have to go and use those variables.
+
+05:53.570 --> 05:59.050
+So it makes sense right now if you check our message over here you can see that everything is dynamic.
+
+05:59.050 --> 06:00.930
+And we don't have any static values.
+
+06:00.930 --> 06:03.410
+But there is one more thing that's in the print.
+
+06:03.450 --> 06:05.450
+Everything should be as a string.
+
+06:05.450 --> 06:08.530
+So we cannot have dates, numbers, floats and so on.
+
+06:08.530 --> 06:11.770
+So that's why you have to make check if you are adding any parameter and variables.
+
+06:11.770 --> 06:13.610
+All of them should be string.
+
+06:13.610 --> 06:19.890
+So the country it is okay because we have the data type of varchar, but the total number and the average
+
+06:19.890 --> 06:20.370
+score.
+
+06:20.570 --> 06:23.530
+This is not really good because they have different data type.
+
+06:23.530 --> 06:27.730
+And we have to go and now cast those data types to another one.
+
+06:27.730 --> 06:33.580
+So we're going to say cast and we're going to say here as and varchar so that we don't get any errors
+
+06:33.580 --> 06:34.340
+from SQL.
+
+06:34.380 --> 06:40.140
+So cast as well here as Nvarchar like this.
+
+06:40.180 --> 06:40.660
+All right.
+
+06:40.660 --> 06:41.940
+So I think we are ready.
+
+06:42.100 --> 06:46.300
+Let's go and change the definition of our stored procedure in order to test.
+
+06:46.300 --> 06:47.700
+So let's go and execute.
+
+06:47.740 --> 06:48.340
+Perfect.
+
+06:48.340 --> 06:49.820
+And now let's go and test.
+
+06:49.820 --> 06:53.820
+So let's start with the defaults where we have the parameter as USA.
+
+06:53.900 --> 06:56.140
+So now as you can see we are getting one result.
+
+06:56.140 --> 06:57.900
+And this is from the second query.
+
+06:57.900 --> 07:01.540
+So the first query is not returning anything anymore in the output.
+
+07:01.580 --> 07:05.420
+But if you go to the messages over here you can see we have a new message.
+
+07:05.420 --> 07:13.660
+It says total customers from USA is equal to three and the average score from USA is equal to 825.
+
+07:13.660 --> 07:16.300
+And this is exactly what we wanted for our reports.
+
+07:16.340 --> 07:19.980
+Now let's go and execute the parameter equal to Germany.
+
+07:20.020 --> 07:21.620
+Again we have only one result.
+
+07:21.620 --> 07:25.860
+And in the messages we're going to get total customers from Germany is equal to two.
+
+07:25.900 --> 07:29.820
+And the average score from Germany is equal to 425.
+
+07:29.820 --> 07:31.860
+So this is exactly how we work with the variables.
+
+07:31.860 --> 07:37.820
+We use it in order to hold one information in one place, in order to reuse it later in different place.
+
+07:37.820 --> 07:39.180
+So that's it for variables.

@@ -1,0 +1,862 @@
+WEBVTT
+
+00:03.960 --> 00:04.240
+Okay.
+
+00:04.280 --> 00:05.840
+So now what is data segmentations?
+
+00:05.840 --> 00:10.640
+What we're going to do here is we're going to go and group up the data based on specific range.
+
+00:10.640 --> 00:13.560
+So that means we're going to go and create a new categories.
+
+00:13.560 --> 00:16.440
+And then go and aggregate the data based on the new category.
+
+00:16.440 --> 00:18.760
+And the formula for that is going to be very interesting.
+
+00:18.760 --> 00:23.600
+So it's going to be this time we're going to have a measure by a measure not by dimension.
+
+00:23.600 --> 00:28.840
+So you have to go and pick two different measures and convert one of those measures to a range or to
+
+00:28.880 --> 00:31.240
+a group, and then aggregate the data by this measure.
+
+00:31.240 --> 00:36.920
+So for example we're going to go and calculate the total number of products by the sales range or the
+
+00:36.920 --> 00:39.560
+total number of customers by the age group.
+
+00:39.560 --> 00:41.000
+So as you can see we have two measures.
+
+00:41.000 --> 00:44.480
+And we are trying to combine them together in order to create new insights.
+
+00:44.520 --> 00:45.880
+Let's have the following example.
+
+00:45.880 --> 00:47.920
+So here for example we have like two measures.
+
+00:47.960 --> 00:53.040
+And now the first step is that we're going to take one of those measures and convert it to a dimension.
+
+00:53.040 --> 00:54.440
+Convert it to a category.
+
+00:54.440 --> 01:00.430
+For example we're going to say if the values are like equal or below 100, it will be converted to a
+
+01:00.430 --> 01:06.910
+category called law, and between 100 and 200 it's going to be assigned to a new category called medium.
+
+01:06.910 --> 01:09.430
+And everything above 200 is going to be large.
+
+01:09.430 --> 01:12.390
+So as you can see what we are doing, we are taking one measure.
+
+01:12.390 --> 01:17.470
+And based on the range of this measure, we are building a new categories, new dimension.
+
+01:17.470 --> 01:19.630
+And now the final step is the easiest one.
+
+01:19.630 --> 01:23.110
+We're going to go and aggregate another measure based on the new category.
+
+01:23.110 --> 01:27.030
+So we're going to have seven for low, six for medium and 15 for large.
+
+01:27.030 --> 01:31.950
+So with that as you can see we are creating new categories or segments based on a measure.
+
+01:31.950 --> 01:37.110
+And then we are aggregating another measure based off this new segments and in scale.
+
+01:37.110 --> 01:43.070
+In order to create those new categories and segments, we use the amazing case when statements because
+
+01:43.070 --> 01:44.990
+it can help us to define the rules.
+
+01:44.990 --> 01:49.190
+And based on the range it's going to go and create a new category and labels.
+
+01:49.190 --> 01:54.030
+So now let's go and apply this formula on our data set in order to segment our data.
+
+01:54.030 --> 01:54.910
+So let's go.
+
+01:54.950 --> 01:55.150
+Okay.
+
+01:55.190 --> 01:57.230
+So now let's go and segment our data.
+
+01:57.230 --> 01:59.270
+And all what we need is two measures.
+
+01:59.270 --> 02:00.420
+So now we have the following task.
+
+02:00.420 --> 02:06.940
+And it says segment products into cost ranges and count how many products fall into each segment.
+
+02:06.940 --> 02:09.180
+So now by looking to this task we have two measures.
+
+02:09.180 --> 02:14.180
+First the costs and as well the second one is the total number of products.
+
+02:14.180 --> 02:17.180
+And of course we have to go and segment one of those two measures.
+
+02:17.180 --> 02:20.020
+And in this task we are segmenting their costs.
+
+02:20.020 --> 02:24.620
+So we have to focus now on taking this measure and convert it to a dimension.
+
+02:24.620 --> 02:28.060
+So now all those informations are available in the table products.
+
+02:28.060 --> 02:29.860
+So now let's go and select few columns.
+
+02:29.860 --> 02:32.300
+We're going to get the products key.
+
+02:33.260 --> 02:36.700
+And let's get the product name and the costs.
+
+02:36.700 --> 02:37.660
+That's all what we need.
+
+02:37.660 --> 02:38.860
+So let's execute it.
+
+02:38.860 --> 02:41.540
+Now as you can see this is our measure the costs.
+
+02:41.580 --> 02:45.260
+Now we have to go and convert this measure to dimension.
+
+02:45.260 --> 02:48.420
+And in order to do that we use the case when statements.
+
+02:48.420 --> 02:52.340
+We always use the case statement in order to create new categories.
+
+02:52.340 --> 02:54.460
+So let's go and do that Casewhen.
+
+02:54.500 --> 02:55.820
+Let's start with the first range.
+
+02:55.820 --> 02:58.020
+Let's say it is below 100.
+
+02:58.020 --> 03:03.120
+So all the costs that are below 100, we're going to label it with a new value.
+
+03:03.160 --> 03:05.440
+It's going to be below 100.
+
+03:05.440 --> 03:07.080
+So now let's go to the next range.
+
+03:07.080 --> 03:12.600
+We are saying when costs now between 100 and 500.
+
+03:12.600 --> 03:18.560
+So all costs between this range they will get the label 105 hundred.
+
+03:18.560 --> 03:19.800
+So this is very simple.
+
+03:19.800 --> 03:25.600
+Let's go and get another range for example between 500 and 1000.
+
+03:25.920 --> 03:29.880
+Then it's going to get a label between 500 and 1000.
+
+03:29.920 --> 03:33.400
+And now it depends how many categories and segments you want to create.
+
+03:33.840 --> 03:39.560
+Each row of this case when each condition will be creating like a new value for your dimension.
+
+03:39.560 --> 03:40.640
+So I'm going to start with that.
+
+03:40.640 --> 03:42.320
+I'm going to say at the end else.
+
+03:42.320 --> 03:48.160
+So if the cost is not fulfilling any of those, it's going to be above 1000, right.
+
+03:48.160 --> 03:49.040
+So that's it.
+
+03:49.040 --> 03:50.240
+Let's give it a name.
+
+03:50.240 --> 03:52.120
+It's going to be cost range.
+
+03:52.120 --> 03:53.840
+So now let's go and execute it.
+
+03:53.880 --> 03:55.640
+Now let's go and check the result.
+
+03:55.640 --> 03:57.200
+For example the cost here is zero.
+
+03:57.240 --> 03:59.470
+It is below 100, which is correct?
+
+03:59.470 --> 04:01.430
+This value is above 1000.
+
+04:01.470 --> 04:06.470
+This is between 500 and 1000 and this is between 100 and 500.
+
+04:06.510 --> 04:08.190
+So everything looks correct.
+
+04:08.230 --> 04:08.590
+Nice.
+
+04:08.590 --> 04:14.030
+So with that we are done with the first step where we have converted one measure into a dimension.
+
+04:14.030 --> 04:16.150
+So with that we have now our segments.
+
+04:16.150 --> 04:21.950
+The next step that we're going to go and aggregate the data based on this new dimension.
+
+04:21.950 --> 04:27.110
+So either you do it in one go or what I usually do, I put everything in one CTE or a subquery.
+
+04:27.150 --> 04:30.190
+And I'm going to call it products segments.
+
+04:31.350 --> 04:35.150
+As based on these results I'm going to go and aggregate the data.
+
+04:35.150 --> 04:37.510
+So this is my timber results.
+
+04:37.550 --> 04:40.190
+And now we're going to go and just aggregate the data like this.
+
+04:40.190 --> 04:43.230
+So let's get first our dimension cost range.
+
+04:43.390 --> 04:45.110
+And then we need our measure.
+
+04:45.110 --> 04:52.110
+So it's going to be count product key as total products from our CTE.
+
+04:52.270 --> 04:57.460
+It was the product segments and then grouped by our new dimension.
+
+04:57.620 --> 04:58.180
+That's it.
+
+04:58.180 --> 04:58.900
+It's very simple.
+
+04:58.900 --> 05:00.540
+Let's go and execute it now.
+
+05:00.540 --> 05:03.900
+Now you can see in the output we have our segmented measure.
+
+05:03.900 --> 05:07.900
+And we can see the total numbers in each of those segments and range.
+
+05:07.900 --> 05:12.260
+And of course we can go and order the data by our aggregation the total products.
+
+05:12.260 --> 05:13.460
+Let's go and execute it.
+
+05:13.500 --> 05:14.860
+Maybe descending.
+
+05:14.860 --> 05:19.140
+So now as you can see we have a lot of products that are not costing a lot.
+
+05:19.180 --> 05:20.620
+It is below 100.
+
+05:20.660 --> 05:22.940
+After that between 100 and 500.
+
+05:22.980 --> 05:27.900
+And the lowest number of products is in the range that is above 1000.
+
+05:27.940 --> 05:30.700
+So we don't have a lot of products that are costing a lot.
+
+05:30.740 --> 05:34.100
+And that's because maybe we have a lot of accessories in the business.
+
+05:34.100 --> 05:36.380
+So my friends, this is very powerful.
+
+05:36.380 --> 05:42.060
+If your dimensions in the data set is not enough to create insights, you can take one of your measures,
+
+05:42.060 --> 05:48.740
+convert it to a dimension using CSV, and then aggregate your other measures based on this new dimension.
+
+05:48.740 --> 05:54.460
+So we are deriving new informations and as I told you, by just following this concept measures and
+
+05:54.460 --> 06:01.330
+dimensions you can generate endless amounts of reports, even if your business or your data set is small.
+
+06:01.370 --> 06:02.130
+Okay my friends.
+
+06:02.130 --> 06:04.170
+So now let's go and segment something else.
+
+06:04.170 --> 06:06.570
+So this time it's going to be a little bit more complicated.
+
+06:06.570 --> 06:07.810
+So we have the following task.
+
+06:07.850 --> 06:13.210
+And it says group customers into three segments based on their spending behavior.
+
+06:13.210 --> 06:15.010
+So we have the VIP customers.
+
+06:15.050 --> 06:21.090
+They are the customers with at least 12 months of history and spending more than 5000.
+
+06:21.130 --> 06:24.010
+And the second category, we have the regular customers.
+
+06:24.010 --> 06:29.450
+They have at least as well, 12 months of history, but they spend like less than 5000.
+
+06:29.610 --> 06:34.970
+And the last category we have, the new customers, their life span is less than 12 months, and we
+
+06:34.970 --> 06:37.890
+have to find the total number of customers by each group.
+
+06:37.890 --> 06:40.250
+So now here we have a lot of measures and stuff.
+
+06:40.250 --> 06:42.810
+So the first one is the total number of customers.
+
+06:42.810 --> 06:45.770
+This is going to be the final aggregation that we're going to do.
+
+06:45.770 --> 06:48.610
+But what is interesting we're going to build the segments.
+
+06:48.610 --> 06:50.930
+And this time it's based on different columns.
+
+06:50.930 --> 06:57.720
+So first it is based on a measure the total number of months for each customer and as well the total
+
+06:57.720 --> 06:59.720
+spending, the total number of sales.
+
+06:59.720 --> 07:04.840
+So we have the sales, we have the total number of months and as well the total number of customers.
+
+07:04.880 --> 07:06.520
+So now we're going to do it step by step.
+
+07:06.560 --> 07:07.480
+Don't worry about it.
+
+07:07.480 --> 07:11.120
+So now what I usually do I start collecting all the data that I need.
+
+07:11.120 --> 07:11.920
+So what do we need.
+
+07:11.920 --> 07:17.480
+We need a customer key in order to do the aggregation for the total number of customers we need, as
+
+07:17.480 --> 07:20.880
+well the sales amount right for the spending.
+
+07:20.920 --> 07:25.040
+And now in order to calculate those number of months, we need a date.
+
+07:25.040 --> 07:28.520
+And for that we have to calculate the life span of a customer.
+
+07:28.520 --> 07:31.200
+And usually we created using the order date.
+
+07:31.200 --> 07:32.760
+I'm going to show you how we're going to do it.
+
+07:32.760 --> 07:34.360
+So we need the order date.
+
+07:34.400 --> 07:36.040
+And of course we have to select our table.
+
+07:36.040 --> 07:38.120
+So let's start with the fact table.
+
+07:38.120 --> 07:39.840
+So fact sales.
+
+07:39.840 --> 07:42.120
+And we're going to join it with our customers.
+
+07:42.880 --> 07:44.760
+So our dimension customers.
+
+07:44.800 --> 07:50.240
+And the key for that is the customer key as well for that customers.
+
+07:50.240 --> 07:53.480
+And here we have to specify which column come from which table.
+
+07:53.480 --> 07:55.380
+So the first one from the customers.
+
+07:55.420 --> 07:58.980
+The sales from the facts and the order date from the fact as well.
+
+07:58.980 --> 08:00.700
+So now let's go and execute.
+
+08:00.740 --> 08:04.340
+Now we can see we have our customers, the sales and the order dates.
+
+08:04.340 --> 08:08.420
+So now the sales can help us in order to specify the range of spending.
+
+08:08.420 --> 08:11.620
+But now what is interesting we have to calculate the lifespan.
+
+08:11.660 --> 08:17.900
+So now in order to get the lifespan, we have to find out the first order and the last order of each
+
+08:17.900 --> 08:18.500
+customer.
+
+08:18.500 --> 08:22.220
+So how many months is between the first order and the last order.
+
+08:22.220 --> 08:27.500
+So in order to do that we need the min function for the order dates.
+
+08:27.940 --> 08:33.460
+So this is the first order and the max in order to get the last order right.
+
+08:34.820 --> 08:40.140
+And since we are using min and max, we have to go and group up the data and we need to do that anyway
+
+08:40.180 --> 08:42.420
+in order to get that total spending.
+
+08:42.420 --> 08:50.340
+So for the sales amount, we can have the sum in order to have that total spend, total spending.
+
+08:50.340 --> 08:55.290
+And we don't need the order date and the dimension where we're going to group up the data is by the
+
+08:55.290 --> 08:56.010
+customer key.
+
+08:56.010 --> 08:57.970
+So let's go and execute it.
+
+08:57.970 --> 09:01.010
+So now in the results we have a list of all our customers.
+
+09:01.010 --> 09:04.210
+And as well the total spending for each customer.
+
+09:04.210 --> 09:07.090
+And we have the first order date and the last order dates.
+
+09:07.130 --> 09:13.450
+Now in order to calculate how many months between the first order and the last order, we can go and
+
+09:13.450 --> 09:16.850
+use the function date diff in order to get a new measure.
+
+09:16.850 --> 09:18.890
+So let's go and do that date diff.
+
+09:18.930 --> 09:22.530
+And now since we need the number of months we're going to use the month.
+
+09:22.530 --> 09:25.610
+And then the second argument is going to be the first order.
+
+09:26.210 --> 09:27.450
+So order date.
+
+09:28.290 --> 09:30.250
+And the second one is going to be the latest.
+
+09:30.250 --> 09:32.530
+So max order date.
+
+09:32.730 --> 09:35.490
+And we're going to call this life span.
+
+09:35.530 --> 09:38.970
+So let's go and query and let's have a look to our results.
+
+09:38.970 --> 09:45.370
+You can see for these customers 712 between the first order and the last order we have 11 months.
+
+09:45.370 --> 09:50.770
+And for this customer over here we have zero because the first order and the last order is in the same
+
+09:50.770 --> 09:51.130
+month.
+
+09:51.130 --> 09:52.810
+And maybe there is only one order.
+
+09:52.810 --> 09:55.200
+So with that, we have the lifespan.
+
+09:55.200 --> 10:01.400
+And as you can see guys, we have derived a new measure from the dimension order, dates and order later
+
+10:01.400 --> 10:05.920
+to derive from this new measure, a new dimension, the segments.
+
+10:05.920 --> 10:11.200
+So we are converting a dimension to a measure, and then from a measure to a new dimension.
+
+10:11.240 --> 10:14.400
+And this is usually what we do in analysis and in SQL.
+
+10:14.400 --> 10:16.800
+So now do we have all the informations for the logic.
+
+10:16.800 --> 10:18.160
+So we have the lifespan.
+
+10:18.200 --> 10:20.240
+So we have the total number of monthses.
+
+10:20.240 --> 10:21.960
+We have the total spending.
+
+10:21.960 --> 10:24.760
+And I think we are ready to start building our segments.
+
+10:24.760 --> 10:28.960
+So now what we're going to do, we're going to create the segments based on these results that we have
+
+10:28.960 --> 10:29.680
+prepared.
+
+10:29.680 --> 10:33.600
+So this result is the intermediate result before the final one.
+
+10:33.600 --> 10:36.920
+Now either you're going to put it in a CTE or a subquery.
+
+10:36.960 --> 10:39.200
+Well I usually go and use the CTE.
+
+10:39.240 --> 10:40.760
+It is nicer.
+
+10:40.760 --> 10:46.720
+So with customer spending and I'm going to put the whole thing in a CTE.
+
+10:46.880 --> 10:51.520
+And we're going to start writing a new query from the scratch based on the intermediate results.
+
+10:51.520 --> 10:54.430
+So let's go and select again the customer key.
+
+10:54.470 --> 10:58.790
+I'm going to get the total spending and the life span.
+
+10:58.790 --> 11:01.710
+So we don't actually need the first and the last order.
+
+11:01.710 --> 11:05.470
+And we're going to get all those informations from our new city.
+
+11:05.470 --> 11:06.910
+So let's go and execute.
+
+11:06.950 --> 11:09.470
+And now let's start building the segments.
+
+11:09.470 --> 11:12.710
+And as usual we're going to go and use the Casewhen statement.
+
+11:12.710 --> 11:17.950
+It is just amazing statements in order to derive and build a new columns.
+
+11:17.950 --> 11:19.910
+So now what do we have for the first category.
+
+11:19.910 --> 11:24.910
+So they are the customers over 12 months and spending more than 5000.
+
+11:24.910 --> 11:33.670
+So now we're going to say if the left span is higher than 12 and the total spending is higher than 5000,
+
+11:34.190 --> 11:37.670
+then we have our VIP customers.
+
+11:38.110 --> 11:39.870
+So this is the first label.
+
+11:39.870 --> 11:41.470
+Let's go to the second one.
+
+11:41.590 --> 11:44.630
+If the life span as well I think more than 12.
+
+11:44.670 --> 11:45.550
+So let's go and check.
+
+11:45.550 --> 11:48.070
+Well it is at least 12 I have here mistake.
+
+11:48.070 --> 11:50.470
+So it can be larger or equal.
+
+11:50.470 --> 11:51.900
+So now it is more correct.
+
+11:51.900 --> 11:56.940
+So the customers that has at least 12oz, but they spend like 5000 or less.
+
+11:56.940 --> 12:04.500
+So that means it's going to stay the same condition, but the total spending will be less or equal 5000.
+
+12:04.740 --> 12:07.260
+And they are the regular customers.
+
+12:07.260 --> 12:09.820
+So they will get this label.
+
+12:09.860 --> 12:14.180
+Now if it is not fulfilling those two conditions, what this means.
+
+12:14.220 --> 12:17.140
+This means this is a new customer, right.
+
+12:17.140 --> 12:18.740
+So they will get this label.
+
+12:18.780 --> 12:23.300
+Let's go and have an end and let's call it customer segments.
+
+12:23.700 --> 12:25.500
+So let's go and execute it.
+
+12:25.540 --> 12:28.380
+Now let's have a look for this customer 712.
+
+12:28.420 --> 12:31.980
+So the total spending is less than 5000.
+
+12:32.020 --> 12:33.980
+So this customer is not a VIP.
+
+12:34.380 --> 12:37.980
+And as well the lifespan is less than 12.
+
+12:38.020 --> 12:40.300
+So that means for us it is a new customer.
+
+12:40.340 --> 12:42.260
+Now the next one we have VIP.
+
+12:42.260 --> 12:45.460
+So this customer has a history at least 12 months.
+
+12:45.580 --> 12:47.100
+So we have here 16 months.
+
+12:47.100 --> 12:50.100
+And as well the total spending more than 5000.
+
+12:50.140 --> 12:52.290
+That's why this customer is a VIP.
+
+12:52.410 --> 12:55.570
+But now let's go and search for a regular customer.
+
+12:55.610 --> 13:00.570
+2349 so this customer spent less than 5000.
+
+13:00.570 --> 13:03.130
+So we are fulfilling this condition over here.
+
+13:03.130 --> 13:07.890
+And as well this customer has at least 12 months of history.
+
+13:07.890 --> 13:09.450
+That's why we have a regular.
+
+13:09.450 --> 13:16.410
+So now as you can see we have derived a new dimension from two measures the lifespan and the total spending.
+
+13:16.450 --> 13:21.290
+Now of course the last step what is going to be we have to go and find the total number of customers
+
+13:21.290 --> 13:23.090
+for each of those categories.
+
+13:23.090 --> 13:25.690
+So now what we're going to do, we're going to remove all those stuff.
+
+13:25.690 --> 13:27.810
+And we're going to start with our new dimension.
+
+13:28.210 --> 13:31.930
+And then comes the aggregation counts customer key.
+
+13:32.330 --> 13:35.170
+So as total customers.
+
+13:35.170 --> 13:39.250
+And then we have to group up the data by our new dimension.
+
+13:39.250 --> 13:43.850
+So this is going to be really annoying if I'm going to take this here and put this in the group by,
+
+13:43.890 --> 13:48.850
+because this means each time I'm changing the logic, I have to take care of that twice.
+
+13:48.890 --> 13:52.350
+One in the select statement and the second one in the groupby.
+
+13:52.390 --> 13:56.070
+So now actually instead of that what I'm going to do, I change my mind.
+
+13:56.310 --> 14:00.030
+I'm gonna still having the aggregation in the second step.
+
+14:00.030 --> 14:01.510
+So we need the customer key.
+
+14:01.550 --> 14:04.310
+We have the definition of our customer segments.
+
+14:04.310 --> 14:09.470
+And now I'm going to go and use the subquery where I put the aggregation as a second step.
+
+14:09.470 --> 14:14.550
+So my friends that means this is again a second intermediate result.
+
+14:14.590 --> 14:16.670
+You can of course put it in second CTE.
+
+14:16.710 --> 14:22.590
+So that means this is the first intermediate results where we have created the lifespan and the total
+
+14:22.590 --> 14:23.230
+spending.
+
+14:23.230 --> 14:27.270
+And the second intermediate result is creating the customer segments.
+
+14:27.270 --> 14:31.070
+And the third step and the last one is by doing the final aggregation.
+
+14:31.070 --> 14:32.270
+So we can do it like this.
+
+14:32.270 --> 14:35.790
+Select our dimension customer segment.
+
+14:36.430 --> 14:41.710
+Then we're going to go and count the customer key from our subquery.
+
+14:42.110 --> 14:43.750
+So this is our subquery.
+
+14:43.750 --> 14:48.630
+And don't forget to group by our dimension customer segments I think I have it wrong.
+
+14:48.670 --> 14:50.980
+All right So this is the subquery.
+
+14:50.980 --> 14:54.100
+And this is the final step where we are aggregating everything.
+
+14:54.100 --> 15:00.020
+I'm going to go and order the data by the total customers like this.
+
+15:00.020 --> 15:03.860
+So now let's go and execute the whole thing well.
+
+15:04.060 --> 15:06.140
+Descending not ascending okay.
+
+15:06.180 --> 15:12.460
+So now we can see from our results the highest number of our customers belong to the category new.
+
+15:12.460 --> 15:16.380
+So we have 14,000 customers that are new in our business.
+
+15:16.420 --> 15:19.460
+And then the second category we have the regular customers.
+
+15:19.460 --> 15:22.580
+So we have around 2000 customers and VIP.
+
+15:22.620 --> 15:24.340
+We have a lot of VIP customers.
+
+15:24.340 --> 15:28.460
+So we have 1655 VIP customers in our business.
+
+15:28.460 --> 15:29.460
+So that's my friends.
+
+15:29.460 --> 15:31.340
+We have done data segmentation.
+
+15:31.340 --> 15:32.180
+It is amazing.
+
+15:32.180 --> 15:36.060
+We have segmented our customers based on their spending behavior.
+
+15:36.060 --> 15:41.020
+And as you can see, all those informations are totally derived from our data.
+
+15:41.020 --> 15:45.580
+And this helps us to have a deep understanding of the behavior of our customers.
+
+15:45.580 --> 15:49.580
+And of course this can help as well making smart decisions.

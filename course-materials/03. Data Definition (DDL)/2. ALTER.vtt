@@ -1,0 +1,214 @@
+WEBVTT
+
+00:03.920 --> 00:07.320
+Okay, so now what else you can do with the structure of your database?
+
+00:07.320 --> 00:12.920
+If you have already a table, what you can do, you can go and edit and change the definition of the
+
+00:12.920 --> 00:13.400
+table.
+
+00:13.400 --> 00:16.000
+So for example, let's say I would like to add a new column.
+
+00:16.000 --> 00:19.240
+In order to do that we can use the command alter.
+
+00:19.280 --> 00:24.800
+Alter means you want to edit the definition of your table and you want to change it, like adding new
+
+00:24.800 --> 00:29.200
+column, or maybe changing the data type and anything in the definition of the table.
+
+00:29.200 --> 00:33.160
+So the alter command, you can use it in order to change the definition of your table.
+
+00:33.160 --> 00:36.080
+And now let's go back to SQL and try to change something.
+
+00:36.120 --> 00:36.400
+All right.
+
+00:36.440 --> 00:40.800
+Now the task says add a new column called email to the persons table.
+
+00:40.800 --> 00:42.320
+So it is very simple what you can do.
+
+00:42.320 --> 00:44.600
+We can use the alter table command.
+
+00:44.600 --> 00:46.480
+So we are not creating new table.
+
+00:46.480 --> 00:49.240
+We want to edit already existing table.
+
+00:49.240 --> 00:50.920
+So which table we want to modify.
+
+00:50.920 --> 00:52.080
+It's going to be the persons.
+
+00:52.080 --> 00:55.480
+So we are telling SQL we want to change something in the table persons.
+
+00:55.480 --> 00:58.000
+And of course we have to tell SQL what we want to change.
+
+00:58.040 --> 00:59.360
+Are we removing the column.
+
+00:59.360 --> 01:00.600
+Are we adding column.
+
+01:00.600 --> 01:02.680
+And this scenario we want to add a new column.
+
+01:02.680 --> 01:05.560
+So let's go and add the email information.
+
+01:05.560 --> 01:07.120
+So this is the column name.
+
+01:07.120 --> 01:12.160
+And as you are creating a table, you have to define the column name, the data type and the constraint.
+
+01:12.200 --> 01:15.760
+So now for the emails you can have like characters numbers, special characters.
+
+01:15.760 --> 01:17.280
+So we're going to go with the Varchar.
+
+01:18.080 --> 01:20.400
+And about the length it's going to be let's say 50.
+
+01:20.440 --> 01:22.960
+And I'm going to say each person has to have an email.
+
+01:22.960 --> 01:24.640
+So it's going to be not null.
+
+01:24.880 --> 01:27.680
+So with that we are adding completely a new column.
+
+01:27.680 --> 01:28.640
+So that's it.
+
+01:28.640 --> 01:30.000
+Let's go and execute it.
+
+01:30.040 --> 01:31.800
+Now again this is not a query.
+
+01:31.800 --> 01:33.360
+This is a DDL command.
+
+01:33.360 --> 01:35.320
+And in the output we will not get data.
+
+01:35.320 --> 01:37.920
+We will get the message whether everything went correctly.
+
+01:37.920 --> 01:41.760
+So it says command completed successfully at the time when this is completed.
+
+01:41.760 --> 01:45.760
+Now we can go and do a simple query just to have a check to the table.
+
+01:45.760 --> 01:48.360
+So and now you can see we have our columns.
+
+01:48.360 --> 01:50.760
+And at the end we have a new column called emails.
+
+01:50.760 --> 01:51.920
+This is very important.
+
+01:51.920 --> 01:55.840
+If you are adding new column it's going to be always at the end of the table.
+
+01:55.880 --> 01:59.880
+But now you might say, you know what, I would like to have the email like something in the middle,
+
+01:59.920 --> 02:01.400
+maybe after the person name.
+
+02:01.400 --> 02:06.960
+Well, in order to do that, you have completely to delete and drop the table and create it from scratch
+
+02:07.000 --> 02:11.200
+using create command, which is might be bad if you have data inside the table.
+
+02:11.200 --> 02:15.950
+So if you are, find by adding your new column at the end, you can use the alter table, but if you
+
+02:15.950 --> 02:20.430
+say I would like it in the middle, then sadly you have to go and drop everything and start from the
+
+02:20.430 --> 02:20.910
+scratch.
+
+02:20.950 --> 02:25.750
+Okay, so now let's have another task and it says remove the column phone from the persons table.
+
+02:25.750 --> 02:27.350
+So now we're going to do exactly the opposite.
+
+02:27.350 --> 02:31.190
+We're going to go remove it completely with its data from the table.
+
+02:31.190 --> 02:33.710
+So we can still say alter table persons.
+
+02:33.710 --> 02:37.270
+We are saying we want to edit the definition of the table persons.
+
+02:37.310 --> 02:41.270
+And now instead of adding we will be dropping a column.
+
+02:41.550 --> 02:45.670
+And then after that we have to specify as well the column name going to be the phone.
+
+02:45.670 --> 02:49.830
+But we don't have to mention again the data type and the constraint.
+
+02:49.830 --> 02:52.990
+And that's because the database already knows those informations.
+
+02:52.990 --> 02:54.270
+So we need those informations.
+
+02:54.270 --> 02:57.350
+If you are creating something new that's why we can get rid of that.
+
+02:57.350 --> 03:00.510
+We just need the column name and the database is going to do the rest.
+
+03:00.510 --> 03:02.630
+So let's go and do that.
+
+03:02.670 --> 03:04.190
+Now you can see successful.
+
+03:04.230 --> 03:06.350
+And now let's go and check our table.
+
+03:06.390 --> 03:09.550
+And now as you can see we have the ID person name birth date email.
+
+03:09.550 --> 03:11.110
+And we don't have the column phone.
+
+03:11.150 --> 03:11.750
+Be careful.
+
+03:11.750 --> 03:16.310
+If you are deleting a column you will be losing as well all the data inside this column.
+
+03:16.310 --> 03:17.990
+So as you can see this is very simple.
+
+03:17.990 --> 03:22.870
+This is how we can edit the definition of our table by adding and remove columns.

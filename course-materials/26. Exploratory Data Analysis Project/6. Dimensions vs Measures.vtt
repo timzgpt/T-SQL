@@ -1,0 +1,259 @@
+WEBVTT
+
+00:03.880 --> 00:04.720
+All right, my friends.
+
+00:04.720 --> 00:06.560
+So we're gonna start with a secret.
+
+00:06.600 --> 00:10.720
+A little trick that I usually do by analyzing any data sets.
+
+00:10.760 --> 00:13.080
+So let's start with little coffee before we start.
+
+00:14.040 --> 00:15.480
+Um, this is really hot.
+
+00:15.640 --> 00:20.640
+Okay, so the secret states, as I'm looking to any data sets in, any projects, I see the data always
+
+00:20.640 --> 00:23.800
+divided between dimensions and measures.
+
+00:25.880 --> 00:26.680
+What truth?
+
+00:27.200 --> 00:29.760
+You take the blue pill, you take the red pill.
+
+00:30.120 --> 00:32.440
+All I'm offering is the truth, nothing more.
+
+00:34.240 --> 00:40.960
+If you see your data like me as dimensions and measures, you can generate like endless amount of insights
+
+00:40.960 --> 00:43.040
+from any projects, from any data sets.
+
+00:43.080 --> 00:48.280
+And you will find me through the projects that I'm always speaking about measures and dimensions.
+
+00:48.280 --> 00:50.080
+So I'm going to show you how I usually do it.
+
+00:50.080 --> 00:53.240
+So now usually by looking to any data set in any project.
+
+00:53.240 --> 00:55.400
+So you have like multiple columns and rows.
+
+00:55.440 --> 01:00.960
+Here I see the data always splitted into two categories, either a dimension or a measure.
+
+01:01.000 --> 01:05.480
+And now of course the question is here is my column a dimension or a measure?
+
+01:05.520 --> 01:10.690
+Well, in order to assign it to one of those categories, you have to ask the first question.
+
+01:10.690 --> 01:12.050
+Is it a numeric value?
+
+01:12.050 --> 01:17.530
+If it's not so you have like string or date or any other data type, then it is a dimension.
+
+01:17.530 --> 01:21.770
+And if it is yes in numeric then you have to ask the second question.
+
+01:21.810 --> 01:24.090
+Does it make sense to aggregate it?
+
+01:24.090 --> 01:30.490
+So if the answer for both questions is yes, it is numeric and it makes sense to aggregate it, then
+
+01:30.490 --> 01:31.290
+it is a measure.
+
+01:31.330 --> 01:32.930
+Otherwise it is a dimension.
+
+01:32.970 --> 01:35.090
+Now let's practice and have some examples.
+
+01:35.090 --> 01:40.410
+So now by looking to the values of the column category you can see all the values are characters.
+
+01:40.410 --> 01:41.570
+So it is not numeric.
+
+01:41.610 --> 01:44.050
+That means this column is a dimension.
+
+01:44.050 --> 01:45.130
+So it is very simple.
+
+01:45.130 --> 01:46.250
+Let's take another column.
+
+01:46.250 --> 01:47.690
+We have the sales amount.
+
+01:47.690 --> 01:49.810
+So now as you can see the values are numeric.
+
+01:49.810 --> 01:52.690
+And as well it makes sense to aggregate those values.
+
+01:52.690 --> 01:56.130
+We can get the total sales or the average sales and so on.
+
+01:56.130 --> 01:57.770
+So it fulfills both of the conditions.
+
+01:57.770 --> 02:00.410
+It is numeric and it makes sense to aggregate it.
+
+02:00.410 --> 02:03.090
+That's why we say sales is a measure.
+
+02:03.130 --> 02:07.770
+Now if you are checking the values of the product name, you can see that all of them are characters
+
+02:07.770 --> 02:08.410
+and names.
+
+02:08.410 --> 02:09.490
+So it is not numeric.
+
+02:09.490 --> 02:11.930
+That means the product is dimension.
+
+02:11.930 --> 02:14.130
+Moving on to the next one, we have the quantity.
+
+02:14.130 --> 02:17.900
+The values are numeric and as well it makes sense to aggregate.
+
+02:17.900 --> 02:20.700
+It can summarize all those values to have their total quantity.
+
+02:20.700 --> 02:22.220
+So quantity is a measure.
+
+02:22.260 --> 02:26.540
+Now if you are looking to the values of the birth dates you can see this is a date information.
+
+02:26.540 --> 02:27.700
+It is not numeric.
+
+02:27.700 --> 02:29.860
+So that means it is a dimension right.
+
+02:29.900 --> 02:36.940
+But if you calculate the age from the birth dates, age of the customer can be in numeric and it makes
+
+02:36.940 --> 02:37.980
+sense to aggregate it.
+
+02:37.980 --> 02:40.780
+For example finding the average age of customers.
+
+02:40.780 --> 02:46.660
+So if we derive a numeric value from a dimension then we can use it as a measure.
+
+02:46.660 --> 02:48.180
+So age is a measure.
+
+02:48.180 --> 02:50.180
+And now we come to something really tricky.
+
+02:50.180 --> 02:51.500
+This is the id.
+
+02:51.500 --> 02:56.580
+So for example if you are checking the customer ID you can see all those values are numeric.
+
+02:56.620 --> 02:58.540
+So the first condition is fulfilled.
+
+02:58.580 --> 03:03.180
+Now the very important question does it make sense to aggregate the IDs.
+
+03:03.180 --> 03:06.020
+Well those IDs are unique identifier for a customer.
+
+03:06.020 --> 03:09.740
+And if you find like the average of that it is not like helpful.
+
+03:09.740 --> 03:10.140
+Right?
+
+03:10.140 --> 03:16.740
+I cannot think of one use case of aggregating the customer ID like having the average of all those IDs
+
+03:16.740 --> 03:20.940
+or summarizing the IDs, so it makes no sense to aggregate it.
+
+03:20.940 --> 03:26.190
+That's why we can consider the ID of a customer as a dimension, not as a measure.
+
+03:26.190 --> 03:27.830
+So as you can see it is very simple.
+
+03:27.830 --> 03:31.710
+If it is numeric and it makes sense to aggregate, then it is measure.
+
+03:31.750 --> 03:33.510
+Otherwise it is a dimension.
+
+03:33.510 --> 03:36.710
+And this is the foundations of any data analytics.
+
+03:36.710 --> 03:43.230
+If you see your data as dimensions and measures, you can generate a lot of use cases and insights from
+
+03:43.230 --> 03:44.230
+your datasets.
+
+03:44.270 --> 03:48.390
+Now I totally understand if you are still confused about dimensions and measures, and you might be
+
+03:48.430 --> 03:51.150
+asking why do I need measures and dimensions?
+
+03:51.230 --> 03:56.190
+Well, if you are doing any type of data analysis or you are exploring any datasets, you will be end
+
+03:56.230 --> 04:01.670
+up always like grouping up the data by something like you are grouping the data by countries or grouping
+
+04:01.670 --> 04:05.110
+the data by, for example, products or categories.
+
+04:05.110 --> 04:08.070
+So we need dimensions to group up our data.
+
+04:08.070 --> 04:11.870
+And in the other side you will be asking questions like how much, how many?
+
+04:11.910 --> 04:13.590
+What is the total of something.
+
+04:13.590 --> 04:16.750
+So you always need to aggregate or calculate something right.
+
+04:16.790 --> 04:18.470
+And for that you need the measure.
+
+04:18.470 --> 04:22.590
+So we need the measures in order to answer the question how many and how much.
+
+04:22.590 --> 04:26.990
+And we need the dimensions in order to group up the data by something.
+
+04:26.990 --> 04:31.710
+So that's why almost in any type of data analysis you need dimensions and measures.
+
+04:31.710 --> 04:34.750
+And this is going to be more clear as we progress in the projects.

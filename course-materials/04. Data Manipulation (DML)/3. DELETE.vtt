@@ -1,0 +1,286 @@
+WEBVTT
+
+00:03.880 --> 00:04.760
+All right, my friends.
+
+00:04.760 --> 00:10.440
+So with that, we have learned how to insert new rows to our tables and as well how to update the content
+
+00:10.440 --> 00:12.080
+of already existing row.
+
+00:12.120 --> 00:18.080
+Now the last thing or command that we can do to the data inside the table is that we can go and remove
+
+00:18.120 --> 00:22.160
+rows from our table, and we can do that using the command delete.
+
+00:22.160 --> 00:28.280
+So if we use delete SQL going to go and start removing already existing rows inside your table.
+
+00:28.320 --> 00:31.360
+Alright, now for the syntax of the delete, it's going to be very simple.
+
+00:31.360 --> 00:34.840
+We're going to say delete from and then we're going to write the table name.
+
+00:34.840 --> 00:36.720
+And here comes something very important.
+
+00:36.720 --> 00:38.680
+We have to add a where condition.
+
+00:38.680 --> 00:39.880
+And it's like the update.
+
+00:39.880 --> 00:44.480
+If you don't do that if you don't include where condition, what's going to happen, you will end up
+
+00:44.480 --> 00:47.200
+deleting all the rows inside the table.
+
+00:47.200 --> 00:48.640
+So the syntax is very simple.
+
+00:48.640 --> 00:51.400
+Let's go back to SQL in order to delete some data.
+
+00:51.440 --> 00:51.640
+Okay.
+
+00:51.680 --> 00:52.920
+So now we have the following task.
+
+00:52.920 --> 00:56.600
+Delete all customers with an ID greater than five.
+
+00:56.640 --> 01:00.200
+So now we have to go and delete all the customers that we recently added.
+
+01:00.200 --> 01:01.200
+So how we can do it.
+
+01:01.200 --> 01:01.800
+It's very simple.
+
+01:01.800 --> 01:03.800
+We're going to say delete from.
+
+01:03.800 --> 01:08.410
+So that means I want to delete something from a table and we have to specify the table name.
+
+01:08.410 --> 01:09.410
+It can be the customers.
+
+01:09.410 --> 01:10.730
+So the syntax is very simple.
+
+01:10.730 --> 01:16.810
+Now my friends, this is more risky than updates because if you execute it like this don't do that yet.
+
+01:16.810 --> 01:18.090
+Wait what can happen?
+
+01:18.090 --> 01:20.890
+All the data of the customers going to be deleted.
+
+01:20.890 --> 01:24.010
+So you will get an empty table and we will not do that.
+
+01:24.010 --> 01:26.450
+So now we're going to do exactly like the update command.
+
+01:26.450 --> 01:28.290
+We're going to specify the where clause.
+
+01:28.290 --> 01:30.930
+So it says the ID should be greater than five.
+
+01:30.970 --> 01:34.050
+So that means ID higher than five.
+
+01:34.050 --> 01:37.530
+So with that we are defining a subset of the data that should be deleted.
+
+01:37.570 --> 01:38.450
+Not everything.
+
+01:38.490 --> 01:42.890
+And if we check in the updates we have here to do a double check before deleting anything.
+
+01:42.890 --> 01:47.210
+So again what we do we select star from table customers.
+
+01:47.210 --> 01:51.930
+And we're going to go and copy the where condition in order to test what can it be deleted.
+
+01:51.930 --> 01:55.010
+So it's going to be all the customers that is higher than five.
+
+01:55.050 --> 02:00.730
+And with that I'm making sure that my delete command is correct, which is from what I see here is correct.
+
+02:00.730 --> 02:02.890
+So those five customers should be deleted.
+
+02:02.890 --> 02:05.610
+So now let's go and delete those customers.
+
+02:05.650 --> 02:07.570
+And now very important to read the message.
+
+02:07.570 --> 02:09.610
+It says five rows affected.
+
+02:09.610 --> 02:12.140
+So that means five customers got deleted.
+
+02:12.180 --> 02:13.380
+And this is better than ten.
+
+02:13.420 --> 02:13.900
+Of course.
+
+02:13.900 --> 02:16.820
+So let's go and check what customers left.
+
+02:16.820 --> 02:18.580
+So we have 12345.
+
+02:18.620 --> 02:20.100
+Those are the original customers.
+
+02:20.100 --> 02:21.780
+And everything else got deleted.
+
+02:21.780 --> 02:23.220
+And with that we have solved the task.
+
+02:23.220 --> 02:26.060
+And this is how we can delete data from tables.
+
+02:26.100 --> 02:27.300
+Be very careful.
+
+02:27.340 --> 02:29.940
+Always test before doing the delete command.
+
+02:29.980 --> 02:30.180
+Okay.
+
+02:30.220 --> 02:31.420
+So now we have the following task.
+
+02:31.420 --> 02:34.980
+And it says delete all data from table persons.
+
+02:34.980 --> 02:38.940
+So that means we have to go and drop everything from the table persons.
+
+02:38.940 --> 02:40.500
+But we don't want to delete the table.
+
+02:40.500 --> 02:43.500
+We just want to delete the data inside the table now.
+
+02:43.540 --> 02:46.500
+So now what we're going to do we're going to write delete from.
+
+02:46.540 --> 02:48.500
+And now we have to specify the table persons.
+
+02:48.500 --> 02:53.140
+And if we execute it what can happen is we're going to go and drop all the data in the persons.
+
+02:53.140 --> 02:56.020
+But in SQL we have more interesting commands.
+
+02:56.020 --> 03:00.580
+If you want to delete everything from the table persons we have that truncate truncate.
+
+03:00.580 --> 03:02.900
+It is exactly like delete from persons.
+
+03:02.900 --> 03:05.100
+It's going to go and make the whole table empty.
+
+03:05.100 --> 03:05.500
+But why?
+
+03:05.500 --> 03:09.060
+I like to use truncate because it is way faster than deletes.
+
+03:09.060 --> 03:13.420
+If you have large tables, the delete command is going to be really slow because with the delete there
+
+03:13.460 --> 03:15.880
+is like a lot of things happening behind the scenes.
+
+03:15.880 --> 03:21.160
+There is like logs and protocols, but if you are using trunk, the database can skip all those extra
+
+03:21.160 --> 03:23.520
+stuff and it's going to be very fast.
+
+03:23.520 --> 03:26.520
+So if you want to delete all the data from table, you can do it like this.
+
+03:26.520 --> 03:27.800
+If it's like small table.
+
+03:27.800 --> 03:32.360
+But what I usually do I go and write truncate and then table.
+
+03:32.360 --> 03:33.960
+We're going to get the same effect.
+
+03:33.960 --> 03:37.320
+And with that I'm saying reset everything, make the table empty.
+
+03:37.320 --> 03:38.800
+So let's go and execute it.
+
+03:38.800 --> 03:41.720
+And now with that you will not get the number of deleted rows.
+
+03:41.760 --> 03:44.120
+And that's why it's truncate is way faster.
+
+03:44.120 --> 03:45.880
+It is not protocol or anything.
+
+03:45.880 --> 03:47.200
+It's not logging anything.
+
+03:47.240 --> 03:51.000
+It just go and delete all the data without any extra steps.
+
+03:51.000 --> 03:54.240
+So this is how we can delete all the data from a table.
+
+03:54.280 --> 03:56.400
+But the table still exists okay my friend.
+
+03:56.400 --> 04:00.920
+So with that you have learned the basics on how to manipulate your data inside a database, the data
+
+04:00.920 --> 04:02.680
+manipulation language DML.
+
+04:02.680 --> 04:08.520
+And with that I can tell you we have covered the basics of SQL so that we have covered the beginner
+
+04:08.520 --> 04:09.040
+level.
+
+04:09.080 --> 04:11.920
+Now in the next chapters we will be in the intermediate level.
+
+04:11.920 --> 04:15.880
+And the first thing that you're going to learn in the intermediate level, you will learn how to filter
+
+04:15.880 --> 04:20.360
+your data and how you can recover many operators that you can use inside the Where clause.
+
+04:20.360 --> 04:21.120
+So let's go.

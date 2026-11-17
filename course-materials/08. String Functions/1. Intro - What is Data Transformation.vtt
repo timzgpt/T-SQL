@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.640
+In real projects, I never found scenarios where the data is clean
+
+2
+00:00:03.640 --> 00:00:07.239
+so everything is messed up, the text values are inconsistent
+
+3
+00:00:07.239 --> 00:00:10.159
+the numbers are stored as string values
+
+4
+00:00:10.159 --> 00:00:12.920
+there are weird things inside the dates
+
+5
+00:00:12.920 --> 00:00:14.880
+missing values are everywhere
+
+6
+00:00:14.880 --> 00:00:17.680
+so that means the data quality is really bad
+
+7
+00:00:17.680 --> 00:00:20.360
+and if you go and analyze the data like this
+
+8
+00:00:20.360 --> 00:00:22.639
+your result gonna be for sure wrong
+
+9
+00:00:22.639 --> 00:00:25.360
+even if you write the SQL query correctly
+
+10
+00:00:25.360 --> 00:00:28.559
+so as a data analyst, you cannot analyze immediately
+
+11
+00:00:28.559 --> 00:00:31.479
+first, you must clean and prepare the data
+
+12
+00:00:31.479 --> 00:00:36.119
+and of course, SQL gives us enough tools and functions in order to do that
+
+13
+00:00:36.119 --> 00:00:39.680
+so we have the string, the number and the date functions
+
+14
+00:00:39.680 --> 00:00:43.200
+we have functions that can handle the missing values, the nulls
+
+15
+00:00:43.200 --> 00:00:47.840
+and as well, we have a case statement in order to build standards in our data
+
+16
+00:00:47.840 --> 00:00:51.520
+those tools and functions are very important to understand and to learn
+
+17
+00:00:51.520 --> 00:00:54.880
+in order to clean up and transform your messy data
+
+18
+00:00:54.880 --> 00:00:57.959
+into something that is ready for analysis
+
+19
+00:00:57.959 --> 00:01:00.759
+so we're gonna start with the first chapter with the first group
+
+20
+00:01:00.759 --> 00:01:03.080
+the string functions, so let's go
+

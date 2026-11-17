@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Assignment</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial,
+          sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p,
+      ul,
+      ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: bold;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      .code-snippet {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .code-block {
+        background-color: #fff;
+        color: #b4690e;
+        font-size: 90%;
+      }
+      .black-block {
+        color: #000000;
+      }
+      .italic-text {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <h1 id="coding-title"></h1>
+    <div>
+      <h2>Instructions</h2>
+      <div id="coding-instructions"></div>
+    </div>
+    <div>
+      <h2>Test(s)</h2>
+      <div id="coding-tests"></div>
+    </div>
+    <div>
+      <h2>Solution(s)</h2>
+      <div id="coding-solutions"></div>
+    </div>
+
+    <script>
+      const quizData = {"title":"Create a table with constraints","hasInstructions":false,"hasTests":true,"hasSolutions":true,"instructions":"<p>The support team wants to store customer reviews in a new table called reviews. They already prepared three test reviews for it.</p><p><strong>Tables you can use:</strong></p><ul><li><p>customers: id, first_name, country, score. Every review belongs to one of these customers.</p></li><li><p>reviews: does not exist yet. You create it.</p></li></ul><p><strong>Your task:</strong></p><ul><li><p>Create the table reviews with five columns in this order: review_id, customer_id, review_date, rating, comment.</p></li><li><p>review_id: a whole number. Every review must have one, and no two reviews may share it.</p></li><li><p>customer_id: a whole number. Every review must have one.</p></li><li><p>review_date: a date. Every review must have one.</p></li><li><p>rating: the number of stars, a whole number. Every review must have one.</p></li><li><p>comment: text of up to 200 characters. A customer does not have to write one.</p></li><li><p>Run the test rows in the starter. Delete the two lines /* and */ around them, so they run.</p></li><li><p>Test your rules with the two check rows at the end of the starter. Your table must refuse both.</p></li><li><p>Show all columns of reviews, newest review first.</p></li></ul><p><strong>Note:</strong> the test rows use INSERT, from the next section. Run them as they are. End your CREATE TABLE with a semicolon, like the test rows.</p>","tests":[],"solutions":[{"file_name":"query.sql","content":"CREATE TABLE reviews (\n    review_id INT NOT NULL,\n    customer_id INT NOT NULL,\n    review_date DATE NOT NULL,\n    rating INT NOT NULL,\n    comment VARCHAR(200),\n    CONSTRAINT pk_reviews PRIMARY KEY (review_id)\n);\n\nINSERT INTO reviews (review_id, customer_id, review_date, rating, comment)\nVALUES\n    (1, 2, '2021-04-12', 5, 'Fast delivery, thank you'),\n    (2, 3, '2021-06-25', 4, NULL),\n    (3, 1, '2021-01-20', 2, 'The package arrived late');\n\nSELECT *\nFROM reviews\nORDER BY review_date DESC"}]};
+      const escapeHTML = s =>
+        s.replace(
+          /[&<>"]/g,
+          c =>
+            ({
+              '&': '&amp;',
+              '<': '&lt;',
+              '>': '&gt;',
+              '"': '&quot;',
+            }[c])
+        );
+
+      function renderCodeList(rootElement, codeList, className, titlePrefix) {
+        for (var i = 0; i < codeList.length; i++) {
+          var elem = codeList[i];
+          var jsElem = document.createElement('div');
+          jsElem.className = className;
+          var jsElemTitle = document.createElement('h3');
+          jsElemTitle.innerHTML = titlePrefix + ' ' + (i + 1);
+          var jsElemBody = document.createElement('code');
+          jsElemBody.className = 'code-block black-block';
+          jsElemBody.innerHTML = '<pre>' + escapeHTML(elem.content) + '</pre>';
+          jsElem.appendChild(jsElemTitle);
+          jsElem.appendChild(jsElemBody);
+          rootElement.appendChild(jsElem);
+        }
+      }
+
+      function main() {
+        // display the assignment
+        var codingTitle = document.getElementById('coding-title');
+        codingTitle.innerHTML = quizData.title;
+
+        var codingInstructions = document.getElementById('coding-instructions');
+        if (quizData.hasInstructions) {
+          codingInstructions.innerHTML = quizData.instructions;
+        } else {
+          codingInstructions.innerHTML = '<span class="italic-text">' + quizData.instructions + '</span>';
+        }
+
+        // display the test(s)
+        var codingTests = document.getElementById('coding-tests');
+        if (!quizData.hasTests) {
+          codingTests.innerHTML = '<span class="italic-text">' + quizData.tests + '</span>';
+        } else {
+          renderCodeList(codingTests, quizData.tests, 'coding-test', 'Test');
+        }
+
+        // display the solution(s)
+        var codingSolutions = document.getElementById('coding-solutions');
+        if (!quizData.hasSolutions) {
+          codingSolutions.innerHTML = '<span class="italic-text">' + quizData.solutions + '</span>';
+        } else {
+          renderCodeList(codingSolutions, quizData.solutions, 'coding-solution', 'Solution');
+        }
+      }
+    </script>
+  </body>
+</html>

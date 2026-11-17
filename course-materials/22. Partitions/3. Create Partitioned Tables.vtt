@@ -1,0 +1,382 @@
+WEBVTT
+
+00:03.960 --> 00:04.440
+All right.
+
+00:04.440 --> 00:07.640
+So so far what we have done, we have prepared all the layers.
+
+00:07.640 --> 00:11.520
+So we have the setup is ready to be used in any table.
+
+00:11.520 --> 00:15.520
+So we have the functions the files, the file groups and scheme and everything is ready.
+
+00:15.800 --> 00:17.720
+But still we are not using it.
+
+00:17.720 --> 00:20.480
+The logic just exists and the files are empty.
+
+00:20.480 --> 00:24.760
+So now what we're going to do, we're going to go and create a table but not a normal one a partition
+
+00:24.760 --> 00:25.400
+table.
+
+00:25.400 --> 00:26.440
+So let's go and do that.
+
+00:26.440 --> 00:27.560
+It's very simple as well.
+
+00:27.560 --> 00:30.480
+So create table and we have to give it a name.
+
+00:30.480 --> 00:34.040
+So let's get it as well in the schema sales orders.
+
+00:34.080 --> 00:36.280
+And I'm just going to give it the name partitions.
+
+00:36.520 --> 00:39.880
+So now we have just to define like few columns inside this table.
+
+00:40.160 --> 00:44.400
+So let's get an order ID and data type int.
+
+00:44.400 --> 00:46.560
+And let's go and get an order date.
+
+00:46.760 --> 00:49.440
+We call it dates with the data type dates.
+
+00:49.640 --> 00:53.240
+And maybe just one more called sales and the data type int.
+
+00:53.240 --> 00:56.520
+So this is very normal table that we create in databases.
+
+00:56.520 --> 00:58.560
+But it's still not yet partitioned.
+
+00:58.600 --> 01:03.120
+Now in order to use everything that we have defined we're going to go do the following.
+
+01:03.160 --> 01:04.560
+We're going to say on.
+
+01:04.600 --> 01:09.070
+And now we have to tell SQL only the name of the partition scheme.
+
+01:09.070 --> 01:12.670
+So everything else is like connected a map together.
+
+01:12.670 --> 01:15.990
+Because the scheme is mapping the function with the file groups.
+
+01:15.990 --> 01:20.070
+The file groups are mapped to the data files and everything is like connected together.
+
+01:20.070 --> 01:23.430
+And here in the table we have just to give the name of the scheme.
+
+01:23.430 --> 01:28.950
+So the name of the partition scheme is scheme partition by year.
+
+01:29.550 --> 01:32.910
+And now it's very important to give a column.
+
+01:32.910 --> 01:38.310
+And since the whole logic and the function is based on a date, we cannot go and specify here for example
+
+01:38.310 --> 01:40.790
+the order ID or sales because it makes no sense.
+
+01:40.790 --> 01:43.830
+We're going to go and pick the order date and put it over here.
+
+01:43.830 --> 01:46.230
+And with that we have created a partition table.
+
+01:46.230 --> 01:50.030
+So now what we're going to do we're going to go and start inserting data to our table.
+
+01:50.030 --> 01:50.910
+So let's go and do that.
+
+01:50.910 --> 01:56.270
+So we're going to say insert into sales order partitioned.
+
+01:57.430 --> 01:59.630
+And we're going to pick values like this.
+
+01:59.630 --> 02:00.870
+So one.
+
+02:00.910 --> 02:03.670
+And then let's get any date like 2023.
+
+02:03.790 --> 02:06.070
+Like for example my the middle of the month.
+
+02:06.070 --> 02:09.550
+And the sales could be anything like let's say 100.
+
+02:09.870 --> 02:14.030
+So let's go and execute this and let's go query our table.
+
+02:15.630 --> 02:18.190
+So it is this one over here.
+
+02:19.790 --> 02:23.030
+All right, so now we have one record inside our partition table.
+
+02:23.070 --> 02:29.190
+And now the big question is in which partition in which data file did SQL store this record.
+
+02:29.230 --> 02:31.630
+So we have to test whether everything is working fine.
+
+02:31.670 --> 02:34.670
+So in order to do that I have prepared as well a query.
+
+02:34.790 --> 02:39.950
+So we are again asking the table partitions with that destination data spaces where we're going to get
+
+02:39.950 --> 02:41.670
+the number of rows in each partition.
+
+02:41.670 --> 02:43.110
+And then we have the file group.
+
+02:43.110 --> 02:46.390
+And we are focusing on our table orders partitions.
+
+02:46.430 --> 02:48.190
+So let's go and execute this one.
+
+02:48.190 --> 02:50.990
+And now we can see very easily we have the four partitions.
+
+02:51.030 --> 02:56.510
+Our new record is inserted in the correct place in 2023 file group.
+
+02:56.550 --> 02:58.230
+And in that correct partition.
+
+02:58.230 --> 03:03.910
+So with that we make sure our function and the whole logic that we have built is working correctly.
+
+03:03.910 --> 03:06.110
+So now let's go and add more records.
+
+03:06.110 --> 03:07.870
+I'm just going to go and duplicate it.
+
+03:07.910 --> 03:09.070
+Record number two.
+
+03:09.270 --> 03:12.830
+And I'm just going to pick a date in 2024.
+
+03:13.190 --> 03:16.110
+And this one going to be like 20.
+
+03:16.310 --> 03:17.790
+It just changed the value.
+
+03:17.790 --> 03:20.310
+So 50 let's go and execute it.
+
+03:21.150 --> 03:23.980
+And now we have a second row inside our table.
+
+03:23.980 --> 03:27.020
+And again the big question is whether it is working.
+
+03:27.020 --> 03:29.100
+So let's go and execute this again.
+
+03:29.140 --> 03:36.460
+And now we can see our record is inserted in the partition two in the file group 2024 which is correct.
+
+03:36.500 --> 03:40.180
+Now let's go and check the boundaries whether it is working correctly.
+
+03:40.580 --> 03:47.100
+So I'm going to go and here and the third row I'm going to say the last day of 2025.
+
+03:47.100 --> 03:52.060
+So it's going to be month 12 and the last day so 20.
+
+03:52.500 --> 03:55.740
+Let's go and insert it and check our table.
+
+03:55.740 --> 03:57.540
+So we have a new record.
+
+03:57.580 --> 04:04.220
+And now let's go and check my expectation here that this row is going to be inserted in the file group
+
+04:04.260 --> 04:05.420
+2025.
+
+04:05.940 --> 04:07.580
+So let's go and execute.
+
+04:07.580 --> 04:08.620
+And that is correct.
+
+04:08.620 --> 04:12.500
+As you can see the record is inserted in the correct partition.
+
+04:12.500 --> 04:16.980
+And this is really important to test the boundaries whether they are working correctly because it's
+
+04:16.980 --> 04:17.820
+a little bit tricky.
+
+04:17.860 --> 04:21.060
+You have this range left right and boundaries and so on.
+
+04:21.060 --> 04:25.580
+So you can do it like this to check whether the expectation of your logic is working correctly.
+
+04:25.580 --> 04:28.100
+And the last one I'm just going to do it very fast.
+
+04:28.100 --> 04:29.410
+So let's do it.
+
+04:29.450 --> 04:32.730
+2026 and I'm going to pick the first day of this year.
+
+04:35.490 --> 04:37.170
+So let's go and insert it.
+
+04:37.250 --> 04:40.330
+And now what is the expectation I think it is pretty simple.
+
+04:40.330 --> 04:41.490
+So let's go and query.
+
+04:41.490 --> 04:45.090
+And the first day of this year is inserted in the partition number four.
+
+04:45.130 --> 04:47.250
+So I can say everything is working correctly.
+
+04:47.250 --> 04:53.210
+If you got it like this then you have created successfully a partition table and you have prepared all
+
+04:53.250 --> 04:55.890
+the layers of this partition correctly.
+
+04:55.890 --> 05:00.570
+I know this is a lot of work, but to be honest, it is fun because for the first time in database you
+
+05:00.570 --> 05:02.450
+feel like you are controlling stuff.
+
+05:02.490 --> 05:07.370
+Usually in database everything like behind the scenes and you don't know exactly where the files are
+
+05:07.370 --> 05:09.090
+stored of your tables and so on.
+
+05:09.490 --> 05:15.170
+There is a lot of abstraction in databases, but here, like we are getting deep in databases and we
+
+05:15.210 --> 05:20.650
+are controlling and managing all those files, which is sometimes is nice to have this freedom and flexibility.
+
+05:20.690 --> 05:21.090
+All right.
+
+05:21.090 --> 05:25.890
+One quick thing that I would like to show you that if you go to the database in the explorer, then
+
+05:25.890 --> 05:27.810
+let's go to the storage over here.
+
+05:27.810 --> 05:29.010
+So let's expand it.
+
+05:29.010 --> 05:31.850
+And here you can find easily informations about the partitions.
+
+05:31.850 --> 05:34.370
+So over here we can find our partition scheme.
+
+05:34.370 --> 05:37.010
+And as well the partition function that we have created.
+
+05:37.010 --> 05:39.170
+It is just a quick access instead of like.
+
+05:39.210 --> 05:40.610
+Querying the metadata.
+
+05:44.530 --> 05:47.530
+So now let's have a quick summarize how everything is connected together.
+
+05:47.570 --> 05:48.810
+So we have a table.
+
+05:48.810 --> 05:52.890
+And then we specify for SQL that is connected to a partition scheme.
+
+05:52.890 --> 05:55.410
+And in the partition scheme we have everything connected.
+
+05:55.410 --> 05:58.530
+It is linked to a specific partition function.
+
+05:58.530 --> 06:00.250
+And there we have the partitions.
+
+06:00.490 --> 06:04.330
+And at the same time it is connected to file groups.
+
+06:04.330 --> 06:07.210
+And the file groups are connected to the data files.
+
+06:07.210 --> 06:11.050
+So as you can see all those layers and elements are connected together.
+
+06:11.090 --> 06:12.250
+Now let's see how this works.
+
+06:12.250 --> 06:15.130
+So we have inserted the last day of 2025.
+
+06:15.170 --> 06:19.650
+And now the first thing that's going to happen the partition function going to decide to which partition
+
+06:19.650 --> 06:20.450
+it belongs.
+
+06:20.450 --> 06:22.890
+So as you can see it is a boundary value.
+
+06:23.010 --> 06:28.250
+And since we have defined it as a lift, it's going to target the lift partition the partition three.
+
+06:28.290 --> 06:32.090
+And then the partition scheme can connect it to the right file group.
+
+06:32.090 --> 06:35.130
+And in this scenario it's going to be the file group 2025.
+
+06:35.170 --> 06:36.530
+And we have here only one file.
+
+06:36.530 --> 06:39.410
+So it can as well go to the correct data file.
+
+06:39.410 --> 06:42.650
+And in this file the SQL can store this row.
+
+06:42.650 --> 06:44.090
+So it is pretty easy.

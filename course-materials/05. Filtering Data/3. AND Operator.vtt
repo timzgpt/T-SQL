@@ -1,0 +1,268 @@
+WEBVTT
+
+00:03.920 --> 00:04.240
+Okay.
+
+00:04.280 --> 00:05.840
+So now what is the definition of the.
+
+00:05.880 --> 00:09.080
+And it says all conditions must be true.
+
+00:09.080 --> 00:14.080
+So all the conditions that you have in the Where clause must be true in order to keep the row in the
+
+00:14.080 --> 00:14.680
+results.
+
+00:14.720 --> 00:16.400
+So let's understand what this means.
+
+00:16.440 --> 00:21.840
+Things can get more complicated where you can have not only one condition, but you might have multiple
+
+00:21.840 --> 00:23.280
+conditions in your query.
+
+00:23.280 --> 00:28.680
+So here we can add a second condition where we're going to say not only the country must be equal to
+
+00:28.720 --> 00:32.600
+USA, but also the score must be higher than 500.
+
+00:32.640 --> 00:36.520
+So now you have two conditions and you have to put them in the Where clause.
+
+00:36.560 --> 00:40.440
+Now you have to combine those conditions using the logical operator.
+
+00:40.440 --> 00:45.320
+And here we have two options two operators the and operator and the or operator.
+
+00:45.320 --> 00:51.840
+In this scenario if you say and then SQL is very restrictive, both of the conditions must be true in
+
+00:51.840 --> 00:54.120
+order to keep the row in the results.
+
+00:54.120 --> 00:55.560
+So now let's see how this can work.
+
+00:55.560 --> 01:01.560
+Now for the first row and for the first condition you can see the country is Germany and it is not fulfilling
+
+01:01.600 --> 01:02.880
+the first condition.
+
+01:02.880 --> 01:04.200
+So this is going to be false.
+
+01:04.200 --> 01:08.920
+And as well if you check the second condition for the first row, you can see the score is 350.
+
+01:08.960 --> 01:13.330
+So that means this customer is as well, not fulfilling even the second condition.
+
+01:13.330 --> 01:16.210
+So both of the conditions is false and it's going to go.
+
+01:16.250 --> 01:18.090
+I remove this customer from the results.
+
+01:18.130 --> 01:19.130
+Now to the next one.
+
+01:19.130 --> 01:19.610
+John.
+
+01:19.610 --> 01:25.610
+You can see John is fulfilling the first condition because the country is equal to USA and as well fulfilling
+
+01:25.610 --> 01:29.690
+the second condition, his score is 900 and this is higher than 500.
+
+01:29.690 --> 01:33.410
+So now it's going to be very happy about it because both of them is true.
+
+01:33.410 --> 01:38.610
+And this is the only way in order to keep the row in the output because we are using the operator.
+
+01:38.610 --> 01:41.010
+And so John can stay in the outputs.
+
+01:41.050 --> 01:42.290
+Now moving on to George.
+
+01:42.290 --> 01:46.490
+He is not fulfilling the first condition, but now the second condition is fulfilled.
+
+01:46.530 --> 01:49.690
+His score is 750 and this is higher than 500.
+
+01:49.730 --> 01:52.250
+So now it's like 5050 right in one side.
+
+01:52.250 --> 01:54.170
+It's false but the other side is true.
+
+01:54.170 --> 01:56.730
+But this is not enough for the and operator.
+
+01:56.770 --> 01:59.770
+Both of them should be true in order to keep the result in the output.
+
+01:59.770 --> 02:01.890
+That's why SQL is going to remove this row.
+
+02:01.930 --> 02:02.930
+Now moving on to Martin.
+
+02:02.930 --> 02:04.930
+He is not fulfilling both of the conditions.
+
+02:04.930 --> 02:07.730
+So it's going to go and remove it from the results.
+
+02:07.730 --> 02:11.210
+And now for the last one Peter is fulfilling the first condition.
+
+02:11.210 --> 02:15.650
+The country is equal to USA but the second condition is sadly not fulfilled.
+
+02:15.650 --> 02:18.290
+So we have the score zero not higher than 500.
+
+02:18.330 --> 02:19.890
+Again we have the same scenario.
+
+02:19.890 --> 02:23.260
+It's 5050 and this is not enough for the end operator.
+
+02:23.300 --> 02:25.180
+That's why SQL going to go and remove it.
+
+02:25.180 --> 02:30.700
+So as you can see, if you use an ant operator, a lot of rows are going to be removed if one of the
+
+02:30.700 --> 02:32.140
+condition is not met.
+
+02:32.140 --> 02:34.340
+So the ant operator is very restrictive.
+
+02:34.380 --> 02:38.220
+Both of the conditions must be fulfilled to keep the row in the results.
+
+02:38.220 --> 02:41.340
+So this is exactly how the and operator works.
+
+02:41.380 --> 02:41.580
+Okay.
+
+02:41.620 --> 02:42.780
+So now we have the following task.
+
+02:42.780 --> 02:48.420
+Retrieve all customers who are from USA and have a score greater than 500.
+
+02:48.460 --> 02:50.900
+So here we are like combining multiple conditions.
+
+02:50.900 --> 02:52.500
+And let's go and do it step by step.
+
+02:52.500 --> 02:55.980
+So the first thing that we have to go and select the data from the correct table.
+
+02:55.980 --> 02:58.420
+So select star from customers.
+
+02:58.420 --> 03:00.820
+And with that we are getting all the customers from the table.
+
+03:00.860 --> 03:04.700
+Now the first condition we need the customers that come from USA.
+
+03:04.740 --> 03:06.940
+So we need only those two customers.
+
+03:06.940 --> 03:11.340
+And in order to do that as we learned, we can go and use the Where clause and the condition is going
+
+03:11.340 --> 03:14.300
+to be country equal to USA.
+
+03:14.460 --> 03:17.540
+So if we go and execute, we will get those two customers.
+
+03:17.580 --> 03:18.500
+Nothing is new.
+
+03:18.540 --> 03:22.380
+We have used the comparison operator equal but we are not done yet.
+
+03:22.380 --> 03:24.900
+We have another condition from those two customers.
+
+03:24.900 --> 03:29.340
+We need only the customers where their score is higher than 500.
+
+03:29.340 --> 03:31.270
+So now by looking to those two customers.
+
+03:31.270 --> 03:35.950
+You can see we see that the bitter here does not have a score higher than 500.
+
+03:35.990 --> 03:37.990
+And we don't want to see that in the results.
+
+03:37.990 --> 03:38.790
+So now what you have to do.
+
+03:38.790 --> 03:42.190
+We have to go and write a condition for this one over here.
+
+03:42.190 --> 03:45.350
+So this is based this time on the scores not on the country.
+
+03:45.350 --> 03:48.910
+So the score should be greater than 500.
+
+03:48.950 --> 03:54.390
+Now as you can see we have the first condition for the first one here and the second condition for the
+
+03:54.430 --> 03:55.870
+second requirement.
+
+03:55.910 --> 03:58.750
+Now the question how to connect those two conditions.
+
+03:58.750 --> 04:01.230
+So here we have two options and or.
+
+04:01.310 --> 04:03.030
+And to be honest this is very simple.
+
+04:03.030 --> 04:08.670
+The task says it customer should fulfill both of the conditions should be from USA and as well at the
+
+04:08.670 --> 04:11.110
+same time greater than 500.
+
+04:11.110 --> 04:12.990
+So it is very simple we're going to say.
+
+04:13.030 --> 04:16.030
+And so with that we have connected both of those conditions.
+
+04:16.030 --> 04:21.590
+And if you go and query it you will get only one customer that is fulfilling our conditions.
+
+04:21.590 --> 04:27.630
+So from all customers we have only one customer that fulfilled this condition that comes from USA.
+
+04:27.630 --> 04:32.150
+And at the same time the score of this customer is higher than 500.
+
+04:32.150 --> 04:36.830
+So this is how we use the and operator in order to connect to conditions.

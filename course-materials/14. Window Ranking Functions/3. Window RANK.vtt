@@ -1,0 +1,277 @@
+WEBVTT
+
+00:03.920 --> 00:04.400
+All right.
+
+00:04.400 --> 00:06.360
+So what is a rank function in SQL?
+
+00:06.360 --> 00:09.720
+The rank function is going to go and assign for each row a number a rank.
+
+00:10.120 --> 00:12.640
+And this time it's going to go and handle the ties.
+
+00:12.880 --> 00:18.400
+So that means if in your data you have two rows having the same values, they are going to share the
+
+00:18.400 --> 00:19.520
+same ranking.
+
+00:19.760 --> 00:24.360
+One thing about the ranking function is that it's going to go and leave gaps in the ranking.
+
+00:24.520 --> 00:30.160
+So there is possibility of skipping ranks in order to understand how the rank function works in SQL,
+
+00:30.400 --> 00:32.000
+we're going to have a very simple example.
+
+00:32.040 --> 00:35.120
+All right so again with the same data but with different function.
+
+00:35.120 --> 00:36.520
+So our window looks like this.
+
+00:36.560 --> 00:40.400
+It starts with the function rank doesn't accept any argument inside it.
+
+00:40.400 --> 00:41.720
+Then we have the window like this.
+
+00:41.720 --> 00:45.320
+Order by sales descending from the highest to the lowest.
+
+00:45.320 --> 00:47.560
+And our data is already sorted like that.
+
+00:47.560 --> 00:49.840
+So now how is SQL going to go and assign the ranks?
+
+00:49.840 --> 00:51.840
+The first row is going to be the highest rank.
+
+00:51.840 --> 00:53.560
+So the value 100 is going to be one.
+
+00:53.560 --> 00:55.360
+Then the second one is going to be two.
+
+00:55.400 --> 00:56.680
+But now for the third one.
+
+00:56.680 --> 01:00.000
+As you can see we have here two values that are the same.
+
+01:00.000 --> 01:01.160
+So we have a tie.
+
+01:01.160 --> 01:03.210
+day and this time is going to go.
+
+01:03.210 --> 01:06.370
+And as well let them to share the same rank.
+
+01:06.370 --> 01:09.050
+So both of them are going to be the rank two.
+
+01:09.090 --> 01:11.370
+So it's not like the row number where we have over here.
+
+01:11.410 --> 01:14.730
+Three this time we have two because we have a tie.
+
+01:14.770 --> 01:18.770
+So having same values means they are going to share the same rank.
+
+01:18.810 --> 01:23.210
+And now moving to the next value going to be tricky one, because if you check over here you can see
+
+01:23.210 --> 01:25.610
+that the next rank should be like the three.
+
+01:25.650 --> 01:25.890
+Right.
+
+01:25.890 --> 01:27.130
+So we have one two.
+
+01:27.170 --> 01:30.610
+And then the next value that generated in the rank should be three.
+
+01:30.650 --> 01:34.930
+But SQL going to say you know what this value position going to be number four.
+
+01:34.930 --> 01:37.290
+So as you can see 1234.
+
+01:37.570 --> 01:39.930
+So actually the position number here is four.
+
+01:40.090 --> 01:42.930
+And SQL is going to go and give it the rank of four.
+
+01:43.170 --> 01:46.570
+So with that SQL is going to be leaving a gap in the ranking.
+
+01:46.570 --> 01:49.450
+You can see we are skipping the rank number three.
+
+01:49.490 --> 01:53.730
+And this always happens once you have a tie where you are sharing the same ranking.
+
+01:53.970 --> 01:55.530
+So for the next one it's going to be easy.
+
+01:55.530 --> 01:57.410
+It's going to be the row number five.
+
+01:57.450 --> 02:02.500
+So now by looking to the output of the rank function you can see that we don't have a unique ranking
+
+02:02.500 --> 02:02.740
+here.
+
+02:02.740 --> 02:07.140
+We have shared ranking in case of the tie so it handles the ties.
+
+02:07.340 --> 02:11.780
+But here we have gaps in the ranks, so we are skipping ranks.
+
+02:11.780 --> 02:15.260
+When I think about the rank function I think about the Olympics.
+
+02:15.460 --> 02:21.500
+If two athletes tie for the gold medal the first place, there will be no silver medal for the second
+
+02:21.500 --> 02:22.140
+place.
+
+02:22.140 --> 02:25.860
+The next medal going to be given to the bronze to the third place.
+
+02:25.900 --> 02:29.340
+Alright, so now let's go in SQL in order to practice the rank function.
+
+02:29.340 --> 02:29.620
+All right.
+
+02:29.660 --> 02:33.180
+Now we're going to go and solve the same task but using the rank function.
+
+02:33.380 --> 02:36.340
+So what we're going to do we're going to stay with the same example over here.
+
+02:36.340 --> 02:40.380
+And we're going to rank the order based on their sales from highest to lowest, but this time using
+
+02:40.420 --> 02:41.540
+the rank function.
+
+02:41.540 --> 02:45.900
+So we use the rank and everything inside is going to be empty.
+
+02:46.460 --> 02:49.260
+And then our window is going to be exactly the same as before.
+
+02:49.260 --> 02:53.300
+So over order by sales and desc.
+
+02:53.300 --> 02:55.980
+So let's give it the name sales rank.
+
+02:56.180 --> 02:57.340
+Yeah let's give it a rank.
+
+02:57.340 --> 02:57.980
+So that's it.
+
+02:57.980 --> 03:01.820
+As you can see the syntax is very simple and very similar to the row number.
+
+03:01.820 --> 03:03.910
+We just changed the function.
+
+03:03.910 --> 03:05.510
+So now let's go and execute this.
+
+03:05.550 --> 03:06.790
+In order to check the results.
+
+03:06.790 --> 03:09.790
+So now let's go and check the results by looking to the new rank.
+
+03:09.830 --> 03:14.190
+If you go and compare it with the old rank, we can see that we are sharing some ranking.
+
+03:14.190 --> 03:14.470
+Right.
+
+03:14.470 --> 03:15.990
+We have here the two twice.
+
+03:15.990 --> 03:16.870
+So the rank number two.
+
+03:16.910 --> 03:20.310
+We have it twice because we have over here the same value.
+
+03:20.310 --> 03:23.070
+So 6060 we have it here two and two.
+
+03:23.270 --> 03:28.070
+But if you compare it to the row number you can see that it is not sharing the same ranking.
+
+03:28.070 --> 03:29.670
+So this is one difference.
+
+03:29.670 --> 03:31.230
+And as well here the same thing.
+
+03:31.230 --> 03:32.190
+They have the same value.
+
+03:32.230 --> 03:33.390
+The sales is 20.
+
+03:33.390 --> 03:35.990
+So we have it twice the rank number seven.
+
+03:35.990 --> 03:38.190
+And here we have it as different values.
+
+03:38.190 --> 03:39.590
+And the next value.
+
+03:39.590 --> 03:41.750
+As you can see we are skipping the rank.
+
+03:41.750 --> 03:42.790
+So there is gap.
+
+03:42.830 --> 03:44.510
+There is no rank of eight.
+
+03:44.510 --> 03:47.350
+So you can see that this is the row number nine.
+
+03:47.350 --> 03:49.110
+And that's why it gets the nine.
+
+03:49.150 --> 03:51.030
+The same thing I believe over here.
+
+03:51.030 --> 03:54.150
+So now if you check those two ranks the next one should be three.
+
+03:54.150 --> 03:58.070
+But since it is in the row number four it's going to get the rank four.
+
+03:58.070 --> 04:01.110
+So by checking the results we can see that sharing the same ranks.
+
+04:01.110 --> 04:02.630
+And as well we have gaps.
+
+04:02.630 --> 04:04.310
+So this is how the rank works.

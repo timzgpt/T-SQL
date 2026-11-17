@@ -1,0 +1,115 @@
+WEBVTT
+
+00:03.960 --> 00:09.000
+And now you might ask me why we have to learn SQL and if the time goes back, are you going to learn
+
+00:09.000 --> 00:09.840
+SQL again?
+
+00:09.880 --> 00:11.640
+Well, for sure of course.
+
+00:11.680 --> 00:13.920
+And here are the top three reasons that I have.
+
+00:13.960 --> 00:16.680
+The first one, you have to learn it in order to talk to the data.
+
+00:16.720 --> 00:21.000
+You know, most of the companies stores their data in databases and this is a standard way.
+
+00:21.000 --> 00:22.040
+This is how they do it.
+
+00:22.040 --> 00:26.760
+And if you want to work on the company in the data field and you want to talk to their data, then you
+
+00:26.760 --> 00:28.040
+have to use SQL.
+
+00:28.080 --> 00:32.440
+It's like you move to another country where they speak another language and you want to live there for
+
+00:32.440 --> 00:33.120
+a long time.
+
+00:33.120 --> 00:34.560
+You have to speak the language.
+
+00:34.560 --> 00:35.440
+The same thing here.
+
+00:35.440 --> 00:40.240
+If you want to work with data, you have to learn the language in order to speak to the database, the
+
+00:40.240 --> 00:40.720
+SQL.
+
+00:40.720 --> 00:44.600
+So this is for me the most important reason why we have to learn SQL and SQL.
+
+00:44.640 --> 00:45.760
+It is in high demand.
+
+00:45.760 --> 00:50.720
+If you go now and check the job description of the software developer, data analyst, data engineer,
+
+00:50.760 --> 00:55.240
+data scientist, I promise you you will find there that they get a demand for SQL.
+
+00:55.240 --> 00:59.760
+So you will find they can ask for SQL skills almost in each job description.
+
+00:59.760 --> 01:05.150
+So if you check for any data related jobs you will find that they can ask for SQL skills.
+
+01:05.190 --> 01:08.350
+Now another reason that I have is that it is industry standard.
+
+01:08.350 --> 01:14.830
+So if you go and check multiple modern data platforms and tools like power BI, Tableau, Kafka, spark,
+
+01:14.870 --> 01:20.390
+Synapse, you will understand that there will be always a section where you have to enter SQL code.
+
+01:20.430 --> 01:25.270
+So most of those vendors adopt SQL because it is the standard, it is widely used.
+
+01:25.270 --> 01:28.350
+It is like selling points that their tools are easy.
+
+01:28.350 --> 01:33.390
+So those are my top three reasons why SQL stay relevant and why you have to learn it.
+
+01:33.430 --> 01:34.110
+Okay my friends.
+
+01:34.110 --> 01:39.310
+So with that we have now clear understanding what is an SQL, why we need it, what are databases and
+
+01:39.310 --> 01:40.390
+their different types.
+
+01:40.390 --> 01:42.830
+Why do we have DBMs servers.
+
+01:42.870 --> 01:48.590
+And as well now you have understanding how things are very organized and structured inside the databases.
+
+01:48.590 --> 01:50.670
+So that's all this is SQL.
+
+01:50.710 --> 01:51.070
+Alright.
+
+01:51.070 --> 01:55.070
+So with that we have covered the basics about what is SQL and databases.
+
+01:55.110 --> 01:58.350
+Now in the next step we are going to go and set up our environments.
+
+01:58.350 --> 02:02.790
+So that means we're going to prepare your PC with the data, with the databases and all the tools that
+
+02:02.790 --> 02:04.870
+you need in order to learn SQL.

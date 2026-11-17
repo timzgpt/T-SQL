@@ -1,0 +1,331 @@
+WEBVTT
+
+00:03.960 --> 00:05.400
+Okay, so what is union?
+
+00:05.440 --> 00:10.400
+Union can go and return all distinct unique rows from both queries.
+
+00:10.400 --> 00:12.680
+So that means it's going to go and combine everything.
+
+00:12.680 --> 00:16.000
+And all the rows are going to be presented at the output.
+
+00:16.000 --> 00:22.440
+So since it says all distinct unique rows, that means union is going to go and remove all duplicates
+
+00:22.480 --> 00:24.400
+from the combined result sets.
+
+00:24.440 --> 00:28.640
+So union is going to make sure that each row can appear only once.
+
+00:28.680 --> 00:29.000
+Alright.
+
+00:29.000 --> 00:31.080
+So now let's have this very simple example.
+
+00:31.080 --> 00:32.480
+We have two sets of data.
+
+00:32.480 --> 00:36.400
+We have the customers where we have five customers with the first names.
+
+00:36.400 --> 00:38.800
+And as well we have another set called employees.
+
+00:38.800 --> 00:41.360
+And we have as well the first names of the employees.
+
+00:41.360 --> 00:42.960
+And we have five employees.
+
+00:43.000 --> 00:47.960
+And now if you take a look to the first names, you can see that we have the same persons as a customers
+
+00:47.960 --> 00:49.440
+and as well as employees.
+
+00:49.440 --> 00:52.680
+We have given and marry in both sets of data.
+
+00:52.680 --> 00:54.440
+So now how SQL can execute union?
+
+00:54.440 --> 00:59.600
+It's going to go and return everyone from customers and everyone from the employees.
+
+00:59.600 --> 01:04.080
+But now since we have given and married twice in the output, we're going to have them only once.
+
+01:04.080 --> 01:05.860
+So this is how the union works.
+
+01:05.860 --> 01:09.940
+It can go and return everyone from two sets, but without duplicates.
+
+01:09.980 --> 01:14.900
+Alright, so now we have the following task and it says combine the data from employees and customers
+
+01:15.100 --> 01:16.500
+into one table.
+
+01:16.500 --> 01:20.940
+So that means in one table we want to combine all informations from employees and customers.
+
+01:21.100 --> 01:22.620
+So which informations do we need?
+
+01:22.620 --> 01:24.980
+This is the first question that I usually ask myself.
+
+01:25.420 --> 01:28.100
+So in order to do that first we have to explore the data.
+
+01:28.100 --> 01:33.780
+So select star from sales customers and then semicolon.
+
+01:33.820 --> 01:41.020
+Then I'm going to write another query, select star from sales and employees and semicolon.
+
+01:41.020 --> 01:46.300
+So now why I'm using two different semicolons because I'm telling SQL we have now two separate queries.
+
+01:46.300 --> 01:47.980
+They have nothing to do with each other.
+
+01:48.180 --> 01:50.300
+And if you go and execute it like this.
+
+01:50.340 --> 01:52.940
+And now in the output you can see we got two result grids.
+
+01:53.180 --> 01:58.340
+The first result grid is for the first query and the second one for the second query.
+
+01:58.340 --> 02:00.260
+So they have nothing to do with each other.
+
+02:00.260 --> 02:04.660
+I just want to explore those two tables in order to understand how I'm going to map those informations.
+
+02:04.860 --> 02:08.660
+So now if we check those two tables, you can see that both of them has IDs.
+
+02:08.860 --> 02:11.130
+So we can map those informations, right?
+
+02:11.450 --> 02:12.770
+Both of them has as well.
+
+02:12.810 --> 02:15.050
+First name, last name.
+
+02:15.050 --> 02:18.570
+So that means I can go and map the first name and last name together.
+
+02:18.610 --> 02:23.530
+Now in the customers we have country but we don't have these informations in the employee.
+
+02:23.530 --> 02:25.330
+So we have to go and ignore it.
+
+02:25.370 --> 02:29.410
+And we have as well here score where we don't have a score for the employees.
+
+02:29.570 --> 02:34.490
+That means I can go and map three informations between the customers and employees.
+
+02:34.530 --> 02:37.410
+Now of course we can go and think do we need really the IDs?
+
+02:37.410 --> 02:40.610
+Because it doesn't make really any sense to have the IDs in the tables.
+
+02:40.610 --> 02:44.410
+It's not any more unique because we have here the customer ID one and blue one.
+
+02:44.730 --> 02:46.530
+So I think we can go and ignore it.
+
+02:46.530 --> 02:51.370
+So the only really two informations that is useful to map is the first name and last name.
+
+02:51.410 --> 02:53.690
+So now let's go and add those two informations.
+
+02:53.690 --> 02:59.610
+So we need the first name, last name and the same information as well from the employees.
+
+02:59.610 --> 03:02.090
+But now we want everything to be in one query.
+
+03:02.090 --> 03:04.850
+That's why I'm going to go and remove the semicolons.
+
+03:05.010 --> 03:08.530
+And now we have to go and use set operators between those two queries.
+
+03:08.570 --> 03:11.930
+And now in order to combine the data we have two options either union or union.
+
+03:11.970 --> 03:12.210
+All.
+
+03:12.250 --> 03:16.350
+In this example it doesn't mention anything about duplicates and so on.
+
+03:16.350 --> 03:19.630
+I would like to go with the union in order to remove the duplicates.
+
+03:19.750 --> 03:20.830
+If there is any.
+
+03:20.830 --> 03:21.950
+So that's it.
+
+03:21.990 --> 03:23.350
+Let's go and execute it.
+
+03:23.350 --> 03:23.470
+Now.
+
+03:23.470 --> 03:27.590
+As you can see in the output, we have only one result because we have only one big query.
+
+03:27.630 --> 03:31.830
+And now we have the first names and last names from the customers and employees.
+
+03:31.870 --> 03:34.150
+And now one more thing about the order of the queries.
+
+03:34.150 --> 03:38.390
+It doesn't matter whether we start with the employees or with the customers, we will get the exact
+
+03:38.390 --> 03:39.310
+same results.
+
+03:39.310 --> 03:42.030
+But pay attention to the naming of the columns.
+
+03:42.190 --> 03:42.630
+Always.
+
+03:42.630 --> 03:46.910
+The first query controls the names, but since now they have the same naming, so it should not be a
+
+03:46.910 --> 03:47.470
+problem.
+
+03:47.470 --> 03:53.950
+So if I go and switch those two tables and start it again, we will get exact same results.
+
+03:53.950 --> 03:58.230
+So now let's understand how SQL did combine the data using the union okay.
+
+03:58.270 --> 04:02.950
+So now we have here the results from the first query and the second query employees and customers.
+
+04:02.950 --> 04:05.150
+And we are combining the data using Union.
+
+04:05.350 --> 04:10.390
+The first step in SQL is that it's going to go and take the columns from the first query which is from
+
+04:10.390 --> 04:11.310
+the employees.
+
+04:11.310 --> 04:15.590
+So it's going to take the first name, last name as a column name to the results.
+
+04:15.630 --> 04:19.870
+Now the next step that is going to go and start combining the rows between those two tables.
+
+04:19.940 --> 04:22.540
+So first going to go and take the rows from employees.
+
+04:22.780 --> 04:23.500
+And as well.
+
+04:23.540 --> 04:25.900
+Going to check whether there is duplicates in the data.
+
+04:25.900 --> 04:28.300
+So as you can see we don't have here any duplicates.
+
+04:28.300 --> 04:30.420
+So we're going to have the five employees.
+
+04:30.460 --> 04:35.820
+And now the next step is going to start adding rows from the second query from the customers very carefully
+
+04:35.820 --> 04:37.500
+without generating any duplicates.
+
+04:37.500 --> 04:38.860
+We don't have it in the output.
+
+04:38.860 --> 04:42.740
+That's why it's going to go and add it to the result, append it.
+
+04:42.740 --> 04:44.980
+And then the next customer we have Kevin Brown.
+
+04:44.980 --> 04:46.900
+As you can see we have it already in the results.
+
+04:47.100 --> 04:49.780
+That's why SQL will not go and add it to the result.
+
+04:49.780 --> 04:51.820
+Otherwise it's going to go and generate duplicates.
+
+04:52.020 --> 04:54.140
+So it's going to ignore this customer.
+
+04:54.180 --> 04:55.340
+The same thing for Mari.
+
+04:55.380 --> 04:57.420
+We have Mari as well in the results.
+
+04:57.420 --> 04:58.660
+So it's going to skip it.
+
+04:58.660 --> 05:00.100
+And then we're going to go to the mark.
+
+05:00.100 --> 05:02.420
+As you can see we don't have mark in the results.
+
+05:02.620 --> 05:06.420
+That's why it's going to go and take this customer and put it in the output.
+
+05:06.420 --> 05:09.540
+And then the last one we have Anna, we don't have Anna in the results.
+
+05:09.540 --> 05:10.620
+That's why it's going to go.
+
+05:10.620 --> 05:12.500
+And as will add it to the results.
+
+05:12.500 --> 05:15.940
+And now with this SQL did combine the rows between those two tables.
+
+05:15.940 --> 05:17.820
+And we have here eight persons.
+
+05:17.820 --> 05:22.700
+So as you can see SQL is combining the data but very carefully not generating any duplicates.
+
+05:22.700 --> 05:23.060
+All right.
+
+05:23.060 --> 05:23.700
+So that's it.
+
+05:23.700 --> 05:25.580
+This is how the union operator works.

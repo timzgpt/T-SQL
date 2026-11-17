@@ -1,0 +1,277 @@
+WEBVTT
+
+00:00.120 --> 00:06.440
+Now, if you is not like a query that you can use in SQL, it is an object that we can find in the database.
+
+00:06.520 --> 00:11.960
+So before we jump immediately to the view, I would like to give you the big picture, the whole structure
+
+00:11.960 --> 00:13.040
+of the database.
+
+00:13.120 --> 00:13.880
+So let's go.
+
+00:13.920 --> 00:15.880
+We have like hierarchy structure.
+
+00:16.080 --> 00:20.000
+And the highest level of this hierarchy is the SQL server.
+
+00:20.040 --> 00:23.000
+The SQL server manages multiple databases.
+
+00:23.000 --> 00:27.200
+It's like the control center that keeps everything running and accessible.
+
+00:27.240 --> 00:30.560
+Now inside the SQL server we have multiple databases.
+
+00:30.560 --> 00:35.560
+So a database is a collection of affirmations that are stored in structured way.
+
+00:35.600 --> 00:40.400
+It's where all your data is kept and organized in different tables and objects.
+
+00:40.400 --> 00:44.440
+And each database is separated from others and it has its own data.
+
+00:44.480 --> 00:48.520
+Now inside each database we can find multiple schemas.
+
+00:48.560 --> 00:55.200
+A schema is like a logical way on how you group up related objects like tables and views together within
+
+00:55.240 --> 00:56.080
+a database.
+
+00:56.120 --> 01:01.240
+Like for example, if you have a database called sales, we can group up different tables about the
+
+01:01.240 --> 01:03.600
+orders underneath the schema orders.
+
+01:03.640 --> 01:08.920
+And maybe we have like multiple views and tables about the customers where we can put it in the schema
+
+01:08.920 --> 01:09.600
+customers.
+
+01:09.600 --> 01:15.320
+So if you find like multiple tables and views that are describing the same object, the same topic,
+
+01:15.320 --> 01:18.360
+we put them all together underneath one schema.
+
+01:18.360 --> 01:23.120
+So again, a database could be like the sales database and the HR database.
+
+01:23.120 --> 01:25.440
+They are completely different types of data.
+
+01:25.440 --> 01:28.600
+And underneath the sales we can have like different sections.
+
+01:28.600 --> 01:32.200
+We have sections about the orders and sections about the customers.
+
+01:32.240 --> 01:36.240
+And now moving on what we can find inside the schema we can find tables.
+
+01:36.240 --> 01:39.160
+A table is where actually your data is stored.
+
+01:39.160 --> 01:41.640
+It contains multiple columns and rows.
+
+01:41.640 --> 01:43.880
+So it is where the data physically lives.
+
+01:43.920 --> 01:48.360
+And now inside the schemas we have another type of object we call it view.
+
+01:48.360 --> 01:51.120
+And of course in this section we are focusing on the views.
+
+01:51.120 --> 01:55.360
+So a view is like a virtual table that has a structure and everything.
+
+01:55.360 --> 01:57.920
+But inside it we don't have any data.
+
+01:58.240 --> 02:00.640
+So the view does not store any data.
+
+02:00.640 --> 02:05.000
+And in order to see the data, we have to execute the query behind the view.
+
+02:05.040 --> 02:07.240
+And only after that we are going to see some data.
+
+02:07.240 --> 02:08.840
+But it is not like the tables.
+
+02:08.840 --> 02:10.990
+It doesn't store the data permanently.
+
+02:10.990 --> 02:15.550
+Now, inside the tables we can define multiple stuff like columns and as well keys.
+
+02:15.590 --> 02:19.990
+And the same thing for the views inside the views we can define multiple columns.
+
+02:19.990 --> 02:24.270
+And one last level for each column we have like a name and a data type.
+
+02:24.310 --> 02:26.830
+So as you can see the databases are really organized.
+
+02:26.830 --> 02:33.710
+And we have like hierarchy where the top node is the SQL server and the lowest node is the columns and
+
+02:33.710 --> 02:34.310
+rows.
+
+02:34.310 --> 02:37.230
+So this is what we call the database structure.
+
+02:37.270 --> 02:42.070
+Now in order for you to build and manage this structure we have set of commands.
+
+02:42.070 --> 02:46.750
+We call it DDL the shortcut of data definition language.
+
+02:46.750 --> 02:53.830
+So the detail is a set of commands that allow us to define and manage the structure of the database.
+
+02:53.830 --> 03:00.190
+So we have commands like create where it helps us to create databases, schemas, tables, views.
+
+03:00.230 --> 03:01.750
+Another command called alter.
+
+03:01.790 --> 03:06.390
+Of course after you create something you would like, maybe later to do changes and updates.
+
+03:06.390 --> 03:11.910
+And of course we have the drop in order to remove any database object like dropping a schema, dropping
+
+03:11.910 --> 03:13.910
+a database, tables, views.
+
+03:13.910 --> 03:18.150
+So as you can see, the DDL commands can help us to manage the database structure.
+
+03:18.150 --> 03:24.070
+So from this picture we have understood that we can create views inside schemas in the database.
+
+03:24.070 --> 03:28.950
+So now if you check the client at the Object explorer you can find the exact hierarchy.
+
+03:28.950 --> 03:30.950
+So it starts with the SQL server.
+
+03:30.990 --> 03:33.710
+This is our local server that runs at our machine.
+
+03:33.710 --> 03:36.710
+And then we can find inside it multiple databases.
+
+03:36.710 --> 03:42.270
+And one of them is our sales DB that you have installed together with other database like the Adventureworks.
+
+03:42.310 --> 03:46.710
+So now if you go to the sales DB over here, you can go and drill to the next level.
+
+03:46.710 --> 03:48.830
+And now we can find here a lot of objects.
+
+03:48.830 --> 03:51.790
+And one of them that we know we have tables and views.
+
+03:51.830 --> 03:52.830
+And now you might say okay.
+
+03:52.870 --> 03:56.230
+But between the database and tables we have schemas.
+
+03:56.470 --> 03:57.750
+So where are the schemas.
+
+03:57.830 --> 04:03.070
+Well actually if you go inside the tables you can find our tables customers employees and so on.
+
+04:03.070 --> 04:07.550
+But before it we have a name called sales dot customers.
+
+04:07.550 --> 04:11.590
+And you can find it everywhere sales customers sales employees and so on.
+
+04:11.630 --> 04:17.950
+The sales is the schema that bring all those tables together underneath one logical schema.
+
+04:17.950 --> 04:20.900
+So we have a database called sales DB.
+
+04:20.940 --> 04:24.980
+We have a schema called sales and we have a table called customers.
+
+04:25.020 --> 04:29.060
+And now if we would like to see all the schemas inside this database, what you can do, you can go
+
+04:29.060 --> 04:30.500
+to the securities over here.
+
+04:30.500 --> 04:32.820
+And then here we have like a folder called schemas.
+
+04:32.820 --> 04:37.660
+If you go over there you will find the list of all schemas that we have in this database.
+
+04:37.660 --> 04:38.180
+You might say.
+
+04:38.180 --> 04:39.860
+But we didn't create all those stuff.
+
+04:39.860 --> 04:41.900
+We have only the sales that we know.
+
+04:41.940 --> 04:48.420
+Well as you create a database in SQL server, you will get a lot of other system default schemas that
+
+04:48.420 --> 04:49.660
+the server can create.
+
+04:49.740 --> 04:55.740
+One of them is the information schema, where it holds a lot of views about the catalog and the metadata,
+
+04:55.740 --> 04:58.940
+where you can find the list of columns, tables, views, and so on.
+
+04:58.940 --> 05:01.820
+So here we have only one schema that we have created for the user.
+
+05:01.820 --> 05:02.980
+It is the sales.
+
+05:03.380 --> 05:04.820
+So let's go back.
+
+05:04.820 --> 05:10.100
+Now if you go inside one of those tables you will find here multiple stuff like we have columns, keys,
+
+05:10.100 --> 05:11.460
+constraints and so on.
+
+05:11.660 --> 05:16.500
+And if you go to the columns you will end up at the lowest level of the hierarchy.
+
+05:16.500 --> 05:21.780
+And here we have the columns like the customer ID and we have some extra informations like the data
+
+05:21.820 --> 05:23.140
+type length and so on.
+
+05:23.140 --> 05:26.300
+So this is the structure and the hierarchy of databases.

@@ -1,0 +1,679 @@
+WEBVTT
+
+00:03.920 --> 00:06.480
+Okay, so now let's check quickly the syntax of a view.
+
+00:06.480 --> 00:09.360
+So now we have a query like select from where.
+
+00:09.360 --> 00:12.200
+So this is a query a simple Select statement.
+
+00:12.200 --> 00:18.560
+But now in order to create a view an object in database we have to go and use a DDL command create.
+
+00:18.560 --> 00:22.840
+So we're going to say create view because we want to create a view.
+
+00:23.080 --> 00:24.760
+Then the name of the view.
+
+00:24.760 --> 00:28.920
+And then it's like the CTE we say as and then double parentheses.
+
+00:28.920 --> 00:30.320
+So as you can see it's very simple.
+
+00:30.320 --> 00:35.440
+And we call this a DDL command where we are telling the database go and create a view.
+
+00:35.440 --> 00:38.480
+And the logic of the view comes from this query.
+
+00:38.480 --> 00:39.440
+So it's very simple.
+
+00:39.440 --> 00:42.080
+This is how you can create views in database okay.
+
+00:42.120 --> 00:43.440
+So now let's have the following task.
+
+00:43.480 --> 00:49.000
+And it says find the running total of sales for each month I'm going to start this task by solving it
+
+00:49.000 --> 00:50.000
+using the CTE.
+
+00:50.240 --> 00:54.000
+So first I'm going to go and do few aggregations on the top of the month.
+
+00:54.000 --> 00:55.560
+So let's go and select.
+
+00:55.560 --> 00:56.360
+So now what do we need.
+
+00:56.360 --> 00:58.040
+We need the order date.
+
+00:58.040 --> 01:04.560
+But we need it as a month I'm going to go and use the date They drank it like this and say, okay,
+
+01:04.600 --> 01:12.120
+I would like to have the date as the granularity of month, so let's go and call it Order month.
+
+01:12.160 --> 01:14.280
+And now after that we're going to do a few aggregations.
+
+01:14.280 --> 01:18.120
+Like for example, let's go and get the sum of sales.
+
+01:18.440 --> 01:20.560
+And we're going to call it total sales.
+
+01:20.560 --> 01:21.800
+And that's it for the start.
+
+01:21.800 --> 01:27.720
+So now let's go and call it from the table sales orders and group by.
+
+01:28.200 --> 01:30.440
+And we are grouping by by the month.
+
+01:30.600 --> 01:31.880
+So something like this.
+
+01:31.880 --> 01:33.080
+Let's go and execute it.
+
+01:33.080 --> 01:35.800
+And now for this we get for each month the total sales.
+
+01:35.840 --> 01:40.040
+And now the next step that we have to go and calculate the running total for the sales.
+
+01:40.040 --> 01:41.880
+This is of course not the running total.
+
+01:41.880 --> 01:44.480
+So that means either we can go and use subqueries.
+
+01:44.480 --> 01:47.400
+So this means this is our first step and we need a second step.
+
+01:47.400 --> 01:51.040
+So either use queries or Ctes I will go with the CTE over here.
+
+01:51.040 --> 01:57.240
+So I'm going to say with city and monthly summary.
+
+01:58.040 --> 01:59.880
+And we're going to define it like this.
+
+02:00.360 --> 02:03.560
+And now what we're going to do we're going to go and define the main query.
+
+02:03.560 --> 02:05.080
+So the main query can be simple.
+
+02:05.080 --> 02:08.280
+So select and let's go and get the order month.
+
+02:08.560 --> 02:11.120
+And now we have to build the running total.
+
+02:11.120 --> 02:13.480
+So we're going to go and use the window function.
+
+02:13.480 --> 02:16.640
+So sum total sales.
+
+02:16.800 --> 02:20.080
+And then we're going to say over we don't have to partition the data.
+
+02:20.080 --> 02:26.680
+We will just sort it by the order month and we can leave it ascending.
+
+02:26.680 --> 02:29.240
+So this is the running total.
+
+02:30.840 --> 02:34.480
+And we have to go and select of course our CTE from here.
+
+02:34.800 --> 02:36.680
+So let's go and execute it.
+
+02:36.680 --> 02:38.400
+And with that we are getting the running total.
+
+02:38.440 --> 02:43.080
+Of course we can go and add the total sales in the output in order to understand the results.
+
+02:43.080 --> 02:46.680
+So here in the output we are just building a cumulative sales.
+
+02:46.680 --> 02:48.480
+So for this scope everything is fine.
+
+02:48.480 --> 02:49.600
+We are using the CTE.
+
+02:50.000 --> 02:54.600
+But now imagine that this logic is important for multiple queries.
+
+02:54.600 --> 02:59.480
+So it's really nice to have such a report where we are aggregating the data at the level of the month.
+
+02:59.480 --> 03:02.880
+And this could be used from different users and different queries.
+
+03:02.880 --> 03:08.080
+So now we say how about to put this logic in one view so that everyone can access it?
+
+03:08.080 --> 03:11.400
+And we don't have to repeat the same aggregations over and over?
+
+03:11.440 --> 03:16.640
+And now before we put it in view, someone comes and say, how about to add one more aggregation so
+
+03:16.640 --> 03:18.720
+that not only the total sales we can order?
+
+03:18.760 --> 03:23.120
+So now before we put it as view, maybe some other user says, you know what, we would like to have
+
+03:23.120 --> 03:24.000
+one more aggregation.
+
+03:24.000 --> 03:25.200
+Not only the total sales.
+
+03:25.200 --> 03:28.360
+Let's make the scope a little bit bigger so that everyone can believe it.
+
+03:28.360 --> 03:33.120
+So for example, we can go over here and say, you know what, let's go and add the total number of
+
+03:33.120 --> 03:33.720
+orders.
+
+03:33.960 --> 03:40.920
+So we can go over here and say count and let's get the order ID and say, this is the total orders or
+
+03:40.920 --> 03:42.280
+maybe some other sales.
+
+03:42.280 --> 03:48.960
+Let's get the quantities as well so we can go and summarize the quantity like this.
+
+03:49.000 --> 03:51.560
+And we call it total quantities.
+
+03:52.320 --> 03:56.000
+So with that we are like doing a lot of aggregations on the month level.
+
+03:56.000 --> 03:57.880
+Let's go and execute only the CTE.
+
+03:57.920 --> 04:04.400
+So now we have really nice report that is based on the months and can be used from many different queries.
+
+04:04.400 --> 04:07.920
+So now what we're going to do we're going to take this and put it in a view.
+
+04:07.960 --> 04:11.840
+Let's go and select only this logic and create a new query.
+
+04:11.880 --> 04:14.120
+And now what we're going to do we're going to put our query here.
+
+04:14.120 --> 04:17.840
+And we have to create now the DDL in order to create a view.
+
+04:18.040 --> 04:20.400
+So it's going to be like this create view.
+
+04:20.440 --> 04:23.960
+Let's give it the name maybe starts with the V underscore.
+
+04:24.080 --> 04:26.880
+And this is going to be the monthly summary.
+
+04:27.240 --> 04:28.960
+So this is the name of the view.
+
+04:29.240 --> 04:32.680
+And as then we put everything in parentheses.
+
+04:33.000 --> 04:34.880
+It's like you are building a CTE.
+
+04:35.080 --> 04:41.040
+So we have here our logic and here is our DDL query in order to create the view.
+
+04:41.080 --> 04:43.000
+So now let's go and execute it.
+
+04:43.040 --> 04:46.640
+Now as you can see in the output it says only that the command is completed.
+
+04:46.680 --> 04:50.280
+Because this is not a Select query this is a DDL command.
+
+04:50.480 --> 04:54.720
+So the SQL is going to tell you okay either I created it successfully or not.
+
+04:54.760 --> 04:58.040
+So now the question is where do I find now my view.
+
+04:58.080 --> 05:03.840
+Well if you go to the Object Explorer you can see over here underneath our database sales DB.
+
+05:03.880 --> 05:09.760
+We have here something called tables where we are used to query those tables, but beneath it we have
+
+05:09.800 --> 05:11.000
+as well our views.
+
+05:11.000 --> 05:16.440
+So if you check the views and expand it now, we are not seeing a view because we just created the view
+
+05:16.480 --> 05:17.080
+here.
+
+05:17.080 --> 05:18.960
+So go over here and refresh.
+
+05:18.960 --> 05:22.840
+And once you do that you will see the newly created view.
+
+05:22.840 --> 05:25.080
+So this is the one that we just created.
+
+05:25.080 --> 05:30.040
+So now what we can do we can go and create a new query and let's go and just query the view.
+
+05:30.040 --> 05:36.920
+So select star from so V monthly summary.
+
+05:37.600 --> 05:38.840
+Let's go and execute it.
+
+05:38.840 --> 05:42.000
+And now as you can see we are getting now the result of the view.
+
+05:42.000 --> 05:46.160
+And I'm accessing now this logic from completely external query.
+
+05:46.160 --> 05:50.680
+So now I can think about the view as any other table that we have in the database.
+
+05:50.680 --> 05:53.760
+And again the big differences between the views and the tables.
+
+05:53.920 --> 05:58.560
+The tables has data has actual data and everything there is persisted.
+
+05:58.560 --> 06:01.280
+But the view is just an abstraction for me.
+
+06:01.280 --> 06:07.360
+And behind it there is like a query that goes to the table and query the tables in order to present
+
+06:07.360 --> 06:08.110
+the their results.
+
+06:08.110 --> 06:10.350
+But for me, I don't care about all those details.
+
+06:10.350 --> 06:13.830
+I can go immediately to the query over here and start querying.
+
+06:13.830 --> 06:19.430
+So now in order to create the total running sales, I don't have to create the CTE and sub queries.
+
+06:19.430 --> 06:22.670
+I just go and get, for example, our main query.
+
+06:23.510 --> 06:24.910
+Let's go back over here.
+
+06:25.310 --> 06:29.830
+So now instead of using the CTE I can go directly and access the view.
+
+06:30.470 --> 06:33.870
+So as you can see now my query is very simple.
+
+06:33.870 --> 06:38.630
+I'm doing immediately the step two without having to prepare the data first.
+
+06:38.630 --> 06:41.750
+So if I go and execute it I will get exact results.
+
+06:41.790 --> 06:47.630
+And now if you compare the query on top of the view like this with the CTE query, you can see that
+
+06:47.630 --> 06:49.430
+the city has more steps.
+
+06:49.430 --> 06:53.870
+And it is like a little bit more complicated than the query on top of the view.
+
+06:53.870 --> 06:56.070
+And this is exactly the benefit of the view.
+
+06:56.110 --> 07:01.190
+We reduce the complexity and it is very easy to consume from the point of view of users.
+
+07:01.190 --> 07:05.950
+So this is how you can put your logic in central place using views.
+
+07:05.950 --> 07:08.510
+And with that you have learned how we create a view.
+
+07:08.550 --> 07:10.270
+Now one more thing about the schemas.
+
+07:10.270 --> 07:14.030
+If you check our tables over here, they have all one schema.
+
+07:14.030 --> 07:18.550
+So we have sales customers sales employees, orders and so on.
+
+07:18.590 --> 07:21.430
+Our new view has the schema of dbo.
+
+07:21.470 --> 07:27.230
+If you create any object, whether it's table or view, and you don't specify a schema in a default
+
+07:27.230 --> 07:28.430
+schema called DBO.
+
+07:28.470 --> 07:31.110
+And now let's go back to our DDL scripts.
+
+07:31.270 --> 07:34.030
+So as you can see over here we didn't specify any schema.
+
+07:34.030 --> 07:36.590
+We just said okay this is the view name.
+
+07:36.590 --> 07:41.350
+And now in order to put our view in the correct schema we don't want it to be in the defaults.
+
+07:41.350 --> 07:44.550
+You have to go and specify the schema name in the DDL.
+
+07:44.590 --> 07:50.990
+And now in order to do that we go to the name of the view and we write the schema name and then separated
+
+07:50.990 --> 07:51.750
+with a dot.
+
+07:51.790 --> 07:56.350
+So the first one is the schema name and the second one is the view name.
+
+07:56.350 --> 07:58.110
+So now let's go and execute it.
+
+07:58.150 --> 08:00.390
+Now if you check over here you don't see anything new.
+
+08:00.390 --> 08:04.590
+But if you refresh you will find another view in the correct schema.
+
+08:04.590 --> 08:07.870
+So we have sales dot v monthly summary.
+
+08:07.870 --> 08:09.630
+And this is exactly what we want.
+
+08:09.670 --> 08:14.270
+So this is how you can assign a view or even a table to the correct schema.
+
+08:14.270 --> 08:16.550
+If you don't want to use the default one, the dbo.
+
+08:16.590 --> 08:16.910
+All right.
+
+08:16.910 --> 08:19.710
+So now the next step that you say, you know what I would like to clean up.
+
+08:19.710 --> 08:22.390
+I don't need those two views in my database.
+
+08:22.390 --> 08:23.750
+So how to delete a view.
+
+08:23.790 --> 08:25.910
+We can go and use the command drop.
+
+08:25.910 --> 08:26.830
+It is very simple.
+
+08:26.830 --> 08:31.910
+If you go and create a new query and you say drop and then you say what you want to drop, you want
+
+08:31.910 --> 08:32.710
+to drop a view.
+
+08:32.710 --> 08:36.590
+And then you have to specify the name and schema of the view.
+
+08:36.590 --> 08:40.630
+But now since it is that default schema debut, I don't have to write it down.
+
+08:40.630 --> 08:43.230
+So we can start immediately with the view name.
+
+08:43.230 --> 08:46.390
+So V monthly summary.
+
+08:46.550 --> 08:47.190
+So that's it.
+
+08:47.190 --> 08:48.030
+It's very simple.
+
+08:48.430 --> 08:50.550
+So now we go and execute it.
+
+08:50.590 --> 08:51.870
+It says it's completed.
+
+08:51.870 --> 08:53.870
+But as you can see nothing is changed.
+
+08:53.870 --> 08:54.830
+We go and refresh.
+
+08:54.830 --> 08:59.550
+And now we can see that the database did remove the view with the schema debut.
+
+08:59.590 --> 09:00.670
+So it's very simple.
+
+09:00.670 --> 09:03.790
+This is how you can drop a view in SQL okay.
+
+09:03.830 --> 09:04.950
+So now to the next step.
+
+09:04.950 --> 09:09.150
+Let's go back to our DDL of creating the view Sales monthly summary.
+
+09:09.150 --> 09:15.070
+And now you say you know what I would like to change the logic inside the view so how we can update
+
+09:15.070 --> 09:15.790
+this content.
+
+09:15.830 --> 09:21.430
+How I can update my query if you say let's go and for example delete this column, I need only three
+
+09:21.430 --> 09:22.070
+columns.
+
+09:22.070 --> 09:23.830
+So and you go execute it.
+
+09:23.830 --> 09:28.510
+The database say I cannot do it for you because we have already such a view.
+
+09:28.510 --> 09:30.710
+So SQL will not go and replace stuff.
+
+09:30.750 --> 09:35.990
+SQL going to say no, we have the same name and I cannot do anything for it.
+
+09:35.990 --> 09:37.310
+So how we can update the view?
+
+09:37.350 --> 09:40.430
+Well, in other databases like Postgres for example.
+
+09:40.430 --> 09:41.270
+It's very simple.
+
+09:41.270 --> 09:45.950
+You can go over here and say create or replace view.
+
+09:45.950 --> 09:51.310
+So it's like you are telling the database, create this view or if it already exists, then replace
+
+09:51.310 --> 09:57.150
+it and you will not get error in the Postgres, but in the SQL server it is a little bit more complicated.
+
+09:57.150 --> 09:58.550
+We don't have this command.
+
+09:58.550 --> 09:59.750
+So here you have two ways.
+
+09:59.750 --> 10:02.390
+Either you go over here and say, you know what.
+
+10:02.870 --> 10:04.910
+Let's first drop the view.
+
+10:05.630 --> 10:07.790
+So you go with the same name over here.
+
+10:09.070 --> 10:12.070
+And then what you're going to do, you're going to go and mark the drop view.
+
+10:12.070 --> 10:14.910
+So if you execute it like this, the view is going to be dropped.
+
+10:14.910 --> 10:17.590
+And then we recreate the view like this.
+
+10:17.590 --> 10:19.430
+So what we have done we destroyed the view.
+
+10:19.430 --> 10:22.150
+And then we recreate it using the new logic.
+
+10:22.150 --> 10:24.790
+Or you say you know what, I would like to have everything in one go.
+
+10:24.830 --> 10:26.390
+Like I don't want to do it in two steps.
+
+10:26.390 --> 10:28.430
+I would like to have everything in one command.
+
+10:28.430 --> 10:33.590
+And for that you have to use an SQL server, the T-sql that transact-sql.
+
+10:33.590 --> 10:37.030
+It is like an extension for SQL only in SQL server.
+
+10:37.030 --> 10:41.550
+Well, it's like programming where you can go and add variables or you can go and add checks.
+
+10:41.550 --> 10:45.870
+We will not do a deep dive in this language, but I would like to show you how to do it for the views.
+
+10:45.870 --> 10:47.390
+So just follow me with that.
+
+10:47.430 --> 10:50.350
+I'm going to go and replace the whole thing.
+
+10:50.390 --> 10:57.150
+And then we're going to say if and now we are checking the system catalog, if the object ID, and now
+
+10:57.150 --> 10:59.390
+we go and specify the view name.
+
+10:59.390 --> 11:02.510
+So let's go and copy the whole thing with the schema as well.
+
+11:02.550 --> 11:06.030
+And then we're going to say for SQL this is a view.
+
+11:06.470 --> 11:10.390
+So if this object exists so we are saying is not null.
+
+11:10.590 --> 11:12.950
+So that means it exists in the catalog.
+
+11:12.950 --> 11:16.230
+Then what is SQL should do should drop this view.
+
+11:16.230 --> 11:17.870
+So I'm going to say drop view.
+
+11:17.870 --> 11:21.950
+And it's like we have done it first and then semicolon.
+
+11:22.110 --> 11:23.830
+And then we say for SQL go.
+
+11:24.030 --> 11:27.550
+And with that we are saying for SQL that T-sql is done.
+
+11:27.550 --> 11:29.510
+So the logic is done.
+
+11:29.510 --> 11:32.390
+And after that we have the DDL for our view.
+
+11:32.390 --> 11:38.150
+So again what you are doing we are checking before creating the view whether the view exists.
+
+11:38.150 --> 11:41.270
+If it exists then we are telling SQL go and drop it.
+
+11:41.270 --> 11:45.310
+And if it doesn't exist, that means we haven't created this view yet.
+
+11:45.550 --> 11:47.630
+It is completely brand new view.
+
+11:47.670 --> 11:50.910
+Then this step can be skipped so there is nothing to drop.
+
+11:51.030 --> 11:53.950
+So now if you go and execute the whole thing, it will work.
+
+11:53.950 --> 11:57.110
+And of course if you go and refresh over here you still see the view.
+
+11:57.510 --> 12:01.630
+So SQL did destroy the table first and then recreated.
+
+12:01.630 --> 12:03.270
+So if you execute it again.
+
+12:03.270 --> 12:07.710
+So this is how you replace your logic in a view in SQL server.
+
+12:07.710 --> 12:12.990
+And with that you have learned all possible scenarios how to create a view, how to drop a view, and
+
+12:12.990 --> 12:15.790
+how to update the logic of a view.

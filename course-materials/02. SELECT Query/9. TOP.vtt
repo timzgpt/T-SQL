@@ -1,0 +1,337 @@
+WEBVTT
+
+00:03.960 --> 00:07.880
+Okay, so what is exactly top or in other databases we call it limits.
+
+00:07.880 --> 00:10.320
+So it is again some kind of filtering in SQL.
+
+00:10.360 --> 00:15.480
+If you use it it's going to go and restrict the number of rows returned in the results.
+
+00:15.480 --> 00:18.800
+So you have a control on how many rows you want to see in the results.
+
+00:18.800 --> 00:20.640
+The syntax is very simple as well.
+
+00:20.640 --> 00:26.480
+Directly after the selects you can use the keyword top, and then you specify the number of rows you
+
+00:26.480 --> 00:27.680
+want to see in the results.
+
+00:27.680 --> 00:28.880
+So for example three.
+
+00:28.920 --> 00:31.960
+And then only after that you specify the columns that you want.
+
+00:32.000 --> 00:33.200
+And then from which table.
+
+00:33.240 --> 00:35.040
+Now let's see how SQL can execute it.
+
+00:35.040 --> 00:37.240
+So as usual the from can be executed.
+
+00:37.240 --> 00:38.440
+We will get our data.
+
+00:38.440 --> 00:41.440
+And then the second step is going to go and select the columns.
+
+00:41.480 --> 00:43.200
+In this case all the columns can stay.
+
+00:43.240 --> 00:45.840
+And then after that it's going to execute that top.
+
+00:45.840 --> 00:47.600
+So how it works it's very simple.
+
+00:47.600 --> 00:50.720
+For each row in database we have row number.
+
+00:50.720 --> 00:55.560
+It has nothing to do with your data with the IDs for example here like in the current result we have
+
+00:55.600 --> 00:57.840
+row number 12345.
+
+00:57.880 --> 01:00.400
+Those numbers are not your actual data.
+
+01:00.400 --> 01:02.440
+It is something technical from the database.
+
+01:02.440 --> 01:04.360
+So it is not equal to the IDs.
+
+01:04.360 --> 01:07.760
+For example, the IDs is actually your content, your data.
+
+01:07.760 --> 01:11.880
+So here we are not filtering based on the data based on the row numbers.
+
+01:11.880 --> 01:14.840
+So since here we have defined three SQL going to count okay.
+
+01:14.880 --> 01:16.480
+Row number 123.
+
+01:16.520 --> 01:17.360
+And that's it.
+
+01:17.360 --> 01:18.720
+So it can make a cut.
+
+01:18.720 --> 01:23.200
+And all the rows after number three they will be excluded from the results.
+
+01:23.200 --> 01:25.840
+And you will get only the three rows at the results.
+
+01:25.840 --> 01:30.320
+So now as you can see this type of filtering is not based on a condition or something.
+
+01:30.320 --> 01:32.440
+It's just based on the row numbers.
+
+01:32.440 --> 01:37.160
+So whatever results you have in your data, it will go and make a cut at a specific row.
+
+01:37.160 --> 01:39.880
+So let's go to SQL and practice that okay.
+
+01:39.920 --> 01:41.320
+So now we have a very simple task.
+
+01:41.360 --> 01:44.000
+It says retrieve only three customers.
+
+01:44.000 --> 01:44.880
+So let's go and do that.
+
+01:44.880 --> 01:49.320
+So we're going to go and select star from our table customers and execute it.
+
+01:49.320 --> 01:54.040
+Now as you can see in the output we have five customers by the task says we want only three.
+
+01:54.080 --> 01:57.280
+And there is no specifications at all about any condition.
+
+01:57.280 --> 02:02.120
+So I don't have to go and make a Where clause where we write a condition based on our data.
+
+02:02.120 --> 02:08.840
+We just want three customers, so we can do that very simply by just adding top exactly after the select,
+
+02:08.840 --> 02:11.920
+and then specify the number of rows you want to see from the output.
+
+02:11.960 --> 02:14.400
+So select top three and then the star.
+
+02:14.440 --> 02:15.600
+Let's go and execute it.
+
+02:15.640 --> 02:17.960
+And with that we are getting three customers.
+
+02:17.960 --> 02:18.360
+That's it.
+
+02:18.400 --> 02:19.000
+It's very simple.
+
+02:19.040 --> 02:19.400
+All right.
+
+02:19.440 --> 02:21.000
+Now moving on to another task.
+
+02:21.040 --> 02:25.600
+It says retrieve the top three customers with the highest scores.
+
+02:25.640 --> 02:30.560
+Now of course, this is like a mix between ordering the data and filtering the data.
+
+02:30.560 --> 02:31.000
+Right.
+
+02:31.040 --> 02:34.400
+So we usually sort the data by the scores from the highest to the lowest.
+
+02:34.400 --> 02:36.560
+But now it's like we are doing both together.
+
+02:36.560 --> 02:38.520
+So let's do it again step by step.
+
+02:38.560 --> 02:41.080
+I will just back to the select star from customers.
+
+02:41.120 --> 02:46.160
+Now what we can do, we can go and sort the data by the score from the highest to the lowest, using
+
+02:46.160 --> 02:47.120
+the order by.
+
+02:47.440 --> 02:49.800
+So order by score and then descending.
+
+02:49.880 --> 02:51.320
+So let's go and execute it.
+
+02:51.320 --> 02:55.840
+And now you can see the first customer is with the highest score and then the second highest and so
+
+02:55.840 --> 02:56.040
+on.
+
+02:56.080 --> 02:57.760
+Now I think you already got it.
+
+02:57.800 --> 03:03.760
+In order to get the top three customers with the highest scores, what we have to do is to just go over
+
+03:03.760 --> 03:06.560
+here and say top three and execute it.
+
+03:06.560 --> 03:10.090
+And with that, you have now a really nice analysis on your data.
+
+03:10.090 --> 03:14.530
+It's like a report where we are finding the top customers with the highest score.
+
+03:14.570 --> 03:16.770
+So this is really amazing and very easy.
+
+03:16.770 --> 03:22.530
+So as you can see, mixing the top with the sorting the data, you can make top n analysis or bottom
+
+03:22.530 --> 03:23.370
+end analyses.
+
+03:23.370 --> 03:27.610
+So let's have this task retrieve the lowest two customers based on the score.
+
+03:27.650 --> 03:30.770
+So now we want to get the lowest scores in our table.
+
+03:30.770 --> 03:33.210
+And in order to do that it's very simple what we can do.
+
+03:33.210 --> 03:34.090
+We're going to flip that.
+
+03:34.090 --> 03:38.370
+So we're going to sort our data based on the scores ascending from the lowest to the highest.
+
+03:38.410 --> 03:42.290
+And since we want only the lowest two customers, we're going to replace the three with the two and
+
+03:42.290 --> 03:42.930
+execute it.
+
+03:42.970 --> 03:45.130
+And with that we're going to get the lowest two customers.
+
+03:45.130 --> 03:45.810
+It is better.
+
+03:45.810 --> 03:47.850
+And Maria they have the lowest scores.
+
+03:47.890 --> 03:49.330
+Again it's very easy okay.
+
+03:49.370 --> 03:49.970
+This is fine.
+
+03:49.970 --> 03:51.130
+Let's go to the next one.
+
+03:51.410 --> 03:53.850
+Get the two most recent orders.
+
+03:53.850 --> 03:56.450
+Well this time we are speaking about another table.
+
+03:56.490 --> 04:00.930
+Let's go and select everything from the table orders like this.
+
+04:00.930 --> 04:03.010
+So now as you can see we have here four orders.
+
+04:03.010 --> 04:05.850
+And we want the two most recent orders.
+
+04:05.850 --> 04:09.250
+So most recent means we have to deal with the order dates.
+
+04:09.250 --> 04:13.050
+And we can build that by sorting the data by the order dates.
+
+04:13.090 --> 04:15.970
+So order by order dates.
+
+04:16.010 --> 04:18.610
+And since we are saying the most recent orders.
+
+04:18.610 --> 04:22.290
+So from the highest dates to the lowest that means descending right.
+
+04:22.330 --> 04:23.490
+Let's go and execute it.
+
+04:23.490 --> 04:25.090
+And as you can see based on our data.
+
+04:25.130 --> 04:26.530
+And now we can look to our results.
+
+04:26.530 --> 04:30.010
+This is the last order in our business based on the order dates.
+
+04:30.050 --> 04:32.650
+And this one is one of the earliest orders.
+
+04:32.650 --> 04:34.170
+So with that we have sorted the data.
+
+04:34.170 --> 04:40.010
+And since we want the two most recent orders, we go over here and say we go exactly after the select
+
+04:40.010 --> 04:42.250
+and say top two and execute.
+
+04:42.250 --> 04:46.050
+And with that we have now the last two orders in our business.
+
+04:46.050 --> 04:50.650
+So as you can see combining the top with the order by you can do amazing analysis.
+
+04:50.650 --> 04:51.050
+All right.
+
+04:51.050 --> 04:53.250
+So this is how you limit your data using Top.
+
+04:53.250 --> 04:56.210
+And with that you have learned the basics everything that you can learn.
+
+04:56.210 --> 05:01.930
+And with that you have learned all the clauses, the sections that you can use in any query in SQL.
+
+05:01.970 --> 05:07.130
+Now next what we're going to do, we're going to put everything together in one query in order to learn
+
+05:07.130 --> 05:12.010
+how SQL is going to go and deal with all those clauses and how SQL is going to go and execute it.
+
+05:12.010 --> 05:13.330
+So let's go and do that.

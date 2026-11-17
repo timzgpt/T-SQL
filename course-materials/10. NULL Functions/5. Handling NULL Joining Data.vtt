@@ -1,0 +1,409 @@
+WEBVTT
+
+00:03.760 --> 00:06.600
+Okay, moving on to the next use case for the coalesce and Isnull.
+
+00:06.760 --> 00:10.720
+We can use them in order to handle the null before doing joins.
+
+00:10.720 --> 00:14.560
+This is a little bit advanced use case, but it's very important to understand it.
+
+00:14.560 --> 00:16.600
+So let's understand why this is important.
+
+00:16.600 --> 00:19.840
+Let's have for example two tables table A and table b.
+
+00:19.880 --> 00:24.320
+And in some scenarios we have to go and combine those two tables using the joins.
+
+00:24.320 --> 00:29.840
+And now in order to join two tables we have to go and specify the keys between the table A and table
+
+00:29.880 --> 00:31.600
+B in order to join on it.
+
+00:31.600 --> 00:34.720
+So in this example we have two keys in order to join the tables.
+
+00:34.760 --> 00:36.720
+Now here comes the special case.
+
+00:36.960 --> 00:42.960
+If those keys don't have any nulls inside it and all the data are filled, then your join can work perfectly
+
+00:42.960 --> 00:44.960
+and you will get the expected results.
+
+00:44.960 --> 00:49.400
+And now you might have a special case where there are nulls inside the keys.
+
+00:49.400 --> 00:50.640
+So they are missing values.
+
+00:50.640 --> 00:56.400
+And this is a big problem because in the output you will get unexpected results and some records will
+
+00:56.400 --> 00:57.720
+be totally missing.
+
+00:57.720 --> 01:02.900
+So in this scenario we have to handle the nulls inside the keys before doing the joins.
+
+01:02.940 --> 01:06.020
+Let's have a very simple example in order to understand this behavior.
+
+01:06.060 --> 01:06.340
+All right.
+
+01:06.340 --> 01:10.140
+So now let's have this very simple example where we have two tables and we want to combine them.
+
+01:10.140 --> 01:13.460
+So in the first table we have a year type orders.
+
+01:13.460 --> 01:16.300
+And in the second table we have as well year type.
+
+01:16.300 --> 01:17.380
+And we have sales.
+
+01:17.380 --> 01:22.340
+So now we would like to go and combine those two tables in order to have all informations in one result.
+
+01:22.380 --> 01:27.660
+Now we can go of course, and use the inner join between the table one and table two and the keys for
+
+01:27.660 --> 01:28.340
+the joins here.
+
+01:28.340 --> 01:33.060
+As you can see, we have the year in both of the tables and as well the type.
+
+01:33.060 --> 01:37.260
+So we're going to go and use both of those columns as a key for the join.
+
+01:37.260 --> 01:40.060
+So let's do it step by step how SQL can execute this.
+
+01:40.060 --> 01:42.460
+So we need the year type as the result.
+
+01:42.460 --> 01:45.780
+So SQL going to go and take those two columns to the results.
+
+01:46.100 --> 01:48.260
+And we need the orders and sales.
+
+01:48.260 --> 01:52.700
+So SQL can take as well the orders and the sales from the second table.
+
+01:52.700 --> 01:54.620
+So now let's start doing it row by row.
+
+01:54.820 --> 01:57.900
+So the first key going to be those two columns.
+
+01:57.900 --> 02:00.940
+So we have 2024 and the type A.
+
+02:01.020 --> 02:05.550
+So now it's going to start searching for those two informations in the second table.
+
+02:05.550 --> 02:07.910
+And as you can see we have here a match right.
+
+02:08.350 --> 02:10.630
+So the first row is as well matching.
+
+02:10.750 --> 02:16.430
+Since it's inner join it's going to present in the output only the matching rows from left and right.
+
+02:16.710 --> 02:21.230
+So in the outputs we're going to get the whole row from the table one.
+
+02:21.230 --> 02:23.950
+And we will get the sales from the table two.
+
+02:23.990 --> 02:24.350
+All right.
+
+02:24.350 --> 02:25.990
+So that's all for the first row.
+
+02:26.030 --> 02:28.550
+Now let's move to the second row over here.
+
+02:28.550 --> 02:30.590
+So what are the values of the keys.
+
+02:30.910 --> 02:33.710
+We have 2024 and the null.
+
+02:33.750 --> 02:38.390
+So now if you check the matches on the right side you can see we have a match here.
+
+02:38.430 --> 02:38.710
+Right.
+
+02:38.750 --> 02:39.710
+It is logical.
+
+02:39.710 --> 02:42.710
+So it's as well 2024 and a null.
+
+02:42.710 --> 02:49.230
+So everything is matching and we should get it as a result right SQL cannot go and use the equal operator
+
+02:49.350 --> 02:51.470
+in order to join tables.
+
+02:51.470 --> 02:56.910
+So even though that is logically it makes sense to have it at the output, but still SQL cannot go and
+
+02:56.910 --> 02:58.470
+compare the nulls.
+
+02:58.470 --> 03:01.470
+That's why this is a problem for this combination.
+
+03:01.590 --> 03:03.650
+SQL will not find any matching.
+
+03:03.650 --> 03:08.410
+So we will not get any information for the combination of 2024 and NULL.
+
+03:08.450 --> 03:14.450
+So for us of course in the business this is missing informations and as well inaccurate results.
+
+03:14.450 --> 03:15.970
+So we're going to miss this row.
+
+03:15.970 --> 03:18.290
+And this girl going to go and jump to the third row.
+
+03:18.290 --> 03:20.170
+So here what are the values of the key.
+
+03:20.330 --> 03:22.290
+We have 2025 and a b.
+
+03:22.450 --> 03:25.130
+Now it's going to go and search it in the second table.
+
+03:25.130 --> 03:27.290
+And it's going to find a match over here.
+
+03:27.290 --> 03:30.410
+So in the outputs we're going to get those values.
+
+03:31.410 --> 03:33.010
+The order is going to be 50.
+
+03:33.290 --> 03:34.890
+The sales 300.
+
+03:34.930 --> 03:36.850
+Now it's going to go to the last row.
+
+03:36.850 --> 03:41.610
+And we have here again the same problem we have here 2025 and NULL.
+
+03:41.650 --> 03:47.450
+And of course if you check the data you will say yes we have a matching over here, but SQL will ignore
+
+03:47.490 --> 03:47.770
+it.
+
+03:47.770 --> 03:52.250
+So we have exactly the same situation and we will not find it at the results.
+
+03:52.250 --> 03:54.730
+So at the output we will get only two rows.
+
+03:54.850 --> 03:59.370
+Even though that those two tables are like identical if you compare the keys.
+
+03:59.370 --> 04:04.260
+So with that we are losing data at the results and we are providing inaccurate results.
+
+04:04.260 --> 04:08.860
+So my friends, if you have nulls inside your keys, what can happen?
+
+04:08.860 --> 04:11.340
+You will lose records at the output.
+
+04:11.380 --> 04:17.580
+So here it's very important to handle the nulls inside the keys before doing the joins.
+
+04:17.620 --> 04:17.900
+All right.
+
+04:17.940 --> 04:22.660
+So now in order to fix it we're going to go and use either the coalesce or the Isnull in the join.
+
+04:22.700 --> 04:25.220
+So as you can see we are not using the type directly.
+
+04:25.220 --> 04:29.220
+We are handling it by replacing the null with an empty string.
+
+04:29.260 --> 04:31.260
+It doesn't matter which value you are using.
+
+04:31.460 --> 04:35.500
+The main thing is that you have a value and SQL can go and map it.
+
+04:35.500 --> 04:39.620
+So you could have it as empty string or a blank or any default value.
+
+04:39.620 --> 04:44.660
+But I usually go with the empty string since it's a little bit faster than having any other characters.
+
+04:44.700 --> 04:50.740
+So now what's going to happen is we're going to go everywhere and replace those nulls with an empty
+
+04:50.780 --> 04:51.220
+string.
+
+04:51.260 --> 04:54.220
+So now we don't have any nulls inside our keys.
+
+04:54.340 --> 04:56.140
+And let's go and see what can happen.
+
+04:56.140 --> 04:58.420
+So we're going to start with the first row again.
+
+04:58.420 --> 05:01.300
+Here we have a matching from the right table.
+
+05:01.660 --> 05:05.400
+And we're going to see the whole records in the outputs.
+
+05:05.600 --> 05:07.960
+So we will get as well the sales as 100.
+
+05:08.000 --> 05:10.680
+And now it's going to go to the second row over here.
+
+05:10.920 --> 05:12.760
+So this time we don't have a null.
+
+05:12.760 --> 05:15.560
+We have 2024 and an empty string.
+
+05:15.600 --> 05:17.440
+So now it's going to go and search for match.
+
+05:17.440 --> 05:19.280
+And it's going to find it over here.
+
+05:19.280 --> 05:22.400
+We have as well 2024 and an empty string.
+
+05:22.400 --> 05:24.600
+So now what can happen in the outputs.
+
+05:24.600 --> 05:26.480
+We're going to get a 2024.
+
+05:26.880 --> 05:28.640
+But here we will get a null.
+
+05:29.320 --> 05:31.000
+So we will not get an empty string.
+
+05:31.000 --> 05:32.960
+We will get a null over here.
+
+05:32.960 --> 05:36.120
+And that's because we are handling the null only on the join.
+
+05:36.120 --> 05:42.120
+So as you can see we have here the null type on the join but we don't have it on the select.
+
+05:42.120 --> 05:45.160
+So on the select the type is going to be like the original data.
+
+05:45.160 --> 05:46.880
+And the original data was null.
+
+05:46.920 --> 05:49.120
+We are just handling the null in the joins.
+
+05:49.160 --> 05:53.360
+Just in order to let SQL understand how to map and match the data.
+
+05:53.360 --> 05:56.880
+So in this example I'm not changing the values in the select.
+
+05:56.880 --> 05:58.680
+So that's why we will get the original value.
+
+05:58.680 --> 06:04.040
+But the orders we will get it 40 and the sales is going to be 20.
+
+06:04.130 --> 06:05.650
+Now moving on to the third row.
+
+06:05.690 --> 06:06.890
+I think you already get it.
+
+06:06.890 --> 06:12.010
+So it's going to find the match and the sale is going to be 300.
+
+06:12.050 --> 06:12.370
+All right.
+
+06:12.410 --> 06:14.050
+Now we're going to move to the last one.
+
+06:14.050 --> 06:15.690
+And here we have the same scenario.
+
+06:15.930 --> 06:18.690
+So we have 2025 and an empty string.
+
+06:18.690 --> 06:20.210
+So it's not null anymore.
+
+06:20.370 --> 06:23.210
+And it's going to go and search for all those informations.
+
+06:23.210 --> 06:24.770
+And it's going to find it over here.
+
+06:24.770 --> 06:30.370
+So it's going to take this field over here in the type and null not an empty string.
+
+06:30.370 --> 06:32.850
+Because in the select we didn't handle it.
+
+06:32.850 --> 06:38.130
+So the order is going to be 60 and the sales is going to be 200.
+
+06:38.130 --> 06:40.610
+So as you can see now the result is complete.
+
+06:40.850 --> 06:45.850
+We successfully combined both of those tables in one big result using joins.
+
+06:45.850 --> 06:51.970
+But as well using the help of the Isnull function in order to have a complete results and not miss any
+
+06:51.970 --> 06:52.530
+value.
+
+06:52.530 --> 06:54.570
+So my friends, be very careful.
+
+06:54.810 --> 06:57.970
+Check always the keys, whether they have nulls or not.
+
+06:58.010 --> 07:03.690
+And if you find nulls, go immediately and handle it so you don't lose any records in the results and
+
+07:03.690 --> 07:05.610
+you get accurate analysis.

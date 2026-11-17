@@ -1,0 +1,13 @@
+WEBVTT
+
+00:00.080 --> 00:04.520
+And now here we're going to cover the second type of projects where we're going to use our basic SQL
+
+00:04.520 --> 00:09.560
+skills in order to do something called data profiling, where we're going to try to understand all the
+
+00:09.560 --> 00:14.280
+aspects of our data sets using simple aggregations like the sum average count.
+
+00:14.320 --> 00:17.040
+And as well we will be using techniques like subqueries.

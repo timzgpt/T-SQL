@@ -1,0 +1,190 @@
+WEBVTT
+
+00:03.960 --> 00:09.320
+And now what you're gonna do, you're gonna go and prepare the second report, where you have to build
+
+00:09.320 --> 00:12.520
+complete insights about the products of the business.
+
+00:12.520 --> 00:14.560
+It is very similar to the customers.
+
+00:14.560 --> 00:17.560
+So we want to generate a report for the products.
+
+00:17.560 --> 00:21.800
+You have to provide details like the product name, category, subcategory and the costs.
+
+00:21.800 --> 00:24.680
+You have to segment the products by their revenue.
+
+00:24.680 --> 00:27.120
+So you can have categories like high, medium and low.
+
+00:27.160 --> 00:32.280
+And then you have to provide the basic aggregations at the level of the products and then calculate
+
+00:32.280 --> 00:33.280
+few KPIs.
+
+00:33.360 --> 00:35.960
+So as you can see it is very similar to the customers.
+
+00:36.000 --> 00:41.240
+And now what you have to do, you have to pause the video, follow the same steps as the customers where
+
+00:41.240 --> 00:46.640
+we join the tables, get aggregations and put everything like in seats and at the end.
+
+00:46.640 --> 00:50.680
+Once you are done, create the view where you have the report about the products.
+
+00:50.680 --> 00:53.960
+So I'm going to go now and do it offline and I will see you soon.
+
+00:59.440 --> 01:02.200
+Okay my friends, I hope you are done with the reports.
+
+01:02.200 --> 01:03.960
+I'm going to show you quickly how I've done it.
+
+01:03.960 --> 01:06.880
+So I've just created a new view called Report Products.
+
+01:06.880 --> 01:12.400
+And then we start with the base query where we have joined the fact table with the dimension products
+
+01:12.460 --> 01:18.460
+and collected all the columns that we need for the reports, and we put everything in the first city.
+
+01:18.580 --> 01:20.020
+So this is the first step.
+
+01:20.060 --> 01:23.860
+And there was from my side, no need for any transformations over here.
+
+01:23.860 --> 01:26.060
+So we go now to the second step.
+
+01:26.060 --> 01:29.780
+And here we have to put all the different types of aggregations in one go.
+
+01:29.780 --> 01:35.900
+So we calculate the lifespan, the last sales order, total orders, total customers, sales quantity.
+
+01:35.900 --> 01:40.180
+And as well I have created the average selling price of the products.
+
+01:40.180 --> 01:41.020
+It is very simple.
+
+01:41.020 --> 01:43.980
+We are dividing the sales amount by the quantity.
+
+01:43.980 --> 01:46.900
+So this is the basic aggregations about the products.
+
+01:46.900 --> 01:48.980
+And finally we have the final query.
+
+01:48.980 --> 01:52.700
+So we start with selecting the basic informations about the products.
+
+01:52.700 --> 01:54.380
+So we have the key name category.
+
+01:54.380 --> 01:56.140
+And then we have here the recency.
+
+01:56.140 --> 01:58.180
+And we have our new segments.
+
+01:58.180 --> 02:00.140
+This one is very easy for the products.
+
+02:00.140 --> 02:05.500
+So we are saying if the total sales is higher than 50,000 then this is a high performer.
+
+02:05.500 --> 02:09.820
+And if it is like between 50 and 10-K then this is a mid-range.
+
+02:09.860 --> 02:11.940
+Otherwise it is low performer.
+
+02:11.940 --> 02:14.660
+So the segmentations of the products is very simple.
+
+02:14.660 --> 02:19.340
+And after that we have like all our measures that we aggregated in the CTE.
+
+02:19.380 --> 02:21.620
+And now we come to the two KPIs.
+
+02:21.660 --> 02:23.220
+It is very similar to the customers.
+
+02:23.220 --> 02:25.280
+So the first one the average order revenue.
+
+02:25.320 --> 02:30.800
+It is simply dividing the sales by the total orders, and you have to take care of the zeros, of course,
+
+02:30.840 --> 02:32.680
+and the average monthly revenue.
+
+02:32.720 --> 02:36.280
+We divide the total sales by the lifespan of the products.
+
+02:36.320 --> 02:41.280
+And of course if the lifespan is zero so it is only one month, then it is the total sales.
+
+02:41.280 --> 02:44.400
+And with that you generate the average monthly revenue.
+
+02:44.440 --> 02:46.680
+So as you can see it is very similar to the customers.
+
+02:46.680 --> 02:49.000
+But still the focus here is the products.
+
+02:49.040 --> 02:51.800
+Now of course we put this query in a view.
+
+02:51.800 --> 02:56.320
+So we have that report products side by side by the report customers.
+
+02:56.320 --> 03:00.240
+And now we have really amazing report about the products where we have everything.
+
+03:00.240 --> 03:05.880
+So we have a lot of details about the customers we have as well a dimension in order to segment our
+
+03:05.880 --> 03:06.640
+products.
+
+03:06.920 --> 03:11.200
+And we have a lot of measures that are really important about each products.
+
+03:11.200 --> 03:16.240
+So we have the total number of orders, sales, how many customers did order the products, the average
+
+03:16.240 --> 03:19.720
+price, the average revenue, and the monthly average revenue.
+
+03:19.720 --> 03:23.520
+And this gives you really deep insights about each product of your business.
+
+03:23.520 --> 03:26.760
+And of course, this is very helpful in order to compare the products.
+
+03:26.800 --> 03:27.080
+Right.
+
+03:27.120 --> 03:31.680
+And now of course this is core analysis that you're going to need it a lot in your business.
+
+03:31.680 --> 03:33.680
+That's why we offer it as a view.
+
+03:33.680 --> 03:37.120
+So I think we have now two amazing reports about our data.

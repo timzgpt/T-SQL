@@ -1,0 +1,496 @@
+WEBVTT
+
+00:03.960 --> 00:04.480
+All right.
+
+00:04.480 --> 00:10.480
+So what is exactly having you can use it in order to filter your data, but after the aggregation.
+
+00:10.480 --> 00:15.600
+So that means we can use the having only after using the groupby.
+
+00:15.640 --> 00:17.120
+So let's see the syntax of that.
+
+00:17.120 --> 00:21.280
+So again like the previous example we are finding the total score by country.
+
+00:21.280 --> 00:23.720
+So we have our select from groupby.
+
+00:23.760 --> 00:26.920
+And now you say you know what I would like to filter the end results.
+
+00:26.920 --> 00:30.760
+And in order to do that we use the having after the group I.
+
+00:30.800 --> 00:33.960
+And now like the where clause you have to specify a condition.
+
+00:33.960 --> 00:37.240
+So we have the following condition where we want to see the results.
+
+00:37.240 --> 00:42.000
+Only the countries if their total score is higher than 800.
+
+00:42.000 --> 00:43.840
+So this can be our condition.
+
+00:43.840 --> 00:46.240
+So now you might noticing something with the groupby.
+
+00:46.280 --> 00:50.480
+We are using the country, the column where we are grouping the data by its value.
+
+00:50.480 --> 00:55.640
+But with the having we are using the aggregated column the sum of the score.
+
+00:55.680 --> 00:57.520
+So this is how the syntax works.
+
+00:57.520 --> 00:59.400
+And now let's see how SQL can execute it.
+
+00:59.400 --> 01:01.440
+So as usual SQL start with the from.
+
+01:01.440 --> 01:02.800
+We are getting our data.
+
+01:02.800 --> 01:07.640
+And then the second step is going to go and aggregate the data by the country.
+
+01:07.640 --> 01:12.240
+So it's like before it's going to group the rows with the same value of the country.
+
+01:12.240 --> 01:14.600
+So we're going to have one row for each country.
+
+01:14.600 --> 01:16.720
+And this is what's going to happen if you use groupby.
+
+01:16.720 --> 01:19.120
+And with that we have now aggregated values.
+
+01:19.120 --> 01:19.560
+Right.
+
+01:19.560 --> 01:23.360
+And after the groupby SQL is going to go and execute the halving.
+
+01:23.360 --> 01:25.120
+So halving it is like a filter.
+
+01:25.160 --> 01:26.560
+Now we have a nice condition.
+
+01:26.560 --> 01:29.040
+The total sale must be higher than 800.
+
+01:29.080 --> 01:32.520
+And SQL can go and check the new results after the aggregation.
+
+01:32.520 --> 01:35.360
+So in Germany we have the total sales of 850.
+
+01:35.400 --> 01:38.320
+So it meets the condition and it's going to stay in the results.
+
+01:38.320 --> 01:39.680
+The same thing for USA.
+
+01:39.720 --> 01:41.720
+It is higher as well than 900.
+
+01:41.760 --> 01:45.080
+But for UK it is not meeting the condition 750.
+
+01:45.120 --> 01:46.800
+It is not higher than 800.
+
+01:46.880 --> 01:49.840
+And SQL is going to go and filter out this row.
+
+01:49.840 --> 01:55.160
+So that means after applying the halving, we will get only two countries because they have values that
+
+01:55.160 --> 01:57.280
+is fulfilling the condition and that's it.
+
+01:57.280 --> 01:59.480
+This is what can happen if you are using halving.
+
+01:59.520 --> 02:01.130
+It is simply filtering the data.
+
+02:01.130 --> 02:02.450
+But now you might be confused.
+
+02:02.450 --> 02:03.690
+You say, you know what?
+
+02:03.690 --> 02:06.090
+We have used the Where clause to filter the data.
+
+02:06.090 --> 02:09.530
+So why we have in SQL another clause to filter my data.
+
+02:09.570 --> 02:11.090
+Can't we just use the where?
+
+02:11.130 --> 02:15.890
+Well, in SQL there are like different ways on how to filter your data based on the scenario.
+
+02:15.890 --> 02:17.850
+So now let's go and add both of the filters.
+
+02:17.850 --> 02:18.770
+In my query.
+
+02:18.810 --> 02:21.250
+We are already using the having after the group P.
+
+02:21.290 --> 02:23.210
+And now let's go and add the where.
+
+02:23.250 --> 02:28.170
+Usually the where comes between the from and the group by so directly after the from.
+
+02:28.170 --> 02:31.130
+And here we are saying the score must be higher than 400.
+
+02:31.130 --> 02:33.810
+So now we are filtering based on the scores twice, right?
+
+02:33.810 --> 02:36.290
+Once we are saying the score higher than 400.
+
+02:36.290 --> 02:40.610
+And by having we are saying the sum of score must be higher than 800.
+
+02:40.610 --> 02:42.250
+So what is the big difference?
+
+02:42.250 --> 02:44.210
+It is when the filter is happening.
+
+02:44.210 --> 02:49.490
+If you want to filter the data before the aggregation, you want to filter the original data.
+
+02:49.530 --> 02:52.090
+Then you can go and use the Where clause.
+
+02:52.090 --> 02:57.930
+But if you want to filter the data after the aggregations after the group, by then you can go and use
+
+02:57.930 --> 02:58.410
+having.
+
+02:58.410 --> 03:01.370
+So it's really all about when the filter is happening.
+
+03:01.370 --> 03:03.170
+So let's see how SQL can execute this.
+
+03:03.170 --> 03:06.570
+So as usual first the form can be executed to get the data.
+
+03:06.610 --> 03:09.930
+Then after that the second step the where going to be executed.
+
+03:09.930 --> 03:11.570
+This is our first filter.
+
+03:11.570 --> 03:17.610
+So SQL can filter the data using where before doing any aggregations and based on our condition, the
+
+03:17.610 --> 03:23.650
+first customer will be filtered out because score is less than 400 and the same thing for the last customer.
+
+03:23.690 --> 03:28.850
+Now after the applying the Where clause, we will get only three rows, only three customers.
+
+03:28.890 --> 03:31.610
+And now next SQL going to go and execute the group by.
+
+03:31.650 --> 03:34.450
+So it's going to go and group the data by the country.
+
+03:34.450 --> 03:36.530
+So now we have fewer data to be combined.
+
+03:36.530 --> 03:40.450
+So the values will not be summarized because we have only one row for each country.
+
+03:40.490 --> 03:47.050
+Now after the data is aggregated by the group by then SQL can activate the second filter having.
+
+03:47.050 --> 03:49.290
+So the next step is to execute the having.
+
+03:49.330 --> 03:52.890
+And here SQL is going to filter the new results based on the total scores.
+
+03:52.930 --> 03:54.650
+And SQL can check one by one.
+
+03:54.650 --> 04:00.220
+So USA is meeting the condition UK is going to be filtered out because it is not higher than 800 and
+
+04:00.220 --> 04:05.820
+this time Germany as well will be filtered out because this time it is not fulfilling the condition.
+
+04:05.820 --> 04:10.900
+In the previous example, without the where we had more scores for Germany, that's why it passed the
+
+04:10.900 --> 04:11.180
+test.
+
+04:11.180 --> 04:16.100
+But this time, since we filtered a lot of customers using the where, Germany will not have enough
+
+04:16.100 --> 04:18.100
+scores but the second filter.
+
+04:18.100 --> 04:21.100
+So with that in the output we will get only one row.
+
+04:21.140 --> 04:23.220
+And that's because we are filtering a lot of data.
+
+04:23.220 --> 04:24.500
+So it is very simple.
+
+04:24.500 --> 04:29.660
+We are going to be executed before the groupby, before the aggregations, having going to be executed
+
+04:29.700 --> 04:31.940
+after the group by after the aggregations.
+
+04:31.940 --> 04:34.580
+So now let's go back to SQL in order to practice okay.
+
+04:34.620 --> 04:36.220
+So now we have very interesting task.
+
+04:36.260 --> 04:42.540
+Find the average score for each country considering only customers with a score not equal to zero.
+
+04:42.540 --> 04:49.220
+So it sounds like condition and return only those countries with an average score greater than 430.
+
+04:49.220 --> 04:51.300
+So this is again another condition.
+
+04:51.300 --> 04:53.620
+So I know there is a lot of things that's going on.
+
+04:53.620 --> 04:55.060
+Let's do it step by step.
+
+04:55.100 --> 05:00.260
+Usually I start by doing a very simple Select statement with the columns and data that I need.
+
+05:00.260 --> 05:02.100
+So let's start with a simple select.
+
+05:02.100 --> 05:03.140
+So what do we need over here.
+
+05:03.140 --> 05:04.020
+We need a score.
+
+05:04.020 --> 05:07.460
+We need a country again we need a score country.
+
+05:07.460 --> 05:08.940
+So all what we need is two columns.
+
+05:08.980 --> 05:12.420
+Now I'm going to go and select the ID just to see the customer ID.
+
+05:12.460 --> 05:16.460
+Then let's go and get the country score from our table customers.
+
+05:16.460 --> 05:17.660
+So let's go and query that.
+
+05:17.660 --> 05:22.180
+So now as you can see I start with the basics query the data and then built up on top of it.
+
+05:22.180 --> 05:22.980
+The second step.
+
+05:22.980 --> 05:24.140
+Now what do we have in the task.
+
+05:24.140 --> 05:27.220
+We have to find the average score for each country.
+
+05:27.220 --> 05:29.220
+That means we have to do some aggregations.
+
+05:29.220 --> 05:30.580
+And here we have two conditions.
+
+05:30.580 --> 05:35.260
+The first condition says we need only the customers with a score not equal to zero.
+
+05:35.260 --> 05:40.100
+And the second one, we need only the countries with an average score greater than 430.
+
+05:40.140 --> 05:45.100
+Now you have to decide for each condition whether you're going to use the where or having.
+
+05:45.140 --> 05:48.860
+Now for the first one, we want to filter based on the scores.
+
+05:48.860 --> 05:52.340
+So that means we want to filter before the aggregations.
+
+05:52.340 --> 05:55.460
+It's not saying the average score, it's saying the score itself.
+
+05:55.460 --> 05:58.700
+So that means we can use for this a aware condition.
+
+05:58.740 --> 05:59.860
+Now about the second one.
+
+05:59.860 --> 06:03.460
+It says countries with an average score greater than 430.
+
+06:03.500 --> 06:07.380
+That means we want to filter the data after aggregating the score.
+
+06:07.380 --> 06:10.700
+So that means for this condition we have to use the having.
+
+06:10.700 --> 06:14.180
+Now, what I would like to do is to implement the first condition.
+
+06:14.180 --> 06:14.820
+It's very simple.
+
+06:14.820 --> 06:19.940
+We're going to say where after the from the score is not equal to zero.
+
+06:19.940 --> 06:21.500
+So let's go and execute it.
+
+06:21.540 --> 06:26.300
+And with that we don't have any customers where the scores is not equal to zero.
+
+06:26.300 --> 06:28.260
+So that we have solved this part.
+
+06:28.300 --> 06:29.860
+But now for the second condition.
+
+06:29.860 --> 06:31.460
+First we have to do the aggregations.
+
+06:31.460 --> 06:33.860
+So we're going to start with the average score.
+
+06:33.860 --> 06:36.060
+We're going to go over here and say average.
+
+06:36.060 --> 06:38.060
+And we're going to call it average score.
+
+06:38.700 --> 06:40.820
+Now we don't want to see only the average score.
+
+06:40.820 --> 06:43.380
+We want to see the average score for each country.
+
+06:43.380 --> 06:46.060
+So that means we have to aggregate by the country.
+
+06:46.060 --> 06:47.940
+And for that we use the groupby.
+
+06:47.980 --> 06:50.820
+GroupBy comes always after the where clause.
+
+06:50.820 --> 06:53.740
+So group by and which column it's going to be the country.
+
+06:53.740 --> 06:54.900
+So country.
+
+06:54.940 --> 06:56.260
+Now there is like an issue here.
+
+06:56.260 --> 06:57.990
+You cannot execute it like this.
+
+06:58.030 --> 06:59.950
+We have to go and get rid of the ID.
+
+06:59.990 --> 07:03.270
+We don't need it at all, so let's go and execute it.
+
+07:03.270 --> 07:08.310
+So with that, we have the average score for each country and we have solved the first part.
+
+07:08.310 --> 07:11.710
+So that means the first and the second parts they are completed.
+
+07:11.750 --> 07:13.790
+Now we're going to talk about the last part.
+
+07:13.830 --> 07:16.790
+The average score must be higher than 430.
+
+07:16.830 --> 07:18.390
+And for that we're going to use the halving.
+
+07:18.390 --> 07:20.550
+And halving comes after the groupby.
+
+07:20.950 --> 07:22.710
+Now we need to specify the condition.
+
+07:22.710 --> 07:24.670
+It must be the aggregated column.
+
+07:24.670 --> 07:28.750
+So we're going to take the average score from here and put it after the halving.
+
+07:28.750 --> 07:31.470
+And it should be greater than 430.
+
+07:31.510 --> 07:32.350
+So that's it.
+
+07:32.390 --> 07:34.350
+With that we have the last part as well.
+
+07:34.350 --> 07:36.430
+Let's go and execute it now.
+
+07:36.430 --> 07:40.630
+And with that my friends we have filter the data after the aggregation.
+
+07:40.630 --> 07:43.630
+So this is how I decide between the where and having.
+
+07:43.670 --> 07:44.750
+It is very simple.
+
+07:44.790 --> 07:45.190
+All right.
+
+07:45.190 --> 07:49.230
+So with that you have learned how to filter the aggregated data using the halving.
+
+07:49.270 --> 07:54.630
+And now next we're going to go back to the top where we can use there the keyword distinct exactly after
+
+07:54.630 --> 07:55.390
+the select.
+
+07:55.390 --> 07:57.790
+So let's go now and learn about the distinct.

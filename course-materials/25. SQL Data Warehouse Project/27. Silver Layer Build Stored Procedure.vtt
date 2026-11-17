@@ -1,0 +1,292 @@
+WEBVTT
+
+00:00.080 --> 00:00.640
+So perfect.
+
+00:00.640 --> 00:01.000
+With that.
+
+00:01.000 --> 00:06.200
+We have a nice script that loads the silver layer, but of course like the bronze layer, we're going
+
+00:06.240 --> 00:08.560
+to put everything in one stored procedure.
+
+00:08.560 --> 00:09.840
+So let's go and do that.
+
+00:09.880 --> 00:15.360
+We'll go to the beginning over here and say create or alter procedure.
+
+00:15.640 --> 00:20.360
+And we're going to put it in the schema silver and using the naming convention load silver.
+
+00:20.360 --> 00:23.960
+And we're going to go over here and say begin and take the whole code.
+
+00:24.160 --> 00:27.120
+And it is long one and give it one push with the tab.
+
+00:27.120 --> 00:29.240
+And then at the end we're going to say end.
+
+00:29.280 --> 00:30.040
+Perfect.
+
+00:30.040 --> 00:32.040
+So we have our stored procedure.
+
+00:32.040 --> 00:33.800
+But we forgot here the US.
+
+00:33.840 --> 00:35.480
+With that we will not have any error.
+
+00:35.520 --> 00:37.040
+Let's go and execute it.
+
+00:37.040 --> 00:38.920
+So the stored procedure is created.
+
+00:38.920 --> 00:44.640
+If you go to the programmability and you will find two procedures load bronze and load silver.
+
+00:44.680 --> 00:46.400
+So now let's go and try it out all.
+
+00:46.400 --> 00:51.200
+What you have to do is now only to execute the silver load silver.
+
+00:51.440 --> 00:53.640
+So let's execute the stored procedure.
+
+00:53.640 --> 00:56.160
+And with that we will get the same results.
+
+00:56.160 --> 01:01.160
+This stored procedure now is responsible of loading the whole silver layer.
+
+01:01.200 --> 01:06.360
+Now of course the messaging here is not really good because we have learned in the bronze layer we can
+
+01:06.360 --> 01:12.730
+go and add many stuff like handling the error, doing nice messaging, catching the duration time.
+
+01:12.730 --> 01:19.050
+So now your task is to pause the video, take this stored procedure and go and transform it to be very
+
+01:19.050 --> 01:23.610
+similar to the bronze layer with the same messaging and all the add ons that we have added.
+
+01:23.610 --> 01:27.850
+So pause the video now, I will do it as well offline and I will see you soon.
+
+01:33.290 --> 01:36.450
+Okay, so I hope you are done and I can show you the results.
+
+01:36.450 --> 01:41.850
+It's like the bronze layer we have defined at the start few variables in order to catch the duration.
+
+01:41.850 --> 01:46.050
+So we have the start time, the end time, batch start time and batch end time.
+
+01:46.050 --> 01:50.770
+And then we are printing a lot of stuff in order to have like nice messaging in the output.
+
+01:50.770 --> 01:56.290
+So at the start we are saying loading the server layer and then we start splitting by the source system.
+
+01:56.290 --> 02:00.210
+So loading the CRM tables and I'm going to show you only one table for now.
+
+02:00.210 --> 02:01.890
+So we are setting the timer.
+
+02:02.050 --> 02:05.930
+So we are saying start time get the date and time information to it.
+
+02:05.930 --> 02:07.050
+Then we are doing the usual.
+
+02:07.050 --> 02:11.290
+We are truncating the table and then we are inserting the new informations.
+
+02:11.290 --> 02:16.850
+After cleaning it up and we have this nice message, we will say load duration where we are finding
+
+02:16.850 --> 02:22.370
+the differences between the start time and the end time using the function Datediff, and we want to
+
+02:22.370 --> 02:24.090
+show the result in the seconds.
+
+02:24.090 --> 02:28.210
+So we are just printing how long it took to load this table.
+
+02:28.210 --> 02:31.290
+And we're going to go and repeat this process for all the tables.
+
+02:31.330 --> 02:34.410
+And of course we are putting everything in try and catch.
+
+02:34.410 --> 02:37.930
+So the SQL is going to go and try to execute the try part.
+
+02:37.930 --> 02:42.530
+And if there are any issues the SQL going to go and execute the catch.
+
+02:42.570 --> 02:47.210
+And here we are just printing few information like the error message, the error number and the error
+
+02:47.250 --> 02:47.690
+states.
+
+02:47.690 --> 02:51.250
+And we are following exactly the same standards as the bronze layer.
+
+02:51.250 --> 02:54.570
+So let's go and execute the whole thing.
+
+02:54.610 --> 02:57.490
+And with that we have updated the definition of the stored procedure.
+
+02:57.530 --> 02:59.170
+Let's go now and execute it.
+
+02:59.170 --> 03:02.930
+So execute silver dots loads silver.
+
+03:03.090 --> 03:04.610
+So let's go and do that.
+
+03:04.650 --> 03:07.170
+It went very fast like few than one seconds.
+
+03:07.210 --> 03:12.490
+Again because we are working on local machine loading the silver layer, loading the CRM tables.
+
+03:12.490 --> 03:14.690
+And we can see this nice messaging.
+
+03:14.690 --> 03:17.770
+So it starts with truncating the table, inserting the data.
+
+03:17.770 --> 03:20.410
+And we are getting the load duration for this table.
+
+03:20.410 --> 03:23.290
+And you will see that everything is below one second.
+
+03:23.330 --> 03:27.610
+And that's because in real projects you will get of course more than one seconds.
+
+03:27.610 --> 03:31.420
+So at the end we have low duration of the whole silver layer.
+
+03:31.460 --> 03:33.340
+And now I have one more thing for you.
+
+03:33.380 --> 03:37.420
+Let's say that you are changing the design of this stored procedure for the silver layer.
+
+03:37.460 --> 03:42.300
+You are adding different types of messaging, or maybe you are creating logs and so on.
+
+03:42.340 --> 03:47.340
+So now all those new ideas and redesigns that you are doing for the silver layer, you have always to
+
+03:47.380 --> 03:52.700
+think about bringing the same changes as well in the other stored procedure for the bronze layer.
+
+03:52.740 --> 03:56.500
+So always try to keep your codes following the same standards.
+
+03:56.500 --> 04:01.420
+Don't have like one idea in one stored procedure and an old idea in another one.
+
+04:01.460 --> 04:06.580
+Always try to maintain those scripts and to keep them all up to date following the same standards.
+
+04:06.580 --> 04:10.980
+Otherwise, it can be really hard for other developers to understand the codes.
+
+04:11.020 --> 04:15.940
+I know that needs a lot of work and commitment, but this is your job to make everything, following
+
+04:15.940 --> 04:21.860
+the best practices and following the same naming convention and standards that you put for your projects.
+
+04:21.900 --> 04:27.860
+So guys, we now we have very nice two ETL scripts, one that loads the bronze layer and another one
+
+04:27.860 --> 04:28.900
+for the silver layer.
+
+04:28.940 --> 04:30.900
+So now our data warehouse is very simple.
+
+04:30.900 --> 04:36.180
+All what you have to do is to run first the bronze layer, and with that you are taking all the data
+
+04:36.180 --> 04:41.820
+from the CSV files from the source, and we put it inside our data warehouse in the bronze layer.
+
+04:41.820 --> 04:44.980
+And with that we are refreshing the whole bronze layer.
+
+04:45.020 --> 04:49.700
+Once it's done, the next step is to run the stored procedure of the survey layer.
+
+04:49.740 --> 04:55.220
+So once you execute it, you are thinking now all the data from the bronze layer, transforming it,
+
+04:55.260 --> 04:58.660
+cleaning it up and then loading it to the silver layer.
+
+04:58.660 --> 05:00.740
+And as you can see, the concept is very simple.
+
+05:00.740 --> 05:05.340
+We are just moving the data from one layer, another layer with different tasks.
+
+05:05.380 --> 05:05.980
+All right guys.
+
+05:05.980 --> 05:09.620
+So as you can see in the silver layer we have done a lot of data transformations.
+
+05:09.620 --> 05:13.340
+And we have covered all the types that we have in the data cleansing.
+
+05:13.340 --> 05:19.300
+So we remove duplicates data filtering handling missing data, invalid data, unwanted spaces, casting
+
+05:19.300 --> 05:20.620
+the data types and so on.
+
+05:20.620 --> 05:26.420
+And as well we have derived new columns, we have done data enrichments and we have normalized a lot
+
+05:26.460 --> 05:27.060
+of data.
+
+05:27.060 --> 05:33.020
+So now of course what we have not done yet business rules and logic, data aggregations and data integration.
+
+05:33.020 --> 05:34.540
+This is for the next layer.
+
+05:34.660 --> 05:35.500
+All right my friends.
+
+05:35.500 --> 05:41.980
+So finally we are done cleaning up the data and checking the quality of our data so we can go and close
+
+05:41.980 --> 05:42.980
+those two steps.
+
+05:43.020 --> 05:46.580
+And now to the next step we have to go and extend the data flow diagram.
+
+05:46.580 --> 05:47.340
+So let's go.

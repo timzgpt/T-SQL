@@ -1,0 +1,283 @@
+WEBVTT
+
+00:03.880 --> 00:04.240
+All right.
+
+00:04.240 --> 00:08.040
+So then we're going to talk about how to optimize the filtering in SQL.
+
+00:08.040 --> 00:13.440
+So the tip here is to create a non-clustered index on frequently used columns in Where clause.
+
+00:13.440 --> 00:15.960
+So of course you have to check your queries and so on.
+
+00:15.960 --> 00:21.640
+And if you see that you are frequently filtering the data using the order status, then it makes sense
+
+00:21.640 --> 00:27.240
+to create a non-clustered index for this column in order to improve the performance of your query.
+
+00:27.240 --> 00:32.720
+So for this situation, I'm going to go and create then a non-clustered index for the table sales order
+
+00:32.720 --> 00:34.200
+for the order status.
+
+00:34.200 --> 00:37.800
+So once you create it then you are improving.
+
+00:37.800 --> 00:40.040
+Now the performance of your query okay.
+
+00:40.080 --> 00:44.680
+The next one is avoid applying functions to columns in the Where clause.
+
+00:44.680 --> 00:49.960
+So in many cases what you usually do is that we go and transform the columns before like filtering the
+
+00:49.960 --> 00:50.400
+data.
+
+00:50.440 --> 00:55.560
+Like for example here I'm applying the function lower on the order status because I'm searching for
+
+00:55.560 --> 00:56.720
+the value delivered.
+
+00:56.720 --> 01:02.480
+And I'm not sure about the values in the table, whether they have like a camel case or upper case or
+
+01:02.480 --> 01:03.240
+anything.
+
+01:03.240 --> 01:05.810
+But in order to make sure that I'm going to find the value.
+
+01:05.850 --> 01:10.570
+I'm going to go and say lower the order status and then give here a lower value.
+
+01:10.570 --> 01:11.570
+And of course it's going to work.
+
+01:11.570 --> 01:16.370
+So if I go and search for it and as you can see, we have here the status delivered and the value is
+
+01:16.370 --> 01:17.570
+different than the one I used.
+
+01:17.570 --> 01:20.530
+Because here we have like a capital first character.
+
+01:20.530 --> 01:22.090
+But here we have a problem.
+
+01:22.090 --> 01:24.410
+We have an index on the order status.
+
+01:24.450 --> 01:30.170
+And now if you use any functions like for example here, the lower the SQL will not use the index.
+
+01:30.450 --> 01:35.290
+So that means the whole index is now useless and the SQL is not using it.
+
+01:35.490 --> 01:40.810
+And that's why we consider it as a bad practice to use functions for the Where clause.
+
+01:40.850 --> 01:42.730
+And instead of that, they're good practice.
+
+01:42.770 --> 01:48.770
+Thus, to not use any function and to write exactly the value that is used inside your data.
+
+01:48.770 --> 01:53.130
+And with that, the SQL is going to be happy and use the index that you have created.
+
+01:53.170 --> 01:55.490
+Okay, let's have another example about this rule.
+
+01:55.490 --> 01:59.450
+And here we are selecting all the customers where the first name starts with the A.
+
+01:59.610 --> 02:05.170
+So with us we can go and use the function substring in order to get the first character of the first
+
+02:05.210 --> 02:05.530
+name.
+
+02:05.530 --> 02:08.210
+And once you match it with a, then you will get the result.
+
+02:08.210 --> 02:09.260
+And here we have Anna.
+
+02:09.260 --> 02:12.340
+And this is again bad if you have an index on the first name.
+
+02:12.340 --> 02:15.700
+And that's because we are applying a function on the column.
+
+02:15.700 --> 02:17.820
+So this is considered to be a bad practice.
+
+02:17.820 --> 02:21.140
+And instead of that we can go and use the help of the like.
+
+02:21.300 --> 02:24.140
+So we can go and search for this pattern where it starts with the A.
+
+02:24.140 --> 02:25.660
+And then we have a white card.
+
+02:25.860 --> 02:27.140
+We don't care about the rest.
+
+02:27.140 --> 02:28.860
+So it must start with a.
+
+02:29.100 --> 02:31.940
+So if we go and execute it you will get the same results.
+
+02:31.940 --> 02:37.860
+So try as much as you can to avoid the functions in the Where clause in order to hit and get the index
+
+02:37.860 --> 02:38.500
+working.
+
+02:38.500 --> 02:43.620
+And in many scenarios we have a workaround in order to use the function without transformations.
+
+02:43.620 --> 02:48.100
+So try your best to avoid using functions if your columns having an index.
+
+02:48.140 --> 02:53.180
+All right, one more example that you see a lot on queries that you filter by the year.
+
+02:53.180 --> 02:56.700
+So we are searching for the orders that happens in 2025.
+
+02:56.740 --> 02:59.620
+And we usually go and use the year order dates.
+
+02:59.660 --> 03:04.620
+And now if you have an index on the order dates, this again will not be working because you are using
+
+03:04.620 --> 03:05.620
+a function here.
+
+03:05.660 --> 03:08.060
+So this considered to be a bad practice.
+
+03:08.220 --> 03:11.820
+Instead of using the year function, you can go and use between.
+
+03:11.820 --> 03:17.260
+So we don't apply a function on the order date, and we say the order date is between the boundaries
+
+03:17.260 --> 03:18.020
+of the year.
+
+03:18.060 --> 03:23.380
+Of course, now our query is not looking really cool and easy like the first one, but still with the
+
+03:23.380 --> 03:25.420
+second one we are hitting the index.
+
+03:25.500 --> 03:31.340
+So again, while you are filtering, try to not use functions on the columns because it is really waste.
+
+03:31.340 --> 03:36.020
+If you have an index and you are not using it, and most of the cases you have like a workaround for
+
+03:36.020 --> 03:36.820
+your function.
+
+03:36.820 --> 03:40.140
+So those are the three examples that I wanted to show you about this tip.
+
+03:40.180 --> 03:40.500
+All right.
+
+03:40.500 --> 03:41.700
+Moving on to a similar one.
+
+03:41.740 --> 03:46.180
+It says avoid leading wildcards as they prevent index usage.
+
+03:46.260 --> 03:47.460
+So this is a similar one.
+
+03:47.460 --> 03:51.740
+Let's say for example I'm searching for the word gold inside the last name.
+
+03:51.740 --> 03:54.260
+And here we have to be careful what we are searching for.
+
+03:54.420 --> 04:01.420
+Should the gold exist somewhere in the last name, or only we are searching for the last name that start
+
+04:01.420 --> 04:02.300
+with gold.
+
+04:02.300 --> 04:05.980
+If it's like that, we are searching only the last name that starts with gold.
+
+04:06.020 --> 04:07.620
+Then we are doing it here wrong.
+
+04:07.660 --> 04:13.380
+And in SQL, if you are using the leading wildcards, then the SQL will not be using the index.
+
+04:13.380 --> 04:16.590
+But if you are using the wildcard at the end and the trailing.
+
+04:16.630 --> 04:19.910
+This one is fine and skill will not avoid using the index.
+
+04:19.910 --> 04:26.190
+So this considered as a bad practice because you will not be hitting the index better than that to not
+
+04:26.190 --> 04:28.150
+use the white card as a leading.
+
+04:28.190 --> 04:33.510
+And if that's enough for your search, then with that you are hitting and using the index.
+
+04:33.550 --> 04:34.910
+Okay, moving on to the next one.
+
+04:34.910 --> 04:38.470
+It says use in instead of multiple or or.
+
+04:38.510 --> 04:42.750
+Operator is very evil for performance and try to avoid using it.
+
+04:42.790 --> 04:46.990
+It really kills your performance, whether it is in the filters or joints and so on.
+
+04:46.990 --> 04:51.590
+So now we want to show the orders where the customers is equal to one or 2 or 3.
+
+04:51.630 --> 04:55.830
+And of course this is considered to be a bad practice and hard to read and so on.
+
+04:55.830 --> 04:56.950
+Please don't do that.
+
+04:56.990 --> 05:03.350
+Instead we have the in operator and we are saying if the customer is one of those values, then show
+
+05:03.350 --> 05:04.110
+the orders.
+
+05:04.110 --> 05:07.310
+So if you go and run it, you will get the exact results.
+
+05:07.310 --> 05:12.830
+And it's not only looks nicer than the first query, but it has as well a better performance.
+
+05:12.830 --> 05:17.030
+So if you find out writing a lot of orders, think about the in operator.
+
+05:17.030 --> 05:21.150
+So those are the best practices for filtering data to improve the performance.

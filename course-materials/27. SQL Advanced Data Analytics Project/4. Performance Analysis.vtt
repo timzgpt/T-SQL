@@ -1,0 +1,700 @@
+WEBVTT
+
+00:03.920 --> 00:05.920
+Okay, so what is performance analysis?
+
+00:05.960 --> 00:12.760
+It is the process of comparing the current value with a target value to compare the performance of specific
+
+00:12.760 --> 00:13.280
+category.
+
+00:13.280 --> 00:17.160
+And this can help us in order to measure the success to compare the performance.
+
+00:17.160 --> 00:18.920
+So the formula for that is very simple.
+
+00:18.920 --> 00:24.280
+We're going to find the difference between the current measure and the target measure by subtracting
+
+00:24.280 --> 00:24.440
+them.
+
+00:24.480 --> 00:29.600
+Like for example, we can go and compare the current sale with the average sale or the current year
+
+00:29.640 --> 00:35.560
+sales with the previous year sales, or the current sales with the lowest sales, or maybe the highest
+
+00:35.560 --> 00:36.000
+sales.
+
+00:36.000 --> 00:40.800
+So as you can see, we are always comparing the current measure together with a target with something
+
+00:40.800 --> 00:41.080
+else.
+
+00:41.080 --> 00:44.760
+So for example, we have here again a measure that is splitted by three categories.
+
+00:44.760 --> 00:47.000
+So those values are the current values.
+
+00:47.040 --> 00:49.480
+Now if you have a target like for example the average.
+
+00:49.520 --> 00:52.000
+Now as you can see for each row we have like the 200.
+
+00:52.040 --> 00:56.840
+Now what we can do once we have those two things in one row, we can go and simply subtract them.
+
+00:56.840 --> 01:00.480
+So for the A the current value is exactly equal to the average.
+
+01:00.520 --> 01:04.000
+Both of them is 200 and the difference between them is zero.
+
+01:04.000 --> 01:06.560
+So this product is performing as an average.
+
+01:06.600 --> 01:09.560
+Now for the next one we have 300 and the target is 200.
+
+01:09.560 --> 01:11.720
+So the differences between them is 100.
+
+01:11.760 --> 01:14.880
+That means this category is performing very well.
+
+01:14.880 --> 01:16.480
+So this is a good performer.
+
+01:16.520 --> 01:19.040
+Now for the last one we will get -100.
+
+01:19.080 --> 01:21.320
+So that means it is below the average.
+
+01:21.320 --> 01:23.120
+So it is not performing very well.
+
+01:23.120 --> 01:28.080
+And for this type of analysis we usually use window functions like the aggregate window functions,
+
+01:28.120 --> 01:32.920
+the sum average, max min or the value in the functions like lead and lag.
+
+01:32.960 --> 01:38.360
+So now let's go back to SQL and apply this formula in order to measure the performance of our business.
+
+01:38.360 --> 01:39.000
+So let's go.
+
+01:39.040 --> 01:39.840
+All right my friends.
+
+01:39.840 --> 01:41.280
+So now we have the following task.
+
+01:41.320 --> 01:47.960
+Analyze the yearly performance of products by comparing their sales to both the average sales performance
+
+01:47.960 --> 01:50.960
+of the products and the previous year's sales.
+
+01:51.000 --> 01:53.640
+Okay, this sounds a little bit complicated and serious.
+
+01:53.640 --> 01:55.440
+Let's have some coffee before we start.
+
+01:56.640 --> 01:58.960
+Okay, so what do we have over here?
+
+01:58.960 --> 02:02.680
+So it is talking about the yearly performance of products.
+
+02:02.680 --> 02:08.520
+So that means we need the order date as a dimension, and as well the products and the measure that
+
+02:08.520 --> 02:10.560
+is used over here is the sales.
+
+02:10.560 --> 02:12.000
+So let's do it step by step.
+
+02:12.000 --> 02:15.080
+So we need things from our fact table.
+
+02:15.080 --> 02:17.840
+So fact sales and we need the product.
+
+02:17.840 --> 02:22.480
+So I'm going to go and get it from the dimension products in order to have a nice name.
+
+02:23.560 --> 02:26.640
+So we have to join the data by the product key.
+
+02:27.120 --> 02:29.760
+And I'm going to go and change the alias to P.
+
+02:30.120 --> 02:31.960
+So product key okay.
+
+02:32.000 --> 02:33.760
+So with that we have our two tables.
+
+02:33.800 --> 02:35.560
+Now let's go and select our columns.
+
+02:35.560 --> 02:37.800
+So we need the order dates.
+
+02:37.800 --> 02:41.400
+We need the product name and we need our measure.
+
+02:41.400 --> 02:42.960
+So it's going to be the sales amount.
+
+02:42.960 --> 02:43.400
+All right.
+
+02:43.400 --> 02:46.040
+So now let's go and query those informations.
+
+02:46.080 --> 02:48.680
+Now we have to analyze the yearly performance.
+
+02:48.680 --> 02:50.680
+That means we don't need the day.
+
+02:50.720 --> 02:52.640
+The granularity is the years.
+
+02:52.640 --> 02:55.880
+So that's why let's go and convert it using year function.
+
+02:55.880 --> 02:58.320
+And we're going to call it order year.
+
+02:58.360 --> 03:01.480
+And of course we have to go and aggregate then the sales.
+
+03:01.480 --> 03:04.320
+And I'm going to call it current sales.
+
+03:04.480 --> 03:11.760
+And of course we have to group up the data datum by the date, the year, and as well by the product
+
+03:11.800 --> 03:12.240
+name.
+
+03:12.840 --> 03:13.800
+So that's it.
+
+03:13.800 --> 03:15.240
+Let's go and execute it.
+
+03:15.240 --> 03:18.240
+And of course I'm going to go and get rid of all those nulls.
+
+03:18.440 --> 03:22.440
+So where order date is not null.
+
+03:22.480 --> 03:22.960
+All right.
+
+03:22.960 --> 03:25.440
+So with that we have solved the first part.
+
+03:25.480 --> 03:28.160
+So we have the yearly performance of the products.
+
+03:28.200 --> 03:34.200
+Now in the task we have to compare this value that current sales to the average sales performance of
+
+03:34.200 --> 03:34.880
+the products.
+
+03:34.880 --> 03:39.320
+So that means we need the average and as well the previous year's sales.
+
+03:39.320 --> 03:43.960
+So that means we have to compare each value to the previous year for the same product of course.
+
+03:43.960 --> 03:47.200
+So that means things are getting a little bit more complicated.
+
+03:47.200 --> 03:49.840
+And with that we need the help of the window functions.
+
+03:49.840 --> 03:51.040
+Let's do it one by one.
+
+03:51.040 --> 03:52.800
+Let's focus on the average sales.
+
+03:52.800 --> 03:55.280
+So now what we're going to do based on those values.
+
+03:55.280 --> 03:59.760
+Based on these results we will do a new calculations and aggregations.
+
+03:59.800 --> 04:03.880
+And now in order to do that either we use a subquery or a CTE.
+
+04:03.920 --> 04:06.400
+I'm going to go with the CTE because it looks nicer.
+
+04:06.400 --> 04:09.920
+So with yearly product sales.
+
+04:09.960 --> 04:13.320
+This is the new name that you are giving for these results.
+
+04:13.320 --> 04:16.880
+And now what we're going to do, we're going to build queries on top of these results.
+
+04:16.880 --> 04:20.560
+So first of all I will just select everything from this table.
+
+04:20.600 --> 04:22.720
+Yearly product sales just to test.
+
+04:22.720 --> 04:23.760
+So it is working.
+
+04:23.760 --> 04:26.680
+Now I'm selecting data from our CTE.
+
+04:26.720 --> 04:31.000
+So now the next step I'm going to go and list all the columns that I want in my results.
+
+04:31.000 --> 04:36.360
+So the order date, the product name the current sales.
+
+04:36.960 --> 04:37.920
+This is just nicer.
+
+04:37.920 --> 04:42.040
+In order to have control on which columns you want to present at the end results.
+
+04:42.160 --> 04:49.120
+Now the next step, I'm going to go and order the data by first the product name and then the order
+
+04:49.160 --> 04:49.600
+here.
+
+04:49.600 --> 04:52.280
+And with that we can have better understanding of the results.
+
+04:52.280 --> 04:55.320
+So we can see this product has three years of sales.
+
+04:55.360 --> 04:57.880
+And those are the current sales for each year.
+
+04:57.880 --> 05:02.240
+So now we have to go and calculate the average of those three sales.
+
+05:02.240 --> 05:08.520
+So in order to do that we're going to use the average current sales over.
+
+05:09.160 --> 05:11.600
+We have to decide now how to partition the data.
+
+05:11.640 --> 05:16.440
+Since we are focusing on the products, we have to partition the results by the product name.
+
+05:16.440 --> 05:20.120
+So we're going to say partition by product name.
+
+05:20.520 --> 05:23.480
+And we don't have to sort the data because we are using the average.
+
+05:23.480 --> 05:25.840
+So it doesn't matter how the data is sorted.
+
+05:25.840 --> 05:28.120
+So let's call it average sales.
+
+05:28.120 --> 05:29.760
+So let's go and execute it.
+
+05:29.800 --> 05:35.320
+And now if you are looking to the results for this product, the average sales of all the three values
+
+05:35.360 --> 05:36.880
+is 13,000.
+
+05:36.920 --> 05:43.400
+So now as you can see for each row we have the current sales and side by side with the average sales
+
+05:43.400 --> 05:45.920
+and the same thing for the next product as well.
+
+05:45.920 --> 05:51.200
+So now since we have both of the informations on the same row, current sales and the average, the
+
+05:51.200 --> 05:55.240
+change, the difference between the current value and the average value.
+
+05:55.240 --> 05:57.320
+So all what you have to do is to go and subtract.
+
+05:57.320 --> 05:57.720
+Right.
+
+05:57.720 --> 06:03.360
+So we're going to say the current sales subtracted by the average sales.
+
+06:03.360 --> 06:07.520
+And we're going to call it the difference in average.
+
+06:07.520 --> 06:09.480
+So let's go and execute it.
+
+06:09.480 --> 06:15.370
+And now as you can see we are getting now The comparison we have, the differences between the current
+
+06:15.370 --> 06:16.210
+and the average.
+
+06:16.210 --> 06:21.770
+And of course, what I like to do is to make a flag or like indicator, whether we are above the average
+
+06:21.770 --> 06:23.530
+or below the average or at the average.
+
+06:23.530 --> 06:26.890
+So in order to do that, we're going to go and use the case statement.
+
+06:26.890 --> 06:35.610
+So if the difference is higher than zero then we are above the average right above average.
+
+06:35.650 --> 06:37.530
+Or let's have an abbreviation for that.
+
+06:37.570 --> 06:41.890
+And if we are below zero that means we are below the average right.
+
+06:41.890 --> 06:45.450
+So below then below average.
+
+06:45.650 --> 06:49.650
+And if it is exactly zero else then it is average.
+
+06:49.650 --> 06:50.970
+So that's it.
+
+06:51.010 --> 06:51.890
+Let's end it.
+
+06:52.090 --> 06:54.450
+And I'm going to call it average change.
+
+06:55.130 --> 06:57.130
+So let's go and execute it.
+
+06:57.130 --> 07:03.610
+Now if you focus again on one of the products you can see the current sales of this product in 2012.
+
+07:03.650 --> 07:05.210
+It is below the average.
+
+07:05.210 --> 07:06.050
+It is really low.
+
+07:06.050 --> 07:10.650
+And for the next year for 2013 it is above the average.
+
+07:10.690 --> 07:16.770
+It was really nice year for this product and the last year 2014, it was again below the average.
+
+07:16.770 --> 07:22.450
+So with that we have really nice flag in order to see quickly whether we are above or below the average.
+
+07:22.450 --> 07:25.410
+And it is interesting to see whether we have zeros.
+
+07:25.410 --> 07:28.370
+So yeah, sometimes it is exactly like the average.
+
+07:28.370 --> 07:29.770
+And here we have like zero.
+
+07:29.810 --> 07:31.370
+It's not below or above.
+
+07:31.410 --> 07:37.330
+So with that we are comparing the performance of the sales of each products with the average.
+
+07:37.330 --> 07:40.890
+And as you can see it is really simple using the window functions.
+
+07:40.890 --> 07:42.690
+So let's go and check again our task.
+
+07:42.690 --> 07:46.130
+We have compared the current sales to the average sales performance.
+
+07:46.170 --> 07:50.330
+Now we have to compare it as well with the previous year's sales.
+
+07:50.330 --> 07:52.850
+So let's go back to our example over here.
+
+07:52.850 --> 07:58.250
+This time we have to compare the current sales not with the average but with the previous year.
+
+07:58.250 --> 08:01.730
+So we don't have to write like another CTE or query.
+
+08:01.770 --> 08:03.890
+We can continue with the same results.
+
+08:03.890 --> 08:07.250
+So now all what we have to do is to access the previous year.
+
+08:07.250 --> 08:10.770
+And in order to do that we have amazing window function called lag.
+
+08:10.770 --> 08:12.250
+So let's do it step by step.
+
+08:12.250 --> 08:15.930
+So now we're going to go and create a new column called Old lag.
+
+08:15.970 --> 08:19.090
+I want to access the previous value of what?
+
+08:19.090 --> 08:20.010
+The current sales.
+
+08:20.010 --> 08:20.330
+Right.
+
+08:20.330 --> 08:23.210
+So current sales and over.
+
+08:24.130 --> 08:28.410
+We still have to partition the data by the product name because we focus on the products.
+
+08:28.410 --> 08:31.530
+So partition by product name.
+
+08:31.890 --> 08:36.770
+But now in order to access the previous value, that means we have to sort the data and we're going
+
+08:36.770 --> 08:40.010
+to sort it by the years we need the previous year.
+
+08:40.010 --> 08:45.410
+So we're going to say order by order year, and we're going to sort it ascending from the lowest to
+
+08:45.450 --> 08:46.050
+the highest.
+
+08:46.050 --> 08:47.610
+So we're going to leave it like this.
+
+08:47.610 --> 08:52.690
+And with that, this window function is going to give us the previous years sales of the products.
+
+08:52.690 --> 08:56.170
+So I'm just going to call it previous year sales like this.
+
+08:56.210 --> 08:58.290
+And I think here we have something wrong okay.
+
+08:58.330 --> 09:02.330
+So let's go and execute it and let's go and focus on one of those products.
+
+09:02.330 --> 09:06.490
+So now for the first year of this product the previous year was null right.
+
+09:06.490 --> 09:09.290
+So we don't have any data from the previous year.
+
+09:09.290 --> 09:13.170
+But for the 2013 we have a previous year of 2012.
+
+09:13.170 --> 09:19.010
+So that's why now we are getting the previous value of the sales based on the years and the same thing
+
+09:19.010 --> 09:20.010
+for the last year.
+
+09:20.050 --> 09:23.210
+Over here you can see we are getting the previous sales.
+
+09:23.210 --> 09:24.370
+So it is working.
+
+09:24.370 --> 09:26.410
+And for the next window, same thing.
+
+09:26.410 --> 09:31.130
+For the first year you will get null and the previous sales will get it from the previous year.
+
+09:31.130 --> 09:33.690
+So with that we have now the previous sales.
+
+09:33.690 --> 09:39.490
+And if you check this over here, we have in the same row now the current sales of the current year
+
+09:39.490 --> 09:42.770
+and as well the sales of the previous year.
+
+09:42.850 --> 09:44.610
+Now what we have to do the same thing.
+
+09:44.610 --> 09:48.610
+We have to go and subtract those two informations in order to compare them.
+
+09:48.610 --> 09:49.010
+Right.
+
+09:49.050 --> 09:51.010
+So we're going to go and do the same thing.
+
+09:51.130 --> 09:56.530
+So we will get the current sales minus the whole thing, the whole window function.
+
+09:56.530 --> 09:59.290
+And we can call it previous year.
+
+09:59.410 --> 10:01.290
+So difference of the previous year.
+
+10:01.290 --> 10:04.330
+And with that we are calculating the differences between them.
+
+10:04.330 --> 10:09.570
+So for this year for this product as you can see the difference here is really big between the current
+
+10:09.570 --> 10:10.970
+sales and the previous year.
+
+10:11.010 --> 10:15.250
+Now of course what we can do, we can go and make as well a flag or an indicator.
+
+10:15.250 --> 10:18.890
+I'm going to go and copy the whole thing from the previous average.
+
+10:18.890 --> 10:22.130
+But we have to go and get the right function.
+
+10:22.250 --> 10:23.890
+This are the same over here.
+
+10:23.930 --> 10:26.210
+And now it is not above or below the average.
+
+10:26.210 --> 10:29.490
+I'm going to say it is increasing or decreasing right.
+
+10:29.530 --> 10:31.970
+So increase or decrease.
+
+10:32.490 --> 10:34.770
+And we're going to call it previous year change.
+
+10:34.810 --> 10:37.210
+And instead of average we can say no change.
+
+10:37.730 --> 10:40.090
+So let's go and execute it.
+
+10:40.090 --> 10:42.090
+And I'm having here an extra comma.
+
+10:42.130 --> 10:43.570
+Let's go and execute it.
+
+10:43.570 --> 10:46.650
+So again let's go and focus of one of those products.
+
+10:46.650 --> 10:51.050
+For the first year of this product there is no change because there is no previous year.
+
+10:51.050 --> 10:55.090
+For the next year of this product we have an increase, right.
+
+10:55.130 --> 10:58.650
+Because the current sales is way higher than the previous year.
+
+10:58.690 --> 11:03.970
+And now by going to the last year of this product, we have a decrease because the current sales is
+
+11:03.970 --> 11:05.810
+less than the previous year.
+
+11:05.810 --> 11:11.810
+So my friends, we call this type of analysis year over year analysis.
+
+11:11.810 --> 11:15.650
+And if you want to calculate the month over month analysis, it's very simple.
+
+11:15.810 --> 11:19.690
+All you have to do is to go and change the function from year to a month.
+
+11:19.730 --> 11:25.170
+And with that you are extracting the month part, and the difference between analyzing the months and
+
+11:25.170 --> 11:27.250
+years is of course, the scope.
+
+11:27.290 --> 11:32.570
+Year over year is good for long term trends analyses where on the other hand, the month over month
+
+11:32.570 --> 11:35.290
+it is short term trends analysis.
+
+11:35.290 --> 11:38.370
+You are just focusing on the seasonality of your data.
+
+11:38.370 --> 11:44.610
+So this is how we analyze the performance of our business by comparing the current measure with a target
+
+11:44.610 --> 11:45.050
+measure.
+
+11:45.050 --> 11:47.970
+And you can go and use different dimensions and stuff.
+
+11:47.970 --> 11:53.170
+So instead of the sales you can check the quantity instead of products, you can check the customers
+
+11:53.170 --> 11:58.250
+and you can go and compare the current information not only with the average or the previous year.
+
+11:58.250 --> 12:04.210
+You can compare it with the lowest sales and the highest sales, and it can open the door for many different
+
+12:04.210 --> 12:04.850
+insights.
+
+12:04.850 --> 12:07.330
+But we are always using the same methods.
+
+12:07.330 --> 12:13.450
+Using the window functions, we compare the current value with another value in our datasets.
+
+12:13.490 --> 12:15.650
+So this is how we do performance comparison.
+
+12:15.690 --> 12:16.010
+All right.
+
+12:16.010 --> 12:20.050
+So with that you have learned how to analyze the performance of our business.
+
+12:20.050 --> 12:23.290
+Now in the next step we are going to do part two whole analysis.
+
+12:23.290 --> 12:24.010
+So let's go.

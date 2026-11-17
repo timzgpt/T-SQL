@@ -1,0 +1,466 @@
+WEBVTT
+
+00:04.000 --> 00:04.520
+Okay, guys.
+
+00:04.520 --> 00:08.720
+So now we're gonna go and understand the rules or let's say the limitations of window functions.
+
+00:08.720 --> 00:13.480
+So let's learn what you are not allowed to do while using window functions okay.
+
+00:13.560 --> 00:20.080
+So the first rule that you are allowed to use the window function only in the Select clause and as well
+
+00:20.080 --> 00:21.360
+in the order by clause.
+
+00:21.360 --> 00:25.680
+So here we have again the same example where we're finding the total sales by the order status.
+
+00:25.680 --> 00:29.160
+So as you can see we used the window function in the Select clause.
+
+00:29.200 --> 00:31.240
+And we didn't get any error right.
+
+00:31.240 --> 00:34.440
+So now we can go and use it as well in the order by.
+
+00:34.480 --> 00:40.160
+So let's say order by and let's go and copy everything but not the name in the order by.
+
+00:40.200 --> 00:44.360
+So if I go and execute this there will be no errors and SQL going to allow it.
+
+00:44.360 --> 00:46.120
+And as you can see the result didn't change.
+
+00:46.120 --> 00:48.840
+So let's go and sort it for example descending.
+
+00:48.840 --> 00:50.760
+So I'm going to write here descending.
+
+00:50.760 --> 00:52.040
+And let's execute.
+
+00:52.080 --> 00:55.920
+Now we have the total sales with the highest values then the lowest values.
+
+00:55.920 --> 01:01.200
+So having this rule that we can use it only in select and order by that means we cannot use window functions
+
+01:01.200 --> 01:02.800
+in order to filter data.
+
+01:03.120 --> 01:06.990
+So let me show you for example instead of order by.
+
+01:07.030 --> 01:11.910
+Let's have a where clause where the total sales, let's say bigger than 100.
+
+01:11.910 --> 01:13.470
+So let's go and execute this.
+
+01:13.470 --> 01:16.670
+And as you can see SQL going to say no you are not allowed to do that.
+
+01:16.670 --> 01:19.110
+You can do that only for select and order by.
+
+01:19.150 --> 01:23.110
+So we are not allowed to use it for filtering data using the Where clause.
+
+01:23.270 --> 01:25.710
+And as well you are not allowed to use it in the group by.
+
+01:25.950 --> 01:30.310
+So if I go and do a group by and I will remove the condition over here.
+
+01:30.630 --> 01:32.750
+So if you execute it, you're going to get the same error.
+
+01:32.790 --> 01:38.950
+You are not allowed to use the window function in the group by so only with the order by or as well
+
+01:38.950 --> 01:40.150
+in the Select clause.
+
+01:40.190 --> 01:41.910
+Okay, so now to the second rule.
+
+01:41.950 --> 01:45.910
+You cannot use window functions inside another window function.
+
+01:45.910 --> 01:49.430
+So that means you cannot go and nest window functions together.
+
+01:49.470 --> 01:50.830
+Let me show you what I mean with that.
+
+01:50.830 --> 01:52.190
+So let's remove the group.
+
+01:52.190 --> 01:54.510
+By now everything should be working.
+
+01:54.790 --> 01:59.030
+Let's take and copy the whole window function over here and let's just nest it.
+
+01:59.030 --> 02:04.230
+So instead of sales we're going to have now window function inside another window function.
+
+02:04.230 --> 02:07.830
+So as you can see this is the inner window function.
+
+02:08.030 --> 02:11.390
+And the rest the outside is the outside of the function.
+
+02:11.390 --> 02:16.780
+So if I go and execute this, you will see that SQL can tell us you cannot use the window function in
+
+02:16.780 --> 02:19.100
+the context of another window function.
+
+02:19.100 --> 02:22.340
+So we cannot do nesting using window functions.
+
+02:22.340 --> 02:25.540
+So as you can see this is another limitation for those functions.
+
+02:25.580 --> 02:27.100
+All right moving to the third rule.
+
+02:27.100 --> 02:28.180
+Let's say an info.
+
+02:28.740 --> 02:33.060
+The window function can be executed after filtering the data with the where clause.
+
+02:33.100 --> 02:34.180
+Let's have an example.
+
+02:34.180 --> 02:37.900
+So okay so now let's say that I would like to have the same information as the total sales for each
+
+02:37.900 --> 02:42.100
+status, but only for two products 101 and 102.
+
+02:42.140 --> 02:43.740
+So let's go and do that.
+
+02:43.740 --> 02:45.660
+So we're going to use the Where clause.
+
+02:45.860 --> 02:47.940
+And then we're going to say product ID.
+
+02:47.940 --> 02:51.500
+And we're going to specify 101 and 102.
+
+02:51.540 --> 02:53.620
+So let's go and execute this.
+
+02:53.620 --> 02:55.740
+Now you can see we still have two partitions.
+
+02:55.740 --> 02:58.060
+So one for the delivered and one for the shipped.
+
+02:58.300 --> 03:04.060
+But the total sales is reduced because we are only focusing on two products and we filtered the whole
+
+03:04.060 --> 03:04.700
+data sets.
+
+03:04.740 --> 03:06.060
+So how SQL works.
+
+03:06.060 --> 03:08.540
+First the Where clause is going to be executed.
+
+03:08.540 --> 03:11.620
+And then the window function is going to be calculated.
+
+03:11.620 --> 03:14.260
+So that means first filtering and then aggregations.
+
+03:14.300 --> 03:14.700
+Okay guys.
+
+03:14.700 --> 03:18.850
+Now we're going to move to the last rule to the most interesting one and it says the following.
+
+03:19.210 --> 03:24.490
+You are allowed to use the window function together with a group by clause only if you use the same
+
+03:24.490 --> 03:25.170
+columns.
+
+03:25.170 --> 03:25.810
+So let me explain.
+
+03:25.810 --> 03:26.330
+What do I mean?
+
+03:26.330 --> 03:27.530
+But first some coffee.
+
+03:30.930 --> 03:36.810
+Let's have the following task and it says rank the customers based on their total sales.
+
+03:36.810 --> 03:41.250
+So now it sounds really easy, but if you check it, you have here two calculations.
+
+03:41.370 --> 03:43.890
+The first one you have to rank the customers.
+
+03:43.890 --> 03:46.170
+And the second calculation is an aggregation.
+
+03:46.370 --> 03:49.170
+You have to find the total sales for each customers.
+
+03:49.210 --> 03:49.370
+Okay.
+
+03:49.410 --> 03:52.730
+So now I'm going to show you step by step how I usually solve those tasks.
+
+03:52.930 --> 03:55.050
+So for now let's check the total sales.
+
+03:55.410 --> 03:56.650
+It is an aggregation right.
+
+03:56.650 --> 03:58.530
+So we can use the sum function.
+
+03:58.530 --> 04:03.170
+And this function is available in both groupby and as well in the window function.
+
+04:03.450 --> 04:05.130
+So for now I'm going to go with the groupby.
+
+04:05.130 --> 04:07.410
+And that's because the task is very simple.
+
+04:07.410 --> 04:09.530
+We don't have to show any other details right.
+
+04:09.730 --> 04:11.330
+So it's all about aggregations.
+
+04:11.530 --> 04:13.170
+So why not using the groupby.
+
+04:13.290 --> 04:16.610
+And now to the first part where we have to rank the customers.
+
+04:16.610 --> 04:19.770
+We cannot use the rank function with a groupby, right?
+
+04:19.810 --> 04:21.850
+GroupBy uses only aggregations.
+
+04:21.850 --> 04:24.550
+So here we are forced to use the window function.
+
+04:24.550 --> 04:29.230
+So that means for the rank I'm going to use window function for the total sales I'm going to use a groupie.
+
+04:29.270 --> 04:31.190
+So now let's do it step by step.
+
+04:31.310 --> 04:35.550
+So first we have to find the total sales for each customer using groupie.
+
+04:35.590 --> 04:36.550
+It's very simple.
+
+04:36.790 --> 04:40.230
+So I'm just going to remove all those stuff in our select statements.
+
+04:40.390 --> 04:45.550
+We need the customer ID and then we don't need a window function over here.
+
+04:45.550 --> 04:49.790
+And then after the from we're going to have a group by customer ID.
+
+04:49.790 --> 04:53.870
+So now I'm just grouping the customers and finding the sum of all sales.
+
+04:53.910 --> 04:55.470
+Let's go and execute this.
+
+04:55.470 --> 04:58.110
+So now as you can see in the results we have four customers.
+
+04:58.110 --> 04:59.830
+And that's why we have four rows.
+
+04:59.870 --> 05:01.670
+And as well we have the total sales.
+
+05:01.670 --> 05:05.750
+So let's say the half of the tasks is already solved right now.
+
+05:05.750 --> 05:06.550
+What is missing.
+
+05:06.550 --> 05:08.470
+Thus we need a rank.
+
+05:08.470 --> 05:09.910
+So let's go and build that.
+
+05:10.350 --> 05:13.270
+The second step we're going to use the rank function.
+
+05:13.270 --> 05:14.910
+And we're going to define a window for that.
+
+05:14.910 --> 05:20.310
+So over and inside it will not partition the data at all because it's already like grouped up.
+
+05:20.310 --> 05:24.550
+So what we're going to do over order by the rank function always needs an order by.
+
+05:24.590 --> 05:25.150
+Don't worry about it.
+
+05:25.150 --> 05:26.150
+We can talk about it later.
+
+05:26.150 --> 05:29.460
+So now we are ranking the data based on the total sales.
+
+05:29.460 --> 05:31.420
+That means the sum of sales.
+
+05:31.420 --> 05:35.900
+So what we're going to do, let's just go and copy this and put it after the order by.
+
+05:35.940 --> 05:38.980
+And now we have to decide whether ascending or descending is going to be descending.
+
+05:38.980 --> 05:41.380
+So the highest sales first and then the lowest sales.
+
+05:41.380 --> 05:44.740
+So now as you can see we have now a rank customers.
+
+05:45.060 --> 05:49.020
+And we have a window function now together with the groupby.
+
+05:49.060 --> 05:52.460
+So now let's go and execute this and see whether SQL can allow it.
+
+05:52.620 --> 05:53.540
+So let's run it.
+
+05:53.540 --> 05:55.660
+And as you can see it runs it.
+
+05:55.660 --> 05:58.100
+And we will get the rank for each customers.
+
+05:58.340 --> 06:01.340
+So the customer three has the highest total sale.
+
+06:01.580 --> 06:02.780
+Then the customer number one.
+
+06:02.780 --> 06:06.500
+And the last one going to be customer number two with the lowest total sales.
+
+06:06.500 --> 06:06.900
+All right.
+
+06:06.900 --> 06:08.100
+So we solved the tasks.
+
+06:08.100 --> 06:11.740
+We have now ranked the customers based on their total sales.
+
+06:11.740 --> 06:17.260
+So as you can see SQL allows you to use window function together with the groupby but only with one
+
+06:17.260 --> 06:17.620
+rule.
+
+06:17.620 --> 06:22.580
+Anything that you are using inside the window function should be part of the groupby.
+
+06:22.740 --> 06:27.460
+So for example, we fulfill the rule because we are using the sum of sales and the sum of sales is a
+
+06:27.460 --> 06:28.980
+part of the groupby.
+
+06:28.980 --> 06:29.340
+Right?
+
+06:29.340 --> 06:33.770
+So now if I go and just break the rule by not using the sum, just using the cells.
+
+06:34.090 --> 06:40.690
+So if I just remove the sum and use only the cells, SQL will not allow it because the cells is not
+
+06:40.690 --> 06:41.730
+part of the groupby.
+
+06:41.770 --> 06:43.690
+So as you can see, SQL is very strict with this.
+
+06:43.730 --> 06:49.890
+If you want to use everything in one query without using subqueries and so on, you have to use exact
+
+06:49.890 --> 06:50.690
+same columns.
+
+06:50.770 --> 06:54.530
+So for example, if I go over here instead of sales, I use the customer ID.
+
+06:55.130 --> 06:59.450
+So since the customer ID is a part of the group by SQL allows it.
+
+06:59.450 --> 07:02.290
+So be careful using window function together with the groupby.
+
+07:02.330 --> 07:07.410
+As long as you are using the same columns, nothing can go wrong and SQL allows it.
+
+07:07.450 --> 07:11.970
+Okay, so now I'm just going to go and fix this and let's run it.
+
+07:12.010 --> 07:14.770
+So now as you can see it's really easy if you follow those steps.
+
+07:15.090 --> 07:17.170
+First build the query using groupby.
+
+07:17.210 --> 07:18.850
+So don't you think about the window function.
+
+07:18.850 --> 07:24.530
+Just build the groupby and then the next step, the last one you go and define and build the window
+
+07:24.530 --> 07:25.050
+function.
+
+07:25.050 --> 07:30.250
+So with that you can solve really nice analytical use cases with a simple one query without having you
+
+07:30.250 --> 07:32.330
+to build like subqueries and so on.
+
+07:32.370 --> 07:35.050
+You can go and use groupby together with the window functions.
+
+07:35.090 --> 07:35.730
+All right guys.
+
+07:35.730 --> 07:38.810
+So those are the four rules for the SQL window functions.

@@ -1,0 +1,594 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.159
+OK, so now what is like operator?
+
+2
+00:00:06.159 --> 00:00:10.039
+You can use it in order to search for a pattern in your text.
+
+3
+00:00:10.039 --> 00:00:15.640
+So if you have like a text or characters and you are searching for a specific pattern inside the text.
+
+4
+00:00:15.640 --> 00:00:18.239
+So let's have an example in order to understand exactly what this means.
+
+5
+00:00:18.239 --> 00:00:24.040
+OK, so now if you don't have yet cafe, go grab one because you have to focus for this one.
+
+6
+00:00:24.040 --> 00:00:25.799
+Now what we have to do is to define a pattern.
+
+7
+00:00:25.799 --> 00:00:29.700
+In Israel, in order to build a pattern, we have like two special characters.
+
+8
+00:00:29.700 --> 00:00:34.099
+If you use a percentage, you are saying anything, so I'm going to accept anything.
+
+9
+00:00:34.099 --> 00:00:38.520
+So it could be no characters at all or only one character or many characters.
+
+10
+00:00:38.520 --> 00:00:39.740
+So I'm saying anything.
+
+11
+00:00:39.740 --> 00:00:46.060
+Now if you use an underscore, you are expecting to have exactly one thing like one character or one number.
+
+12
+00:00:46.060 --> 00:00:47.459
+So it is exactly one.
+
+13
+00:00:47.459 --> 00:00:50.860
+I know this sounds complicated, but with an example, you can understand this.
+
+14
+00:00:50.860 --> 00:00:55.020
+And I can tell you the percentage is way more famous than the underscore.
+
+15
+00:00:55.020 --> 00:00:57.180
+I really, really use the underscore.
+
+16
+00:00:57.180 --> 00:00:59.459
+So now let's say that I build a pattern like this.
+
+17
+00:00:59.500 --> 00:01:03.380
+I say the first character must be M and then percentage.
+
+18
+00:01:03.380 --> 00:01:08.819
+So here I'm saying in my text, the first character must be an M. And after the first character,
+
+19
+00:01:08.819 --> 00:01:09.980
+I really don't care.
+
+20
+00:01:09.980 --> 00:01:12.500
+It could be any character, any number, whatever.
+
+21
+00:01:12.500 --> 00:01:13.739
+So this is the pattern.
+
+22
+00:01:13.739 --> 00:01:17.180
+And now let's have a few values in order to say whether it's true or false.
+
+23
+00:01:17.180 --> 00:01:22.660
+So now if you have the value Maria, so now we can see the first character is an M, which is perfect.
+
+24
+00:01:22.660 --> 00:01:24.379
+This is exactly our pattern.
+
+25
+00:01:24.379 --> 00:01:29.779
+The first character must be an M. And then after the M, we got like four characters. So whatever.
+
+26
+00:01:29.779 --> 00:01:30.779
+It is totally fine.
+
+27
+00:01:30.779 --> 00:01:33.660
+We can say Maria is fulfilling our pattern.
+
+28
+00:01:33.660 --> 00:01:35.980
+And this is exactly what we are searching for.
+
+29
+00:01:35.980 --> 00:01:37.660
+This value is fulfilling the condition.
+
+30
+00:01:37.660 --> 00:01:42.180
+Okay, now moving on to the next value, we have M A. So here again, the first character
+
+31
+00:01:42.180 --> 00:01:44.220
+is an M, which is perfect.
+
+32
+00:01:44.220 --> 00:01:47.900
+And after that, we have only one character A. Well, we have saved percentage.
+
+33
+00:01:47.900 --> 00:01:51.940
+So it could be anything, one character, multiple characters, a number or whatever.
+
+34
+00:01:51.940 --> 00:01:54.779
+So that's why this value can match our pattern.
+
+35
+00:01:54.779 --> 00:01:56.419
+And we will see it in the outputs.
+
+36
+00:01:56.419 --> 00:02:01.180
+Now moving on to the next value, we have only one M, which is as well totally fine.
+
+37
+00:02:01.180 --> 00:02:05.220
+Because we are saying the first character must be an M, and then followed with anything.
+
+38
+00:02:05.220 --> 00:02:07.620
+Now moving on to the last scenario, we have Emma.
+
+39
+00:02:07.620 --> 00:02:12.339
+Now this is a problematic because the first character is an E. And in our pattern, we
+
+40
+00:02:12.339 --> 00:02:16.059
+say it must start with M. So we don't have that in this world.
+
+41
+00:02:16.059 --> 00:02:20.619
+The first character is an E. That's why this value is not fulfilling our pattern.
+
+42
+00:02:20.619 --> 00:02:23.820
+And SQL gonna remove this value from the final results.
+
+43
+00:02:23.820 --> 00:02:27.539
+So this is exactly what can happen if we have this pattern and those values.
+
+44
+00:02:27.539 --> 00:02:31.979
+Now let's have another scenario, where you say, you know what, it could start with anything.
+
+45
+00:02:31.979 --> 00:02:37.500
+But for me, it is very important, the last two characters, it must be an I and N. So
+
+46
+00:02:37.500 --> 00:02:42.940
+we could start with anything, but the last two must be an I and N. So let's take this value Martin.
+
+47
+00:02:42.940 --> 00:02:45.820
+SQL gonna go and check immediately the last two characters.
+
+48
+00:02:45.820 --> 00:02:51.100
+So you can see we have an I and N. And the first part, Martz, it is fine, could be anything.
+
+49
+00:02:51.100 --> 00:02:56.699
+So this value is fulfilling the condition because the last two characters is an I and N.
+
+50
+00:02:56.699 --> 00:03:01.460
+Now moving on to the next one, we have Vin. So V-I-N. The last two characters is as well
+
+51
+00:03:01.460 --> 00:03:05.619
+exactly what we are searching for. It is fulfilling the condition. And we have before it like
+
+52
+00:03:05.619 --> 00:03:08.660
+only V. So we say anything with a percentage, right?
+
+53
+00:03:08.660 --> 00:03:13.339
+Now one more, we have I-N. So it is as well fulfilling the condition because before it,
+
+54
+00:03:13.339 --> 00:03:18.080
+we don't have anything. So E-N is fulfilling as well the condition. The percentage is always
+
+55
+00:03:18.080 --> 00:03:19.080
+saying anything.
+
+56
+00:03:19.080 --> 00:03:23.800
+Now moving on to the last scenario, we have Jasmine. They are not the last two characters.
+
+57
+00:03:23.800 --> 00:03:29.080
+The last two characters is an N and E. And this is not matching our pattern. And this
+
+58
+00:03:29.080 --> 00:03:33.399
+why this value is not fulfilling our pattern, and you will not see it in the results.
+
+59
+00:03:33.399 --> 00:03:38.440
+So with that, you can understand how we can search for something in a text using the like operator.
+
+60
+00:03:38.440 --> 00:03:42.639
+Let's keep going. Now let's say that I have a percentage at the start and percentage at
+
+61
+00:03:42.639 --> 00:03:47.520
+the end. And in between, I have only one character, an R. If you define it like this, you are
+
+62
+00:03:47.520 --> 00:03:53.119
+saying if there is an R anywhere, it is good enough, whether it's beginning or at the end
+
+63
+00:03:53.119 --> 00:03:55.919
+or in between, then the condition is fulfilled.
+
+64
+00:03:55.919 --> 00:03:59.759
+So if you have Maria, you can see we have an R in the middle. So in the left side, we
+
+65
+00:03:59.759 --> 00:04:03.279
+have two characters. On the right side, we have two characters. Doesn't matter. The main
+
+66
+00:04:03.279 --> 00:04:06.720
+thing we have an R somewhere. So this is going to be fulfilling the condition.
+
+67
+00:04:06.720 --> 00:04:11.279
+Now moving on to Peter, we have an R at the end, and that is totally fine because we say
+
+68
+00:04:11.279 --> 00:04:15.279
+it at the right side, it could be anything. So we have an R somewhere. That's why it's
+
+69
+00:04:15.279 --> 00:04:19.440
+going to fulfill the condition. Now we have another case where we say Ryan. We have an
+
+70
+00:04:19.440 --> 00:04:23.839
+R at the start, so we don't have anything before. And we have after that, like three
+
+71
+00:04:23.839 --> 00:04:29.040
+characters, which is totally fine. So we don't really care about the position of the R. It
+
+72
+00:04:29.040 --> 00:04:33.760
+is totally acceptable to have an R anywhere. And if you have only an R, that is as well
+
+73
+00:04:33.760 --> 00:04:37.440
+good enough. You don't have anything before, you don't have anything after, and that's
+
+74
+00:04:37.440 --> 00:04:42.239
+okay. But if you have a word like Alice, we don't have any R inside it. So that's why
+
+75
+00:04:42.239 --> 00:04:46.320
+this is the only case where you say we don't have here an R and it's going to
+
+76
+00:04:46.320 --> 00:04:50.720
+remove this value from the results. And this way of searching of something is very famous.
+
+77
+00:04:50.720 --> 00:04:55.119
+You don't care about the words before this word and after the word, right? So if you
+
+78
+00:04:55.119 --> 00:04:59.679
+are searching for any word, you're going to say percentage before and percentage after.
+
+79
+00:04:59.679 --> 00:05:03.440
+Now I know that we want to practice with the underscore. So let's say that I have two
+
+80
+00:05:03.440 --> 00:05:08.399
+underscores and then the character B and then a percentage. So here what I'm saying, there
+
+81
+00:05:08.399 --> 00:05:12.399
+should be something in the first position. There should be as well something in the second
+
+82
+00:05:12.399 --> 00:05:17.760
+position. Then the third position should be the character B must be exactly at this position.
+
+83
+00:05:17.760 --> 00:05:21.519
+And after that, it could be anything. So we really don't care. I know this is a little
+
+84
+00:05:21.519 --> 00:05:25.679
+bit complicated. Let's have an example. So we have the value Albert. Now we can see the
+
+85
+00:05:25.679 --> 00:05:30.079
+first position. We have something, the A, then the second position we have as well something,
+
+86
+00:05:30.079 --> 00:05:34.640
+the L. So, so far we are good at the pattern. And then the third position we have B. So
+
+87
+00:05:34.640 --> 00:05:40.399
+we have complete match and the rest, the ERT, whatever. So with that, Albert is matching
+
+88
+00:05:40.399 --> 00:05:44.480
+our pattern. Moving on to the next one, Rob. You can see the first character, we have something,
+
+89
+00:05:44.480 --> 00:05:49.519
+which is good. We have the R. Then the second character, we have an O. So it's not empty.
+
+90
+00:05:49.519 --> 00:05:53.679
+We have something. And then the third one, we have exactly B. And after that, we don't
+
+91
+00:05:53.679 --> 00:05:57.920
+have anything, which is fine. So again, this value can fulfill the condition. So moving
+
+92
+00:05:57.920 --> 00:06:02.000
+on to the next one. So it starts with an A. So we have something in the first position.
+
+93
+00:06:02.000 --> 00:06:06.160
+The second position, we have as well something, the B. But now the third character, it is a
+
+94
+00:06:06.160 --> 00:06:10.799
+problem. It is not P. We have an E. So that's why it is not following our pattern. And it's
+
+95
+00:06:10.799 --> 00:06:14.880
+still gonna go and remove it. Now moving on to the last example, we have an A and an N.
+
+96
+00:06:14.880 --> 00:06:18.959
+So in the first position, we have something. The second one as well. But the third one,
+
+97
+00:06:18.959 --> 00:06:23.040
+we don't have anything. We don't have a B. So that's why it's gonna be removed. So my friends,
+
+98
+00:06:23.040 --> 00:06:28.079
+I know that was a lot. But this is exactly how you build a pattern for the like operator,
+
+99
+00:06:28.079 --> 00:06:33.119
+using the percentage and the underscore. But the percentage is more famous. So this is exactly how
+
+100
+00:06:33.119 --> 00:06:37.679
+it works. Let's go back to scale in order to have some examples. All right, let's start with this
+
+101
+00:06:37.679 --> 00:06:43.279
+task. Find all customers whose first name starts with a capital M. So let's go and start searching
+
+102
+00:06:43.279 --> 00:06:47.760
+for those informations. We're gonna start as usual. Select star from customers. And now we
+
+103
+00:06:47.760 --> 00:06:52.799
+have to go and build the filter logic. So we're gonna say where. Now we are searching something
+
+104
+00:06:52.799 --> 00:06:58.000
+in the first name. So we're gonna say first name. So that means it is very important to start with
+
+105
+00:06:58.000 --> 00:07:02.880
+an M. And then the rest, it doesn't matter. So we're gonna use the like operator in order to
+
+106
+00:07:02.880 --> 00:07:07.920
+search. And we're gonna have our single quotes. And we're gonna start with the M. And it doesn't
+
+107
+00:07:07.920 --> 00:07:13.440
+matter what comes after that. So for us, it is very important that the first character is an M.
+
+108
+00:07:13.440 --> 00:07:18.959
+Let's go and execute it. And with that, we got our two customers, Maria and Martin. And both of them
+
+109
+00:07:18.959 --> 00:07:24.160
+start with an M. So with that, we have solved the task. It is very simple. Now we have the following
+
+110
+00:07:24.160 --> 00:07:30.160
+task. Find all customers whose first name ends with an N. So let's go first and select all the
+
+111
+00:07:30.160 --> 00:07:36.160
+customers here. And we need all those customers where they are having an N at the end. So we have
+
+112
+00:07:36.160 --> 00:07:41.200
+John and as well Martin. So how are we gonna do it? The same thing, where first name, like, since we
+
+113
+00:07:41.200 --> 00:07:46.959
+are searching. But here, we're gonna change the expression. So it must end with an N as last
+
+114
+00:07:46.959 --> 00:07:51.359
+character. So before that, it doesn't matter whether it is the first character. So it could
+
+115
+00:07:51.359 --> 00:07:57.359
+be anything. But the last character of the word should be an N. So that's it. Let's go and execute.
+
+116
+00:07:57.359 --> 00:08:02.959
+And with that, we got John and Martin. Because the last character is an N. It is very simple, right?
+
+117
+00:08:02.959 --> 00:08:07.359
+It is all about where we're gonna place this percentage. Okay, so now we have the next task.
+
+118
+00:08:07.359 --> 00:08:13.119
+Find all customers whose first name contains an R. So here, we don't have, like, specifications
+
+119
+00:08:13.119 --> 00:08:18.160
+whether it is at the start or at the end. Somewhere there should be an R. So if you go and execute
+
+120
+00:08:18.160 --> 00:08:22.640
+first without any where condition. You can see here, for example, Maria. We have in the middle
+
+121
+00:08:22.640 --> 00:08:28.959
+somewhere an R. George as well. Martin. And Peter at the end. So we have a lot of names with an R.
+
+122
+00:08:28.959 --> 00:08:33.599
+So how we can search for that? We're gonna stick with the where first name, like. And here, our
+
+123
+00:08:33.599 --> 00:08:39.440
+character gonna be an R. And we're gonna put before it and after it percentage. So it doesn't matter
+
+124
+00:08:39.440 --> 00:08:45.119
+what is before it or after it. Somewhere there should be an R. So let's go and execute it. And
+
+125
+00:08:45.119 --> 00:08:50.559
+with that, we got all our customers where somewhere we have an R. As you can see, it is very simple.
+
+126
+00:08:50.559 --> 00:08:56.000
+If you put it before and after, then you are open for more results. And this is usually used a lot
+
+127
+00:08:56.000 --> 00:09:00.239
+in order to search for a value inside your database. Alright, now we're gonna move to a
+
+128
+00:09:00.239 --> 00:09:06.080
+funny one. It's gonna say, find all customers whose first name has an R in the third position.
+
+129
+00:09:06.080 --> 00:09:10.479
+For some reason, I don't know why. So let's go and execute our customers here without any filter.
+
+130
+00:09:10.479 --> 00:09:15.760
+So it is for us very important to find the customers where in the third position we have an R.
+
+131
+00:09:15.760 --> 00:09:20.960
+Like here, for example, Maria. The third character is an R, which is okay. But with Peter over here,
+
+132
+00:09:20.960 --> 00:09:25.119
+it is not the third character. So it is not fulfilling the condition. So how are we gonna
+
+133
+00:09:25.119 --> 00:09:30.239
+write that? It's gonna stay like this, where the first name, like. But we have to write it now from
+
+134
+00:09:30.239 --> 00:09:34.799
+the start. So the first position gonna be an underscore. The second position gonna be as well
+
+135
+00:09:34.799 --> 00:09:39.760
+an underscore. And now in the third position, we're gonna have an R. So with that, we make sure the
+
+136
+00:09:39.760 --> 00:09:45.200
+third position and an R. And before it, we have two positions. And now afterward, it doesn't matter
+
+137
+00:09:45.200 --> 00:09:50.239
+what comes after that. It could be nothing or characters. So if you go and execute it like this,
+
+138
+00:09:50.239 --> 00:09:55.840
+we will get Maria and Martin. And we will not get Peter because the R is not in the third position.
+
+139
+00:09:55.840 --> 00:10:00.080
+So now if you don't do it correctly with the underscores, let's go and remove one of them
+
+140
+00:10:00.080 --> 00:10:05.919
+and execute. You will get nothing because we don't have any first name where the second position is
+
+141
+00:10:05.919 --> 00:10:10.880
+an R. So you have to be very careful with this. All right, my friends. So this is how you search
+
+142
+00:10:10.880 --> 00:10:16.400
+inside your values. And with that, we have covered all different groups of operators that you can use
+
+143
+00:10:16.400 --> 00:10:20.880
+inside a WHERE clause. So with that, you have learned how to filter your data using multiple
+
+144
+00:10:20.880 --> 00:10:26.080
+operators that you can use inside the WHERE clause. So you can filter anything now in SQL.
+
+145
+00:10:26.080 --> 00:10:30.400
+Now we will move to a very interesting topic. You will learn how to combine your data from
+
+146
+00:10:30.400 --> 00:10:35.760
+multiple tables. And here we have two main methods. The first one is SQL joins and the second
+
+147
+00:10:35.760 --> 00:10:40.960
+set operators. And they are really big topics. So we're going to first focus on the SQL joins.
+
+148
+00:10:40.960 --> 00:10:46.239
+And here we have a lot of things to cover. So now we are talking about the core of SQL. So let's go.
+

@@ -1,0 +1,73 @@
+WEBVTT
+
+00:03.920 --> 00:08.320
+Now let's see how the database server executed that temporary SQL.
+
+00:08.360 --> 00:13.600
+So now let's say that you are as a data analyst, you have created a query and then you say into a temporary
+
+00:13.640 --> 00:14.040
+table.
+
+00:14.080 --> 00:16.400
+Now the database engine can identify the query.
+
+00:16.440 --> 00:19.120
+And first it's going to go and execute the query.
+
+00:19.120 --> 00:21.040
+And then it's going to go and execute it.
+
+00:21.040 --> 00:24.400
+And maybe you're going to get the data from the table orders.
+
+00:24.400 --> 00:28.440
+And after the query is executed the database engine now has the results.
+
+00:28.480 --> 00:29.800
+Now two things can happen.
+
+00:29.800 --> 00:35.240
+First the database engine is going to go and store the metadata information in the system catalog.
+
+00:35.280 --> 00:41.520
+And now the second thing the database engine can create a table, but this time not in the users but
+
+00:41.520 --> 00:43.800
+in that temporary storage in the disk.
+
+00:43.800 --> 00:46.080
+So the table can live there for a short time.
+
+00:46.120 --> 00:51.160
+And now what you can do, you can write multiple SQL queries that are doing maybe multiple analysis
+
+00:51.160 --> 00:52.320
+on top of this table.
+
+00:52.520 --> 00:58.200
+So each time you select something, the database engine has to go to the temporary storage and fetch
+
+00:58.200 --> 00:59.200
+the data from there.
+
+00:59.240 --> 01:04.120
+And now once you are finished and let's say you close your client, the session between you and the
+
+01:04.120 --> 01:05.600
+database can end.
+
+01:05.640 --> 01:09.800
+And now the database can understand, okay, there is no more connection to this user.
+
+01:10.120 --> 01:12.040
+And it's going to go and clean up.
+
+01:12.040 --> 01:17.440
+Now the temporary storage with any tables that are created from this session.
+
+01:17.440 --> 01:22.800
+So that means the database is automatically cleaning up the storage maybe for other sessions.
+
+01:22.800 --> 01:26.280
+So this is how the database engine works with the temporary tables.

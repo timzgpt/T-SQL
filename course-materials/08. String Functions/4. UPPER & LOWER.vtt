@@ -1,0 +1,178 @@
+WEBVTT
+
+00:03.920 --> 00:04.240
+Okay.
+
+00:04.280 --> 00:05.640
+So what is our function?
+
+00:05.680 --> 00:09.840
+It can go and convert all the characters of a string to an uppercase.
+
+00:09.840 --> 00:11.440
+It's going to make everything capitalize.
+
+00:11.440 --> 00:13.760
+And the lower function is exactly the opposite.
+
+00:13.800 --> 00:16.880
+It's going to go and convert everything to a lowercase.
+
+00:16.880 --> 00:19.760
+So let's have very simple example for those two functions okay.
+
+00:19.800 --> 00:22.240
+So now we have like three values with different cases.
+
+00:22.240 --> 00:27.120
+The first one where you have only the first character capitalized and the rest is lowercase, and then
+
+00:27.120 --> 00:29.280
+the same value, but everything is lowercase.
+
+00:29.280 --> 00:32.600
+And a third one where you have everything with an uppercase.
+
+00:32.600 --> 00:37.120
+Now if you go and apply the function upper to those three values, what's going to happen for the first
+
+00:37.120 --> 00:40.320
+value is going to go and turn it into an uppercase.
+
+00:40.320 --> 00:44.600
+So everything is going to be capitalized, not only the first character and now for the second value,
+
+00:44.640 --> 00:47.440
+it's going to turn it as well to completely capitalized.
+
+00:47.440 --> 00:49.360
+So all the characters gonna change.
+
+00:49.360 --> 00:52.040
+And for the last value it is already capitalized.
+
+00:52.040 --> 00:53.920
+So in the output you will get the same value.
+
+00:53.920 --> 00:55.720
+So actually nothing can happen for that.
+
+00:55.720 --> 00:57.440
+So this is simply the uppercase.
+
+00:57.440 --> 01:02.200
+Now let's see what can happen if you use the lowercase for the first value, only the first character
+
+01:02.200 --> 01:03.040
+is going to be changed.
+
+01:03.040 --> 01:05.320
+And then you will have everything in lowercase.
+
+01:05.320 --> 01:07.920
+The second value it is already a lowercase value.
+
+01:07.920 --> 01:10.280
+So if you apply lowercase, nothing can happen.
+
+01:10.280 --> 01:11.400
+You will get the same value.
+
+01:11.400 --> 01:16.090
+But for the last one, everything here is capitalized and if you apply lowercase, all the characters
+
+01:16.130 --> 01:17.810
+can convert to a lowercase.
+
+01:17.810 --> 01:19.610
+So my friends, this is very simple.
+
+01:19.610 --> 01:22.050
+Let's go back to SQL in order to practice that.
+
+01:22.090 --> 01:27.890
+Okay, so we have the following task and it says transform the customer's first name to lowercase.
+
+01:27.890 --> 01:29.810
+So now as you can see the first names here.
+
+01:29.810 --> 01:31.530
+The first character is a capital.
+
+01:31.570 --> 01:33.210
+The rest is lowercase.
+
+01:33.210 --> 01:37.010
+So now in this task we have to convert the whole thing into lowercase.
+
+01:37.010 --> 01:38.330
+So let's go and do that.
+
+01:38.370 --> 01:38.970
+It's very simple.
+
+01:38.970 --> 01:44.410
+We're going to say lower first name and let's go and call it low name.
+
+01:44.410 --> 01:45.210
+So that's it.
+
+01:45.210 --> 01:46.530
+Let's go and execute it.
+
+01:46.570 --> 01:51.490
+Now if we go and compare the lower name with the first name, you can see all the characters now in
+
+01:51.530 --> 01:52.370
+the lowercase.
+
+01:52.370 --> 01:53.730
+So that's it for the task.
+
+01:53.730 --> 01:56.410
+We have transformed the first name to lowercase.
+
+01:56.410 --> 01:56.810
+All right.
+
+01:56.810 --> 01:58.570
+The next task is exactly the opposite.
+
+01:58.610 --> 02:02.090
+Transform the customer's first name to uppercase.
+
+02:02.090 --> 02:03.970
+So let's go and have a new column.
+
+02:03.970 --> 02:05.490
+We're going to say upper.
+
+02:05.890 --> 02:10.530
+Then the first name as app name.
+
+02:10.530 --> 02:11.290
+So that's it.
+
+02:11.290 --> 02:11.970
+It's very simple.
+
+02:11.970 --> 02:12.970
+Let's go and execute.
+
+02:13.010 --> 02:16.130
+Now you can see in the output we have a new column called App Name.
+
+02:16.130 --> 02:20.930
+And inside it we have the first name but now all the characters in uppercase.
+
+02:20.930 --> 02:25.290
+So this is how you convert the case to lower or to upper in SQL okay.
+
+02:25.330 --> 02:27.170
+So that's all about the upper and the lower.
+
+02:27.210 --> 02:29.610
+Next we're going to talk about very interesting function.
+
+02:29.610 --> 02:30.610
+It is the trim.

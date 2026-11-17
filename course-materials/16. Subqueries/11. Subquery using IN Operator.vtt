@@ -1,0 +1,466 @@
+WEBVTT
+
+00:03.920 --> 00:04.320
+All right.
+
+00:04.320 --> 00:07.120
+So now we're going to talk about the second group of operators.
+
+00:07.120 --> 00:09.520
+And we're gonna start with the in operator.
+
+00:09.520 --> 00:10.840
+So what is an operator.
+
+00:11.000 --> 00:16.720
+As we learned before in the comparison operators, we can go and filter the data based on only one single
+
+00:16.720 --> 00:17.200
+value.
+
+00:17.200 --> 00:22.560
+But now in some scenarios, we have to go and filter the data based on multiple values, not only one.
+
+00:22.560 --> 00:25.400
+In this case we can go and use the n operator.
+
+00:25.400 --> 00:30.760
+So if we go and use the n operator, it's going to go and check whether the value matches any value
+
+00:30.760 --> 00:31.680
+from a list.
+
+00:31.680 --> 00:35.360
+So a list of multiple values if it matches any of them.
+
+00:35.360 --> 00:37.120
+So we will get true okay.
+
+00:37.160 --> 00:42.080
+So now let's have a quick look to the syntax of the subquery using the in operator.
+
+00:42.080 --> 00:46.520
+So we start with the classic stuff where we say okay we would like to retrieve the column one column
+
+00:46.520 --> 00:48.360
+two from the table one.
+
+00:48.640 --> 00:52.640
+And we want to filter the data based on the column from the table one.
+
+00:52.640 --> 00:56.720
+Now after specifying the column we're going to use the in operator.
+
+00:56.720 --> 00:59.320
+And after that we can go and specify static values.
+
+00:59.320 --> 01:04.810
+But since we are talking about the subqueries the values can come from another query.
+
+01:04.810 --> 01:08.210
+So here we have another Select statement from table two.
+
+01:08.250 --> 01:10.290
+And we filter the data for this query.
+
+01:10.290 --> 01:17.050
+And now the result of this subquery can be used in order to filter the data using the in operator.
+
+01:17.050 --> 01:22.850
+And now the big difference between the in operator and the comparison operator that's the subquery is
+
+01:22.850 --> 01:25.090
+allowed to have multiple rows.
+
+01:25.090 --> 01:31.970
+So there is no rule about having like one single value scalar subquery we can have in the result a list
+
+01:31.970 --> 01:33.530
+of multiple values.
+
+01:33.530 --> 01:37.810
+So this is the syntax of the subquery using the in operator.
+
+01:37.850 --> 01:39.970
+All right let's practice using this task.
+
+01:40.130 --> 01:44.610
+It says show the details of orders made by customers in Germany.
+
+01:44.610 --> 01:46.530
+So let's see how we can solve this task.
+
+01:46.530 --> 01:49.170
+First it needs the details of orders.
+
+01:49.410 --> 01:54.170
+So as we know we have the table sales orders.
+
+01:54.290 --> 01:55.650
+So let's go and execute it.
+
+01:55.650 --> 01:59.330
+So in the output we have all orders and with all details.
+
+01:59.330 --> 02:01.730
+But for the task we don't need all the orders.
+
+02:01.730 --> 02:05.050
+We need only the orders that made by customers from Germany.
+
+02:05.050 --> 02:10.020
+So now if you check the table orders you don't find any information about the countries rights.
+
+02:10.020 --> 02:12.180
+So we have to go and get it from another table.
+
+02:12.180 --> 02:16.660
+And as we know we can find these informations in the table customers.
+
+02:16.660 --> 02:18.220
+So let's build another query.
+
+02:18.260 --> 02:25.820
+So let's say select star from sales customers like this.
+
+02:25.820 --> 02:29.420
+So let's go and execute only the second query like this.
+
+02:29.420 --> 02:32.700
+Now as you can see in the customers we have the country column.
+
+02:32.700 --> 02:34.380
+And this is exactly what we need.
+
+02:34.380 --> 02:37.460
+So now let's make a list of all customers from Germany.
+
+02:37.460 --> 02:39.060
+So we don't need all customers.
+
+02:39.060 --> 02:40.900
+We need only the ones that come from Germany.
+
+02:40.900 --> 02:43.580
+That's why we're going to go and use the Where clause.
+
+02:43.700 --> 02:48.300
+And we say country equal to the value Germany like this.
+
+02:48.660 --> 02:52.860
+So let's go and execute it again and check the results.
+
+02:52.900 --> 02:57.220
+Now in the output we have our German customers number one and number four.
+
+02:57.260 --> 03:01.180
+So now we're going to go and use this information in order to filter the table orders.
+
+03:01.180 --> 03:04.020
+So let's go back to the table orders over here.
+
+03:04.020 --> 03:06.580
+And here we have the customer ID informations.
+
+03:06.580 --> 03:10.940
+And as you can see we need the orders where the customer is either 1 or 4.
+
+03:10.980 --> 03:17.390
+Now In order to filter that, we're going to go to the first query and use the Where clause like this
+
+03:17.830 --> 03:19.910
+and say the customer ID.
+
+03:20.070 --> 03:25.350
+So now since we have like two values one and four, we can go and use the operator in.
+
+03:25.470 --> 03:28.430
+So let's go and use the in and let's go and build the list.
+
+03:28.430 --> 03:31.670
+So let's go and have the one and four.
+
+03:31.710 --> 03:34.070
+So let's go and execute it.
+
+03:34.110 --> 03:35.510
+Now we can see the results.
+
+03:35.510 --> 03:39.870
+We have the orders but only from the customers one and four.
+
+03:39.910 --> 03:41.350
+So with that we have solved the task.
+
+03:41.350 --> 03:44.510
+We have the details of orders made by customers in Germany.
+
+03:44.510 --> 03:44.950
+Right.
+
+03:44.950 --> 03:50.030
+And now of course this is really bad solution because what about if we get like in the future a new
+
+03:50.030 --> 03:54.550
+customer, you don't want to go and keep adding here like values and so on.
+
+03:54.550 --> 04:00.470
+For each time you have a new customer, we want to make the values for this list to be dynamic.
+
+04:00.470 --> 04:02.270
+So we don't need a static value.
+
+04:02.310 --> 04:04.190
+We need like dynamic values.
+
+04:04.350 --> 04:08.150
+And we can use the subqueries in order to retrieve those informations.
+
+04:08.150 --> 04:08.550
+Right.
+
+04:08.550 --> 04:10.830
+And we have it already in the second query.
+
+04:10.830 --> 04:13.310
+So let's go back to the second query over here.
+
+04:13.310 --> 04:15.770
+We need only those two values one and four.
+
+04:15.810 --> 04:21.610
+That's why we're going to go to the query and say, okay, let's retrieve the customer ID.
+
+04:21.610 --> 04:23.970
+So let's go and execute it again.
+
+04:23.970 --> 04:28.210
+And with that we have the one and four exactly like we have it here in the first query.
+
+04:28.250 --> 04:32.730
+And of course in the future if there is like another customer that come from Germany, this is going
+
+04:32.730 --> 04:33.890
+to be a little bit longer.
+
+04:33.890 --> 04:40.250
+So this query can always retrieve all the customer IDs that have the country equal to Germany.
+
+04:40.290 --> 04:44.010
+So now what we're going to do, we're going to take this as a subquery.
+
+04:44.850 --> 04:46.730
+Let's go and get everything from it.
+
+04:46.730 --> 04:49.450
+And now put it instead of those static values.
+
+04:49.450 --> 04:54.810
+So of course we're going to go now and put few spaces to the right side in order to understand this
+
+04:54.810 --> 04:55.850
+is subquery.
+
+04:56.090 --> 04:58.330
+And of course here we don't use any aliases.
+
+04:58.330 --> 04:59.690
+So now what we are doing.
+
+04:59.810 --> 05:06.010
+The results from this subquery can be used in order to filter our main query.
+
+05:06.010 --> 05:12.450
+So let me just call it main query like this and make this smaller.
+
+05:12.450 --> 05:14.490
+So let's go and execute it.
+
+05:14.490 --> 05:16.170
+And now we are getting the same results.
+
+05:16.170 --> 05:21.580
+We are getting all the orders from only the customers one and four where they come from, Germany.
+
+05:21.580 --> 05:26.980
+And these informations come dynamically from the subquery and we don't have to worry about new customers
+
+05:26.980 --> 05:27.460
+from Germany.
+
+05:27.460 --> 05:29.380
+It's going to be added here automatically.
+
+05:29.380 --> 05:32.900
+And this query can always return all the orders from Germany.
+
+05:32.900 --> 05:37.060
+So this is the power of the subquery together with the in operator.
+
+05:37.060 --> 05:39.900
+If you are having like multiple values multiple rows.
+
+05:39.900 --> 05:41.220
+So we have solved the task.
+
+05:41.260 --> 05:41.580
+Alright.
+
+05:41.620 --> 05:42.300
+Now one more thing.
+
+05:42.300 --> 05:44.580
+Let's say that the task is exactly the opposite.
+
+05:44.580 --> 05:50.780
+It says show the details of orders made by customers who don't come from Germany.
+
+05:50.780 --> 05:52.980
+So now here there is like two ways in order to do it.
+
+05:52.980 --> 05:58.980
+Either you go to the subquery and you say, you know what, the country should not be equal to Germany.
+
+05:58.980 --> 06:04.540
+So if you go and execute it, you will get all the customers IDs that are not from Germany.
+
+06:04.540 --> 06:09.660
+And if you execute the whole thing, you will get all the orders where the customers are not from Germany.
+
+06:09.660 --> 06:15.780
+So either you do that or you stay with the equal to Germany, but you go and convert the whole logic
+
+06:15.780 --> 06:17.540
+by using the operator nut.
+
+06:17.540 --> 06:23.270
+So now we are saying the customer id should not be equal to one of those values.
+
+06:23.270 --> 06:26.110
+So it should not be equal to 1 or 4.
+
+06:26.150 --> 06:29.230
+And for that we are using the not in operator.
+
+06:29.230 --> 06:30.630
+So let's go and execute it.
+
+06:30.630 --> 06:36.750
+So now with that we are getting all the orders where the customers don't come from Germany by just using
+
+06:36.790 --> 06:37.470
+not in.
+
+06:37.510 --> 06:38.270
+Operator.
+
+06:38.270 --> 06:41.510
+So that's all about the not in and the in operators.
+
+06:41.550 --> 06:41.870
+All right.
+
+06:41.870 --> 06:44.950
+So now let's see step by step how SQL execute our query.
+
+06:44.950 --> 06:47.990
+So we are targeting two tables the customers and the orders.
+
+06:47.990 --> 06:51.590
+So the first step is that SQL going to go and identify the subquery.
+
+06:51.590 --> 06:53.590
+And it's going to go and execute it.
+
+06:53.590 --> 06:57.190
+So the subquery here is filtering the data based on the country.
+
+06:57.190 --> 06:58.990
+So the query can be executed.
+
+06:58.990 --> 07:02.030
+And in the output we will get only two rows.
+
+07:02.030 --> 07:03.950
+So it is one column with multiple rows.
+
+07:03.990 --> 07:05.710
+This is the row subquery.
+
+07:05.710 --> 07:09.990
+And this is our intermediate results where it's going to be passed to the main query.
+
+07:09.990 --> 07:11.590
+So our main query going to look like this.
+
+07:11.630 --> 07:14.190
+We are selecting few informations from the orders.
+
+07:14.190 --> 07:20.190
+And we are filtering the table orders based on the customer ID where we are saying the customer ID must
+
+07:20.190 --> 07:22.430
+be one of those values 1 or 4.
+
+07:22.470 --> 07:28.120
+So the subquery here is supporting the main query with the information for the filter.
+
+07:28.160 --> 07:32.520
+Now, once SQL have everything, SQL can go and execute our main query.
+
+07:32.520 --> 07:34.000
+And this is going to be like the following.
+
+07:34.120 --> 07:36.040
+So we will start with the first row.
+
+07:36.040 --> 07:38.440
+And here the customer ID is equal to two.
+
+07:38.480 --> 07:41.480
+So the value two is not equal to 1 or 4.
+
+07:41.720 --> 07:45.520
+That's why this row will be excluded from the final results.
+
+07:45.560 --> 07:47.280
+Now let's move to the second row.
+
+07:47.320 --> 07:48.920
+We have here the value three.
+
+07:49.280 --> 07:52.360
+And the value three is not equal to one of those values.
+
+07:52.480 --> 07:55.040
+That's why this value is going to be as well failing.
+
+07:55.120 --> 07:57.320
+So we will not have it at the output.
+
+07:57.360 --> 07:59.360
+And then SQL going to go to the next one.
+
+07:59.400 --> 08:03.840
+Now this time the customer ID is one and it is equal to one of those values.
+
+08:03.840 --> 08:04.960
+It's equal to one.
+
+08:04.960 --> 08:06.280
+So we have a match.
+
+08:06.280 --> 08:09.440
+That's why this row will be included to the results.
+
+08:09.440 --> 08:14.000
+And the same thing for the next row because we have the customer ID one and so on.
+
+08:14.040 --> 08:19.600
+Now after SQL checking all those customer IDs, whether they are in the list 1 or 4, we will get the
+
+08:19.600 --> 08:24.920
+final results where we have here all the orders where the customer ID either 1 or 4.
+
+08:24.960 --> 08:29.480
+So this is how SQL executed the in operator using the subqueries.

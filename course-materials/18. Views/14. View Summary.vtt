@@ -1,0 +1,118 @@
+WEBVTT
+
+00:03.920 --> 00:04.640
+All right friends.
+
+00:04.640 --> 00:06.960
+So now let's have a quick recap about views.
+
+00:06.960 --> 00:13.320
+So we have learned that views are a virtual table that is based on the result of a query without actually
+
+00:13.320 --> 00:15.360
+storing any data in the database.
+
+00:15.360 --> 00:21.600
+So we use views in order to persist a complex SQL logic and query in the database.
+
+00:21.600 --> 00:27.960
+And we have learned that in some scenarios, views are better than CTE because it improves their reusability
+
+00:27.960 --> 00:34.280
+and reduce the complexity in multiple queries, which reduce the complexity of the whole project, where
+
+00:34.280 --> 00:37.760
+the CTE only improves the reusability in one query.
+
+00:37.760 --> 00:39.240
+And we have learned that as well.
+
+00:39.240 --> 00:41.840
+The views in some scenarios are better than tables.
+
+00:41.840 --> 00:47.600
+We have learned that they are very flexible and easier to maintain since they don't store any data,
+
+00:47.600 --> 00:52.120
+and it's really fast and easy to change stuff in the view compared to the tables.
+
+00:52.120 --> 00:57.440
+But as will we have learned that the tables are faster than views now, they are like endless use cases
+
+00:57.440 --> 01:01.920
+for the views, but from my experience in projects, I have choose for you the best use cases for the
+
+01:01.920 --> 01:02.440
+views.
+
+01:02.480 --> 01:10.240
+The first use case is if we find like a common repeated logic in SQL queries, we can go and store this
+
+01:10.240 --> 01:16.130
+logic in a view in the database so that the users don't have to keep repeating the logic over and over.
+
+01:16.130 --> 01:19.770
+So we use views in order to have a central business logic.
+
+01:19.810 --> 01:25.530
+Another use case is to hide the complexity of your physical data model and to offer for the users a
+
+01:25.530 --> 01:26.930
+high abstracted layer.
+
+01:26.930 --> 01:32.450
+So you provide for the user something very friendly, and you hide all the complex technical data model
+
+01:32.450 --> 01:36.690
+that you have in the database, because not everyone is expert with your data model.
+
+01:36.730 --> 01:37.490
+One more use case.
+
+01:37.490 --> 01:42.930
+We can use views in order to implement security and to protect our sensitive data in the database,
+
+01:42.930 --> 01:48.010
+so we can offer multiple views in order to protect columns or rows in a table.
+
+01:48.050 --> 01:48.730
+Another use case.
+
+01:48.730 --> 01:55.010
+We have learned that we can use views in order to have more dynamic and flexibility for your database,
+
+01:55.010 --> 02:00.210
+where we offer the users a stable view, and then you have the freedom to change stuff at your physical
+
+02:00.210 --> 02:02.970
+data model without affecting all users.
+
+02:02.970 --> 02:05.170
+And another nice use case for the views.
+
+02:05.170 --> 02:11.210
+We can offer multiple languages from our data model, and the last use case, we have learned how views
+
+02:11.250 --> 02:14.530
+play an important role in a data warehouse system.
+
+02:14.530 --> 02:15.970
+So views are amazing.
+
+02:16.010 --> 02:16.730
+All right my friends.
+
+02:16.730 --> 02:21.210
+So with that we have learned everything about this new objects, the views in databases.
+
+02:21.210 --> 02:24.330
+This is amazing for flexibility and dynamic in your projects.
+
+02:24.370 --> 02:28.130
+Now in the next one we are going to learn how to create tables based on query.
+
+02:28.130 --> 02:30.650
+And we will learn about the temporary tables.
+
+02:30.650 --> 02:31.330
+So let's go.

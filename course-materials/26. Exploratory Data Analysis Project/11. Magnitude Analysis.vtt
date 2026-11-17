@@ -1,0 +1,774 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.920
+Okay, so now what is exactly a magnitude analysis?
+
+2
+00:00:06.920 --> 00:00:11.680
+It's all about comparing the measure values across different categories and dimensions.
+
+3
+00:00:11.680 --> 00:00:15.920
+And this can help us of course to understand the importance of different categories.
+
+4
+00:00:15.920 --> 00:00:18.079
+Now the formula for that can be interesting.
+
+5
+00:00:18.079 --> 00:00:20.719
+So now this time we will be mixing stuff together.
+
+6
+00:00:20.719 --> 00:00:23.879
+So first we have to go and aggregate a specific measure.
+
+7
+00:00:23.879 --> 00:00:26.000
+And then we say by dimension.
+
+8
+00:00:26.000 --> 00:00:29.219
+We need here the dimension in order to split the measure.
+
+9
+00:00:29.219 --> 00:00:32.000
+It sounds complicated, but it is very simple and basic.
+
+10
+00:00:32.000 --> 00:00:37.540
+So for example, we can say the total sales by country, the total quantity by category,
+
+11
+00:00:37.540 --> 00:00:41.500
+the average price by products, the total orders by customer.
+
+12
+00:00:41.500 --> 00:00:45.540
+And if you follow this formula, you will be generating endless amount of insights.
+
+13
+00:00:45.540 --> 00:00:50.459
+By just combining any measure with any dimension, you can call it, it is a new insight.
+
+14
+00:00:50.459 --> 00:00:51.740
+So it's going to look like this.
+
+15
+00:00:51.740 --> 00:00:55.860
+If you have one measure that is like, for example, 600, and if you put now this measure
+
+16
+00:00:55.860 --> 00:00:58.259
+together with the dimension, what can happen?
+
+17
+00:00:58.259 --> 00:01:01.259
+This 600 is going to be split by the dimension values.
+
+18
+00:01:01.259 --> 00:01:05.419
+So A can have like 200, B can have 300, and C 100.
+
+19
+00:01:05.419 --> 00:01:09.019
+And now with that, we can go and compare those categories, right?
+
+20
+00:01:09.019 --> 00:01:13.860
+So we can see now that category B has the highest measure and the C has the lowest.
+
+21
+00:01:13.860 --> 00:01:17.620
+And this helps us to compare the values of the measure, what is the best category and
+
+22
+00:01:17.620 --> 00:01:19.319
+what is the worst category.
+
+23
+00:01:19.319 --> 00:01:21.300
+So this is very basic analysis.
+
+24
+00:01:21.300 --> 00:01:24.180
+So let's go and apply this formula on our data sets.
+
+25
+00:01:24.220 --> 00:01:28.099
+Okay, so now let's go and break all our measures by dimensions.
+
+26
+00:01:28.099 --> 00:01:32.260
+So I've prepared a few interesting examples, where first we're going to break the total
+
+27
+00:01:32.260 --> 00:01:33.699
+number of customers.
+
+28
+00:01:33.699 --> 00:01:36.760
+As we learned, we have 18,000 by the countries.
+
+29
+00:01:36.760 --> 00:01:40.900
+So the measure is total customers and the dimension is going to be the countries.
+
+30
+00:01:40.900 --> 00:01:42.540
+So let's go and write the query for that.
+
+31
+00:01:42.540 --> 00:01:43.699
+So we're going to select.
+
+32
+00:01:43.699 --> 00:01:46.580
+So the first thing that we're going to go and add is the dimension.
+
+33
+00:01:46.580 --> 00:01:47.720
+So it's going to be the country.
+
+34
+00:01:47.720 --> 00:01:49.300
+And then we need the measure.
+
+35
+00:01:49.300 --> 00:01:53.699
+It's going to be the count of the customer key.
+
+36
+00:01:53.699 --> 00:01:58.940
+So this will give us the total customers and we need to select our table.
+
+37
+00:01:58.940 --> 00:02:00.940
+So it's going to be the dimension customers.
+
+38
+00:02:00.940 --> 00:02:04.980
+And of course we have to go and group up the data by the countries.
+
+39
+00:02:04.980 --> 00:02:06.879
+So group up country.
+
+40
+00:02:06.879 --> 00:02:09.300
+So let's go and execute it.
+
+41
+00:02:09.300 --> 00:02:12.399
+And with that, you see again the list of countries.
+
+42
+00:02:12.399 --> 00:02:17.059
+So we have our six countries and then the total customers for each country.
+
+43
+00:02:17.059 --> 00:02:21.100
+So that we can see the distribution of customers by the country.
+
+44
+00:02:21.100 --> 00:02:27.139
+But what we usually do is that we go and sort the data by the measure, the total customers like this.
+
+45
+00:02:27.139 --> 00:02:29.000
+And we're going to sort it by descending.
+
+46
+00:02:29.000 --> 00:02:33.240
+So with that, we will get first the countries with the highest customers.
+
+47
+00:02:33.240 --> 00:02:35.179
+So let's go and execute it.
+
+48
+00:02:35.179 --> 00:02:36.460
+So now we can see the results.
+
+49
+00:02:36.460 --> 00:02:39.699
+The highest number of customers come from United States.
+
+50
+00:02:39.699 --> 00:02:50.039
+Then Australia, United Kingdom, 337 customers without the country information is not available. So that's it. Right.
+
+51
+00:02:50.039 --> 00:02:51.039
+It is very simple.
+
+52
+00:02:51.039 --> 00:02:54.919
+We just separated the total number of customers by a dimension, the country.
+
+53
+00:02:54.919 --> 00:02:58.919
+Now of course we can go and split the data by different type of dimension.
+
+54
+00:02:58.919 --> 00:03:03.600
+So for the next one, we are saying find the total customers by gender.
+
+55
+00:03:03.600 --> 00:03:04.600
+So here's the same thing.
+
+56
+00:03:04.600 --> 00:03:08.679
+We have the same measure, the total customers, but we are splitting the data by different
+
+57
+00:03:08.679 --> 00:03:09.919
+type of dimension.
+
+58
+00:03:09.919 --> 00:03:11.199
+So just copy and paste.
+
+59
+00:03:11.199 --> 00:03:17.960
+And now instead of countries, we just going to switch it to gender and over here and that's it.
+
+60
+00:03:17.960 --> 00:03:19.119
+So let's go and execute.
+
+61
+00:03:19.199 --> 00:03:23.960
+So now as you can see, the granularity of the gender over here is different than the countries.
+
+62
+00:03:23.960 --> 00:03:28.759
+We have here only three values and we can see it is almost splitted evenly between male
+
+63
+00:03:28.759 --> 00:03:30.679
+customers and female customers.
+
+64
+00:03:30.679 --> 00:03:35.520
+And of course this can help us to understand the demography of our customers.
+
+65
+00:03:35.520 --> 00:03:36.839
+And as you can see, it was very simple.
+
+66
+00:03:36.839 --> 00:03:42.800
+We just switched the dimension so you can go and split as well by the marital status and so on.
+
+67
+00:03:42.800 --> 00:03:46.399
+Now let's go and split that total products by the category.
+
+68
+00:03:46.679 --> 00:03:50.199
+Well, actually the query is going to be very simple as well. So select.
+
+69
+00:03:50.199 --> 00:03:55.880
+And here we're going to have the same aggregate function, the count products key as total
+
+70
+00:03:55.880 --> 00:04:00.720
+products from our table called dimension products.
+
+71
+00:04:00.720 --> 00:04:04.919
+And then we're going to group up by the dimension, the category, and we're going to order by
+
+72
+00:04:04.919 --> 00:04:10.580
+as well the same thing, total products distinct from the highest to the lowest.
+
+73
+00:04:10.580 --> 00:04:12.080
+So let's go and execute it.
+
+74
+00:04:12.119 --> 00:04:16.760
+And with that, we can see how many products do we have in each of those categories.
+
+75
+00:04:16.760 --> 00:04:19.519
+And we can see the biggest category, the components.
+
+76
+00:04:19.519 --> 00:04:21.160
+And after that, the pikes.
+
+77
+00:04:21.160 --> 00:04:25.119
+And this is interesting that we have seven products where we have nulls, where they don't
+
+78
+00:04:25.119 --> 00:04:26.799
+belong to any category.
+
+79
+00:04:26.799 --> 00:04:27.959
+This is really nice.
+
+80
+00:04:27.959 --> 00:04:29.440
+Let's go to the next one.
+
+81
+00:04:29.440 --> 00:04:30.559
+What do we have over here?
+
+82
+00:04:30.559 --> 00:04:33.359
+What is the average costs in each category?
+
+83
+00:04:33.359 --> 00:04:36.839
+So this is like different style of question, but at the end, we're going to have the same
+
+84
+00:04:36.839 --> 00:04:39.720
+thing we have over here, the average costs.
+
+85
+00:04:39.720 --> 00:04:43.160
+This is the measure and the category is our dimension.
+
+86
+00:04:43.160 --> 00:04:46.720
+It's like we are saying, find average costs by category.
+
+87
+00:04:46.720 --> 00:04:51.480
+So what we're going to do, we're going to go and copy the same query and the dimension is the same.
+
+88
+00:04:51.480 --> 00:04:54.119
+So the category is, but the measure is different.
+
+89
+00:04:54.119 --> 00:04:56.200
+We are not talking about the total products.
+
+90
+00:04:56.200 --> 00:05:00.399
+We are going to say average, and here we're going to have the column costs and let's go
+
+91
+00:05:00.399 --> 00:05:02.399
+and rename it average costs.
+
+92
+00:05:02.399 --> 00:05:06.540
+So that's it as well for the order by, you have to use the new measure.
+
+93
+00:05:06.540 --> 00:05:08.540
+So let's go and execute it.
+
+94
+00:05:08.540 --> 00:05:15.619
+So now we can see the most expensive category is the bikes costs a lot compared to the accessories, of course.
+
+95
+00:05:15.619 --> 00:05:19.619
+So you can see the accessories is only 13 and the bikes is 900.
+
+96
+00:05:19.619 --> 00:05:24.540
+So this is as well gives us insights about how expensive each category is.
+
+97
+00:05:24.540 --> 00:05:27.160
+And as you can see, it is always the same templates.
+
+98
+00:05:27.160 --> 00:05:30.260
+We are splitting a specific measure by a dimension.
+
+99
+00:05:30.260 --> 00:05:32.140
+So let's keep going to the next one.
+
+100
+00:05:32.140 --> 00:05:36.660
+It says, what is the total revenue generated for each category?
+
+101
+00:05:36.660 --> 00:05:41.339
+So again, here, the question is find the total revenue by category.
+
+102
+00:05:41.339 --> 00:05:45.980
+So the total revenue here is the measure and the category again is the dimension.
+
+103
+00:05:45.980 --> 00:05:51.540
+So now the total revenue comes from the fact and the category comes this time from the dimension.
+
+104
+00:05:51.540 --> 00:05:53.579
+So that means we have to go and join tables, right?
+
+105
+00:05:53.579 --> 00:05:54.579
+So how are we going to do it?
+
+106
+00:05:54.579 --> 00:06:00.579
+Let's go and start with a select star from, and I would like always to start from the fact table.
+
+107
+00:06:00.579 --> 00:06:04.859
+So fact sales F, and then we're going to go and join it with the dimension.
+
+108
+00:06:04.859 --> 00:06:09.059
+Usually I go with the left join in order to not lose anything, because if you use an
+
+109
+00:06:09.059 --> 00:06:13.100
+inner join, you might lose in the fact, few orders and few sales.
+
+110
+00:06:13.100 --> 00:06:14.140
+I don't want that.
+
+111
+00:06:14.140 --> 00:06:16.059
+So left join with the dimension.
+
+112
+00:06:16.059 --> 00:06:19.619
+This one is going to be the products and the key for that is going to be very simple.
+
+113
+00:06:19.619 --> 00:06:23.420
+It's going to be the product key and the same thing for the facts.
+
+114
+00:06:23.420 --> 00:06:26.600
+So with that, we joined the fact table with the dimension.
+
+115
+00:06:26.600 --> 00:06:28.440
+So now we have to go and pick what do we need?
+
+116
+00:06:28.440 --> 00:06:30.619
+We need from the fact, the sales, right?
+
+117
+00:06:30.619 --> 00:06:37.059
+So sales amount, and we need from the products, the category, and we want to group up the
+
+118
+00:06:37.059 --> 00:06:38.579
+data by the category.
+
+119
+00:06:38.579 --> 00:06:41.100
+So, so this part is done.
+
+120
+00:06:41.100 --> 00:06:43.500
+What is missing is of course the aggregation.
+
+121
+00:06:43.500 --> 00:06:46.500
+So we are aggregating actually the sales.
+
+122
+00:06:46.500 --> 00:06:50.700
+So some sales and we can call it total revenue.
+
+123
+00:06:50.700 --> 00:06:55.779
+So like this, and of course we can go and order the data by the total revenue, by our
+
+124
+00:06:55.779 --> 00:06:58.839
+measure and distinct from highest to lowest.
+
+125
+00:06:58.839 --> 00:07:02.679
+So as you can see, it is exactly like the previous one, but here the data doesn't come
+
+126
+00:07:02.679 --> 00:07:03.679
+from only one table.
+
+127
+00:07:03.679 --> 00:07:05.279
+Here it comes from two tables.
+
+128
+00:07:05.279 --> 00:07:09.920
+So the measure come from the facts and the dimension come from the dimension products.
+
+129
+00:07:09.920 --> 00:07:11.480
+And this is classic, right?
+
+130
+00:07:11.480 --> 00:07:16.920
+The dimension has all those descriptions and details about the products like the categories
+
+131
+00:07:16.920 --> 00:07:24.200
+and the fact table has all those measures and dates that we use in order to calculate our measures. So that's it.
+
+132
+00:07:24.200 --> 00:07:25.200
+Let's go and execute it.
+
+133
+00:07:25.359 --> 00:07:30.399
+Now, as you can see in the output, the category bikes is bringing the most of revenue.
+
+134
+00:07:30.399 --> 00:07:35.600
+So here it's like in millions, 28 millions of sales and the accessories and the clothing
+
+135
+00:07:35.600 --> 00:07:38.600
+is naturally bringing a lot of like revenue.
+
+136
+00:07:38.600 --> 00:07:40.720
+Both of them are below like 1 million.
+
+137
+00:07:40.720 --> 00:07:45.920
+So with that, you can understand our business is making a lot of money selling bikes, right?
+
+138
+00:07:45.920 --> 00:07:50.079
+So my friends, as we are exploring the data, we are understanding more and more about our
+
+139
+00:07:50.079 --> 00:07:50.880
+business, right?
+
+140
+00:07:55.200 --> 00:08:07.880
+So let's keep going to the next one.
+
+141
+00:08:07.880 --> 00:08:12.320
+We have here the question, what is the total revenue generated by each customer?
+
+142
+00:08:12.320 --> 00:08:15.559
+So now we want to find out the top spender, right?
+
+143
+00:08:15.559 --> 00:08:21.239
+Select star and as well, we start from the fact table and this time we're going to left
+
+144
+00:08:21.239 --> 00:08:23.679
+join it with the customers, right?
+
+145
+00:08:23.679 --> 00:08:27.679
+So the dimension customers, and we're going to go join the data.
+
+146
+00:08:27.679 --> 00:08:30.519
+So we're going to use the customer key for the join.
+
+147
+00:08:30.519 --> 00:08:34.559
+And what we're going to do, we're going to go and get maybe the customer key and let's
+
+148
+00:08:34.559 --> 00:08:40.400
+go and get as well the first name, maybe a few details about the customer and as well the last name.
+
+149
+00:08:40.400 --> 00:08:43.679
+So those are the columns that we want from the customers.
+
+150
+00:08:43.679 --> 00:08:44.679
+And now what do we need?
+
+151
+00:08:44.679 --> 00:08:45.719
+We need the aggregation.
+
+152
+00:08:45.719 --> 00:08:47.359
+So it's going to be the same thing.
+
+153
+00:08:48.359 --> 00:08:50.719
+as total revenue.
+
+154
+00:08:50.719 --> 00:08:55.080
+And we have to go and group up the data by all those three informations.
+
+155
+00:08:55.080 --> 00:08:59.119
+So we're going to go and copy paste and at the end, as usual, we're going to order by
+
+156
+00:08:59.119 --> 00:09:03.440
+the measure total revenue descending. So that's it.
+
+157
+00:09:03.440 --> 00:09:06.559
+It is exactly like previous one, but with different dimensions.
+
+158
+00:09:06.559 --> 00:09:08.119
+So let's go and query it.
+
+159
+00:09:08.119 --> 00:09:15.080
+And now we get a full list of all our customers, the 18,000 and we can see the total revenue
+
+160
+00:09:15.080 --> 00:09:16.159
+for each customer.
+
+161
+00:09:16.159 --> 00:09:18.359
+So we can see Nicole and Caitlin.
+
+162
+00:09:18.359 --> 00:09:24.039
+They are our top spenders and the most royal customers that generated sales and revenue
+
+163
+00:09:24.039 --> 00:09:25.039
+for our business.
+
+164
+00:09:25.039 --> 00:09:27.159
+This is really cool, right?
+
+165
+00:09:27.159 --> 00:09:28.280
+Now let's go to the next one.
+
+166
+00:09:28.280 --> 00:09:33.080
+It says, what is the distribution of sold items across countries?
+
+167
+00:09:33.080 --> 00:09:36.380
+It is like finding the total quantity by countries.
+
+168
+00:09:36.380 --> 00:09:37.599
+So it is very simple.
+
+169
+00:09:37.599 --> 00:09:42.159
+I'm going to go and take the same query because countries comes from the dimension customers
+
+170
+00:09:42.159 --> 00:09:45.080
+and the sold items, the quantity come from the sales.
+
+171
+00:09:45.080 --> 00:09:49.419
+So we are doing the same joints, but with different dimensions and measures.
+
+172
+00:09:49.419 --> 00:09:54.440
+So what do we need from the customers is only the country and the measure are going to be the quantity.
+
+173
+00:09:54.440 --> 00:09:58.479
+And here we're going to go and say total sold items.
+
+174
+00:09:58.479 --> 00:10:05.840
+And we have to change the group by to the countries and sorting the data by the new measure. That's it.
+
+175
+00:10:05.840 --> 00:10:09.799
+And with that, we are generating new reports by just changing the dimensions and measures.
+
+176
+00:10:09.799 --> 00:10:15.559
+So again, this is very interesting to understand which country is generating like good business for us.
+
+177
+00:10:15.559 --> 00:10:19.919
+So my friends, as you might already notice, if in the dimension, we have like small number
+
+178
+00:10:19.919 --> 00:10:24.119
+of unique values, like in the countries, we have here only seven values in the gender.
+
+179
+00:10:24.119 --> 00:10:25.119
+We have only three.
+
+180
+00:10:25.119 --> 00:10:31.039
+We call those dimensions, low cardinality dimensions because we have low number of values inside it.
+
+181
+00:10:31.039 --> 00:10:34.320
+And in the results, we will get only here, for example, seven rows.
+
+182
+00:10:34.320 --> 00:10:41.200
+But if our dimension is high cardinality, like by the customers, we have 18,000 unique
+
+183
+00:10:41.200 --> 00:10:45.840
+customers, then our measure is going to be split by those 18,000.
+
+184
+00:10:45.840 --> 00:10:49.400
+And in the results, we will get exactly the same number of customers.
+
+185
+00:10:49.400 --> 00:10:53.919
+So the number of rows and results really depends on the cardinality of the dimension.
+
+186
+00:10:53.919 --> 00:10:59.479
+So as you can see, we can generate a lot of different reports by only following this formula,
+
+187
+00:10:59.479 --> 00:11:01.479
+dividing the measure by a dimension.
+
+188
+00:11:01.479 --> 00:11:06.919
+So we just generated eight different insights and reports by only a few measures and dimensions.
+
+189
+00:11:06.919 --> 00:11:10.719
+So now what you can do, you can pause the video and try different dimensions and measures
+
+190
+00:11:10.719 --> 00:11:14.840
+in order to have more insights about our business. Okay.
+
+191
+00:11:14.840 --> 00:11:19.119
+So as you can see, this is the basics analysis that we can do in any dataset or any domain
+
+192
+00:11:19.119 --> 00:11:21.500
+where we are aggregating a measure by dimension.
+
+193
+00:11:21.500 --> 00:11:26.159
+Now in the next and last step in our projects, we will be doing ranking analysis.
+

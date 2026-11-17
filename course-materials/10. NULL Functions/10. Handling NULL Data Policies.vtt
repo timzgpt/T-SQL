@@ -1,0 +1,439 @@
+WEBVTT
+
+00:03.960 --> 00:04.800
+Now, you might ask.
+
+00:04.840 --> 00:05.360
+You know what?
+
+00:05.400 --> 00:08.360
+Why do I have to understand the differences between all those stuff?
+
+00:08.400 --> 00:10.680
+The nulls, empty strings and the blanks.
+
+00:10.880 --> 00:11.440
+Everything.
+
+00:11.440 --> 00:12.280
+Like empty.
+
+00:12.280 --> 00:13.520
+So why do I care?
+
+00:13.560 --> 00:18.520
+Well, in real projects, I'm going to promise you that you will be working with sources and data that
+
+00:18.520 --> 00:19.920
+has bad data quality.
+
+00:20.240 --> 00:23.440
+And you might encounter all those three scenarios in your data.
+
+00:23.480 --> 00:29.280
+And now, if you don't do any data preparations like cleaning up the data, handling those three scenarios
+
+00:29.280 --> 00:34.800
+and bringing standards to your data, and you jump immediately to the analysis without doing all those
+
+00:34.800 --> 00:41.760
+stuff, you will end up providing inaccurate results in your reports and analyses, which leads to wrong
+
+00:41.760 --> 00:42.480
+decisions.
+
+00:42.560 --> 00:47.800
+So preparing your data before doing an analysis by cleaning up the data, handling those three scenarios
+
+00:48.040 --> 00:53.840
+and as well bringing standards is a very important step before doing any analysis.
+
+00:53.920 --> 00:59.160
+So this is how we're going to do it together with the stakeholders and the users of your reports and
+
+00:59.160 --> 01:03.240
+analyses, you have to define a clear data policies.
+
+01:03.240 --> 01:08.710
+It's like rules and you have to commit yourself during the implementations by following those rules.
+
+01:08.750 --> 01:10.710
+And here we have three different options.
+
+01:10.830 --> 01:14.190
+The first one you can go and define the data policies like this.
+
+01:14.230 --> 01:19.390
+Only use nulls and empty string but avoid using blank spaces.
+
+01:19.390 --> 01:25.110
+In my projects, I cannot imagine that there is a scenario where we need blank spaces.
+
+01:25.110 --> 01:26.270
+They are just evil.
+
+01:26.270 --> 01:27.670
+Just go get rid of them.
+
+01:27.670 --> 01:32.270
+All right, so with this policy, we have to go and get rid of all blank spaces inside our data.
+
+01:32.270 --> 01:37.390
+And in order to do that, we have a wonderful function in SQL called Trim, the trim function in SQL
+
+01:37.430 --> 01:43.670
+going to go and remove the spaces from a string from the left side, and as well from the right side.
+
+01:43.670 --> 01:47.470
+So all the leading spaces and the trailing spaces is going to be removed.
+
+01:47.470 --> 01:50.830
+So now if you go and apply that trim function on that category, what's going to happen?
+
+01:51.190 --> 01:56.590
+All the blank space is going to be removed and it's going to be turned into empty string.
+
+01:56.590 --> 01:57.750
+So let's go and do that.
+
+01:57.750 --> 01:58.830
+It's very simple.
+
+01:58.830 --> 02:03.350
+So we're going to use the trim function and we're going to apply it on the category.
+
+02:04.190 --> 02:06.950
+Let's go and call it policy one.
+
+02:06.950 --> 02:08.910
+So let's go and execute it.
+
+02:08.910 --> 02:14.750
+So now by just comparing the policy one with the category, you see like it's identical but it's not.
+
+02:14.790 --> 02:19.390
+Now in order to have a better feeling about this, we can go and test it using the data links.
+
+02:19.430 --> 02:22.230
+Now let's go again and use the data link function.
+
+02:22.990 --> 02:25.950
+So we're going to use it for the whole results.
+
+02:25.950 --> 02:30.070
+And as well I'm going to go and use it for the category in order to just compare it.
+
+02:30.430 --> 02:32.270
+So without the trim.
+
+02:36.310 --> 02:38.630
+So like this let's go and execute it.
+
+02:38.670 --> 02:42.590
+Now if you go and check the result, as you can see here again we have the links of two because here
+
+02:42.590 --> 02:43.830
+we have two spaces.
+
+02:43.830 --> 02:46.910
+But with the policy one we have zero.
+
+02:46.910 --> 02:52.590
+So those two values after applying the trim function they have the links of zero.
+
+02:52.710 --> 02:55.230
+And with that we don't have blank spaces.
+
+02:55.230 --> 03:01.150
+So that means now we are sure after applying the trim we have either a null or empty string.
+
+03:01.150 --> 03:03.910
+So let me just get rid of all those informations.
+
+03:03.950 --> 03:06.990
+Now I am sure both of them are empty string.
+
+03:06.990 --> 03:08.710
+So as you can see it's very simple.
+
+03:08.750 --> 03:14.060
+Using only one SQL function you are cleaning up the data and bringing standards.
+
+03:14.100 --> 03:14.460
+All right.
+
+03:14.460 --> 03:15.780
+Moving on to the option two.
+
+03:15.820 --> 03:18.020
+You can define your data policies like this.
+
+03:18.060 --> 03:23.660
+Only use nulls and avoid both empty strings and as well blank spaces.
+
+03:23.660 --> 03:28.780
+So that means in our business we don't have anything meaningful for the empty string and the blank spaces.
+
+03:29.020 --> 03:31.100
+We can go and use only the nulls.
+
+03:31.140 --> 03:32.860
+Okay, so now let's go and implement this rule.
+
+03:32.860 --> 03:36.300
+We have to go and convert a value to a null.
+
+03:36.460 --> 03:38.900
+So the value is going to be empty string to a null.
+
+03:38.940 --> 03:44.260
+And as we learned we can go and use the null if function in order to get nulls instead of values.
+
+03:44.260 --> 03:46.340
+So let's go and apply this policy.
+
+03:46.340 --> 03:49.820
+But now here we have two values the empty string and spaces.
+
+03:49.860 --> 03:57.100
+Now instead of having two rules for that, I'm going to convert first the blank spaces to an empty string
+
+03:57.100 --> 03:58.300
+like we have done here.
+
+03:58.300 --> 04:02.620
+So I'm going to take the result of this function first as a first step.
+
+04:02.820 --> 04:05.540
+And afterwards we're going to go and use the null.
+
+04:05.580 --> 04:11.420
+If so we're going to say null if for the result of the trim.
+
+04:11.860 --> 04:15.940
+If you find any empty strings convert it to null.
+
+04:15.940 --> 04:17.020
+So that's it.
+
+04:17.060 --> 04:17.860
+Policy two.
+
+04:18.100 --> 04:23.980
+So as you can see in the results, we have converted those empty spaces and blanks to null so that we
+
+04:24.020 --> 04:25.060
+are getting three nulls.
+
+04:25.060 --> 04:26.660
+And of course we're going to get the value a.
+
+04:26.660 --> 04:30.820
+And now if you compare those three columns side by side you're going to see the policy.
+
+04:30.860 --> 04:34.700
+Two is really easier to understand compared to the previous ones.
+
+04:34.700 --> 04:34.980
+Right.
+
+04:35.020 --> 04:40.100
+So now if you compare the policy two now to the policy one, you can see it's easier to understand and
+
+04:40.100 --> 04:41.580
+it's easier as well to handle.
+
+04:41.580 --> 04:45.380
+So again, it's very easy to do data clean up with only two functions.
+
+04:45.380 --> 04:47.940
+We have now like standards inside our data.
+
+04:47.980 --> 04:52.180
+And now moving on to the last option we can define our data policy like this.
+
+04:52.220 --> 04:59.700
+Use only a default value unknown and avoid using anything else like nulls, empty strings and blank
+
+04:59.700 --> 05:00.420
+spaces.
+
+05:00.420 --> 05:06.020
+So that means in the analysis and reports, we want to see the value unknown, and we have to handle
+
+05:06.020 --> 05:09.580
+all those three informations and convert them to unknown.
+
+05:09.580 --> 05:14.980
+So now in order to implement the policy three, we have to go and convert a null with a value a default
+
+05:14.980 --> 05:15.260
+value.
+
+05:15.260 --> 05:16.580
+And here we have two options.
+
+05:16.780 --> 05:20.220
+Either use the is null or we can go and use the coalesce.
+
+05:20.260 --> 05:21.900
+And I will go with the coalesce.
+
+05:21.940 --> 05:23.140
+So coalesce.
+
+05:24.500 --> 05:27.020
+And I'm going to use directly the category.
+
+05:27.020 --> 05:31.460
+So if you find any null replace it with the default value unknown.
+
+05:31.980 --> 05:33.940
+And let's call it policy three.
+
+05:33.940 --> 05:35.380
+So let's go and execute it.
+
+05:35.380 --> 05:39.580
+So now if you check the result over here you see that we got it only once correct.
+
+05:39.580 --> 05:42.140
+So we replace the null with the unknown.
+
+05:42.300 --> 05:45.220
+But we still have like empty spaces and blanks.
+
+05:45.220 --> 05:49.380
+And that's because we rushed using the coalesce and we skipped the other steps.
+
+05:49.380 --> 05:53.460
+So as you can see preparing the data you have to do it slowly step by step.
+
+05:53.460 --> 05:56.980
+So first we have to go and convert everything to a null like the policy two.
+
+05:57.380 --> 06:00.940
+And after that the last step we're going to go and use the default value.
+
+06:00.940 --> 06:05.860
+So that means instead of using the category we have to go and get the result of the policy two.
+
+06:05.900 --> 06:10.860
+So let's go and copy it and replace the category with those two steps.
+
+06:10.860 --> 06:12.820
+And let's go and execute it.
+
+06:12.820 --> 06:17.180
+So now as you can see we have the default value for all the three scenarios.
+
+06:17.220 --> 06:21.460
+First we have to trim the data in order to remove all the blank spaces.
+
+06:21.500 --> 06:26.450
+The second step we're going to go and replace all the empty strings with a null.
+
+06:26.490 --> 06:29.850
+And with that, we're going to get a null for all those three scenarios.
+
+06:29.850 --> 06:35.490
+And finally we're going to go and replace the nulls with a default value the unknown.
+
+06:35.490 --> 06:36.970
+So that's it for the three processes.
+
+06:36.970 --> 06:42.770
+And this is the different ways in order to clean up the data and bring standards before doing analysis.
+
+06:42.810 --> 06:46.050
+And now you might ask me okay, which one should I use in my project.
+
+06:46.090 --> 06:50.090
+Like if I want to suggest something for the users, which one should I use?
+
+06:50.090 --> 06:55.330
+Well, it really depends on the business, but I try always to avoid this one, the policy one because
+
+06:55.330 --> 06:58.650
+it's always confusing and I have always to explain it for the users.
+
+06:58.650 --> 07:00.770
+So now we are left with the two and three.
+
+07:00.810 --> 07:03.170
+Well, I use both of them in different scenarios.
+
+07:03.210 --> 07:08.890
+I normally go with the policy two because it takes less storage and as well the performance of your
+
+07:08.890 --> 07:11.010
+queries afterwards can be really good.
+
+07:11.010 --> 07:18.130
+So if I'm doing data preparations in my ETL before inserting it inside a table, I go with the policy
+
+07:18.170 --> 07:18.490
+two.
+
+07:18.530 --> 07:24.290
+But in other hand, if I'm doing a preparation step before showing it in a report like in Tableau or
+
+07:24.290 --> 07:24.970
+Power BI.
+
+07:25.170 --> 07:31.440
+So if it is like one of the last steps before showing the data to the users, I go with the policy three
+
+07:31.440 --> 07:35.680
+because if you present a null insider report, it's going to be really hard to read.
+
+07:35.840 --> 07:39.640
+So having like a word like unknown, it's easier to understand.
+
+07:39.680 --> 07:41.240
+Okay, we have here missing data.
+
+07:41.240 --> 07:47.080
+So again if the data preparations is exactly before I present the data to the users, I go with the
+
+07:47.080 --> 07:49.360
+policy three where I use default values.
+
+07:49.560 --> 07:55.760
+But if I'm using a data preparations before inserting it in the database, I go with the policy two
+
+07:55.800 --> 08:00.520
+because it's going to optimize the storage and it's going to be really bad if you go with the policy.
+
+08:00.520 --> 08:03.960
+Three because it's really bad to store the whole world each time.
+
+08:03.960 --> 08:06.000
+There is no value like the unknown.
+
+08:06.040 --> 08:07.480
+It's going to take a lot of space.
+
+08:07.480 --> 08:11.000
+And as well you're going to get bad performance as you are building the queries.
+
+08:11.000 --> 08:13.800
+That's why I tend to store the data using nulls.
+
+08:13.800 --> 08:17.160
+If you present it to the users, go and show it as a default value.
+
+08:17.160 --> 08:21.640
+So as you can see, it's very important to understand the differences between the nulls, empty strings
+
+08:21.640 --> 08:27.080
+and blanks, and how to prepare the data by cleaning up the data and bringing standards and policies
+
+08:27.080 --> 08:28.920
+before doing any analyses.
+
+08:28.920 --> 08:33.720
+So with this, we have clear up the confusion between those scenarios and if you encounter it in your
+
+08:33.720 --> 08:35.760
+projects, you know how to deal with it.

@@ -1,0 +1,223 @@
+WEBVTT
+
+00:03.880 --> 00:04.600
+All right, everyone.
+
+00:04.600 --> 00:06.440
+So now we have this very simple example.
+
+00:06.440 --> 00:08.440
+We have the months and the cells.
+
+00:08.480 --> 00:14.080
+Now we can use the value functions in order to access a value from another row.
+
+00:14.080 --> 00:19.600
+So in order to understand it let's say that SQL processing the months and we are currently at the month
+
+00:19.600 --> 00:20.400
+of March.
+
+00:20.400 --> 00:25.640
+So now for example, I would like to access the value from the previous month from February.
+
+00:25.640 --> 00:30.840
+So in order to do that, we can use the lag function in order to get the value of ten.
+
+00:30.840 --> 00:36.960
+So with that we have in the same row the current sales of the month March, and as well the sales from
+
+00:36.960 --> 00:39.080
+the previous month, the February.
+
+00:39.080 --> 00:44.120
+And maybe in other cases, I would like to get the sales of the next month from April.
+
+00:44.240 --> 00:50.520
+In order to do that, we can use the function lead and we will get at the same row the value five.
+
+00:50.560 --> 00:56.400
+So now I can very quickly compare the current month with the previous month, and as well with the next
+
+00:56.400 --> 00:56.880
+month.
+
+00:56.920 --> 01:01.240
+And now in the other cases, you might be interested in the first month of your list.
+
+01:01.240 --> 01:03.000
+So it's going to be here January.
+
+01:03.000 --> 01:08.840
+So in order to get the sales of the first month, you can use the function first value.
+
+01:08.840 --> 01:11.440
+So we're going to get at the same row 20.
+
+01:11.480 --> 01:13.770
+And now for the last option I think you already get it.
+
+01:13.810 --> 01:17.610
+We can go and get the value of sales of the last month.
+
+01:17.610 --> 01:19.130
+So here we can get the July.
+
+01:19.170 --> 01:21.530
+So for that we're going to use the function last value.
+
+01:21.650 --> 01:23.970
+And we will get the value of 40.
+
+01:24.010 --> 01:28.290
+So this is exactly the purpose of the value functions or analytical functions.
+
+01:28.290 --> 01:31.570
+We can access a value from another rows.
+
+01:31.610 --> 01:33.370
+And here it's important to understand as well.
+
+01:33.370 --> 01:35.930
+The value functions is like the ranking functions.
+
+01:35.930 --> 01:41.370
+We have to use the order by in order to sort the data in order to understand what is the first row and
+
+01:41.370 --> 01:42.130
+the last row.
+
+01:42.130 --> 01:44.530
+In this example the data is sorted by the month.
+
+01:44.530 --> 01:47.690
+So guys the access functions are really important for analytics.
+
+01:47.690 --> 01:52.730
+You can use it in order to access a value from other rows in order to do comparison.
+
+01:52.770 --> 01:53.050
+All right.
+
+01:53.050 --> 01:57.650
+So now let's have a quick overview of the syntax and the rules for the value functions.
+
+01:57.650 --> 02:01.890
+So here we have four functions lead lag first value and last value.
+
+02:02.130 --> 02:04.610
+So as you can see we can group them into two groups.
+
+02:04.610 --> 02:05.850
+So we have the lead and lag.
+
+02:05.890 --> 02:08.730
+They are very similar to each other especially with the syntax.
+
+02:08.730 --> 02:11.730
+We can use three things or three arguments inside it.
+
+02:11.770 --> 02:14.850
+Expression offset default for both of them.
+
+02:15.010 --> 02:17.850
+For the first value we can use only an expression.
+
+02:17.850 --> 02:21.130
+So that means we have to pass a value for those functions.
+
+02:21.130 --> 02:22.450
+You cannot leave it empty.
+
+02:22.450 --> 02:23.970
+So now about the expression data type.
+
+02:23.970 --> 02:26.340
+You can use any field with any data type.
+
+02:26.340 --> 02:28.020
+There is no restrictions about only.
+
+02:28.020 --> 02:31.140
+For example, using numbers, any data type is allowed.
+
+02:31.180 --> 02:32.900
+Now about the definition of the window.
+
+02:33.260 --> 02:35.220
+The partition p as usual is optional.
+
+02:35.220 --> 02:38.500
+Like any other group, the order by here is a must.
+
+02:38.540 --> 02:40.460
+You must define an order by.
+
+02:40.460 --> 02:41.740
+It's like the ranking.
+
+02:41.900 --> 02:43.460
+So here you cannot leave it empty.
+
+02:43.540 --> 02:44.780
+Now we come to the last one.
+
+02:44.780 --> 02:46.140
+We have the frame clause.
+
+02:46.300 --> 02:48.100
+There are really different stuff over here.
+
+02:48.100 --> 02:53.180
+So for the first two functions, lead and lag, you are not allowed to define any frame.
+
+02:53.180 --> 02:55.580
+So you are not allowed to define any subset of data.
+
+02:55.820 --> 02:57.540
+It's very similar to the ranking.
+
+02:57.540 --> 02:59.820
+So you must use order by.
+
+02:59.860 --> 03:02.140
+But you cannot define the frame of the window.
+
+03:02.140 --> 03:06.300
+But for the other two functions, the first value and the last value, they are optional.
+
+03:06.300 --> 03:12.260
+You can go and use them, and for the last value it is recommended to define a frame clause.
+
+03:12.300 --> 03:12.980
+Don't worry about it.
+
+03:12.980 --> 03:15.060
+We're going to have enough examples in order to understand.
+
+03:15.060 --> 03:17.660
+So as you can see those functions has different requirements.
+
+03:17.660 --> 03:20.300
+So there is no generic rule for all of them.
+
+03:20.300 --> 03:24.260
+But one thing that they all agree on that you must use order by.
+
+03:24.300 --> 03:28.420
+So now as usual, what we're going to do, we're going to go and deep dive into those functions.
+
+03:28.420 --> 03:33.180
+We're going to address first the two functions lead and lag, because they are very similar to each
+
+03:33.220 --> 03:33.700
+others.
+
+03:33.700 --> 03:36.620
+We can understand the use cases when to use them.
+
+03:36.620 --> 03:38.500
+And of course we're going to practice in SQL.
+
+03:38.540 --> 03:39.220
+So let's go.

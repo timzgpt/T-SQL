@@ -1,0 +1,556 @@
+WEBVTT
+
+00:03.960 --> 00:05.680
+Now moving on to the second scenario.
+
+00:05.680 --> 00:12.400
+To the next use case of using views in projects is that we use views in order to hide complexity and
+
+00:12.400 --> 00:14.000
+to improve abstraction.
+
+00:14.000 --> 00:20.040
+In many scenarios, we work with a very large and complex databases, and we can use views in order
+
+00:20.040 --> 00:24.000
+to reduce the complexity and make things easier for the users.
+
+00:24.000 --> 00:25.480
+So let's understand what this means.
+
+00:25.520 --> 00:29.400
+Now I'm going to explain for you a scenario that happens almost in each project.
+
+00:29.400 --> 00:33.880
+Like if you get an access to a database where you want to do analysis, you will be in a scenario.
+
+00:33.880 --> 00:39.040
+And this can happen a lot where you're going to find a large database where the tables are very complex
+
+00:39.040 --> 00:39.680
+to understand.
+
+00:39.720 --> 00:41.080
+They have a lot of columns.
+
+00:41.080 --> 00:47.320
+They have like technical and critical names and how the tables are connected to each other and the relationship
+
+00:47.320 --> 00:48.200
+between them.
+
+00:48.200 --> 00:50.240
+It's almost impossible to understand.
+
+00:50.240 --> 00:56.520
+Then you have to be deeply involved with the data models, which documentations and with experts until
+
+00:56.520 --> 00:59.560
+you understand how to query this database.
+
+00:59.560 --> 01:04.750
+So if you are not a developer and from end user perspective, it's going to be nightmare where you are
+
+01:04.750 --> 01:08.230
+trying to do multiple joints in order to make simple analyses.
+
+01:08.230 --> 01:13.870
+And of course, from the database perspective, this data model is good enough for one application.
+
+01:13.870 --> 01:19.630
+But if you are opening your database for multiple data analysis projects, this can be a nightmare because
+
+01:19.630 --> 01:23.470
+you have to go and explain for each user how to query the data.
+
+01:23.550 --> 01:29.990
+So what we usually do, instead of giving a direct access to such technical and hard to understand data
+
+01:29.990 --> 01:33.950
+model, we go as developers creating multiple views.
+
+01:33.990 --> 01:39.510
+Since we are the expert of the data model, and these new views are going to be an abstraction of the
+
+01:39.510 --> 01:46.430
+complexity that I have in my database, and we have to make sure that those views are providing objects
+
+01:46.430 --> 01:48.070
+that are friendly.
+
+01:48.070 --> 01:51.350
+So they have like a full English name that makes sense.
+
+01:51.350 --> 01:56.710
+And as well the columns are friendly and we try to not offer a lot of views, so the user don't have
+
+01:56.710 --> 01:57.910
+to do all the joins.
+
+01:57.910 --> 02:05.070
+So we provide like few views that are friendly and has a lot of informations that the users needs for
+
+02:05.070 --> 02:05.990
+the analysis.
+
+02:05.990 --> 02:11.270
+So with that the users can have an access to something more friendly and easy to consume, and then
+
+02:11.270 --> 02:16.670
+they can write simple queries in order to do analysis on top of these friendly views.
+
+02:16.710 --> 02:18.470
+And this is what we can give a name like.
+
+02:18.470 --> 02:24.190
+We are providing a data product from my complex physical database.
+
+02:24.270 --> 02:30.750
+So here again how important are the views to provide an abstraction and easy to consume objects for
+
+02:30.750 --> 02:31.510
+the users?
+
+02:31.510 --> 02:37.590
+And with that I can hide all my complexity and the script of the view is going to be developed from
+
+02:37.590 --> 02:44.830
+the experts and only once, so that the users don't have to understand or to write these complex SQL
+
+02:44.870 --> 02:45.510
+joins.
+
+02:45.510 --> 02:49.150
+And with that, you can make your data projects way easier than before.
+
+02:49.270 --> 02:54.750
+So this is another important use case for the views, where we can use it in order to provide abstraction
+
+02:54.750 --> 02:58.230
+and as well, easy and friendly objects for the end users.
+
+02:58.270 --> 02:58.430
+Okay.
+
+02:58.470 --> 02:59.790
+So now let's have the following task.
+
+02:59.790 --> 03:07.190
+And it says provide a view that combines details from orders, products, customers and employees.
+
+03:07.310 --> 03:13.780
+So now instead of having all those tables from our database, We have to provide one combined view that
+
+03:13.780 --> 03:14.900
+has everything.
+
+03:15.220 --> 03:16.580
+Well, almost everything.
+
+03:16.580 --> 03:18.660
+So now let's see how we can create such a view.
+
+03:18.700 --> 03:20.980
+So let's start first by the table orders.
+
+03:21.020 --> 03:27.260
+I'm going to go and select First Star from sales orders.
+
+03:27.660 --> 03:29.060
+And let's go and execute it.
+
+03:29.060 --> 03:31.300
+This is the central table that connects everything.
+
+03:31.300 --> 03:35.740
+You can see here we have the order ID product ID sales customers and so on.
+
+03:35.740 --> 03:37.500
+So it is a great start point.
+
+03:37.500 --> 03:40.060
+So now we're going to go and be picky about the columns.
+
+03:40.100 --> 03:41.580
+I will not show all the columns.
+
+03:41.580 --> 03:45.860
+But I would say let's go and show for example the order ID this is essential.
+
+03:45.860 --> 03:48.260
+It's nice to have a unique identifier.
+
+03:48.460 --> 03:52.980
+Now the product id I will not show it, but I will just list it over here.
+
+03:52.980 --> 03:59.020
+The same for the customer ID, salesperson ID, those stuff I would like to replace later.
+
+03:59.020 --> 04:05.500
+So I will just make it as comment so I don't forget about it because it makes no sense to show the product
+
+04:05.500 --> 04:07.380
+ID and customer IDs and so on.
+
+04:07.420 --> 04:13.140
+We would like to show the details about each objects, because instead of having the product ID, I
+
+04:13.180 --> 04:17.860
+would like to show, for example, the product name itself and some other informations from the table
+
+04:17.900 --> 04:18.460
+products.
+
+04:18.460 --> 04:20.620
+And with that we are reducing the complexity.
+
+04:20.620 --> 04:22.980
+So now what else we can get from the table orders.
+
+04:22.980 --> 04:24.660
+We can go and get the order date.
+
+04:24.660 --> 04:29.980
+I will put it here and maybe we can go and get stuff like sales and quantity.
+
+04:31.140 --> 04:37.620
+So like this of course we can go and put all the columns, but for now I will go with those informations.
+
+04:37.660 --> 04:42.900
+Now its important since we are going to have a lot of tables, let's go and make sure we are using aliases.
+
+04:43.220 --> 04:47.340
+So I'm going to have the order for each of those columns.
+
+04:47.700 --> 04:48.460
+All right fine.
+
+04:48.460 --> 04:50.580
+So now we have four details from the table.
+
+04:50.580 --> 04:51.220
+Orders.
+
+04:51.580 --> 04:52.740
+Now what is next.
+
+04:52.740 --> 04:54.140
+We have the product ID.
+
+04:54.140 --> 04:57.500
+So let's go and get the informations from the products.
+
+04:57.500 --> 04:58.100
+What we're going to do.
+
+04:58.100 --> 05:02.620
+We're going to use a left join just to make sure to not miss any order.
+
+05:02.660 --> 05:04.020
+We go with the inner join.
+
+05:04.020 --> 05:06.900
+You might miss some orders so I will not do that.
+
+05:06.900 --> 05:10.060
+So let's join it with the products like this.
+
+05:10.060 --> 05:15.100
+And so now we have to go and join the tables.
+
+05:15.220 --> 05:21.850
+So we're going to use the keys Use product ID equal the order product ID.
+
+05:21.890 --> 05:22.330
+All right.
+
+05:22.370 --> 05:26.370
+So now the question is which information do we want to show for the users.
+
+05:26.610 --> 05:28.410
+Let's go to the table orders.
+
+05:28.410 --> 05:34.410
+So we have the product and category and the price I would say let's go and get the product and category.
+
+05:34.410 --> 05:35.170
+That's enough.
+
+05:35.210 --> 05:39.050
+So now instead of the ID I'm going to have it like this.
+
+05:39.050 --> 05:41.770
+So it's going to be the product and the category.
+
+05:43.090 --> 05:45.250
+Now let's go and test it I'm going to execute it.
+
+05:45.250 --> 05:49.490
+Now as you can see we don't have a product ID we have the product name which is more friendly.
+
+05:49.490 --> 05:54.730
+So we have now those two columns from the orders and those two from the products and the last two as
+
+05:54.730 --> 05:55.930
+well from the orders.
+
+05:55.930 --> 05:57.530
+So it looks really nice and friendly.
+
+05:57.530 --> 06:01.530
+And with that the user don't need extra table called products.
+
+06:01.530 --> 06:02.730
+We have everything in one.
+
+06:02.770 --> 06:04.970
+Now let's go and do the same for the customers.
+
+06:04.970 --> 06:08.330
+So let's go and do the same thing.
+
+06:08.330 --> 06:18.170
+So left join sales customers see and as well join them using the key customer ID equal to the customer
+
+06:18.170 --> 06:18.570
+ID.
+
+06:18.610 --> 06:22.000
+Now we have to go and grab a few columns from the customers.
+
+06:22.000 --> 06:22.920
+Let's go and check.
+
+06:22.920 --> 06:25.840
+So we have a first name, last name and country and score.
+
+06:25.880 --> 06:31.160
+I would say I would go with the names and the countries, but instead of having first name and last
+
+06:31.200 --> 06:33.000
+name, I'm going to put everything in one.
+
+06:33.000 --> 06:36.000
+So we have to go and concatenate the informations.
+
+06:36.320 --> 06:43.800
+So we're going to get the first name, then plus then empty between the first name and the last name
+
+06:44.200 --> 06:45.800
+and then the last name.
+
+06:45.800 --> 06:46.440
+Like this.
+
+06:48.120 --> 06:49.480
+Now we will not call it a name.
+
+06:49.480 --> 06:54.360
+We're going to go and call it the customer name because later we're going to have as well an employee
+
+06:54.360 --> 06:54.800
+name.
+
+06:54.800 --> 06:55.560
+All right.
+
+06:55.560 --> 07:01.320
+So next we want to get the country and we have to say this is the country from the customers.
+
+07:01.320 --> 07:04.160
+So we're going to call it customer country.
+
+07:04.440 --> 07:05.880
+And that's it.
+
+07:05.880 --> 07:07.280
+Let's go and execute it.
+
+07:07.280 --> 07:10.360
+Now we can see we have again our orders products.
+
+07:10.360 --> 07:12.800
+And now we have the informations from the customer.
+
+07:12.800 --> 07:14.960
+But here we have issue that we have some nulls.
+
+07:14.960 --> 07:17.360
+And that's because there is no last name.
+
+07:17.360 --> 07:21.440
+So what we're going to do, we're going to go and handle the nulls for the last name and as well for
+
+07:21.440 --> 07:22.160
+the first name.
+
+07:22.160 --> 07:23.720
+So we're going to use the coalesce.
+
+07:23.720 --> 07:23.840
+Wallace.
+
+07:25.320 --> 07:32.280
+If the last name is null, then make an empty string and the same thing for the first name.
+
+07:32.400 --> 07:34.240
+So first name.
+
+07:34.280 --> 07:34.640
+All right.
+
+07:34.640 --> 07:39.200
+So now let's go and execute it so that we are getting as well the first name.
+
+07:39.200 --> 07:43.720
+If the last name is missing or if the first name is missing, we can get the last name.
+
+07:43.720 --> 07:44.600
+So it looks good.
+
+07:44.600 --> 07:45.400
+So it looks good.
+
+07:45.400 --> 07:47.640
+With that we have the customer's details.
+
+07:47.640 --> 07:50.200
+The last thing we have to go and get the employees.
+
+07:50.200 --> 07:56.240
+So the employee here is called salesperson ID which we can connect it directly to the table employees.
+
+07:56.240 --> 07:59.160
+So if we go to the employees over here which columns do we need.
+
+07:59.160 --> 08:01.800
+We have the first name, last name department and so on.
+
+08:02.040 --> 08:05.040
+I would say let's go get the names and the departments.
+
+08:05.040 --> 08:06.680
+So first let's go and join it.
+
+08:06.680 --> 08:14.360
+So left join sales employees E and we're going to join it using the employee ID.
+
+08:14.360 --> 08:21.840
+And we're going to join it with the sales person ID that comes from the order table.
+
+08:21.840 --> 08:25.480
+So now instead of the person ID we're going to have as well the same thing.
+
+08:25.480 --> 08:27.910
+So I will just go and copy paste this.
+
+08:27.910 --> 08:34.390
+So instead of the alias you're going to have E and as well E over here and we're going to call it sales
+
+08:34.750 --> 08:35.350
+name.
+
+08:35.390 --> 08:38.350
+And as well what we're going to have, we're going to have that department.
+
+08:38.470 --> 08:41.750
+So department and that's it.
+
+08:41.790 --> 08:43.390
+Let's go and execute it.
+
+08:43.390 --> 08:46.030
+So now we have a lot of informations in our view.
+
+08:46.030 --> 08:50.750
+So we have the first columns from the orders then from the products.
+
+08:50.750 --> 08:56.590
+And here we have from customers and those two from the employees and the last two again from the orders.
+
+08:56.590 --> 09:02.190
+So thus we have combined now all the relevant information from multiple tables in our database.
+
+09:02.510 --> 09:03.750
+In only one view.
+
+09:03.790 --> 09:09.710
+This result is relatively big, but still we have all the information in one, and it is more friendly
+
+09:09.710 --> 09:15.870
+for the users in order to consume our data instead of going and joining like all those four tables together.
+
+09:15.870 --> 09:21.350
+So now the next step, we're going to put the result of this query in a view in our database so that
+
+09:21.350 --> 09:23.710
+our end users can start consuming it.
+
+09:23.710 --> 09:24.910
+So how are we going to do it.
+
+09:24.910 --> 09:27.110
+This is our combined query.
+
+09:27.550 --> 09:30.190
+And now we're going to write the DDL for it.
+
+09:30.190 --> 09:31.550
+So create view.
+
+09:31.550 --> 09:35.150
+And now we're going to give it the name order details.
+
+09:35.190 --> 09:38.990
+And then as and we're going to put the whole thing into parentheses.
+
+09:39.550 --> 09:43.830
+So at the start and at the end and of course don't forget the schema.
+
+09:43.830 --> 09:47.630
+So our schema is sales sales dot.
+
+09:47.750 --> 09:52.430
+Then we have the view name just in order to have it in the correct schema and not in the view.
+
+09:52.790 --> 09:54.350
+So everything is ready.
+
+09:54.350 --> 09:55.710
+Let's go and execute it.
+
+09:55.710 --> 09:58.710
+So now let's go and check our database.
+
+09:58.710 --> 10:03.230
+If you go and refresh you will find our second view order details.
+
+10:03.230 --> 10:04.670
+So now let's go and test it.
+
+10:04.710 --> 10:12.630
+We're going to say Select star from sales v order details.
+
+10:13.150 --> 10:14.350
+Let's go and execute it.
+
+10:14.350 --> 10:20.310
+And with that we are getting now a combined view that are showing all important informations from the
+
+10:20.310 --> 10:21.070
+database.
+
+10:21.070 --> 10:22.710
+So this is what the users can see.
+
+10:22.750 --> 10:28.830
+And with that the users don't care about how many tables do we have in the tables and how to join all
+
+10:28.830 --> 10:29.670
+those tables.
+
+10:29.670 --> 10:32.750
+We have only one view and we can start working on it.
+
+10:32.750 --> 10:35.030
+This is a very common use case for the views.

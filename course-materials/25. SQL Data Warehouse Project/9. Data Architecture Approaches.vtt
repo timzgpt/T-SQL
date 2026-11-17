@@ -1,0 +1,325 @@
+WEBVTT
+
+00:00.120 --> 00:01.880
+Now designing the data architecture.
+
+00:01.880 --> 00:04.320
+It is exactly like building a house.
+
+00:04.320 --> 00:10.120
+So before construction starts, an architect is gonna go and design a plan, a blueprint for the house,
+
+00:10.120 --> 00:15.240
+how the rooms will be connected, how to make the house functional, safe and wonderful.
+
+00:15.240 --> 00:20.640
+And without this blueprint from the architects, the builders might create something unstable, inefficient,
+
+00:20.640 --> 00:22.080
+or maybe unlivable.
+
+00:22.080 --> 00:23.800
+The same goes for data projects.
+
+00:23.840 --> 00:26.040
+A data architect is like a house architect.
+
+00:26.080 --> 00:30.280
+They design how your data will flow, integrate and be accessed.
+
+00:30.280 --> 00:35.720
+So as data architects, we make sure that the data warehouse is not only functioning, but also scalable
+
+00:35.720 --> 00:36.920
+and easy to maintain.
+
+00:36.920 --> 00:38.840
+And this is exactly what we will do now.
+
+00:38.880 --> 00:44.720
+We will play the role of the data architect, and we will start brainstorming and designing the architecture
+
+00:44.720 --> 00:45.880
+of the data warehouse.
+
+00:45.880 --> 00:50.400
+So now I'm going to show you a sketch in order to understand what are the different approaches in order
+
+00:50.400 --> 00:52.280
+to design a data architecture.
+
+00:52.280 --> 00:57.760
+And this phase of the project usually is very exciting for me because this is my main role in data projects.
+
+00:57.760 --> 01:03.160
+I am a data architect, and I discuss a lot of different projects where we try to find out the best
+
+01:03.160 --> 01:04.520
+design for the projects.
+
+01:04.560 --> 01:05.710
+All right, so now let's go.
+
+01:05.750 --> 01:10.950
+Now, the first step of building a data architecture is to make a very important decision to choose
+
+01:10.950 --> 01:12.710
+between four major types.
+
+01:12.710 --> 01:15.550
+The first approach is to build a data warehouse.
+
+01:15.550 --> 01:18.430
+It is very suitable if you have only structured data.
+
+01:18.430 --> 01:23.750
+And your business want to build solid foundations for reporting and business intelligence.
+
+01:23.750 --> 01:26.630
+And another approach is to build a data lake.
+
+01:26.670 --> 01:31.590
+This one is way more flexible than a data warehouse, where you can store not only structured data,
+
+01:31.590 --> 01:34.590
+but as well semi and unstructured data.
+
+01:34.590 --> 01:40.790
+We usually use this approach if we have mixed types of data like database tables, logs, images, videos
+
+01:40.790 --> 01:46.830
+and your business want to focus not only on reporting but as well on advanced analytics or machine learning.
+
+01:46.830 --> 01:50.270
+But it's not that organized like a data warehouse and data lakes.
+
+01:50.270 --> 01:56.390
+If it's too much unorganized and turns into data swamp and this is where we need the next approach.
+
+01:56.390 --> 01:59.590
+So the next one we can go and build data Lake house.
+
+01:59.630 --> 02:02.870
+So it is like a mix between data warehouse and Data Lake.
+
+02:02.910 --> 02:07.990
+You get the flexibility of having different types of data from the data lake, but you still want to
+
+02:08.030 --> 02:11.110
+structure and organize your data like we do in the data warehouse.
+
+02:11.110 --> 02:13.230
+So you mix those two words into one.
+
+02:13.230 --> 02:16.470
+And this is a very modern way on how to build that architecture.
+
+02:16.470 --> 02:19.870
+And this is currently my favorite way of building data management system.
+
+02:19.870 --> 02:23.590
+Now, the last and very recent approach is to build a data mesh.
+
+02:23.590 --> 02:24.910
+So this is a little bit different.
+
+02:24.910 --> 02:31.150
+Instead of having centralized data management system, the idea now in the data mesh is to make it decentralized.
+
+02:31.150 --> 02:36.190
+You cannot have like one centralized data management system because always if you say centralized then
+
+02:36.190 --> 02:37.390
+it means bottleneck.
+
+02:37.390 --> 02:42.870
+So instead you have multiple departments and multiple domains where each one of them is building a data
+
+02:42.870 --> 02:44.830
+product and sharing it with others.
+
+02:44.830 --> 02:47.150
+So now you have to go and pick one of those approaches.
+
+02:47.150 --> 02:50.390
+And in this project we will be focusing on the data warehouse.
+
+02:50.390 --> 02:53.190
+So now the question is how to build the data warehouse.
+
+02:53.190 --> 02:56.590
+Well there is as well four different approaches on how to build it.
+
+02:56.590 --> 02:58.870
+The first one is the Inmon approach.
+
+02:58.870 --> 03:03.870
+So again you have your sources and the first layer you start with the staging where the raw data is
+
+03:03.870 --> 03:04.310
+landing.
+
+03:04.310 --> 03:10.150
+And then the next layer you organize your data in something called enterprise data warehouse where you
+
+03:10.150 --> 03:14.020
+go and model the data using the third normal format.
+
+03:14.060 --> 03:17.100
+It's about like how to structure and normalize your tables.
+
+03:17.100 --> 03:21.220
+So you are building a new integrated data model from the multiple sources.
+
+03:21.260 --> 03:22.660
+And then we go to the third layer.
+
+03:22.660 --> 03:27.740
+It's called the data marts where you go and take like small subset of the data warehouse.
+
+03:27.740 --> 03:31.940
+And you design it in a way that is ready to be consumed from reporting.
+
+03:31.940 --> 03:37.580
+And it focuses on only one topic, like for example, the customer sales or products.
+
+03:37.580 --> 03:42.300
+And after that you go and connect your BI tool like power BI or Tableau to the data marts.
+
+03:42.340 --> 03:46.180
+So with that you have three layers to prepare the data before reporting.
+
+03:46.220 --> 03:47.300
+Now moving on to the next one.
+
+03:47.300 --> 03:48.940
+We have the simple approach.
+
+03:48.940 --> 03:49.980
+He says, you know what?
+
+03:50.020 --> 03:54.060
+Building this enterprise data warehouse, it is wasting a lot of time.
+
+03:54.060 --> 03:59.340
+So what we can do, we can jump immediately from the stage layer to the final data marts.
+
+03:59.380 --> 04:04.660
+Because building this enterprise data warehouse, it is a big struggle and usually wastes a lot of time.
+
+04:04.660 --> 04:09.300
+So he always wants you to focus on building the data marts quickly as possible.
+
+04:09.300 --> 04:11.820
+So it is faster approach than inmon.
+
+04:11.820 --> 04:16.020
+But with the time you might get chaos in the data marts because you are not always focusing on the big
+
+04:16.020 --> 04:16.460
+picture.
+
+04:16.570 --> 04:21.530
+And you might be repeating same transformations and integrations in different data marts.
+
+04:21.530 --> 04:26.170
+So there is like trade off between the speed and consistent data warehouse.
+
+04:26.170 --> 04:28.930
+Now moving on to the third approach, we have the data vaults.
+
+04:28.930 --> 04:31.330
+So we still have the stage and the data marts.
+
+04:31.330 --> 04:35.250
+But it says we still need this central data warehouse in the middle.
+
+04:35.250 --> 04:39.010
+But this middle layer we're going to bring more standards and rules.
+
+04:39.010 --> 04:44.810
+So it tells you to split this middle layer into two layers, the row vault and the business vaults.
+
+04:44.810 --> 04:49.690
+In the row vault you have the original data, but in the business vault you have all the business rules
+
+04:49.690 --> 04:53.170
+and transformations that prepares the data for the data marts.
+
+04:53.210 --> 04:59.170
+So Data Vault, it is very similar to the Inmon, but it brings more standards and rules to the middle
+
+04:59.170 --> 04:59.690
+layer.
+
+04:59.730 --> 05:04.610
+Now I'm going to go and add a fourth one that I'm going to call it Medallion Architecture.
+
+05:04.610 --> 05:09.490
+And this one is my favorite one because it is very easy to understand and to build.
+
+05:09.490 --> 05:13.650
+So it says you're going to go and build three layers bronze, silver and gold.
+
+05:13.650 --> 05:18.250
+The bronze layer, it is very similar to the stage, but we have understood with the time that the stage
+
+05:18.250 --> 05:24.850
+layer is very important because having the original data as it is, it helps a lot by traceability and
+
+05:24.850 --> 05:25.690
+finding issues.
+
+05:25.730 --> 05:27.730
+Then the next layer we have the silver layer.
+
+05:27.730 --> 05:31.930
+It is where we do transformations, data cleansing, but we don't apply yet.
+
+05:31.970 --> 05:33.090
+Any business rules.
+
+05:33.130 --> 05:35.090
+Now moving on to the last layer the gold layer.
+
+05:35.090 --> 05:37.370
+It is as well very similar to the data marts.
+
+05:37.370 --> 05:43.130
+But there we can build different types of objects not only for reporting, but as well for machine learning,
+
+05:43.130 --> 05:46.010
+for AI and for many different purposes.
+
+05:46.010 --> 05:50.770
+So they are like business ready objects that you want to share as a data product.
+
+05:50.770 --> 05:55.530
+So those are the four approaches that you can use in order to build a data warehouse.
+
+05:55.650 --> 06:00.930
+So again, if you are building a data architecture you have to specify which approach you want to follow.
+
+06:00.930 --> 06:03.250
+So at the start we said we want to build a data warehouse.
+
+06:03.250 --> 06:07.130
+And then we have to decide between those four approaches and how to build a data warehouse.
+
+06:07.130 --> 06:10.730
+And in this project we will be using the medallion architecture.
+
+06:10.730 --> 06:16.050
+So this is a very important question that you have to answer as the first step of building a data architecture.
+
+06:16.090 --> 06:16.490
+All right.
+
+06:16.490 --> 06:18.650
+So with that you have decided on the approach.
+
+06:18.650 --> 06:20.970
+So we can go and mark it as done.
+
+06:20.970 --> 06:25.130
+The next step we are going to go and design the layers of the data warehouse.

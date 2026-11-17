@@ -1,0 +1,133 @@
+WEBVTT
+
+00:03.880 --> 00:05.600
+All right, let's start with the easy stuff.
+
+00:05.640 --> 00:08.320
+The first tip is select only what you need.
+
+00:08.360 --> 00:13.320
+What I usually see in many queries is that the developers just go and select all the columns from one
+
+00:13.320 --> 00:13.800
+table.
+
+00:13.800 --> 00:18.360
+And I can tell you I cannot think of one scenario where you need all the columns of one table in one
+
+00:18.360 --> 00:19.040
+query.
+
+00:19.040 --> 00:25.440
+So for sure in the results we will get like unnecessary columns and of course reading unnecessary informations
+
+00:25.480 --> 00:27.320
+gonna make your query slower.
+
+00:27.320 --> 00:29.280
+So this is usually a bad practice.
+
+00:29.280 --> 00:35.080
+Don't use select star, but instead of that go list all the columns that you need for your query.
+
+00:35.080 --> 00:37.280
+So make sure that you only select what you need.
+
+00:37.320 --> 00:42.040
+Don't go and select all the columns from one table, and with that you don't risk reading unnecessary
+
+00:42.040 --> 00:44.160
+informations from the database.
+
+00:44.160 --> 00:47.640
+So always make sure that you select exactly what you need for a query.
+
+00:47.680 --> 00:49.360
+Don't go with a star okay?
+
+00:49.400 --> 00:53.480
+Tip number two avoid unnecessary distincts and order by.
+
+00:53.520 --> 00:58.840
+I have noticed that many developers, as they are writing a lot of queries, they end up by default,
+
+00:59.080 --> 01:02.600
+adding always distinct and order by for each query.
+
+01:02.640 --> 01:07.880
+And as we review the code and discuss it with the developer, we see that we really don't need to remove
+
+01:07.880 --> 01:12.880
+any duplicates in the query because there are no duplicates, and it was only a habit to remove the
+
+01:12.880 --> 01:15.680
+duplicates using Distincts and the same thing for the order by.
+
+01:15.680 --> 01:21.000
+In many situations, there is no need to sort the data at all, and those operations that distinct removing
+
+01:21.000 --> 01:26.390
+the duplicate and sorting the data, they are very expensive operations in your execution plan.
+
+01:26.430 --> 01:29.790
+So they're going to take a lot of resources and slow down your query.
+
+01:29.790 --> 01:35.390
+So this considered as a bad practice if you always go and use distinct, even though it's not needed,
+
+01:35.390 --> 01:39.350
+or you are using the order by in order to sort the data when it is not necessary.
+
+01:39.350 --> 01:41.510
+So the best practice here is to avoid them.
+
+01:41.550 --> 01:45.270
+Don't use distinct or order by only if it is necessary.
+
+01:45.310 --> 01:49.750
+Okay, the next one for exploration purposes, limit the rows.
+
+01:49.750 --> 01:54.270
+So sometimes, especially if you are working with a new database, you would like to explore the tables
+
+01:54.310 --> 01:57.830
+just to have a quick peek in order to see the content of the tables.
+
+01:57.830 --> 02:03.030
+And if your database has a lot of big tables with millions of rows and so on, you will be consuming
+
+02:03.070 --> 02:06.310
+a lot of resources if you just select the data like this.
+
+02:06.310 --> 02:09.110
+So now imagine that the orders has like 100 million.
+
+02:09.150 --> 02:13.470
+As you run this query, the database has to fetch all the 100 million for you.
+
+02:13.470 --> 02:14.910
+And usually for exploration.
+
+02:14.910 --> 02:17.910
+It's enough to see like ten rows and that's going to be enough.
+
+02:18.070 --> 02:20.790
+That's why it is considered as a bad practice.
+
+02:20.830 --> 02:24.430
+If you are exploring the tables do not have a limit or top.
+
+02:24.430 --> 02:28.990
+So a good practice would be to say select top ten and then have the same query.
+
+02:28.990 --> 02:34.710
+So if you go over here, you will get only ten rows and the database will not fetch 100 million.
+
+02:34.750 --> 02:36.470
+It can fetch only ten rows.
+
+02:36.510 --> 02:42.310
+And now if you are exploring a lot of tables, you will not consume a lot of resource from the database.
+
+02:42.310 --> 02:46.790
+So if you are exploring, always limit the number of rows that you are retrieving.

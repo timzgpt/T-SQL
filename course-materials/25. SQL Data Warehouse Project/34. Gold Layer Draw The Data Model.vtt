@@ -1,0 +1,289 @@
+WEBVTT
+
+00:00.080 --> 00:02.200
+So let's go and draw our data model.
+
+00:02.200 --> 00:04.000
+Let's go and search for a table.
+
+00:04.000 --> 00:09.040
+And now what I'm going to do I'm going to go and take this one where I can say what is the primary key
+
+00:09.040 --> 00:10.520
+and what is the foreign key.
+
+00:10.560 --> 00:13.160
+And I'm going to go and change a little bit the design.
+
+00:13.160 --> 00:14.360
+So it's going to be rounded.
+
+00:14.400 --> 00:18.520
+And let's say I'm going to go and change to this color and maybe go to the size.
+
+00:18.520 --> 00:19.760
+Make it 16.
+
+00:19.800 --> 00:25.960
+And then I'm going to go and select all the columns and make it as well 16 just to increase the size
+
+00:26.000 --> 00:27.640
+and then go to arrange.
+
+00:27.640 --> 00:29.440
+And we can go and increase it.
+
+00:29.480 --> 00:33.640
+39 so now let's go and zoom in a little bit for the first table.
+
+00:33.680 --> 00:39.680
+Let's go and call it Gold's Dimension customers and make it a little bit bigger like this.
+
+00:39.720 --> 00:42.120
+And now we're going to go and define here the primary key.
+
+00:42.160 --> 00:43.640
+It is the customer key.
+
+00:43.800 --> 00:44.720
+And what else we're going to do.
+
+00:44.720 --> 00:49.120
+We're going to go and list all the columns in the dimension is a little bit annoying, but the result
+
+00:49.120 --> 00:49.800
+is going to be awesome.
+
+00:49.800 --> 00:57.120
+So what do we have the customer ID we have the customer number and then we have the first name.
+
+00:57.520 --> 01:01.840
+And now in case you want a new rows so you can hold Ctrl and enter.
+
+01:01.840 --> 01:03.800
+And you can go and add the other columns.
+
+01:03.800 --> 01:08.680
+So now pause the video and then go and create the two dimensions, the customers and the products,
+
+01:08.680 --> 01:11.440
+and add all the columns that we have built in the view.
+
+01:16.760 --> 01:17.440
+Welcome back.
+
+01:17.440 --> 01:19.720
+So now I have those two dimensions.
+
+01:19.720 --> 01:22.200
+The third one going to be the fact table.
+
+01:22.240 --> 01:25.760
+Now for the fact table I'm going to go with different color for example the blue.
+
+01:25.760 --> 01:29.200
+And I'm going to go and put it in the middle something like this.
+
+01:29.200 --> 01:33.160
+So we're gonna say goals facts sales.
+
+01:33.160 --> 01:35.440
+And here for that we don't have primary key.
+
+01:35.440 --> 01:36.680
+So we're going to go and delete it.
+
+01:36.720 --> 01:39.120
+And I have to go and add all the columns of the facts.
+
+01:39.120 --> 01:44.320
+So order number products key customer key okay.
+
+01:44.360 --> 01:44.680
+All right.
+
+01:44.720 --> 01:45.280
+Perfect.
+
+01:45.320 --> 01:48.720
+Now what we can do we can go and add the foreign key information.
+
+01:48.720 --> 01:51.520
+So the product key is a foreign key for the products.
+
+01:51.520 --> 01:53.080
+So we're going to say Fc1.
+
+01:53.080 --> 01:56.000
+And the customer key is going to be the foreign key for the customer.
+
+01:56.000 --> 02:00.280
+So if k two and of course you can go and increase the spacing for that okay.
+
+02:00.320 --> 02:05.560
+So now after we have the tables the next step in data modeling is to go and describe the relationship
+
+02:05.560 --> 02:06.600
+between these tables.
+
+02:06.640 --> 02:09.480
+This is of course very important for reporting and analytics.
+
+02:09.600 --> 02:14.360
+In order to understand how I'm going to go and use the data model and we have different types of relationships.
+
+02:14.360 --> 02:16.160
+We have 1 to 1, one to many.
+
+02:16.160 --> 02:21.760
+And in star schema data model, the relationship between the dimension and the fact is one to many.
+
+02:21.800 --> 02:27.200
+And that's because in the table customers we have for a specific customer only one record describing
+
+02:27.200 --> 02:32.560
+the customer, but in the fact table, the customer might exist in multiple records, and that's because
+
+02:32.560 --> 02:34.920
+customers can order multiple times.
+
+02:34.920 --> 02:37.040
+So that's why, in fact it is many.
+
+02:37.040 --> 02:39.480
+And in the dimension side it is one.
+
+02:39.480 --> 02:43.240
+Now, in order to see all those relationships, we're going to go to the menu to the left side.
+
+02:43.240 --> 02:45.720
+And as you can see we have here Entity Relations.
+
+02:45.720 --> 02:48.040
+And now you have different types of arrows.
+
+02:48.080 --> 02:54.120
+So here for example we have zero to many, one to many, 1 to 1 and many different types of relations.
+
+02:54.120 --> 02:56.960
+So now which one we're going to take we're going to go and pick this one.
+
+02:56.960 --> 02:58.880
+So it says one mandatory.
+
+02:58.880 --> 03:02.160
+So this means the customer must exist in the dimension table.
+
+03:02.200 --> 03:02.680
+Too many.
+
+03:02.680 --> 03:03.850
+But it is optional.
+
+03:03.850 --> 03:05.450
+So here we have three scenarios.
+
+03:05.450 --> 03:11.770
+The customer didn't order anything or the customer did order only once, or the customer did order many
+
+03:11.770 --> 03:12.250
+things.
+
+03:12.250 --> 03:14.290
+So that's why in the fact table it is optional.
+
+03:14.290 --> 03:17.090
+So we're going to take this one and place it over here.
+
+03:17.090 --> 03:24.770
+So we're going to go and connect this part to the customer dimension and the many parts to the facts.
+
+03:24.770 --> 03:27.050
+Well actually we have to do it on the customers.
+
+03:27.050 --> 03:30.450
+So with that we are describing the relationship between the dimensions and fact.
+
+03:30.450 --> 03:31.730
+With one to many.
+
+03:31.770 --> 03:36.810
+One is mandatory for the customer dimension and many is optional to the facts.
+
+03:36.810 --> 03:39.530
+So we have the same story as well for the products.
+
+03:39.530 --> 03:44.850
+So the many parts to the facts and the one goes to the products.
+
+03:44.850 --> 03:45.890
+So it's going to look like this.
+
+03:45.890 --> 03:51.610
+Each time you are connecting new dimension to the fact table, it is usually one to many relationship.
+
+03:51.610 --> 03:57.050
+So you can go and add anything you want to this model, like for example a text like explaining something,
+
+03:57.090 --> 04:02.010
+for example, if you have some complicated calculations and so on, you can go and write this information
+
+04:02.010 --> 04:02.650
+over here.
+
+04:02.650 --> 04:08.210
+So for example we can say or here sales calculation, we can make it a little bit smaller.
+
+04:08.210 --> 04:09.890
+So let's go with 18.
+
+04:10.130 --> 04:11.450
+So we can go right here.
+
+04:11.490 --> 04:12.730
+The formula for that.
+
+04:12.730 --> 04:17.250
+So sales equal quantity multiplied with the price.
+
+04:17.610 --> 04:19.650
+And make this a little bit bigger.
+
+04:20.050 --> 04:23.890
+So it is really nice info that we can add it to the data model.
+
+04:23.890 --> 04:26.450
+And even we can go and link it to the column.
+
+04:26.450 --> 04:31.690
+So we can go and take this arrow for example, put it like this and link it to the column.
+
+04:31.690 --> 04:36.410
+And with that you have as well nice explanation about the business rule or the calculation.
+
+04:36.410 --> 04:40.010
+So you can go and add any descriptions that you want to the data model.
+
+04:40.010 --> 04:43.210
+Just to make it clear for anyone that is using your data model.
+
+04:43.210 --> 04:46.610
+So with that you don't have only like three tables in the database.
+
+04:46.610 --> 04:50.210
+You have as well, like some kind of documentations and explanation.
+
+04:50.210 --> 04:55.530
+In one click, we can see how the data model is built and how you can connect the tables together.
+
+04:55.530 --> 04:58.490
+It is amazing really for all users of your data model.
+
+04:58.530 --> 04:58.930
+All right.
+
+04:58.930 --> 05:01.730
+So now with that we have really nice data model.
+
+05:01.730 --> 05:05.290
+And now in the next step we're going to go and create quickly a data catalog.

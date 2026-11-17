@@ -1,0 +1,234 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.199
+okay so now we have another task for the date diff and it says find the average shipping duration
+
+2
+00:00:05.199 --> 00:00:10.960
+in days for each month so here we have a lot of informations let's do it step by step let's first
+
+3
+00:00:10.960 --> 00:00:16.239
+find out the shipping durations in days so let's go and select few informations from our table so
+
+4
+00:00:16.239 --> 00:00:28.319
+select order id we have the order date ship date and i think that's it so from sales orders
+
+5
+00:00:28.399 --> 00:00:32.639
+so let's go and execute it so now we have our 10 orders we have the order date and the shipping
+
+6
+00:00:32.639 --> 00:00:38.000
+dates now we have to go and create a new field called shipping duration so what is shipping
+
+7
+00:00:38.000 --> 00:00:44.479
+duration it is the number of days between the order dates and the shipping dates so how many
+
+8
+00:00:44.479 --> 00:00:50.319
+days it took from the order placement until the day of the shipping so that means we have two
+
+9
+00:00:50.319 --> 00:00:54.560
+dates and we have to go and find the differences between them we're gonna go with the function
+
+10
+00:00:55.360 --> 00:01:01.680
+so now since we are seeing in days we have to go with the part day so what is the start date
+
+11
+00:01:01.680 --> 00:01:07.599
+the start date is the order date and what is the end date it's gonna be the shipping dates
+
+12
+00:01:08.239 --> 00:01:14.639
+like this so i'm gonna call it day to ship like this let's go and execute it so now by checking
+
+13
+00:01:14.639 --> 00:01:19.839
+the result for example for the other one it is ordered at the first of january and it is shipped
+
+14
+00:01:19.839 --> 00:01:26.000
+on 5th of january so between those two dates we have around four days so four is the shipping
+
+15
+00:01:26.000 --> 00:01:30.639
+duration and if you go to the order number three the differences between the order date and the
+
+16
+00:01:30.639 --> 00:01:36.400
+shipping date we have around 15 days so thus we have solved this part shipping duration in days
+
+17
+00:01:36.400 --> 00:01:42.319
+but now the task says we have to find the average duration for each month so that means we have to
+
+18
+00:01:42.319 --> 00:01:47.680
+go and select for example the month of january and find the average duration so we have to go
+
+19
+00:01:47.680 --> 00:01:52.639
+and do a simple aggregation we're gonna go to the date if at the start and say average and we're
+
+20
+00:01:52.639 --> 00:01:58.800
+gonna close it over here and let's go and rename it average shipping and now we have to aggregate
+
+21
+00:01:58.800 --> 00:02:06.559
+by the month so we don't need the whole order date we need the month of the order date so like this
+
+22
+00:02:06.559 --> 00:02:13.119
+we don't need of course the order id but now we need to group up the data using this dimension
+
+23
+00:02:13.119 --> 00:02:18.800
+the month order dates so that's it let's go and execute it so now in the output you can see we
+
+24
+00:02:18.800 --> 00:02:24.880
+have three months and for each month we have the average shipping durations in days so for the
+
+25
+00:02:24.880 --> 00:02:31.199
+first month it is around seven days for february is as well seven days and for march we have less
+
+26
+00:02:31.199 --> 00:02:36.080
+duration five days so with that we have solved the task as you can see the date diff is very strong
+
+27
+00:02:36.080 --> 00:02:41.520
+function in order to do data analytics using the dates information all right so now we have the
+
+28
+00:02:41.520 --> 00:02:47.199
+following task and it says find the number of days between each order and the previous order
+
+29
+00:02:47.199 --> 00:02:51.679
+so there is a lot of stuff going on over here let's do it step by step let's start by selecting
+
+30
+00:02:51.679 --> 00:03:01.279
+the basic stuff so select order id order dates from the table sales orders let's go and excuse
+
+31
+00:03:01.279 --> 00:03:05.919
+it so we have our 10 orders and we have the current order dates so now we have to find the
+
+32
+00:03:05.919 --> 00:03:11.679
+differences between two dates order dates the current one and the previous order dates so in
+
+33
+00:03:11.679 --> 00:03:17.199
+our data we have the current order dates but we don't have the previous order date for each order
+
+34
+00:03:17.199 --> 00:03:21.520
+and in order to calculate the previous one do you remember about the window functions
+
+35
+00:03:21.520 --> 00:03:28.000
+we can go and use the lag in order to access a value from a previous records so let's go and do
+
+36
+00:03:28.000 --> 00:03:34.240
+that the order date i'm just gonna call it current order dates and let's go and find the previous
+
+37
+00:03:34.240 --> 00:03:40.080
+order dates so we're going to go with the lag of the order dates because we are interested in the
+
+38
+00:03:40.080 --> 00:03:48.479
+value of the order date now over we have to sort the data so we're going to sort it by the order
+
+39
+00:03:48.479 --> 00:03:54.479
+date as well so this is going to help us always to access the previous value of the order date
+
+40
+00:03:54.479 --> 00:04:00.720
+so we're going to call it previous order dates let's go and execute it and let's check the
+
+41
+00:04:00.720 --> 00:04:05.199
+results for the first order we don't have anything previously so that's why we are getting a null
+
+42
+00:04:05.199 --> 00:04:11.360
+for the second record the current order date is the 5th of january and the previous one is the
+
+43
+00:04:11.360 --> 00:04:17.119
+1st of january and this value comes from the previous record the previous order great amazing
+
+44
+00:04:17.119 --> 00:04:22.160
+so with that we have now the two dates the current date and the previous one and now we can go very
+
+45
+00:04:22.160 --> 00:04:28.959
+simply finding the number of days between those two dates and we can do using the amazing function
+
+46
+00:04:29.920 --> 00:04:35.600
+so we are interested on the days that's why it's going to be the day so what is the starting day
+
+47
+00:04:35.600 --> 00:04:40.559
+if you check those two dates you can see that the previous order date is the starting date
+
+48
+00:04:40.559 --> 00:04:46.079
+so we're going to take the whole thing the whole window function and put it over here so i just
+
+49
+00:04:46.079 --> 00:04:51.519
+moved my picture so here is the previous order dates and now the end date what's going to be
+
+50
+00:04:51.519 --> 00:04:56.880
+it's going to be the current order date which is our order date like this so again we are finding
+
+51
+00:04:56.880 --> 00:05:03.920
+the number of days between the previous dates and the current dates so that's it let's close it
+
+52
+00:05:03.920 --> 00:05:10.799
+so i'm just going to call it number of days so let's go and execute it now of course we have
+
+53
+00:05:10.799 --> 00:05:15.440
+here null so we will get as well null in the output and now you can check over here how many
+
+54
+00:05:15.440 --> 00:05:21.040
+days between those two dates we have exactly four days and as well for the next one we have around
+
+55
+00:05:21.040 --> 00:05:26.880
+five days ten days and so on so we have solved the task we have now the number of days between
+
+56
+00:05:26.880 --> 00:05:31.760
+each order and the previous order so this type of analysis is very important in the business
+
+57
+00:05:31.760 --> 00:05:36.799
+we call it time gap analysis and we have done it using the help of the window function
+
+58
+00:05:36.799 --> 00:05:43.040
+and as well the date function date diff so date diff function is amazing function to do that analysis
+

@@ -1,0 +1,151 @@
+WEBVTT
+
+00:03.960 --> 00:09.280
+Now we come to my favorite use case for the views, and that I personally recommend in each project
+
+00:09.280 --> 00:14.360
+that we can use views as a virtual data marts in a data warehouse.
+
+00:14.440 --> 00:14.960
+So now why?
+
+00:14.960 --> 00:20.080
+This is my favorite because I'm a specialist in data warehouses and data lakes, and this topic is very
+
+00:20.080 --> 00:22.000
+important decision in each project.
+
+00:22.000 --> 00:22.640
+Like this.
+
+00:22.640 --> 00:24.440
+So let's understand what this means.
+
+00:24.440 --> 00:28.960
+So now a classical data warehouse architecture based on the approach of Inmon.
+
+00:28.960 --> 00:30.280
+It's going to look like this.
+
+00:30.320 --> 00:33.800
+We have multiple source systems where our data are spreaded.
+
+00:33.800 --> 00:40.040
+And now we would like to go and extract all our data from these multiple sources and put it in one big
+
+00:40.040 --> 00:42.160
+database called Data Warehouse.
+
+00:42.160 --> 00:47.400
+And there will be a lot of operations on this central database, like the data can be first cleaned
+
+00:47.400 --> 00:52.280
+and then maybe integrated together, and maybe we are building there some historical data.
+
+00:52.280 --> 00:58.280
+So we're going to be doing multiple steps in order to prepare the data for complex reporting and analysis.
+
+00:58.280 --> 01:00.480
+And what we usually do in the data warehouse.
+
+01:00.520 --> 01:04.160
+We're going to store all those informations as a physical table.
+
+01:04.200 --> 01:07.000
+Now once we have built the data warehouse, what's going to happen.
+
+01:07.000 --> 01:12.990
+We're going to have multiple use cases that would like to access the data warehouse in order maybe to
+
+01:13.030 --> 01:14.670
+do some different reporting.
+
+01:14.670 --> 01:16.230
+Now it's going to be very complex.
+
+01:16.230 --> 01:21.550
+If we connect immediately, like a reporting engine like power BI directly to the data warehouse.
+
+01:21.550 --> 01:27.070
+But instead of this, we tried to split the data warehouse into multiple subsets, like we can split
+
+01:27.070 --> 01:33.070
+it after topic or domain or departments, and we call those subsets as data marts.
+
+01:33.110 --> 01:38.310
+So a data mart is always specific for a use case that's focus on one topic.
+
+01:38.310 --> 01:44.110
+Like for example, we could have a dedicated mart for the sales and another data mart, which is dedicated
+
+01:44.110 --> 01:45.750
+only for finance topics.
+
+01:45.750 --> 01:48.510
+But both of them comes from our data warehouse.
+
+01:48.510 --> 01:52.150
+Then the last layer is going to be like for example, the reporting and dashboarding.
+
+01:52.190 --> 01:57.310
+Maybe you have something like power BI where you are creating a dashboard one data mart like the sales
+
+01:57.310 --> 02:00.150
+or and as well maybe few stuff from other marts.
+
+02:00.150 --> 02:04.110
+But now the big question here in the data mart is how should I store the data?
+
+02:04.150 --> 02:08.150
+Should I store the data using tables or should I use views?
+
+02:08.190 --> 02:12.670
+And now the best practice says if you are building data marts, then use views.
+
+02:12.710 --> 02:19.330
+And we call this Virtual data marts, and there are many reasons why using views at a data mart is way
+
+02:19.330 --> 02:20.650
+better than using tables.
+
+02:20.650 --> 02:26.250
+Like for example, it is more dynamic and quicker to change them because usually at the data mart you
+
+02:26.290 --> 02:31.330
+are building a lot of business logics and you want to have some flexibility and speed, and the maintenance
+
+02:31.330 --> 02:32.890
+efforts is very simplified.
+
+02:32.930 --> 02:38.210
+No need to build any etls or data loads from the data warehouse to the data marts.
+
+02:38.250 --> 02:42.970
+And this makes the data warehouse as a real single point of truth for your data.
+
+02:42.970 --> 02:48.410
+And once you start copying data from one layer to another layer, it's going to be really hard to maintain
+
+02:48.410 --> 02:52.890
+and chaotic, and you have to have really strict monitoring and data quality.
+
+02:52.890 --> 02:57.650
+So that's why using views, you can always reflect the status of the data warehouse.
+
+02:57.650 --> 03:02.930
+And this can help you, of course, with the data consistency, which is a critical point in each data
+
+03:02.930 --> 03:03.930
+warehouse project.
+
+03:03.930 --> 03:07.610
+So there are many reasons why we build virtual data Mart.
+
+03:07.610 --> 03:10.250
+And we go with the views in this layer.
+
+03:10.250 --> 03:16.370
+So as you can see how the views are playing a very important role in building a data warehouse.
+
+03:16.370 --> 03:22.130
+So this is another amazing and very important use case of using views in your data projects.

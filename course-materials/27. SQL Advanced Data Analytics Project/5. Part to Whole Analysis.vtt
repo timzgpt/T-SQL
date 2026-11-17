@@ -1,0 +1,403 @@
+WEBVTT
+
+00:03.880 --> 00:06.760
+Okay, so now what is exactly part of the whole analysis?
+
+00:06.800 --> 00:11.640
+Well, we use it in order to find out the proportion of a part relative to the whole.
+
+00:11.680 --> 00:18.320
+Well, here we can analyze how an individual category is contributing to the overall in order to understand
+
+00:18.320 --> 00:22.400
+what is the most impacting category to the overall business.
+
+00:22.440 --> 00:23.600
+So now for the formula.
+
+00:23.600 --> 00:24.480
+It is very simple.
+
+00:24.480 --> 00:30.280
+You have to go and pick one of your measures, divide it by the total of the measure, and then multiply
+
+00:30.280 --> 00:34.240
+it by 100 in order to find the percentage by specific dimension.
+
+00:34.240 --> 00:35.880
+Like for example, if you take the sales.
+
+00:35.880 --> 00:41.040
+So you divide the sales by the total sales multiplied by 100 by the category.
+
+00:41.040 --> 00:46.680
+Or if you take the quantity divided by the total quantity and then find the percentage by a country.
+
+00:46.680 --> 00:49.960
+So for example, again we have our measure splitted by categories.
+
+00:49.960 --> 00:54.000
+But now instead of having this number what we're going to do we're going to calculate the percentage.
+
+00:54.000 --> 00:59.200
+So for the first one we're going to take the 200 divided by 600 multiply it by 100.
+
+00:59.200 --> 01:01.400
+So we're going to get the percentage 33.
+
+01:01.400 --> 01:06.740
+So once we do that for the all categories it's going to be now very easy to see that the category B
+
+01:06.780 --> 01:12.740
+it is contributing to the overall number by 50%, which makes it, of course, a top performer.
+
+01:12.740 --> 01:15.540
+So you can visual it in your head as like a pie chart.
+
+01:15.540 --> 01:19.540
+And you can see how each part is contributing to the whole pie chart.
+
+01:19.540 --> 01:24.420
+And with that, it can help us to understand the importance of each category to our business.
+
+01:24.420 --> 01:29.380
+So now let's go and apply this formula to our measures in order to understand the importance of our
+
+01:29.380 --> 01:30.100
+categories.
+
+01:30.100 --> 01:30.820
+So let's go.
+
+01:30.860 --> 01:31.020
+Okay.
+
+01:31.060 --> 01:33.060
+So now let's do part whole analysis.
+
+01:33.060 --> 01:35.460
+All what we need one dimension and one measure.
+
+01:35.460 --> 01:37.100
+So for example we have the following task.
+
+01:37.140 --> 01:41.980
+It is very simple which categories contribute the most to the overall sales.
+
+01:41.980 --> 01:43.940
+So now let's go and do it step by step.
+
+01:43.940 --> 01:46.580
+So first we're going to go and collect the informations.
+
+01:46.580 --> 01:48.060
+So we need the category.
+
+01:48.060 --> 01:50.140
+We need the sales amount.
+
+01:50.540 --> 01:59.220
+And those informations come as usual from the fact sales and from our dimension the product.
+
+01:59.220 --> 01:59.580
+Right.
+
+01:59.580 --> 02:03.540
+So we have quickly to go and connect them using the product key.
+
+02:04.740 --> 02:05.060
+Okay.
+
+02:05.100 --> 02:07.320
+So that's all what we need for our query.
+
+02:07.320 --> 02:08.320
+So let's go and select.
+
+02:08.320 --> 02:11.400
+So we have here the categories and the sales amounts.
+
+02:11.400 --> 02:15.600
+So now the first thing we have to calculate the total sales for each category.
+
+02:15.600 --> 02:16.840
+So let's go and do that.
+
+02:16.840 --> 02:17.760
+It is very simple.
+
+02:17.760 --> 02:20.520
+So sum total sales.
+
+02:20.520 --> 02:24.160
+And we are grouping up the data by the category.
+
+02:24.160 --> 02:25.520
+So this is basics.
+
+02:25.520 --> 02:28.800
+Right now we have the total sales for each of those categories.
+
+02:28.840 --> 02:33.640
+Now in order to calculate the percentage we need to measures the total sales for each category.
+
+02:33.640 --> 02:35.280
+And we have it here already.
+
+02:35.280 --> 02:40.040
+And as well side by side we need the total sales across all categories.
+
+02:40.040 --> 02:42.480
+So the big number without any dimension.
+
+02:42.480 --> 02:47.080
+But now as you look to the result you can see the granularity here is that category.
+
+02:47.120 --> 02:51.080
+Now we need the total sales again by different granularity.
+
+02:51.080 --> 02:54.720
+And in order to mix those stuff together we use the window functions.
+
+02:54.720 --> 02:55.720
+So now how are we going to do it.
+
+02:55.720 --> 02:58.760
+Either you go over here and start writing your window function.
+
+02:58.760 --> 03:01.280
+And of course you can do it together with the group by.
+
+03:01.320 --> 03:07.000
+Or you can do it as a second step in your query using either a CTE or a subquery.
+
+03:07.000 --> 03:09.940
+So I'm going to go with the CTE just to make it clear.
+
+03:09.940 --> 03:13.500
+So category sells like this.
+
+03:13.900 --> 03:16.620
+So now let's start again selecting the same information.
+
+03:16.620 --> 03:22.780
+So category total sales from our table category or CTE sales.
+
+03:22.780 --> 03:24.340
+So let's go and execute it.
+
+03:24.340 --> 03:25.700
+So now we have the same results.
+
+03:25.700 --> 03:28.620
+And now we're going to go and build our window function like this.
+
+03:28.620 --> 03:30.340
+So we're going to say the sum.
+
+03:30.380 --> 03:32.620
+We want to aggregate all those values right.
+
+03:32.660 --> 03:35.740
+To get the total sales of the whole data sets.
+
+03:35.780 --> 03:38.540
+So we're going to say sum total sales.
+
+03:38.860 --> 03:44.700
+And now in order to get the big number we're going to say over and inside it we will not define anything
+
+03:44.740 --> 03:46.740
+because we don't want to partition the data.
+
+03:46.740 --> 03:48.940
+We don't want to introduce any dimension.
+
+03:48.940 --> 03:51.100
+We just want the big number.
+
+03:51.100 --> 03:55.420
+And with that we will get the overall sales.
+
+03:55.420 --> 03:57.500
+So let's go and execute it.
+
+03:57.540 --> 04:01.260
+Now as you can see this is the total sales by the category.
+
+04:01.260 --> 04:03.940
+So the total sales is splitted by the categories.
+
+04:03.940 --> 04:09.140
+And this is the overall sales of all orders of everything the highest number.
+
+04:09.180 --> 04:15.320
+Now since we have them side by side, what we can do, we can very easily calculate the path to whole
+
+04:15.320 --> 04:16.800
+or the percentage.
+
+04:16.800 --> 04:18.000
+So let's start doing that.
+
+04:18.000 --> 04:19.840
+So we need the total sales.
+
+04:19.840 --> 04:22.600
+And we want to go and divide it by the overall sales.
+
+04:22.600 --> 04:25.240
+So we're going to take our window function and put it over here.
+
+04:25.240 --> 04:27.480
+So let's go and multiply it.
+
+04:27.480 --> 04:33.200
+Now with the hundreds I'm going to go and call it percentage of total.
+
+04:33.240 --> 04:35.200
+So let's go and execute it.
+
+04:35.200 --> 04:36.960
+Now as you can see we are getting zeros.
+
+04:36.960 --> 04:39.800
+And that's because the total sales is not float.
+
+04:39.800 --> 04:43.400
+So what we have to do is to go and cast it to something like a decimal.
+
+04:43.400 --> 04:45.680
+So floats like this.
+
+04:45.680 --> 04:47.520
+So let's go and re execute it.
+
+04:47.520 --> 04:50.560
+And now as you can see we are getting now the percentages.
+
+04:50.560 --> 04:53.320
+But we have a lot of numbers after the comma.
+
+04:53.320 --> 04:55.520
+So we're going to go around the numbers now.
+
+04:55.520 --> 05:00.280
+So let's go to the start round and then go to the end comma.
+
+05:00.280 --> 05:02.040
+And let's have like two decimals.
+
+05:02.040 --> 05:04.040
+So let's go and execute it again.
+
+05:04.080 --> 05:05.400
+Now looks perfect.
+
+05:05.440 --> 05:06.120
+Now what you can do.
+
+05:06.120 --> 05:08.000
+We can go and add like a percentage.
+
+05:08.000 --> 05:11.160
+And with that we are converting the whole thing to a string.
+
+05:11.160 --> 05:12.960
+So we're going to do concatenation.
+
+05:12.960 --> 05:18.820
+So concat at the start and go to the end and let's add the percentage character.
+
+05:18.820 --> 05:24.620
+And as well we can go and order the data by the total sales descending.
+
+05:24.620 --> 05:26.460
+So let's go and execute it.
+
+05:26.460 --> 05:30.820
+So now by looking to the result you can see the category bikes is dominating.
+
+05:30.820 --> 05:34.500
+So it is overwhelming top performing the categories.
+
+05:34.500 --> 05:39.380
+It is making 69% of the total sales of our business.
+
+05:39.380 --> 05:44.220
+So this means my friends most of the business revenue comes from the bikes.
+
+05:44.220 --> 05:49.740
+And as you can see their accessories and clothing, they are really minor contributors to our business,
+
+05:49.740 --> 05:51.300
+which is not really good.
+
+05:51.300 --> 05:53.300
+And this is actually dangerous thing.
+
+05:53.300 --> 05:58.900
+If you have like one category dominating your whole business, you are over relying on only one category
+
+05:58.900 --> 05:59.900
+on your business.
+
+05:59.900 --> 06:03.820
+And if this fails this category, then the whole business is going to fail.
+
+06:03.820 --> 06:10.580
+So by looking to this, either the business has to decide removing all those products by those two categories,
+
+06:10.580 --> 06:16.620
+or to focus more on bringing more revenue for the products that are inside those two categories.
+
+06:16.620 --> 06:22.080
+So as you can see, guys, those insights are really amazing for the business and helps the managers
+
+06:22.080 --> 06:27.800
+and the decision makers to understand what is going on quickly and make very critical decisions.
+
+06:27.840 --> 06:30.640
+And now you can see as well from the results perfectly.
+
+06:30.640 --> 06:30.960
+Why?
+
+06:30.960 --> 06:36.200
+The part to whole analysis is very important because by just looking to those numbers, it's going to
+
+06:36.200 --> 06:40.160
+be really hard to understand the importance of the categories.
+
+06:40.160 --> 06:46.440
+But seeing the data as a percentage, how each category is contributing to the whole sales of the business
+
+06:46.480 --> 06:52.000
+makes it easier to understand which category is underperforming or top performing.
+
+06:52.040 --> 06:55.680
+And now you have a very simple formula where you can go and change the metrics.
+
+06:55.680 --> 07:01.520
+For example, instead of total sales, you can go and change the aggregation to total number of orders
+
+07:01.520 --> 07:03.320
+or the total number of customers.
+
+07:03.320 --> 07:09.160
+So you can go and bring any type of measures and bring it to this analysis, and you're going to generate
+
+07:09.160 --> 07:14.600
+a completely new view for the decision makers in order to develop a new strategy for the business.
+
+07:14.640 --> 07:15.840
+It was very interesting.
+
+07:15.880 --> 07:20.880
+Now in the next step, we're going to do my favorite topic where we're going to start doing data segmentations
+
+07:20.880 --> 07:21.680
+using SQL.
+
+07:21.680 --> 07:22.440
+So let's go.

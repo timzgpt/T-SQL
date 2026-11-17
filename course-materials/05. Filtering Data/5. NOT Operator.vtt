@@ -1,0 +1,214 @@
+WEBVTT
+
+00:03.920 --> 00:06.000
+Okay, so now what is this operator not.
+
+00:06.040 --> 00:07.800
+It is a reverse operator.
+
+00:07.840 --> 00:11.000
+It's going to go and exclude the matching values.
+
+00:11.000 --> 00:14.000
+So what this exactly means let's have a very simple example.
+
+00:14.040 --> 00:14.400
+All right.
+
+00:14.440 --> 00:18.520
+So now the net operator is not like the Or and the ands.
+
+00:18.560 --> 00:21.720
+This operator will not go and combine two conditions.
+
+00:21.720 --> 00:23.800
+So you can use it with only one condition.
+
+00:23.800 --> 00:26.200
+And let's say that our current condition is like this.
+
+00:26.240 --> 00:28.040
+The country must be equal to USA.
+
+00:28.080 --> 00:30.160
+So this is like a comparison operator.
+
+00:30.160 --> 00:34.200
+And if you apply it to your data, as we learned, it's going to leave only two customers, John and
+
+00:34.200 --> 00:39.400
+Peter, because they fulfill the conditions and all other customers will be removed because they don't
+
+00:39.400 --> 00:40.480
+fulfill the condition.
+
+00:40.480 --> 00:41.800
+So nothing crazy so far.
+
+00:41.800 --> 00:46.320
+But now if you go and apply the not operator to the condition, what's going to happen?
+
+00:46.320 --> 00:48.480
+You can reverse the whole truth.
+
+00:48.480 --> 00:54.000
+So you are saying if this condition is fulfilled, it must be removed from the final results.
+
+00:54.000 --> 00:55.520
+So it is switching everything.
+
+00:55.520 --> 00:59.840
+We want to see the customers that is not fulfilling the condition.
+
+00:59.840 --> 01:01.120
+So now let's see what can happen.
+
+01:01.120 --> 01:06.080
+If you apply the not operator together with the condition, we can see that the first customer is not
+
+01:06.080 --> 01:08.520
+fulfilling the condition, which is great thing.
+
+01:08.560 --> 01:10.060
+This is exactly what we want.
+
+01:10.100 --> 01:12.740
+We want that customer that is not fulfilling the condition.
+
+01:12.740 --> 01:18.420
+That's why it's going to be happy about it, and it's going to make it true and leave it in the outputs.
+
+01:18.460 --> 01:20.700
+So Maria is fulfilling the whole thing.
+
+01:20.740 --> 01:24.620
+She is not meeting the condition so she can leave it at the output.
+
+01:24.660 --> 01:25.820
+Now for the next one.
+
+01:25.820 --> 01:29.540
+So this customer is fulfilling the condition and that is not a good thing.
+
+01:29.540 --> 01:35.060
+So SQL is going to go and this time remove joint from the results because he is fulfilling the condition
+
+01:35.060 --> 01:36.180
+and moving on to George.
+
+01:36.220 --> 01:39.860
+So George is not fulfilling the condition which is amazing.
+
+01:39.860 --> 01:43.300
+So that's why SQL is going to keep this time George in the output.
+
+01:43.300 --> 01:44.620
+The same thing for Martin.
+
+01:44.660 --> 01:47.180
+Martin is not fulfilling the condition.
+
+01:47.180 --> 01:51.180
+So it's going to keep the customer and better he is fulfilling the condition.
+
+01:51.180 --> 01:54.380
+So SQL can go and remove this customer from the output.
+
+01:54.380 --> 01:57.220
+So as you can see we have reversed everything right.
+
+01:57.260 --> 02:00.860
+The Not operator is going to make the true false and the false true.
+
+02:00.900 --> 02:02.500
+Okay so this is how it works.
+
+02:02.540 --> 02:05.220
+Now let's go back to SQL in order to practice.
+
+02:05.260 --> 02:05.580
+Okay.
+
+02:05.620 --> 02:11.500
+The next task it says retrieve all customers with score not less than 500.
+
+02:11.540 --> 02:13.140
+So this sounds really funny.
+
+02:13.180 --> 02:17.300
+As usual we're going to go and select star from customers.
+
+02:17.340 --> 02:23.240
+And now we have to filter the data based on this condition so the score is not less than 500.
+
+02:23.280 --> 02:29.040
+Well, you can go and say well the score is higher greater or equal to 500.
+
+02:29.080 --> 02:29.440
+Right.
+
+02:29.440 --> 02:32.120
+And with that it is not less than 500.
+
+02:32.120 --> 02:34.560
+So if we go and execute it we just solve the task.
+
+02:34.560 --> 02:34.920
+Right.
+
+02:34.920 --> 02:38.320
+We get all the customers that are not less than 500.
+
+02:38.360 --> 02:42.240
+Or you can go and use the not operator to make things more funnier.
+
+02:42.240 --> 02:46.360
+So you go over here and say it is not and then you switch it.
+
+02:46.360 --> 02:47.840
+So you make like this.
+
+02:47.840 --> 02:50.280
+So the score is less than 500.
+
+02:50.320 --> 02:53.640
+But as we use here not then we twisted everything.
+
+02:53.640 --> 03:00.200
+So we are saying the score is not less than 500 and if you execute it you will get the exact same results.
+
+03:00.200 --> 03:01.600
+Converts the truth.
+
+03:01.600 --> 03:05.880
+If you remove it and execute, you will get everything that is less than 500.
+
+03:05.920 --> 03:08.960
+But if you put the nuts, you will convert the whole logic.
+
+03:08.960 --> 03:13.960
+So if you go and execute, you are not getting the scores that are less than 500.
+
+03:13.960 --> 03:14.880
+So this is really nice.
+
+03:14.880 --> 03:15.920
+This is how you use the.
+
+03:15.920 --> 03:17.440
+Net operator okay my friends.
+
+03:17.440 --> 03:20.720
+So with that we have covered everything about the logical operators.
+
+03:20.760 --> 03:22.400
+Now we're going to move to the third group.
+
+03:22.400 --> 03:24.560
+We're going to talk about the range operator.
+
+03:24.560 --> 03:26.400
+And here we have only one the between.
+
+03:26.400 --> 03:28.480
+So what is exactly between operator.

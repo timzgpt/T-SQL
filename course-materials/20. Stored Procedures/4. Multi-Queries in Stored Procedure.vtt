@@ -1,0 +1,163 @@
+WEBVTT
+
+00:03.920 --> 00:05.480
+All right, moving on to the next step.
+
+00:05.480 --> 00:09.360
+Now we're going to work with multiple queries inside one stored procedure.
+
+00:09.360 --> 00:11.040
+And this is what we have learned at the start.
+
+00:11.040 --> 00:15.200
+We can have multiple SQL statements in one stored procedure.
+
+00:15.200 --> 00:17.840
+And now we have a new report and query to generate.
+
+00:17.880 --> 00:21.720
+It says find the total number of orders and the total sales.
+
+00:21.720 --> 00:22.640
+So let's do it quickly.
+
+00:22.640 --> 00:23.920
+We can write it like this.
+
+00:24.160 --> 00:29.960
+Select counts order ID this is the total orders.
+
+00:30.480 --> 00:37.640
+And then the sum of sales total sales from our table sales orders.
+
+00:37.800 --> 00:41.600
+And of course we are always creating a report based on specific country.
+
+00:41.600 --> 00:46.880
+So that means we have to go and join it with the customers table in order to filter the data.
+
+00:47.160 --> 00:51.440
+So on customer ID equal to the customer ID.
+
+00:52.120 --> 00:53.960
+And now we're going to go and filter the data.
+
+00:54.280 --> 00:57.560
+So country equal to USA.
+
+00:58.040 --> 00:59.320
+So something like this.
+
+00:59.320 --> 01:01.000
+Let's go and execute it.
+
+01:01.040 --> 01:02.850
+And with that for the US customers.
+
+01:02.850 --> 01:06.010
+We have six orders and the total sales 180.
+
+01:06.050 --> 01:08.450
+And of course, the same thing we're going to do for Germany.
+
+01:08.450 --> 01:11.970
+So now, of course, we will not go and create an extra stored procedure for this.
+
+01:11.970 --> 01:14.970
+We're going to go and put everything in one stored procedure.
+
+01:14.970 --> 01:18.650
+So let's go and copy the whole thing and put it here inside.
+
+01:19.330 --> 01:22.610
+So after the first report we're going to have the second report.
+
+01:22.610 --> 01:23.930
+And now the best practice here.
+
+01:23.930 --> 01:30.090
+If you have multiple queries in stored procedure go and add at the end of each query a semicolon.
+
+01:30.090 --> 01:31.930
+It is just easier to understand how.
+
+01:31.970 --> 01:36.770
+Now this is the end of this query, especially if you have like a big complex queries where you have
+
+01:36.810 --> 01:38.730
+CTE, union and so on.
+
+01:38.770 --> 01:43.970
+It's going to be really hard to understand that we are talking now about completely new query, but
+
+01:43.970 --> 01:48.770
+it is not like something that database requires it, but it's just easier to read.
+
+01:48.770 --> 01:51.490
+So just add semicolons at the end of each query.
+
+01:51.490 --> 01:56.450
+So now let's go and execute the whole thing in order to change the definition of our query.
+
+01:56.450 --> 02:00.450
+And one more thing of course, don't forget we don't need static values over here.
+
+02:00.450 --> 02:03.170
+We're going to go and add our nice parameters.
+
+02:03.940 --> 02:06.020
+So add country.
+
+02:06.020 --> 02:09.940
+So I think with that we have everything is ready to be executed.
+
+02:09.940 --> 02:12.820
+So let's go and change the definition of our stored procedure.
+
+02:12.820 --> 02:17.260
+And now let's go and start with the defaults where the country equal to USA.
+
+02:17.300 --> 02:18.740
+So let's go and execute it.
+
+02:18.740 --> 02:21.340
+And now in the output as you can see we have two results.
+
+02:21.340 --> 02:23.460
+And that's because we have two queries.
+
+02:23.460 --> 02:28.900
+So the first report is for the first query and the second one for the new one that we just created.
+
+02:28.900 --> 02:34.140
+And the same thing if you go and execute the stored procedure for Germany we will get as well two results.
+
+02:34.140 --> 02:38.500
+And here we can see we have four orders and 200 of total sales for Germany.
+
+02:38.500 --> 02:40.140
+So as you can see it's very simple.
+
+02:40.140 --> 02:44.060
+You can go now and add multiple SQL statements, not only queries.
+
+02:44.060 --> 02:45.620
+You can go and update.
+
+02:45.620 --> 02:49.180
+You can do an insert, delete any kind of SQL statements.
+
+02:49.180 --> 02:52.340
+You can just go and add it inside your program.
+
+02:52.340 --> 02:55.860
+And as usual, SQL can execute it from the top to the bottom.
+
+02:55.860 --> 02:59.580
+So since this is the first SQL statement, it's going to execute it first.
+
+02:59.860 --> 03:01.980
+And then after that it's going to go to the next one.
+
+03:01.980 --> 03:06.340
+So this is how you can add multiple SQL statements to your stored procedure.

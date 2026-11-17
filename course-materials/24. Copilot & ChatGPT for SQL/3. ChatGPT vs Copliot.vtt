@@ -1,0 +1,196 @@
+WEBVTT
+
+00:03.960 --> 00:09.080
+Now, if you are doing software development or you are working with data projects and of course it depends
+
+00:09.080 --> 00:14.680
+on your role in the projects, there will be many different types of tasks and activities that should
+
+00:14.680 --> 00:16.040
+be done in the projects, like.
+
+00:16.040 --> 00:22.480
+There will be a lot of brainstorming about new ideas and coding solutions, debugging, generating documentations,
+
+00:22.600 --> 00:27.080
+discussing the different types of architecture, doing root cause analysis.
+
+00:27.200 --> 00:31.840
+So the spectrum of activities and tasks in each projects usually is very huge.
+
+00:31.880 --> 00:38.040
+And of course we can go and use the help of different AI tools to assist us with those tasks and activities.
+
+00:38.040 --> 00:41.680
+And there is like not one AI tool that can cover all those stuff.
+
+00:41.840 --> 00:45.160
+I tend to jump between Copilots and something like ChatGPT.
+
+00:45.200 --> 00:49.400
+Okay, so now I'm going to go and map those different tasks to either ChatGPT or copilot.
+
+00:49.440 --> 00:51.040
+So now let's focus on the ChatGPT.
+
+00:51.200 --> 00:54.320
+The first one is brainstorming and ideas.
+
+00:54.320 --> 00:59.200
+So now if we have in our project a big task or let's say a big issue, that we want to find a solution
+
+00:59.200 --> 00:59.760
+for it.
+
+00:59.760 --> 01:05.800
+I tend to use of course, tools like ChatGPT in order to have a discussion about the topic, in order
+
+01:05.800 --> 01:10.580
+to explore and discuss multiple ideas and then start evaluating all those ideas.
+
+01:10.580 --> 01:14.500
+The next one where I found myself using GPT is doing the project planning.
+
+01:14.620 --> 01:16.620
+So it is as well something high level.
+
+01:16.620 --> 01:22.100
+You can go and discuss with the ChatGPT about the design of your project, and you can as well discuss
+
+01:22.100 --> 01:24.620
+the milestones, the roadmap of the projects.
+
+01:24.620 --> 01:29.780
+The next thing that I find myself using ChatGPT is for learning, knowledge and research.
+
+01:29.780 --> 01:34.620
+If you are working with big data projects, you will be overwhelmed with the amount of cloud services
+
+01:34.780 --> 01:36.900
+and AI analytics tools.
+
+01:36.900 --> 01:37.060
+So.
+
+01:37.100 --> 01:42.300
+And of course you can go and learn new stuff, gather information and knowledge using ChatGPT.
+
+01:42.340 --> 01:45.660
+Okay, moving on to the next task we have generating documentations.
+
+01:45.660 --> 01:50.420
+Writing documentations is always a painful process and consumes a lot of time.
+
+01:50.420 --> 01:54.420
+And I tend to use tools like ChatGPT in order to generate those documentations.
+
+01:54.420 --> 01:57.620
+But of course I always review the documentations and make it short.
+
+01:57.660 --> 02:01.940
+Okay, moving on to another topic where I use ChatGPT is that to discuss architecture?
+
+02:01.980 --> 02:06.660
+Of course, if you are starting new projects, there will be like different types of architecture in
+
+02:06.660 --> 02:08.060
+order to implement the projects.
+
+02:08.060 --> 02:11.890
+And of course you can discuss with the ChatGPT about the different types of architecture.
+
+02:11.890 --> 02:16.690
+And if you give the specifications about your projects, then you can discuss with the ChatGPT which
+
+02:16.730 --> 02:19.170
+architecture is suitable for the project.
+
+02:19.170 --> 02:25.090
+And another task that I find myself always like researching is exploring the best practices, tips and
+
+02:25.090 --> 02:29.370
+tricks so you can have a discussion with the ChatGPT about the recommendations.
+
+02:29.370 --> 02:30.970
+What are the best practices?
+
+02:31.090 --> 02:32.650
+What are the common pitfalls?
+
+02:32.650 --> 02:38.450
+In order to make sure that your code and your solution is always up to date with the best practices?
+
+02:38.450 --> 02:43.810
+And one more thing if there is like in the project, a very complex task, then I tend to have a discussion
+
+02:43.810 --> 02:45.050
+with the two like ChatGPT.
+
+02:45.170 --> 02:50.730
+In order to break this complex task into small pieces and start finding the solution for each piece.
+
+02:50.770 --> 02:55.170
+And now, in the other hand, I'm using copilot in order to solve different type of tasks.
+
+02:55.170 --> 02:57.530
+So here where I get my hands dirty in the code.
+
+02:57.530 --> 03:03.610
+So while I'm coding, I'm using full time copilot in order to assist me because it provides directly
+
+03:03.610 --> 03:09.050
+inline suggestions and help me to code faster and reduce the human error that I might make.
+
+03:09.050 --> 03:14.770
+So while I'm writing a code or debugging, I tend to use Copilot, and I don't find myself going to
+
+03:14.810 --> 03:17.710
+ChatGPT to ask about code or syntax.
+
+03:17.710 --> 03:19.750
+We can do it directly in the copilot.
+
+03:19.750 --> 03:24.150
+And one task that is very famous in any software development we have the refactoring.
+
+03:24.150 --> 03:29.030
+So if you have like a code that is slow and bad designed and you want to refactor the whole code, you
+
+03:29.030 --> 03:33.750
+can do it directly in your code together with the copilot in order to find optimizations.
+
+03:33.750 --> 03:37.070
+And I use as well copilot in order to add inline comments.
+
+03:37.070 --> 03:41.350
+So I don't find myself going to ChatGPT and asking to add comments to my code.
+
+03:41.350 --> 03:44.550
+You can do it directly in your code using copilot.
+
+03:44.550 --> 03:48.790
+And of course, if everything is working perfectly, I have the best practices, the good performance,
+
+03:48.790 --> 03:53.070
+I have the comments, but still you have to maintain nice style and format of your code.
+
+03:53.070 --> 03:55.710
+And of course now we can do that directly using the copilot.
+
+03:55.710 --> 03:59.230
+We don't have to go and jump to ChatGPT in order to style and format your code.
+
+03:59.230 --> 04:02.870
+And as you can see, I'm currently using both of them for different types of tasks.
+
+04:02.870 --> 04:07.310
+So again, if I have the feeling that I have to discuss something, I go to ChatGPT.
+
+04:07.390 --> 04:14.190
+But once the idea is very clear and I know the solution, then I start using copilot in order to write
+
+04:14.190 --> 04:19.630
+the code and with the help of the copilot, I can deliver clean and professional codes.
+
+04:19.630 --> 04:23.230
+So this is how I currently use both ChatGPT and Copilot.

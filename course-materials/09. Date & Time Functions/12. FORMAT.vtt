@@ -1,0 +1,841 @@
+WEBVTT
+
+00:03.920 --> 00:04.320
+All right.
+
+00:04.320 --> 00:06.400
+So let's start with the first function in the format.
+
+00:06.400 --> 00:07.440
+So what is format.
+
+00:07.480 --> 00:11.720
+As the name suggests it formats a date or time value.
+
+00:11.720 --> 00:15.240
+So it's like we are changing how the date and time looks okay.
+
+00:15.280 --> 00:17.400
+So let's check the syntax of the format.
+
+00:17.400 --> 00:19.840
+And here it accepts two parameters.
+
+00:19.840 --> 00:21.760
+And the third one is optional.
+
+00:21.760 --> 00:23.440
+So the first one we have to provide a value.
+
+00:23.480 --> 00:25.360
+It could be a date or a number.
+
+00:25.360 --> 00:27.840
+And the second one we have to provide the format.
+
+00:27.840 --> 00:31.480
+So here we are specifying the new look the new format for this value.
+
+00:31.520 --> 00:35.040
+Now the third one it is optional one it is the culture.
+
+00:35.040 --> 00:38.920
+Culture means show me the value whether it's date, time or number.
+
+00:38.960 --> 00:43.320
+Show me this value in the style of a specific country or region.
+
+00:43.320 --> 00:45.760
+So each country, each region has different formats.
+
+00:45.760 --> 00:49.760
+So here we can go and change it to specific region format.
+
+00:49.760 --> 00:51.240
+But as I said it is optional.
+
+00:51.240 --> 00:52.320
+Let's have an example.
+
+00:52.320 --> 00:57.000
+So here we are saying go and format the order date using the following format.
+
+00:57.040 --> 00:59.840
+So the D day then slash.
+
+00:59.880 --> 01:02.310
+Then we have the month then slash then the year.
+
+01:02.310 --> 01:05.310
+So SQL can go and format this with this new format.
+
+01:05.350 --> 01:08.350
+And as you can see here, we didn't specify any culture since it's optional.
+
+01:08.390 --> 01:12.790
+Let's say another option where we can say you know what, I would like to have the order date formatted
+
+01:12.790 --> 01:16.830
+with this format, but we would like to go and add the style of Japan.
+
+01:16.870 --> 01:20.470
+So we are specifying here the code or the style of Japan.
+
+01:20.470 --> 01:26.190
+And of course we can go and use the format not only for the date but as well for formatting the numbers.
+
+01:26.190 --> 01:28.070
+So here we are specifying the value.
+
+01:28.110 --> 01:31.910
+The format is D and as well we have activated the culture option.
+
+01:31.910 --> 01:33.910
+We are using the style of France.
+
+01:33.910 --> 01:35.910
+So this is the syntax of the format.
+
+01:35.950 --> 01:37.910
+Using this option is not really common.
+
+01:37.910 --> 01:41.070
+So I rarely see this format or someone using it.
+
+01:41.230 --> 01:47.670
+So the first example is the most used one in the projects where we have the culture as default or we
+
+01:47.710 --> 01:49.150
+are not using the culture at all.
+
+01:49.150 --> 01:54.510
+And of course if you don't specify anything, it's going to go and use the default culture which is
+
+01:54.550 --> 01:55.670
+in us.
+
+01:55.830 --> 01:58.510
+So this is all about the syntax of the format.
+
+01:58.550 --> 01:58.870
+All right.
+
+01:58.870 --> 02:01.030
+So now let's have a few examples using the format.
+
+02:01.030 --> 02:03.250
+So we're going to go and format the creation declaration time.
+
+02:03.690 --> 02:04.970
+So we're going to do it like this.
+
+02:05.010 --> 02:05.650
+Format.
+
+02:05.690 --> 02:09.010
+And what we are formatting we are formatting the creation time.
+
+02:09.930 --> 02:12.170
+And now we can go and define and specify you want.
+
+02:12.210 --> 02:15.530
+For example let's say DD like this.
+
+02:15.850 --> 02:18.010
+So let's go and check the outputs.
+
+02:18.330 --> 02:19.130
+So execute it.
+
+02:19.170 --> 02:23.130
+Now if you are using DD you will get the day information.
+
+02:23.130 --> 02:25.650
+So we can see if you are using this specifier.
+
+02:25.650 --> 02:28.010
+We are getting two digits above the day.
+
+02:28.050 --> 02:29.970
+So and as well we are getting the leading zero.
+
+02:29.970 --> 02:32.210
+So we are getting the 0105.
+
+02:32.210 --> 02:34.530
+And all those informations are the day information.
+
+02:34.530 --> 02:36.330
+Now let's go and try something else.
+
+02:36.370 --> 02:37.530
+Adding one more D.
+
+02:38.290 --> 02:40.570
+So let's have it 3D.
+
+02:40.850 --> 02:42.050
+And here as well.
+
+02:42.050 --> 02:43.370
+So let's go and execute it.
+
+02:43.370 --> 02:46.130
+So now if you check the output we are getting now the name of the day.
+
+02:46.130 --> 02:47.170
+It is not full.
+
+02:47.170 --> 02:50.730
+So we are getting like a short name of the day or abbreviated one.
+
+02:50.730 --> 02:51.850
+So this is something nice.
+
+02:51.850 --> 02:54.370
+If you are creating like a calendar or something.
+
+02:54.410 --> 02:56.410
+Let's go and add one more D.
+
+02:56.450 --> 03:02.290
+So we're going to have four D and let's go and check the result for this one.
+
+03:02.290 --> 03:06.760
+Now in the output we are getting the full name of the day, so it's really nice.
+
+03:06.760 --> 03:09.600
+Now we are getting full flexibility on how to format our day.
+
+03:09.640 --> 03:11.240
+Okay, so now let's keep playing.
+
+03:11.240 --> 03:12.400
+Let's get something else.
+
+03:12.400 --> 03:16.960
+I'm just going to go and duplicate everything and I will go with the month now.
+
+03:17.280 --> 03:22.760
+So this is two m, three M and four M.
+
+03:23.240 --> 03:25.120
+Let me do it like this.
+
+03:26.120 --> 03:27.680
+So let's go and execute it.
+
+03:27.680 --> 03:27.800
+Now.
+
+03:27.800 --> 03:30.360
+As you can see we are getting the same stuff but for the month.
+
+03:30.360 --> 03:36.640
+So m we will get the two digits and three M we will get the abbreviated name of the month.
+
+03:36.640 --> 03:39.480
+And for M we will get the full name of the month.
+
+03:39.480 --> 03:42.640
+So it's like we are extracting the date part from the format.
+
+03:42.640 --> 03:44.320
+But of course we don't use it like this.
+
+03:44.360 --> 03:48.720
+We will go and write the whole format that we need for a date.
+
+03:48.720 --> 03:52.880
+So for example, let's go and change this format to the USA format.
+
+03:52.880 --> 03:55.400
+So in order to do it we're going to go over here.
+
+03:55.400 --> 03:58.640
+So let's say formats again the creation time.
+
+03:59.640 --> 04:02.000
+And now we're going to write the format of USA.
+
+04:02.040 --> 04:07.900
+So it's going to be M then after that, then after the month, we're going to have like a minus then
+
+04:07.900 --> 04:10.380
+day, and then after that we're going to get the year.
+
+04:10.420 --> 04:12.700
+So for time year and that's it.
+
+04:12.740 --> 04:15.020
+Let's call it USA formats.
+
+04:15.060 --> 04:17.180
+So let's go and execute it.
+
+04:17.180 --> 04:21.300
+And now you can see in the output we got a new column where we see now the date information.
+
+04:21.300 --> 04:23.180
+But as a USA standards.
+
+04:23.180 --> 04:25.580
+So it starts with the month then the day.
+
+04:25.580 --> 04:27.260
+And then afterward we got the year.
+
+04:27.260 --> 04:32.260
+And of course we can do the same thing in order to generate the standard format of Europe.
+
+04:32.340 --> 04:35.300
+So what we're going to do, I'll just duplicate it.
+
+04:35.620 --> 04:41.300
+And now the format of that is going to start with the day, then the month and then the year.
+
+04:41.700 --> 04:44.820
+So now if you check the output you can see it starts with day minus.
+
+04:44.860 --> 04:47.380
+Then we have the month then minus the year.
+
+04:47.380 --> 04:52.380
+So as you can see we are changing the format of the date from the creation time to something new.
+
+04:52.420 --> 04:52.740
+All right.
+
+04:52.740 --> 04:54.100
+So now we have the following task.
+
+04:54.140 --> 04:57.660
+And it says show creation time using the following format.
+
+04:57.700 --> 04:59.580
+Now we have a very weird format.
+
+04:59.580 --> 05:01.900
+So it starts with the word day.
+
+05:02.180 --> 05:06.850
+Then after that we have the abbreviation of the day and then And an abbreviation of the month.
+
+05:06.850 --> 05:09.490
+This is the Quaternary formations, then the year.
+
+05:09.690 --> 05:11.330
+And after that we have the time.
+
+05:11.330 --> 05:13.850
+And we're going to say whether it's PM or Am.
+
+05:13.850 --> 05:16.890
+So it's a little bit weird format that you don't see it everywhere.
+
+05:16.930 --> 05:21.290
+But still we want to practice on how to construct such custom formats.
+
+05:21.290 --> 05:22.890
+So let's do it step by step.
+
+05:22.890 --> 05:25.010
+I'm going to go over here and a new line.
+
+05:25.010 --> 05:27.210
+So the first one is like day.
+
+05:27.450 --> 05:29.250
+So we don't have any format for that.
+
+05:29.250 --> 05:31.090
+It's just like characters.
+
+05:31.090 --> 05:33.890
+So this one is going to be static for all the formats.
+
+05:33.890 --> 05:38.130
+So what we're going to do we're going to say with a string this is the day.
+
+05:38.570 --> 05:40.250
+So let's go and execute it.
+
+05:40.250 --> 05:42.370
+So with that we got the static value everywhere.
+
+05:42.370 --> 05:43.850
+We have the word day.
+
+05:44.090 --> 05:45.210
+So that's it.
+
+05:45.210 --> 05:46.850
+And after that we have space.
+
+05:46.850 --> 05:50.050
+So I'm going to go and include it after the day in the string.
+
+05:50.050 --> 05:52.090
+So we have a day then space.
+
+05:52.090 --> 05:55.410
+And after that we need the abbreviation of the day name.
+
+05:55.410 --> 06:00.130
+So what we're going to do we're going to go first with the plus operator in order to concatenate the
+
+06:00.130 --> 06:00.770
+strings.
+
+06:00.770 --> 06:05.530
+So we need the format function for the creation time.
+
+06:05.930 --> 06:06.830
+And what do we need?
+
+06:06.830 --> 06:08.750
+We need the short name.
+
+06:08.750 --> 06:10.590
+So it's going to be three times the D.
+
+06:10.630 --> 06:11.750
+Let's go and execute it.
+
+06:11.750 --> 06:14.790
+Let me just say here custom formats.
+
+06:14.830 --> 06:18.630
+So now as you can see in the output we have here the day, then afterward we have space.
+
+06:18.630 --> 06:22.310
+And then the abbreviation of the name of the day.
+
+06:22.310 --> 06:23.710
+So it looks so far.
+
+06:23.710 --> 06:24.110
+Good.
+
+06:24.150 --> 06:25.350
+Now after that what do we need.
+
+06:25.350 --> 06:26.430
+We need space.
+
+06:26.430 --> 06:28.590
+And then the abbreviation of the month.
+
+06:28.590 --> 06:32.190
+So we can go and add all those stuff together with the format here.
+
+06:32.190 --> 06:34.110
+So we don't have to create two formats.
+
+06:34.430 --> 06:38.470
+So space and the abbreviation of the month is three M.
+
+06:39.030 --> 06:40.230
+So let's go and test it.
+
+06:40.230 --> 06:40.590
+Great.
+
+06:40.590 --> 06:45.230
+So now as you can see we got the abbreviation of the month as well side by side.
+
+06:45.230 --> 06:47.630
+So we so far we have covered this part.
+
+06:47.670 --> 06:49.390
+Now we have to move to the second part.
+
+06:49.390 --> 06:50.910
+So we still need a space.
+
+06:50.910 --> 06:52.470
+And then Q one.
+
+06:52.510 --> 06:54.230
+Will the q going to be static.
+
+06:54.230 --> 06:56.550
+So we cannot go and extend this format.
+
+06:56.550 --> 06:57.950
+We have to start a new one.
+
+06:58.190 --> 07:02.150
+So what I'm going to do I'm just going to add a plus here and a new line.
+
+07:02.150 --> 07:03.150
+So what do we need.
+
+07:03.190 --> 07:06.590
+We need first a space between the month and the quarter.
+
+07:06.590 --> 07:08.340
+So let's go and add space.
+
+07:08.580 --> 07:12.300
+And we need the queue as a static value like this.
+
+07:12.380 --> 07:14.380
+Let me just move it like this.
+
+07:14.380 --> 07:16.820
+And now after that we need this one like this.
+
+07:16.820 --> 07:17.220
+Right.
+
+07:17.220 --> 07:18.980
+So now we need the Quaternary formations.
+
+07:18.980 --> 07:20.940
+And we don't have format for that.
+
+07:20.940 --> 07:24.140
+That's why we have to go and use the part extraction functions.
+
+07:24.140 --> 07:28.900
+And the one that we're going to use, since we are using string I will go with the date name.
+
+07:29.460 --> 07:34.020
+So quarter and we are extracting from the creation time.
+
+07:34.500 --> 07:35.740
+So let's go and test it.
+
+07:35.740 --> 07:38.460
+So now in the output you can see we have everywhere a Q1.
+
+07:38.460 --> 07:41.100
+And that's because all of those dates are in Q1.
+
+07:41.140 --> 07:41.500
+All right.
+
+07:41.500 --> 07:44.620
+So now we are so far halfway in our format.
+
+07:44.620 --> 07:45.820
+So now next what do we need.
+
+07:45.820 --> 07:50.820
+We need like a space and then the year information and then the time information.
+
+07:50.820 --> 07:55.420
+So now in order to go and get space we're going to do it very simply concatenate.
+
+07:55.420 --> 07:57.100
+And we're going to have space.
+
+07:57.100 --> 07:59.180
+Now let's go to a new line.
+
+07:59.180 --> 08:02.220
+And in order to get the year I will go with the format as well.
+
+08:02.260 --> 08:04.220
+So format and what do we have.
+
+08:04.260 --> 08:06.380
+We're going to have the creation time again.
+
+08:07.700 --> 08:09.440
+So how are we going to format it?
+
+08:09.480 --> 08:10.240
+Now what do we need?
+
+08:10.240 --> 08:11.080
+We need the year.
+
+08:11.080 --> 08:13.000
+So it's going to be four times the Y.
+
+08:13.040 --> 08:16.200
+And after that we have like space and then the time information.
+
+08:16.200 --> 08:18.600
+We still can't do that inside the format right.
+
+08:18.600 --> 08:20.160
+So we're going to have a space here.
+
+08:20.160 --> 08:21.080
+And then next what do we have.
+
+08:21.080 --> 08:22.240
+We have the hours.
+
+08:22.240 --> 08:24.080
+So it's going to be h h the small h.
+
+08:24.080 --> 08:26.960
+Because here we are talking about the PM and Am.
+
+08:27.000 --> 08:29.000
+It's not the 24 hour system.
+
+08:29.000 --> 08:30.440
+And then after that what do we have.
+
+08:30.440 --> 08:32.280
+The points double points.
+
+08:32.280 --> 08:36.560
+Then the minutes are going to be small to M and then after that the seconds.
+
+08:36.560 --> 08:39.280
+So far this is exactly this part over here.
+
+08:39.320 --> 08:43.280
+And now what is missing is space and the PM that designator.
+
+08:43.280 --> 08:45.680
+So in order to do that we're going to have space as well.
+
+08:45.720 --> 08:47.840
+And then small two times.
+
+08:48.440 --> 08:49.040
+All right.
+
+08:49.040 --> 08:51.000
+So we are almost there.
+
+08:51.000 --> 08:52.320
+Let's go and execute it.
+
+08:52.360 --> 08:54.160
+Now you can see it is working.
+
+08:54.160 --> 08:55.560
+So we have the year.
+
+08:55.760 --> 08:59.520
+Then space the hours minutes seconds and space.
+
+08:59.520 --> 09:01.040
+And then we have the designator.
+
+09:01.040 --> 09:05.200
+So this is PM and this is Am which is correct.
+
+09:05.200 --> 09:05.960
+So that's it.
+
+09:06.000 --> 09:06.760
+We are done.
+
+09:06.760 --> 09:12.990
+This is how you can create those crazy format in SQL using the help of format or maybe date name, or
+
+09:12.990 --> 09:15.470
+maybe some static values like we just added here.
+
+09:15.470 --> 09:18.590
+So I think it's really fun formatting the dates in SQL.
+
+09:22.590 --> 09:28.150
+Now, one use case for the format that I frequently use in my project is using it to format the date
+
+09:28.190 --> 09:30.030
+before doing aggregations.
+
+09:30.030 --> 09:31.870
+So it's like part extraction.
+
+09:31.870 --> 09:36.910
+But here we have more customizations on how we represent the date at the reports.
+
+09:36.910 --> 09:42.030
+So we can show a report like sales by month where we display, for example, the date as abbreviation,
+
+09:42.030 --> 09:46.310
+name of the month Jan and as well two digits for the year 25.
+
+09:46.310 --> 09:51.470
+So once we change the format like this and then do that aggregations, we will have a nice report about
+
+09:51.470 --> 09:52.590
+the sales by month.
+
+09:52.590 --> 09:55.070
+So let's have a quick aggregations using the formats.
+
+09:55.070 --> 09:57.110
+So we're going to go and say select.
+
+09:57.110 --> 10:07.190
+And now the order dates and counts the number of orders from our table sales orders and then group by.
+
+10:07.950 --> 10:11.370
+But now before we start using the order date we date, we have to go and format it.
+
+10:11.370 --> 10:15.050
+And then if you take the order date, let's go and execute it.
+
+10:15.050 --> 10:17.330
+So as you can see the level of details is very high.
+
+10:17.330 --> 10:18.850
+And we have here ten rows.
+
+10:18.890 --> 10:20.930
+And for each day we have like one order.
+
+10:20.970 --> 10:26.610
+Now we learned we can go and use the date part in order to extract one part and then aggregate on it.
+
+10:26.690 --> 10:29.610
+Now instead of that we're going to go and use the format function.
+
+10:29.610 --> 10:31.410
+So let's go and change the format.
+
+10:31.410 --> 10:32.970
+And it is the order date.
+
+10:32.970 --> 10:34.690
+And our format is going to be like this.
+
+10:34.690 --> 10:38.690
+So three big M and then two digits for the year.
+
+10:38.730 --> 10:39.370
+That's it.
+
+10:39.410 --> 10:41.810
+And let's call it order dates.
+
+10:41.810 --> 10:47.090
+And we need this as well for the order date over here for the group by and here a comma.
+
+10:47.090 --> 10:47.810
+So that's it.
+
+10:47.810 --> 10:49.210
+Let's go and execute it.
+
+10:49.210 --> 10:51.770
+So in the output as you can see over here we have three months.
+
+10:51.770 --> 10:55.170
+And here we are having the aggregation the number of orders for each month.
+
+10:55.170 --> 10:56.650
+So now it's like the date part.
+
+10:56.650 --> 10:59.450
+But now we are customizing the format as we want.
+
+10:59.490 --> 11:04.810
+So we can use the format in order to change the granularity of the date in order to do that.
+
+11:04.810 --> 11:05.650
+Aggregations.
+
+11:09.530 --> 11:12.920
+Now I'm going to show you a real use case for the formatting and real projects.
+
+11:12.960 --> 11:17.800
+Now our data could be stored in different technologies, like the data could be stored in CSV file,
+
+11:17.800 --> 11:20.600
+or we can get our data using an API call.
+
+11:20.600 --> 11:24.200
+Or in very common scenario, our data could be stored in database.
+
+11:24.200 --> 11:29.480
+So now what we usually do, we go and extract the data from these different sources into one central
+
+11:29.480 --> 11:30.040
+storage.
+
+11:30.040 --> 11:33.280
+It could happen that you are getting different formats for the dates.
+
+11:33.320 --> 11:35.320
+And of course this is a problem for analytics.
+
+11:35.320 --> 11:37.480
+You cannot present different formats for the dates.
+
+11:37.480 --> 11:38.080
+What you are going to do.
+
+11:38.080 --> 11:41.840
+We're going to go and clean up the formats into one standard format.
+
+11:41.880 --> 11:46.000
+So that means we have to format the incoming data to new formats.
+
+11:46.000 --> 11:50.360
+And once we have one standard format, we can use it in analytics and reports.
+
+11:50.360 --> 11:56.680
+So this is a very common use case in data preparation and in data cleanup by formatting different formats
+
+11:56.680 --> 11:58.280
+into one standard format.
+
+12:02.280 --> 12:06.800
+Now in SQL we have many different date and time specifiers.
+
+12:06.800 --> 12:10.840
+And I said they are case sensitive and each one of them has a different meaning.
+
+12:10.880 --> 12:12.340
+So I prepared for you as well.
+
+12:12.380 --> 12:15.500
+All possible specifiers that we can use with the formats.
+
+12:15.540 --> 12:20.100
+Not only that, if you go back to the queries that you can find in this chapter, you can find here
+
+12:20.140 --> 12:21.060
+date format.
+
+12:21.060 --> 12:26.860
+So all date formats, if you go inside it, you can go and copy the whole query and then go back to
+
+12:26.980 --> 12:29.020
+SQL then execute it.
+
+12:29.020 --> 12:33.500
+You can find here a live example because I'm going to pull it in now the get date.
+
+12:33.500 --> 12:39.260
+So you can find here a list of all possible date specifiers that you can use with the formats.
+
+12:39.300 --> 12:44.020
+So I would say go and practice with those different date formats in order to understand what is possible
+
+12:44.020 --> 12:44.740
+in SQL.
+
+12:44.740 --> 12:48.660
+So as we learned, not only we can change the format of the date, we can change as well the format
+
+12:48.660 --> 12:50.860
+of the number using the function formats.
+
+12:50.900 --> 12:56.620
+And those are the different possibility that you can use as a specifier for this format in order to
+
+12:56.660 --> 12:58.300
+change the format of the numbers.
+
+12:58.340 --> 13:02.580
+And as well, I have prepared all those different specifiers in one big query.
+
+13:02.580 --> 13:08.900
+So if you go inside it and copy it and then put it in SQL and execute it, you will find here all different
+
+13:08.900 --> 13:13.660
+possibilities that we have as specifier to change the format of the numbers.

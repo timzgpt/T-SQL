@@ -1,0 +1,601 @@
+WEBVTT
+
+00:03.880 --> 00:04.200
+All right.
+
+00:04.200 --> 00:06.680
+So now let's check the syntax of the Columnstore index.
+
+00:06.680 --> 00:08.600
+Well it is really easy what you can do.
+
+00:08.640 --> 00:15.400
+We can just put a columnstore keyword between the clustered or non-clustered and the index.
+
+00:15.400 --> 00:20.560
+So once you specify that then you are telling SQL you want to create a columnstore index.
+
+00:20.560 --> 00:22.600
+And the rest it's going to stay as it is.
+
+00:22.640 --> 00:26.360
+Now if you want to create raw columnstore, then you don't have to specify anything.
+
+00:26.360 --> 00:28.760
+There is no keyword for the raw store.
+
+00:28.800 --> 00:33.000
+So as we learned before, we can go and create a non-clustered index and clustered index.
+
+00:33.000 --> 00:38.440
+And both of those syntaxes are going to tell SQL we are creating row store index.
+
+00:38.440 --> 00:44.280
+But if you go and use the column store keyword, then you are telling SQL that you want to create either
+
+00:44.280 --> 00:46.840
+clustered or non-clustered Columnstore index.
+
+00:46.840 --> 00:48.680
+And here there is like a syntax rule.
+
+00:48.680 --> 00:55.160
+If you are creating a clustered column index, then you must not specify anything for the columns.
+
+00:55.160 --> 01:01.010
+So you cannot go and specify anything like an ID or country or any columns over here because it makes
+
+01:01.010 --> 01:01.770
+no sense.
+
+01:01.770 --> 01:07.930
+Once you say clustered column store, then all the columns are going to be included in the new structure.
+
+01:07.930 --> 01:11.090
+So this is the syntax of the column store index.
+
+01:11.130 --> 01:11.490
+All right.
+
+01:11.490 --> 01:12.330
+So back to SQL.
+
+01:12.330 --> 01:14.770
+Let's check how we can create column store index.
+
+01:14.770 --> 01:20.490
+Now if you check our table here DB customers that we have created previously and we go to the indexes,
+
+01:20.490 --> 01:23.050
+you can see that we have created few indexes.
+
+01:23.050 --> 01:25.650
+And one of them is the clustered index.
+
+01:25.970 --> 01:28.890
+This one is a row store index.
+
+01:28.890 --> 01:31.770
+So our table is splitted by the rows.
+
+01:31.810 --> 01:33.170
+Now let's go and change that.
+
+01:33.170 --> 01:37.250
+Let's make our table splitted by the columns using the column store.
+
+01:37.290 --> 01:43.690
+So we're going to say Create clustered column store index.
+
+01:43.690 --> 01:48.210
+And we're going to give it a name index DB customers.
+
+01:48.250 --> 01:53.250
+And it's going to be on the table sales DB customers.
+
+01:53.690 --> 01:57.370
+And here if you go and specify a column it's going to be a mistake.
+
+01:57.370 --> 01:59.010
+So let's go and check that.
+
+01:59.050 --> 02:05.490
+So if we go and execute it, it says it fails because key lists or the columns is not allowed.
+
+02:05.490 --> 02:06.770
+So we cannot have this.
+
+02:06.770 --> 02:07.730
+So let's remove it.
+
+02:07.730 --> 02:09.530
+And now we have the correct syntax.
+
+02:09.770 --> 02:11.290
+Let's execute it again.
+
+02:11.490 --> 02:17.610
+We will get another error because it says in one table you cannot have more than one clustered index.
+
+02:17.610 --> 02:18.730
+We have already one.
+
+02:18.730 --> 02:23.010
+You have to decide do you want to split your table by columns or by rows?
+
+02:23.210 --> 02:29.210
+That's why we have to go and drop the previous index so we can do it like this drop index.
+
+02:29.530 --> 02:32.090
+And I need the name of the index like this.
+
+02:32.090 --> 02:34.810
+And then we have to specify the table name.
+
+02:37.810 --> 02:38.850
+So that's it.
+
+02:38.890 --> 02:40.650
+Let's drop the index.
+
+02:40.650 --> 02:47.010
+Now if we refresh we cannot see anymore our clustered index and our query should be working.
+
+02:47.010 --> 02:48.130
+So let's do that.
+
+02:48.170 --> 02:50.490
+Now let's check the indexes again.
+
+02:50.530 --> 02:53.810
+And now as you can see we got a new clustered index.
+
+02:53.810 --> 02:55.850
+But this time it is columnstore.
+
+02:55.890 --> 03:01.820
+Now you can see at the start we have like an icon, it looks like a bar chart or like analytics and
+
+03:01.820 --> 03:02.500
+reports.
+
+03:02.500 --> 03:06.780
+And that's because the main purpose of creating Columnstore is to have a bar chart.
+
+03:06.820 --> 03:10.740
+So now of course we cannot go and create multiple clustered column index.
+
+03:10.740 --> 03:12.900
+We can have maximum only one.
+
+03:12.900 --> 03:14.140
+So now if you say you know what.
+
+03:14.180 --> 03:17.300
+Let's go and create for the first name another index.
+
+03:17.300 --> 03:19.540
+But this time it's going to be a column store.
+
+03:19.580 --> 03:27.460
+So if I go and copy the whole thing over here and let's say it is none clustered column index and let's
+
+03:27.460 --> 03:29.220
+call it for example first name.
+
+03:30.340 --> 03:33.900
+And we define over here the first name.
+
+03:34.980 --> 03:36.060
+So that's it.
+
+03:36.060 --> 03:37.780
+Let's go and execute it.
+
+03:37.780 --> 03:44.780
+You will see that we will get an error where a SQL tells us you cannot create multiple columnstore indexes.
+
+03:44.780 --> 03:49.700
+That means you can create only one columnstore index for each table.
+
+03:49.700 --> 03:53.820
+And you have to decide whether it is a clustered or non-clustered.
+
+03:53.820 --> 03:58.310
+And you cannot create like the roster multiple non-clustered index.
+
+03:58.310 --> 04:01.990
+So you are allowed only with one columnstore index.
+
+04:01.990 --> 04:04.670
+But this limitation is only here in the SQL server.
+
+04:04.790 --> 04:11.750
+In other databases, I know that is allowed to use multiple columnstore indexes like in the Azure SQL
+
+04:11.750 --> 04:12.030
+server.
+
+04:12.030 --> 04:13.030
+You can do that.
+
+04:13.030 --> 04:18.070
+So now in order to practice and you would like to create a non-clustered Columnstore index, you can
+
+04:18.070 --> 04:23.270
+drop the first one and you can go and create the one that you need as a non-clustered index.
+
+04:23.270 --> 04:24.910
+So actually let's go and do that.
+
+04:24.910 --> 04:26.430
+Let's drop the first one.
+
+04:26.430 --> 04:27.670
+So drop index.
+
+04:28.390 --> 04:32.070
+And this is our index on this table.
+
+04:32.110 --> 04:32.870
+Let's do that.
+
+04:32.870 --> 04:37.310
+And once you execute the non-clustered columnstore index is going to work.
+
+04:37.350 --> 04:43.510
+And if you refresh over here you will see that we have a non-clustered Columnstore index for the first
+
+04:43.550 --> 04:43.950
+name.
+
+04:44.310 --> 04:44.630
+Okay.
+
+04:44.670 --> 04:50.510
+So now as we learned that the Columnstore can go and compress the data and the storage that is needed
+
+04:50.510 --> 04:53.990
+for the entire table is going to be less than the roster.
+
+04:54.110 --> 04:56.190
+So let's see whether that is really true.
+
+04:56.230 --> 05:01.150
+Now in order to check this, I will not do that in the database sales DB because everything here is
+
+05:01.150 --> 05:02.030
+already small.
+
+05:02.030 --> 05:04.430
+We're going to go and use another database.
+
+05:04.430 --> 05:07.590
+We have the Adventureworks DW 2022.
+
+05:07.630 --> 05:09.750
+And if you have a newer version that's okay.
+
+05:09.750 --> 05:11.110
+So now what is the plan.
+
+05:11.150 --> 05:14.830
+We're going to go and create three identical copies of one table.
+
+05:14.830 --> 05:16.670
+And we're going to have different structures.
+
+05:16.670 --> 05:18.590
+So the first one is going to be the heap structure.
+
+05:18.590 --> 05:21.590
+The second one is going to be row store structure.
+
+05:21.590 --> 05:23.790
+And the third one is going to be column store structure.
+
+05:23.790 --> 05:27.510
+And then we're going to go and compare the storage of the three.
+
+05:27.510 --> 05:29.990
+So now we have to go and pick one of those tables.
+
+05:29.990 --> 05:31.110
+We need one big table.
+
+05:31.110 --> 05:33.430
+So for example the fact internet sales.
+
+05:33.430 --> 05:34.750
+So let's see how we can do that.
+
+05:34.750 --> 05:36.710
+Let's start with the heap structure.
+
+05:36.710 --> 05:40.550
+We're going to say select star into a new table.
+
+05:40.550 --> 05:48.270
+So it's going to be the facts internet sales and underscore HP for the heap.
+
+05:48.510 --> 05:50.230
+And we're going to get it from the table.
+
+05:50.430 --> 05:51.190
+Facts.
+
+05:51.520 --> 05:53.800
+Internet sales.
+
+05:53.800 --> 05:54.680
+So like this.
+
+05:54.680 --> 05:55.640
+And here it's very important.
+
+05:55.640 --> 05:58.920
+If you are switching databases you have to go and use the database.
+
+05:58.920 --> 06:03.640
+So it's going to be use Adventureworks DW 2022.
+
+06:03.680 --> 06:08.600
+So execute this at the start to make sure that you are switching to the new database.
+
+06:08.640 --> 06:11.280
+And now let's go and execute our heap structure.
+
+06:11.280 --> 06:15.560
+So with that we have created heap table as you can see 60,000 rows.
+
+06:15.640 --> 06:20.840
+And since we didn't define any clustered index this table is going to be a heap structure.
+
+06:20.880 --> 06:25.880
+Now let's go and create another table where we use clustered row store index.
+
+06:25.880 --> 06:32.080
+So what we're going to do we're going to copy the whole thing over here I'm going to call this row store.
+
+06:32.240 --> 06:34.880
+And we're going to go of course change the name to SES.
+
+06:34.920 --> 06:37.360
+But still we are targeting the same table.
+
+06:37.360 --> 06:40.000
+So let's go and execute this at the start.
+
+06:40.040 --> 06:44.720
+But now in order to make it as clustered row store, we have to go and create an index.
+
+06:44.720 --> 06:46.080
+So it's going to be like this.
+
+06:46.680 --> 06:50.080
+Create clustered index.
+
+06:50.120 --> 06:53.480
+We don't have to specify the roster because it is as a default.
+
+06:53.480 --> 06:54.560
+It can be roster.
+
+06:54.600 --> 07:01.480
+So let's call it index facts internet sales Rs.
+
+07:01.680 --> 07:03.520
+And then the primary key.
+
+07:03.720 --> 07:04.600
+So B key.
+
+07:04.640 --> 07:11.320
+And now we need the table fact internet sales Rs.
+
+07:11.760 --> 07:14.640
+And now we need the columns the primary key.
+
+07:14.760 --> 07:16.640
+Well actually I don't know what is the primary key.
+
+07:16.640 --> 07:18.200
+So let's go and check that.
+
+07:18.400 --> 07:20.560
+So it is a composite primary keys.
+
+07:20.560 --> 07:29.360
+So it's going to be the sales order number and sales order line number like this.
+
+07:29.360 --> 07:32.080
+So let's go and execute this.
+
+07:32.120 --> 07:34.360
+And with that we have clustered row index.
+
+07:34.360 --> 07:36.480
+I'm going to go and check what do we have over here.
+
+07:36.480 --> 07:38.120
+So let's go and refresh everything.
+
+07:38.120 --> 07:42.440
+So we have now two tables the heap and the row store.
+
+07:42.480 --> 07:45.000
+So let's extend it and check the indexes.
+
+07:45.040 --> 07:47.760
+And as you can see we have the clustered index.
+
+07:47.760 --> 07:49.690
+Now we need the third table.
+
+07:49.690 --> 07:51.530
+It's going to be the Columnstore index.
+
+07:51.530 --> 07:54.250
+I'm just going to go and copy the whole thing over here.
+
+07:54.250 --> 08:01.650
+So this is the column store going to be here CSS and CSS.
+
+08:02.450 --> 08:05.450
+And of course we don't need any columns for the column store.
+
+08:05.450 --> 08:09.810
+And don't forget to add the column store keyword.
+
+08:09.810 --> 08:12.170
+So create clustered column store index.
+
+08:12.170 --> 08:14.450
+And we have to rename as well over here.
+
+08:14.730 --> 08:16.970
+So let's go and execute our new stuff.
+
+08:16.970 --> 08:21.930
+So we create first the table and then we convert it to a column store index.
+
+08:21.930 --> 08:23.610
+So let's go and do that.
+
+08:23.650 --> 08:26.930
+And we have to go and refresh and check our tables.
+
+08:26.930 --> 08:28.850
+So this is our third table.
+
+08:28.850 --> 08:30.690
+And let's go and check the indexes.
+
+08:30.690 --> 08:32.850
+And we have clustered column store.
+
+08:32.890 --> 08:33.330
+All right.
+
+08:33.330 --> 08:34.250
+So now we are done.
+
+08:34.250 --> 08:36.130
+We have our three different tables.
+
+08:36.170 --> 08:39.850
+Now let's go and check the storages of those three tables.
+
+08:39.850 --> 08:42.530
+So now let's go and check our first table the heap table.
+
+08:42.530 --> 08:45.370
+So right click on it and go to the properties.
+
+08:45.410 --> 08:50.100
+And now we can see here a lot of informations about our table but we are interested on the storage.
+
+08:50.100 --> 08:52.740
+So click here on the page for the storage.
+
+08:52.740 --> 08:55.620
+And now we can see here a few informations about the storage.
+
+08:55.620 --> 08:57.460
+And one of them is the data space.
+
+08:57.460 --> 09:02.060
+It is around nine megabytes and the index space is almost nothing.
+
+09:02.060 --> 09:03.860
+So we don't have anything over here.
+
+09:03.860 --> 09:06.100
+So this is the storage of the heap structure.
+
+09:06.100 --> 09:07.620
+We don't have any indexes.
+
+09:07.660 --> 09:09.980
+Let's go now to the row store.
+
+09:10.220 --> 09:13.060
+So we're going to go to the SES and properties.
+
+09:13.100 --> 09:14.380
+Then let's go to the storage.
+
+09:14.420 --> 09:17.820
+And now as you can see the data space is exactly the same.
+
+09:17.860 --> 09:23.300
+And that's because whether it is heap or row store index, we're going to store the data in data pages
+
+09:23.300 --> 09:24.140
+as rows.
+
+09:24.140 --> 09:27.060
+So the size of the data itself will not change.
+
+09:27.060 --> 09:28.660
+It will be sorted differently.
+
+09:28.660 --> 09:32.020
+But what's changed here is the size of the index.
+
+09:32.020 --> 09:35.380
+Now we are consuming more storage for the index.
+
+09:35.380 --> 09:37.860
+So that means the overall storage of the table.
+
+09:37.860 --> 09:40.580
+With a clustered row store index.
+
+09:40.580 --> 09:42.780
+It is more than the heap structure.
+
+09:42.780 --> 09:45.660
+Let's go and check now our Columnstore Store index.
+
+09:45.660 --> 09:49.100
+So to the CSS and let's go to the properties.
+
+09:49.140 --> 09:52.500
+And now it is interesting to see whether our table is getting smaller.
+
+09:52.500 --> 09:53.980
+So let's go to the storage.
+
+09:53.980 --> 10:00.020
+And as you can see the data space is around one megabyte compared to the nine megabyte.
+
+10:00.060 --> 10:07.380
+I know those are small numbers, but still it is massively reduced space because everything is compressed.
+
+10:07.380 --> 10:13.740
+And of course we are not using any index spaces because we don't have this B-tree structure in the column
+
+10:13.740 --> 10:14.140
+store.
+
+10:14.180 --> 10:17.660
+So as you can see, if you compare to the others, it is the winner.
+
+10:17.900 --> 10:23.940
+This table that is using the column store is consuming way less storage than the others.
+
+10:23.940 --> 10:30.380
+So now if you want to rank it based on the storage, the best one is the column store index table.
+
+10:30.420 --> 10:33.500
+Then the next one is the table with the heap structure.
+
+10:33.500 --> 10:38.940
+And the worst one is the table with the roster clustered index.
+
+10:39.180 --> 10:39.900
+So that's true.
+
+10:39.900 --> 10:44.620
+The Columnstore index is consuming less space than the other type of indexes.

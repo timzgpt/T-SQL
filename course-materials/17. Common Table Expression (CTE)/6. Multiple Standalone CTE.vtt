@@ -1,0 +1,448 @@
+WEBVTT
+
+00:03.960 --> 00:05.000
+So it's going to look like this.
+
+00:05.000 --> 00:08.840
+We have our database and this time we don't have only one CTE.
+
+00:09.160 --> 00:12.160
+We have multiple cities in our query.
+
+00:12.160 --> 00:15.160
+And each CTE is going directly to the database.
+
+00:15.160 --> 00:20.160
+And it will query the database in order to prepare the intermediate results.
+
+00:20.160 --> 00:26.840
+So in this example for CTE is going to the database and preparing for different intermediate results.
+
+00:26.840 --> 00:29.640
+And of course SQL can execute it from the top to the bottom.
+
+00:29.640 --> 00:32.120
+So first the city one then 234.
+
+00:32.160 --> 00:34.080
+But they have nothing to do with each others.
+
+00:34.080 --> 00:38.880
+So now once we have all the four intermediate results, the main query is going to go and retrieve all
+
+00:38.880 --> 00:44.280
+those informations and do some magic in order to prepare the final result for the end user.
+
+00:44.280 --> 00:49.760
+So now by looking to this sketch, you can understand all those cities are independent from each others.
+
+00:49.760 --> 00:51.760
+So there is no nesting or something.
+
+00:52.040 --> 00:58.640
+Each CTE is self-contained and it could be executed on its own without depending on any other results
+
+00:58.640 --> 01:01.660
+from any other CTE or any other query.
+
+01:01.660 --> 01:04.940
+So it goes directly to the database and get the data.
+
+01:04.940 --> 01:07.860
+So that's why all of them are standalone cities.
+
+01:07.900 --> 01:12.300
+And since we have multiple cities then it is standalone multiple cities.
+
+01:12.340 --> 01:12.780
+That's it.
+
+01:12.820 --> 01:13.380
+It's simple.
+
+01:13.380 --> 01:16.340
+So now let's check the syntax of the multiple standalone cities.
+
+01:16.340 --> 01:18.660
+So we're going to start writing our first city.
+
+01:18.860 --> 01:20.740
+So it starts with the with clause.
+
+01:20.740 --> 01:22.460
+And then we have the city name.
+
+01:22.460 --> 01:24.300
+And then the logic of our city.
+
+01:24.340 --> 01:25.340
+So nothing new.
+
+01:25.380 --> 01:27.300
+This is how we define the city.
+
+01:27.340 --> 01:32.780
+And then in order to use it we're going to have our main query where we select from our new city, and
+
+01:32.780 --> 01:35.340
+we make sure we are using the name of our city.
+
+01:35.380 --> 01:36.500
+So nothing new.
+
+01:36.540 --> 01:41.780
+Now, in order to add another city to our query, what we're going to do, we're going to go after the
+
+01:41.780 --> 01:43.220
+definition of the city.
+
+01:43.500 --> 01:47.180
+And below it we're going to go and start defining the city.
+
+01:47.220 --> 01:47.500
+Two.
+
+01:47.540 --> 01:51.620
+But this time, as you can see, we are not using the With clause.
+
+01:51.660 --> 01:53.020
+We are using a comma.
+
+01:53.020 --> 01:57.260
+So that means only the first city is going to be using the with clause.
+
+01:57.260 --> 02:03.720
+In order to tell SQL we are talking about CTE, all the other cities, you can separate it using the
+
+02:03.720 --> 02:04.120
+comma.
+
+02:04.120 --> 02:07.120
+So the syntax is going to be comma instead of width.
+
+02:07.400 --> 02:09.160
+Then the name of the city.
+
+02:09.160 --> 02:11.880
+And then we're going to say as the following definition.
+
+02:11.880 --> 02:15.240
+So we're going to write here the query of the second CTE.
+
+02:15.400 --> 02:20.080
+So now of course if you want to go and add more cities you go and use the comma below it.
+
+02:20.080 --> 02:22.320
+And as well you define the third city.
+
+02:22.360 --> 02:26.880
+So you can have as much cities as you want and always separated with comma.
+
+02:27.000 --> 02:29.400
+But only the first city starts with the width.
+
+02:29.440 --> 02:34.800
+And of course in the main query we can go and use the results from the CTE two where we are for example
+
+02:34.840 --> 02:37.800
+here joining the data between the city one and city two.
+
+02:37.840 --> 02:43.000
+So as you can see in the main query here, we are like collecting the data from these different cities
+
+02:43.040 --> 02:46.080
+in order to do the final step in the main query.
+
+02:46.120 --> 02:47.240
+It starts with the width.
+
+02:47.240 --> 02:50.000
+So SQL understands okay now we are talking about CTE.
+
+02:50.200 --> 02:56.480
+And once SQL sees after the parenthesis a comma SQL can understand okay now we are talking about another
+
+02:56.480 --> 02:57.000
+city.
+
+02:57.040 --> 03:02.140
+And now if you don't go and use a comma after the parenthesis SQL can understand okay, we don't have
+
+03:02.140 --> 03:03.020
+any more seats.
+
+03:03.300 --> 03:05.940
+The next query is about the main query.
+
+03:05.940 --> 03:09.060
+So this is how you create multiple standalone seats.
+
+03:09.100 --> 03:09.460
+All right.
+
+03:09.460 --> 03:13.340
+So now back to our task where we are creating like a report step by step.
+
+03:13.380 --> 03:19.780
+So now we have in the task a second step where it says find the last order date for each customer.
+
+03:19.780 --> 03:23.100
+So now we have to go and add one more information about our customer.
+
+03:23.100 --> 03:25.820
+So when the last time the customer did order.
+
+03:25.820 --> 03:27.100
+So how are we going to do it.
+
+03:27.100 --> 03:29.300
+Now we have to add this to our query.
+
+03:29.300 --> 03:33.300
+And I would like to use as well the CTE in order to have this logic.
+
+03:33.300 --> 03:38.740
+So as we learned from the first task, this is the first step in order to find the total sales for each
+
+03:38.740 --> 03:39.260
+customer.
+
+03:39.260 --> 03:40.940
+And here we have the main query.
+
+03:40.980 --> 03:44.740
+Now I would like to put now in between another CTE.
+
+03:44.780 --> 03:48.220
+And as we learned from the syntax, we have to go and add a comma.
+
+03:48.220 --> 03:51.500
+We cannot go and use the width again and we have to give it a name.
+
+03:51.500 --> 03:55.340
+So let's call it CTE and last order.
+
+03:55.660 --> 04:00.380
+So like this and we have to define it so as and then double parenthesis.
+
+04:00.660 --> 04:03.230
+And now in between we have to go and add our logic.
+
+04:03.230 --> 04:05.150
+So now we have to focus only in this logic.
+
+04:05.150 --> 04:09.070
+So forget about the other cities and the main query.
+
+04:09.070 --> 04:12.230
+So we have to find the last order date for each customer.
+
+04:12.470 --> 04:15.990
+So we're going to go and query again the table orders.
+
+04:16.350 --> 04:17.070
+So what do we need.
+
+04:17.110 --> 04:18.630
+We need the customer ID.
+
+04:18.990 --> 04:25.590
+We need the order date from our table sales orders.
+
+04:25.830 --> 04:27.070
+So that's it for now.
+
+04:27.110 --> 04:30.150
+Let's just select it and execute it.
+
+04:30.150 --> 04:34.150
+And now with that you can see all the customers and as well all the orders.
+
+04:34.150 --> 04:37.510
+But we would like to have the highest order for each customer.
+
+04:37.510 --> 04:41.830
+And we can go and use our aggregate function the max function.
+
+04:41.830 --> 04:44.070
+So what we're going to do, it's like here at the top.
+
+04:44.590 --> 04:49.990
+So we have to go and use the function max and group up by that customer ID.
+
+04:50.270 --> 04:56.830
+So group up the customer ID and let me just shift it like this.
+
+04:56.870 --> 05:00.230
+And let's give it the name Last Order.
+
+05:00.230 --> 05:01.110
+So like this.
+
+05:01.150 --> 05:04.730
+And as you can see I'm just selecting now only my query.
+
+05:04.930 --> 05:10.890
+I'm not selecting everything and I keep executing in order just to check the results before we integrate
+
+05:10.890 --> 05:12.490
+it in the main query.
+
+05:12.530 --> 05:15.370
+So now as you can see we have for each customer one row.
+
+05:15.370 --> 05:18.130
+And we have as well the highest order for each customer.
+
+05:18.130 --> 05:20.810
+So with that we have solved this subtask.
+
+05:20.810 --> 05:23.090
+So as you can see it's really easy to extend.
+
+05:23.130 --> 05:28.730
+I'm just making like another box and I'm adding inside it the business logic that I want.
+
+05:28.770 --> 05:32.290
+And this can solve one problem from the whole task.
+
+05:32.290 --> 05:34.810
+So you feel now exactly the power of the CTE.
+
+05:34.970 --> 05:38.490
+We are making complex logic, but still it's easy to add.
+
+05:38.530 --> 05:40.050
+Now imagine you are not doing this.
+
+05:40.050 --> 05:42.450
+You are always extending one big query.
+
+05:42.490 --> 05:44.250
+It's gonna be really hard to extend.
+
+05:44.250 --> 05:51.330
+And that's why a lot of SQL developers really love using CTE, and they like use it in each query or
+
+05:51.370 --> 05:53.170
+in each task that they have.
+
+05:53.170 --> 05:57.690
+So we have solved this task and we have to go now integrate it in the main query.
+
+05:57.690 --> 05:59.170
+It's going to be very simple.
+
+05:59.170 --> 06:03.870
+So we're going to go over here and we will go and just add another join.
+
+06:03.870 --> 06:05.710
+So we're going to join it with the CTE.
+
+06:05.990 --> 06:11.590
+And as you can see SQL now is offering it as a table, even though it is not a physical table that exists
+
+06:11.590 --> 06:12.670
+in our database.
+
+06:12.950 --> 06:14.910
+It only lives inside our data.
+
+06:14.910 --> 06:17.110
+But still SQL treats it as a table.
+
+06:17.110 --> 06:18.630
+And this is exactly what we are doing.
+
+06:18.630 --> 06:20.870
+We treat those informations as table.
+
+06:20.870 --> 06:25.150
+So CTE the last order and I will call it CLO.
+
+06:25.270 --> 06:29.270
+And then of course we have to go and do the same condition like here.
+
+06:29.590 --> 06:36.590
+So the CLO customer ID should be equal to the customer ID from the first table, the customers.
+
+06:36.590 --> 06:40.510
+And of course we have to go and add this new information to the main query.
+
+06:40.510 --> 06:43.990
+So clo the last order.
+
+06:43.990 --> 06:44.830
+So now what we're going to do.
+
+06:44.830 --> 06:46.950
+We're going to go and execute the whole thing.
+
+06:46.950 --> 06:50.030
+So we have now two seats and as well our main query.
+
+06:50.030 --> 06:51.710
+So let's go and execute it.
+
+06:51.750 --> 06:53.150
+Now again let's check the data.
+
+06:53.190 --> 06:56.670
+The first three columns comes from the physical table customers.
+
+06:56.710 --> 07:01.630
+The fourth one the total sales comes from our first CTE over here.
+
+07:02.070 --> 07:03.370
+So from here.
+
+07:03.370 --> 07:08.490
+And the last order comes from our new city that we just defined the city number two.
+
+07:08.530 --> 07:12.330
+So as you can see, guys, everything feels like organized and structured.
+
+07:12.330 --> 07:13.690
+And we have like flow.
+
+07:13.730 --> 07:16.890
+And of course those cities are standalone cities.
+
+07:17.050 --> 07:21.210
+So we can go always and select the city and execute it separately.
+
+07:21.210 --> 07:24.170
+It doesn't need anything else from outside this query.
+
+07:24.210 --> 07:27.010
+It just needs the tables inside your database.
+
+07:27.010 --> 07:28.690
+So guys again here pay attention.
+
+07:28.690 --> 07:34.090
+If you want to add more cities use the comma you cannot go and use for example here another width.
+
+07:34.090 --> 07:35.970
+So if I execute it I will get an error.
+
+07:36.170 --> 07:38.050
+So you have to separate it with comma.
+
+07:38.050 --> 07:45.490
+And another mistake that I do frequently is that I forget and go add here like to the last CTE, a comma.
+
+07:45.490 --> 07:48.010
+And this happens to me if I'm using a lot of cities.
+
+07:48.210 --> 07:54.970
+So if I go and do it like this I will get as well an error because the main query doesn't need a comma.
+
+07:54.970 --> 07:58.170
+So the last city should not have a comma after the parenthesis.
+
+07:58.170 --> 08:00.450
+So I just removed it and execute.
+
+08:00.450 --> 08:03.930
+So guys with that we have now multiple cities inside our query.

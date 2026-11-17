@@ -1,0 +1,382 @@
+WEBVTT
+
+00:03.920 --> 00:06.560
+Okay, so now what is exactly a full antijoin?
+
+00:06.560 --> 00:08.200
+Well, this time we don't have sides.
+
+00:08.200 --> 00:13.040
+We want to return only the rows that don't match in either tables.
+
+00:13.040 --> 00:17.840
+So what this means if you are looking to the left circle, we want only the unmatching rows.
+
+00:17.840 --> 00:19.440
+So we don't want the whole circle.
+
+00:19.440 --> 00:24.840
+We want only the data that exists in A but it don't exist in B on the right table.
+
+00:24.880 --> 00:29.440
+Sounds like the left antijoin but since we are saying full, then you have to do the same thing on the
+
+00:29.440 --> 00:30.240
+right side as well.
+
+00:30.240 --> 00:33.800
+So on the right table we want only the unmatching rows.
+
+00:33.800 --> 00:38.840
+So we want to see in the result the data that is in B but don't have a match from A.
+
+00:38.880 --> 00:40.160
+So it's exactly the opposite.
+
+00:40.160 --> 00:44.600
+And if you look to this then that means we want to see only the unmatching data.
+
+00:44.600 --> 00:48.320
+And this is exactly the opposite effect of the inner join.
+
+00:48.360 --> 00:53.360
+If the inner join we were interested only on the matching data, only when there is like overlapping.
+
+00:53.360 --> 00:56.040
+But now with the full antijoin it is exactly the opposite.
+
+00:56.040 --> 01:00.850
+We don't want to see the matching data, we want to see everything else, the unmatching data.
+
+01:00.850 --> 01:02.730
+So how we can write this query again?
+
+01:02.770 --> 01:05.490
+Here we don't have a special type called full Antijoin.
+
+01:05.490 --> 01:08.050
+We will use the help of the classical full join.
+
+01:08.050 --> 01:08.930
+So the basic one.
+
+01:08.930 --> 01:12.130
+So you start from a full join B and then the same key.
+
+01:12.170 --> 01:14.890
+But now what is interesting is about the where condition.
+
+01:14.890 --> 01:16.930
+Now we have like two conditions right.
+
+01:16.970 --> 01:22.090
+So now in order to get all data from a that has no match in B, you have to make a filter where you
+
+01:22.090 --> 01:24.850
+say the key from the B table must be null.
+
+01:24.890 --> 01:29.530
+And now, since we want the exact same thing from the right table, we want all the data in B that has
+
+01:29.530 --> 01:30.530
+no match in A.
+
+01:30.650 --> 01:32.330
+You have to say as well.
+
+01:32.530 --> 01:35.010
+The key from the A table must be null.
+
+01:35.050 --> 01:36.850
+So now we have here like two conditions.
+
+01:36.850 --> 01:41.650
+And in SQL if you have like two conditions in the Where clause, you have here two options either use
+
+01:41.690 --> 01:44.770
+and operator or the or operator.
+
+01:44.770 --> 01:48.090
+So now the one that we're going to use here is the or operator.
+
+01:48.090 --> 01:51.970
+So either the key from right is empty or the key from left is empty.
+
+01:52.010 --> 01:55.970
+If you do it like this you will get the effect of the full antijoin.
+
+01:55.970 --> 02:01.730
+And of course, since here both sides are equal, then the order of the tables as well here is not that
+
+02:01.730 --> 02:02.290
+important.
+
+02:02.290 --> 02:06.970
+So you can say from a full join B or from B full join A, it doesn't matter.
+
+02:06.970 --> 02:09.970
+So now let's go back to SQL in order to create this effect.
+
+02:10.010 --> 02:10.170
+Okay.
+
+02:10.250 --> 02:11.450
+So now we have the following task.
+
+02:11.450 --> 02:16.450
+And it says find customers without orders and orders without customers.
+
+02:16.450 --> 02:21.970
+So if you are looking to this this means we want to see only the Unmatching data from customers and
+
+02:21.970 --> 02:23.130
+as well from orders.
+
+02:23.130 --> 02:25.290
+There is no main table and secondary table.
+
+02:25.330 --> 02:27.050
+Both of them are equally important.
+
+02:27.050 --> 02:32.010
+So now since we are talking about the Unmatching data and the Antijoin, we have to do it in two steps.
+
+02:32.010 --> 02:35.850
+The first step, we're going to do the classical join and then we focus on the Where clause.
+
+02:35.850 --> 02:38.970
+So let me remove the Where clause to make it as a comment.
+
+02:39.010 --> 02:43.010
+Now since we want the data from left and right, we're going to go and use the full join.
+
+02:43.010 --> 02:44.370
+So let's go and execute it.
+
+02:44.370 --> 02:46.810
+Now you can see we are getting the effect of the full join.
+
+02:46.810 --> 02:50.170
+We are getting all the orders and as well all the customers.
+
+02:50.170 --> 02:56.370
+But now we are interested only on the strange cases where there are like orders without customers like
+
+02:56.370 --> 02:59.260
+this one here and as well customers without orders.
+
+02:59.260 --> 03:04.180
+So that means the first three rows are not really interesting for us because it is boring.
+
+03:04.180 --> 03:08.820
+We have here matching data and this is totally fine, but we are not focusing on that now.
+
+03:08.820 --> 03:14.700
+We are focusing only if there is like missing data from left or from right, as you notice I'm saying.
+
+03:14.740 --> 03:17.140
+Or and this is very important because we're going to use the Or.
+
+03:17.180 --> 03:17.700
+Operator.
+
+03:17.700 --> 03:20.340
+So now let's focus on getting this scenario over here.
+
+03:20.340 --> 03:22.940
+We want to get an order without a customer.
+
+03:22.940 --> 03:26.100
+So that means the customer ID must be null.
+
+03:26.100 --> 03:27.260
+And we have it already here.
+
+03:27.260 --> 03:30.860
+So we are saying where the ID of the customer is null.
+
+03:30.860 --> 03:35.420
+So if I go and execute it I will get only one records, only this one over here.
+
+03:35.420 --> 03:38.500
+But as well I want to get the opposite scenario.
+
+03:38.500 --> 03:41.900
+So in this scenario the customer ID must be null.
+
+03:41.900 --> 03:47.900
+So we're going to say or the customer ID in the orders is null.
+
+03:48.060 --> 03:50.180
+Or we can do it like side by side like this.
+
+03:50.180 --> 03:53.700
+Either the right side is null or the left side is null.
+
+03:53.700 --> 03:57.660
+So if you go and execute it, you will get the effect of the full Antijoin.
+
+03:57.660 --> 04:02.500
+And with that, we are finding the customers without orders and orders without customers.
+
+04:02.540 --> 04:05.220
+I think this is really fun and as well, really easy.
+
+04:05.220 --> 04:07.460
+So this is how we do the full antijoin.
+
+04:07.460 --> 04:07.780
+All right.
+
+04:07.780 --> 04:11.420
+So now if you are looking to the use cases, we use the full Antijoin again.
+
+04:11.460 --> 04:12.020
+Exactly.
+
+04:12.020 --> 04:15.100
+For the last use case in order to check the existence.
+
+04:15.100 --> 04:20.420
+So if you combine the full with the where, you can check the existence or the not existence of your
+
+04:20.420 --> 04:21.940
+data in another table.
+
+04:21.980 --> 04:24.060
+So this is exactly the scenario for that.
+
+04:28.020 --> 04:32.380
+Okay my friends, now we have a bonus section where I'm going to challenge you to solve the following
+
+04:32.420 --> 04:34.860
+task without using an inner join.
+
+04:34.860 --> 04:41.300
+So it says get all customers along with their orders, but only for customers who have placed an order
+
+04:41.300 --> 04:43.740
+but without using an inner join.
+
+04:43.740 --> 04:46.580
+So pause the video now and go and solve this task.
+
+04:49.580 --> 04:51.740
+Okay, so now let's see how we can solve this.
+
+04:51.780 --> 04:57.020
+We want the customers, the orders, blah blah blah, but we want only the customers who have placed
+
+04:57.020 --> 04:57.670
+an order.
+
+04:57.670 --> 05:01.950
+Previously, we have used the inner join in order to solve this task, but this time we are not allowed
+
+05:01.950 --> 05:02.510
+to use it.
+
+05:02.510 --> 05:03.750
+So let's go and solve it.
+
+05:03.750 --> 05:04.790
+This is how I'm going to do it.
+
+05:04.790 --> 05:08.950
+Select star from table customers and give it the alias.
+
+05:08.950 --> 05:10.750
+So now I'm getting all the customers.
+
+05:10.750 --> 05:14.870
+But I am interested only the customers who have placed an order.
+
+05:14.870 --> 05:19.150
+So as we know before, there is like two customers that didn't order anything and we don't want to see
+
+05:19.150 --> 05:20.670
+them in the final results.
+
+05:20.710 --> 05:22.030
+Now how we will get that?
+
+05:22.070 --> 05:27.550
+Well, we can use the help of the table orders in order to check the existence of our customers there.
+
+05:27.590 --> 05:31.830
+And of course, I'm not allowed to use the inner join, so I'm going to go and use a left join with
+
+05:31.830 --> 05:34.830
+the table orders and then combine them as usual.
+
+05:34.830 --> 05:38.550
+Nothing new with the customer ID, so now let's go and execute it.
+
+05:38.550 --> 05:40.550
+As you can see, we are doing it step by step.
+
+05:40.550 --> 05:42.830
+You don't have to rush everything in one go.
+
+05:42.830 --> 05:46.710
+So you start simple, check the results and decide on the next step.
+
+05:46.710 --> 05:51.710
+So now by looking to these results I want to get those three customers because they have ordered something
+
+05:51.710 --> 05:56.350
+and we are seeing data about their orders and I don't want to get in the result the last two.
+
+05:56.390 --> 06:02.990
+So again, we still can use the customer ID from the right table in order to decide which data are going
+
+06:02.990 --> 06:05.350
+to stay in the result and which data should be filtered.
+
+06:05.350 --> 06:09.430
+We're going to go and use the Where clause and then the key from the orders.
+
+06:09.430 --> 06:12.430
+And this time we're going to say is not null.
+
+06:12.470 --> 06:18.950
+I know we didn't learn yet about the nut and the logical operators, but using the not null it means
+
+06:18.950 --> 06:20.950
+they should be data inside the column.
+
+06:20.950 --> 06:22.310
+It must not be null.
+
+06:22.310 --> 06:27.510
+If you do it like this and executes, you will get the exact effect as the inner join.
+
+06:27.510 --> 06:32.110
+So as you can see, as you are joining the tables using the left join, you can control what you want
+
+06:32.110 --> 06:34.990
+to see using the Where clause using the filter.
+
+06:35.030 --> 06:38.510
+And this is how you can solve this task without using an inner join.
+
+06:38.550 --> 06:43.230
+Okay, so with that, we have covered all the three scenarios in order to find the unmatched data.
+
+06:43.270 --> 06:45.550
+Left right, full anti joins.
+
+06:45.590 --> 06:47.910
+Now we can speak about one crazy join.
+
+06:47.910 --> 06:49.630
+We call it the curse join.
+
+06:49.630 --> 06:53.110
+This one is totally different from all other types that we have learned.
+
+06:53.110 --> 06:56.110
+So let's understand exactly what is the cross join.
+
+06:56.150 --> 06:56.910
+Let's go.

@@ -1,0 +1,697 @@
+WEBVTT
+
+00:03.880 --> 00:04.280
+All right.
+
+00:04.280 --> 00:07.160
+So now let's have a look to the syntax of the set operators.
+
+00:07.200 --> 00:07.440
+Okay.
+
+00:07.480 --> 00:09.080
+So now let's see that we have the following query.
+
+00:09.120 --> 00:11.400
+We are selecting the data from the customers.
+
+00:11.400 --> 00:15.080
+So this is our first query or our first select statement.
+
+00:15.080 --> 00:20.760
+And we have another one which is very similar where we are selecting the formations from the employees.
+
+00:20.760 --> 00:23.320
+And this is our second select statement.
+
+00:23.320 --> 00:29.520
+So now what we can do we can put between those two queries a set of operators like for example the union
+
+00:29.520 --> 00:29.960
+we can use.
+
+00:30.000 --> 00:34.920
+Of course any other set operators like the union all intersects accepts and so on.
+
+00:34.920 --> 00:37.400
+So as you can see the syntax is very simple.
+
+00:37.400 --> 00:42.160
+We have two different queries and we just put between them the set operator.
+
+00:42.160 --> 00:45.080
+So this is how the syntax of the set operators looks like.
+
+00:45.080 --> 00:45.720
+All right friends.
+
+00:45.720 --> 00:48.680
+So now we're going to talk about the rules of the set operators.
+
+00:48.680 --> 00:53.720
+And we're going to start with the rule number one the SQL clauses in each individual Select statements
+
+00:53.720 --> 00:54.320
+or query.
+
+00:54.360 --> 01:00.200
+We can use almost all the SQL clauses like where join group by having.
+
+01:00.200 --> 01:02.710
+But there is only one exception with the order.
+
+01:02.710 --> 01:08.150
+By order by, you can use it only once and only at the end of the entire query.
+
+01:08.150 --> 01:10.190
+So that means we cannot use order by.
+
+01:10.430 --> 01:13.030
+In each Select statement or in each query.
+
+01:13.070 --> 01:16.750
+We can use it only once and only at the ends of the entire query.
+
+01:16.790 --> 01:18.270
+Alright, so about the syntax again.
+
+01:18.310 --> 01:23.190
+Here we have our two select statements and in between them we have the set operators.
+
+01:23.350 --> 01:29.590
+So now in each query we can go and use multiple stuff like the join where group by having.
+
+01:29.590 --> 01:32.870
+So we can make each query complex as we want.
+
+01:32.910 --> 01:36.110
+So everything is allowed but not the order by.
+
+01:36.270 --> 01:40.750
+The order by must be always placed at the end of the entire query.
+
+01:40.750 --> 01:46.550
+So if you want to sort the result by the first name, you have to use the order by exactly at the end.
+
+01:46.670 --> 01:49.710
+So we are not allowed to use order by in each query.
+
+01:49.750 --> 01:49.950
+Okay.
+
+01:49.990 --> 01:51.350
+Moving on to the rule number two.
+
+01:51.550 --> 01:52.910
+The number of columns.
+
+01:52.910 --> 01:56.510
+The number of columns on each query must be the same.
+
+01:56.550 --> 01:56.750
+Okay.
+
+01:56.790 --> 01:59.910
+So now in order to understand this rule let's have this very simple example.
+
+01:59.950 --> 02:05.060
+We're going to go and select the first name and the last name from the table.
+
+02:05.100 --> 02:06.620
+Sales customers.
+
+02:06.620 --> 02:09.980
+So this is our first query, our first select statements.
+
+02:09.980 --> 02:12.020
+And let's say that I have another one.
+
+02:12.260 --> 02:17.300
+And we want to select the first name last name but this time from another table that employees.
+
+02:17.300 --> 02:18.940
+So with that we have our two queries.
+
+02:18.940 --> 02:22.780
+And I would like now to go and combine them into one results.
+
+02:22.780 --> 02:25.340
+So we're going to go and use the set operator union.
+
+02:25.580 --> 02:27.020
+Let's go and execute it.
+
+02:27.060 --> 02:31.020
+So now as you can see in the results we will get the first name and last name from two tables, the
+
+02:31.020 --> 02:32.660
+customers and employees.
+
+02:32.660 --> 02:37.700
+And it is working because we are fulfilling the rule where it says the number of columns must be the
+
+02:37.700 --> 02:39.260
+same in both queries.
+
+02:39.260 --> 02:41.300
+So how many columns do we have in the first query?
+
+02:41.300 --> 02:42.420
+We have two, right?
+
+02:42.660 --> 02:45.540
+And as well in the second query we have two columns.
+
+02:45.540 --> 02:47.420
+So that's why everything is working.
+
+02:47.420 --> 02:51.300
+So now let's go and break the rule by adding another column to the first query.
+
+02:51.420 --> 02:54.420
+So let's say that I would like to have the customer ID as well.
+
+02:54.460 --> 02:55.500
+And the first query.
+
+02:55.500 --> 02:59.420
+And with that, as you can see in the first query we have three columns.
+
+02:59.420 --> 03:02.000
+But in the second we have only two.
+
+03:02.040 --> 03:03.480
+So let's go and execute it.
+
+03:03.480 --> 03:03.640
+Now.
+
+03:03.640 --> 03:07.880
+As you can see in the result, we will get an error where it says if you are using Union, intersect
+
+03:07.880 --> 03:13.120
+and all those operators, you must have an equal number of columns between queries.
+
+03:13.120 --> 03:14.280
+So this is the rule.
+
+03:14.280 --> 03:17.160
+You have to have the same number of columns in order to repair it.
+
+03:17.160 --> 03:19.920
+So I'm going to do I'm just going to remove the customer ID.
+
+03:19.920 --> 03:21.400
+So here again we have two columns.
+
+03:21.400 --> 03:25.120
+And the second one as well two columns and everything going to be working okay.
+
+03:25.160 --> 03:26.760
+Moving on to the rule number three.
+
+03:26.840 --> 03:32.760
+The data types of columns in each query must match must be compatible in matching.
+
+03:32.880 --> 03:36.400
+In order to check that what we're going to do, we're going to go to the object explorer to the left
+
+03:36.400 --> 03:37.000
+side.
+
+03:37.000 --> 03:39.920
+Let's go and browse the customers and the columns.
+
+03:39.920 --> 03:43.680
+And as you can see we have here the first name and last name with the same data type.
+
+03:43.680 --> 03:44.960
+We have the Varchar.
+
+03:45.280 --> 03:50.360
+And if you go to the employees you can see as well the first name last name having varchar.
+
+03:50.520 --> 03:53.320
+So the first column is a varchar from the first query.
+
+03:53.320 --> 03:59.200
+And as well for the employees and as well the last name from the customers having the same data type
+
+03:59.200 --> 04:01.030
+as the last name from employees.
+
+04:01.030 --> 04:03.310
+So the data type is matching.
+
+04:03.510 --> 04:05.550
+Now let's go and break this rule.
+
+04:05.550 --> 04:09.510
+Instead of having the first name, I would like to go and use the customer ID.
+
+04:09.830 --> 04:15.710
+So now let's check the customer ID on the left side it is an int an integer, but the first name is
+
+04:15.710 --> 04:16.670
+in varchar.
+
+04:16.870 --> 04:19.390
+So here we have a mismatch between data types.
+
+04:19.430 --> 04:20.990
+Let's go and try to execute it.
+
+04:20.990 --> 04:26.110
+So now we are getting an error where it says SQL is trying to convert the value frank to an integer.
+
+04:26.190 --> 04:31.910
+So what this means the first query is always controlling everything the names and as well the data types.
+
+04:31.910 --> 04:33.550
+So here we have an integer.
+
+04:33.590 --> 04:38.070
+And now SQL is trying as well to convert the first name values to an integer.
+
+04:38.070 --> 04:43.150
+And of course it will not work because we have here characters inside and it cannot convert characters
+
+04:43.150 --> 04:43.950
+to an integer.
+
+04:43.950 --> 04:48.950
+So we have a mismatch between data types, between the customer id and the first name.
+
+04:48.950 --> 04:50.550
+And that's why we will get an error.
+
+04:50.750 --> 04:54.670
+The second column we don't have an issue because it is Varchar and the first table.
+
+04:54.670 --> 04:56.310
+And as well for the second table.
+
+04:56.310 --> 05:00.100
+So now in order to repair it either select a first name in the first query.
+
+05:00.100 --> 05:06.860
+Or we can go over here and say employee ID and with that, if I execute it, we will not get any errors
+
+05:06.860 --> 05:09.940
+because the employee ID is as well an integer.
+
+05:09.940 --> 05:12.100
+And we have a match in the data types.
+
+05:12.100 --> 05:16.500
+So as you can see, it's not enough to have the same number of columns you have to have as well matching
+
+05:16.500 --> 05:18.620
+data types between those two queries.
+
+05:18.660 --> 05:18.900
+Okay.
+
+05:18.900 --> 05:20.060
+Let's move to the next rule.
+
+05:20.100 --> 05:22.460
+Rule number four the order of columns.
+
+05:22.460 --> 05:26.580
+The order of columns in each query must be as well the same.
+
+05:26.620 --> 05:26.820
+Okay.
+
+05:26.860 --> 05:28.500
+So let's understand what this means.
+
+05:28.540 --> 05:32.940
+Now we have here again the same example where we are selecting the id and LastName from customers.
+
+05:32.940 --> 05:37.660
+And we are combining it using union with the employee ID and LastName from the employees.
+
+05:37.700 --> 05:42.340
+And as you can see, everything is working because we have the same number of columns and we have a
+
+05:42.340 --> 05:43.580
+matching data types.
+
+05:43.580 --> 05:44.940
+So now let's go and break it.
+
+05:44.940 --> 05:47.940
+What I'm going to do I'm just going to switch between those two columns.
+
+05:47.940 --> 05:51.660
+So first I'm selecting the last name and then the customer ID.
+
+05:51.980 --> 05:54.460
+So again I have the same number of columns.
+
+05:54.660 --> 06:00.130
+And the id is integer matching the ID of the employee and the last name having the same data type.
+
+06:00.130 --> 06:02.170
+So let's go and execute it.
+
+06:02.210 --> 06:06.810
+So here again SQL is going to throw an error and says SQL is trying to convert the value Goldberg to
+
+06:06.850 --> 06:07.570
+an integer.
+
+06:07.570 --> 06:09.130
+So it's like character to integer.
+
+06:09.130 --> 06:10.130
+It will not work.
+
+06:10.130 --> 06:12.570
+So what happened here I have here the same informations.
+
+06:12.570 --> 06:15.050
+I have an ID and last name an id and last name.
+
+06:15.050 --> 06:16.490
+Well SQL doesn't work like this.
+
+06:16.530 --> 06:21.930
+SQL can go and map the first column from the first query with the first column with the second query.
+
+06:21.930 --> 06:25.090
+So it's going to go and map last name to employee ID.
+
+06:25.130 --> 06:28.250
+And since they have different data types SQL is going to throw an error.
+
+06:28.290 --> 06:30.930
+So SQL doesn't understand or don't know how to map.
+
+06:30.930 --> 06:32.610
+Let's say the id with the ID.
+
+06:32.650 --> 06:34.170
+And since they have different data types.
+
+06:34.250 --> 06:36.130
+SQL can go and throw an error.
+
+06:36.290 --> 06:40.570
+So as you can see here we have the same information between customers and employees.
+
+06:40.810 --> 06:43.090
+But they don't have the same order.
+
+06:43.090 --> 06:47.370
+So SQL cannot go and map the informations because of the names of the columns.
+
+06:47.370 --> 06:47.970
+It's going to go.
+
+06:47.970 --> 06:50.570
+And simply just mapping the columns like this.
+
+06:50.570 --> 06:55.010
+The first column from the first query with the first column from the second query.
+
+06:55.010 --> 06:59.510
+So as you can see in this rule you must have the same order of the their columns.
+
+06:59.550 --> 07:02.950
+First the id and then the last name.
+
+07:03.190 --> 07:05.030
+And with that, it's going to work again.
+
+07:05.070 --> 07:05.390
+All right.
+
+07:05.390 --> 07:06.990
+Moving on to the rule number five.
+
+07:07.270 --> 07:13.030
+The column aliases, column names that we see in the output in the result is defined and determined
+
+07:13.030 --> 07:17.310
+by the column names of the first query, the first select statements.
+
+07:17.310 --> 07:22.310
+So this means the first query is responsible of naming the columns in the output.
+
+07:22.350 --> 07:22.630
+Okay.
+
+07:22.670 --> 07:24.470
+So let's understand what this rule means.
+
+07:24.510 --> 07:25.870
+Again we have the same example.
+
+07:25.870 --> 07:30.310
+The customer ID last name from customers union employee ID last name from employees.
+
+07:30.350 --> 07:36.110
+So if you check closely the output you can see that in the output we have the customer ID and not the
+
+07:36.110 --> 07:39.750
+employee ID even though we have the IDs from the employee ID.
+
+07:39.950 --> 07:45.390
+But as you can see, the first query is controlling the naming of the output.
+
+07:45.390 --> 07:51.310
+So since the first column called the customer id, you will see it in the output as a customer ID so
+
+07:51.310 --> 07:55.830
+the naming of that like the next queries will be totally ignored.
+
+07:55.830 --> 08:01.060
+So that's why if you want to give aliases to the output, you're going to go and do it only for the
+
+08:01.060 --> 08:01.820
+first query.
+
+08:01.820 --> 08:06.980
+So for example, I go over here and say instead of having customer ID, I would like to call it as an
+
+08:06.980 --> 08:07.460
+ID.
+
+08:07.460 --> 08:12.700
+So now if I go and execute it, as you can see in the output, we will get an ID so I don't have to
+
+08:12.740 --> 08:13.060
+go.
+
+08:13.060 --> 08:15.460
+And in each query give this alias.
+
+08:15.460 --> 08:20.940
+So I don't have to go over here and say yeah you are as well the ID, because it's enough to define
+
+08:20.940 --> 08:22.340
+it from the first query.
+
+08:22.340 --> 08:26.420
+So there is no need to give the same names in the next queries.
+
+08:26.460 --> 08:29.620
+Let's take another example where we would like to have an alias for the last name.
+
+08:29.620 --> 08:33.420
+So I would like to have it like this last underscore name.
+
+08:33.620 --> 08:35.900
+And let's go and do it in the second query.
+
+08:36.100 --> 08:38.660
+So last underscore name.
+
+08:38.980 --> 08:40.700
+Let's go and execute it.
+
+08:40.700 --> 08:43.420
+So now as you can see in the output we still have last name.
+
+08:43.420 --> 08:47.500
+And there is no underscore because this is totally ignored from SQL.
+
+08:47.540 --> 08:49.380
+This is not the first query.
+
+08:49.540 --> 08:53.100
+The first query says you are last name without underscore.
+
+08:53.100 --> 08:55.380
+So again if you want to do that we go over here.
+
+08:55.380 --> 08:58.530
+Let me just get it and put it in the first query.
+
+08:58.570 --> 08:59.930
+Let's go and execute it.
+
+08:59.930 --> 09:04.850
+So my friends, the first query is very important in order to give the names for the output.
+
+09:04.850 --> 09:09.410
+So if you want to do aliases and to rename stuff, do it only on the first query.
+
+09:09.450 --> 09:12.290
+And as well the first query controls the data types.
+
+09:12.330 --> 09:12.610
+All right.
+
+09:12.650 --> 09:15.850
+Now to the last rule matching the correct informations.
+
+09:15.850 --> 09:21.210
+If in your query you fulfill all other rules and you don't have an error in the SQL, that doesn't mean
+
+09:21.210 --> 09:24.090
+that your result is accurate and correct.
+
+09:24.090 --> 09:29.370
+You are the only one that is responsible of mapping the information between queries correctly.
+
+09:29.370 --> 09:35.330
+Because SQL doesn't understand the content and the informations of your tables of your queries, and
+
+09:35.330 --> 09:40.650
+if you don't match the informations correctly between the queries, you will get inaccurate and wrong
+
+09:40.650 --> 09:41.890
+results in the output.
+
+09:41.930 --> 09:43.250
+Okay, so now back to our example.
+
+09:43.290 --> 09:49.930
+Let's say I would like to get the first name and as well the last name from the customers and the same
+
+09:49.930 --> 09:51.930
+informations from the employees.
+
+09:51.970 --> 09:53.450
+Let's go and execute it.
+
+09:53.450 --> 09:53.610
+Now.
+
+09:53.610 --> 09:58.640
+As you can see it's very nice where we are getting the first name, last name from both tables in one
+
+09:58.640 --> 10:01.480
+result and we are fulfilling all the requirements in SQL.
+
+10:01.520 --> 10:03.360
+Same numbers, same data types and so on.
+
+10:03.400 --> 10:05.520
+Now let's go and make incorrect results.
+
+10:05.520 --> 10:10.800
+So what I'm going to do I'm just going to swap the first name and last name in the second query.
+
+10:11.080 --> 10:13.760
+So first last name and then the first name.
+
+10:14.120 --> 10:15.760
+So let's go and execute it.
+
+10:15.760 --> 10:20.240
+So now as you can see we will get results because we are fulfilling all other rules because we have
+
+10:20.240 --> 10:21.640
+the same number of columns.
+
+10:21.640 --> 10:24.120
+And as well we have matching data types.
+
+10:24.120 --> 10:28.560
+So the first one is character the first name and the last name is as well character.
+
+10:28.560 --> 10:31.880
+So SQL will just present the result as you define it.
+
+10:31.880 --> 10:37.480
+But the result is completely wrong because now we have if you check the first column here the first
+
+10:37.520 --> 10:38.000
+name.
+
+10:38.000 --> 10:42.760
+So here we can see last names inside the first names for example Brown and Baker.
+
+10:43.000 --> 10:47.760
+Those are last names, but we can see them inside the first name and the same thing in the last name.
+
+10:47.880 --> 10:51.480
+Now we can see first names inside it Mary, Carol.
+
+10:51.520 --> 10:53.000
+They are all first names.
+
+10:53.000 --> 10:55.640
+So as you can see the result has really bad data quality.
+
+10:55.640 --> 10:58.820
+We are now mixing stuff and it doesn't make any sense.
+
+10:58.820 --> 11:04.860
+But SQL will not know that because SQL doesn't know the information, the content of your data.
+
+11:05.340 --> 11:06.900
+It's just mapping the data types.
+
+11:06.900 --> 11:09.020
+So firstName is a varchar.
+
+11:09.060 --> 11:09.980
+The last name as well.
+
+11:10.020 --> 11:10.500
+Varchar.
+
+11:10.540 --> 11:12.980
+Everything is fine and you will get the results.
+
+11:12.980 --> 11:19.100
+So my friends, you are responsible of having the same informations mapped between the two queries.
+
+11:19.140 --> 11:23.060
+And not having an error from SQL doesn't mean that we have now correct results.
+
+11:23.060 --> 11:27.940
+So pay attention to the informations that you are mapping between the two queries.
+
+11:27.980 --> 11:28.340
+All right.
+
+11:28.340 --> 11:30.900
+So those are the rules of the set operators.
+
+11:30.900 --> 11:36.260
+So the first one is that the order by can only be used once at the end of the entire query.
+
+11:36.260 --> 11:43.220
+And all queries must have the same number of columns, the matching data types, the same order of columns
+
+11:43.220 --> 11:49.060
+and the first query always control the names and the aliases of the result set, and as well the data
+
+11:49.100 --> 11:49.580
+type.
+
+11:49.580 --> 11:55.380
+And the last rule of that, make sure that you are mapping the correct informations to each others between
+
+11:55.380 --> 11:56.060
+queries.
+
+11:56.060 --> 11:58.380
+So those are the rules of the set operators.

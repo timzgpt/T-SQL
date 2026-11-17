@@ -1,0 +1,313 @@
+WEBVTT
+
+00:03.960 --> 00:08.520
+So now, before we deep dive to the formatting and casting, I would like you to understand what is
+
+00:08.520 --> 00:09.400
+date formats.
+
+00:09.440 --> 00:10.440
+So back to our example.
+
+00:10.440 --> 00:13.040
+We have here the date and time informations.
+
+00:13.040 --> 00:16.200
+And we understood there is components year, month day and so on.
+
+00:16.240 --> 00:20.400
+Now if you check the date time there is combination of numbers and characters.
+
+00:20.400 --> 00:26.520
+For example the 2025 is a number, but between the month and the year there is like a minus between
+
+00:26.520 --> 00:26.720
+them.
+
+00:26.720 --> 00:27.800
+And this is a character.
+
+00:27.800 --> 00:30.400
+So now this is a very specific format.
+
+00:30.400 --> 00:34.240
+And in SQL we can have a code for this format.
+
+00:34.240 --> 00:37.560
+So for example let's start with the year we have here four digits.
+
+00:37.560 --> 00:40.480
+And we can represent it with four y.
+
+00:40.680 --> 00:42.000
+So y y y.
+
+00:42.160 --> 00:46.160
+And we call those characters as a format specifiers.
+
+00:46.160 --> 00:48.680
+So this is how we represent the year.
+
+00:48.840 --> 00:52.200
+Then between the year and the month there is like this small minus.
+
+00:52.200 --> 00:54.160
+And then the month is two digits.
+
+00:54.160 --> 01:00.040
+And we can represent it with two big m, so m then between the month and the day there is a minus.
+
+01:00.040 --> 01:01.400
+So we have as well minus.
+
+01:01.400 --> 01:04.320
+And then the day represented with two digits d.
+
+01:05.080 --> 01:08.040
+And then we have like a space between the date and time.
+
+01:08.040 --> 01:09.320
+And then we start with the date.
+
+01:09.320 --> 01:14.040
+So it starts with the hour big H and big H, because here we have the system of 24.
+
+01:14.040 --> 01:17.240
+And then we have double points small m, small m.
+
+01:17.280 --> 01:20.320
+So as you can see here, the formats are case sensitive.
+
+01:20.480 --> 01:23.800
+So there is a big difference between small M and big M.
+
+01:23.800 --> 01:28.960
+So a small M indicates for a minute and big M indicates for a month.
+
+01:28.960 --> 01:31.960
+So as you can see here the case format is case sensitive.
+
+01:31.960 --> 01:34.440
+So two small m means minutes.
+
+01:34.440 --> 01:39.280
+But two capital M means month then double point and small twos.
+
+01:39.320 --> 01:43.000
+So now the whole code is called the date format.
+
+01:43.000 --> 01:46.560
+So this is the date format representation of this value.
+
+01:46.560 --> 01:50.640
+Now in the world there are different representations on how to represent a date.
+
+01:50.640 --> 01:56.080
+So for example in SQL we have the international standard ISO 60 801.
+
+01:56.080 --> 01:58.360
+And the date format is like we have learned.
+
+01:58.400 --> 01:59.880
+First it starts with a year.
+
+01:59.880 --> 02:05.480
+So four digits for the years, minus two digits for the month minus two digit for the day.
+
+02:05.480 --> 02:07.280
+So year month day.
+
+02:07.280 --> 02:09.720
+But in the USA we have different standards.
+
+02:09.720 --> 02:11.960
+So first it starts with the month.
+
+02:11.960 --> 02:16.050
+So we have M and then after that it is followed with the day.
+
+02:16.050 --> 02:19.810
+So we have then the day and after that at the end we have the year.
+
+02:19.810 --> 02:24.930
+So this is the sentence format that is used in USA and in Europe we have different representations of
+
+02:24.930 --> 02:25.410
+the day.
+
+02:25.450 --> 02:27.410
+So it starts first with the small.
+
+02:27.410 --> 02:30.850
+So it starts with the day then the month and then the year.
+
+02:30.850 --> 02:33.930
+So this is exactly the opposite of the international standards.
+
+02:33.930 --> 02:35.530
+So as you can see we don't have one standard.
+
+02:35.530 --> 02:38.730
+We have different ways on how we represent dates.
+
+02:38.730 --> 02:43.890
+But in SQL the SQL server is following the format of the international standards.
+
+02:43.890 --> 02:47.770
+So SQL server start always with the year, then month, then day.
+
+02:47.810 --> 02:52.650
+So all dates that are used in our SQL database can be following this format.
+
+02:56.570 --> 02:56.850
+Okay.
+
+02:56.850 --> 02:58.850
+So after we understand what is date format.
+
+02:58.890 --> 03:01.330
+Now let's talk about formatting and casting.
+
+03:01.330 --> 03:05.610
+So what is formatting is changing the format of value from one to another.
+
+03:05.610 --> 03:07.690
+So we are changing how the data looks like.
+
+03:07.690 --> 03:09.130
+So for example we have our date.
+
+03:09.130 --> 03:11.410
+So it's following the international standards.
+
+03:11.450 --> 03:13.730
+Start with year month then day.
+
+03:13.770 --> 03:19.210
+Now we can go and change the format using the function format where we can go and define a different
+
+03:19.210 --> 03:25.130
+date format like it starts with the month and then we have like slash instead of minus and then the
+
+03:25.130 --> 03:26.530
+day slash year.
+
+03:26.530 --> 03:28.090
+So in the outer we're going to get it like this.
+
+03:28.090 --> 03:30.850
+And even the years is only two digits not four.
+
+03:30.850 --> 03:34.730
+So here we are providing for SQL, the format that we would like to see the data with.
+
+03:34.770 --> 03:39.570
+Or you could go with other formats where you have three big M and then four digits for the year, and
+
+03:39.570 --> 03:41.250
+between them is just a space.
+
+03:41.250 --> 03:46.330
+So in the output you will get abbreviation of the month name and then space and the year.
+
+03:46.330 --> 03:48.530
+So this is one way on how to format data.
+
+03:48.530 --> 03:53.410
+But in SQL there is another function that helps us to format data and that is convert.
+
+03:53.410 --> 03:55.730
+So here we provide not the format itself.
+
+03:55.730 --> 03:57.570
+We provide style number.
+
+03:57.570 --> 03:59.330
+So for example the style number six.
+
+03:59.330 --> 04:01.530
+So it can show it like this day space.
+
+04:01.530 --> 04:06.650
+And after that we have the abbreviation name of the month and then two digits of the year.
+
+04:06.690 --> 04:13.050
+Or if you use another style the 112, then you will get the year month day without any separation between
+
+04:13.050 --> 04:13.370
+them.
+
+04:13.370 --> 04:17.170
+And of course, not only the date and time we can style, we can style as well numbers.
+
+04:17.170 --> 04:20.810
+And here we can use the function format in order to change the format of the number.
+
+04:20.810 --> 04:25.330
+So here, if you are using the format of n numeric values, then the value is going to be separated
+
+04:25.330 --> 04:26.130
+with comma.
+
+04:26.170 --> 04:29.940
+Or if you use C for the currency, then you will get the dollar sign.
+
+04:29.940 --> 04:32.940
+Or if you go and use P then you will get the percentage.
+
+04:32.940 --> 04:34.900
+And at the end you have the percentage character.
+
+04:34.900 --> 04:39.140
+So as you can see, we can as well change the format of the numbers that only the dates.
+
+04:39.140 --> 04:41.060
+So this is what we mean by formatting.
+
+04:41.060 --> 04:43.780
+We are just changing how the value looks like.
+
+04:43.780 --> 04:46.100
+Now in the other hand the casting.
+
+04:46.300 --> 04:50.300
+The casting can go and change the data type from one to another.
+
+04:50.300 --> 04:56.100
+So for example, if we have the value one, two, three as a string, we can go and convert it from
+
+04:56.140 --> 04:58.260
+the data type string to an integer.
+
+04:58.260 --> 05:00.540
+So in the output we'll get as well 123.
+
+05:00.540 --> 05:01.660
+But as a number.
+
+05:01.700 --> 05:05.620
+Or we can go and change the data type from date to string.
+
+05:05.620 --> 05:08.180
+So in the output it is not anymore a date.
+
+05:08.180 --> 05:10.660
+It is a string value or the way around.
+
+05:10.660 --> 05:14.340
+We can change the data type from a string to a date.
+
+05:14.340 --> 05:17.940
+So as you can see, we can change the data type from one to another.
+
+05:17.940 --> 05:20.460
+And we can use that using two functions.
+
+05:20.460 --> 05:26.980
+The first one is and the most famous one is cast function or in SQL server we can use as well the convert
+
+05:26.980 --> 05:29.660
+function in order to change the data type.
+
+05:29.660 --> 05:33.900
+So this is what we mean with casting changing the data type from one to another.

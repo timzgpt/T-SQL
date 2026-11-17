@@ -1,0 +1,46 @@
+WEBVTT
+
+00:03.960 --> 00:07.040
+So now let's see how the database server can execute the CTAs.
+
+00:07.200 --> 00:08.920
+So you may ask the data analyst.
+
+00:08.920 --> 00:11.560
+You are writing a select into sales.
+
+00:11.560 --> 00:14.160
+So that means you are creating a table from a query.
+
+00:14.160 --> 00:19.840
+So once you executed the database engine to identify the query first and then execute it.
+
+00:19.840 --> 00:24.840
+So it's going to go and select data maybe from the table orders and retrieve the data and return the
+
+00:24.840 --> 00:25.440
+results.
+
+00:25.480 --> 00:31.080
+Now once the database engine has the results it's going to go and do two things based on the results.
+
+00:31.080 --> 00:32.000
+It's going to create.
+
+00:32.000 --> 00:36.520
+First a metadata in the system catalog for the table called sales.
+
+00:36.520 --> 00:40.480
+And then it's going to go and create a table called sales in the users data.
+
+00:40.480 --> 00:44.360
+And this sales table can hold the data from the result of the query.
+
+00:44.360 --> 00:46.560
+So it is like any other database table.
+
+00:46.560 --> 00:49.480
+It can stores the metadata at the system catalog.
+
+00:49.520 --> 00:53.360
+And it can store the data in the disk under the users data.

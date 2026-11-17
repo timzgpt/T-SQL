@@ -1,0 +1,1150 @@
+WEBVTT
+
+00:00.120 --> 00:02.440
+All right, now let's keep moving to the next star system.
+
+00:02.440 --> 00:04.880
+We have the customer A's 12.
+
+00:04.920 --> 00:07.080
+So here we have like only three columns.
+
+00:07.080 --> 00:09.120
+And let's start with the ID first.
+
+00:09.160 --> 00:11.240
+So here again we have the customers informations.
+
+00:11.240 --> 00:17.440
+And if we go and check again our model you can see that we can connect this table with the CRM table
+
+00:17.440 --> 00:20.120
+customer info using the customer key.
+
+00:20.120 --> 00:24.640
+So that means we have to go and make sure that we can go and connect those two tables.
+
+00:24.960 --> 00:27.160
+So let's go and check the other table.
+
+00:27.160 --> 00:27.960
+We can go and check.
+
+00:28.000 --> 00:29.640
+Of course the server layer.
+
+00:29.640 --> 00:33.400
+So let's query it and we can query both of the tables.
+
+00:33.440 --> 00:39.480
+Now we can see there is here like extra characters that are not included in the customer key from the
+
+00:39.720 --> 00:40.400
+CRM.
+
+00:40.400 --> 00:49.480
+So let's go and search for example for this customer over here where CID like so we are searching for
+
+00:49.480 --> 00:51.400
+customer has similar ID.
+
+00:51.440 --> 00:53.560
+Now as you can see we are finding this customer.
+
+00:53.560 --> 00:59.320
+But the issue is that we have those three characters in as there is no specifications or explanation
+
+00:59.320 --> 01:00.770
+why we have the NAS.
+
+01:00.970 --> 01:03.810
+So actually what we have to do is to go and remove those informations.
+
+01:03.810 --> 01:04.690
+We don't need it.
+
+01:04.690 --> 01:06.930
+So let's again check the data.
+
+01:06.930 --> 01:10.210
+So it looks like the old data have an NAS at the start.
+
+01:10.210 --> 01:13.930
+And then afterward we have new data without the three characters.
+
+01:13.930 --> 01:18.490
+So we have to clean up those IDs in order to be able to connect it with other tables.
+
+01:18.490 --> 01:19.810
+So we're going to do it like this.
+
+01:19.850 --> 01:23.810
+We're going to start with the case win since we have like two scenarios in our data.
+
+01:23.810 --> 01:29.410
+So if the CID is like the three characters in a S.
+
+01:29.570 --> 01:34.850
+So if the IDs start with those three characters, then we're going to go and apply transformation function.
+
+01:34.850 --> 01:37.650
+Otherwise it's going to stay like this.
+
+01:38.210 --> 01:40.170
+So that's it.
+
+01:40.410 --> 01:42.770
+So now we have to go and build the transformation.
+
+01:42.770 --> 01:44.690
+So we're going to use substring.
+
+01:44.730 --> 01:47.210
+And then we have to define the string.
+
+01:47.250 --> 01:48.650
+It's going to be the CID.
+
+01:48.650 --> 01:53.010
+And then we have to define the position where it starts cutting or extracting.
+
+01:53.010 --> 01:56.290
+So we can say 123 and then four.
+
+01:56.330 --> 01:58.410
+So we have to define the position number four.
+
+01:58.570 --> 02:02.850
+And then we have to define the string how many characters should be extracted.
+
+02:03.050 --> 02:05.570
+I will make it dynamic, so I will go with the length.
+
+02:05.810 --> 02:07.530
+I will not go and count how much.
+
+02:07.530 --> 02:10.210
+So we're going to say the CID so it looks good.
+
+02:10.210 --> 02:17.930
+If it's like an as, then go and extract from the CID at the position number for the rest of the characters.
+
+02:17.930 --> 02:19.330
+So let's go and execute it.
+
+02:19.370 --> 02:24.290
+And I'm missing here a comma again where we don't have any NAS at the start.
+
+02:24.290 --> 02:28.970
+And if you scroll down you can see those as well are not affected.
+
+02:28.970 --> 02:33.330
+So with that we have now a nice ID to be joined with other table.
+
+02:33.370 --> 02:35.250
+Of course we can go and test it like this.
+
+02:35.330 --> 02:40.770
+Where then we take the whole thing, the whole transformation and say not in.
+
+02:40.810 --> 02:43.570
+We remove, of course, the alias name, we don't need it.
+
+02:43.570 --> 02:49.130
+And then we make very simple substring select distinct key.
+
+02:49.530 --> 02:56.050
+That customer key from the silver table can be silver CRM cost info.
+
+02:56.050 --> 02:57.050
+So that's it.
+
+02:57.050 --> 02:58.130
+Let's go and check.
+
+02:58.130 --> 03:00.180
+So as you can see it is working fine.
+
+03:00.180 --> 03:06.100
+So we are not able to find any unmatching data between the customer info from IRB and the CRM.
+
+03:06.140 --> 03:10.060
+But of course after that transformation if you don't use the transformation.
+
+03:10.060 --> 03:13.900
+So if I just remove it like this, we will find a lot of unmatching data.
+
+03:13.900 --> 03:19.380
+So this means our transformation is working perfectly and we can go and remove the original value.
+
+03:19.380 --> 03:21.420
+So that's it for the first column.
+
+03:21.460 --> 03:21.740
+Okay.
+
+03:21.780 --> 03:23.300
+Now moving on to the next field.
+
+03:23.300 --> 03:25.380
+We have the birthday of the customers.
+
+03:25.380 --> 03:27.460
+So the first thing to do is to check the data type.
+
+03:27.460 --> 03:29.380
+It is a date so it's fine.
+
+03:29.380 --> 03:31.700
+It is not an integer or a string.
+
+03:31.700 --> 03:33.460
+So we don't have to convert anything.
+
+03:33.460 --> 03:38.180
+But still there is something to check with the birthdate so we can check whether we have something out
+
+03:38.220 --> 03:38.820
+of range.
+
+03:38.820 --> 03:43.180
+So for example we can go and check whether we have really old dates at the birth dates.
+
+03:43.180 --> 03:49.340
+So let's take 1900 and let's say 24 and we can take the first date of the month.
+
+03:49.340 --> 03:51.220
+So let's go and check that.
+
+03:51.260 --> 03:55.300
+Well it looks like that we have customers that are older than 100 year.
+
+03:55.300 --> 03:59.910
+Well I don't know, maybe this is correct, but it sounds, of course, strange to bid on the business.
+
+03:59.910 --> 04:00.390
+Of course.
+
+04:02.190 --> 04:06.470
+This is Creed and he is in charge of something.
+
+04:06.510 --> 04:07.430
+That is correct.
+
+04:07.470 --> 04:08.310
+Say hi to the kids.
+
+04:08.350 --> 04:09.030
+Hi, kids.
+
+04:09.190 --> 04:09.790
+Yay!
+
+04:10.390 --> 04:15.910
+And then we can go and check the other boundary where it is almost impossible to have a customer.
+
+04:15.950 --> 04:16.350
+That's.
+
+04:16.350 --> 04:18.190
+The birthday is in the future.
+
+04:18.190 --> 04:23.390
+So we can say birthdays is higher than the current dates like this.
+
+04:23.390 --> 04:25.710
+So let's go and query this information.
+
+04:25.710 --> 04:28.990
+Well, it will not work because we have to have like an orb between them.
+
+04:29.030 --> 04:34.550
+And now if we check the list over here, we have dates that are invalid for the birth dates.
+
+04:34.550 --> 04:38.270
+So all those dates, they are all birthday in the future.
+
+04:38.270 --> 04:40.270
+And this is totally unacceptable.
+
+04:40.270 --> 04:42.670
+So this is an indicator for bad data quality.
+
+04:42.670 --> 04:45.950
+Of course you can go and report it to the source system in order to correct it.
+
+04:45.950 --> 04:48.310
+So here it's up to you what to do with those dates.
+
+04:48.310 --> 04:54.070
+Either leave it as it is as a bad data, or we can go and clean that up by replacing all those dates
+
+04:54.070 --> 05:00.400
+with a null, or maybe replacing only the one that is extreme where it is 100% is incorrect.
+
+05:00.400 --> 05:02.840
+So let's go and write the transformation for that.
+
+05:02.840 --> 05:11.400
+As usual, we can start with Casewhen per dates is larger than the current date and time, then null.
+
+05:11.440 --> 05:19.120
+Otherwise we can have an else where we have the birth date as it is, and then we have an end as birth
+
+05:19.120 --> 05:19.600
+date.
+
+05:19.880 --> 05:21.720
+So let's go and execute it.
+
+05:21.720 --> 05:26.280
+And with that, we should not get any customer where the birth date in the future.
+
+05:26.280 --> 05:28.360
+So that's it for the birth dates.
+
+05:28.400 --> 05:29.800
+Now let's move to the next one.
+
+05:29.800 --> 05:30.920
+We have the gender.
+
+05:30.960 --> 05:34.000
+Now again the gender information is low cardinalities.
+
+05:34.000 --> 05:37.240
+So we have to go and check all the possible values inside this column.
+
+05:37.240 --> 05:43.360
+So in order to check all the possible values we're going to use select distinct gen from our table.
+
+05:43.360 --> 05:45.200
+So let's go and execute it.
+
+05:45.240 --> 05:47.360
+And now the data doesn't look really good.
+
+05:47.360 --> 05:48.680
+So we have here a null.
+
+05:48.720 --> 05:49.720
+We have an F.
+
+05:49.760 --> 05:51.440
+We have here an empty string.
+
+05:51.600 --> 05:53.000
+We have male female.
+
+05:53.160 --> 05:54.680
+And again we have the m.
+
+05:54.720 --> 05:56.480
+So this is not really good what you're going to do.
+
+05:56.480 --> 05:56.560
+do.
+
+05:56.560 --> 06:02.080
+We're going to go and clean up all those informations in order to have only three values male, female
+
+06:02.080 --> 06:03.360
+and not available.
+
+06:03.360 --> 06:04.360
+So we're going to do it like this.
+
+06:04.360 --> 06:05.800
+We're going to say Casewhen.
+
+06:05.840 --> 06:10.800
+And now we're going to go and trim the values just to make sure there is like no empty spaces.
+
+06:10.800 --> 06:15.720
+And as well I'm going to go and use the upper function just to make sure that in the future if we get
+
+06:15.720 --> 06:19.880
+any lower cases and so on, we are covering all the different scenarios.
+
+06:20.200 --> 06:29.800
+So case this is in F, let's say female, then make it as female and we can go and do the same thing
+
+06:29.800 --> 06:32.200
+for the male like this.
+
+06:32.200 --> 06:36.200
+So if it is an M or a male make sure it is capital letters.
+
+06:36.200 --> 06:37.760
+Because here we are using the upper.
+
+06:37.800 --> 06:39.280
+Then it is a male.
+
+06:39.320 --> 06:42.960
+Otherwise all other scenarios it should be not available.
+
+06:42.960 --> 06:45.800
+So whether it is an empty string or nulls and so on.
+
+06:46.480 --> 06:49.840
+So we have to have an intercourse as Jen.
+
+06:49.840 --> 06:52.840
+So now let's go and test it and check whether we have covered everything.
+
+06:52.840 --> 06:54.840
+So you can see the M is now male.
+
+06:54.880 --> 06:56.890
+The empty is not available.
+
+06:56.930 --> 06:58.050
+The if is female.
+
+06:58.090 --> 07:01.610
+The empty string or maybe spaces here is not available.
+
+07:01.650 --> 07:04.410
+Female can stay as it is and the same for the male.
+
+07:04.410 --> 07:09.330
+So with that we are covering all the scenarios and we are following our standards in the project.
+
+07:09.330 --> 07:13.890
+So I'm going to go and cut this and put it in our original query over here.
+
+07:13.890 --> 07:16.330
+So let's go and execute the whole thing.
+
+07:16.370 --> 07:19.930
+And with that we have cleaned up all those three columns.
+
+07:19.970 --> 07:22.570
+Now the question is did we change anything in the DDL.
+
+07:22.610 --> 07:24.290
+Well we didn't change anything.
+
+07:24.290 --> 07:27.410
+We didn't introduce any new column or change any data type.
+
+07:27.410 --> 07:31.930
+So that means the next step is we're going to go and insert it in the server layer.
+
+07:31.970 --> 07:38.010
+So as usual we're going to say here insert into silver ERP that customer.
+
+07:38.010 --> 07:40.490
+And then we're going to go and list all the column names.
+
+07:40.490 --> 07:43.530
+So Sid birthdate and the gender.
+
+07:43.570 --> 07:44.250
+All right.
+
+07:44.250 --> 07:46.290
+So let's go and execute it.
+
+07:46.290 --> 07:48.890
+And with that we can see it inserted all the data.
+
+07:48.890 --> 07:52.890
+And of course the very important step as the next is to check the data quality.
+
+07:52.890 --> 07:57.540
+So let's go back to our query over here and change it from bronze to silver.
+
+07:57.540 --> 07:59.580
+So let's go and check the silver layer.
+
+07:59.580 --> 08:02.980
+Well of course we are getting those very old customers.
+
+08:02.980 --> 08:04.700
+But we didn't change that.
+
+08:04.740 --> 08:09.060
+We only changed the birthday that is in the future and we don't see it here in the results.
+
+08:09.060 --> 08:10.820
+So that means everything is clean.
+
+08:10.980 --> 08:14.020
+So for the next one, let's go and check the different genders.
+
+08:14.060 --> 08:16.740
+And as you can see we have only those three values.
+
+08:16.780 --> 08:20.420
+And of course we can go and take a final look to our table.
+
+08:20.620 --> 08:23.860
+So you can see the CID here, the birth date the gender.
+
+08:23.860 --> 08:27.660
+And then we see our metadata column and everything looks amazing.
+
+08:27.660 --> 08:28.540
+So that's it.
+
+08:28.580 --> 08:31.540
+What are the different types of data transformations that you have done?
+
+08:31.580 --> 08:35.700
+First with the ID what you have done, we have handled invalid values.
+
+08:35.700 --> 08:38.740
+So we have removed this part where it is not needed.
+
+08:38.740 --> 08:40.940
+And the same thing goes for the birth dates.
+
+08:40.940 --> 08:43.620
+We have handled as well invalid values.
+
+08:43.620 --> 08:49.140
+And then for the last one for the gender, we have done data normalization by mapping the codes to more
+
+08:49.140 --> 08:50.020
+friendly value.
+
+08:50.020 --> 08:53.020
+And as well we have handled the missing values.
+
+08:53.020 --> 08:55.790
+So those are the types that we have done in this code.
+
+08:55.830 --> 08:56.070
+Okay.
+
+08:56.110 --> 08:59.310
+Moving on to the second table we have the location informations.
+
+08:59.310 --> 09:02.510
+So we have Erb location A101.
+
+09:02.510 --> 09:05.510
+So now here the task is easy because we have only two columns.
+
+09:05.510 --> 09:09.230
+And if you go and check the integration model we can find our table over here.
+
+09:09.230 --> 09:15.430
+So we can go and connect it together with the customer info from the other system using the Sid with
+
+09:15.470 --> 09:16.750
+the customer key.
+
+09:16.790 --> 09:20.470
+So those two informations must be matching in order to join the tables.
+
+09:20.470 --> 09:23.150
+So that means we have to go and check the data.
+
+09:23.150 --> 09:27.310
+So let's go and select the data CST key from.
+
+09:27.470 --> 09:29.950
+Let's go and get the silver data customer info.
+
+09:29.950 --> 09:30.870
+So let's go.
+
+09:30.950 --> 09:36.270
+Now if you go and check the result you can see over here that we have an issue with the Sid.
+
+09:36.310 --> 09:41.790
+There is like a minus between the characters and the numbers, but the customer ID, the customer number,
+
+09:41.790 --> 09:45.590
+we don't have anything that splits the characters with the numbers.
+
+09:45.590 --> 09:48.670
+So if you go and join those two informations, it will not be working.
+
+09:48.670 --> 09:53.790
+So what we have to do, we have to go and get rid of this minus because it is totally unnecessary.
+
+09:53.790 --> 09:55.110
+So let's go and fix that.
+
+09:55.110 --> 09:56.030
+It's going to be very simple.
+
+09:56.030 --> 09:58.390
+So what we're going to do we're going to say Sid.
+
+09:58.550 --> 10:03.270
+So we're going to go and search for the minus and replace it with nothing.
+
+10:03.310 --> 10:04.670
+It's very simple like this.
+
+10:04.670 --> 10:06.430
+So let's go and query it again.
+
+10:06.430 --> 10:09.150
+And with that things looks very similar to each others.
+
+10:09.390 --> 10:10.910
+And as well we can go and query it.
+
+10:10.910 --> 10:15.390
+So we're going to say where our transformation is not in.
+
+10:15.430 --> 10:18.670
+Then we can go and use this as a sub query like this.
+
+10:18.670 --> 10:20.830
+So let's go and execute it.
+
+10:20.830 --> 10:24.110
+And as you can see we are not finding any unmatching data now.
+
+10:24.110 --> 10:26.390
+So that means our transformation is working.
+
+10:26.630 --> 10:29.510
+And with that we can go and connect those two tables together.
+
+10:29.510 --> 10:35.110
+So if I take that transformation away, you can see that we will find a lot of unmatching data.
+
+10:35.110 --> 10:36.710
+So the transformation is okay.
+
+10:36.710 --> 10:37.750
+We're going to stay with it.
+
+10:37.750 --> 10:40.030
+And now let's speak about the countries.
+
+10:40.070 --> 10:42.470
+Now we have here multiple values and so on.
+
+10:42.470 --> 10:44.830
+What I'm going to do this is low cardinality.
+
+10:44.830 --> 10:48.590
+And we have to go and check all possible values inside this column.
+
+10:48.590 --> 10:51.590
+So that means we are checking whether the data is consistent.
+
+10:51.590 --> 10:53.280
+So we can do it like this.
+
+10:53.320 --> 10:57.760
+Distincts the country from our table.
+
+10:57.800 --> 10:59.720
+I'm just going to go and copy it like this.
+
+10:59.720 --> 11:02.760
+And as well, I'm going to go and sort the data by the country.
+
+11:03.240 --> 11:05.720
+So let's go and check the informations.
+
+11:05.760 --> 11:07.440
+Now we can see we have a null.
+
+11:07.480 --> 11:09.800
+We have an empty string which is really bad.
+
+11:09.840 --> 11:12.200
+And then we have a full name of country.
+
+11:12.240 --> 11:15.720
+And then we have as well an abbreviation of the countries.
+
+11:15.720 --> 11:17.200
+Well this is a mix.
+
+11:17.200 --> 11:22.160
+This is not really good because sometimes we have the E and sometimes we have Germany and then we have
+
+11:22.160 --> 11:23.240
+the United Kingdom.
+
+11:23.240 --> 11:28.280
+And then for the United States we have like three versions of the same information, which is as well
+
+11:28.280 --> 11:29.160
+not really good.
+
+11:29.280 --> 11:32.120
+So the quality of the country is not really good.
+
+11:32.120 --> 11:34.080
+So let's go and work on the transformation.
+
+11:34.080 --> 11:34.480
+As usual.
+
+11:34.480 --> 11:43.160
+We're going to start with the case when if trim country is equal to D, then we're going to transform
+
+11:43.160 --> 11:44.560
+it to Germany.
+
+11:44.560 --> 11:47.360
+And the next one it's going to be about the USA.
+
+11:47.400 --> 11:50.080
+So if trim country is in.
+
+11:50.960 --> 11:54.610
+So now let's go and get those two values the US and the USA.
+
+11:54.890 --> 12:02.250
+So US and USA then it's going to be the United States states.
+
+12:02.330 --> 12:05.570
+So with that we have covered as well those three cases.
+
+12:05.610 --> 12:08.130
+Now we have to talk about the null and the empty string.
+
+12:08.130 --> 12:17.610
+So we're going to say when trim country is equal to empty string or country is null, then it's going
+
+12:17.610 --> 12:19.330
+to be not available.
+
+12:19.370 --> 12:22.370
+Otherwise I would like to get the country as it is.
+
+12:22.410 --> 12:27.730
+So trim country just to make sure that we don't have any leading or trailing spaces.
+
+12:27.730 --> 12:28.730
+So that's it.
+
+12:28.770 --> 12:31.330
+Let's go and say this is the country.
+
+12:31.930 --> 12:35.250
+So it is working and the country information is transformed.
+
+12:35.250 --> 12:39.810
+And now what I'm going to do, I'm going to take the whole new transformation and compare it to the
+
+12:39.810 --> 12:40.370
+old one.
+
+12:40.410 --> 12:45.490
+Let me just call this as old country and let's go and query it.
+
+12:45.490 --> 12:48.370
+So now we can check those values state as before.
+
+12:48.410 --> 12:49.730
+So nothing did change.
+
+12:49.730 --> 12:51.420
+The D is now Germany.
+
+12:51.820 --> 12:53.660
+The empty string is not available.
+
+12:53.660 --> 12:54.900
+The null the same thing.
+
+12:54.940 --> 12:58.540
+And the United Kingdom state as like it's like before.
+
+12:58.580 --> 13:01.500
+And now we have one value for all those information.
+
+13:01.500 --> 13:03.660
+So it's only the United States.
+
+13:03.660 --> 13:04.860
+So it looks perfect.
+
+13:04.860 --> 13:07.900
+And with that we have cleaned as well the second column.
+
+13:07.900 --> 13:09.780
+So with that we have now clean results.
+
+13:09.820 --> 13:12.500
+And now the question did we change anything in the DDL.
+
+13:12.580 --> 13:14.140
+Well we haven't changed anything.
+
+13:14.140 --> 13:15.740
+Both of them are Varchar.
+
+13:15.780 --> 13:19.580
+So we can go now immediately and insert it into our table.
+
+13:19.580 --> 13:23.100
+So insert into silver customer location.
+
+13:23.100 --> 13:25.380
+And here we have to specify the columns.
+
+13:25.420 --> 13:27.900
+It's very simple the ID and the country.
+
+13:27.900 --> 13:30.060
+So let's go and execute it.
+
+13:30.060 --> 13:35.460
+And as you can see we got now inserted all those values of course as a next we go and double check those
+
+13:35.460 --> 13:36.300
+informations.
+
+13:36.300 --> 13:39.900
+I will just go and remove all those stuff as well here.
+
+13:39.900 --> 13:42.860
+And instead of bronze let's go with the silver.
+
+13:42.860 --> 13:46.500
+So as you can see all the values of the country looks good.
+
+13:46.540 --> 13:48.780
+And let's have a final look to the table.
+
+13:48.780 --> 13:49.940
+So like this.
+
+13:49.940 --> 13:52.780
+So we have the IDs without the separator.
+
+13:52.780 --> 13:56.220
+We have the countries and as well our metadata information.
+
+13:56.220 --> 13:59.220
+So with that we have cleaned up the data for the location okay.
+
+13:59.260 --> 14:02.260
+So now what are the different types of data transformation that we have done.
+
+14:02.300 --> 14:05.140
+Here is first we have handled invalid values.
+
+14:05.140 --> 14:08.220
+So we have removed the minus with an empty string.
+
+14:08.220 --> 14:11.620
+And for the country we have done data normalization.
+
+14:11.620 --> 14:14.660
+So we have replaced codes with friendly values.
+
+14:14.660 --> 14:20.620
+And as well at the same time we have handled missing values by replacing the empty string and null with
+
+14:20.620 --> 14:21.380
+not available.
+
+14:21.380 --> 14:22.060
+And one more thing.
+
+14:22.100 --> 14:25.180
+Of course we have removed the unwanted spaces.
+
+14:25.180 --> 14:29.260
+So those are the different types of transformation that we have done for this table.
+
+14:29.300 --> 14:29.860
+Okay guys.
+
+14:29.860 --> 14:31.220
+Now keep the energy up.
+
+14:31.220 --> 14:32.220
+Keep the spirit up.
+
+14:32.220 --> 14:35.580
+We have to go and clean up the last table in the bronze layer.
+
+14:35.580 --> 14:37.820
+And of course we cannot go and skip anything.
+
+14:37.820 --> 14:41.220
+We have to check the quality and to detect all the errors.
+
+14:41.260 --> 14:44.420
+So now we have a table about the categories for the products.
+
+14:44.420 --> 14:46.180
+And here we have like four columns.
+
+14:46.220 --> 14:48.140
+Let's go and start with the first one the ID.
+
+14:48.180 --> 14:53.670
+As you can see in our integration model, we can connect this table together with the product info from
+
+14:53.670 --> 14:55.990
+the CRM using the product key.
+
+14:55.990 --> 15:01.390
+And as you remember in the server layer, we have created an extra column for that in the product info.
+
+15:01.390 --> 15:06.350
+So if you go and select those data, you can see we have a column called Categoryid.
+
+15:06.350 --> 15:10.670
+And this one is exactly matching the ID that we have in this table.
+
+15:10.670 --> 15:12.110
+And we have done the testing.
+
+15:12.110 --> 15:16.270
+So this ID is ready to be used together with the other table.
+
+15:16.270 --> 15:18.270
+So there is nothing to do over here.
+
+15:18.310 --> 15:20.670
+And now for the next columns they are string.
+
+15:20.670 --> 15:24.310
+And of course we can go and check whether there are any unwanted spaces.
+
+15:24.310 --> 15:26.750
+So we are checking for the unwanted spaces.
+
+15:26.750 --> 15:29.990
+So let's go and check select star from.
+
+15:29.990 --> 15:32.910
+And we're going to go and get the same table like this here.
+
+15:32.910 --> 15:34.910
+And first we are checking the category.
+
+15:34.910 --> 15:40.710
+So the category is not equal to the category after trimming the unwanted spaces.
+
+15:41.110 --> 15:43.030
+So let's go and execute it.
+
+15:43.030 --> 15:44.950
+And as you can see we don't have any results.
+
+15:44.950 --> 15:47.310
+So there are no unwanted spaces.
+
+15:47.350 --> 15:51.600
+Let's go and check the other column for example the subcategory, the next one.
+
+15:51.640 --> 15:55.840
+So let's get the subcategory and run the query as well.
+
+15:55.840 --> 16:00.760
+We don't have anything, so that means we don't have unwanted spaces for the subcategory.
+
+16:00.800 --> 16:02.760
+Let's go now and check the last column.
+
+16:02.760 --> 16:04.560
+So I will just copy and paste.
+
+16:04.600 --> 16:08.160
+Now let's get the maintenance and let's go and execute.
+
+16:08.200 --> 16:09.360
+And as well no results.
+
+16:09.360 --> 16:09.920
+Perfect.
+
+16:09.920 --> 16:13.440
+We don't have any unwanted spaces inside this table.
+
+16:13.440 --> 16:17.800
+So now the next step is that we're going to go and check the data Standardizations.
+
+16:17.800 --> 16:20.560
+Because all those columns has low cardinality.
+
+16:20.560 --> 16:24.400
+So what we can do we can say select distinct.
+
+16:24.440 --> 16:27.720
+Let's get the cats category from our table.
+
+16:27.760 --> 16:30.680
+I'll just copy and paste it and check all values.
+
+16:30.680 --> 16:34.840
+So as you can see we have the accessories bikes, clothing and components.
+
+16:34.880 --> 16:36.080
+Everything looks perfect.
+
+16:36.080 --> 16:38.280
+We don't have to change anything in this column.
+
+16:38.280 --> 16:40.400
+Let's go and check the subcategory.
+
+16:40.400 --> 16:45.320
+And if you scroll down, all values are friendly and nice as well.
+
+16:45.360 --> 16:46.680
+Nothing to change here.
+
+16:46.720 --> 16:48.530
+And let's go and check the last column.
+
+16:48.530 --> 16:49.610
+The maintenance.
+
+16:49.650 --> 16:50.250
+Perfect.
+
+16:50.250 --> 16:51.450
+We have only two values.
+
+16:51.450 --> 16:52.170
+Yes and no.
+
+16:52.210 --> 16:53.450
+We don't have any nulls.
+
+16:53.450 --> 16:58.010
+So, my friends, that means this table has really nice data quality.
+
+16:58.010 --> 17:00.010
+And we don't have to clean up anything.
+
+17:00.010 --> 17:01.930
+But still we have to follow our process.
+
+17:01.930 --> 17:06.930
+We have to go and load it from the bronze to the silver, even if we didn't transform anything.
+
+17:06.930 --> 17:08.770
+So our job is really easy here.
+
+17:08.770 --> 17:14.930
+We're going to go and say insert into silver dots, ERP and so on.
+
+17:14.930 --> 17:17.450
+And we're going to go and define the columns.
+
+17:17.450 --> 17:22.330
+So it's going to be the ID the category subcategory maintenance.
+
+17:22.330 --> 17:23.050
+So that's it.
+
+17:23.090 --> 17:24.450
+Let's go and insert the data.
+
+17:24.490 --> 17:26.050
+Now as usual what we're going to do.
+
+17:26.050 --> 17:28.570
+We're going to go and check the data.
+
+17:29.050 --> 17:31.810
+So silver ERP RP.
+
+17:32.130 --> 17:32.890
+Let's have a look.
+
+17:32.890 --> 17:33.290
+All right.
+
+17:33.290 --> 17:34.810
+So we can see the IDs are here.
+
+17:34.810 --> 17:37.970
+The categories the subcategories the maintenance.
+
+17:38.170 --> 17:40.330
+And we have our meta column.
+
+17:40.330 --> 17:42.770
+So everything is inserted correctly.
+
+17:42.770 --> 17:43.090
+All right.
+
+17:43.090 --> 17:48.130
+So now I have all those queries and the insert statements for all six tables.
+
+17:48.170 --> 17:49.530
+And now, what is important?
+
+17:49.530 --> 17:54.850
+Before inserting any data, we have to make sure that we are truncating and emptying the table.
+
+17:54.890 --> 17:57.530
+Because if you run this query twice, what's going to happen?
+
+17:57.530 --> 17:59.170
+You will be inserting duplicates.
+
+17:59.370 --> 18:03.930
+So first truncate the data and then do a full load insert all data.
+
+18:03.930 --> 18:07.010
+So we're going to have one step before it's like the bronze layer.
+
+18:07.010 --> 18:08.530
+We're going to say truncate table.
+
+18:08.530 --> 18:11.850
+And then we will be truncating the silver customer info.
+
+18:11.850 --> 18:15.050
+And only after that we have to go and insert the data.
+
+18:15.090 --> 18:18.690
+And of course we can go and give this nice information at the start.
+
+18:18.690 --> 18:21.410
+So first we are truncating the table and then inserting.
+
+18:21.410 --> 18:23.650
+So if I go and run the whole thing.
+
+18:23.690 --> 18:24.690
+So let's go and do it.
+
+18:24.690 --> 18:25.610
+It will be working.
+
+18:25.610 --> 18:28.650
+So if I can run it again we will not have any duplicates.
+
+18:28.650 --> 18:32.090
+So we have to go and add this step before each insert.
+
+18:32.090 --> 18:33.850
+So let's go and do that.
+
+18:33.890 --> 18:34.490
+All right.
+
+18:34.490 --> 18:36.490
+So I'm done with all tables.
+
+18:36.490 --> 18:39.210
+So now let's go and run everything.
+
+18:39.210 --> 18:40.730
+So let's go and execute it.
+
+18:40.730 --> 18:44.090
+And we can see in the messaging everything working perfectly.
+
+18:44.090 --> 18:45.970
+So with that we made all tables empty.
+
+18:45.970 --> 18:47.610
+And then we inserted the data.

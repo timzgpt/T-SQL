@@ -1,0 +1,436 @@
+WEBVTT
+
+00:03.920 --> 00:05.560
+Okay, so now what is exactly left?
+
+00:05.560 --> 00:06.440
+Join this type.
+
+00:06.440 --> 00:12.320
+Gunner returns all the rows from the left table and only the matching from the right table.
+
+00:12.320 --> 00:16.920
+So now if you look again to our two circles A and B, what do we need from the left table.
+
+00:16.920 --> 00:20.520
+We want to see everything all the rows, all the data.
+
+00:20.520 --> 00:22.800
+So that means we will get a full circle.
+
+00:22.840 --> 00:26.680
+And now from the right table we want to get only the matching data.
+
+00:26.680 --> 00:32.000
+So that means we don't want to see everything from the table B we want to see only the records that
+
+00:32.000 --> 00:37.640
+has matched to the table A so that means, my friends, the left table has here more priority.
+
+00:37.640 --> 00:41.040
+This is the primary source of your data, the main source.
+
+00:41.040 --> 00:42.440
+We cannot miss anything.
+
+00:42.440 --> 00:43.440
+This is very important.
+
+00:43.440 --> 00:45.520
+We want to see all the data from the table.
+
+00:45.560 --> 00:50.800
+B it is a secondary source of data and we are joining it only to get an additional data.
+
+00:50.800 --> 00:51.880
+So I don't want everything.
+
+00:51.880 --> 00:55.280
+I want only the data that has matched to the left table.
+
+00:55.280 --> 00:57.400
+So this is what we mean with a left join.
+
+00:57.440 --> 01:00.880
+Now if you look to the syntax it's going to be very similar to the inner join.
+
+01:00.880 --> 01:04.630
+So we start from the left table the A, then we say left join.
+
+01:04.670 --> 01:07.590
+The right table B and then the same condition using keys.
+
+01:07.630 --> 01:10.670
+So here we just switch the type instead of inner.
+
+01:10.670 --> 01:11.630
+We have now left.
+
+01:11.630 --> 01:14.710
+But now here with the syntax we need to be very careful.
+
+01:14.750 --> 01:17.390
+The order of the tables now is very important.
+
+01:17.390 --> 01:19.510
+You have to start from the correct table.
+
+01:19.510 --> 01:23.350
+So you have to mention the left table exactly in the From clause.
+
+01:23.390 --> 01:25.910
+And then you join it with the right table.
+
+01:25.910 --> 01:28.750
+So in the join you have to specify the right table.
+
+01:28.750 --> 01:33.950
+If you don't do it like this then you will not get all the data from A and you will not get the results
+
+01:33.950 --> 01:35.110
+that you are expecting.
+
+01:35.110 --> 01:36.990
+So this is what we mean with a left join.
+
+01:37.030 --> 01:39.230
+Let's go back to SQL in order to practice.
+
+01:39.230 --> 01:39.590
+All right.
+
+01:39.630 --> 01:40.870
+So now we have the following task.
+
+01:40.870 --> 01:46.830
+It says get all customers along with their orders including those without orders.
+
+01:46.830 --> 01:51.070
+So again here we need the data from two tables the customers and orders.
+
+01:51.070 --> 01:52.710
+And we want everything in one result.
+
+01:52.710 --> 01:54.310
+That means we have to go and join the data.
+
+01:54.310 --> 01:57.910
+And now the task says includes those without orders.
+
+01:57.910 --> 02:04.070
+So that means I want to see everything, the matching data and the unmatching data from the table Customers.
+
+02:04.070 --> 02:08.270
+And by looking to our query, this is not working because we are not getting everything right.
+
+02:08.270 --> 02:12.110
+We are getting only the customers that has match in the table orders.
+
+02:12.110 --> 02:14.430
+And this is not, of course, fulfilling the task.
+
+02:14.470 --> 02:18.070
+So now if you read the task you can understand the main table.
+
+02:18.110 --> 02:19.430
+Here is the customers.
+
+02:19.430 --> 02:23.350
+We are not speaking about to see all the orders and not missing any order.
+
+02:23.350 --> 02:26.110
+And the orders here is only for additional information.
+
+02:26.110 --> 02:31.710
+So now, in order to not lose any data for the customers, we make sure we start from the table customers.
+
+02:31.710 --> 02:34.190
+So that means now the customers on the left side.
+
+02:34.230 --> 02:36.870
+And now after that instead of inner join.
+
+02:36.870 --> 02:37.910
+This is not good thing.
+
+02:37.910 --> 02:39.990
+For this task we are going to say left join.
+
+02:39.990 --> 02:43.630
+And with that we guarantee we will get all the data from the customers.
+
+02:43.670 --> 02:47.870
+Now we say left join orders and of course the condition can stay like this.
+
+02:47.870 --> 02:50.110
+This is how we are connecting the two tables.
+
+02:50.110 --> 02:51.470
+So actually that's it.
+
+02:51.470 --> 02:53.030
+Let's go and execute it.
+
+02:53.070 --> 02:57.110
+And now by looking to the result you can see that we have now five customers.
+
+02:57.110 --> 02:59.750
+Even the customers that didn't place any orders.
+
+02:59.750 --> 03:01.670
+So you can see Martin and Peter.
+
+03:01.710 --> 03:06.140
+They don't have any order ID so that means they didn't order anything.
+
+03:06.180 --> 03:09.980
+And as you can see, skill is showing us nulls when there is no match.
+
+03:09.980 --> 03:11.540
+So with that, we have solved the task.
+
+03:11.540 --> 03:13.180
+Now, my friends, one more thing.
+
+03:13.220 --> 03:18.860
+As I told you, the order of the tables is very important because the customer is now the left table
+
+03:18.900 --> 03:22.540
+because you start from it and the second table, the orders is the right table.
+
+03:22.580 --> 03:25.420
+Now if you go and switch them like this.
+
+03:25.420 --> 03:30.260
+So we start from the orders and then join it with the customers and you go execute it.
+
+03:30.260 --> 03:32.100
+You will not get all the customers.
+
+03:32.100 --> 03:34.140
+And of course the task is now not solved.
+
+03:34.140 --> 03:38.620
+So as you can see, you are getting now completely different results if you go and switch the tables.
+
+03:38.620 --> 03:44.220
+So be careful where you start and how you join the tables in order to get the effects that you want.
+
+03:44.260 --> 03:44.660
+All right.
+
+03:44.660 --> 03:47.060
+So now I'm going to put everything back like before.
+
+03:47.100 --> 03:51.460
+Now let's go and understand how SQL exactly executed this query okay.
+
+03:51.500 --> 03:54.140
+So now again we have the data from customers and orders.
+
+03:54.140 --> 03:55.860
+And this time we are doing the left join.
+
+03:55.860 --> 03:57.580
+So now let's see how it's going to do it.
+
+03:57.580 --> 04:00.460
+So I'm going to say okay we need the ID and the first name.
+
+04:00.500 --> 04:02.820
+And we will get that as well in the results.
+
+04:02.820 --> 04:08.420
+And from the right table we need only those two informations the order ID and the sales in the output.
+
+04:08.420 --> 04:10.260
+So those are the columns that we need.
+
+04:10.260 --> 04:13.100
+So now SQL in the left join can do it a little bit differently.
+
+04:13.100 --> 04:16.140
+It can start as well from the left table from the customers.
+
+04:16.140 --> 04:22.900
+But this time it's going to go and immediately put the result in the output without like trying to match
+
+04:22.900 --> 04:26.740
+anything and to check whether the data exists or not, because it doesn't matter.
+
+04:26.780 --> 04:32.340
+SQL not doing any validation whether the customer exists in the orders since it's left join is going
+
+04:32.340 --> 04:34.300
+to show all the data from the left table.
+
+04:34.300 --> 04:36.100
+So there will be like no check.
+
+04:36.100 --> 04:40.820
+But now as a next step in order to get the order ID and the sales SQL will start searching.
+
+04:40.820 --> 04:43.340
+So SQL can go over here and start searching.
+
+04:43.340 --> 04:45.660
+Where do we have a customer with this ID?
+
+04:45.660 --> 04:47.380
+Well, it's going to be the first order.
+
+04:47.380 --> 04:51.460
+We're going to get the order ID and as well the sales informations.
+
+04:51.460 --> 04:53.380
+And we will see that in the output.
+
+04:53.380 --> 04:54.980
+So that's it for the first one.
+
+04:54.980 --> 04:56.580
+Now it's going to go to the second row.
+
+04:56.580 --> 04:58.860
+And the same thing going to happen immediately.
+
+04:58.860 --> 05:03.140
+The SQL is going to go and put the result in the output without checking anything.
+
+05:03.180 --> 05:08.060
+And then in order to get the order data it will start searching for this ID.
+
+05:08.060 --> 05:08.170
+idea.
+
+05:08.170 --> 05:09.890
+So we have it here in the second row.
+
+05:09.930 --> 05:11.930
+We have the order ID and the sales.
+
+05:11.970 --> 05:14.690
+And it's going to put those results to the outputs.
+
+05:14.730 --> 05:16.970
+So that's it for the third one.
+
+05:17.010 --> 05:22.490
+Immediately going to put everything in the output and then start searching for orders.
+
+05:22.490 --> 05:25.050
+With this ID we have it over here.
+
+05:25.050 --> 05:27.930
+So this order belongs to the user ID number three.
+
+05:27.970 --> 05:30.610
+So far we are getting the same result as the inner join.
+
+05:30.610 --> 05:31.730
+But we are not done yet.
+
+05:31.770 --> 05:33.290
+Now exactly count the difference.
+
+05:33.330 --> 05:38.930
+It's going to go and get Martin and put it immediately in the output and start searching for an order
+
+05:38.930 --> 05:39.770
+with this ID.
+
+05:39.770 --> 05:42.610
+So do we have any order with the ID number four?
+
+05:42.770 --> 05:45.130
+Well, we don't have anything this time.
+
+05:45.130 --> 05:48.730
+SQL of course will not go and exclude the ID number four.
+
+05:48.770 --> 05:49.650
+It's going to leave it.
+
+05:49.650 --> 05:53.970
+But in SQL if there is no match we still have to have something in the output.
+
+05:54.010 --> 05:59.210
+So it's going to go and say the output going to be null like this.
+
+05:59.210 --> 05:59.970
+We don't know.
+
+05:59.970 --> 06:00.730
+It is unknown.
+
+06:00.770 --> 06:02.730
+And the same thing for the sales.
+
+06:02.730 --> 06:05.730
+So in the left join if there is no match you will see nulls.
+
+06:05.850 --> 06:08.170
+Same thing for the next customer for better.
+
+06:08.290 --> 06:14.250
+So SQL will go and put the result immediately in the output and then start searching the orders.
+
+06:14.290 --> 06:16.650
+So do we have anything for the ID number five?
+
+06:16.690 --> 06:18.250
+We don't have anything.
+
+06:18.250 --> 06:22.730
+That's why SQL is going to go and present nulls as well in the outputs.
+
+06:22.730 --> 06:27.690
+And that's why you saw nulls in the output because those customers don't have any orders.
+
+06:27.690 --> 06:29.770
+So this is exactly the effect of the left join.
+
+06:29.770 --> 06:34.290
+You will get everything from the left table and only the matching stuff on the right side.
+
+06:34.290 --> 06:36.890
+And if there is something not matching, you will get nulls.
+
+06:36.890 --> 06:37.730
+So that is.
+
+06:37.730 --> 06:40.250
+This is how SQL execute the left join.
+
+06:40.290 --> 06:42.530
+Okay, so now back to this use cases of joins.
+
+06:42.530 --> 06:48.250
+If I think about left join I can use it in order to recombine data in order to build this big picture.
+
+06:48.250 --> 06:53.490
+And as well in the second use case where we use it in order to get an extra information from another
+
+06:53.490 --> 06:53.890
+table.
+
+06:53.890 --> 06:56.450
+So we have a main table and a secondary table.
+
+06:56.450 --> 06:58.410
+So we use it for both use cases.
+
+06:58.410 --> 07:02.650
+And as well in the third use case only with a twist that we're going to learn later.
+
+07:02.650 --> 07:04.290
+So that's all about the left join.
+
+07:04.330 --> 07:08.210
+Now we have another type that is exactly the opposite of the left join.
+
+07:08.210 --> 07:09.930
+We have the right join.
+
+07:09.930 --> 07:11.930
+So now let's understand what this means.

@@ -1,0 +1,103 @@
+WEBVTT
+
+00:03.680 --> 00:05.280
+So now let's have a quick recap.
+
+00:05.280 --> 00:11.840
+So we have learned that the CTE the common table expression is a temporary named result, like a virtual
+
+00:11.880 --> 00:14.840
+table that could be used from different places in the query.
+
+00:14.840 --> 00:17.040
+And we have a lot of advantages for the CTE.
+
+00:17.280 --> 00:23.960
+The main one is it breaks the complexity of query into small multiple pieces, which makes our query
+
+00:24.000 --> 00:28.480
+much easier to read and as well to understand, so it improves readability.
+
+00:28.520 --> 00:34.240
+Another advantage of the city is that those small multiple pieces, they are really easy to manage and
+
+00:34.240 --> 00:35.080
+to develop.
+
+00:35.080 --> 00:40.080
+So those pieces are like self-contained which makes our queries more modular.
+
+00:40.080 --> 00:43.440
+So it introduces modularity inside our queries.
+
+00:43.440 --> 00:49.640
+And we also learned that the CTE help us to reduce the redundancy inside our queries, where it makes
+
+00:49.640 --> 00:54.840
+the results of one query usable in multiple places inside our query.
+
+00:54.840 --> 00:57.880
+So it makes our code smaller and reduce redundancy.
+
+00:57.880 --> 01:05.000
+And one more advantage of the city is that it helps us to do looping and iterating in SQL by using the
+
+01:05.000 --> 01:06.000
+recursive CTE.
+
+01:06.200 --> 01:12.010
+And we have understood as well that we can treat the CTE results as any other physical table inside
+
+01:12.010 --> 01:15.690
+our database so we can treat it and handle it like any other tables.
+
+01:15.690 --> 01:23.210
+Only one exception that this table lives only in one query, so we cannot query the CTE from an external
+
+01:23.370 --> 01:24.010
+query.
+
+01:24.050 --> 01:28.370
+Now we have learned that the result of the CTE could be used from the main query.
+
+01:28.370 --> 01:34.370
+This is the classical one, but not only we can use it in the main query, but also we can use it in
+
+01:34.570 --> 01:38.690
+another city query which leads to having nested cities.
+
+01:38.730 --> 01:44.770
+And of course we have learned as well we can use the result of the CTE within itself, which makes the
+
+01:44.770 --> 01:48.410
+CTE recursive and allows for looping and iterating.
+
+01:48.410 --> 01:53.570
+And I can only keep recommending to not use more than five cities in one query.
+
+01:53.610 --> 01:58.970
+Otherwise you're going to get the exact opposite and benefits from cities where your code can be really
+
+01:58.970 --> 02:01.570
+hard to understand and to read, and even to extend.
+
+02:01.610 --> 02:02.290
+Okay my friends.
+
+02:02.290 --> 02:06.170
+So with that, you have covered this amazing and very important technique in SQL.
+
+02:06.210 --> 02:08.530
+The common table expressions, the CTE.
+
+02:08.570 --> 02:13.530
+Now in the next step we're going to talk about a new type of objects that you can use in databases.
+
+02:13.530 --> 02:15.410
+We don't have only tables we have as well.
+
+02:15.450 --> 02:20.970
+Views and views are amazing in order to give you dynamic and flexibility in your project.
+
+02:20.970 --> 02:22.370
+So let's talk about views.

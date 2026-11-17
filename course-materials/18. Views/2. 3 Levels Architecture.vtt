@@ -1,0 +1,217 @@
+WEBVTT
+
+00:03.920 --> 00:08.400
+Now, I would like you to understand a fundamental concept in the database in order to understand the
+
+00:08.400 --> 00:11.880
+views, the three level architecture of the database.
+
+00:11.880 --> 00:17.960
+This architecture can describe the different levels of data abstractions in a database.
+
+00:17.960 --> 00:19.240
+So let's see what this means.
+
+00:19.240 --> 00:22.080
+So the architecture is divided into three levels.
+
+00:22.080 --> 00:24.440
+The first level is the physical level.
+
+00:24.440 --> 00:26.400
+Then we have the logical level.
+
+00:26.400 --> 00:28.680
+And the third one is the view level.
+
+00:28.720 --> 00:30.960
+Now let's understand each level what it means.
+
+00:30.960 --> 00:32.240
+So now the physical level.
+
+00:32.400 --> 00:38.360
+It is the lowest level of the database where the actual data is stored in a physical storage.
+
+00:38.400 --> 00:44.360
+And usually who has access to this layer are the database administrators, because they are the experts.
+
+00:44.360 --> 00:49.960
+And they have to manage the access and the security of this layer, because they are the experts that
+
+00:49.960 --> 00:55.400
+have to manage a lot of stuff like optimizing the performance, making sure that everything is secure,
+
+00:55.440 --> 01:00.880
+and managing the backup and recovery, and to do all the configurations and many other tasks.
+
+01:00.880 --> 01:07.000
+So at the physical layer, we have to deal with a lot of stuff like the data files, partitions, logs,
+
+01:07.040 --> 01:13.810
+catalogs, blocks and caches and many other stuff that each database needs in order to store your data.
+
+01:13.810 --> 01:20.130
+So as you can see, this layer is very complicated and you need to be really an expert of databases
+
+01:20.130 --> 01:23.090
+in order to be able to manage all those stuff.
+
+01:23.090 --> 01:27.890
+So we call this layer a physical layer, or sometimes we call it an internal layer.
+
+01:27.890 --> 01:29.610
+So now let's move to the next level.
+
+01:29.610 --> 01:31.290
+We have the logical level.
+
+01:31.290 --> 01:34.770
+So the logical layer it is less complicated than the physical layer.
+
+01:34.810 --> 01:38.610
+Here at this level you have to deal on how to organize your data.
+
+01:38.610 --> 01:44.930
+And normally we have here like an application developer or we have like data engineers that access the
+
+01:44.930 --> 01:48.890
+logical level in order to define the structure of your data.
+
+01:48.890 --> 01:54.770
+So those developers can focus on how to structure your data, rather than how the data is exactly storing
+
+01:54.770 --> 01:56.610
+the data physically at the storage.
+
+01:56.610 --> 01:59.210
+So they don't have to deal with all those details.
+
+01:59.210 --> 02:04.450
+They leave it for the database administrator, and they can focus only on how to structure the data.
+
+02:04.730 --> 02:11.530
+That's why we need for this kind of role an abstraction level for them, which is the logical level.
+
+02:11.530 --> 02:14.690
+So now what actually the developers are doing at this level?
+
+02:14.690 --> 02:20.450
+Well, they are like creating tables and defining their relationships between those tables.
+
+02:20.450 --> 02:22.730
+Or they can go and define views.
+
+02:22.730 --> 02:27.660
+They can create indexes on the tables in order to optimize the performance of the tables.
+
+02:27.660 --> 02:33.860
+Or maybe they are creating stored procedures and functions and some other codes in order to manage those
+
+02:33.860 --> 02:34.380
+tables.
+
+02:34.420 --> 02:37.060
+So as you can see, they are building the data model.
+
+02:37.060 --> 02:40.580
+They are structuring your data, but they don't care at all.
+
+02:40.820 --> 02:44.100
+Where are those data stored physically in the database.
+
+02:44.100 --> 02:47.740
+So as you can see here, things are less complicated than the physical layer.
+
+02:47.740 --> 02:51.420
+And it is a perfect abstraction for developers to build projects.
+
+02:51.420 --> 02:56.460
+So we call this the logical layer or sometimes we call it the conceptual layer.
+
+02:56.500 --> 02:56.820
+Okay.
+
+02:56.860 --> 02:59.780
+So now moving on to another level of abstraction.
+
+02:59.780 --> 03:01.580
+We have the view level.
+
+03:01.580 --> 03:06.420
+So the view level is the highest level of abstraction in the database.
+
+03:06.420 --> 03:11.300
+And it is what the end users and applications can access and can see.
+
+03:11.300 --> 03:15.420
+So for example you could have like one view for business analysts.
+
+03:15.420 --> 03:21.260
+So you prepare and customize views that are suitable only for their business analysts.
+
+03:21.260 --> 03:22.500
+And you might say you know what.
+
+03:22.540 --> 03:29.180
+Let's prepare another set of views that are suitable for data visualizations and reporting.
+
+03:29.180 --> 03:34.900
+Like you can go and connect, for example, a power BI in order to create dashboards so they are fully
+
+03:35.070 --> 03:36.470
+customized and prepared.
+
+03:36.470 --> 03:37.030
+Views.
+
+03:37.270 --> 03:44.110
+In order to be connected with the power BI reports, and you can keep doing that by creating multiple
+
+03:44.150 --> 03:48.150
+set of views that are suitable for specific purpose and use.
+
+03:48.150 --> 03:48.670
+Case.
+
+03:48.670 --> 03:54.910
+So as you can see at this level, we are exposing our data for multiple users and multiple applications.
+
+03:54.910 --> 03:58.070
+So now the question is what do we have to deal at the view level.
+
+03:58.070 --> 04:04.750
+Well you have there only views that holds only the relevant informations for the use case or users.
+
+04:04.750 --> 04:07.550
+So the users at this level have only views.
+
+04:07.550 --> 04:13.790
+They don't have to deal with the tables, indexes, stored procedures, any files, logs, partitions
+
+04:13.790 --> 04:14.710
+or anything.
+
+04:14.710 --> 04:20.590
+This is the highest level of abstraction because the focus of this layer is to make it friendly for
+
+04:20.590 --> 04:23.070
+the end users and easy to consume.
+
+04:23.070 --> 04:28.110
+So we call this layer the view layer, or sometimes we call it an external layer.
+
+04:28.150 --> 04:33.910
+So this is the three level architecture of the databases or we call it the three abstraction levels
+
+04:33.910 --> 04:34.990
+of the database.
+
+04:34.990 --> 04:41.270
+So the physical layer has the highest complexity, the lowest abstraction and the view layer has the
+
+04:41.270 --> 04:42.510
+highest abstraction.
+
+04:42.510 --> 04:47.550
+So this is one more reason why the views are very important concept in SQL databases.

@@ -1,0 +1,58 @@
+WEBVTT
+
+00:03.880 --> 00:08.280
+All right, moving on to another common use case for the CTAs that I usually use as well.
+
+00:08.280 --> 00:14.960
+In my projects, we use CTAs in order to create a persisted snapshot of the data at a specific time
+
+00:14.960 --> 00:17.560
+in order to analyze data quality issue.
+
+00:17.600 --> 00:19.120
+So let's understand what this means.
+
+00:19.160 --> 00:22.840
+Now in some scenarios you have like a table and you are analyzing an issue.
+
+00:22.840 --> 00:25.040
+So there is like a data quality issue at your data.
+
+00:25.040 --> 00:28.880
+And you are analyzing this scenario in order to understand why it happens.
+
+00:28.880 --> 00:34.960
+But the problem is that at the same time, there will be updates on the table and your data is changing.
+
+00:34.960 --> 00:40.240
+So there will be updates, maybe on some fields, or you are getting new records and everything is getting
+
+00:40.240 --> 00:46.200
+mixed up, and you will not be able to analyze the scenario where the data quality issue happened.
+
+00:46.200 --> 00:50.640
+So now it's almost impossible to find the root cause of your issue.
+
+00:50.640 --> 00:56.400
+But instead of that, what we do if we have like an issue of the data, we go and create a fixed, persisted
+
+00:56.400 --> 01:03.320
+snapshot of the data in a separate table using CTAs so that we make sure nothing is changing and everything
+
+01:03.320 --> 01:03.920
+is fixed.
+
+01:03.920 --> 01:09.760
+And with that, I can keep doing my analysis on the same data without the worry that data are getting
+
+01:09.760 --> 01:10.360
+changed.
+
+01:10.360 --> 01:15.560
+So this is another way why we use CTAs in our projects to make sure that we have a snapshot of the data
+
+01:15.560 --> 01:22.440
+to ensure that our analyses are done on the same scenario that caused the bug, and can be used as a
+
+01:22.440 --> 01:25.960
+foundation for finding the problem and fixing it.

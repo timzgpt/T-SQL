@@ -1,0 +1,397 @@
+WEBVTT
+
+00:03.920 --> 00:04.240
+Okay.
+
+00:04.240 --> 00:05.920
+So what is ranking analysis.
+
+00:05.920 --> 00:06.760
+It is very basic.
+
+00:06.760 --> 00:12.560
+So we're going to go and order the value of our dimension based on a measure in order to identify the
+
+00:12.560 --> 00:15.560
+top performers and as well the bottom performers.
+
+00:15.560 --> 00:17.680
+And the formula for that is going to be the following.
+
+00:17.680 --> 00:21.800
+So this time we're going to be ranking the dimensions by an aggregated measure.
+
+00:21.800 --> 00:24.840
+So for example we're going to rank the countries by the total sale.
+
+00:24.840 --> 00:31.000
+Or we're going to find that top five products by the sold item, the quantity or the bottom three customers
+
+00:31.000 --> 00:32.240
+by total orders.
+
+00:32.240 --> 00:37.560
+So it's like the magnitude analysis we're going to have like an ordered list of dimensions value, for
+
+00:37.560 --> 00:41.760
+example, from the highest to the lowest in order to identify quickly the top performers.
+
+00:41.760 --> 00:46.880
+And of course, we can go and filter the data by saying, I would like to have only the top two categories.
+
+00:46.880 --> 00:51.200
+And with that, you are removing all other dimensions that are not on the top two.
+
+00:51.240 --> 00:54.320
+And in SQL we can use for that the keyword top.
+
+00:54.320 --> 01:00.240
+Or we can use the ranking window functions like rank denserank, row number and so on.
+
+01:00.240 --> 01:04.100
+So let's go and apply our formula in order to rank our data sets dataset.
+
+01:04.140 --> 01:04.380
+Okay.
+
+01:04.420 --> 01:05.860
+So now let's check our data.
+
+01:06.060 --> 01:10.820
+We're going to start with the first question which five products generate the highest revenue.
+
+01:10.820 --> 01:14.220
+So we are searching for the best performing products in our business.
+
+01:14.220 --> 01:18.700
+So of course the first question what is the dimension and measure that we have in this question.
+
+01:18.700 --> 01:23.340
+Well the revenue that means we need the sales from the facts and the products.
+
+01:23.340 --> 01:26.500
+That means we need the dimension products now in order to write this query.
+
+01:26.500 --> 01:27.860
+It can be very simple.
+
+01:27.860 --> 01:31.220
+So we can use as well the groupby I will not write it from scratch.
+
+01:31.220 --> 01:37.140
+So I'm just going to take this query over here where we aggregated the total sales by the category.
+
+01:37.180 --> 01:40.460
+Now what I have to do is just to change the dimension.
+
+01:40.460 --> 01:43.700
+So instead of the category we need the products name.
+
+01:43.700 --> 01:48.900
+And we are aggregating now the data by the product name because we need the top five products.
+
+01:48.900 --> 01:49.220
+Right.
+
+01:49.220 --> 01:51.420
+So the revenue is the sales amount.
+
+01:51.460 --> 01:53.900
+And with that we have like almost everything is ready.
+
+01:53.900 --> 01:55.580
+So let's go and execute it.
+
+01:55.620 --> 01:59.140
+And now we can see we have a list of all products in our business.
+
+01:59.140 --> 02:01.380
+And as well we can see that total revenue.
+
+02:01.380 --> 02:04.380
+But the task says here we need the top five.
+
+02:04.420 --> 02:09.640
+So we don't need all the products from our database, we have to go and select only these subsets.
+
+02:09.680 --> 02:12.400
+Now in order to do that in SQL server it's very simple.
+
+02:12.400 --> 02:18.720
+We can go over here and say top five and the SQL can go and return only the first five rows from the
+
+02:18.720 --> 02:19.320
+results.
+
+02:19.320 --> 02:20.680
+So let's go and execute it.
+
+02:20.680 --> 02:25.240
+And as you can see now in the results we have only five products with the highest sales.
+
+02:25.240 --> 02:25.800
+And that's it.
+
+02:25.800 --> 02:29.640
+With that we have solved the task and we can see the top five products.
+
+02:29.640 --> 02:31.360
+And all of them are pikes.
+
+02:31.400 --> 02:33.640
+Now let's go and check the other sides.
+
+02:33.640 --> 02:39.240
+We want to find the five worst performing products by the same measure the sales.
+
+02:39.240 --> 02:40.960
+And this is very simple.
+
+02:40.960 --> 02:44.080
+So what we're going to do we're going to go and take the same query over here.
+
+02:44.080 --> 02:45.000
+And now what we're going to do.
+
+02:45.000 --> 02:48.880
+We're going to go and sort the data from the lowest to the highest.
+
+02:48.880 --> 02:52.080
+So instead of descending we're going to remove it.
+
+02:52.080 --> 02:54.480
+And with that SQL going to use the ascending.
+
+02:54.480 --> 02:55.880
+So let's go and execute it.
+
+02:55.880 --> 03:01.560
+And with that as you can see we are getting the worst five performing products by just sorting the data
+
+03:01.560 --> 03:02.120
+differently.
+
+03:02.120 --> 03:03.920
+So it is very simple right.
+
+03:03.920 --> 03:08.360
+And with that we can see our five best sellers and the five worst sellers.
+
+03:08.400 --> 03:13.740
+And now what we can do we can go and just change the dimension and generate different reports, like
+
+03:13.780 --> 03:16.820
+instead of the product name, let's go and check the subcategories.
+
+03:16.820 --> 03:19.420
+What are the best subcategories of our data.
+
+03:19.420 --> 03:20.860
+So I just change the dimension.
+
+03:20.860 --> 03:21.900
+Let's go and query.
+
+03:21.900 --> 03:25.620
+So with that we can see the best subcategories we have in our business.
+
+03:25.620 --> 03:29.540
+And the same thing if you want to go and check the worst performing subcategories.
+
+03:29.540 --> 03:31.620
+So generating reports is very simple.
+
+03:31.660 --> 03:35.980
+And now my friends in SQL there is like two ways on how to create ranking.
+
+03:35.980 --> 03:41.060
+We have a simple one where we are using the group by clause together with the keyword top.
+
+03:41.060 --> 03:46.260
+But if you are generating a report where it's things are more complex and you need more flexibility,
+
+03:46.300 --> 03:48.500
+you should use the window functions.
+
+03:48.500 --> 03:52.300
+So let me show you how I can solve this task using the window function.
+
+03:52.300 --> 03:55.020
+So now I'm going to go and take almost the same query.
+
+03:55.020 --> 03:56.340
+Let's put it over here.
+
+03:56.340 --> 03:58.820
+I'm going to get rid of that top five.
+
+03:58.860 --> 04:03.780
+And let's see we are still speaking about the products name as well with a group by.
+
+04:03.820 --> 04:07.940
+But now what we're going to do, we're going to go and generate a rank so we can go and use for example
+
+04:07.940 --> 04:08.900
+the row number.
+
+04:09.100 --> 04:12.660
+And in SQL there is like different types of window functions for ranking.
+
+04:12.660 --> 04:15.350
+One of them is the row number or the rank.
+
+04:15.390 --> 04:16.790
+And then we're going to say over.
+
+04:16.830 --> 04:18.990
+Now we're going to go and sort the data.
+
+04:18.990 --> 04:20.750
+It's like we have done in the previous one.
+
+04:20.750 --> 04:23.030
+We have to sort the data by the total revenue.
+
+04:23.030 --> 04:27.110
+And the total revenue is the sum of sales and descending.
+
+04:27.110 --> 04:29.990
+And we're going to call this rank products.
+
+04:30.190 --> 04:32.430
+So let's go and execute it.
+
+04:32.470 --> 04:36.190
+Now as you can see we have created a new column where we have like a rank.
+
+04:36.190 --> 04:42.870
+So we have for each product like one rank until the last products 130.
+
+04:43.070 --> 04:48.630
+So now what we are interested is to go and select the top five right now, in order to do that we need
+
+04:48.630 --> 04:49.390
+a second step.
+
+04:49.390 --> 04:51.910
+That's why we're going to go and use the sub query.
+
+04:51.910 --> 04:53.990
+So we're going to say select star from.
+
+04:53.990 --> 04:58.550
+And then we're going to put the whole thing in a subquery something like that.
+
+04:58.590 --> 04:59.150
+And all.
+
+04:59.150 --> 05:04.070
+What you have to do is to use the new flag that you have created in order to filter the data.
+
+05:04.070 --> 05:09.110
+So we're going to say where the rank products is smaller or equal to five.
+
+05:09.150 --> 05:12.950
+And with that we should get only the top five products.
+
+05:12.950 --> 05:14.270
+So let's go and execute it.
+
+05:14.270 --> 05:16.610
+And as you can see we are getting the same results.
+
+05:16.650 --> 05:20.330
+Now, of course, with the window function it is more complicated than the first one.
+
+05:20.330 --> 05:25.890
+But with the window function we get more flexibility on selecting more columns or adding more different
+
+05:25.930 --> 05:28.530
+types of aggregations and details in the query.
+
+05:28.530 --> 05:34.370
+And as well, we can go and use different types of ranking functions that handles the ties differently.
+
+05:34.370 --> 05:38.690
+So if the task is very simple like this, I'm going to go with the simple groupby.
+
+05:38.770 --> 05:43.370
+But if you are generating like complex reports I'm going to go with the window function.
+
+05:43.370 --> 05:44.130
+So now what you can do.
+
+05:44.130 --> 05:47.330
+You can go and drag the data by different dimensions and measures.
+
+05:47.330 --> 05:51.970
+For example, find the top ten customers who have generated the highest revenue.
+
+05:52.010 --> 05:57.170
+And as well you can go and find the three customers with the fewest orders placed.
+
+05:57.170 --> 06:01.050
+So again, we can go and reuse the previous queries that we have generated.
+
+06:01.050 --> 06:05.370
+So this query generates the customers and their total sales and all.
+
+06:05.370 --> 06:09.050
+What you have to do is to say top ten and then rerun the query.
+
+06:09.090 --> 06:15.210
+And with that you are getting the top ten customers and about the lowest three customers.
+
+06:15.210 --> 06:18.250
+All that you have to do is to go and replace the measure.
+
+06:18.250 --> 06:25.670
+So we are counting the unique number of orders so we can say total orders.
+
+06:25.790 --> 06:29.870
+And as well go change the order by not descending or ascending.
+
+06:29.870 --> 06:31.470
+And we need the top three.
+
+06:31.510 --> 06:37.950
+So let's go and execute it so we can see that three customers that did order only once, and they are
+
+06:37.950 --> 06:40.510
+the three customers with the fewest orders.
+
+06:40.510 --> 06:45.710
+So as you can see by just switching the dimensions and measures, we are generating completely new important
+
+06:45.710 --> 06:46.470
+insights.
+
+06:46.470 --> 06:51.190
+And as you can see, as we are exploring the data, we are understanding what are the best products,
+
+06:51.190 --> 06:55.710
+what are the top customers that are usually very important for reporting.
+
+06:55.750 --> 06:56.510
+All right my friends.
+
+06:56.510 --> 07:01.590
+So with that, we have covered the last tip in our projects how to rank our data.
+
+07:01.590 --> 07:04.710
+And with that we have covered all the steps of the project roadmap.
+
+07:04.710 --> 07:08.950
+We have done a lot of explorations for the database dimensions measures.
+
+07:08.950 --> 07:13.950
+We have combined the dimensions and measures in order to do magnitude and ranking analysis.
+
+07:13.990 --> 07:16.990
+Okay my friends, so that's all about the EDA projects.
+
+07:16.990 --> 07:22.310
+And now in the next one we will do the last type of projects the advanced data analytics.
+
+07:22.310 --> 07:23.310
+So let's go.

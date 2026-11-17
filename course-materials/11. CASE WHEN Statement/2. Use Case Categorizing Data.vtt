@@ -1,0 +1,362 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.760
+Alright friends, so now we come to the part where I'm going to show you the most useful
+
+2
+00:00:07.760 --> 00:00:13.260
+use cases of the case statements that I usually use in my projects. So let's start.
+
+3
+00:00:13.260 --> 00:00:18.219
+The main purpose of the case statement is to do data transformations, and data transformations
+
+4
+00:00:18.219 --> 00:00:21.399
+is a very important process in each data project.
+
+5
+00:00:21.399 --> 00:00:25.860
+And one very important task in data transformations are that we can generate new information.
+
+6
+00:00:25.860 --> 00:00:30.899
+We can go and create new columns based on the existing data that we have in the database
+
+7
+00:00:30.899 --> 00:00:32.700
+using the case statements.
+
+8
+00:00:32.700 --> 00:00:37.779
+And this of course can help us deriving new information for our analysis without modifying
+
+9
+00:00:37.779 --> 00:00:40.819
+the source database only for analytics.
+
+10
+00:00:40.819 --> 00:00:45.560
+So my friends, the main purpose of the case statement is to do data transformations by
+
+11
+00:00:45.560 --> 00:00:48.279
+creating and generating new columns.
+
+12
+00:00:48.279 --> 00:00:52.619
+So now let's start with the first use case, and the most important and famous one is,
+
+13
+00:00:52.619 --> 00:00:56.020
+we use case statements in order to categorize the data.
+
+14
+00:00:56.020 --> 00:01:01.619
+This means we are going to group up the data into different categories based on certain conditions.
+
+15
+00:01:01.619 --> 00:01:03.939
+And now you might ask why this use case is important.
+
+16
+00:01:03.939 --> 00:01:09.900
+Well, classifying and grouping data is fundamental in data analysis and reporting because it
+
+17
+00:01:09.900 --> 00:01:13.500
+makes the data easier to understand and as well to track.
+
+18
+00:01:13.500 --> 00:01:18.580
+But what's more important, it's gonna help us aggregating the data based on the categories.
+
+19
+00:01:18.580 --> 00:01:22.980
+Alright, so now let's have the following task and it says, generate a report showing
+
+20
+00:01:22.980 --> 00:01:26.059
+total sales for each of the following categories.
+
+21
+00:01:26.059 --> 00:01:32.300
+Category high if the sales is over 50, category medium if the sales is between 20 and 50,
+
+22
+00:01:32.300 --> 00:01:34.819
+and low if the sales is 20 or less.
+
+23
+00:01:34.819 --> 00:01:37.940
+And sort the categories from the highest sales to the lowest.
+
+24
+00:01:37.940 --> 00:01:42.459
+Ok, so let's do it step by step, and now before we do any data aggregations, we have to go
+
+25
+00:01:42.459 --> 00:01:46.660
+and create a new column called categories because we don't have it in the database.
+
+26
+00:01:46.739 --> 00:01:49.260
+So now let's start with a very simple select statement.
+
+27
+00:01:49.260 --> 00:01:50.900
+So select, what do we need?
+
+28
+00:01:50.900 --> 00:01:54.860
+Let's take the order ID, the sales, and that's it for now.
+
+29
+00:01:54.860 --> 00:01:59.019
+So from sales, orders, let's go and execute it.
+
+30
+00:01:59.019 --> 00:02:04.980
+And now we have our 10 orders and we have to go and now create a new column called categories.
+
+31
+00:02:04.980 --> 00:02:07.019
+And we're gonna do that using the case statements.
+
+32
+00:02:07.019 --> 00:02:12.380
+So let's take a new line and we start with case and then again a new line in order to
+
+33
+00:02:12.380 --> 00:02:14.940
+define the first condition using the when.
+
+34
+00:02:14.940 --> 00:02:18.559
+So the first condition is the high where sales is over 50.
+
+35
+00:02:18.559 --> 00:02:19.740
+So it's very simple.
+
+36
+00:02:19.740 --> 00:02:25.660
+So when the sales is higher than 50, what can happen if this is true?
+
+37
+00:02:25.660 --> 00:02:28.100
+We want to show the value high.
+
+38
+00:02:28.100 --> 00:02:29.899
+So this is the first condition.
+
+39
+00:02:29.899 --> 00:02:32.259
+And then let's move to the second one.
+
+40
+00:02:32.259 --> 00:02:39.419
+If the sales is higher than 20, that means it's less than 50 and higher than 20.
+
+41
+00:02:39.419 --> 00:02:42.199
+Then we want to see the value medium.
+
+42
+00:02:42.199 --> 00:02:45.399
+And now for the last category, the low, we don't have to go and create a condition for
+
+43
+00:02:45.399 --> 00:02:51.259
+that because if those two fails, then that means the sales either equal to 20 or less.
+
+44
+00:02:51.259 --> 00:02:52.259
+So what are we gonna do?
+
+45
+00:02:52.259 --> 00:02:57.000
+We're gonna just do a simple else and show the value low like this.
+
+46
+00:02:57.000 --> 00:02:59.119
+Let me make this a little bit smaller.
+
+47
+00:02:59.119 --> 00:03:02.679
+Now what is missing in our case is of course the end.
+
+48
+00:03:02.679 --> 00:03:03.880
+Without it, you're gonna get an error.
+
+49
+00:03:03.880 --> 00:03:07.160
+So end and let's give it a name category.
+
+50
+00:03:07.160 --> 00:03:08.279
+So we are ready.
+
+51
+00:03:08.279 --> 00:03:09.559
+Let's go and execute it.
+
+52
+00:03:09.559 --> 00:03:11.259
+So now let's check randomly stuff.
+
+53
+00:03:11.320 --> 00:03:13.740
+So as you can see here, we have the sales of 50.
+
+54
+00:03:13.740 --> 00:03:15.539
+It is low, which is correct.
+
+55
+00:03:15.539 --> 00:03:18.979
+And then we have here 60, it's above 50 and we have the category high.
+
+56
+00:03:18.979 --> 00:03:23.220
+And now if you check the order number six, we have the order 50, it's medium because
+
+57
+00:03:23.220 --> 00:03:25.339
+it is not higher than 50.
+
+58
+00:03:25.339 --> 00:03:27.419
+It is between 50 and 20.
+
+59
+00:03:27.419 --> 00:03:31.779
+So now as you can see, we have now classified our orders using the category.
+
+60
+00:03:31.779 --> 00:03:34.740
+Now the next step is that we're gonna go and aggregate the data.
+
+61
+00:03:34.740 --> 00:03:35.940
+So how are we gonna do that?
+
+62
+00:03:35.940 --> 00:03:38.119
+We will use a sub query.
+
+63
+00:03:38.119 --> 00:03:39.119
+So let's do it like this.
+
+64
+00:03:39.119 --> 00:03:42.639
+So we're gonna go and select, and of course we're gonna group up the data by the category.
+
+65
+00:03:42.639 --> 00:03:47.000
+So we're gonna go and select that category and we need the total sales.
+
+66
+00:03:47.000 --> 00:03:53.399
+That means we're gonna go and use the function sum for the sales and we're gonna call it total sales.
+
+67
+00:03:53.399 --> 00:03:55.899
+So now we have to nest the queries together.
+
+68
+00:03:55.899 --> 00:04:04.600
+So from, this is our query like this, and then we have to close it and group by.
+
+69
+00:04:04.600 --> 00:04:06.600
+So we are grouping by the category.
+
+70
+00:04:06.839 --> 00:04:11.199
+Okay, so with that, we are now aggregating the sales by that category.
+
+71
+00:04:11.199 --> 00:04:12.360
+It's very simple.
+
+72
+00:04:12.360 --> 00:04:13.800
+Let's go and execute it.
+
+73
+00:04:13.800 --> 00:04:15.800
+So now in the result, we have only three categories.
+
+74
+00:04:15.800 --> 00:04:19.480
+We don't have the 10 orders because now we are doing data aggregations.
+
+75
+00:04:19.480 --> 00:04:22.760
+So now the granularity now on the level of category.
+
+76
+00:04:22.760 --> 00:04:29.160
+So now we can see the total sales for the high is 2010, the low we have 65 and the medium we have 105.
+
+77
+00:04:29.160 --> 00:04:33.679
+And of course we are not done yet because in the task it says, sort the categories from
+
+78
+00:04:33.679 --> 00:04:35.839
+the highest sales to the lowest.
+
+79
+00:04:36.079 --> 00:04:39.920
+So that means we have to go and use an order by statement at the end, and we're going to
+
+80
+00:04:39.920 --> 00:04:45.279
+sort the data by the sales from the highest to the lowest, that means descending. So that's it.
+
+81
+00:04:45.279 --> 00:04:46.559
+Let's go and execute it.
+
+82
+00:04:46.559 --> 00:04:48.640
+And now with that, we have our reports.
+
+83
+00:04:48.640 --> 00:04:52.119
+Now we are showing the total sales by the categories and the data is sorted from the
+
+84
+00:04:52.119 --> 00:04:53.660
+highest to the lowest.
+
+85
+00:04:53.660 --> 00:04:58.119
+So the highest category is high, then medium, and then the last one is low.
+
+86
+00:04:58.119 --> 00:05:01.720
+So my friends, as you can see, with the help of the case, when we have created the new
+
+87
+00:05:01.720 --> 00:05:07.079
+information from our data, we have the category, and then we have created insights or report
+
+88
+00:05:07.079 --> 00:05:12.440
+based on this new information where we have aggregated our data using this new information.
+
+89
+00:05:12.440 --> 00:05:17.079
+So the use case of categorizing data using case statements is fundamental and very important
+
+90
+00:05:17.079 --> 00:05:18.600
+in each data project.
+

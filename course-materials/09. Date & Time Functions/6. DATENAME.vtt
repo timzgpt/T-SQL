@@ -1,0 +1,292 @@
+WEBVTT
+
+00:03.840 --> 00:04.160
+All right.
+
+00:04.160 --> 00:06.640
+So now we have very similar function to the data part.
+
+00:06.680 --> 00:08.200
+We have the date name.
+
+00:08.200 --> 00:12.520
+So the only difference here is that it returns the name of the date part.
+
+00:12.560 --> 00:12.880
+All right.
+
+00:12.880 --> 00:14.000
+So now back to our example.
+
+00:14.000 --> 00:18.560
+We have learned we can extract different types of parts from one date.
+
+00:18.560 --> 00:21.440
+But we learned as well that all of them are numbers.
+
+00:21.440 --> 00:24.680
+How about we would like to extract the name of the month.
+
+00:24.680 --> 00:30.000
+So instead of eight I would like to get the name of the month like August or instead of the 20.
+
+00:30.040 --> 00:34.720
+I would like to get the day name like here in this example it's going to be Wednesday.
+
+00:34.720 --> 00:39.640
+So in order to get the name of the parts, we have to use the function date name.
+
+00:39.640 --> 00:44.880
+So for example, if you use the function date name using the part month, you will not get eight in
+
+00:44.920 --> 00:45.440
+the output.
+
+00:45.440 --> 00:48.240
+You will get the full name of the month August.
+
+00:48.240 --> 00:52.240
+So as you can see we are getting a string, a full name and as well the same thing.
+
+00:52.240 --> 00:56.400
+If you use date name for the weekday, you will not get 20.
+
+00:56.440 --> 00:57.720
+Like the day function.
+
+00:57.720 --> 01:02.080
+You will get the name of the day Wednesday and as well here the output is string.
+
+01:02.080 --> 01:03.440
+So as you can see it's very simple.
+
+01:03.440 --> 01:09.600
+We are using the date name in order to get the name of the parts and the data type of the output here
+
+01:09.600 --> 01:10.400
+is string.
+
+01:10.400 --> 01:11.640
+It is not an integer.
+
+01:11.640 --> 01:16.720
+So as you can see here, we have different types of functions that all of them are doing the same job.
+
+01:16.720 --> 01:20.120
+We are extracting parts from one date.
+
+01:20.160 --> 01:20.400
+Okay.
+
+01:20.440 --> 01:25.560
+So now by checking the data name syntax is going to be identical to the date part.
+
+01:25.600 --> 01:31.720
+So we are just switching the function name it needs from you to define the part and as will the dates.
+
+01:31.720 --> 01:35.440
+The only difference is that you are getting different data type at the output.
+
+01:35.440 --> 01:37.920
+So here we are getting a string instead of integer.
+
+01:37.960 --> 01:38.240
+All right.
+
+01:38.240 --> 01:39.440
+So now let's check the date name.
+
+01:39.440 --> 01:41.280
+It is very similar to the date part.
+
+01:41.320 --> 01:43.040
+So we're going to have it like this.
+
+01:43.040 --> 01:45.000
+We're going to work as well with the creation time.
+
+01:45.360 --> 01:47.120
+So we're going to say date name.
+
+01:47.400 --> 01:49.840
+And then after that we have to define the parts.
+
+01:49.840 --> 01:51.720
+So let's go for example with the month.
+
+01:52.040 --> 01:55.080
+And our field is as usual the creation time.
+
+01:55.120 --> 01:58.680
+And let's call it month date name.
+
+01:59.800 --> 02:00.480
+Like this.
+
+02:00.680 --> 02:01.960
+So that's it.
+
+02:01.960 --> 02:03.400
+Let's go and execute it.
+
+02:03.400 --> 02:06.240
+Now if you go to the output over here, you can see we have the month.
+
+02:06.240 --> 02:08.360
+But this time we don't have numbers.
+
+02:08.360 --> 02:10.200
+We have the full name of the month.
+
+02:10.200 --> 02:14.200
+So we have January February, March instead of having one two, three.
+
+02:14.200 --> 02:17.350
+So this is the big difference between the date name and date part.
+
+02:17.390 --> 02:17.870
+Date part.
+
+02:17.910 --> 02:19.230
+You get numbers.
+
+02:19.230 --> 02:19.510
+Date.
+
+02:19.550 --> 02:19.790
+Name.
+
+02:19.790 --> 02:21.510
+You get the name of the part.
+
+02:21.550 --> 02:23.430
+So let's do the same thing for the day.
+
+02:23.430 --> 02:26.310
+We would like to get the name of the day.
+
+02:26.470 --> 02:28.070
+So I'm just duplicating it.
+
+02:28.070 --> 02:31.870
+But now in order to get the full name of the day, we cannot go with the day.
+
+02:31.910 --> 02:35.030
+We're going to go with the week day as a part.
+
+02:35.070 --> 02:36.110
+So that's it.
+
+02:36.110 --> 02:38.150
+I will call it week day.
+
+02:38.590 --> 02:39.790
+So let's execute it now.
+
+02:39.790 --> 02:43.590
+As you can see in the outputs we have here a new column called weekday.
+
+02:43.590 --> 02:47.230
+And inside it we have the name of the day instead of a number.
+
+02:47.230 --> 02:49.790
+So here we have Wednesday, Sunday Friday and so on.
+
+02:49.790 --> 02:51.830
+So the full name of the day.
+
+02:52.110 --> 02:55.150
+Of course with the day let's go and try that out.
+
+02:57.150 --> 02:59.350
+So this is the day of the month.
+
+02:59.350 --> 03:02.070
+And of course the day of the month has no name.
+
+03:02.070 --> 03:04.470
+And SQL of course can return the numbers again.
+
+03:04.470 --> 03:06.910
+So you can see one, five, ten, 20 and so on.
+
+03:06.910 --> 03:12.830
+But still there is a difference between the day from the day name and the day from the date parts.
+
+03:12.830 --> 03:15.510
+In the date parts we are getting integers.
+
+03:15.510 --> 03:19.990
+So if you store those information in a new table, it's going to be stored as an integer.
+
+03:20.190 --> 03:25.710
+But in the day that you are getting from the date name, it is a number, but still it can be stored
+
+03:25.710 --> 03:27.150
+as a string value.
+
+03:27.150 --> 03:30.110
+So the data type of those numbers is a string.
+
+03:30.110 --> 03:33.830
+And the data types of the day from the date part is an integer.
+
+03:33.830 --> 03:36.670
+And the same thing can happen if you extract, for example, a year.
+
+03:36.670 --> 03:39.430
+So you don't have like a full text of the year.
+
+03:39.710 --> 03:42.390
+So let me just do it like this.
+
+03:42.390 --> 03:46.670
+So if we say a year, you will not get the name of the year.
+
+03:46.670 --> 03:49.190
+You're still getting the numbers, the digits.
+
+03:49.190 --> 03:51.230
+But the data type here is a string.
+
+03:51.230 --> 03:52.030
+So that's it.
+
+03:52.030 --> 03:54.630
+This is the difference between the date name and the date parts.
+
+03:54.910 --> 03:56.590
+For the month and weekday.
+
+03:56.590 --> 03:58.710
+You will get the full name for the other stuff.
+
+03:58.710 --> 04:01.870
+You will get numbers but with the string data type.
+
+04:01.870 --> 04:07.910
+So the most important thing about the date name is to present easy to read and human readable informations
+
+04:07.910 --> 04:08.830
+to the users.
+
+04:08.830 --> 04:13.550
+So imagine you are building a report called Sales by month and then you show to the user the month is
+
+04:13.590 --> 04:15.830
+as numbers one, two, three until 12.
+
+04:15.870 --> 04:21.550
+This is of course okay, but it is way more nicer if you present those informations as a full text.
+
+04:21.550 --> 04:26.830
+So you go with the date name in order to show instead of one you show January, February, March and
+
+04:26.830 --> 04:27.990
+the full name of the month.
+
+04:27.990 --> 04:31.390
+And this is going to look way nicer in reporting for the users.
+
+04:31.390 --> 04:34.190
+So this is the core use case of the date name.

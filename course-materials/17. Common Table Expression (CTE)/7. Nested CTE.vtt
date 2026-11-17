@@ -1,0 +1,700 @@
+WEBVTT
+
+00:03.920 --> 00:04.280
+All right.
+
+00:04.320 --> 00:06.160
+So now what is a nested CTE?
+
+00:06.320 --> 00:09.000
+It is a CTE inside another city.
+
+00:09.200 --> 00:10.840
+So it's kind of like subqueries.
+
+00:10.880 --> 00:12.880
+A query inside another query.
+
+00:12.880 --> 00:16.120
+So not only a main query can use the result of CTE.
+
+00:16.640 --> 00:19.080
+Another CTE can use the results from a CTE.
+
+00:19.280 --> 00:21.920
+And of course the nested city is like a mini query.
+
+00:21.920 --> 00:24.040
+It's depend on other queries.
+
+00:24.040 --> 00:28.880
+That means you cannot go and select it and run it independently from the query.
+
+00:28.880 --> 00:34.720
+So always you have to run the CTE inside it first before seeing the result of that nested CTE.
+
+00:34.760 --> 00:35.000
+Okay.
+
+00:35.040 --> 00:36.720
+So now let's understand what this means.
+
+00:36.760 --> 00:38.160
+Again we have our database.
+
+00:38.160 --> 00:43.960
+And we have a city query that goes directly to the database and queries the data from there.
+
+00:44.000 --> 00:47.160
+And in the output we will get the intermediate results.
+
+00:47.200 --> 00:52.640
+And now in this scenario this time we will not have only one intermediate results because we have many
+
+00:52.640 --> 00:53.680
+different steps.
+
+00:53.680 --> 00:58.960
+We need another intermediate results before everything is prepared for the main query.
+
+00:58.960 --> 01:05.220
+So that means we have another step that's going to be built up on top of the first intermediate results.
+
+01:05.220 --> 01:11.500
+So that means we can have another CTE that's going to be querying the results from the first CTE and
+
+01:11.500 --> 01:14.620
+built on top of it another intermediate result.
+
+01:14.620 --> 01:17.980
+So as you can see here we have CTE one and CTE two.
+
+01:18.100 --> 01:21.340
+And that means we now we have like two intermediate results.
+
+01:21.340 --> 01:25.100
+And now of course we can go and add CTE three four and so on.
+
+01:25.100 --> 01:31.300
+But now let's say that the CTE two going to prepare the final intermediate result for the main query.
+
+01:31.300 --> 01:35.460
+So now the main query is going to go and query the second intermediate results.
+
+01:35.460 --> 01:40.100
+And it's going to do the final step where the final result can be presented for the user.
+
+01:40.100 --> 01:46.100
+And of course if it is needed, the main query can access not only the second intermediate results from
+
+01:46.100 --> 01:50.820
+the second CTE, but also the first intermediate result from the CTE one.
+
+01:50.860 --> 01:57.730
+Now we call the first CTE a standalone CTE because it doesn't depend on any intermediate results It
+
+01:57.730 --> 02:00.410
+goes directly to the database and gets the data.
+
+02:00.410 --> 02:05.690
+But now since the second CTE is completely depending on the CTE one.
+
+02:05.730 --> 02:11.130
+So this time we're going to call this CTE a nested CTE because we cannot go and execute it on its own.
+
+02:11.130 --> 02:13.250
+It always depends on the city one.
+
+02:13.290 --> 02:15.970
+And of course the main city is depending on everything.
+
+02:15.970 --> 02:17.850
+So as you can see we're using the cities.
+
+02:17.890 --> 02:19.810
+We're going to go and build like a chain.
+
+02:19.810 --> 02:24.290
+So this is what we mean with that standalone CTE and nested CTE okay.
+
+02:24.330 --> 02:26.970
+So now let's understand the syntax of the nested CTE.
+
+02:27.010 --> 02:32.730
+So we start as usual with the definition of the first city using the with clause and then the name of
+
+02:32.730 --> 02:35.090
+the city and the definition of the city.
+
+02:35.130 --> 02:36.570
+So here it's nothing new.
+
+02:36.810 --> 02:43.010
+Now we go and define the second CTE as we learned using the comma, then the name of the CTE and the
+
+02:43.010 --> 02:43.770
+definition.
+
+02:43.770 --> 02:46.010
+So this is our CTE number two.
+
+02:46.050 --> 02:50.650
+So now the second CTE is depending on the results of the first CTE.
+
+02:50.810 --> 02:51.770
+So how are we going to do it.
+
+02:51.770 --> 02:52.730
+It's very simple.
+
+02:52.970 --> 02:58.270
+Now for the CTE number two we're going to select the data from the city number one.
+
+02:58.270 --> 03:02.750
+And with that we are making the second city depending on the first one.
+
+03:02.750 --> 03:08.030
+So this means the second city is getting the data from the first one, and it's querying the data in
+
+03:08.030 --> 03:09.670
+order to do the second step.
+
+03:09.710 --> 03:16.230
+And with that, we are nesting one city in another, and the city two is completely depending on the
+
+03:16.230 --> 03:16.950
+first one.
+
+03:16.950 --> 03:23.070
+So again, we call the first CTE as standalone CTE because it doesn't depend on anything.
+
+03:23.110 --> 03:27.670
+We can execute it on its own and it just needs the data directly from the database.
+
+03:27.670 --> 03:34.070
+But the second CTE, since it's completely dependent on the city number one, we call it a nested CTE.
+
+03:34.270 --> 03:35.310
+So they are very similar.
+
+03:35.310 --> 03:38.590
+We are just selecting the data from the city number one.
+
+03:38.630 --> 03:40.350
+And now comes our main query.
+
+03:40.350 --> 03:44.710
+And of course it's going to go and use the data from the second step.
+
+03:44.710 --> 03:47.830
+So it's going to go and select the data from the city number two.
+
+03:47.870 --> 03:49.990
+But it's still of course it's not a rule.
+
+03:49.990 --> 03:54.030
+It can go and access the data and select the data from the city number one.
+
+03:54.050 --> 03:57.610
+So this is how we can create a nested CTE in SQL.
+
+03:57.730 --> 04:02.090
+All right guys back to our project where we are creating a report about the customers.
+
+04:02.090 --> 04:04.090
+And we would like to add one more step.
+
+04:04.090 --> 04:09.610
+So the task is rank the customers based on total sales per customer.
+
+04:09.610 --> 04:12.290
+So this is one more step inside our projects.
+
+04:12.290 --> 04:17.490
+And we would like to go and use as well the CTE in order to implement this step.
+
+04:17.490 --> 04:18.370
+So now what do we need.
+
+04:18.410 --> 04:22.450
+We need to rank the customers based on total sales for each customer.
+
+04:22.450 --> 04:24.330
+So here like we have two steps.
+
+04:24.370 --> 04:27.050
+First we have to calculate the total sales per customer.
+
+04:27.050 --> 04:30.890
+And then we have to go and rank it based on this information.
+
+04:30.890 --> 04:34.010
+And of course the sales are stored inside the orders.
+
+04:34.010 --> 04:36.330
+So now let's go and start implementing the CTE.
+
+04:36.690 --> 04:44.050
+So we're going to have a comma and we're going to call it CTE customer rank as.
+
+04:44.090 --> 04:46.610
+And then we're going to go have the parentheses.
+
+04:46.610 --> 04:49.210
+And inside it we're going to develop now the logic.
+
+04:49.210 --> 04:53.080
+So first we have to go and aggregate the data by the total sales.
+
+04:53.080 --> 05:03.280
+So select customer ID and then sum the sales from the table sales orders.
+
+05:03.280 --> 05:07.480
+And then of course group by the customer ID.
+
+05:07.720 --> 05:11.360
+And now I can hear you even telling me we have already done this.
+
+05:11.360 --> 05:12.560
+We have already this logic.
+
+05:12.560 --> 05:18.200
+So why we are repeating if we go to the first CTE, you can see we have already done that.
+
+05:18.200 --> 05:19.520
+And you are totally right.
+
+05:19.520 --> 05:23.400
+We have already the logic, so it makes no sense to repeat it again.
+
+05:23.440 --> 05:27.600
+And if we do this, then we didn't understood the power of the CTE.
+
+05:27.760 --> 05:34.120
+So we don't have to repeat the same logic and we can reuse the CTE inside another CTE.
+
+05:34.280 --> 05:36.120
+So now we don't need all those stuff.
+
+05:36.120 --> 05:39.960
+We can go and focus immediately with ranking the customers.
+
+05:39.960 --> 05:43.160
+So first let me just select the data from the first CTE.
+
+05:43.520 --> 05:45.120
+So I'm going to go and select.
+
+05:45.120 --> 05:45.880
+So what do we have.
+
+05:45.880 --> 05:55.300
+We have customer ID and we have total sales and we're going to select it this time, not from any physical
+
+05:55.340 --> 05:55.660
+table.
+
+05:55.660 --> 05:57.740
+We're going to select our CTE.
+
+05:57.940 --> 05:59.060
+So like this.
+
+05:59.100 --> 06:03.220
+And now what we're going to do we're going to go and select the whole thing and execute it.
+
+06:03.260 --> 06:06.740
+Well this is the issue of nesting cities.
+
+06:06.980 --> 06:11.300
+Sadly this city is completely depending on the fair city.
+
+06:11.300 --> 06:13.820
+So we cannot go and execute it on its own.
+
+06:13.820 --> 06:19.940
+And this is of course very annoying because each time I execute the query by the end of the query,
+
+06:19.940 --> 06:23.700
+it's going to go and destroy all the ctes.
+
+06:23.740 --> 06:26.740
+So in the memory we will not find the CTE.
+
+06:26.900 --> 06:32.220
+And that's why once I executed it, SQL don't know anything about this city.
+
+06:32.220 --> 06:39.260
+And in order now to see the result of this, we have always to execute as well with it the CTE that
+
+06:39.260 --> 06:40.020
+I'm using.
+
+06:40.020 --> 06:47.260
+So what I usually do, I go over here and make everything in comment in the main query, and now I can
+
+06:47.260 --> 06:49.050
+go and execute the whole thing.
+
+06:49.090 --> 06:53.090
+And now I will see in the output the outcome of this necessity.
+
+06:53.130 --> 06:58.330
+So this is the big difference between the standalone CDs like here and the nested.
+
+06:58.370 --> 06:59.730
+So now let's go back to our task.
+
+06:59.730 --> 07:03.370
+We have to rank those sales based on the total sales.
+
+07:03.370 --> 07:08.410
+So we can go and use the rank function from the window function.
+
+07:08.410 --> 07:10.170
+So rank over.
+
+07:10.930 --> 07:12.890
+And now we don't have to partition the data.
+
+07:12.890 --> 07:18.370
+We just want to sort the data by the total sales descending.
+
+07:19.610 --> 07:23.130
+So like this the highest sales can I get the rank number one.
+
+07:23.130 --> 07:27.210
+So let's go and give it the name as customer rank.
+
+07:27.490 --> 07:31.050
+Now as you can see we have a really nice rank beside those informations.
+
+07:31.050 --> 07:35.810
+Customer three has the highest sales and customer two has the lowest total sales.
+
+07:35.810 --> 07:38.770
+So that as you can see we didn't repeat ourselves.
+
+07:38.770 --> 07:42.970
+We just reused another city in our current city.
+
+07:43.010 --> 07:49.110
+And this is exactly why this technique is very amazing in order to reduce redundancies and to reduce
+
+07:49.110 --> 07:51.110
+the complexity of the whole query.
+
+07:51.110 --> 07:56.790
+So nested are annoying to execute, but they reduce the redundancies of our code.
+
+07:56.830 --> 07:58.350
+Now we are done with our logic.
+
+07:58.350 --> 07:59.510
+We tested everything.
+
+07:59.510 --> 08:00.390
+So what are we going to do?
+
+08:00.390 --> 08:03.710
+We're going to go and integrate it in our main query.
+
+08:03.710 --> 08:08.750
+So let me just remove the comments from here and let's go and add it in the main query.
+
+08:08.750 --> 08:10.550
+So we will do the same thing.
+
+08:10.550 --> 08:15.190
+We're going to go and do a left join with the last city that we just created.
+
+08:15.190 --> 08:19.550
+So let me just call it CCR and the same conditions.
+
+08:19.550 --> 08:25.350
+We are always joining on the customer ID, but don't forget to rename the alias.
+
+08:25.510 --> 08:31.030
+So it is CCR customer ID equal to the customer ID from the first table.
+
+08:31.030 --> 08:34.670
+And of course we have to go and select the new information.
+
+08:34.670 --> 08:37.910
+So CCR dot customer rank.
+
+08:38.790 --> 08:41.270
+And now let's go and execute the whole thing.
+
+08:41.310 --> 08:45.850
+Now as you can see in the results those three columns comes from the customers table.
+
+08:45.890 --> 08:53.330
+The total sales comes from the first CTE, the last order from the second CTE, and the customer rank
+
+08:53.370 --> 08:56.850
+comes from our nested CTE that we just created.
+
+08:56.850 --> 09:03.570
+So guys, it is not a simple task creating such a report because it involves different aggregations
+
+09:03.570 --> 09:04.930
+and different functions.
+
+09:04.930 --> 09:06.610
+But our work is organized.
+
+09:06.610 --> 09:08.250
+As you can see it's very simple.
+
+09:08.250 --> 09:11.450
+We have step one, step two, step three and the main query.
+
+09:11.450 --> 09:15.530
+And it's really easy to add more components to our query.
+
+09:15.570 --> 09:19.170
+Now I would like really to keep practicing using those nested queries.
+
+09:19.170 --> 09:20.450
+So we have the following task.
+
+09:20.450 --> 09:26.970
+We would like to add one more step in our report segment the customers based on their total sales.
+
+09:26.970 --> 09:30.130
+So I would like to implement this as well using CTE.
+
+09:30.490 --> 09:31.930
+So let's go and solve it.
+
+09:31.970 --> 09:33.970
+We want to go and add a new CTE.
+
+09:34.010 --> 09:39.690
+It's going to be CTE customer segments as.
+
+09:39.730 --> 09:42.850
+And then we have to go and define our logic.
+
+09:42.850 --> 09:45.640
+Now if you check our task, it has two parts.
+
+09:45.640 --> 09:47.320
+We have to find the total sales.
+
+09:47.520 --> 09:51.360
+And then we have to segment the customers based on this information.
+
+09:51.360 --> 09:55.720
+So it is something very similar to what we have done in the step three.
+
+09:55.720 --> 10:00.720
+So that means we don't have to go and calculate again the total sales we have to go and use as well
+
+10:00.760 --> 10:02.760
+our amazing first CTE.
+
+10:02.800 --> 10:04.320
+So let's go and do it.
+
+10:05.240 --> 10:05.800
+What do we need.
+
+10:05.800 --> 10:09.040
+We need the customer ID like this.
+
+10:09.840 --> 10:13.000
+And let's do basic segmentations using the casewhen.
+
+10:13.240 --> 10:17.360
+So let's say casewhen the total sales.
+
+10:17.360 --> 10:23.400
+If it's higher than 100, then let's say the customer is going to belong to the group high.
+
+10:23.800 --> 10:26.600
+And let's go and add another category.
+
+10:27.080 --> 10:36.600
+If it's not higher than 100, if it is higher than 50, then the customer is going to belong to medium.
+
+10:37.240 --> 10:40.720
+And if the total sales is less or equal to 50.
+
+10:41.040 --> 10:42.300
+So what's going to happen?
+
+10:42.300 --> 10:46.620
+We're going to say else the customer belongs to the low category.
+
+10:47.060 --> 10:47.940
+So that's it.
+
+10:47.980 --> 10:52.100
+We're going to have an end and let's call it customer segments.
+
+10:52.500 --> 10:53.220
+All right.
+
+10:53.220 --> 10:56.060
+But of course we have to go and select it from a table.
+
+10:56.060 --> 10:58.100
+And it's going to be our CTE.
+
+10:58.140 --> 11:00.220
+So total sales.
+
+11:00.780 --> 11:02.940
+And let's put it in our new CD.
+
+11:03.060 --> 11:07.100
+And I would like to test it before like putting it inside our main query.
+
+11:07.180 --> 11:13.900
+That's why I will put everything in comments in my main query since it is a nested CTE sadly.
+
+11:13.900 --> 11:19.660
+And we will just go and select our new nested CTE like we have done before.
+
+11:19.780 --> 11:21.780
+So let's go and execute it.
+
+11:21.820 --> 11:27.900
+Now as you can see in the output, we have two customers with the category high and two customers with
+
+11:27.900 --> 11:28.660
+the medium.
+
+11:28.660 --> 11:32.660
+But in order to make sure that everything is working perfectly, I would like to go and add the total
+
+11:32.660 --> 11:34.820
+sales just to see the numbers.
+
+11:34.820 --> 11:36.140
+So let's go and execute it.
+
+11:36.180 --> 11:38.140
+Well, you can see everything is correct.
+
+11:38.140 --> 11:44.960
+So those customers having higher than 100 in the total sales, and those two having higher than 50.
+
+11:45.000 --> 11:46.680
+But let's go and change stuff around.
+
+11:46.680 --> 11:50.800
+I would like to have it like 80 as a medium, just in order to have low.
+
+11:50.800 --> 11:54.880
+So with that, the customer number two having a lower sales than 80.
+
+11:54.920 --> 11:56.520
+That's why we are getting the segment low.
+
+11:56.560 --> 11:57.320
+Everything is done.
+
+11:57.320 --> 12:00.400
+And we have segmented the users into different categories.
+
+12:00.720 --> 12:02.760
+So I don't need to test anymore.
+
+12:02.880 --> 12:05.520
+Let's go integrate it in our main query.
+
+12:05.520 --> 12:07.480
+So we're going to do the same things over here.
+
+12:07.480 --> 12:12.840
+We're going to say left join and we're going to get our new CTE.
+
+12:13.120 --> 12:18.760
+So CC s and we have to do the join condition.
+
+12:19.360 --> 12:20.600
+Don't forget to change it.
+
+12:20.600 --> 12:24.000
+And we have to select our new nice information.
+
+12:24.000 --> 12:26.200
+It's going to be the customer segments.
+
+12:26.200 --> 12:29.240
+And now we can go and execute the whole thing.
+
+12:29.240 --> 12:33.440
+So we have now like four different cities and one main query.
+
+12:33.480 --> 12:36.840
+And now we can see in the output we got those three informations from the table.
+
+12:36.840 --> 12:37.600
+Customers.
+
+12:37.600 --> 12:38.550
+The first city.
+
+12:38.630 --> 12:39.190
+The second.
+
+12:39.230 --> 12:39.710
+Third.
+
+12:39.750 --> 12:42.430
+And this is our new column that we just created.
+
+12:42.430 --> 12:47.230
+So again, we have done this using a necessity like this.
+
+12:47.270 --> 12:48.750
+Let me just add it.
+
+12:50.710 --> 12:54.150
+And it was really easy to extend and to add to our report.
+
+12:54.190 --> 12:54.870
+All right guys.
+
+12:54.870 --> 13:00.030
+So with that we have done like a mini project where we have analyzed the customer information based
+
+13:00.030 --> 13:01.950
+on different aspects from our data.
+
+13:01.950 --> 13:04.190
+And we have done it like step by step.
+
+13:04.230 --> 13:09.630
+And now you have like a feeling on how to write complex SQL queries using the help of the CTE.
+
+13:09.670 --> 13:11.670
+And we have done it like step by step.
+
+13:11.670 --> 13:17.110
+So as you can see, if you go through these scripts, you can understand okay, it is divided into multiple
+
+13:17.110 --> 13:17.670
+steps.
+
+13:17.670 --> 13:22.910
+And each block is responsible for one specific problem of the whole report.
+
+13:22.910 --> 13:24.830
+And this is exactly the power of the CTE.
+
+13:24.870 --> 13:27.110
+It introduces modularity.
+
+13:27.110 --> 13:29.910
+So each CTE is self-contained.
+
+13:29.910 --> 13:31.830
+And talk about one issue.
+
+13:31.870 --> 13:37.550
+And this is amazing way on how to organize your project using SQL and how to structure your work.

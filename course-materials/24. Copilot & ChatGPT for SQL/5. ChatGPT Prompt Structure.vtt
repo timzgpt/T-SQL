@@ -1,0 +1,169 @@
+WEBVTT
+
+00:00.120 --> 00:00.840
+All right, friends.
+
+00:00.840 --> 00:02.560
+So now let's switch to ChatGPT.
+
+00:02.760 --> 00:08.360
+So let's start first by understanding the structure and the basic components of ChatGPT prompts.
+
+00:12.400 --> 00:16.200
+So the first component and the most important one we have the tasks.
+
+00:16.200 --> 00:19.720
+You have to be very clear by defining what the AI should do.
+
+00:19.720 --> 00:23.880
+And without having a clear tasks the AI will not understand what to do.
+
+00:23.880 --> 00:26.840
+So this is mandatory in each prompts.
+
+00:26.840 --> 00:29.800
+And then after that you have to provide some context.
+
+00:29.800 --> 00:31.680
+So you give some background information.
+
+00:31.680 --> 00:36.240
+Like for example you say I am students or I am a data engineer and so on.
+
+00:36.360 --> 00:39.720
+And another component we have to add specifications.
+
+00:39.720 --> 00:43.160
+So in the task you give the main task what the AI should do.
+
+00:43.160 --> 00:48.720
+But with the specifications you go in details like for example which topic should be added or maybe
+
+00:48.720 --> 00:51.640
+excluded the number of word counts.
+
+00:51.840 --> 00:57.640
+So here you are specifying a lot of wishes and small details and specifications in order to get an answer
+
+00:57.640 --> 00:59.400
+that meets your expectations.
+
+00:59.400 --> 01:02.960
+So both of their contexts and specifications, they are important.
+
+01:02.960 --> 01:07.960
+And then after that we have some nice to have components like for example specifying a rule.
+
+01:07.960 --> 01:09.970
+So here you give the I a rule.
+
+01:09.970 --> 01:14.250
+Like for example, you tell it to act as an expert as a teacher.
+
+01:14.290 --> 01:15.250
+Interviewer.
+
+01:15.450 --> 01:18.250
+So you are setting the AI to play a rule.
+
+01:18.250 --> 01:21.130
+And the last component that you can add is as well the tone.
+
+01:21.170 --> 01:26.730
+Here you are defining like the voice of the answer in order just to make the answer like more friendly
+
+01:26.730 --> 01:28.770
+and easy to read and engaging.
+
+01:28.850 --> 01:31.370
+So the role and the tone, they are nice to have.
+
+01:31.410 --> 01:36.290
+And if you go and use all those components, you will get a better result from the AI.
+
+01:36.570 --> 01:41.170
+So let's take for example the following prompts explain SQL window functions.
+
+01:41.250 --> 01:43.450
+So this is very simple and very short.
+
+01:43.650 --> 01:46.530
+And here we have only one component the task.
+
+01:46.570 --> 01:51.730
+So here you are not giving any context whether it is for data analytics or for data engineering.
+
+01:51.850 --> 01:53.690
+So you leave it up to the AI.
+
+01:53.810 --> 01:57.770
+And maybe the answer that you will get will not meet the expectation that you have.
+
+01:57.810 --> 02:02.090
+And now if you want to shape it in the way that you want, you have to add more components.
+
+02:02.130 --> 02:06.610
+Like for example, this prompts you are saying you are a senior SQL expert.
+
+02:06.650 --> 02:09.530
+So here we are defining the rule for the AI.
+
+02:09.650 --> 02:12.730
+So the AI should act now as an SQL expert.
+
+02:12.730 --> 02:16.290
+And then the next section we are adding a context to the prompts.
+
+02:16.330 --> 02:20.790
+So we are saying I'm a data analyst working on SQL projects using SQL server.
+
+02:20.790 --> 02:26.270
+So now the answer that you will get from the I going to use the syntax of the SQL server and focus on
+
+02:26.270 --> 02:27.590
+the topic of analytics.
+
+02:27.590 --> 02:29.910
+That's why the context is very important.
+
+02:29.910 --> 02:33.230
+And then we go specify in the prompt the task the main task.
+
+02:33.230 --> 02:37.430
+So we say explain the concept of SQL window functions and do the following.
+
+02:37.470 --> 02:42.590
+And now we go and give more fine details about what the I should provide.
+
+02:42.590 --> 02:47.950
+We are saying explain each window function and show the syntax, describe why they are important and
+
+02:47.950 --> 02:51.430
+when to use them, and list the top three use cases.
+
+02:51.430 --> 02:55.310
+So you are now specifying what you are expecting from the I.
+
+02:55.510 --> 03:00.630
+And after that, of course, it is nice to have we specify the tone of the explanation.
+
+03:00.630 --> 03:06.590
+So we say the tone should be conversational and direct, as if you are speaking to me 1 to 1, so that
+
+03:06.590 --> 03:09.030
+it is not like you are reading a document.
+
+03:09.030 --> 03:11.350
+You are reading something that is engaging.
+
+03:11.350 --> 03:17.750
+So I know this prompt is really big, but still you will get way better results than only saying explain
+
+03:17.750 --> 03:18.750
+the concepts.
+
+03:18.750 --> 03:21.150
+So those are the main components that I usually use.
+
+03:21.150 --> 03:25.630
+If I'm starting like a conversation and a discussion with the ChatGPT.

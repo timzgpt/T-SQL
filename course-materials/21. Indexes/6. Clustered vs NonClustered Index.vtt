@@ -1,0 +1,343 @@
+WEBVTT
+
+00:03.880 --> 00:04.280
+All right.
+
+00:04.320 --> 00:09.240
+So now when I think about the clustered index and the non-clustered index I think about a book.
+
+00:09.280 --> 00:15.320
+You can think of the clustered index like the table of contents at the front of the table.
+
+00:15.320 --> 00:19.440
+So the table of contents gonna tells you where to find each chapter.
+
+00:19.440 --> 00:23.680
+And the chapters are exactly sorted, like the table of contents.
+
+00:23.680 --> 00:26.480
+And this is exactly what the clustered index does.
+
+00:26.480 --> 00:32.120
+But now, in the other hand, think about the non-clustered index as the index that you can find at
+
+00:32.120 --> 00:33.360
+the end of the book.
+
+00:33.400 --> 00:41.120
+The index of the book is a very detailed list of topics, terms, and keywords where it points exactly
+
+00:41.120 --> 00:47.000
+to the location, where you can find it in the book, and the content and the topic of the book is not
+
+00:47.000 --> 00:49.160
+sorted like the index of the book.
+
+00:49.200 --> 00:52.040
+And this is exactly what the non-clustered index does.
+
+00:52.040 --> 00:53.880
+It is coexisting with the data.
+
+00:53.880 --> 01:00.080
+It is an extra list where it can point exactly where we can find the data inside our table.
+
+01:00.120 --> 01:00.440
+All right.
+
+01:00.440 --> 01:04.640
+So now let's put those two indexes side by side to understand the differences between them.
+
+01:04.640 --> 01:10.560
+So the structure of the clustered index is a tree where it starts with the root node where we have an
+
+01:10.600 --> 01:11.520
+index page.
+
+01:11.520 --> 01:17.360
+This index page is pointing to the intermediate nodes where we have as well index pages.
+
+01:17.360 --> 01:22.160
+And those index pages are pointing to the actual data to the data pages.
+
+01:22.160 --> 01:26.720
+So at the leaf level of the clustered index we have the data pages, the actual data.
+
+01:27.040 --> 01:33.440
+What's special about the clustered index is that it physically sort the data inside those pages.
+
+01:33.440 --> 01:36.920
+So everything here is physically rearranged and sorted.
+
+01:36.960 --> 01:41.200
+Now if you are talking about the non-clustered index, we have as well a B-tree.
+
+01:41.200 --> 01:47.360
+So the same thing as the root node, we have an index page pointing to an intermediate index page.
+
+01:47.360 --> 01:52.480
+But this time the intermediate nodes are pointing to another index page.
+
+01:52.480 --> 01:58.000
+They are not pointing like the clustered index to a data page, they are pointing to index page.
+
+01:58.000 --> 02:02.880
+So now if you check this structure, you can see that at the leaf level for the clustered index, we
+
+02:02.880 --> 02:04.680
+have the actual data, the data pages.
+
+02:04.680 --> 02:09.800
+But on the other side, at the leaf level for the non-clustered index, we don't have the actual data,
+
+02:09.800 --> 02:17.040
+we have index pages, but those index pages are pointing to the actual data to the data pages.
+
+02:17.040 --> 02:21.720
+But the big difference is that the data pages are not part of the B-tree.
+
+02:21.760 --> 02:28.040
+The B-tree of the non-clustered index is just a separate structure that does not involve any data.
+
+02:28.040 --> 02:35.120
+So we have only index pages, and it just points to the data pages without changing anything physically
+
+02:35.280 --> 02:36.280
+with your data.
+
+02:36.440 --> 02:41.840
+But in reality, what happened is that you're going to have those two types of indexes, the clustered
+
+02:41.840 --> 02:44.760
+and the non-clustered indexes in one table.
+
+02:44.760 --> 02:45.880
+So one can happen.
+
+02:45.880 --> 02:53.440
+The leaf level of the non-clustered index can be pointing to the data pages of the clustered index.
+
+02:53.440 --> 02:59.640
+Because those index pages don't care whether those pages are sorted or not, it's just going to go and
+
+02:59.640 --> 03:02.600
+point to the correct page and to the correct row.
+
+03:02.760 --> 03:08.640
+So that means we have now like two different B-tree structures that are pointing to the data.
+
+03:08.640 --> 03:14.880
+And here there is like one thing that you have to understand that that you can create only one clustered
+
+03:14.880 --> 03:16.240
+index on a table.
+
+03:16.240 --> 03:21.320
+And this rule really makes sense because you can store the data only in one way in SQL.
+
+03:21.360 --> 03:25.480
+And that's of course makes sense because you can sort the data physically only once.
+
+03:25.520 --> 03:31.640
+And that's why in SQL databases you are allowed to create only one clustered index, because physically
+
+03:31.640 --> 03:37.520
+the data can be sorted only in one way, but in the other hand, in the non-clustered index you can
+
+03:37.520 --> 03:40.520
+create as many non-clustered index you need.
+
+03:40.520 --> 03:45.520
+So you can create three four, and all of them are pointing to the same data pages.
+
+03:45.520 --> 03:49.800
+Because in the B-tree of the non-clustered index, you don't store any data pages.
+
+03:49.800 --> 03:51.760
+We store only pointers to the data.
+
+03:51.760 --> 03:53.840
+And you could have like multiple pointers.
+
+03:53.840 --> 03:58.320
+So this is the most important and the main difference between those two indexes.
+
+03:58.360 --> 04:03.560
+Now if you put it side by side, we have learned that the clustered index going to go and physically
+
+04:03.680 --> 04:10.160
+sorts and stores the rows at the B-tree, but the non-clustered index is going to go and create a separate
+
+04:10.160 --> 04:13.520
+peace structure with pointers to the actual data.
+
+04:13.520 --> 04:20.120
+And by the way, the clustered index, we call it the main index that we could use in each table.
+
+04:20.120 --> 04:26.280
+So the clustered index is the main one, the most important one that you can go and use in each table
+
+04:26.280 --> 04:27.480
+in your database.
+
+04:27.520 --> 04:33.040
+Now as we learned, if you are talking about the number of indexes, you can create maximum one index
+
+04:33.040 --> 04:34.080
+for each table.
+
+04:34.080 --> 04:36.760
+But for the non-clustered index there is no limitations.
+
+04:36.760 --> 04:40.240
+You can go and create multiple indexes for each table.
+
+04:40.280 --> 04:46.320
+And now if you go and compare them about the read performance, how fast we can get data using clustered
+
+04:46.320 --> 04:46.840
+index.
+
+04:46.840 --> 04:50.400
+Well, it is faster than the non-clustered index.
+
+04:50.400 --> 04:57.080
+And that's because in the non-clustered index we have this extra layer at the leaf node from the B-tree.
+
+04:57.080 --> 05:02.800
+And because of this having extra layer, that means SQL has to do extra job in order to find the data.
+
+05:02.840 --> 05:06.930
+That's why clustered index is faster than the non-clustered index.
+
+05:06.930 --> 05:13.010
+But now, in the other hand, if you are talking about the right performance, how fast we can insert
+
+05:13.010 --> 05:14.290
+data to the tables.
+
+05:14.410 --> 05:20.090
+Well, writing data to a table with a clustered index is slower than the non-clustered index.
+
+05:20.090 --> 05:26.010
+And that's because as you are inserting data to the table, SQL has always to check the data pages.
+
+05:26.330 --> 05:28.490
+Is everything sorted correctly?
+
+05:28.490 --> 05:34.530
+And if not, SQL has to go and start physically sorting the data again in order to have the correct
+
+05:34.530 --> 05:35.170
+order.
+
+05:35.170 --> 05:39.170
+So there is a lot of stress in order to sort the data with the clustered index.
+
+05:39.170 --> 05:42.450
+But in the other hand, in the non-clustered index we don't have this.
+
+05:42.450 --> 05:45.050
+So the physical data can stay as it is.
+
+05:45.090 --> 05:48.090
+We are just creating nice new pointers.
+
+05:48.090 --> 05:52.530
+So if you are writing to a table where you have a clustered index, it's going to be slower than writing
+
+05:52.570 --> 05:55.210
+to a table where you have non-clustered index.
+
+05:55.410 --> 06:01.690
+And of course, the fastest way to write data to a table is to not have indexes at all.
+
+06:01.690 --> 06:03.050
+So a heap structure.
+
+06:03.050 --> 06:09.970
+So SQL just go and start inserting data inside those data pages without creating any extra structures.
+
+06:09.970 --> 06:12.250
+So as you can see, it's like always a trade off.
+
+06:12.490 --> 06:17.410
+You can read fast, but you can write slower, so you cannot have like everything.
+
+06:17.450 --> 06:19.730
+Now we are talking about the storage efficiency.
+
+06:20.050 --> 06:24.890
+The clustered index is going to be better with the storage than the non-clustered index, and that's
+
+06:24.890 --> 06:26.330
+because of the same reason.
+
+06:26.330 --> 06:32.650
+With the Non-structured index, we have this extra layer of index pages and index pages needed storage.
+
+06:32.690 --> 06:36.250
+And that's why they can waste more storage than the clustered index.
+
+06:36.290 --> 06:41.490
+Now if you are talking about the use cases when to use clustered index, well, if you have like a column,
+
+06:41.650 --> 06:46.650
+this column has to have few criteria in order to be a good candidate for the clustered index.
+
+06:46.690 --> 06:50.210
+First, it's going to be good if the values inside the columns are unique.
+
+06:50.250 --> 06:56.850
+And second, and it is way more important that the values of this column should not change a lot.
+
+06:56.890 --> 07:03.330
+Because if this column having a lot of update operators and the data is keep changing, that means each
+
+07:03.330 --> 07:07.570
+time SQL is going to go and start sorting the data again left and right.
+
+07:07.570 --> 07:12.650
+So having a column that is frequently changing, it's not good for clustered index.
+
+07:12.650 --> 07:17.010
+And that's why the primary keys of tables are a perfect candidate.
+
+07:17.010 --> 07:18.850
+Because first they are unique.
+
+07:18.850 --> 07:22.690
+And second, we will never go and update a primary key value.
+
+07:22.730 --> 07:25.770
+We always append a new primary key value.
+
+07:25.770 --> 07:29.290
+And that's why primary keys are perfect for clustered index.
+
+07:29.330 --> 07:34.810
+And one more thing where I go and use clustered index is that to optimize the performance of a range
+
+07:34.810 --> 07:40.370
+query, if you are querying the data between one value and another, one clustered index works really
+
+07:40.370 --> 07:40.730
+well.
+
+07:40.770 --> 07:45.090
+Now, in the other hand, if we are talking about the non-clustered index, we could use it on columns
+
+07:45.090 --> 07:51.330
+that are used in the search conditions or you are joining tables without using the primary keys.
+
+07:51.370 --> 07:55.290
+Then you can go and apply the non-clustered index in order to have faster joins.
+
+07:55.290 --> 08:00.890
+Or you can go and use it to optimize the performance if you are searching for an exact value, exact
+
+08:00.890 --> 08:01.530
+match.
+
+08:01.530 --> 08:07.330
+So those are the main and important differences between the clustered and the non-clustered indexes.

@@ -1,0 +1,76 @@
+WEBVTT
+
+00:03.960 --> 00:10.640
+So now, if you compare views with cities, the cities are used in order to reduce the redundancy within
+
+00:10.640 --> 00:12.040
+one single query.
+
+00:12.040 --> 00:15.720
+So it improves the reusability within one query.
+
+00:15.760 --> 00:21.600
+Where in the other hand, in the views we are reducing the redundancies from multiple queries.
+
+00:21.600 --> 00:24.840
+So we are reducing the complexity of the whole project.
+
+00:24.840 --> 00:29.520
+So the views are improving their reusability in multiple queries.
+
+00:29.560 --> 00:31.040
+Now think about it like this.
+
+00:31.320 --> 00:35.800
+We use views in order to persist a logic in the database.
+
+00:35.800 --> 00:40.080
+So the logic is so important that we want to persist it in the database.
+
+00:40.080 --> 00:44.760
+It's like in the tables we persist data, but with the views we are persisting logic.
+
+00:44.760 --> 00:48.640
+But in the other hand in the CTE the logic is not persisted.
+
+00:48.640 --> 00:54.840
+It is temporary and can be calculated only on the fly within the scope of one query.
+
+00:54.840 --> 01:00.880
+So this logic is important only in this scenario and it is not important for any other queries.
+
+01:00.880 --> 01:04.720
+That's why it makes no sense to persist it using the views.
+
+01:04.720 --> 01:10.400
+So you have to decide is this logic is very important, then take it away from the city and put it in
+
+01:10.400 --> 01:10.960
+the view.
+
+01:10.960 --> 01:16.400
+But if you think you know what, this logic is not really important and only important in this one query.
+
+01:16.600 --> 01:21.400
+Then stay with the city, because creating views always needs some extra steps.
+
+01:21.400 --> 01:24.840
+In order to maintain the view, you have to create the view.
+
+01:24.880 --> 01:27.080
+You have to drop the view if you don't need it.
+
+01:27.080 --> 01:29.840
+But the city, there is almost no maintenance for it.
+
+01:29.840 --> 01:35.960
+The database can do automatically the cleanup once the query is done, so there is no extra activity
+
+01:35.960 --> 01:37.960
+to drop a CTE or something.
+
+01:38.000 --> 01:41.000
+That's why CTE is easier to use than views.
+
+01:41.000 --> 01:43.960
+So those are the big differences between the views and ctes.

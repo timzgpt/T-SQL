@@ -1,0 +1,31 @@
+WEBVTT
+
+00:03.960 --> 00:05.200
+All right, so now for the city.
+
+00:05.240 --> 00:06.880
+We don't have only one city.
+
+00:06.920 --> 00:08.800
+We have different types of cities.
+
+00:08.840 --> 00:11.200
+So mainly there are like two types of CTE.
+
+00:11.400 --> 00:15.440
+We have the non-recursive CTE and recursive CTE.
+
+00:15.560 --> 00:20.280
+And we can say for the non-recursive CTE we have two subtypes.
+
+00:20.280 --> 00:25.440
+The first type is the standalone city and the second one is the nested CTE.
+
+00:25.480 --> 00:28.320
+And now what we're going to do we're going to deep dive into each type.
+
+00:28.480 --> 00:32.920
+And we will start with the easiest form of the CTE, the standalone CTE.
+
+00:33.520 --> 00:35.200
+It is the simplest form.

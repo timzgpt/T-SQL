@@ -1,0 +1,337 @@
+WEBVTT
+
+00:00.080 --> 00:03.240
+And let's have a quick look again to our bronze layer specifications.
+
+00:03.240 --> 00:07.160
+So we just have to load the data from the sources to the data warehouse.
+
+00:07.160 --> 00:09.520
+We're going to build tables in the bronze layer.
+
+00:09.520 --> 00:10.960
+We are doing a full load.
+
+00:10.960 --> 00:13.840
+So that means we are truncating and then inserting the data.
+
+00:13.880 --> 00:17.080
+There will be no data transformations at all in the bronze layer.
+
+00:17.080 --> 00:20.000
+And as well we will not be creating any data model.
+
+00:20.000 --> 00:23.040
+So this is the specifications of the bronze layer.
+
+00:23.080 --> 00:23.400
+All right.
+
+00:23.440 --> 00:28.520
+Now in order to create the DDL script for the bronze layer, creating the tables of the bronze, we
+
+00:28.520 --> 00:33.080
+have to understand the metadata, the structure, the schema of the incoming data.
+
+00:33.080 --> 00:38.000
+And here either you ask the technical experts from the source system about these informations, or you
+
+00:38.000 --> 00:43.280
+can go and explore the incoming data and try to define the structure of your tables.
+
+00:43.280 --> 00:44.120
+So now what we're going to do.
+
+00:44.120 --> 00:46.920
+We're going to start with the first source system the CRM.
+
+00:47.080 --> 00:48.600
+So let's go inside it.
+
+00:48.600 --> 00:51.440
+And we're going to start with the first table the customer info.
+
+00:51.480 --> 00:55.600
+Now if you open the file and check the data inside it, you see we have a header information.
+
+00:55.600 --> 01:01.120
+And that is very good because now we have the names of the columns that are coming from the source and
+
+01:01.120 --> 01:01.840
+from the content.
+
+01:01.840 --> 01:04.240
+You can define of course the data types.
+
+01:04.240 --> 01:05.280
+So let's go and do that.
+
+01:05.280 --> 01:07.320
+First we're going to say create table.
+
+01:07.320 --> 01:09.420
+And then we have to define the layer.
+
+01:09.420 --> 01:10.420
+It's going to be the bronze.
+
+01:10.460 --> 01:13.100
+And now very important we have to follow the naming convention.
+
+01:13.100 --> 01:15.420
+So we start with the name of the source system.
+
+01:15.420 --> 01:17.380
+It is CRM underscore.
+
+01:17.380 --> 01:20.260
+And then after that the table name from the source system.
+
+01:20.260 --> 01:22.860
+So it's going to be the cost underscore info.
+
+01:22.860 --> 01:25.980
+So this is the name of our first table in the bronze layer.
+
+01:26.020 --> 01:29.340
+Then the next step we have to go and define of course the columns.
+
+01:29.340 --> 01:34.900
+And here again the column names in the bronze layer are going to be 1 to 1 exactly like the source system.
+
+01:34.900 --> 01:36.740
+So the first one is going to be the ID.
+
+01:36.980 --> 01:39.020
+And I will go with the data type integer.
+
+01:39.020 --> 01:43.780
+Then the next one going to be the key and varchar and the length.
+
+01:43.780 --> 01:45.300
+And we'll go with 50.
+
+01:52.180 --> 01:55.140
+And the last one going to be the create dates.
+
+01:55.180 --> 01:56.340
+It's going to be a date.
+
+01:56.340 --> 02:00.420
+So with that we have covered all the columns available from the source system.
+
+02:00.420 --> 02:01.420
+So let's go and check.
+
+02:01.420 --> 02:03.700
+And yes the last one is the create date.
+
+02:03.700 --> 02:05.180
+So that's it for the first table.
+
+02:05.220 --> 02:08.740
+Now semicolon of course at the end let's go and execute it.
+
+02:08.780 --> 02:11.860
+And now we're going to go to the Object Explorer over here refresh.
+
+02:11.860 --> 02:15.320
+And we can see the first table inside our data warehouse.
+
+02:15.360 --> 02:16.360
+Amazing, right?
+
+02:16.400 --> 02:23.120
+So now next, what you have to do is to go and create a DDL statement for each file for those two systems.
+
+02:23.200 --> 02:26.080
+So for the CRM we need three DLLs.
+
+02:26.120 --> 02:32.120
+And as well for the other system the ERP, we have as well to create three DLLs for the three files.
+
+02:32.120 --> 02:36.800
+So at the ends we can have in the bronze layer six tables six Dtls.
+
+02:36.800 --> 02:39.120
+So now pause the video, go create those details.
+
+02:39.120 --> 02:41.960
+I will be doing the same as well and we will see you soon.
+
+02:47.440 --> 02:47.760
+All right.
+
+02:47.760 --> 02:49.800
+So now I hope you have created all those details.
+
+02:49.800 --> 02:51.760
+I'm going to show you what I have just created.
+
+02:51.760 --> 02:57.720
+So the second table in the source CRM, we have the product informations and the third one is the sales
+
+02:57.720 --> 02:58.440
+details.
+
+02:58.920 --> 03:00.560
+Then we go to the second system.
+
+03:00.560 --> 03:03.040
+And here we make sure that we are following the naming convention.
+
+03:03.040 --> 03:06.920
+So first the source system Erb and then the table name.
+
+03:06.920 --> 03:08.960
+So the second system was really easy.
+
+03:09.000 --> 03:11.120
+You can see we have only here like two columns.
+
+03:11.120 --> 03:13.240
+And for the customers like only three.
+
+03:13.280 --> 03:15.600
+And for the categories only four columns.
+
+03:15.640 --> 03:16.040
+All right.
+
+03:16.040 --> 03:19.520
+So after defining those stuff of course we have to go and execute them.
+
+03:19.520 --> 03:21.240
+So let's go and do that.
+
+03:21.280 --> 03:25.020
+And then we go to the object explorer over here, refresh the tables.
+
+03:25.020 --> 03:29.500
+And with that you can see we have six empty tables in the bronze layer.
+
+03:29.500 --> 03:33.900
+And with that we have all the tables from the two source systems inside our database.
+
+03:33.900 --> 03:35.820
+But still we don't have any data.
+
+03:35.820 --> 03:38.460
+And you can see our naming convention is really nice.
+
+03:38.460 --> 03:44.020
+You see the first three tables comes from the CRM source system, and then the other three comes from
+
+03:44.020 --> 03:44.740
+the IRB.
+
+03:44.780 --> 03:48.340
+So we can see in the bronze layer that things are really splitted nicely.
+
+03:48.340 --> 03:52.460
+And you can identify quickly which table belongs to which source system.
+
+03:52.460 --> 03:58.500
+Now there is something else that I usually add to the DDL script is to check whether the table exists
+
+03:58.500 --> 03:59.740
+before creating.
+
+03:59.740 --> 04:04.380
+So for example, let's say that you are renaming or you would like to change the data type of specific
+
+04:04.380 --> 04:04.780
+field.
+
+04:04.780 --> 04:09.700
+If you just go and run this query, you will get an error because the database is going to say we have
+
+04:09.700 --> 04:10.780
+already this table.
+
+04:10.780 --> 04:14.060
+So in other databases you can say create or replace table.
+
+04:14.060 --> 04:17.660
+But in the SQL server you have to go and build a T-sql logic.
+
+04:17.660 --> 04:18.780
+So it is very simple.
+
+04:18.820 --> 04:22.100
+First we have to go and check whether the object exists in the database.
+
+04:22.100 --> 04:27.420
+So we say if object ID and then we have to go and specify the table name.
+
+04:27.420 --> 04:34.320
+So let's go and copy the whole thing over here and make sure you get exactly the same name as the table
+
+04:34.320 --> 04:34.520
+name.
+
+04:34.520 --> 04:35.600
+So there is like space.
+
+04:35.600 --> 04:36.960
+I'm just going to go and remove it.
+
+04:36.960 --> 04:39.440
+And then we're going to go and define the object type.
+
+04:39.440 --> 04:41.720
+So it's going to be the you it stands for user.
+
+04:41.720 --> 04:43.680
+It is the user defined tables.
+
+04:43.680 --> 04:46.120
+So if this table is not null.
+
+04:46.400 --> 04:49.560
+So that means the database did find this object in the database.
+
+04:49.560 --> 04:50.760
+So what can happen.
+
+04:50.760 --> 04:54.160
+We say go and drop that table.
+
+04:54.160 --> 04:56.920
+So the whole thing again and semicolon.
+
+04:56.920 --> 05:02.480
+So again if the table exists in the database is not null then go and drop the table.
+
+05:02.480 --> 05:04.520
+And after that go and create it.
+
+05:04.520 --> 05:09.600
+So now if you go and highlight the whole thing and then execute it, it will be working.
+
+05:09.600 --> 05:11.160
+So first drop the table.
+
+05:11.160 --> 05:14.880
+If it exists then go and create the table from scratch.
+
+05:14.880 --> 05:20.760
+Now what you have to do is to go and add this check before creating any table inside our database.
+
+05:20.760 --> 05:23.240
+So it's going to be the same thing for the next table.
+
+05:23.240 --> 05:24.040
+And so on.
+
+05:24.040 --> 05:27.440
+I went and added all those checks for each table.
+
+05:27.720 --> 05:31.200
+And what can happen if I go and execute the whole thing?
+
+05:31.240 --> 05:32.040
+It's going to work.
+
+05:32.040 --> 05:36.600
+So with that, I'm recreating all the tables in the bronze layer from the scratch.

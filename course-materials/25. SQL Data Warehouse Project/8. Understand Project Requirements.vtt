@@ -1,0 +1,184 @@
+WEBVTT
+
+00:00.160 --> 00:05.160
+Now analyzing the requirement, it is very important to understand which type of data warehouse you're
+
+00:05.160 --> 00:09.280
+going to go and build, because there is like not only one standard on how to build it.
+
+00:09.280 --> 00:14.520
+And if you go blindly implementing the data warehouse, you might be doing a lot of stuff that is totally
+
+00:14.520 --> 00:17.760
+unnecessary and you will be burning a lot of time.
+
+00:17.760 --> 00:23.160
+So that's why you have to sit with the stakeholders, with the department and understand what we exactly
+
+00:23.160 --> 00:25.520
+have to build and depend on the requirements.
+
+00:25.520 --> 00:28.120
+You design the shape of the data warehouse.
+
+00:28.160 --> 00:30.480
+So now let's go and analyze the requirement of this project.
+
+00:30.520 --> 00:33.680
+Now the whole project is split into two main sections.
+
+00:33.680 --> 00:36.960
+The first section we have to go and build a data warehouse.
+
+00:36.960 --> 00:39.240
+So this is a data engineering task.
+
+00:39.240 --> 00:42.680
+And we will go and develop Etls and data warehouse.
+
+00:42.680 --> 00:48.520
+And once we have done that we have to go and build an analytics and reporting business intelligence.
+
+00:48.520 --> 00:50.520
+So we're going to do data analysis.
+
+00:50.520 --> 00:54.600
+But now first we will be focusing on the first part building the data warehouse.
+
+00:54.600 --> 00:55.760
+So what do we have here.
+
+00:55.760 --> 00:57.200
+The statement is very simple.
+
+00:57.360 --> 01:04.880
+It says develop a modern data warehouse using SQL server to consolidate sales data enabling Ebling analytical
+
+01:04.880 --> 01:07.640
+reporting and informed decision making.
+
+01:07.720 --> 01:09.600
+So this is the main statement.
+
+01:09.600 --> 01:11.240
+And then we have specifications.
+
+01:11.240 --> 01:12.920
+The first one is about the data sources.
+
+01:12.920 --> 01:17.520
+It says import data from two source systems ERP and CRM.
+
+01:17.520 --> 01:20.080
+And they are provided as CSV files.
+
+01:20.120 --> 01:22.920
+And now the second task is talking about the data quality.
+
+01:22.960 --> 01:27.960
+We have to clean and fix data quality issues before we do the data analysis.
+
+01:27.960 --> 01:31.520
+Because let's be real, there is no raw data that is perfect.
+
+01:31.560 --> 01:34.080
+It is always missing you and we have to clean that up.
+
+01:34.080 --> 01:36.880
+Now the next task is talking about the integration.
+
+01:36.880 --> 01:43.360
+So it says we have to go and combine both of the sources into one single user friendly data model that
+
+01:43.360 --> 01:46.120
+is designed for analytics and reporting.
+
+01:46.120 --> 01:50.640
+So that means we have to go and merge those two sources into one single data model.
+
+01:50.680 --> 01:52.440
+And now we have here another specifications.
+
+01:52.440 --> 01:55.160
+It says focus on the latest data sets.
+
+01:55.200 --> 01:57.440
+So there is no need for historization.
+
+01:57.440 --> 02:00.640
+So that means we don't have to go and build histories in the database.
+
+02:00.640 --> 02:03.280
+And the final requirement is talking about the documentation.
+
+02:03.280 --> 02:06.480
+So it says provide clear documentations of the data model.
+
+02:06.480 --> 02:12.240
+So that means the last product of the data warehouse to support the business users and the analytical
+
+02:12.240 --> 02:12.760
+teams.
+
+02:12.760 --> 02:16.680
+So that means we have to generate a manual that can help the users.
+
+02:16.720 --> 02:19.760
+That makes lives easier for the consumers of our data.
+
+02:19.760 --> 02:24.640
+So as you can see, maybe this is very generic requirements, but it has a lot of informations already
+
+02:24.640 --> 02:25.120
+for you.
+
+02:25.120 --> 02:28.320
+So it's saying that we have to use the platform SQL server.
+
+02:28.320 --> 02:33.800
+We have two source systems using the CSV files, and it sounds that we really have a bad data quality
+
+02:33.800 --> 02:34.640
+in the sources.
+
+02:34.640 --> 02:41.800
+And as well it wants us to focus on building completely new data model that is designed for reporting.
+
+02:41.800 --> 02:47.400
+And it says we don't have to do historization and it is expected from us to generate documentations
+
+02:47.400 --> 02:48.280
+of the system.
+
+02:48.280 --> 02:53.200
+So these are the requirements for the data engineering part, where we're going to go and build a data
+
+02:53.200 --> 02:55.960
+warehouse that fulfill these requirements.
+
+02:56.000 --> 02:56.320
+All right.
+
+02:56.320 --> 02:58.440
+So with that we have analyzed the requirements.
+
+02:58.440 --> 03:01.680
+And as well we have closed the first easiest epic.
+
+03:01.680 --> 03:02.920
+So we are done with this.
+
+03:02.920 --> 03:04.040
+Let's go and close it.
+
+03:04.040 --> 03:05.800
+And now let's open another one.
+
+03:05.800 --> 03:08.240
+Here we have to design the data architecture.
+
+03:08.240 --> 03:11.960
+And the first task is to choose a data management approach.
+
+03:11.960 --> 03:12.600
+So let's go.

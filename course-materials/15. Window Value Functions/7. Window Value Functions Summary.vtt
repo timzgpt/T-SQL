@@ -1,0 +1,178 @@
+WEBVTT
+
+00:03.880 --> 00:04.680
+All right, friends.
+
+00:04.680 --> 00:07.120
+So now let's do a quick recap about the value functions.
+
+00:07.120 --> 00:09.520
+Or we call them sometimes analytical functions.
+
+00:09.520 --> 00:14.240
+So what they do they're going to go and allow you to access a specific value from another row.
+
+00:14.400 --> 00:20.440
+This can help you in order to do complex calculations with very simple SQL, without having you joining
+
+00:20.480 --> 00:22.520
+tables together or doing self joins.
+
+00:22.520 --> 00:24.480
+And for the value functions, we have four types.
+
+00:24.480 --> 00:25.960
+Or let's say for functions.
+
+00:25.960 --> 00:32.080
+The first one allows you to access the previous value like the previous month using the lag function.
+
+00:32.400 --> 00:33.080
+The next one.
+
+00:33.120 --> 00:38.280
+It allows you to access the next values the next month using the lead function.
+
+00:38.560 --> 00:39.840
+Then we have another one.
+
+00:40.040 --> 00:45.160
+It allows you to access the first value in a subset using the first value function.
+
+00:45.160 --> 00:50.840
+And another option, we can go and access the last value in a subset using the last value function.
+
+00:50.840 --> 00:53.440
+Moving on to the next one, we have the rules of the syntax.
+
+00:53.440 --> 00:56.120
+So about the first point, it is the expressions.
+
+00:56.120 --> 00:57.840
+We can go and use any data type.
+
+00:57.840 --> 01:00.440
+It could be a number string a date, anything.
+
+01:00.440 --> 01:04.760
+Now in order to perform those functions we have to go and sort the data by the order by.
+
+01:04.920 --> 01:06.640
+So order by is required.
+
+01:06.640 --> 01:10.440
+It is a must then for the frame you are allowed to use it.
+
+01:10.440 --> 01:12.000
+So it is an optional thing.
+
+01:12.000 --> 01:15.120
+I would say always leave it empty for the frame, but only for the last value.
+
+01:15.160 --> 01:18.080
+You have to go and customize, otherwise it will not work.
+
+01:18.080 --> 01:20.080
+Now to the next point we have the use cases.
+
+01:20.080 --> 01:25.000
+We have simply very important use cases for the value functions in data analytics.
+
+01:25.000 --> 01:27.920
+So what we can do we can do time series analysis.
+
+01:27.920 --> 01:32.640
+As we learned, we can do month over month analysis and year over year analysis.
+
+01:32.640 --> 01:34.320
+Those analyzes are classical.
+
+01:34.320 --> 01:39.840
+And it's always the first question in that analysis in order to measure are we growing with the business,
+
+01:39.840 --> 01:44.400
+or are we declining how the performance between the current year and the previous year?
+
+01:44.400 --> 01:48.480
+So as you can see, we are doing always comparison using those window functions.
+
+01:48.480 --> 01:54.600
+The next use case is as well about the time we can do time gap analysis as we analyzed the customer
+
+01:54.600 --> 02:00.160
+behavior, the customer retention, where we have calculated the average days between two orders and
+
+02:00.160 --> 02:01.560
+the last use case is as well.
+
+02:01.600 --> 02:03.800
+About comparison comparison analysis.
+
+02:03.800 --> 02:09.400
+We can go and use the value functions in order to compare the current value with extreme, like comparing
+
+02:09.400 --> 02:13.410
+the current sales with the highest sales or to the lowest sales.
+
+02:13.410 --> 02:17.330
+So my friends, those analyses are essential in data analysis.
+
+02:17.450 --> 02:20.850
+You will be countering them in each company, in each business.
+
+02:20.850 --> 02:26.170
+You have to answer those questions, and you can do that very easily using the SQL window functions.
+
+02:26.210 --> 02:26.970
+All right my friends.
+
+02:26.970 --> 02:29.290
+So that's all about that window value functions.
+
+02:29.290 --> 02:34.210
+And with that we have covered everything about how to aggregate your data using SQL.
+
+02:34.210 --> 02:39.810
+And those are very important tools on how to do data analytics in SQL, especially if you are a data
+
+02:39.810 --> 02:41.410
+scientist and data analyst.
+
+02:41.410 --> 02:46.530
+So with that, we are done with this chapter and I can tell you with that we have covered the intermediate
+
+02:46.530 --> 02:47.010
+level.
+
+02:47.010 --> 02:51.930
+So we have learned how to filter the data, how to combine the data and as well the most important functions
+
+02:51.930 --> 02:52.730
+in SQL.
+
+02:52.770 --> 02:54.890
+Now we're going to go to the third and last level.
+
+02:54.890 --> 02:57.050
+We will cover now the advanced level.
+
+02:57.050 --> 03:00.690
+So the first level can be about the advanced SQL techniques.
+
+03:00.690 --> 03:06.490
+So now if you go inside it and in SQL there are like different techniques in order to organize our complex
+
+03:06.490 --> 03:07.130
+projects.
+
+03:07.130 --> 03:11.490
+So first I'm going to explain for you what is exactly I'm talking about what is complex queries and
+
+03:11.490 --> 03:12.370
+why we have it.
+
+03:12.370 --> 03:15.210
+And then we're going to start with the first topic that subqueries.
+
+03:15.210 --> 03:15.930
+So let's go.

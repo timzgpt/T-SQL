@@ -1,0 +1,490 @@
+WEBVTT
+
+00:03.840 --> 00:04.520
+All right everyone.
+
+00:04.520 --> 00:08.760
+So now we're going to go and focus on the second function that generates percentage as a rank.
+
+00:08.960 --> 00:10.760
+We have the percent rank.
+
+00:10.880 --> 00:17.360
+So the percent rank going to go and focus on generating the relative position of each row within a window.
+
+00:17.480 --> 00:22.040
+So in order to understand what this means, we can have a very simple example in order to understand
+
+00:22.040 --> 00:24.200
+how SQL works with this function.
+
+00:24.200 --> 00:24.880
+So let's go.
+
+00:24.920 --> 00:25.120
+Okay.
+
+00:25.160 --> 00:27.240
+Again we have those sales very simple example.
+
+00:27.240 --> 00:30.320
+And the syntax is going to be like this percent rank.
+
+00:30.600 --> 00:32.840
+And inside it we don't use any arguments.
+
+00:33.040 --> 00:34.560
+And the window going to be like this.
+
+00:34.560 --> 00:36.160
+Order by it is a must.
+
+00:36.400 --> 00:38.920
+Sales descending from the highest to the lowest.
+
+00:38.960 --> 00:43.200
+The first step that SQL going to do is that it's going to go and sort the data from the highest to the
+
+00:43.200 --> 00:44.920
+lowest, and we have it already like this.
+
+00:44.960 --> 00:49.840
+And next SQL going to go and start calculate the percentage which is very similar to the cumulative
+
+00:49.840 --> 00:50.880
+distribution.
+
+00:51.080 --> 00:54.200
+But this time it's going to be like this position number.
+
+00:54.480 --> 01:01.320
+Then we subtract it from one and as well divide it by the number of rows subtracted from one.
+
+01:01.320 --> 01:03.000
+So it's like exact formula.
+
+01:03.000 --> 01:06.240
+But we are only subtracting here once for both numbers.
+
+01:06.280 --> 01:06.480
+Okay.
+
+01:06.520 --> 01:09.760
+So now let's go through all rows step by step and see the output.
+
+01:09.760 --> 01:12.040
+So it's going to start with the first row right.
+
+01:12.040 --> 01:14.680
+So what is the position number of the first row.
+
+01:14.720 --> 01:15.920
+It's going to be one.
+
+01:16.160 --> 01:18.080
+Then we have to subtract it by one.
+
+01:18.240 --> 01:20.000
+That's why we will get zero.
+
+01:20.040 --> 01:22.160
+Now what is the total number of rows we have here.
+
+01:22.200 --> 01:24.960
+Five rows and it is subtracted by one.
+
+01:24.960 --> 01:26.600
+That's why we're going to get four.
+
+01:26.640 --> 01:30.560
+So now zero divided by any value the output can be a zero.
+
+01:30.560 --> 01:33.160
+So that's why for the first value we will get a zero.
+
+01:33.200 --> 01:33.480
+All right.
+
+01:33.480 --> 01:35.840
+So now let's move to the second row over here.
+
+01:35.840 --> 01:38.440
+And here we have our special case where we have a tie.
+
+01:38.480 --> 01:41.840
+So we have two cells sharing the same value 80.
+
+01:41.880 --> 01:46.320
+So now for the percent rank SQL can have different behavior than the oldest.
+
+01:46.360 --> 01:51.560
+Remember in the oldest SQL did search for the last position of the shared value.
+
+01:51.560 --> 01:53.440
+So it was the position number three.
+
+01:53.480 --> 01:58.320
+Since this is the last time we see 80, but now with the percent rank, it's going to stick with the
+
+01:58.320 --> 02:00.120
+first occurrence of the shared value.
+
+02:00.320 --> 02:03.440
+So now by checking those two, what is the first occurrence?
+
+02:03.680 --> 02:05.440
+It is the record number two.
+
+02:05.600 --> 02:08.960
+So that's why we have position number two subtracted by one.
+
+02:08.960 --> 02:10.040
+We will get one.
+
+02:10.200 --> 02:12.360
+And here the same is going to be number of totals.
+
+02:12.360 --> 02:13.200
+We have five.
+
+02:13.240 --> 02:14.040
+Subtract by one.
+
+02:14.040 --> 02:14.720
+We have four.
+
+02:14.760 --> 02:19.480
+So now if you divide one by four we will get the result of zero comma two five.
+
+02:19.520 --> 02:21.800
+So this is the percentage of this value.
+
+02:21.800 --> 02:23.440
+So now let's go to the second row.
+
+02:23.440 --> 02:24.880
+Here we have again the tie.
+
+02:25.080 --> 02:28.800
+So SQL can stick with the position number two the first occurrence.
+
+02:28.800 --> 02:32.640
+So it's going to be the same to subtract it by one we will get one.
+
+02:32.640 --> 02:35.600
+And as well the total number of rows five subtract by one.
+
+02:35.600 --> 02:36.440
+We will have four.
+
+02:36.720 --> 02:39.360
+That's why we will get the same exact results.
+
+02:39.360 --> 02:44.600
+So here as you can see with the percent rank it's like that the shared value is going to share as well
+
+02:44.600 --> 02:46.080
+the same percentage rank.
+
+02:46.120 --> 02:48.040
+Now let's move to the fourth one.
+
+02:48.040 --> 02:49.360
+So we have the value 50.
+
+02:49.400 --> 02:50.640
+So what is the position of this.
+
+02:50.680 --> 02:54.240
+It's going to be the record number four subtracted by one.
+
+02:54.240 --> 02:55.360
+We will get three.
+
+02:55.360 --> 02:59.720
+And if you divide three by four, you will get 0.75.
+
+02:59.760 --> 03:02.960
+And now moving to the last value over here it's going to be easy.
+
+03:02.960 --> 03:05.200
+So what is the position number of the 30.
+
+03:05.280 --> 03:06.280
+It is five.
+
+03:06.320 --> 03:07.680
+Five subtracted by one.
+
+03:07.680 --> 03:08.640
+It's going to be four.
+
+03:08.920 --> 03:13.520
+And as well we're going to have four as well here for the total numbers subtracted by one.
+
+03:13.520 --> 03:15.920
+So if we divide 4x4 you will get one.
+
+03:15.920 --> 03:16.720
+So that's it guys.
+
+03:16.720 --> 03:18.600
+This is how the percent rank works.
+
+03:18.600 --> 03:21.360
+It always has the scale from 0 to 1.
+
+03:21.360 --> 03:22.560
+So it's always like this.
+
+03:22.680 --> 03:25.080
+It doesn't matter which values do we have inside.
+
+03:25.080 --> 03:27.320
+And it's going to have like a continuous scale.
+
+03:27.360 --> 03:31.880
+And again here if you have a tie they're going to go and share the same percentage rank okay guys.
+
+03:31.880 --> 03:35.880
+So now if you go and compare those two functions you can see that they are really similar to each other's.
+
+03:35.920 --> 03:42.000
+The output of both functions we are generating percentage based ranking and both of them as well handling
+
+03:42.000 --> 03:45.440
+the ties perfectly so they share the same percentage rank.
+
+03:45.480 --> 03:47.600
+If you check the syntax, they are very similar.
+
+03:47.640 --> 03:52.840
+And now by checking their formulas of both of them, we are always considering the overall size of the
+
+03:52.840 --> 03:53.680
+datasets.
+
+03:53.720 --> 04:00.720
+So here the size is considered in the calculation to help us finding the relative position of each value
+
+04:00.720 --> 04:01.680
+to the overall.
+
+04:01.720 --> 04:07.160
+And this is very important in the analysis in order to measure the contribution of each value to the
+
+04:07.200 --> 04:07.880
+overall.
+
+04:08.000 --> 04:09.120
+So now about the use cases.
+
+04:09.120 --> 04:13.880
+If you want to focus on the distribution of your data points go with the cumulative distribution.
+
+04:13.880 --> 04:19.640
+But if you want to focus on the relative position of each rows then go with the percent rank.
+
+04:19.680 --> 04:20.040
+All right.
+
+04:20.040 --> 04:23.400
+So now there is one more difference between the oldest and the percent rank.
+
+04:23.560 --> 04:29.200
+And that's if you check the formulas you can see that the oldest is more inclusive.
+
+04:29.240 --> 04:32.480
+We always consider the position number of the current row.
+
+04:32.520 --> 04:36.400
+But with the person trying we don't consider the current row we like.
+
+04:36.400 --> 04:38.400
+Skip it or make it exclusive.
+
+04:38.400 --> 04:44.960
+So we say for the present rank it is more exclusive and the cumulative distribution it is more inclusive.
+
+04:45.000 --> 04:50.200
+So now if you ask me the hard question which one to use, I'm going to say if you want to be more inclusive,
+
+04:50.240 --> 04:52.160
+go with the cumulative distribution.
+
+04:52.160 --> 04:56.330
+If you want to be more exclusive with the current role, go with the person rank.
+
+04:56.370 --> 04:58.370
+So they are very similar to each other's.
+
+04:58.370 --> 05:02.410
+So if you want to calculate the distribution of your data, go with the cumulative distribution.
+
+05:02.410 --> 05:07.610
+If you want to find the relative position of each row, then go with the person rank.
+
+05:07.650 --> 05:07.930
+All right.
+
+05:07.930 --> 05:09.010
+So now we have the following task.
+
+05:09.050 --> 05:14.090
+It says find the products that fall within the highest 40% of the prices.
+
+05:14.330 --> 05:15.570
+Let's go and solve this.
+
+05:15.570 --> 05:17.650
+Now we are targeting the table products.
+
+05:17.850 --> 05:24.250
+And I will just select like two columns product price from sales products.
+
+05:24.730 --> 05:26.010
+So that's it.
+
+05:26.050 --> 05:27.730
+Let's go and execute this.
+
+05:27.770 --> 05:30.610
+So now as you can see we got five products and their prices.
+
+05:30.610 --> 05:33.570
+And the task says find the highest 40%.
+
+05:33.850 --> 05:37.130
+So we have to find and generate a percentage rank.
+
+05:37.170 --> 05:41.050
+In order to do that we have the two functions come list and the percent rank.
+
+05:41.250 --> 05:43.130
+I will go this time with the oldest.
+
+05:43.130 --> 05:44.890
+So let's go and do that.
+
+05:45.330 --> 05:46.530
+So modest.
+
+05:47.090 --> 05:49.450
+And then let's go and define the window like this.
+
+05:49.970 --> 05:51.490
+It's going to be order by.
+
+05:51.770 --> 05:53.690
+We are targeting now the prices right.
+
+05:53.690 --> 05:57.850
+So order by the price from the highest to the lowest.
+
+05:57.850 --> 06:00.450
+And let's go give it a name this rank.
+
+06:00.450 --> 06:02.170
+So let's go and execute this.
+
+06:02.170 --> 06:07.410
+So now with that scale going to go and generate for us a percentage ranking using the formula that we
+
+06:07.410 --> 06:08.290
+just learned before.
+
+06:08.330 --> 06:10.330
+So now in the output we are getting all the products.
+
+06:10.330 --> 06:15.090
+But the task says we have to get only the products that are in the highest 40%.
+
+06:15.090 --> 06:19.210
+So that means the first row, the second row and that's it.
+
+06:19.210 --> 06:22.410
+So those rows are in the highest 40%.
+
+06:22.450 --> 06:24.050
+The rest are below that.
+
+06:24.050 --> 06:27.410
+So in order to do that to filter the data we can use the subquery.
+
+06:27.690 --> 06:30.330
+So select star from.
+
+06:30.370 --> 06:32.650
+And then we have our subquery like this.
+
+06:32.890 --> 06:40.650
+And then our filter is going to be this rank smaller or equal to 0.4.
+
+06:40.690 --> 06:43.810
+So this is our threshold in order to get the data.
+
+06:43.810 --> 06:45.450
+So let's go and execute this.
+
+06:45.490 --> 06:49.330
+And now as you can see we got the top products the top 40%.
+
+06:49.370 --> 06:51.730
+Now of course you can go and format the percentage.
+
+06:51.850 --> 06:53.530
+We can do that like this.
+
+06:54.010 --> 06:56.890
+So let's take the dist rank.
+
+06:58.130 --> 06:59.850
+Multiply it with 100.
+
+06:59.890 --> 07:01.170
+So let's go and execute this.
+
+07:01.210 --> 07:04.050
+So now as you can see we got 20 and 40%.
+
+07:04.090 --> 07:07.610
+We can go and add to it as well the percentage character right.
+
+07:07.650 --> 07:14.450
+So we can go and say concat and we can add the character after that like this.
+
+07:14.490 --> 07:18.250
+And let's call it this rank percentage.
+
+07:18.330 --> 07:19.290
+So that's it.
+
+07:19.290 --> 07:21.770
+Let's go and execute it so that we have solved the task.
+
+07:21.770 --> 07:25.090
+We have the products that fall within the highest 40%.
+
+07:25.130 --> 07:28.090
+Now of course you can go and try the percent rank.
+
+07:28.090 --> 07:29.170
+So it's very simple.
+
+07:29.170 --> 07:35.770
+We just have to go and switch the cumulative distribution with the function percent rank.
+
+07:36.130 --> 07:37.810
+So let's go and execute it.
+
+07:37.850 --> 07:40.330
+Now as you can see we will get the exact same results.
+
+07:40.330 --> 07:45.970
+So we're still getting the gloves and caps as the highest products within the 40% of the price.
+
+07:45.970 --> 07:46.970
+So guys that's it.
+
+07:46.970 --> 07:48.130
+It's very simple right.

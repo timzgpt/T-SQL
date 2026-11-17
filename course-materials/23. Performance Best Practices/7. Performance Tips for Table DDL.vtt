@@ -1,0 +1,442 @@
+WEBVTT
+
+00:04.040 --> 00:09.480
+And now in the next section, I'm going to show you the best practices on how to create tables.
+
+00:09.480 --> 00:13.280
+So the best practices of DDL data definition language.
+
+00:13.280 --> 00:18.960
+If you have a poor definition of your tables, this has a great impact on the performance of your queries.
+
+00:19.000 --> 00:19.320
+All right.
+
+00:19.320 --> 00:23.400
+So now we have here like a DDL in order to create a table customer info.
+
+00:23.520 --> 00:26.080
+And it is not really following best practices.
+
+00:26.080 --> 00:27.800
+So let's go through it one by one.
+
+00:27.840 --> 00:32.560
+The first tip is try to avoid the data types varchar and text.
+
+00:32.560 --> 00:33.720
+If it's possible.
+
+00:33.720 --> 00:34.920
+The Varchar and text.
+
+00:34.960 --> 00:40.600
+They are like one of the worst data types for performance because they consume a lot of resources.
+
+00:40.600 --> 00:41.760
+Whatever you do like.
+
+00:41.760 --> 00:46.720
+For example, if you are sorting the data by a column that is varchar or text, it is very expensive
+
+00:46.760 --> 00:47.400
+operation.
+
+00:47.400 --> 00:52.120
+The same thing if you go like create an index on top of such a column, it's going to be as well expensive.
+
+00:52.120 --> 00:56.120
+And they cause a lot of problems with the data fragmentations and many issues.
+
+00:56.120 --> 01:00.400
+So try as much as you can to skip those data type if it's possible.
+
+01:00.400 --> 01:04.840
+So now let's go and review all those columns in order to see whether we can change something about it,
+
+01:05.080 --> 01:06.890
+because it has a lot of bar charts.
+
+01:06.930 --> 01:10.250
+So the first one over here, we have a bar chart because it is the first name.
+
+01:10.250 --> 01:11.330
+Well it is okay.
+
+01:11.370 --> 01:12.450
+Now moving on to the next one.
+
+01:12.450 --> 01:17.530
+We have the last name as a text, which is not really good because text is worse than varchar.
+
+01:17.730 --> 01:20.010
+So it's better to use Varchar than a text.
+
+01:20.010 --> 01:21.130
+So here we have to fix it.
+
+01:21.130 --> 01:24.370
+So Varchar and I'm going to go with the links 50.
+
+01:24.410 --> 01:26.090
+Now moving on to the countries.
+
+01:26.090 --> 01:27.850
+So the country is going to be Varchar.
+
+01:28.010 --> 01:29.130
+We cannot change that.
+
+01:29.130 --> 01:30.570
+It contain characters.
+
+01:30.570 --> 01:33.090
+So the next one is the score of the customer.
+
+01:33.450 --> 01:37.170
+Here we can do something about it because scores are only numbers.
+
+01:37.170 --> 01:39.410
+So that's why we can go and skip this one.
+
+01:39.450 --> 01:43.130
+So let's remove it and say you are integer.
+
+01:43.130 --> 01:45.570
+And with that we have avoided using the Varchar.
+
+01:45.570 --> 01:47.450
+And the same thing goes for the birthday.
+
+01:47.490 --> 01:49.050
+The birthday is a date.
+
+01:49.050 --> 01:50.770
+And here we have it as a varchar.
+
+01:50.810 --> 01:52.010
+Well this is not really good.
+
+01:52.010 --> 01:55.490
+And we can skip that by having this column as a date.
+
+01:55.490 --> 01:58.410
+So date is way better than having a varchar.
+
+01:58.450 --> 01:58.890
+All right.
+
+01:58.890 --> 02:00.130
+And the next one is integer.
+
+02:00.130 --> 02:01.810
+So with that we have fixed few stuff.
+
+02:01.810 --> 02:04.370
+So we have fixed the score and the birthday.
+
+02:04.370 --> 02:06.330
+And with that we have saved some storage.
+
+02:06.450 --> 02:10.410
+If we have an index on the score it's going to be way better than having a Varchar.
+
+02:10.410 --> 02:14.190
+And if you are filtering the data based on the birthday, it's going to be faster.
+
+02:14.190 --> 02:17.310
+So again, try your best to avoid the Varchar and the text.
+
+02:17.350 --> 02:22.630
+I've seen in many projects that a lot of developers tend to use the Varchar, and I understand it is
+
+02:22.630 --> 02:27.750
+easier to make everything as a Varchar than deciding whether it is an integer or date float, and so
+
+02:27.750 --> 02:31.430
+on, because you can fit everything in the varchar and text.
+
+02:31.430 --> 02:32.910
+But this is lazy.
+
+02:33.190 --> 02:38.150
+Take time to understand the content of this column and try to assign it to the correct data type, because
+
+02:38.150 --> 02:40.270
+this has really impact on the performance.
+
+02:40.430 --> 02:45.630
+Okay, to the next one it says avoid using max or overly large lengths.
+
+02:45.630 --> 02:48.910
+So now we have to keep our eyes on the links of each data type.
+
+02:48.950 --> 02:55.430
+Actually the Varchar not only it can waste like a lot of storage, it also can like mislead the SQL
+
+02:55.710 --> 03:02.550
+by creating large indexes, which is totally unnecessary because the data itself is small, but because
+
+03:02.550 --> 03:07.630
+you have defined like a large length, it's going to check those informations and make a decision to
+
+03:07.670 --> 03:08.990
+make a big index.
+
+03:08.990 --> 03:13.830
+And large indexes are always problematic because they're going to slow everything down by sorting the
+
+03:13.830 --> 03:17.280
+data, by retrieving data, by updating the index.
+
+03:17.280 --> 03:24.920
+So it is really bad practices if you go blindly and define everywhere max or 255, again, give it a
+
+03:24.920 --> 03:28.360
+chance to think about each column and predict a length for it.
+
+03:28.400 --> 03:32.520
+So for example, if you check over here we are saying first name varchar max.
+
+03:32.520 --> 03:38.600
+Well, most of the first names are short, so we don't need like the maximum size of a Varchar to fit
+
+03:38.640 --> 03:39.480
+a first name.
+
+03:39.480 --> 03:43.280
+So here we can go easily instead of max with the 50.
+
+03:43.320 --> 03:45.400
+And the same thing goes for the column country.
+
+03:45.400 --> 03:49.760
+We don't need 255 characters for the country name.
+
+03:49.760 --> 03:52.920
+We can go with something more realistic, like around 50.
+
+03:52.960 --> 03:56.040
+I think you can even go smaller, but it's fine to have 50.
+
+03:56.080 --> 04:01.400
+So the best practice here is to analyze your data and to predict the size of each column.
+
+04:01.400 --> 04:04.280
+And don't be lazy by just defining max everywhere.
+
+04:04.320 --> 04:07.280
+I know it's faster, but it's bad for performance.
+
+04:07.320 --> 04:08.160
+Okay, what do you have?
+
+04:08.200 --> 04:13.040
+Else use the constraint not null as much as possible then not.
+
+04:13.040 --> 04:15.280
+Null is amazing and has a lot of advantages.
+
+04:15.280 --> 04:19.080
+Of course, the biggest advantage is that the data integrity of your table.
+
+04:19.080 --> 04:24.250
+So with that you make sure no nulls are inserted in specific column, but it is as well.
+
+04:24.290 --> 04:29.290
+Good practices to use it for improving the performance, because if you are creating an index, you're
+
+04:29.290 --> 04:30.650
+going to get a better index.
+
+04:30.650 --> 04:31.490
+Performance.
+
+04:31.530 --> 04:37.050
+Since SQL knows there is no nulls inside my tree, inside the index, and in the other side.
+
+04:37.050 --> 04:42.570
+If you are writing a query, we tend to use a filter where we say specific column should not be null.
+
+04:42.610 --> 04:47.210
+But if you make sure that in the DDL it is not null, then you can skip this filter.
+
+04:47.210 --> 04:49.490
+And with that you are reducing the size of your query.
+
+04:49.490 --> 04:53.130
+So what we're going to do, we're going to go through all the columns and decide whether it is not null
+
+04:53.130 --> 04:53.770
+and null.
+
+04:53.770 --> 04:56.810
+So for example the first name and the last name they should not be null.
+
+04:56.810 --> 04:58.930
+So that's why I'm going to say not null.
+
+04:58.970 --> 05:03.770
+And the same thing for the last name, not null for the customer ID we're going to talk about it soon
+
+05:03.770 --> 05:05.490
+because we're going to convert it to a primary key.
+
+05:05.530 --> 05:07.330
+And primary keys are usually not null.
+
+05:07.330 --> 05:11.530
+So now for the country, we may have it in the business that it should not be null.
+
+05:11.530 --> 05:13.930
+So we go and make a constraint about it.
+
+05:13.970 --> 05:16.250
+Now about the total purchases and scores.
+
+05:16.290 --> 05:19.810
+If it is a new customer, maybe we can have a null inside our data.
+
+05:19.810 --> 05:20.810
+So we're going to leave it empty.
+
+05:20.810 --> 05:23.210
+And I think birthday is going to be usually optional.
+
+05:23.210 --> 05:24.770
+So we're going to leave it as well.
+
+05:24.810 --> 05:27.460
+And whether the customer is employee or not.
+
+05:27.500 --> 05:29.380
+This could be as well a null.
+
+05:29.420 --> 05:33.820
+So with that we have found out like three columns where we can have a constraint about the not null.
+
+05:33.820 --> 05:38.540
+And if we go and create like an index on the country, it's going to be a better index.
+
+05:38.580 --> 05:38.820
+Okay.
+
+05:38.860 --> 05:44.900
+Moving on to the next one, it says make sure that all your tables inside the database have a clustered
+
+05:44.900 --> 05:45.780
+primary key.
+
+05:45.860 --> 05:49.900
+And as well it's going to help you building the relationship between tables where you have primary keys
+
+05:49.900 --> 05:50.740
+and foreign keys.
+
+05:50.780 --> 05:53.100
+And you can join tables then very easily.
+
+05:53.100 --> 05:56.220
+And as well a primary key has importance for the performance.
+
+05:56.220 --> 06:01.460
+And in SQL server the default is going to be a clustered index, which is really good to have an index
+
+06:01.460 --> 06:07.140
+on the primary key, because sometimes you are doing like an update operations or delete operations.
+
+06:07.180 --> 06:10.340
+It can help out by the lookups of joining tables.
+
+06:10.340 --> 06:13.500
+So there are a lot of performance benefits of having a primary key.
+
+06:13.500 --> 06:16.540
+And make sure that all your tables having a primary key.
+
+06:16.540 --> 06:19.140
+So as you can see the issue of our table, we don't have a primary key.
+
+06:19.140 --> 06:21.500
+And our primary key can be that customer ID.
+
+06:21.500 --> 06:24.460
+So let's go and do that primary key.
+
+06:24.700 --> 06:26.860
+And as I said as a default can be clustered.
+
+06:26.860 --> 06:31.400
+But I'm going to write it down in case if you are working with different databases.
+
+06:31.400 --> 06:33.200
+Make sure it is clustered.
+
+06:33.240 --> 06:33.440
+Okay.
+
+06:33.480 --> 06:34.520
+Moving on to the next one.
+
+06:34.520 --> 06:36.280
+It's not only about the primary key.
+
+06:36.320 --> 06:38.400
+We have to take care of our foreign keys.
+
+06:38.400 --> 06:43.200
+So the best practice says create non-clustered index for the foreign keys.
+
+06:43.480 --> 06:44.960
+If they are frequently used.
+
+06:44.960 --> 06:49.560
+The foreign keys are usually important in order to connect and join two tables.
+
+06:49.560 --> 06:51.600
+And usually we frequently use it.
+
+06:51.600 --> 06:55.320
+And not only that, we use it sometimes in order to filter the data.
+
+06:55.320 --> 06:59.120
+And if we create a non-clustered index for that, it can improve the speed.
+
+06:59.120 --> 07:00.520
+So what we can do, it's very simple.
+
+07:00.520 --> 07:04.320
+We're going to go and create a non-clustered index on our table.
+
+07:04.320 --> 07:07.800
+Customers info for the foreign key employee ID.
+
+07:07.800 --> 07:08.480
+So how to do it.
+
+07:08.480 --> 07:09.080
+It's very simple.
+
+07:09.080 --> 07:12.680
+We're going to go and say create non-clustered index on our table.
+
+07:12.680 --> 07:16.000
+The customer's info on our foreign key the employee ID.
+
+07:16.000 --> 07:21.600
+But again make sure that this is an important foreign key that is used frequently from your queries.
+
+07:21.640 --> 07:26.640
+All right friends, so as you can see, there are a lot of best practices on how to improve and optimize
+
+07:26.640 --> 07:27.440
+the DDL.
+
+07:27.520 --> 07:31.160
+Having a healthy DDL can improve the performance of your queries.
+
+07:31.200 --> 07:36.000
+Now in the next section, I'm going to show you the best practices and tips and tricks about indexing.
+
+07:36.120 --> 07:36.760
+So let's go.

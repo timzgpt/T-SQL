@@ -1,0 +1,184 @@
+WEBVTT
+
+00:03.920 --> 00:08.840
+All right, friends, now we're going to cover three very easy quick functions in SQL to extract the
+
+00:08.840 --> 00:09.760
+parts of the dates.
+
+00:09.760 --> 00:10.960
+So they are very simple.
+
+00:10.960 --> 00:14.640
+The date function can return a day from a date.
+
+00:14.640 --> 00:19.200
+And in the same way, the month can return the month from a date.
+
+00:19.200 --> 00:20.160
+And guess what?
+
+00:20.160 --> 00:23.400
+The year can return a year from a date.
+
+00:23.440 --> 00:29.600
+Okay, so now in order to understand how they work, we have a date like this one 2025 August 20th.
+
+00:29.640 --> 00:31.880
+Sometimes you are not interested in the whole date.
+
+00:31.880 --> 00:34.400
+You would like to get only a part from this date.
+
+00:34.520 --> 00:39.760
+So you go and use the function day in order to extract the two digits.
+
+00:39.880 --> 00:40.520
+20.
+
+00:40.560 --> 00:44.800
+Now in other scenario, you might be interested in the month information, so you would like to get
+
+00:44.800 --> 00:47.080
+those two digits zero eight.
+
+00:47.120 --> 00:53.320
+So we can use the function month in order to extract the month information in order to get the August.
+
+00:53.320 --> 00:58.880
+So zero eight and one more situation where you want to have only the year information.
+
+00:58.880 --> 01:05.200
+So you are interested in the four digits 2025, so you can go and use the function here in order to
+
+01:05.200 --> 01:06.040
+extract it.
+
+01:06.040 --> 01:09.120
+So in the output, if you apply it you will get 2025.
+
+01:09.120 --> 01:10.080
+So it's very simple.
+
+01:10.080 --> 01:12.360
+This is how those three functions work.
+
+01:12.400 --> 01:12.720
+All right.
+
+01:12.760 --> 01:14.720
+Now let's check the syntax of those three functions.
+
+01:14.720 --> 01:15.800
+It's pretty easy.
+
+01:15.800 --> 01:18.480
+So we have it always like this a keyword called day.
+
+01:18.520 --> 01:19.680
+This is the function name.
+
+01:19.680 --> 01:21.880
+And then it accepts only one parameter.
+
+01:22.040 --> 01:23.200
+It is the date.
+
+01:23.200 --> 01:24.720
+The same things for the others.
+
+01:24.720 --> 01:29.480
+We have a function called month and it accepts as well only one parameter the date, and as well for
+
+01:29.480 --> 01:30.600
+the year the same thing.
+
+01:30.600 --> 01:32.280
+So the syntax is very straightforward.
+
+01:32.280 --> 01:34.480
+It accepts only one value the date.
+
+01:34.480 --> 01:38.960
+And we have the function name like the name of the bar that we want to extract.
+
+01:39.000 --> 01:39.320
+All right.
+
+01:39.320 --> 01:43.760
+So now let's try out those functions I will be working with the column creation time.
+
+01:43.760 --> 01:49.040
+So let's try for example extracting the year from the creation time using the year function.
+
+01:49.040 --> 01:50.400
+So it's going to be very simple.
+
+01:50.440 --> 01:55.640
+It's going to be year and then creation time like this.
+
+01:55.640 --> 01:57.640
+And let's call it year.
+
+01:57.760 --> 01:58.280
+That's it.
+
+01:58.320 --> 01:59.530
+Let's go and execute it.
+
+01:59.570 --> 02:00.770
+Now, as you can see, it's very simple.
+
+02:00.770 --> 02:04.410
+We have only one year 2025 from the creation time.
+
+02:04.410 --> 02:09.130
+So with that, as you can see we got a new column where we have only the year informations inside it.
+
+02:09.130 --> 02:11.210
+And this information come from the creation date.
+
+02:11.210 --> 02:13.370
+So we have only 2025.
+
+02:13.410 --> 02:20.690
+Now let's go and do the same for the month so we can have the same thing month creation time and let's
+
+02:20.690 --> 02:21.530
+call it month.
+
+02:21.850 --> 02:23.370
+So let's execute it now.
+
+02:23.370 --> 02:26.770
+As you can see in the output we got as well the number of the month.
+
+02:26.770 --> 02:29.290
+So we have here January, February and March.
+
+02:29.290 --> 02:34.970
+And those are information as well are extracted from the creation time and the same thing using the
+
+02:35.010 --> 02:35.930
+day function.
+
+02:35.930 --> 02:37.610
+So let's go and use that.
+
+02:38.250 --> 02:42.250
+So creation time and we call it day.
+
+02:42.290 --> 02:47.490
+So now as you can see the output we have the day part from the creation time.
+
+02:47.490 --> 02:49.970
+So here we have one 510 and so on.
+
+02:49.970 --> 02:52.450
+And all those informations come from the creation time.
+
+02:52.450 --> 02:58.610
+So as you can see those three functions are very simple and quick in order to extract parts from a date
+
+02:58.610 --> 02:59.530
+or date time.
